@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <base href="../../../">
+    <meta charset="utf-8" />
+    <title>DCB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <link href="~/dist/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/dist/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <style>
+        .error {
+            color: red !important;
+            font-weight: 500 !important;
+        }
+    </style>
+</head>
+<body id="kt_body" style="background-image: url(/dist/assets/media/patterns/header-bg.jpg)" class="bg-white">
+    <div class="d-flex flex-column flex-root">
+        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(assets/media/illustrations/progress-hd.png)">
+            <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
+                <a href="index.html" class="mb-12">
+                    <img alt="Logo" src="~/Images/Logo_CBD.jpg" class="h-45px" />
+                </a>
+                <div class="w-lg-500px bg-white rounded shadow-sm p-10 p-lg-15 mx-auto">
+                    <!--begin::Form-->
+                    @using (Html.BeginForm("LogIn", "Account", null, FormMethod.Post, new { @class = "kt-form", @id = "kt_form_2", role = "form", novalidate = "novalidate" }))
+                    {
+
+                        <div class="text-center mb-10">
+                            <h1 class="text-dark mb-3">Sign In to DCB</h1>
+                        </div>
+
+                        @Html.AntiForgeryToken()
+
+                        <h5 style="color:red !important"> @Html.ValidationSummary(true, "", new { @class = "text-danger" })</h5>
+                        if (TempData["EM"] != null)
+                        {
+                            <h5 style="color:red !important">  @TempData["EM"]</h5>
+                        }
+                        if (TempData["SM"] != null)
+                        {
+                            <h5 style="color:green !important">  @TempData["SM"]</h5>
+                        }
+                        if (TempData["PM"] != null)
+                        {
+                            <h5 style="color:red !important">  @TempData["PM"]</h5>
+                        }
+
+
+                        <div class="fv-row mb-10">
+                            <label class="form-label fs-6 fw-bolder text-dark">Username</label>
+                            <input class="form-control form-control-lg form-control-solid" type="text" name="UserName" autocomplete="off" />
+                        </div>
+                        <div class="fv-row mb-10">
+                            <div class="d-flex flex-stack mb-2">
+                                <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
+                                <a href="#" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
+                            </div>
+                            <input class="form-control form-control-lg form-control-solid" type="password" name="Password" autocomplete="off" />
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-lg btn-primary w-100 mb-5">
+                                <span class="indicator-label">Login</span>
+                            </button>
+                        </div>
+                    }
+                    <!--end::Form-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/dist/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="~/dist/assets/js/scripts.bundle.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $("#kt_form_2").validate({
+                rules: {
+                    UserName: {
+                        required: true
+                    },
+                    Password: {
+                        required: true
+                    }
+                },
+                invalidHandler: function (event, validator) {
+                    KTUtil.scrollTop();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

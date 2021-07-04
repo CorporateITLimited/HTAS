@@ -1881,16 +1881,51 @@
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Users\DesignationController.cs" />
+    <Compile Include="Controllers\Users\EmployeeController.cs" />
+    <Compile Include="Controllers\Users\RoleController.cs" />
+    <Compile Include="Controllers\Users\UserController.cs" />
+    <Compile Include="Controllers\Users\UserPermissionController.cs" />
+    <Compile Include="Controllers\Users\UserTypeController.cs" />
+    <Compile Include="Gateway\AccountGateway.cs" />
+    <Compile Include="Gateway\DefaultGateway.cs" />
+    <Compile Include="Gateway\Users\DesignationGateway.cs" />
+    <Compile Include="Gateway\Users\EmployeeGateway.cs" />
+    <Compile Include="Gateway\Users\RoleGateway.cs" />
+    <Compile Include="Gateway\Users\UserGateway.cs" />
+    <Compile Include="Gateway\Users\UserTypeGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CommonConstantHelper.cs" />
+    <Compile Include="Helpers\CommonEntityHelper.cs" />
+    <Compile Include="Helpers\ConvertNullableObj.cs" />
+    <Compile Include="Helpers\PasswordHelper.cs" />
+    <Compile Include="Manager\AccountManager.cs" />
+    <Compile Include="Manager\Users\DesignationManager.cs" />
+    <Compile Include="Manager\Users\EmployeeManager.cs" />
+    <Compile Include="Manager\Users\RoleManager.cs" />
+    <Compile Include="Manager\Users\UserManager.cs" />
+    <Compile Include="Manager\Users\UserTypeManager.cs" />
+    <Compile Include="Models\Users\clsUser.cs" />
+    <Compile Include="Models\Users\Designation.cs" />
+    <Compile Include="Models\Users\Employee.cs" />
+    <Compile Include="Models\Users\Role.cs" />
+    <Compile Include="Models\Users\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\LogInVM.cs" />
+    <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
+    <Compile Include="ViewModels\UserPermission.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -1923,6 +1958,30 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Views\Shared\_Layout_old.cshtml" />
+    <Content Include="Views\Account\LogIn.cshtml" />
+    <Content Include="Views\UserPermission\Create.cshtml" />
+    <Content Include="Views\UserPermission\Details.cshtml" />
+    <Content Include="Views\UserPermission\Index.cshtml" />
+    <Content Include="Views\UserType\Create.cshtml" />
+    <Content Include="Views\UserType\Details.cshtml" />
+    <Content Include="Views\UserType\Edit.cshtml" />
+    <Content Include="Views\UserType\Index.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Designation\Create.cshtml" />
+    <Content Include="Views\Designation\Details.cshtml" />
+    <Content Include="Views\Designation\Edit.cshtml" />
+    <Content Include="Views\Designation\Index.cshtml" />
+    <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Details.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1932,7 +1991,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
