@@ -1,0 +1,163 @@
+﻿@model List<HoldingTaxWebApp.ViewModels.UserPermission>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        @if (Model != null && Model.Count > 0)
+        {
+            <div class="card card-custom">
+                <br />
+                <div class="kt-portlet">
+                    <!-- begin:: Content Head -->
+                    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+                        <div class="kt-container ">
+                            <div class="kt-subheader__main">
+
+                                <h3 class="kt-subheader__title" style="text-decoration:underline;">User Full Name : <b class="kt-font-brand"> @ViewBag.SingleData.UserFullName</b></h3>
+
+                            </div>
+                            <div class="kt-subheader__toolbar">
+                                <div class="kt-subheader__wrapper">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="kt-form kt-form--label-right">
+                        <div class="kt-portlet__body">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>SL</th>
+                                                    <th>Application Funtionality</th>
+                                                    <th>Read Only</th>
+                                                    <th>Read and Write</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @{ int counter = 1;
+                                                    foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>@counter </td>
+                                                            <td>@item.Description </td>
+                                                            <td>
+                                                                <span class="form-control-plaintext kt-font-bolder">
+                                                                    @if (item.CanAccess == true)
+                                                                    {
+                                                                        <span class="text-success"><strong>Permitted</strong></span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="text-danger"><strong>Forbidden</strong></span>
+                                                                    }
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                <span class="form-control-plaintext kt-font-bolder">
+                                                                    @if (item.ReadWriteStatus == true)
+                                                                    {
+                                                                        <span class="text-success"><strong> Permitted</strong></span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="text-danger"><strong> Forbidden</strong></span>
+                                                                    }
+                                                                </span>
+                                                            </td>
+
+                                                        </tr>
+                                                        counter = counter + 1;
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row ml-10">
+                                <div class="col-lg-5">
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-4 col-form-label">
+                                            Created By
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-6">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @ViewBag.SingleData.CreatedByUserName
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-4 col-form-label">
+                                            Create Date
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-6">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @ViewBag.SingleData.StringCreateDate
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-lg-5">
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-4 col-form-label">
+                                            Last Updated By
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-6">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @ViewBag.SingleData.UpdatedByUserName
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-4 col-form-label">
+                                            Last Updated Date
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-6">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @ViewBag.SingleData.StringLastUpdated
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="kt-portlet__foot">
+                            <div class="kt-form__actions offset-5">
+                                <a href="~/UserPermission/Create" class="btn btn-outline-dark btn-md">Back to List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

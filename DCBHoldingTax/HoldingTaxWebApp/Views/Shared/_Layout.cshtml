@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <link href="~/dist/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="~/dist/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <style>
+        .error {
+            color: red !important;
+            font-weight: 500 !important;
+        }
+    </style>
+    @RenderSection("Sheets", required: false)
 </head>
 <body id="kt_body" style="background-image: url(/dist/assets/media/patterns/header-bg.jpg)" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled">
 
@@ -1747,8 +1754,8 @@
         </div>
         <!--end::Page-->
     </div>
-    
-        <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
         <span class="svg-icon">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -1761,5 +1768,7 @@
     </div>
     <script src="~/dist/assets/plugins/global/plugins.bundle.js"></script>
     <script src="~/dist/assets/js/scripts.bundle.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
