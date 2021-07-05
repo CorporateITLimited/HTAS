@@ -14,7 +14,7 @@ namespace COMSApp.Controllers
         private readonly bool CanAccess = false;
         //private readonly bool CanReadWrite = false;
         public HomeController()
-        { 
+        {
             if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             {
                 List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
@@ -37,25 +37,25 @@ namespace COMSApp.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-                    && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-                    && (Session[CommonConstantHelper.UserId] != null))
-            {
-                if (CanAccess)
-                {
-                    return View();
-                }
-                else
-                {
-                    TempData["PM"] = "Permission Denied.";
-                    return RedirectToAction("LogIn", "Account");
-                }
-            }
-            else
-            {
-                TempData["EM"] = "Session Expired.";
-                return RedirectToAction("LogIn", "Account");
-            }
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //        && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //        && (Session[CommonConstantHelper.UserId] != null))
+            //{
+            //    if (CanAccess)
+            //    {
+            return View();
+            //    }
+            //    else
+            //    {
+            //        TempData["PM"] = "Permission Denied.";
+            //        return RedirectToAction("LogIn", "Account");
+            //    }
+            //}
+            //else
+            //{
+            //    TempData["EM"] = "Session Expired.";
+            //    return RedirectToAction("LogIn", "Account");
+            //}
         }
 
 

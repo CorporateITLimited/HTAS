@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Sheets{
-    <link href="~/Content/formdesign.css" rel="stylesheet" />
+
 }
 
 <div class="d-flex flex-column-fluid">
@@ -19,7 +19,6 @@
                 <div class="card-title">
                     <h3 class="card-label">
                         User List
-                        <span class="d-block text-muted pt-2 font-size-sm">User List From Database</span>
                     </h3>
                 </div>
                 <div class="card-toolbar">
@@ -171,5 +170,15 @@
 
 @section Scripts
 {
-    <script src="~/dist/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $('#kt_datatable').KTDatatable({
+                layout: {
+                    class: 'datatable-bordered',
+                },
+            });
+        });
+    </script>
+
+
 }

@@ -89,7 +89,6 @@ namespace HoldingTaxWebApp.Controllers
 
                     if (logInCredentialVM.UserTypeId == 1)
                     {
-                        // TempData["SM"] = "welcome | " + message;
                         return RedirectToAction("Index", "Home");
                     }
                     return RedirectToAction("Index", "Home");
