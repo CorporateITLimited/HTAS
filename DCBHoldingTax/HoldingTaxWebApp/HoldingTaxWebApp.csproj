@@ -95,6 +95,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\FormDesign.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\banner.jfif" />
@@ -2464,14 +2465,12 @@
     <Compile Include="Controllers\Users\RoleController.cs" />
     <Compile Include="Controllers\Users\UserController.cs" />
     <Compile Include="Controllers\Users\UserPermissionController.cs" />
-    <Compile Include="Controllers\Users\UserTypeController.cs" />
     <Compile Include="Gateway\AccountGateway.cs" />
     <Compile Include="Gateway\DefaultGateway.cs" />
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
     <Compile Include="Gateway\Users\RoleGateway.cs" />
     <Compile Include="Gateway\Users\UserGateway.cs" />
-    <Compile Include="Gateway\Users\UserTypeGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2484,12 +2483,10 @@
     <Compile Include="Manager\Users\EmployeeManager.cs" />
     <Compile Include="Manager\Users\RoleManager.cs" />
     <Compile Include="Manager\Users\UserManager.cs" />
-    <Compile Include="Manager\Users\UserTypeManager.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
     <Compile Include="Models\Users\Employee.cs" />
     <Compile Include="Models\Users\Role.cs" />
-    <Compile Include="Models\Users\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\LogInVM.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
@@ -2508,10 +2505,6 @@
     <Content Include="Views\UserPermission\Create.cshtml" />
     <Content Include="Views\UserPermission\Details.cshtml" />
     <Content Include="Views\UserPermission\Index.cshtml" />
-    <Content Include="Views\UserType\Create.cshtml" />
-    <Content Include="Views\UserType\Details.cshtml" />
-    <Content Include="Views\UserType\Edit.cshtml" />
-    <Content Include="Views\UserType\Index.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />

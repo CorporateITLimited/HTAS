@@ -26,130 +26,97 @@ namespace HoldingTaxWebApp.Controllers.Users
         {
             _accountManager = new AccountManager();
             _userManager = new UserManager();
-            if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
-            {
-                List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
-                var single_permission = userPermisson.Where(p => p.ControllerName == "UserPermission").FirstOrDefault();
-                if (single_permission.ReadWriteStatus != null && single_permission.CanAccess != null)
-                {
-                    if (single_permission.CanAccess == true)
-                    {
-                        CanAccess = true;
-                    }
-                    if (single_permission.ReadWriteStatus == true)
-                    {
-                        CanReadWrite = true;
-                    }
-                }
-            }
+            //if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
+            //{
+            //    List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
+            //    var single_permission = userPermisson.Where(p => p.ControllerName == "UserPermission").FirstOrDefault();
+            //    if (single_permission.ReadWriteStatus != null && single_permission.CanAccess != null)
+            //    {
+            //        if (single_permission.CanAccess == true)
+            //        {
+            CanAccess = true;
+            //}
+            //if (single_permission.ReadWriteStatus == true)
+            //{
+            CanReadWrite = true;
+            //        }
+            //    }
+            //}
         }
 
         // GET: UserPermission
         public ActionResult Index()
         {
-            if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-                 && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-                 && (Session[CommonConstantHelper.UserId] != null))
-            {
-                try
-                {
-                    if (CanAccess)
-                    {
-                        return View(_userManager.GetUserPermissionList());
-                    }
-                    else
-                    {
-                        TempData["PM"] = "Permission Denied.";
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
-                catch (Exception exception)
-                {
-                    //throw exception;
-                    TempData["EM"] = "error | " + exception.Message.ToString();
-                    //return RedirectToAction("Error", "Home");
-                    return View();
-                }
-            }
-            else
-            {
-                TempData["EM"] = "Session Expired.";
-                return RedirectToAction("LogIn", "Account");
-            }
-        }
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //     && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //     && (Session[CommonConstantHelper.UserId] != null))
+            //{
+            //   
+            //if (CanAccess)
+            //{
+            //try
+            //    {
+            return View(_userManager.GetUserPermissionList());
+        //}
+        //    catch (Exception exception)
+        //    {
+        //        //throw exception;
+        //        TempData["EM"] = "error | " + exception.Message.ToString();
+        //        //return RedirectToAction("Error", "Home");
+        //        return View();
+        //    }
+        //        }
+        //        else
+        //        {
+        //            TempData["PM"] = "Permission Denied.";
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //   
+        //}
+        //else
+        //{
+        //    TempData["EM"] = "Session Expired.";
+        //    return RedirectToAction("LogIn", "Account");
+        //}
+    }
 
-        [HttpGet]
-        public ActionResult Details(int id)
+    [HttpGet]
+    public ActionResult Details(int id)
+    {
+        if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+              && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+              && (Session[CommonConstantHelper.UserId] != null))
         {
-            if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-                  && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-                  && (Session[CommonConstantHelper.UserId] != null))
+            try
             {
-                try
+                if (CanAccess)
                 {
-                    if (CanAccess)
+                    var singleData = new UserPermission();
+                    List<UserPermission> uP = _userManager.GetUserPermissionListByUserId(id);
+                    if (uP != null && uP.Count > 0)
                     {
-                        var singleData = new UserPermission();
-                        List<UserPermission> uP = _userManager.GetUserPermissionListByUserId(id);
-                        if (uP != null && uP.Count > 0)
+                        foreach (var item in uP)
                         {
-                            foreach (var item in uP)
+                            if (!string.IsNullOrWhiteSpace(item.UserFullName))
                             {
-                                if (!string.IsNullOrWhiteSpace(item.UserFullName))
-                                {
 
-                                    singleData.UserFullName = item.UserFullName;
-                                    singleData.StringCreateDate = $"{item.CreateDate:dd/MM/yyyy hh:mm tt}" ?? "";
-                                    singleData.CreatedByUserName = item.CreatedByUserName;
-                                    singleData.LastUpdated = item.LastUpdated;
-                                    singleData.StringLastUpdated = $"{item.LastUpdated:dd/MM/yyyy hh:mm tt}" ?? "";
-                                    singleData.UpdatedByUserName = item.UpdatedByUserName;
-                                    singleData.UserId = item.UserId;
-                                    break;
-                                }
+                                singleData.UserFullName = item.UserFullName;
+                                singleData.StringCreateDate = $"{item.CreateDate:dd/MM/yyyy hh:mm tt}" ?? "";
+                                singleData.CreatedByUserName = item.CreatedByUserName;
+                                singleData.LastUpdated = item.LastUpdated;
+                                singleData.StringLastUpdated = $"{item.LastUpdated:dd/MM/yyyy hh:mm tt}" ?? "";
+                                singleData.UpdatedByUserName = item.UpdatedByUserName;
+                                singleData.UserId = item.UserId;
+                                break;
                             }
                         }
-                        ViewBag.SingleData = singleData;
-
-                        if (uP == null)
-                            return HttpNotFound();
-
-                        return View(uP);
                     }
-                    else
-                    {
-                        TempData["PM"] = "Permission Denied.";
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
-                catch (Exception exception)
-                {
-                    //throw exception;
-                    TempData["EM"] = "error | " + exception.Message.ToString();
-                    //return RedirectToAction("Error", "Home");
-                    return View();
-                }
+                    ViewBag.SingleData = singleData;
 
+                    if (uP == null)
+                        return HttpNotFound();
 
-            }
-            else
-            {
-                TempData["EM"] = "Session Expired.";
-                return RedirectToAction("LogIn", "Account");
-            }
-        }
-
-        [HttpGet]
-        public ActionResult Create()
-        {
-            if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-                 && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-                 && (Session[CommonConstantHelper.UserId] != null))
-            {
-                if (CanAccess && CanReadWrite)
-                {
-                    ViewBag.UserId = new SelectList(_userManager.GetAllUserListForPermissionInsert(), "UserId", "UserFullName");
-                    return View();
+                    return View(uP);
                 }
                 else
                 {
@@ -157,111 +124,146 @@ namespace HoldingTaxWebApp.Controllers.Users
                     return RedirectToAction("Index", "Home");
                 }
             }
-            else
+            catch (Exception exception)
             {
-                TempData["EM"] = "Session Expired.";
-                return RedirectToAction("LogIn", "Account");
+                //throw exception;
+                TempData["EM"] = "error | " + exception.Message.ToString();
+                //return RedirectToAction("Error", "Home");
+                return View();
             }
 
+
         }
+        else
+        {
+            TempData["EM"] = "Session Expired.";
+            return RedirectToAction("LogIn", "Account");
+        }
+    }
 
-
-        [HttpPost]
-        public JsonResult InsertOrUpdateUserPermission(List<UserPermission> Items)
+    [HttpGet]
+    public ActionResult Create()
+    {
+        if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+             && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+             && (Session[CommonConstantHelper.UserId] != null))
         {
             if (CanAccess && CanReadWrite)
             {
-                try
-                {
-                    string status = "error";
-
-                    if (Session[CommonConstantHelper.UserId] != null && Convert.ToInt32(Session[CommonConstantHelper.UserId]) > 0)
-                    {
-                        if (Items != null && Items.Count > 0)
-                        {
-                            DateTime? dateTime = DateTime.Now;
-                            foreach (var item in Items)
-                            {
-                                UserPermission userPermission = new UserPermission()
-                                {
-                                    PermissionId = item.PermissionId,
-                                    UserId = item.UserId,
-                                    ControllerId = item.ControllerId,
-                                    CanAccess = item.CanAccess,
-                                    ReadWriteStatus = item.ReadWriteStatus,
-                                    CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                                    CreateDate = item.PermissionId > 0 ? null : dateTime,
-                                    LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                                    LastUpdated = dateTime
-                                };
-
-                                string returnString = "";
-                                if (userPermission.PermissionId > 0)
-                                    returnString = _userManager.UserPermissionUpdate(userPermission);
-                                else
-                                    returnString = _userManager.UserPermissionInsert(userPermission);
-
-                                if (returnString != CommonConstantHelper.Success)
-                                {
-                                    status = "failed";
-                                    break;
-                                }
-                                else
-                                {
-                                    status = "success";
-                                }
-                            }
-                            return new JsonResult { Data = new { status } };
-                        }
-                        else
-                        {
-                            status = "empty";
-                            return new JsonResult { Data = new { status } };
-                        }
-                    }
-                    else
-                    {
-                        status = "no_user";
-                        return new JsonResult
-                        {
-                            Data = new
-                            {
-                                status
-                            }
-                        };
-                    }
-
-
-                }
-                catch (Exception exception)
-                {
-                    TempData["EM"] = "error | " + exception.Message.ToString();
-                    return new JsonResult { Data = "error" };
-                }
+                ViewBag.UserId = new SelectList(_userManager.GetAllUserListForPermissionInsert(), "UserId", "UserFullName");
+                return View();
             }
             else
             {
                 TempData["PM"] = "Permission Denied.";
-                return new JsonResult { Data = "_denied_" };
+                return RedirectToAction("Index", "Home");
             }
         }
-
-        public JsonResult GetUserPermissionData(int UserId)
+        else
         {
-            List<UserPermission> sortedList = new List<UserPermission>();
-            var fromDb = _userManager.GetUserPermissionListByUserId(UserId);
-            sortedList = fromDb != null && fromDb.Count > 0 ? fromDb : _userManager.GetControllerList();
-            return new JsonResult
-            {
-                Data = sortedList.ToList(),
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
-        }
-
-        public string FindController()
-        {
-            return RouteData.Values["controller"].ToString();
+            TempData["EM"] = "Session Expired.";
+            return RedirectToAction("LogIn", "Account");
         }
 
     }
+
+
+    [HttpPost]
+    public JsonResult InsertOrUpdateUserPermission(List<UserPermission> Items)
+    {
+        if (CanAccess && CanReadWrite)
+        {
+            try
+            {
+                string status = "error";
+
+                if (Session[CommonConstantHelper.UserId] != null && Convert.ToInt32(Session[CommonConstantHelper.UserId]) > 0)
+                {
+                    if (Items != null && Items.Count > 0)
+                    {
+                        DateTime? dateTime = DateTime.Now;
+                        foreach (var item in Items)
+                        {
+                            UserPermission userPermission = new UserPermission()
+                            {
+                                PermissionId = item.PermissionId,
+                                UserId = item.UserId,
+                                ControllerId = item.ControllerId,
+                                CanAccess = item.CanAccess,
+                                ReadWriteStatus = item.ReadWriteStatus,
+                                CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                CreateDate = item.PermissionId > 0 ? null : dateTime,
+                                LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                LastUpdated = dateTime
+                            };
+
+                            string returnString = "";
+                            if (userPermission.PermissionId > 0)
+                                returnString = _userManager.UserPermissionUpdate(userPermission);
+                            else
+                                returnString = _userManager.UserPermissionInsert(userPermission);
+
+                            if (returnString != CommonConstantHelper.Success)
+                            {
+                                status = "failed";
+                                break;
+                            }
+                            else
+                            {
+                                status = "success";
+                            }
+                        }
+                        return new JsonResult { Data = new { status } };
+                    }
+                    else
+                    {
+                        status = "empty";
+                        return new JsonResult { Data = new { status } };
+                    }
+                }
+                else
+                {
+                    status = "no_user";
+                    return new JsonResult
+                    {
+                        Data = new
+                        {
+                            status
+                        }
+                    };
+                }
+
+
+            }
+            catch (Exception exception)
+            {
+                TempData["EM"] = "error | " + exception.Message.ToString();
+                return new JsonResult { Data = "error" };
+            }
+        }
+        else
+        {
+            TempData["PM"] = "Permission Denied.";
+            return new JsonResult { Data = "_denied_" };
+        }
+    }
+
+    public JsonResult GetUserPermissionData(int UserId)
+    {
+        List<UserPermission> sortedList = new List<UserPermission>();
+        var fromDb = _userManager.GetUserPermissionListByUserId(UserId);
+        sortedList = fromDb != null && fromDb.Count > 0 ? fromDb : _userManager.GetControllerList();
+        return new JsonResult
+        {
+            Data = sortedList.ToList(),
+            JsonRequestBehavior = JsonRequestBehavior.AllowGet
+        };
+    }
+
+    public string FindController()
+    {
+        return RouteData.Values["controller"].ToString();
+    }
+
+}
 }

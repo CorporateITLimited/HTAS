@@ -6,146 +6,138 @@
 }
 
 
-<div class="d-flex flex-column-fluid">
-    <!--begin::Container-->
-    <div class="container">
-        <!--begin::Notice-->
-        <!--end::Notice-->
-        <!--begin::Card-->
-        <div class="card card-custom">
+<div class="card card-custom">
 
-            <div class="kt-portlet">
-                <!-- begin:: Content Head -->
-                <div class="kt-subheader   kt-grid__item" id="kt_subheader">
-                    <div class="kt-container ">
-                        <div class="kt-subheader__main">
+    <div class="kt-portlet">
+        <!-- begin:: Content Head -->
+        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+            <div class="kt-container ">
+                <div class="kt-subheader__main">
 
-                            <h3 class="kt-subheader__title">Details of  : &nbsp;<b class="kt-font-brand">@Model.RoleName</b></h3>
+                    <h3 class="kt-subheader__title">Details of  : &nbsp;<b class="kt-font-brand">@Model.RoleName</b></h3>
 
-                        </div>
-                        <div class="kt-subheader__toolbar">
-                            <div class="kt-subheader__wrapper">
+                </div>
+                <div class="kt-subheader__toolbar">
+                    <div class="kt-subheader__wrapper">
 
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <!-- end:: Content Head -->
-                @*<div class="kt-portlet__head">
-                        <div class="kt-portlet__head-label">
-                            <h3 class="kt-portlet__head-title">
-                                Details of : <b class="kt-font-brand">@Model.RoleName</b>
-                            </h3>
-                        </div>
-                    </div>*@
-                <div class="kt-form kt-form--label-right">
-                    <div class="kt-portlet__body">
+            </div>
+        </div>
+        <!-- end:: Content Head -->
+        @*<div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        Details of : <b class="kt-font-brand">@Model.RoleName</b>
+                    </h3>
+                </div>
+            </div>*@
+        <div class="kt-form kt-form--label-right">
+            <div class="kt-portlet__body">
 
-                        <div class="row ml-10">
-                            <div class="col-lg-5">
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.RoleName)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.RoleName)
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label ">
-                                        @Html.DisplayNameFor(model => model.RoleDetails)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.RoleDetails)
-                                        </span>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.IsActive)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @if (Model.IsActive == true)
-                                            {
-                                                <span class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill">Active</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill">Inactive</span>
-                                            }
-                                        </span>
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-
-                            <div class="col-lg-5">
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.UpdatedByUserName)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.UpdatedByUserName)
-                                        </span>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.LastUpdated)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.LastUpdated)
-                                        </span>
-                                    </div>
-                                </div>
-
-
-
+                <div class="row ml-10">
+                    <div class="col-lg-5">
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.RoleName)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.RoleName)
+                                </span>
                             </div>
                         </div>
+
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label ">
+                                @Html.DisplayNameFor(model => model.RoleDetails)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.RoleDetails)
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.IsActive)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @if (Model.IsActive == true)
+                                    {
+                                        <span class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill">Inactive</span>
+                                    }
+                                </span>
+                            </div>
+                        </div>
+
 
                     </div>
-                    @*@if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin))
-                        {
-                            <div class="kt-portlet__foot">
-                                <div class="kt-form__actions offset-5">
-                                    <a href="~/Role/Index" class="btn btn-label-brand btn-font-lg btn-bold">Back to List</a>
-                                    <a href="~/Role/Edit/@Model.RoleId" class="btn btn-label-info btn-font-lg btn-bold">Edit User</a>
-                                </div>
+
+
+                    <div class="col-lg-5">
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.UpdatedByUserName)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.UpdatedByUserName)
+                                </span>
                             </div>
-                        }
-                        else
-                        {
-                            <div class="kt-portlet__foot">
-                                <div class="kt-form__actions offset-5">
-                                    <a href="~/Role/Index" class="btn btn-label-brand btn-font-lg btn-bold">Back to List</a>
-                                </div>
+                        </div>
+
+
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.LastUpdated)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.LastUpdated)
+                                </span>
                             </div>
-                        }*@
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            @*@if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin))
+                {
                     <div class="kt-portlet__foot">
                         <div class="kt-form__actions offset-5">
-                            <a href="~/Role/Edit/@Model.RoleId" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>Save</a>
-                            <a href="~/Role/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</a>
+                            <a href="~/Role/Index" class="btn btn-label-brand btn-font-lg btn-bold">Back to List</a>
+                            <a href="~/Role/Edit/@Model.RoleId" class="btn btn-label-info btn-font-lg btn-bold">Edit User</a>
                         </div>
                     </div>
+                }
+                else
+                {
+                    <div class="kt-portlet__foot">
+                        <div class="kt-form__actions offset-5">
+                            <a href="~/Role/Index" class="btn btn-label-brand btn-font-lg btn-bold">Back to List</a>
+                        </div>
+                    </div>
+                }*@
+            <div class="kt-portlet__foot">
+                <div class="kt-form__actions offset-5">
+                    <a  href="~/Role/Edit/@Model.RoleId" class="btn btn-outline-success btn-md"><i class="fas fa-pen"></i>Update</a>
+                    <a href="~/Role/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</a>
                 </div>
             </div>
         </div>

@@ -54,7 +54,7 @@ namespace HoldingTaxWebApp.Controllers
                     return View(user);
                 }
 
-               // user.Password = PasswordHelper.EncryptPass(user.Password);
+               user.Password = PasswordHelper.EncryptPass(user.Password);
 
                 user.LogInTime = DateTime.Now;
                 user.LogOutTime = null;

@@ -187,7 +187,7 @@ namespace HoldingTaxWebApp.Controllers.Users
             //}
 
             ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName");
-            ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpId", "Name");
+            ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName");
 
             return View();
 
@@ -224,7 +224,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleNonAdmin(), "RoleId", "RoleName", user.RoleId);
                     //}
                     ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", user.RoleId);
-                    ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpId", "Name", user.EmpolyeeId);
+                    ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName", user.EmpolyeeId);
 
 
                     if (user == null)
@@ -329,78 +329,78 @@ namespace HoldingTaxWebApp.Controllers.Users
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-                  && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-                  && (Session[CommonConstantHelper.UserId] != null))
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //      && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //      && (Session[CommonConstantHelper.UserId] != null))
+            //{
+
+            //    if (CanAccess && CanReadWrite)
+            //    {
+            try
             {
+                clsUser user = _userManager.GetUserById(id);
 
-                if (CanAccess && CanReadWrite)
+                if (user == null)
+                    return HttpNotFound();
+
+                clsUser updatableUserData = new clsUser()
                 {
-                    try
-                    {
-                        clsUser user = _userManager.GetUserById(id);
+                    Email = user.Email,
+                    EmpolyeeId = user.EmpolyeeId,
+                    IsActive = user.LogIsActive,
+                    LogInCredentialId = user.LogInCredentialId,
+                    MobileNumber = user.MobileNumber,
+                    //HashPassword = user.HashPassword,
+                    RoleId = user.RoleId,
+                    UserDetails = user.UserDetails,
+                    UserFullName = user.UserFullName,
+                    UserId = user.UserId,
+                    UserName = user.UserName,
+                    UserTypeId = user.UserTypeId,
+                    CreatedBy = user.CreatedBy,
+                    CreateDate = user.CreateDate,
+                    LastUpdated = user.LastUpdated,
+                    IsEmailConfirmed = user.IsEmailConfirmed,
+                    IsDeleted = user.IsDeleted,
+                    IsMobileNumberConfirmed = user.IsMobileNumberConfirmed,
+                    LastUpdatedBy = user.LastUpdatedBy
+                };
 
-                        if (user == null)
-                            return HttpNotFound();
+                //if (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin)
+                //{
+                //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", updatableUserData.RoleId);
+                //}
+                //else
+                //{
+                //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleNonAdmin(), "RoleId", "RoleName", updatableUserData.RoleId);
+                //}
 
-                        clsUser updatableUserData = new clsUser()
-                        {
-                            Email = user.Email,
-                            EmpolyeeId = user.EmpolyeeId,
-                            IsActive = user.LogIsActive,
-                            LogInCredentialId = user.LogInCredentialId,
-                            MobileNumber = user.MobileNumber,
-                            //HashPassword = user.HashPassword,
-                            RoleId = user.RoleId,
-                            UserDetails = user.UserDetails,
-                            UserFullName = user.UserFullName,
-                            UserId = user.UserId,
-                            UserName = user.UserName,
-                            UserTypeId = user.UserTypeId,
-                            CreatedBy = user.CreatedBy,
-                            CreateDate = user.CreateDate,
-                            LastUpdated = user.LastUpdated,
-                            IsEmailConfirmed = user.IsEmailConfirmed,
-                            IsDeleted = user.IsDeleted,
-                            IsMobileNumberConfirmed = user.IsMobileNumberConfirmed,
-                            LastUpdatedBy = user.LastUpdatedBy
-                        };
-
-                        //if (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin)
-                        //{
-                        //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", updatableUserData.RoleId);
-                        //}
-                        //else
-                        //{
-                        //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleNonAdmin(), "RoleId", "RoleName", updatableUserData.RoleId);
-                        //}
-
-                        ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", updatableUserData.RoleId);
-                        ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpId", "Name", updatableUserData.EmpolyeeId);
+                ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", updatableUserData.RoleId);
+                ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName", updatableUserData.EmpolyeeId);
 
 
-                        return View(updatableUserData);
+                return View(updatableUserData);
 
-                    }
-                    catch (Exception exception)
-                    {
-                        //throw exception;
-                        TempData["EM"] = "error | " + exception.Message.ToString();
-                        //return RedirectToAction("Error", "Home");
-                        return View();
-                    }
-                }
-                else
-                {
-                    TempData["PM"] = "Permission Denied.";
-                    return RedirectToAction("Index", "Home");
-                }
             }
-            else
+            catch (Exception exception)
             {
-                TempData["EM"] = "Session Expired";
-                return RedirectToAction("LogIn", "Account");
+                //throw exception;
+                TempData["EM"] = "error | " + exception.Message.ToString();
+                //return RedirectToAction("Error", "Home");
+                return View();
             }
+            //    }
+            //    else
+            //    {
+            //        TempData["PM"] = "Permission Denied.";
+            //        return RedirectToAction("Index", "Home");
+            //    }
+            //}
+            //else
+            //{
+            //    TempData["EM"] = "Session Expired";
+            //    return RedirectToAction("LogIn", "Account");
+            //}
         }
 
         // POST: User/Edit/5
@@ -429,7 +429,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleNonAdmin(), "RoleId", "RoleName", user.RoleId);
                     //}
                     ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", user.RoleId);
-                    ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpId", "Name", user.EmpolyeeId);
+                    ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName", user.EmpolyeeId);
 
 
                     if (!ModelState.IsValid)
@@ -517,11 +517,11 @@ namespace HoldingTaxWebApp.Controllers.Users
 
         #region Front End JS
 
-        public JsonResult LoadDataForRoleList()
-        {
-            List<Role> data = _roleManager.GetAllRole().ToList();
-            return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        }
+        //public JsonResult LoadDataForRoleList()
+        //{
+        //    List<Role> data = _roleManager.GetAllRole().ToList();
+        //    return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        //}
 
         //public JsonResult LoadDataForEmployeeList()
         //{
