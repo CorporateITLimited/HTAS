@@ -6,29 +6,21 @@
 }
 
 
+
+
 @if (Model != null && Model.Count > 0)
 {
-    <div class="card card-custom">
-        <br />
-        <div class="kt-portlet">
-            <!-- begin:: Content Head -->
-            <div class="kt-subheader   kt-grid__item" id="kt_subheader">
-                <div class="kt-container ">
-                    <div class="kt-subheader__main">
-
-                        <h3 class="kt-subheader__title" style="text-decoration:underline;">User Full Name : <b class="kt-font-brand"> @ViewBag.SingleData.UserFullName</b></h3>
-
-                    </div>
-                    <div class="kt-subheader__toolbar">
-                        <div class="kt-subheader__wrapper">
-
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-custom gutter-b example example-compact">
+                <div class="card-header">
+                    <h3 class="card-title">User Full Name : &nbsp; <b class="kt-font-brand"> @ViewBag.SingleData.UserFullName</b></h3>
+                    <div class="card-toolbar">
+                        <div class="example-tools justify-content-center">
                         </div>
                     </div>
                 </div>
-            </div>
-            <br />
-            <div class="kt-form kt-form--label-right">
-                <div class="kt-portlet__body">
+                <div class="card-body">
                     <div class="row">
                         <div class="col-md-1">
                         </div>
@@ -143,11 +135,10 @@
 
                         </div>
                     </div>
-
                 </div>
-                <div class="kt-portlet__foot">
-                    <div class="kt-form__actions offset-5">
-                        <a href="~/UserPermission/Create" class="btn btn-outline-dark btn-md">Back to List</a>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <a href="~/UserPermission/Create" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</a>
                     </div>
                 </div>
             </div>
