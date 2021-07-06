@@ -6,132 +6,126 @@
 }
 
 @section Sheets{
-    <link href="~/Content/formdesign.css" rel="stylesheet" />
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
 
-<div class="d-flex flex-column-fluid">
-    <!--begin::Container-->
-    <div class="container">
-        <!--begin::Card-->
-        <div class="card card-custom">
+<div class="card card-custom">
 
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="kt-portlet">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="kt-portlet">
 
 
-                        <div class="kt-portlet__head">
-                            <div class="kt-portlet__head-label">
-                                <h3 class="kt-portlet__head-title">
-                                    Update Role
-                                </h3>
-                            </div>
-                        </div>
-                        @using (Html.BeginForm("Edit", "Role", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_3", role = "form" }))
-            {
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            @Html.AntiForgeryToken()
-                            @Html.HiddenFor(model => model.RoleId)
-
-                            <div class="kt-portlet__body">
-                                <div class="kt-section">
-                                    <div class="kt-section__content">
-
-                                        <fieldset>
-
-                                            <legend>Role Information</legend>
-
-                                            <div class="row m-2">
-                                                <div class="col-sm-4 col-lg-4">
-                                                    <div class="form-group">
-                                                        @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "" })
-                                                        @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control", @name = "RoleName", placeholder = "Role Name", @id = "RoleName" } })
-                                                        @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4 col-lg-4">
-                                                    <div class="form-group">
-                                                        @Html.LabelFor(model => model.RoleDetails, htmlAttributes: new { @class = "" })
-                                                        @Html.TextAreaFor(model => model.RoleDetails, new { @class = "form-control", @name = "RoleDetails", @id = "RoleDetails" })
-                                                        @Html.ValidationMessageFor(model => model.RoleDetails, "", new { @class = "text-danger" })
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4 col-lg-4">
-                                                    <div class="form-group">
-                                                        @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "" })
-                                                        @if (Model.IsActive == true)
-                                                        {
-                                                            <select class="form-control" name="IsActive" id="IsActive">
-                                                                <option value="true">Active</option>
-                                                                <option value="false">Inactive</option>
-                                                            </select>
-                                                        }
-                                                        else
-                                                        {
-                                                            <select class="form-control" name="IsActive" id="IsActive">
-                                                                <option value="false">Inactive</option>
-                                                                <option value="true">Active</option>
-                                                            </select>
-                                                        }
-
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <br />
-                                        </fieldset>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            @*if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin))
-                                {
-                                    <div class="kt-form__actions kt-portlet__foot">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="col-lg-12 text-center">
-                                                    <button type="submit" class="btn btn-outline-success btn-lg">Save</button>
-                                                    <input type="button" onclick="window.location.href = '/Role/Index'" class="btn btn-outline-dark btn-lg" value="Back to List" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="kt-form__actions kt-portlet__foot">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="col-lg-12 text-center">
-                                                    <input type="button" onclick="window.location.href = '/Role/Index'" class="btn btn-outline-dark btn-lg" value="Back to List" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }*@
-
-
-                            <div class="kt-form__actions kt-portlet__foot">
-                                <div class="row mt-2">
-                                    <div class="col-lg-12">
-                                        <div class="col-lg-12 text-center">
-                                            <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-pencil-alt"></i>Update</button>
-                                           
-                                            <button type="button" onclick="window.location.href = '/Role/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        }
-
-
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Update Role
+                        </h3>
                     </div>
                 </div>
+                @using (Html.BeginForm("Edit", "Role", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_3", role = "form" }))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.RoleId)
+
+                    <div class="kt-portlet__body">
+                        <div class="kt-section">
+                            <div class="kt-section__content">
+
+                                <fieldset>
+
+                                    <legend>Role Information</legend>
+
+                                    <div class="row m-2">
+                                        <div class="col-sm-4 col-lg-4">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "" })
+                                                @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control", @name = "RoleName", placeholder = "Role Name", @id = "RoleName" } })
+                                                @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 col-lg-4">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.RoleDetails, htmlAttributes: new { @class = "" })
+                                                @Html.TextAreaFor(model => model.RoleDetails, new { @class = "form-control", @name = "RoleDetails", @id = "RoleDetails" })
+                                                @Html.ValidationMessageFor(model => model.RoleDetails, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 col-lg-4">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "" })
+                                                @if (Model.IsActive == true)
+                                                {
+                                                    <select class="form-control" name="IsActive" id="IsActive">
+                                                        <option value="true">Active</option>
+                                                        <option value="false">Inactive</option>
+                                                    </select>
+                                                }
+                                                else
+                                                {
+                                                    <select class="form-control" name="IsActive" id="IsActive">
+                                                        <option value="false">Inactive</option>
+                                                        <option value="true">Active</option>
+                                                    </select>
+                                                }
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <br />
+                                </fieldset>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    @*if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin))
+                        {
+                            <div class="kt-form__actions kt-portlet__foot">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-12 text-center">
+                                            <button type="submit" class="btn btn-outline-success btn-lg">Save</button>
+                                            <input type="button" onclick="window.location.href = '/Role/Index'" class="btn btn-outline-dark btn-lg" value="Back to List" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="kt-form__actions kt-portlet__foot">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-12 text-center">
+                                            <input type="button" onclick="window.location.href = '/Role/Index'" class="btn btn-outline-dark btn-lg" value="Back to List" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }*@
+
+
+                    <div class="kt-form__actions kt-portlet__foot">
+                        <div class="row mt-2">
+                            <div class="col-lg-12">
+                                <div class="col-lg-12 text-center">
+                                    <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-pencil-alt"></i>Update</button>
+
+                                    <button type="button" onclick="window.location.href = '/Role/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+
             </div>
         </div>
     </div>

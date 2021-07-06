@@ -5,241 +5,232 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Sheets{
-    <link href="~/Content/formdesign.css" rel="stylesheet" />
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
 
 
-<div class="d-flex flex-column-fluid">
-    <!--begin::Container-->
-    <div class="container">
-        <!--begin::Notice-->
-        <!--end::Notice-->
-        <!--begin::Card-->
-        <div class="card card-custom">
+<!--begin::Card-->
+<div class="card card-custom">
 
-            <div class="kt-portlet">
-                <!-- begin:: Content Head -->
-                <div class="kt-subheader   kt-grid__item" id="kt_subheader">
-                    <div class="kt-container ">
-                        <div class="kt-subheader__main">
+    <div class="kt-portlet">
+        <!-- begin:: Content Head -->
+        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+            <div class="kt-container ">
+                <div class="kt-subheader__main">
+                    <h3 class="kt-subheader__title">Details of  : &nbsp;<b class="kt-font-brand">@Model.UserFullName</b></h3>
+                </div>
+                <div class="kt-subheader__toolbar">
+                    <div class="kt-subheader__wrapper">
 
-                            <h3 class="kt-subheader__title">Details of  : &nbsp;<b class="kt-font-brand">@Model.UserFullName</b></h3>
-
-                        </div>
-                        <div class="kt-subheader__toolbar">
-                            <div class="kt-subheader__wrapper">
-
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <!-- end:: Content Head -->
-               
-                <div class="kt-form kt-form--label-right">
-                    <div class="kt-portlet__body">
+            </div>
+        </div>
+        <!-- end:: Content Head -->
 
-                        <div class="row offset-1">
-                            <div class="col-lg-5">
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.UserFullName)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.UserFullName)
-                                        </span>
-                                    </div>
-                                </div>
+        <div class="kt-form kt-form--label-right">
+            <div class="kt-portlet__body">
 
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label ">
-                                        @Html.DisplayNameFor(model => model.UserDetails)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.UserDetails)
-                                        </span>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.EmployeeName)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.EmployeeName)
-                                        </span>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.RoleName)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.RoleName)
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.Email)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.Email)
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.MobileNumber)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.MobileNumber)
-                                        </span>
-                                    </div>
-                                </div>
-
+                <div class="row offset-1">
+                    <div class="col-lg-5">
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.UserFullName)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.UserFullName)
+                                </span>
                             </div>
+                        </div>
+
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label ">
+                                @Html.DisplayNameFor(model => model.UserDetails)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.UserDetails)
+                                </span>
+                            </div>
+                        </div>
 
 
-                            <div class="col-lg-5">
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.CreatedByUserName)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.CreatedByUserName)
-                                        </span>
-                                    </div>
-                                </div>
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.EmployeeName)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.EmployeeName)
+                                </span>
+                            </div>
+                        </div>
 
 
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.CreateDate)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.CreateDate)
-                                        </span>
-                                    </div>
-                                </div>
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.RoleName)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.RoleName)
+                                </span>
+                            </div>
+                        </div>
 
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.UpdatedByUserName)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.UpdatedByUserName)
-                                        </span>
-                                    </div>
-                                </div>
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.Email)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.Email)
+                                </span>
+                            </div>
+                        </div>
 
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label ">
-                                        @Html.DisplayNameFor(model => model.LastUpdated)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.LastUpdated)
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.UserName)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.UserName)
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-4 col-form-label">
-                                        @Html.DisplayNameFor(model => model.LogIsActive) :
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @if (Model.IsActive == true)
-                                            {
-                                                <span class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill">Active</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill">Inactive</span>
-                                            }
-                                        </span>
-                                    </div>
-                                </div>
-
-
-
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.MobileNumber)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.MobileNumber)
+                                </span>
                             </div>
                         </div>
 
                     </div>
 
 
-                    @*@if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin) ||
-                          (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleManagement))
-                    {
-                        <div class="kt-portlet__foot">
-                            <div class="kt-form__actions offset-5">
-                                <a href="~/User/Index" class="btn btn-label-brand btn-font-lg btn-bold">Back to List</a>
-                                <a href="~/User/Edit/@Model.UserId" class="btn btn-label-info btn-font-lg btn-bold">Edit User</a>
+                    <div class="col-lg-5">
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.CreatedByUserName)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.CreatedByUserName)
+                                </span>
                             </div>
                         </div>
-                    }
-                    else
-                    {
-                        <div class="kt-portlet__foot">
-                            <div class="kt-form__actions offset-5">
-                                <a href="~/User/Index" class="btn btn-label-brand btn-font-lg btn-bold">Back to List</a>
+
+
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.CreateDate)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.CreateDate)
+                                </span>
                             </div>
                         </div>
-                    }*@
+
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.UpdatedByUserName)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.UpdatedByUserName)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label ">
+                                @Html.DisplayNameFor(model => model.LastUpdated)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.LastUpdated)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @Html.DisplayFor(model => model.UserName)
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-xs row">
+                            <label class="col-4 col-form-label">
+                                @Html.DisplayNameFor(model => model.LogIsActive) :
+                            </label>
+                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                            <div class="col-6">
+                                <span class="form-control-plaintext kt-font-bolder">
+                                    @if (Model.IsActive == true)
+                                    {
+                                        <span class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill">Inactive</span>
+                                    }
+                                </span>
+                            </div>
+                        </div>
 
 
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            @*@if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin) ||
+                      (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleManagement))
+                {
                     <div class="kt-portlet__foot">
                         <div class="kt-form__actions offset-5">
-                            <a href="~/User/Edit/@Model.UserId" class="btn btn-outline-success btn-md">
-                                <i class="fas fa-pen"></i>Update
-                            </a>
-
-
-                            <a href="~/User/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</a>
-                            
+                            <a href="~/User/Index" class="btn btn-label-brand btn-font-lg btn-bold">Back to List</a>
+                            <a href="~/User/Edit/@Model.UserId" class="btn btn-label-info btn-font-lg btn-bold">Edit User</a>
                         </div>
                     </div>
+                }
+                else
+                {
+                    <div class="kt-portlet__foot">
+                        <div class="kt-form__actions offset-5">
+                            <a href="~/User/Index" class="btn btn-label-brand btn-font-lg btn-bold">Back to List</a>
+                        </div>
+                    </div>
+                }*@
+
+
+            <div class="kt-portlet__foot">
+                <div class="kt-form__actions offset-5">
+                    <a href="~/User/Edit/@Model.UserId" class="btn btn-outline-success btn-md">
+                        <i class="fas fa-pen"></i>Update
+                    </a>
+
+
+                    <a href="~/User/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</a>
 
                 </div>
             </div>
+
         </div>
     </div>
 </div>

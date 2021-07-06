@@ -11,6 +11,8 @@ namespace HoldingTaxWebApp.Models.Users
         public int EmpolyeeId { get; set; }
         [Display(Name = "Employee Name")]
         public string EmployeeName { get; set; }
+
+        [Display(Name = "Designation")]
         public int DesignationId { get; set; }
         [Display(Name = "Designation Name")]
         public string DesignationName { get; set; }
