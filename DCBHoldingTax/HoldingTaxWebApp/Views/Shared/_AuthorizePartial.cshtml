@@ -1,11 +1,17 @@
-﻿<div class="topbar-item">
+﻿@using HoldingTaxWebApp.Helpers;
+
+<div class="topbar-item">
     <div class="btn btn-icon btn-hover-transparent-white w-auto d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
         <div class="d-flex flex-column text-right pr-3">
-            <span class="text-white opacity-50 font-weight-bold font-size-sm d-none d-md-inline">Sean</span>
-            <span class="text-white font-weight-bolder font-size-sm d-none d-md-inline">UX Designer</span>
+            <span class="text-white font-weight-bold font-size-sm d-none d-md-inline">@Session[CommonConstantHelper.UserName]</span>
         </div>
-        <span class="symbol symbol-35">
-            <span class="symbol-label font-size-h5 font-weight-bold text-white bg-white-o-30">S</span>
-        </span>
+
     </div>
+    <span>
+        @using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <a class="btn btn-label btn-label-brand btn-bold" style="color:white;" href="javascript:document.getElementById('logoutForm').submit()">Sign Out</a>
+        }
+    </span>
 </div>
