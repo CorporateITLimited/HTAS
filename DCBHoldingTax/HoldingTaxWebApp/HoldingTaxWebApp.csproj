@@ -2010,7 +2010,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1110</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1110/</IISUrl>
+          <IISUrl>http://localhost:5213/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
