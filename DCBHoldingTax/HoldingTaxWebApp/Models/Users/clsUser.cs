@@ -20,8 +20,9 @@ namespace HoldingTaxWebApp.Models.Users
         [Display(Name = "Employee Name")]
         public string EmployeeName { get; set; }
 
+        [Display(Name = "Role ")]
         public int RoleId { get; set; }
-        [Display(Name = "Role Name")]
+        [Display(Name = "Role")]
         public string RoleName { get; set; }
         public string Email { get; set; }
         public bool? IsEmailConfirmed { get; set; }

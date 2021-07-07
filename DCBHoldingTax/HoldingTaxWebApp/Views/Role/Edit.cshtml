@@ -9,80 +9,86 @@
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-custom gutter-b example example-compact">
-                <div class="card-header">
-                    <h3 class="card-title">  Update Role</h3>
-                    <div class="card-toolbar">
-                        <div class="example-tools justify-content-center">
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Role</h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted">Update</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>Back</a>
+        </div>
+    </div>
+</div>
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-custom gutter-b example example-compact">
+                    <div class="card-header">
+                        <h3 class="card-title">Update Role</h3>
+                        <div class="card-toolbar">
+                            <div class="example-tools justify-content-center">
+                            </div>
                         </div>
                     </div>
-                </div>
-                @using (Html.BeginForm("Edit", "Role", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_3", role = "form" }))
-                {
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.AntiForgeryToken()
-                    @Html.HiddenFor(model => model.RoleId)
+                    @using (Html.BeginForm("Edit", "Role", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_3", role = "form" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.RoleId)
+                        <div class="card-body">
+                            <fieldset>
 
-                <div class="card-body">
-                    <fieldset>
+                                <legend>Role Information</legend>
 
-                        <legend>Role Information</legend>
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control", @name = "RoleName", placeholder = "Enter role name", @id = "RoleName" } })
+                                        @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                                    </div>
 
-                        <div class="row m-2">
-                            <div class="col-sm-4 col-lg-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "" })
-                                    @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control", @name = "RoleName", placeholder = "Role Name", @id = "RoleName" } })
-                                    @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.RoleDetails, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.TextAreaFor(model => model.RoleDetails, new { @class = "form-control", @name = "RoleDetails", @id = "RoleDetails", placeholder = "Enter role details" })
+                                        @Html.ValidationMessageFor(model => model.RoleDetails, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-4 col-lg-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.RoleDetails, htmlAttributes: new { @class = "" })
-                                    @Html.TextAreaFor(model => model.RoleDetails, new { @class = "form-control", @name = "RoleDetails", @id = "RoleDetails" })
-                                    @Html.ValidationMessageFor(model => model.RoleDetails, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-lg-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "" })
-                                    @if (Model.IsActive == true)
-                                    {
-                                        <select class="form-control" name="IsActive" id="IsActive">
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        <select class="form-control" name="IsActive" id="IsActive" disabled>
                                             <option value="true">Active</option>
-                                            <option value="false">Inactive</option>
+                                            <option value="flase">Inactive</option>
                                         </select>
-                                    }
-                                    else
-                                    {
-                                        <select class="form-control" name="IsActive" id="IsActive">
-                                            <option value="false">Inactive</option>
-                                            <option value="true">Active</option>
-                                        </select>
-                                    }
+                                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                    </div>
 
                                 </div>
+                            </fieldset>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-pencil-alt"></i>Update</button>
+                                <button type="button" onclick="window.location.href = '/Role/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
                             </div>
                         </div>
-                        <br />
-                    </fieldset>
+                    }
                 </div>
-                    <div class="card-footer">
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-pencil-alt"></i>Update</button>
-                            <button type="button" onclick="window.location.href = '/Role/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
-                        </div>
-                    </div>
-                }
             </div>
         </div>
     </div>
-
-
-
-
+</div>
 
 @section Scripts {
 
@@ -99,7 +105,6 @@
                     RoleDetails: {
                         required: true
                     }
-
                 },
 
                 invalidHandler: function (event, validator) {
