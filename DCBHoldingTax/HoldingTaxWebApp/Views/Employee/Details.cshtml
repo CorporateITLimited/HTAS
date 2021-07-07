@@ -9,10 +9,12 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card card-custom gutter-b example example-compact">
-            <div class="card-header">
-                <h3 class="card-title">Details of  : &nbsp;<b class="kt-font-brand">@Model.EmployeeName</h3>
-                <div class="card-toolbar">
-                    <div class="example-tools justify-content-center">
+            <div class="row offset-1">
+                <div class="card-header">
+                    <h3 class="card-title">Details of  : &nbsp;<b class="kt-font-brand">@Model.EmployeeName </b></h3>
+                    <div class="card-toolbar">
+                        <div class="example-tools justify-content-center">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -45,16 +47,16 @@
 
 
                         @*<div class="form-group form-group-xs row">
-                    <label class="col-4 col-form-label">
-                        @Html.DisplayNameFor(model => model.Description)
-                    </label>
-                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                    <div class="col-6">
-                        <span class="form-control-plaintext kt-font-bolder">
-                            @Html.DisplayFor(model => model.Description)
-                        </span>
-                    </div>
-                </div>*@
+                                <label class="col-4 col-form-label">
+                                    @Html.DisplayNameFor(model => model.Description)
+                                </label>
+                                <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                <div class="col-6">
+                                    <span class="form-control-plaintext kt-font-bolder">
+                                        @Html.DisplayFor(model => model.Description)
+                                    </span>
+                                </div>
+                            </div>*@
                         <div class="form-group form-group-xs row">
                             <label class="col-4 col-form-label">
                                 @Html.DisplayNameFor(model => model.FatherName)
