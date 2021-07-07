@@ -17,7 +17,6 @@ namespace HoldingTaxWebApp.Controllers.Users
 
         private readonly bool CanAccess = false;
         private readonly bool CanReadWrite = false;
-
         private readonly AccountManager _accountManager;
         private readonly UserManager _userManager;
 
@@ -29,7 +28,7 @@ namespace HoldingTaxWebApp.Controllers.Users
             if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             {
                 List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
-                var single_permission = userPermisson.Where(p => p.ControllerName == "UserPermission").FirstOrDefault();
+                var single_permission = userPermisson.Where(p => p.ControllerName == "UserPermissionController").FirstOrDefault();
                 if (single_permission.ReadWriteStatus != null && single_permission.CanAccess != null)
                 {
                     if (single_permission.CanAccess == true)
@@ -43,40 +42,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                 }
             }
         }
-
-        // GET: UserPermission
-        public ActionResult Index()
-        {
-            if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-                 && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-                 && (Session[CommonConstantHelper.UserId] != null))
-            {
-                try
-                {
-                    if (CanAccess)
-                    {
-                        return View(_userManager.GetUserPermissionList());
-                    }
-                    else
-                    {
-                        TempData["PM"] = "Permission Denied.";
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
-                catch (Exception exception)
-                {
-                    //throw exception;
-                    TempData["EM"] = "error | " + exception.Message.ToString();
-                    //return RedirectToAction("Error", "Home");
-                    return View();
-                }
-            }
-            else
-            {
-                TempData["EM"] = "Session Expired.";
-                return RedirectToAction("LogIn", "Account");
-            }
-        }
+       
 
         [HttpGet]
         public ActionResult Details(int id)
@@ -85,10 +51,11 @@ namespace HoldingTaxWebApp.Controllers.Users
                   && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
                   && (Session[CommonConstantHelper.UserId] != null))
             {
-                try
+                if (CanAccess)
                 {
-                    if (CanAccess)
+                    try
                     {
+
                         var singleData = new UserPermission();
                         List<UserPermission> uP = _userManager.GetUserPermissionListByUserId(id);
                         if (uP != null && uP.Count > 0)
@@ -115,19 +82,18 @@ namespace HoldingTaxWebApp.Controllers.Users
                             return HttpNotFound();
 
                         return View(uP);
+
                     }
-                    else
+                    catch (Exception exception)
                     {
-                        TempData["PM"] = "Permission Denied.";
-                        return RedirectToAction("Index", "Home");
+                        TempData["EM"] = "error | " + exception.Message.ToString();
+                        return View();
                     }
                 }
-                catch (Exception exception)
+                else
                 {
-                    //throw exception;
-                    TempData["EM"] = "error | " + exception.Message.ToString();
-                    //return RedirectToAction("Error", "Home");
-                    return View();
+                    TempData["PM"] = "Permission Denied.";
+                    return RedirectToAction("Index", "Home");
                 }
 
 

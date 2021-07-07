@@ -21,7 +21,7 @@ namespace HoldingTaxWebApp.Controllers.Users
             if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             {
                 List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
-                var single_permission = userPermisson.Where(p => p.ControllerName == "Designation").FirstOrDefault();
+                var single_permission = userPermisson.Where(p => p.ControllerName == "DesignationController").FirstOrDefault();
                 if (single_permission.ReadWriteStatus != null && single_permission.CanAccess != null)
                 {
                     if (single_permission.CanAccess == true)
@@ -35,7 +35,6 @@ namespace HoldingTaxWebApp.Controllers.Users
                 }
             }
         }
-        // GET: Designation
         public ActionResult Index()
         {
             if ((Session[CommonConstantHelper.LogInCredentialId] != null)
@@ -69,10 +68,9 @@ namespace HoldingTaxWebApp.Controllers.Users
                     }
                     catch (Exception exception)
                     {
-                        //throw exception;
                         TempData["EM"] = "error | " + exception.Message.ToString();
-                        //return RedirectToAction("Error", "Home");
                         return View();
+                        //return RedirectToAction("Error", "Home");
                     }
                 }
                 else
@@ -83,15 +81,13 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
+                TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
             }
 
 
-            //return View();
         }
 
-        // GET: Designation/Details/5
         public ActionResult Details(int id)
         {
             if ((Session[CommonConstantHelper.LogInCredentialId] != null)
@@ -111,9 +107,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     }
                     catch (Exception exception)
                     {
-                        //throw exception;
                         TempData["EM"] = "error | " + exception.Message.ToString();
-                        //return RedirectToAction("Error", "Home");
                         return View();
                     }
                 }
@@ -125,12 +119,11 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
+                TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
             }
         }
 
-        // GET: Designation/Create
         public ActionResult Create()
         {
             if ((Session[CommonConstantHelper.LogInCredentialId] != null)
@@ -149,13 +142,12 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
+                TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
             }
 
         }
 
-        // POST: Designation/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Designation Designation)
@@ -164,8 +156,6 @@ namespace HoldingTaxWebApp.Controllers.Users
             {
                 try
                 {
-                    // TODO: Add insert logic here
-
                     if (Designation == null)
                         return HttpNotFound();
 
@@ -179,7 +169,6 @@ namespace HoldingTaxWebApp.Controllers.Users
                     if (Designation.DesignationName == null)
                     {
                         ModelState.AddModelError("", "Designation is required.");
-                        //TempData["EM"] = "User name required.";
                         return View(Designation);
                     }
 
@@ -219,10 +208,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                 }
                 catch (Exception exception)
                 {
-                    // ViewBag.DesignationId = new SelectList(_DesignationManager.GetAllDesignationList(), "DesignationListId", "DesignationName", user.DesignationId);
-                    //throw exception;
-                    TempData["EM"] = "error | " + exception.Message.ToString();
-                    //return RedirectToAction("Error", "Home");
+                    ModelState.AddModelError("", exception.Message.ToString());
                     return View();
                 }
             }
@@ -233,7 +219,6 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
         }
 
-        // GET: Designation/Edit/5
         public ActionResult Edit(int id)
         {
             if ((Session[CommonConstantHelper.LogInCredentialId] != null)
@@ -263,9 +248,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     }
                     catch (Exception exception)
                     {
-                        //throw exception;
                         TempData["EM"] = "error | " + exception.Message.ToString();
-                        //return RedirectToAction("Error", "Home");
                         return View();
                     }
                 }
@@ -277,12 +260,11 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
+                TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
             }
         }
 
-        // POST: Designation/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Designation Designation)
@@ -306,7 +288,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     if (Designation.DesignationName == null)
                     {
                         ModelState.AddModelError("", "Designation is required.");
-                        //TempData["EM"] = "User name required.";
+                        TempData["EM"] = "User name required.";
                         return View(Designation);
                     }
 
@@ -323,7 +305,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     else if (updateDesignation == CommonConstantHelper.Conflict)
                     {
                         ModelState.AddModelError("", "Designation already exist.");
-                        //TempData["EM"] = "User name required.";
+                        TempData["EM"] = "User name required.";
                         return View();
                     }
                     else if (updateDesignation == CommonConstantHelper.Error)
@@ -343,7 +325,6 @@ namespace HoldingTaxWebApp.Controllers.Users
                 }
                 catch (Exception exception)
                 {
-
                     ModelState.AddModelError("", exception.Message.ToString());
                     return View();
                 }

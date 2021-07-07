@@ -53,7 +53,7 @@ namespace HoldingTaxWebApp.Gateway.Users
                       
                         DesignationId = Convert.ToInt32(Data_Reader["DesignationId"]),
                         DesignationName = Data_Reader["DesignationName"].ToString(),
-                        Description = Data_Reader["DesignationName"].ToString()
+                        Description = Data_Reader["Description"].ToString()
 
                     };
 

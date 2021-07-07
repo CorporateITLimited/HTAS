@@ -54,7 +54,7 @@ namespace HoldingTaxWebApp.Controllers
                     return View(user);
                 }
 
-               // user.Password = PasswordHelper.EncryptPass(user.Password);
+               user.Password = PasswordHelper.EncryptPass(user.Password);
 
                 user.LogInTime = DateTime.Now;
                 user.LogOutTime = null;
@@ -89,11 +89,17 @@ namespace HoldingTaxWebApp.Controllers
 
                     if (logInCredentialVM.UserTypeId == 1)
                     {
-                        // TempData["SM"] = "welcome | " + message;
                         return RedirectToAction("Index", "Home");
                     }
-                    return RedirectToAction("Index", "Home");
-                    //return Content("You are supplier");
+                    else if (logInCredentialVM.UserTypeId == 2)
+                    {
+                        return Content("You are owner");
+                    }
+                    else
+                    {
+                        return View();
+                    }
+
 
                 }
                 else if (logInCredentialVM.CommonEntity.Result == 401)
@@ -109,10 +115,7 @@ namespace HoldingTaxWebApp.Controllers
             }
             catch (Exception exception)
             {
-                //throw exception;
-                TempData["EM"] = "error | " + exception.Message.ToString();
-                //return RedirectToAction("Error", "Home");
-                return View();
+                return Content("Error =>  " + exception.Message.ToString());
             }
 
         }
@@ -173,17 +176,13 @@ namespace HoldingTaxWebApp.Controllers
                 }
                 catch (Exception exception)
                 {
-                    //throw exception;
-                    //TempData["EM"] = "error | " + exception.Message.ToString();
-                    //return RedirectToAction("Error", "Home");
                     return Content("Error =>  " + exception.Message.ToString());
                 }
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary Account Secondary LogOut}";
+                TempData["EM"] = "Session Expired";
                 return RedirectToAction("LogIn", "Account");
-                //return RedirectToAction("Error", "Home");
             }
         }
 

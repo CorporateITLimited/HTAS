@@ -21,7 +21,7 @@ namespace HoldingTaxWebApp.Controllers.Users
             if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             {
                 List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
-                var single_permission = userPermisson.Where(p => p.ControllerName == "Role").FirstOrDefault();
+                var single_permission = userPermisson.Where(p => p.ControllerName == "RoleController").FirstOrDefault();
                 if (single_permission.ReadWriteStatus != null && single_permission.CanAccess != null)
                 {
                     if (single_permission.CanAccess == true)
@@ -35,7 +35,6 @@ namespace HoldingTaxWebApp.Controllers.Users
                 }
             }
         }
-        // GET: Role
         public ActionResult Index()
         {
             if ((Session[CommonConstantHelper.LogInCredentialId] != null)
@@ -46,7 +45,6 @@ namespace HoldingTaxWebApp.Controllers.Users
                 {
                     try
                     {
-
                         var roleList = new List<Role>();
                         //if (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin)
                         //    roleList = _roleManager.GetAllRole();
@@ -78,9 +76,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     }
                     catch (Exception exception)
                     {
-                        //throw exception;
                         TempData["EM"] = "error | " + exception.Message.ToString();
-                        //return RedirectToAction("Error", "Home");
                         return View();
                     }
                 }
@@ -93,15 +89,11 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
+                TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
             }
-
-
-            //return View();
         }
 
-        // GET: Role/Details/5
         public ActionResult Details(int id)
         {
             if ((Session[CommonConstantHelper.LogInCredentialId] != null)
@@ -123,9 +115,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     }
                     catch (Exception exception)
                     {
-                        //throw exception;
                         TempData["EM"] = "error | " + exception.Message.ToString();
-                        //return RedirectToAction("Error", "Home");
                         return View();
                     }
                 }
@@ -138,12 +128,11 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
+                TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
             }
         }
 
-        // GET: Role/Create
         public ActionResult Create()
         {
             if ((Session[CommonConstantHelper.LogInCredentialId] != null)
@@ -163,15 +152,14 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
+                TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
             }
 
         }
 
-        // POST: Role/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+       [HttpPost]
+       [ValidateAntiForgeryToken]
         public ActionResult Create(Role role)
         {
             if (CanAccess && CanReadWrite)
@@ -234,7 +222,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                 }
                 catch (Exception exception)
                 {
-                    TempData["EM"] = "error | " + exception.Message.ToString();
+                    ModelState.AddModelError("", exception.Message.ToString());
                     return View();
                 }
             }
@@ -245,7 +233,6 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
         }
 
-        // GET: Role/Edit/5
         public ActionResult Edit(int id)
         {
             if ((Session[CommonConstantHelper.LogInCredentialId] != null)
@@ -276,9 +263,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     }
                     catch (Exception exception)
                     {
-                        //throw exception;
                         TempData["EM"] = "error | " + exception.Message.ToString();
-                        //return RedirectToAction("Error", "Home");
                         return View();
                     }
                 }
@@ -290,12 +275,11 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
+                TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
             }
         }
 
-        // POST: Role/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Role role)

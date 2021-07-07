@@ -14,7 +14,6 @@ namespace HoldingTaxWebApp.Controllers.Users
     {
         private readonly bool CanAccess = false;
         private readonly bool CanReadWrite = false;
-
         private readonly UserManager _userManager;
         private readonly RoleManager _roleManager;
         private readonly EmployeeManager _employeeOfficialManager;
@@ -24,189 +23,180 @@ namespace HoldingTaxWebApp.Controllers.Users
             _userManager = new UserManager();
             _roleManager = new RoleManager();
             _employeeOfficialManager = new EmployeeManager();
-            //if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
-            //{
-            //    List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
-            //    var single_permission = userPermisson.Where(p => p.ControllerName == "User").FirstOrDefault();
-            //    if (single_permission.ReadWriteStatus != null && single_permission.CanAccess != null)
-            //    {
-            //        if (single_permission.CanAccess == true)
-            //        {
-            CanAccess = true;
-            //}
-            //if (single_permission.ReadWriteStatus == true)
-            //{
-            CanReadWrite = true;
-            //        }
-            //    }
-            //}
+            if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
+            {
+                List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
+                var single_permission = userPermisson.Where(p => p.ControllerName == "UserController").FirstOrDefault();
+                if (single_permission.ReadWriteStatus != null && single_permission.CanAccess != null)
+                {
+                    if (single_permission.CanAccess == true)
+                    {
+                        CanAccess = true;
+                    }
+                    if (single_permission.ReadWriteStatus == true)
+                    {
+                        CanReadWrite = true;
+                    }
+                }
+            }
         }
 
-        // GET: User
-        [HttpGet]
+       [HttpGet]
         public ActionResult Index()
         {
-            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-            //      && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-            //      && (Session[CommonConstantHelper.UserId] != null))
-            //{
-            //    if (CanAccess)
-            //    {
-            try
+            if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+                  && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+                  && (Session[CommonConstantHelper.UserId] != null))
             {
-                var userList = new List<clsUser>();
-                //if (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin)
-                //    userList = _userManager.GetAllUserList();
-                //else
-                //    userList = _userManager.GetAllUserListNonAdmin();
-
-
-                userList = _userManager.GetAllUserList();
-
-
-                List<clsUser> userListVM = new List<clsUser>();
-                foreach (var item in userList)
+                if (CanAccess)
                 {
-                    clsUser userVM = new clsUser()
+                    try
                     {
-                        CreatedBy = item.CreatedBy,
-                        CreatedByUserName = item.CreatedByUserName,
-                        CreateDate = item.CreateDate,
-                        LastUpdated = item.LastUpdated,
-                        Email = item.Email,
-                        IsEmailConfirmed = item.IsEmailConfirmed,
-                        EmpolyeeId = item.EmpolyeeId,
-                        IsActive = item.IsActive,
-                        IsDeleted = item.IsDeleted,
-                        LogInCredentialId = item.LogInCredentialId,
-                        LogIsActive = item.LogIsActive,
-                        LogIsDeleted = item.LogIsDeleted,
-                        MobileNumber = item.MobileNumber,
-                        IsMobileNumberConfirmed = item.IsMobileNumberConfirmed,
-                        HashPassword = item.HashPassword,
-                        RoleId = item.RoleId,
-                        RoleName = item.RoleName,
-                        LastUpdatedBy = item.LastUpdatedBy,
-                        UpdatedByUserName = item.UpdatedByUserName,
-                        UserDetails = item.UserDetails,
-                        UserFullName = item.UserFullName,
-                        UserId = item.UserId,
-                        UserName = item.UserName,
-                        UserTypeId = item.UserTypeId,
-                        EmployeeName = item.EmployeeName
-                    };
-                    userListVM.Add(userVM);
+                        var userList = new List<clsUser>();
+                        //if (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin)
+                        //    userList = _userManager.GetAllUserList();
+                        //else
+                        //    userList = _userManager.GetAllUserListNonAdmin();
+
+
+                        userList = _userManager.GetAllUserList();
+
+
+                        List<clsUser> userListVM = new List<clsUser>();
+                        foreach (var item in userList)
+                        {
+                            clsUser userVM = new clsUser()
+                            {
+                                CreatedBy = item.CreatedBy,
+                                CreatedByUserName = item.CreatedByUserName,
+                                CreateDate = item.CreateDate,
+                                LastUpdated = item.LastUpdated,
+                                Email = item.Email,
+                                IsEmailConfirmed = item.IsEmailConfirmed,
+                                EmpolyeeId = item.EmpolyeeId,
+                                IsActive = item.IsActive,
+                                IsDeleted = item.IsDeleted,
+                                LogInCredentialId = item.LogInCredentialId,
+                                LogIsActive = item.LogIsActive,
+                                LogIsDeleted = item.LogIsDeleted,
+                                MobileNumber = item.MobileNumber,
+                                IsMobileNumberConfirmed = item.IsMobileNumberConfirmed,
+                                HashPassword = item.HashPassword,
+                                RoleId = item.RoleId,
+                                RoleName = item.RoleName,
+                                LastUpdatedBy = item.LastUpdatedBy,
+                                UpdatedByUserName = item.UpdatedByUserName,
+                                UserDetails = item.UserDetails,
+                                UserFullName = item.UserFullName,
+                                UserId = item.UserId,
+                                UserName = item.UserName,
+                                UserTypeId = item.UserTypeId,
+                                EmployeeName = item.EmployeeName
+                            };
+                            userListVM.Add(userVM);
+                        }
+
+                        return View(userListVM.ToList());
+
+                    }
+                    catch (Exception exception)
+                    {
+                        TempData["EM"] = "error | " + exception.Message.ToString();
+                        return View();
+                    }
                 }
-
-                //ViewBag.RoleListForSearch = _roleManager.GetAllRole().ToList();
-                //ViewBag.EmployeeListForSearch = _employee.GetAllEmployeeList().ToList();
-
-                return View(userListVM.ToList());
-
+                else
+                {
+                    TempData["PM"] = "Permission Denied.";
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            catch (Exception exception)
+            else
             {
-                //throw exception;
-                TempData["EM"] = "error | " + exception.Message.ToString();
-                //return RedirectToAction("Error", "Home");
-                return View();
+                TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
+                return RedirectToAction("LogIn", "Account");
             }
-            //    }
-            //    else
-            //    {
-            //        TempData["PM"] = "Permission Denied.";
-            //        return RedirectToAction("Index", "Home");
-            //    }
-            //}
-            //else
-            //{
-            //    TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
-            //    return RedirectToAction("LogIn", "Account");
-            //}
         }
 
-        // GET: User/Details/5
         [HttpGet]
         public ActionResult Details(int id)
         {
-            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-            //      && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-            //      && (Session[CommonConstantHelper.UserId] != null))
-            //{
-            //    if (CanAccess)
-            //    {
-            try
+            if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+                  && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+                  && (Session[CommonConstantHelper.UserId] != null))
             {
+                if (CanAccess)
+                {
+                    try
+                    {
 
-                clsUser userVM = _userManager.GetUserById(id);
+                        clsUser userVM = _userManager.GetUserById(id);
 
-                if (userVM == null)
-                    return HttpNotFound();
+                        if (userVM == null)
+                            return HttpNotFound();
 
-                return View(userVM);
+                        return View(userVM);
+
+                    }
+                    catch (Exception exception)
+                    {
+                        TempData["EM"] = "error | " + exception.Message.ToString();
+                        return View();
+                    }
+                }
+                else
+                {
+                    TempData["PM"] = "Permission Denied.";
+                    return RedirectToAction("Index", "Home");
+                }
 
             }
-            catch (Exception exception)
+            else
             {
-                TempData["EM"] = "error | " + exception.Message.ToString();
-                return View();
+                TempData["EM"] = "Session Expired";
+                return RedirectToAction("LogIn", "Account");
             }
-            //    }
-            //    else
-            //    {
-            //        TempData["PM"] = "Permission Denied.";
-            //        return RedirectToAction("Index", "Home");
-            //    }
-
-            //}
-            //else
-            //{
-            //    TempData["EM"] = "Session Expired";
-            //    return RedirectToAction("LogIn", "Account");
-            //}
         }
 
-        // GET: User/Create
         [HttpGet]
         public ActionResult Create()
         {
-            //    if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-            //         && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-            //         && (Session[CommonConstantHelper.UserId] != null))
-            //    {
-            //        if (CanAccess && CanReadWrite)
-            //        {
+            if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+                 && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+                 && (Session[CommonConstantHelper.UserId] != null))
+            {
+                if (CanAccess && CanReadWrite)
+                {
 
-            //if (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin)
-            //{
-            //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName");
-            //}
-            //else
-            //{
-            //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleNonAdmin(), "RoleId", "RoleName");
-            //}
+                    //if (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin)
+                    //{
+                    //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName");
+                    //}
+                    //else
+                    //{
+                    //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleNonAdmin(), "RoleId", "RoleName");
+                    //}
 
-            ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName");
-            ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpId", "Name");
+                    ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName");
+                    ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName");
 
-            return View();
+                    return View();
 
-            //    }
-            //    else
-            //    {
-            //        TempData["PM"] = "Permission Denied.";
-            //        return RedirectToAction("Index", "Home");
-            //    }
-            //}
-            //else
-            //{
-            //    TempData["EM"] = "Session Expired";
-            //    return RedirectToAction("LogIn", "Account");
-            //}
+                }
+                else
+                {
+                    TempData["PM"] = "Permission Denied.";
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                TempData["EM"] = "Session Expired";
+                return RedirectToAction("LogIn", "Account");
+            }
 
         }
 
-        // POST: User/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(clsUser user)
@@ -224,7 +214,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleNonAdmin(), "RoleId", "RoleName", user.RoleId);
                     //}
                     ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", user.RoleId);
-                    ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpId", "Name", user.EmpolyeeId);
+                    ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName", user.EmpolyeeId);
 
 
                     if (user == null)
@@ -311,10 +301,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                 }
                 catch (Exception exception)
                 {
-                    // ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleList(), "RoleListId", "RoleName", user.RoleId);
-                    //throw exception;
                     TempData["EM"] = "error | " + exception.Message.ToString();
-                    //return RedirectToAction("Error", "Home");
                     return View();
                 }
             }
@@ -325,7 +312,6 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
         }
 
-        // GET: User/Edit/5
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -350,7 +336,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                             IsActive = user.LogIsActive,
                             LogInCredentialId = user.LogInCredentialId,
                             MobileNumber = user.MobileNumber,
-                            //HashPassword = user.HashPassword,
+                            HashPassword = user.HashPassword,
                             RoleId = user.RoleId,
                             UserDetails = user.UserDetails,
                             UserFullName = user.UserFullName,
@@ -376,7 +362,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                         //}
 
                         ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", updatableUserData.RoleId);
-                        ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpId", "Name", updatableUserData.EmpolyeeId);
+                        ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName", updatableUserData.EmpolyeeId);
 
 
                         return View(updatableUserData);
@@ -384,9 +370,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     }
                     catch (Exception exception)
                     {
-                        //throw exception;
                         TempData["EM"] = "error | " + exception.Message.ToString();
-                        //return RedirectToAction("Error", "Home");
                         return View();
                     }
                 }
@@ -403,7 +387,6 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
         }
 
-        // POST: User/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(clsUser user)
@@ -429,7 +412,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleNonAdmin(), "RoleId", "RoleName", user.RoleId);
                     //}
                     ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", user.RoleId);
-                    ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpId", "Name", user.EmpolyeeId);
+                    ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName", user.EmpolyeeId);
 
 
                     if (!ModelState.IsValid)
@@ -442,7 +425,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     if (user.UserName == null)
                     {
                         ModelState.AddModelError("", "Username is required.");
-                        //TempData["EM"] = "User name required.";
+                        TempData["EM"] = "User name required.";
                         return View(user);
                     }
 
@@ -484,7 +467,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     else if (updateUser == CommonConstantHelper.Conflict)
                     {
                         ModelState.AddModelError("", "Username already exist.");
-                        //TempData["EM"] = "User name required.";
+                        TempData["EM"] = "User name required.";
                         return View();
                     }
                     else if (updateUser == CommonConstantHelper.Error)
@@ -517,11 +500,11 @@ namespace HoldingTaxWebApp.Controllers.Users
 
         #region Front End JS
 
-        public JsonResult LoadDataForRoleList()
-        {
-            List<Role> data = _roleManager.GetAllRole().ToList();
-            return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        }
+        //public JsonResult LoadDataForRoleList()
+        //{
+        //    List<Role> data = _roleManager.GetAllRole().ToList();
+        //    return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        //}
 
         //public JsonResult LoadDataForEmployeeList()
         //{

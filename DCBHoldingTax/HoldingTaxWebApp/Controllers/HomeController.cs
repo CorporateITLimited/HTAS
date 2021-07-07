@@ -12,13 +12,13 @@ namespace COMSApp.Controllers
     public class HomeController : Controller
     {
         private readonly bool CanAccess = false;
-        //private readonly bool CanReadWrite = false;
+        private readonly bool CanReadWrite = false;
         public HomeController()
-        { 
+        {
             if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             {
                 List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
-                var single_permission = userPermisson.Where(p => p.ControllerName == "Home").FirstOrDefault();
+                var single_permission = userPermisson.Where(p => p.ControllerName == "HomeController").FirstOrDefault();
                 if (single_permission.ReadWriteStatus != null && single_permission.CanAccess != null)
                 {
                     if (single_permission.CanAccess == true)
@@ -27,14 +27,13 @@ namespace COMSApp.Controllers
                     }
                     if (single_permission.ReadWriteStatus == true)
                     {
-                        //CanReadWrite = true;
+                        CanReadWrite = true;
                     }
                 }
             }
         }
 
 
-        // GET: Home
         public ActionResult Index()
         {
             if ((Session[CommonConstantHelper.LogInCredentialId] != null)
@@ -61,17 +60,17 @@ namespace COMSApp.Controllers
 
         public ActionResult OfficeExpense()
         {
-            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-            //        && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-            //        && (Session[CommonConstantHelper.UserId] != null))
-            //{
-            return View();
-            //}
-            //else
-            //{
-            //    TempData["EM"] = "Session Expired.";
-            //    return RedirectToAction("LogIn", "Account");
-            //}
+            if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+                    && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+                    && (Session[CommonConstantHelper.UserId] != null))
+            {
+                return View();
+            }
+            else
+            {
+                TempData["EM"] = "Session Expired.";
+                return RedirectToAction("LogIn", "Account");
+            }
         }
 
 
@@ -96,79 +95,6 @@ namespace COMSApp.Controllers
             {
                 TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
-            }
-        }
-
-
-        // GET: Home/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Home/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Home/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Home/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Home/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Home/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Home/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
             }
         }
 

@@ -24,7 +24,7 @@ namespace HoldingTaxWebApp.Controllers.Users
             if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             {
                 List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
-                var single_permission = userPermisson.Where(p => p.ControllerName == "Employee").FirstOrDefault();
+                var single_permission = userPermisson.Where(p => p.ControllerName == "EmployeeController").FirstOrDefault();
                 if (single_permission.ReadWriteStatus != null && single_permission.CanAccess != null)
                 {
                     if (single_permission.CanAccess == true)
@@ -40,7 +40,6 @@ namespace HoldingTaxWebApp.Controllers.Users
         }
 
 
-        // GET: Employee
         public ActionResult Index()
         {
             if ((Session[CommonConstantHelper.LogInCredentialId] != null)
@@ -60,7 +59,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                                 ContactNo = item.ContactNo,
                                 CreateDate = item.CreateDate,
                                 CreatedByUserName = item.CreatedByUserName,
-                                //Description = item.Description,
+                                // Description = item.Description,
                                 DesignationId = item.DesignationId,
                                 DesignationName = item.DesignationName,
                                 DOB = item.DOB,
@@ -88,9 +87,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     }
                     catch (Exception exception)
                     {
-                        //throw exception;
                         TempData["EM"] = "error | " + exception.Message.ToString();
-                        //return RedirectToAction("Error", "Home");
                         return View();
                     }
                 }
@@ -102,12 +99,11 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary LA Secondary Index}";
+                TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
             }
         }
 
-        // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
             if ((Session[CommonConstantHelper.LogInCredentialId] != null)
@@ -128,9 +124,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     }
                     catch (Exception exception)
                     {
-                        //throw exception;
                         TempData["EM"] = "error | " + exception.Message.ToString();
-                        //return RedirectToAction("Error", "Home");
                         return View();
                     }
                 }
@@ -142,12 +136,11 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary LA Secondary Details}";
+                TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
             }
         }
 
-        // GET: Employee/Create
         [HttpGet]
         public ActionResult Create()
         {
@@ -157,7 +150,7 @@ namespace HoldingTaxWebApp.Controllers.Users
             {
                 if (CanAccess && CanReadWrite)
                 {
-                    ViewBag.designationId = new SelectList(_DesignationManager.GetAllDesignation(), "designationId", "DesignationName");
+                    ViewBag.DesignationId = new SelectList(_DesignationManager.GetAllDesignation(), "DesignationId", "DesignationName");
 
                     return View();
                 }
@@ -169,12 +162,11 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary LA Secondary Create}";
+                TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
             }
         }
 
-        // POST: Employee/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Employee employee)
@@ -183,11 +175,10 @@ namespace HoldingTaxWebApp.Controllers.Users
             {
                 try
                 {
-                    //ViewBag.designationId = new SelectList(_employeeManager.GetAllDesignationList(), "designationId", "DesignationName", employee.DesignationId);
+                    ViewBag.DesignationId = new SelectList(_DesignationManager.GetAllDesignation(), "DesignationId", "DesignationName", employee.DesignationId);
 
                     if (employee == null)
                         return HttpNotFound();
-
 
                     if (!ModelState.IsValid)
                     {
@@ -202,17 +193,17 @@ namespace HoldingTaxWebApp.Controllers.Users
                         return View(employee);
                     }
 
-                    //if (employee.NID == null)
-                    //{
-                    //    ModelState.AddModelError("", "NID is required.");
-                    //    return View(employee);
-                    //}
+                    if (employee.NID == null)
+                    {
+                        ModelState.AddModelError("", "NID is required.");
+                        return View(employee);
+                    }
 
-                    //if (employee.Email == null)
-                    //{
-                    //    ModelState.AddModelError("", "Email is required.");
-                    //    return View(employee);
-                    //}
+                    if (employee.Email == null)
+                    {
+                        ModelState.AddModelError("", "Email is required.");
+                        return View(employee);
+                    }
 
                     if (employee.DesignationId == 0)
                     {
@@ -262,10 +253,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                 }
                 catch (Exception exception)
                 {
-                    // ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleList(), "RoleListId", "RoleName", user.RoleId);
-                    //throw exception;
-                    TempData["EM"] = "error | " + exception.Message.ToString();
-                    //return RedirectToAction("Error", "Home");
+                    ModelState.AddModelError("", exception.Message.ToString());
                     return View();
                 }
             }
@@ -276,7 +264,6 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
         }
 
-        // GET: Employee/Edit/5
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -298,10 +285,10 @@ namespace HoldingTaxWebApp.Controllers.Users
                         {
                             ContactNo = Employee.ContactNo,
                             CreateDate = Employee.CreateDate,
-                            //CreatedByUserName = Employee.CreatedByUserName,
+                            CreatedByUserName = Employee.CreatedByUserName,
                             //Description = Employee.Description,
                             DesignationId = Employee.DesignationId,
-                            //DesignationName = Employee.DesignationName,
+                            DesignationName = Employee.DesignationName,
                             DOB = Employee.DOB,
                             StringDOB = $"{Employee.DOB:dd/MM/yyyy}",
                             EmployeeName = Employee.EmployeeName,
@@ -326,9 +313,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     }
                     catch (Exception exception)
                     {
-                        //throw exception;
                         TempData["EM"] = "error | " + exception.Message.ToString();
-                        //return RedirectToAction("Error", "Home");
                         return View();
                     }
                 }
@@ -340,12 +325,11 @@ namespace HoldingTaxWebApp.Controllers.Users
             }
             else
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary LA Secondary Edit}";
+                TempData["EM"] = "Session Expired.";
                 return RedirectToAction("LogIn", "Account");
             }
         }
 
-        // POST: Employee/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Employee employee)
@@ -357,9 +341,9 @@ namespace HoldingTaxWebApp.Controllers.Users
                     if (employee == null)
                         return HttpNotFound();
 
-                    //Employee EmployeeForUpdate = _employeeManager.GetEmployeeById(employee.EmpolyeeId);
-                    //if (EmployeeForUpdate == null)
-                    //    return HttpNotFound();
+                    Employee EmployeeForUpdate = _employeeManager.GetEmployeeById(employee.EmpolyeeId);
+                    if (EmployeeForUpdate == null)
+                        return HttpNotFound();
 
                     if (!ModelState.IsValid)
                     {
@@ -374,23 +358,23 @@ namespace HoldingTaxWebApp.Controllers.Users
                         return View(employee);
                     }
 
-                    //if (employee.NID == null)
-                    //{
-                    //    ModelState.AddModelError("", "NID is required.");
-                    //    return View(employee);
-                    //}
+                    if (employee.NID == null)
+                    {
+                        ModelState.AddModelError("", "NID is required.");
+                        return View(employee);
+                    }
 
-                    //if (employee.Email == null)
-                    //{
-                    //    ModelState.AddModelError("", "Email is required.");
-                    //    return View(employee);
-                    //}
+                    if (employee.Email == null)
+                    {
+                        ModelState.AddModelError("", "Email is required.");
+                        return View(employee);
+                    }
 
-                    //if (employee.Sex == null)
-                    //{
-                    //    ModelState.AddModelError("", "Gender is required.");
-                    //    return View(employee);
-                    //}
+                    if (employee.Sex == null)
+                    {
+                        ModelState.AddModelError("", "Gender is required.");
+                        return View(employee);
+                    }
 
 
                     employee.CreatedBy = null;
@@ -426,14 +410,10 @@ namespace HoldingTaxWebApp.Controllers.Users
                     {
                         return View();
                     }
-
-
-
-
-
                 }
-                catch
+                catch (Exception exception)
                 {
+                    ModelState.AddModelError("", exception.Message.ToString());
                     return View();
                 }
             }

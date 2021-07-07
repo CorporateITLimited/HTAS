@@ -1,11 +1,242 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section sheets{
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-@for (int i = 0; i < 100; i++)
-{
-<h2>Index Index Index Index Index Index</h2>
+        .row {
+            width: 75%;
+            margin: auto;
+            text-align: -webkit-center;
+        }
+
+
+        /* Create four equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 30%;
+            text-align: -webkit-center;
+            color: #3E67B1;
+            background-color: #D8E1EF;
+            margin: 0.5%;
+            text-anchor: middle;
+            padding: 30px;
+            border-width: 3px;
+            border-style: solid;
+            border-color: #191B21;
+            text-emphasis-color: aquamarine;
+            border-bottom-style: double;
+            /*border:5px solid blue;*/
+            /*padding:10px;*/
+        }
+
+            .column:hover {
+                background-color: #87a0c7;
+                transform: scale(.95);
+                transition: all .4s ease;
+                -webkit-transition: all .4s ease;
+            }
+
+        .Secondary {
+            float: left;
+            width: 12%;
+            text-align: -webkit-center;
+            color: #0F558A;
+            background-color: #FFFFFF;
+            margin: 5%;
+            text-anchor: middle;
+            /*border:5px solid blue;*/
+            /*padding:10px;*/
+        }
+
+
+
+        .colContent > img {
+            width: 40%;
+            height: 50%;
+            text-align: -webkit-center;
+            padding: 1px;
+        }
+
+        .kt-widget19__title {
+            color: #230F02;
+            text-orientation: mixed;
+            text-decoration: dashed;
+            font-weight: bold;
+            font-family: Tahoma, Verdana, sans-serif;
+            padding-top: 3px;
+        }
+
+        /*.row > .column > .colContent {
+            width: 60%;
+            height: 60%;
+            background-color:seagreen;
+            display:block;
+        }*/
+    </style>
 }
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Notice-->
+        <!--end::Notice-->
+        <!--begin::Card-->
+        <div class="card card-custom">
 
+            <div class="kt-container  kt-grid__item kt-grid__item--fluid">
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-10">
+                        @if (TempData["PM"] != null)
+                        {
+                            <div class="alert alert-danger">
+                                <h6> <strong> @TempData["PM"]</strong></h6>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div>
+                <div>
+                    @*<div class="row">
+                        <div class="column">
+                            <a href="/User/Index">
+                                <div class="colContent">
+
+
+                                    <img src="~/Images/Icons/businessman (1).png" />
+                                </div>
+                                <div><h3 style="font-size:1.5vw;" class="kt-widget19__title ">User</h3></div>
+                            </a>
+                        </div>
+
+
+                        <div class="column">
+                            <a href="/Home/EmployeeManagement">
+                                <div class="colContent">
+
+                                    <img src="~/Images/Icons/employee.png" />
+                                </div>
+                                <div><h3 style="font-size:1.5vw;" class="kt-widget19__title ">Employee Management</h3></div>
+                            </a>
+                        </div>
+
+                        <div class="column">
+                            <a href="/Client/Index">
+                                <div class="colContent">
+                                    <img src="~/Images/Icons/Clients.png" />
+                                </div>
+                                <div>
+                                    <h3 style="font-size:1.5vw;" class="kt-widget19__title ">Clients</h3>
+                                </div>
+                            </a>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="column">
+                            <a href="/Bill/Index">
+                                <div class="colContent">
+
+
+                                    <img src="~/Images/Icons/money.png" />
+                                </div>
+                                <div><h3 style="font-size:1.5vw;" class="kt-widget19__title">Bill</h3></div>
+                            </a>
+
+                        </div>
+                        <div class="column">
+                            <a href="/Projects/Index">
+                                <div class="colContent">
+
+
+                                    <img src="~/Images/Icons/Projects.png" />
+                                </div>
+                                <div>
+                                    <h3 style="font-size:1.5vw;" class="kt-widget19__title ">Project</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a href="/Service/Index">
+
+                                <div class="colContent">
+
+                                    <img src="~/Images/Icons/HR.png" />
+                                </div>
+                                <div><h3 style="font-size:1.5vw;" class="kt-widget19__title ">Service</h3></div>
+                            </a>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="row">
+                        @*<div class="Secondary">
+
+                            </div>
+                        <div class="column">
+                            <a href="/Home/OfficeExpense">
+                                <div class="colContent">
+
+                                    <img src="~/Images/Icons/expenses.png" />
+                                </div>
+                                <div>
+                                    <h3 style="font-size:1.5vw;" class="kt-widget19__title "> Expenses</h3>
+                                </div>
+                            </a>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="column">
+                            <a href="/Home/Reports">
+                                <div class="colContent">
+                                    <img src="~/Images/Icons/accounts.png" />
+                                </div>
+                                <div>
+                                    <h3 style="font-size:1.5vw;" class="kt-widget19__title">Reports</h3>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="column" hidden>
+                            <a href="/Employee/Index">
+                                <div class="colContent">
+                                    <img src="~/Images/Icons/employee.png" />
+                                </div>
+                                <div><h3 style="font-size:1.5vw;" class="kt-widget19__title ">Employee</h3></div>
+                            </a>
+                        </div>
+                    </div>*@
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+
+</div>

@@ -4,201 +4,166 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 @section Sheets{
-    <link href="~/Content/formdesign.css" rel="stylesheet" />
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
 
-<div class="d-flex flex-column-fluid">
-    <!--begin::Container-->
-    <div class="container">
-        <!--begin::Card-->
-        <div class="card card-custom">
-
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="kt-portlet">
-
-
-                        <div class="kt-portlet__head">
-                            <div class="kt-portlet__head-label">
-                                <h3 class="kt-portlet__head-title">
-                                    Update User
-                                </h3>
-                            </div>
-                        </div>
-
-                        @using (Html.BeginForm("Edit", "User", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_2", role = "form" }))
-                        {
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            @Html.AntiForgeryToken()
-                            @Html.HiddenFor(m => m.LogInCredentialId)
-                            @Html.HiddenFor(m => m.UserId)
-
-                            <div class="kt-portlet__body">
-                                <div class="kt-section">
-                                    <div class="kt-section__content">
-
-                                        <fieldset>
-                                            <legend>General Information</legend>
-
-                                            <div class="row m-2">
-                                                <div class="col-sm-4 col-lg-4">
-                                                    <div class="form-group">
-
-                                                        @Html.LabelFor(model => model.EmpolyeeId, htmlAttributes: new { @class = "" })
-                                                        @Html.DropDownListFor(model => model.EmpolyeeId, null, "-- Select Employee --", new
-                                                   {
-                                                       @class = "form-control",
-                                                       @name = "EmpolyeeId",
-                                                       @id = "EmpolyeeId"
-                                                   })
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        @Html.LabelFor(model => model.UserDetails, htmlAttributes: new { @class = "" })
-                                                        @Html.EditorFor(model => model.UserDetails, new { htmlAttributes = new { @class = "form-control", @name = "UserDetails", placeholder = "User Details", @id = "UserDetails", @value = "@Model.UserDetails" } })
-                                                        @Html.ValidationMessageFor(model => model.UserDetails, "", new { @class = "text-danger" })
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4 col-lg-4">
-                                                    <div class="form-group">
-                                                        @Html.LabelFor(model => model.UserFullName, htmlAttributes: new { @class = "" })
-                                                        @Html.EditorFor(model => model.UserFullName, new { htmlAttributes = new { @class = "form-control", @name = "UserFullName", placeholder = "Full Name", @id = "UserFullName", @value = "@Model.UserFullName" } })
-                                                        @Html.ValidationMessageFor(model => model.UserFullName, "", new { @class = "text-danger" })
-                                                    </div>
-                                                    <div class="form-group">
-                                                        @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "" })
-                                                        @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control", @name = "MobileNumber", placeholder = "Mobile Number", @id = "MobileNumber", @value = "@Model.MobileNumber" } })
-                                                        @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4 col-lg-4">
-
-                                                    <div class="form-group">
-
-
-
-                                                        @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "" })
-                                                        @Html.DropDownListFor(model => model.RoleId, null, "-- Select Role --", new
-                                                   {
-                                                       @class = "form-control",
-                                                       @name = "RoleId",
-                                                       @id = "RoleId",
-                                                       @value = "@Model.RoleId"
-                                                   })
-
-
-                                                    </div>
-                                                    <div class="form-group">
-                                                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "" })
-                                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @name = "Email", placeholder = "E-mail", @id = "Email", @value = "@Model.Email" } })
-                                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-
-                                            <legend>Account Information</legend>
-                                            <div class="row">
-                                                <div class="col-sm-4 col-lg-4 offset-2">
-                                                    <div class="form-group">
-                                                        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "" })
-                                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @name = "UserName", placeholder = "User Name", @id = "UserName", @value = "@Model.UserName" } })
-                                                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                                                    </div>
-                                                    <div class="form-group">
-                                                        @Html.LabelFor(model => model.HashPassword, "Password", htmlAttributes: new { @class = "" })
-                                                        @Html.PasswordFor(model => model.HashPassword, new { @class = "form-control", @name = "HashPassword", placeholder = "Password", @id = "HashPassword", @value = "" })
-                                                        @Html.ValidationMessageFor(model => model.HashPassword, "", new { @class = "text-danger" })
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-sm-4 col-lg-4">
-                                                    <div class="form-group">
-
-                                                        @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "" })
-                                                        @if (Model.IsActive == true)
-                                                        {
-                                                            <select class="form-control" name="IsActive" id="IsActive">
-                                                                <option value="true">Active</option>
-                                                                <option value="false">Inactive</option>
-                                                            </select>
-                                                        }
-                                                        else
-                                                        {
-                                                            <select class="form-control" name="IsActive" id="IsActive">
-                                                                <option value="false">Inactive</option>
-                                                                <option value="true">Active</option>
-                                                            </select>
-                                                        }
-                                                    </div>
-                                                    <div class="form-group">
-                                                        @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "" })
-                                                        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", @name = "ConfirmPassword", placeholder = "Confirm Password", @id = "ConfirmPassword", @value = "" })
-                                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-                                                    </div>
-
-
-                                                </div>
-
-                                            </div>
-
-                                            <br />
-                                        </fieldset>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            @*if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin) ||
-                                   (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleManagement))
-                                {
-                                    <div class="kt-form__actions kt-portlet__foot">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="col-lg-12 text-center">
-                                                    <button type="submit" class="btn btn-outline-success btn-lg">Update</button>
-                                                    <input type="button" onclick="window.location.href = '/User/Index'" class="btn btn-outline-dark btn-lg" value="Back to List" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="kt-form__actions kt-portlet__foot">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="col-lg-12 text-center">
-                                                    <input type="button" onclick="window.location.href = '/User/Index'" class="btn btn-outline-dark btn-lg" value="Back to List" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }*@
-                            <div class="kt-form__actions kt-portlet__foot">
-                                <div class="row mt-2">
-                                    <div class="col-lg-12">
-                                        <div class="col-lg-12 text-center">
-                                            <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-pen"></i>Update</button>
-
-                                            <button type="button" onclick="window.location.href = '/User/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">User</h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item text-muted">
+                            <a href="" class="text-muted">Edit</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-custom gutter-b example example-compact">
+            <div class="card-header">
+                <h3 class="card-title">Update User</h3>
+                <div class="card-toolbar">
+                    <div class="example-tools justify-content-center">
+                    </div>
+                </div>
+            </div>
+
+            @using (Html.BeginForm("Edit", "User", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_2", role = "form" }))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.LogInCredentialId)
+                @Html.HiddenFor(m => m.UserId)
+
+                <div class="card-body">
+
+                    <fieldset>
+                        <legend>General Information</legend>
+
+                        <div class="row m-2">
+                            <div class="col-sm-4 col-lg-4">
+                                <div class="form-group">
+
+                                    @Html.LabelFor(model => model.EmpolyeeId, htmlAttributes: new { @class = "" })
+                                    @Html.DropDownListFor(model => model.EmpolyeeId, null, "-- Select Employee --", new
+                               {
+                                   @class = "form-control",
+                                   @name = "EmpolyeeId",
+                                   @id = "EmpolyeeId"
+                               })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UserDetails, htmlAttributes: new { @class = "" })
+                                    @Html.EditorFor(model => model.UserDetails, new { htmlAttributes = new { @class = "form-control", @name = "UserDetails", placeholder = "User Details", @id = "UserDetails", @value = "@Model.UserDetails" } })
+                                    @Html.ValidationMessageFor(model => model.UserDetails, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UserFullName, htmlAttributes: new { @class = "" })
+                                    @Html.EditorFor(model => model.UserFullName, new { htmlAttributes = new { @class = "form-control", @name = "UserFullName", placeholder = "Full Name", @id = "UserFullName", @value = "@Model.UserFullName" } })
+                                    @Html.ValidationMessageFor(model => model.UserFullName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "" })
+                                    @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control", @name = "MobileNumber", placeholder = "Mobile Number", @id = "MobileNumber", @value = "@Model.MobileNumber" } })
+                                    @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4">
+
+                                <div class="form-group">
+
+
+
+                                    @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "" })
+                                    @Html.DropDownListFor(model => model.RoleId, null, "-- Select Role --", new
+                               {
+                                   @class = "form-control",
+                                   @name = "RoleId",
+                                   @id = "RoleId",
+                                   @value = "@Model.RoleId"
+                               })
+
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "" })
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @name = "Email", placeholder = "E-mail", @id = "Email", @value = "@Model.Email" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <legend>Account Information</legend>
+                        <div class="row">
+                            <div class="col-sm-4 col-lg-4 offset-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "" })
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @name = "UserName", placeholder = "User Name", @id = "UserName", @value = "@Model.UserName" } })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.HashPassword, "Password", htmlAttributes: new { @class = "" })
+                                    @Html.PasswordFor(model => model.HashPassword, new { @class = "form-control", @name = "HashPassword", placeholder = "Password", @id = "HashPassword", @value = "" })
+                                    @Html.ValidationMessageFor(model => model.HashPassword, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                            <div class="col-sm-4 col-lg-4">
+                                <div class="form-group">
+
+                                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "" })
+                                    @if (Model.IsActive == true)
+                                    {
+                                        <select class="form-control" name="IsActive" id="IsActive">
+                                            <option value="true">Active</option>
+                                            <option value="false">Inactive</option>
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select class="form-control" name="IsActive" id="IsActive">
+                                            <option value="false">Inactive</option>
+                                            <option value="true">Active</option>
+                                        </select>
+                                    }
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "" })
+                                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", @name = "ConfirmPassword", placeholder = "Confirm Password", @id = "ConfirmPassword", @value = "" })
+                                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <br />
+                    </fieldset>
+                </div>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-pen"></i>Update</button>
+                        <button type="button" onclick="window.location.href = '/User/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
 
 
 @section Scripts {

@@ -15,7 +15,7 @@ namespace HoldingTaxWebApp.Models.Users
         [Display(Name = "User Details")]
         public string UserDetails { get; set; }
 
-        [Display(Name = "Employee Name")]
+        [Display(Name = "Employee")]
         public int? EmpolyeeId { get; set; }
         [Display(Name = "Employee Name")]
         public string EmployeeName { get; set; }

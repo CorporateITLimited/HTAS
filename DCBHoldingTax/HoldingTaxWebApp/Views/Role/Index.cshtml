@@ -7,109 +7,83 @@
 
 @section Sheets{
 
-<link href="~/Content/formdesign.css" rel="stylesheet" /> 
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
 
-<div class="d-flex flex-column-fluid">
-    <!--begin::Container-->
-    <div class="container">
-        <!--begin::Notice-->
-        <!--end::Notice-->
-        <!--begin::Card-->
-        <div class="card card-custom">
-            <div class="card-header flex-wrap border-0 pt-6 pb-0">
-                <div class="card-title">
-                    <h3 class="card-label">
-                        Role List
-                        <span class="d-block text-muted pt-2 font-size-sm">Role List From Database</span>
-                    </h3>
-                </div>
-                <div class="card-toolbar">
-                    <!--begin::Dropdown-->
-                   
-                    <!--end::Dropdown-->
-                    <!--begin::Button-->
-                    <a href="~/Role/Create" class="btn btn-primary font-weight-bolder">
-                        <span >
-                            
-                        </span><i class="fas fa-plus"></i> New Role
-                    </a>
-                    <!--end::Button-->
-                </div>
-            </div>
-            <div class="card-body">
-                <!--begin: Search Form-->
-                <!--begin::Search Form-->
-                <div class="mb-7">
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                Role List
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <!--begin::Dropdown-->
+            <!--end::Dropdown-->
+            <!--begin::Button-->
+            <a href="~/Role/Create" class="btn btn-primary font-weight-bolder">
+                <span>
+
+                </span><i class="fas fa-plus"></i> New Role
+            </a>
+            <!--end::Button-->
+        </div>
+    </div>
+    <div class="card-body">
+        <!--begin: Search Form-->
+        <!--begin::Search Form-->
+        <div class="mb-7">
+            <div class="row align-items-center">
+                <div class="col-lg-9 col-xl-8">
                     <div class="row align-items-center">
-                        <div class="col-lg-9 col-xl-8">
-                            <div class="row align-items-center">
-                                <div class="col-md-4 my-2 my-md-0">
-                                    <div class="input-icon">
-                                        <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
-                                        <span>
-                                            <i class="flaticon2-search-1 text-muted"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                               
-                               
+                        <div class="col-md-4 my-2 my-md-0">
+                            <div class="input-icon">
+                                <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
                             </div>
                         </div>
-                        
+
+
                     </div>
                 </div>
-                <!--end::Search Form-->
-                <!--end: Search Form-->
-                <!--begin: Datatable-->
-                <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
-                    <thead>
-                        <tr>
-                            <th>@Html.DisplayNameFor(model => model.RoleName)</th>
-                            <th>@Html.DisplayNameFor(model => model.RoleDetails)</th>
-                            <th>@Html.DisplayNameFor(model => model.UpdatedByUserName)</th>
 
-                            <th>@Html.DisplayNameFor(model => model.LastUpdated)</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RoleName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RoleDetails)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.UpdatedByUserName)
-                                </td>
+            </div>
+        </div>
+        <!--end::Search Form-->
+        <!--end: Search Form-->
+        <!--begin: Datatable-->
+        <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.RoleName)</th>
+                    <th>@Html.DisplayNameFor(model => model.RoleDetails)</th>
+                    <th>@Html.DisplayNameFor(model => model.UpdatedByUserName)</th>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LastUpdated)
-                                </td>
-                                @*@if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin))
-                                {
-                                    <td>
-                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Role/Edit/@item.RoleId" title="Edit">
-                                            <b><i class="fa fa-edit"></i></b>
-                                        </a>
-                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Role/Details/@item.RoleId" title="Details View">
-                                            <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                        </a>
+                    <th>@Html.DisplayNameFor(model => model.LastUpdated)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoleName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoleDetails)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdatedByUserName)
+                        </td>
 
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Role/Details/@item.RoleId" title="Details View">
-                                            <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                        </a>
-                                    </td>
-                                }*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastUpdated)
+                        </td>
+                        @*@if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin))
+                            {
                                 <td>
                                     <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Role/Edit/@item.RoleId" title="Edit">
                                         <b><i class="fa fa-edit"></i></b>
@@ -119,24 +93,51 @@
                                     </a>
 
                                 </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Role/Details/@item.RoleId" title="Details View">
+                                        <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                    </a>
+                                </td>
+                            }*@
+                        <td>
+                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Role/Edit/@item.RoleId" title="Edit">
+                                <b><i class="fa fa-edit"></i></b>
+                            </a>
+                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Role/Details/@item.RoleId" title="Details View">
+                                <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                            </a>
 
-                            </tr>
-                        }
+                        </td>
 
-                    </tbody>
-                </table>
-                <!--end: Datatable-->
-            </div>
-        </div>
-        <!--end::Card-->
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <!--end: Datatable-->
     </div>
-    <!--end::Container-->
 </div>
+<!--end::Card-->
 
 
 @section Scripts
 {
-<script src="~/dist/assets/js/pages/crud/ktdatatable/base/html-table.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $('#kt_datatable').KTDatatable({
+                search: {
+                    input: $('#kt_datatable_search_query'),
+                    key: 'generalSearch',
+                },
+                layout: {
+                    class: 'datatable-bordered',
+                }
+            });
+        });
+    </script>
 }
 
 
