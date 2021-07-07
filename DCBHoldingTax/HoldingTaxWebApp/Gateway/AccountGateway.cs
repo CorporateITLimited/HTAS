@@ -74,7 +74,7 @@ namespace HoldingTaxWebApp.Gateway
             }
             catch
             {
-                throw new Exception("Connecting to COMS server failed.");
+                throw new Exception("Connecting to server is failed.");
             }
             finally
             {

@@ -6,28 +6,18 @@
 }
 
 
-<div class="card card-custom">
 
-    <div class="kt-portlet">
-        <!-- begin:: Content Head -->
-        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
-            <div class="kt-container ">
-                <div class="kt-subheader__main">
-
-                    <h3 class="kt-subheader__title">Details of  : &nbsp;<b class="kt-font-brand">@Model.DesignationName</b></h3>
-
-                </div>
-                <div class="kt-subheader__toolbar">
-                    <div class="kt-subheader__wrapper">
-
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-custom gutter-b example example-compact">
+            <div class="card-header">
+                <h3 class="card-title">Details of  : &nbsp;<b class="kt-font-brand">@Model.DesignationName</b> </h3>
+                <div class="card-toolbar">
+                    <div class="example-tools justify-content-center">
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="kt-form kt-form--label-right">
-            <div class="kt-portlet__body">
-
+            <div class="card-body">
                 <div class="row ml-10">
                     <div class="col-lg-5">
                         <div class="form-group form-group-xs row">
@@ -73,18 +63,11 @@
                                 </span>
                             </div>
                         </div>
-
-
                     </div>
-
-
-
                 </div>
-
             </div>
-
-            <div class="kt-portlet__foot">
-                <div class="kt-form__actions offset-5">
+            <div class="card-footer">
+                <div class="text-center">
                     <a href="~/Designation/Edit/@Model.DesignationId" class="btn btn-outline-success btn-md"><i class="fas fa-pencil-alt"></i>Update</a>
                     <a href="~/Designation/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</a>
                 </div>
@@ -92,6 +75,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 

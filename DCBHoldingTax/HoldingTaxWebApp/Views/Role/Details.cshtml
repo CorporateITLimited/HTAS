@@ -6,35 +6,17 @@
 }
 
 
-<div class="card card-custom">
-
-    <div class="kt-portlet">
-        <!-- begin:: Content Head -->
-        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
-            <div class="kt-container ">
-                <div class="kt-subheader__main">
-
-                    <h3 class="kt-subheader__title">Details of  : &nbsp;<b class="kt-font-brand">@Model.RoleName</b></h3>
-
-                </div>
-                <div class="kt-subheader__toolbar">
-                    <div class="kt-subheader__wrapper">
-
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-custom gutter-b example example-compact">
+            <div class="card-header">
+                <h3 class="card-title">Details of  : &nbsp;<b class="kt-font-brand">@Model.RoleName</b></h3>
+                <div class="card-toolbar">
+                    <div class="example-tools justify-content-center">
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- end:: Content Head -->
-        @*<div class="kt-portlet__head">
-                <div class="kt-portlet__head-label">
-                    <h3 class="kt-portlet__head-title">
-                        Details of : <b class="kt-font-brand">@Model.RoleName</b>
-                    </h3>
-                </div>
-            </div>*@
-        <div class="kt-form kt-form--label-right">
-            <div class="kt-portlet__body">
-
+            <div class="card-body">
                 <div class="row ml-10">
                     <div class="col-lg-5">
                         <div class="form-group form-group-xs row">
@@ -117,32 +99,16 @@
                 </div>
 
             </div>
-            @*@if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin))
-                {
-                    <div class="kt-portlet__foot">
-                        <div class="kt-form__actions offset-5">
-                            <a href="~/Role/Index" class="btn btn-label-brand btn-font-lg btn-bold">Back to List</a>
-                            <a href="~/Role/Edit/@Model.RoleId" class="btn btn-label-info btn-font-lg btn-bold">Edit User</a>
-                        </div>
-                    </div>
-                }
-                else
-                {
-                    <div class="kt-portlet__foot">
-                        <div class="kt-form__actions offset-5">
-                            <a href="~/Role/Index" class="btn btn-label-brand btn-font-lg btn-bold">Back to List</a>
-                        </div>
-                    </div>
-                }*@
-            <div class="kt-portlet__foot">
-                <div class="kt-form__actions offset-5">
-                    <a  href="~/Role/Edit/@Model.RoleId" class="btn btn-outline-success btn-md"><i class="fas fa-pen"></i>Update</a>
+            <div class="card-footer">
+                <div class="text-center">
+                    <a href="~/Role/Edit/@Model.RoleId" class="btn btn-outline-success btn-md"><i class="fas fa-pen"></i>Update</a>
                     <a href="~/Role/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 
