@@ -2474,6 +2474,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\BanglaConvertionHelper.cs" />
     <Compile Include="Helpers\CommonConstantHelper.cs" />
     <Compile Include="Helpers\CommonEntityHelper.cs" />
     <Compile Include="Helpers\ConvertNullableObj.cs" />
@@ -2576,6 +2577,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Home\Test.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
