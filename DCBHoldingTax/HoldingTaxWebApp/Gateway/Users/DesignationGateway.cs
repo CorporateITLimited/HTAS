@@ -172,8 +172,8 @@ namespace HoldingTaxWebApp.Gateway.Users
                 Sql_Command.Parameters.Clear();
 
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Insert;
-                Sql_Command.Parameters.Add("@DesignationName", SqlDbType.VarChar).Value = Designation.DesignationName;
-                Sql_Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = Designation.Description;
+                Sql_Command.Parameters.Add("@DesignationName", SqlDbType.NVarChar).Value = Designation.DesignationName;
+                Sql_Command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = Designation.Description;
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = Designation.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = Designation.IsDeleted;
 
@@ -231,8 +231,8 @@ namespace HoldingTaxWebApp.Gateway.Users
                 Sql_Command.Parameters.Clear();
 
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Update;
-                Sql_Command.Parameters.Add("@DesignationName", SqlDbType.VarChar).Value = Designation.DesignationName;
-                Sql_Command.Parameters.Add("@Description", SqlDbType.VarChar).Value = Designation.Description;
+                Sql_Command.Parameters.Add("@DesignationName", SqlDbType.NVarChar).Value = Designation.DesignationName;
+                Sql_Command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = Designation.Description;
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = Designation.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = Designation.IsDeleted;
 
