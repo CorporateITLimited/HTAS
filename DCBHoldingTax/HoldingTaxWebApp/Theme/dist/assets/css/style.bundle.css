@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -87388,7 +87388,7 @@ body {
 }
 @media (min-width: 992px) {
   .content {
-    padding: 25px 0;
+    padding: 5px 0;
   }
   .header-fixed[data-header-scroll=on] .content {
     padding-top: 175px;
@@ -87399,7 +87399,7 @@ body {
 }
 @media (max-width: 991.98px) {
   .content {
-    padding: 15px 0;
+    padding: 5px 0;
   }
   .subheader-enabled.subheader-transparent .content {
     padding-top: 0;
