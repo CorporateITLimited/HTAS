@@ -9,68 +9,76 @@ namespace HoldingTaxWebApp.Models.Plots
     public class ConstructionProgress
     {
         public int ConsProgressId { get; set; }
-        [Display(Name = "Plot Id Number")]
+        [Display(Name = "প্লট আইডি নম্বর")]
         public int? PlotId { get; set; }
-        [Display(Name = "Plot Id Number")]
+        [Display(Name = "আইডি নম্বর")]
         public string PlotIdNumber { get; set; }
-        [Display(Name = "Owner Declaration")]
+        [Display(Name = "প্লট মালিকের ঘোষণা")]
         public string OwnerDeclaration { get; set; }
-        [Display(Name = "Real Builder")]
+        [Display(Name = "প্রকৃত নির্মানকারী")]
         public string RealBuilder { get; set; }
-        [Display(Name = "Developer Deposit")]
+        [Display(Name = "ডেভোলপারের জমার পরিমান")]
         public decimal? DevelopDeposit { get; set; }
-        [Display(Name = "Floor Number")]
+        [Display(Name = "ভবনের তলার সংখ্যা")]
         public int? FloorNumber { get; set; }
         public DateTime? CompletionDate { get; set; }
+        [Display(Name = "কাজ শেষ হওয়ার তারিখ")]
+
         public string StringCompletionDate { get; set; }
         public DateTime? GroundFCDate { get; set; }
+        [Display(Name = "নিচ তলা সমাপ্তের তারিখ")]
+
         public string StringGroundFCDate { get; set; }
 
         public DateTime? FirstFCDate { get; set; }
-        [Display(Name = "First Floor completed Date")]
+        [Display(Name = "২য় তলা সমাপ্তের তারিখ")]
         public string StringFirstFCDate { get; set; }
 
         public DateTime? SccFCDate { get; set; }
-        [Display(Name = "Second Floor completed Date")]
+        [Display(Name = "৩য় তলা সমাপ্তের তারিখ")]
         public string StringSccFCDate { get; set; }
 
         public DateTime? ThirdFCDate { get; set; }
-        [Display(Name = "Third Floor completed Date")]
+        [Display(Name = "৪র্থ তলা সমাপ্তের তারিখ")]
         public string StringThirdFCDate { get; set; }
 
         public DateTime? ForthFCDate { get; set; }
-        [Display(Name = "Forth Floor completed Date")]
+        [Display(Name = "৫ম তলা সমাপ্তের তারিখ")]
         public string StringForthFCDate { get; set; }
 
         public DateTime? FivthFCDate { get; set; }
-        [Display(Name = "Fifth Floor completed Date")]
+        [Display(Name = "৬ষ্ঠ তলা সমাপ্তের তারিখ")]
 
         public string StringFivthFCDate { get; set; }
 
         public DateTime? SixFCDate { get; set; }
-        [Display(Name = "Sixth Floor completed Date")]
+        [Display(Name = "৭ম তলা সমাপ্তের তারিখ")]
         public string StringSixFCDate { get; set; }
 
         public DateTime? OtherFCDate { get; set; }
-        [Display(Name = "Owner Portion")]
+
+        [Display(Name = "অন্যান্য তলা সমাপ্তের তারিখ")]
+        public string StringOtherFCDate { get; set; }
+
+        [Display(Name = "মালিকের অংশ")]
         public string OwnerPortion { get; set; }
-        [Display(Name = "Developer Portion")]
+        [Display(Name = "ডেভোলপারের অংশ")]
         public string DeveloperPortion { get; set; }
-        [Display(Name = "Buyer Portion")]
+        [Display(Name = "ক্রেতার অংশ")]
         public string BuyerPortion { get; set; }
-        [Display(Name = "Submitted Portion")]
+        [Display(Name = "হস্তান্তরিত অংশ")]
         public string SubmittedPortion { get; set; }
-        [Display(Name = "Create Date")]
+        [Display(Name = "যুক্তকরণের তারিখ ")]
         public DateTime? CreateDate { get; set; }
         public int? CreatedBy { get; set; }
-        [Display(Name = "Created By ")]
+        [Display(Name = "যুক্ত করেছেন ")]
         public string CreatedByUserName { get; set; }
-        [Display(Name = "Updated Date ")]
+        [Display(Name = "শেষ হালনাগাদের তারিখ ")]
         public DateTime? LastUpdated { get; set; }
-        public int? LastUpdatedBy { get; set; }
-
-        [Display(Name = "Updated By")]
+        [Display(Name = "শেষ হালনাগাদ করেছেন  ")]
         public string UpdatedByUserName { get; set; }
+        public int? LastUpdatedBy { get; set; }
+        [Display(Name = "সক্রিয়তা ")]
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
     }

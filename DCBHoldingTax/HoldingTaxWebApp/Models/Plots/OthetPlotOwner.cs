@@ -6,23 +6,20 @@ using System.Web;
 
 namespace HoldingTaxWebApp.Models.Plots
 {
-    public class Plot
+    public class OthetPlotOwner
     {
-        public int PlotId { get; set; }
-        [Display(Name = "আইডি নম্বর")]
-        public string PlotIdNumber { get; set; }
-        [Display(Name = "অবস্থান এলাকা")]
-        public int? AreaId { get; set; }
+        public int OthetPlotOwnerId { get; set; }
+        [Display(Name = "অন্যান্য মালিকের নাম")]
+        public string OthetOwneeName { get; set; }
+        public int? PlotOwnerId { get; set; }
+        [Display(Name = "প্লট মালিকের নাম")]
+        public string PlotOwnerName { get; set; }
+        [Display(Name = "ঠিকানা")]
+        public string Address { get; set; }
+        [Display(Name = "মন্তব্য")]
 
-        [Display(Name = "অবস্থান এলাকা")]
-        public string AreaName { get; set; }
-
-        [Display(Name = "রাস্তা নং")]
-        public string RoadNo { get; set; }
-        [Display(Name = "প্লট নং")]
-        public string PlotNo { get; set; }
-
-        [Display(Name = "যুক্তকরণের তারিখ ")]
+        public string Remarks { get; set; }
+        [Display(Name = "যুক্তকরণের তারিখ")]
         public DateTime? CreateDate { get; set; }
         public int? CreatedBy { get; set; }
         [Display(Name = "যুক্ত করেছেন ")]

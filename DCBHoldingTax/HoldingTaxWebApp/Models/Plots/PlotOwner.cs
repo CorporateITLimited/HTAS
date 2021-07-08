@@ -9,74 +9,85 @@ namespace HoldingTaxWebApp.Models.Plots
     public class PlotOwner
     {
         public int PlotOwnerId { get; set; }
-        [Display(Name = "Plot Id Number")]
+        [Display(Name = "আইডি নম্বর")]
         public int? PlotId { get; set; }
 
-        [Display(Name = "Plot Id Number")]
+        [Display(Name = "আইডি নম্বর")]
         public string PlotIdNumber { get; set; }
-        [Display(Name = "Plot Owner Name")]
+        [Display(Name = "প্লট মালিকের নাম")]
         public string PlotOwnerName { get; set; }
-        [Display(Name = "Is Alive?")]
+        [Display(Name = "প্লট মালিকের বর্তমান অবস্থা")]
         public bool? IsAlive { get; set; }
-        [Display(Name = "Official Status")]
+        [Display(Name = "প্লট মালিকের অফিসিয়াল অবস্থা")]
         public int? OfficialStatusId { get; set; }
-        [Display(Name = "Official Status")]
+        [Display(Name = "প্লট মালিকের অফিসিয়াল অবস্থা")]
         public string OffStatusName { get; set; }
-        [Display(Name = "Present Address")]
+        [Display(Name = "বর্তমান ঠিকানা")]
         public string PresentAdd { get; set; }
-        [Display(Name = "Permanent Address")]
+        [Display(Name = "স্থায়ী ঠিকানা")]
         public string PermanentAdd { get; set; }
-        [Display(Name = "Phone Number")]
+        [Display(Name = "ফোন")]
         public string PhoneNumber { get; set; }
+        [Display(Name = "ইমেল")]
         public string Email { get; set; }
-        public DateTime? LeaveDate { get; set; }
-        [Display(Name = "Leave Date")]
-        public string StringLeaveDate { get; set; }
-        [Display(Name = "Leave Authority")]
-        public string LeaveAuthority { get; set; }
-        [Display(Name = "Leave Type")]
-        public string LeaveType { get; set; }
-        [Display(Name = "Leave Period")]
-        public int? LeavePeriod { get; set; }
-        [Display(Name = "Leave Quota")]
-        public int? LeaveQuotaId { get; set; }
-        [Display(Name = "Leave Quota")]
-        public string LeaveQuotaName { get; set; }
-        [Display(Name = "HandOver Office")]
-        public string HandOverOffice { get; set; }
-        [Display(Name = "HandOver Letter No")]
+        [Display(Name = "প্লটের আয়তন")]
 
+        public decimal? PlotVolume { get; set; }
+        public DateTime? LeaveDate { get; set; }
+        [Display(Name = "ইজারার তারিখ")]
+        public string StringLeaveDate { get; set; }
+        [Display(Name = "ইজারা কর্তৃপক্ষ")]
+        public string LeaveAuthority { get; set; }
+        [Display(Name = "লিজের ধরণ")]
+        public string LeaveType { get; set; }
+        [Display(Name = "লিজের সময়কাল")]
+        public int? LeavePeriod { get; set; }
+        [Display(Name = "লিজের অবশিষ্ট সময়")]
+        public int? LeaveExPeriod { get; set; }
+
+        [Display(Name = "লিজ কোটা")]
+        public int? LeaveQuotaId { get; set; }
+        [Display(Name = "লিজ কোটা")]
+        public string LeaveQuotaName { get; set; }
+
+
+
+
+
+        [Display(Name = "হস্তান্তরকারী দপ্তরের নাম")]
+        public string HandOverOffice { get; set; }
+        [Display(Name = "হস্তান্তর পত্র নং")]
         public string HandOverLetterNo { get; set; }
-        [Display(Name = "Land Develop Change")]
+        [Display(Name = "ভূমি উন্নয়ন চার্জ")]
         public decimal? LandDevelopChange { get; set; }
-        [Display(Name = "Constraction Status")]
+        [Display(Name = "জমির বর্তমান অবস্থা")]
         public int? ConsStatusId { get; set; }
-        [Display(Name = "Constraction Status")]
+        [Display(Name = "জমির বর্তমান অবস্থা")]
         public string ConsStatusName { get; set; }
-        [Display(Name = "Document 1")]
+        [Display(Name = "নথি নং ১")]
         public string Doc1 { get; set; }
-        [Display(Name = "Document 2")]
+        [Display(Name = "নথি নং ২")]
         public string Doc2 { get; set; }
-        [Display(Name = "Document 3")]
+        [Display(Name = "নথি নং ৩")]
         public string Doc3 { get; set; }
-        [Display(Name = "Document 4")]
+        [Display(Name = "নথি নং ৪")]
         public string Doc4 { get; set; }
-        [Display(Name = "Document 5")]
+        [Display(Name = "নথি নং ৫")]
         public string Doc5 { get; set; }
-        [Display(Name = "Document 6")]
+        [Display(Name = "নথি নং ৬")]
         public string Doc6 { get; set; }
 
-        [Display(Name = "Create Date")]
+        [Display(Name = "যুক্তকরণের তারিখ ")]
         public DateTime? CreateDate { get; set; }
         public int? CreatedBy { get; set; }
-        [Display(Name = "Created By ")]
+        [Display(Name = "যুক্ত করেছেন ")]
         public string CreatedByUserName { get; set; }
-        [Display(Name = "Updated Date ")]
+        [Display(Name = "শেষ হালনাগাদের তারিখ ")]
         public DateTime? LastUpdated { get; set; }
-        public int? LastUpdatedBy { get; set; }
-
-        [Display(Name = "Updated By")]
+        [Display(Name = "শেষ হালনাগাদ করেছেন  ")]
         public string UpdatedByUserName { get; set; }
+        public int? LastUpdatedBy { get; set; }
+        [Display(Name = "সক্রিয়তা ")]
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
     }

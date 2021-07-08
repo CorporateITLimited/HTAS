@@ -9,41 +9,41 @@ namespace HoldingTaxWebApp.Models.Plots
     public class DesignApproval
     {
         public int DesignAppId { get; set; }
-        [Display(Name = "Plot Id Number")]
+        [Display(Name = "প্লট আইডি নম্বর")]
         public int? PlotId { get; set; }
-        [Display(Name = "Plot Id Number")]
+        [Display(Name = "আইডি নম্বর")]
         public string PlotIdNumber { get; set; }
 
         public DateTime? MEO_NCCDate { get; set; }
-        [Display(Name = "MEO_NCC Date")]
+        [Display(Name = "এম ই ও এনওসি তারিখ")]
         public string StringMEO_NCCDate { get; set; }
-
+        [Display(Name = "বোর্ড মিটিং রেফারেন্স")]
         public string Reference { get; set; }
 
         public DateTime ApprovalDate { get; set; }
-        [Display(Name = "Approval Date")]
+        [Display(Name = "প্ল্যান আনুমোদন তারিখ")]
         public string StringApprovalDate { get; set; }
-        [Display(Name = "Approval Letter No")]
+        [Display(Name = "অনুমোদন পত্র নং")]
         public string ApprovalLetterNo { get; set; }
-        [Display(Name = "Flor Number")]
+        [Display(Name = "তলার সংখ্যা")]
         public int? FlorNumber { get; set; }
-        [Display(Name = "Ground Flor Area")]
+        [Display(Name = "গ্রাউন্ড ফ্লোরের আয়তন")]
         public decimal? GroundFlorArea { get; set; }
-        [Display(Name = "Other Flor Area")]
+        [Display(Name = "অন্যান্য ফ্লোরের আয়তন")]
         public decimal? OtherFlorArea { get; set; }
-        [Display(Name = "Approval No")]
+        [Display(Name = "অনুমোদন নং")]
         public int ApprovalNo { get; set; }
-        [Display(Name = "Create Date")]
+        [Display(Name = "যুক্তকরণের তারিখ ")]
         public DateTime? CreateDate { get; set; }
         public int? CreatedBy { get; set; }
-        [Display(Name = "Created By ")]
+        [Display(Name = "যুক্ত করেছেন")]
         public string CreatedByUserName { get; set; }
-        [Display(Name = "Updated Date ")]
+        [Display(Name = "শেষ হালনাগাদের তারিখ")]
         public DateTime? LastUpdated { get; set; }
-        public int? LastUpdatedBy { get; set; }
-
-        [Display(Name = "Updated By")]
+        [Display(Name = "শেষ হালনাগাদ করেছেন")]
         public string UpdatedByUserName { get; set; }
+        public int? LastUpdatedBy { get; set; }
+        [Display(Name = "সক্রিয়তা")]
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
     }
