@@ -88,14 +88,14 @@ namespace COMSApp.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Test(decimal? newParam)
-        {
-            
+        //[HttpPost]
+        //public ActionResult Test(decimal? newParam)
+        //{
+        //    ViewBag.Data = BanglaConvertionHelper.ReplaceDecimalValue(newParam);
+        //    return View();
+        //}
 
-            ViewBag.Data = BanglaConvertionHelper.ReplaceDecimalValue(newParam);
-            return View();
-        }
+
 
         //public string Ones(string Number)
         //{

@@ -27,7 +27,7 @@ namespace HoldingTaxWebApp.Models.Users
         [Display(Name = "DOB")]
         public string StringDOB { get; set; }
         public string Sex { get; set; }
-        public int? NID { get; set; }
+        public string NID { get; set; }
         [Display(Name = "Employee Address")]
         public string EmployeeAddress { get; set; }
         public string Remarks { get; set; }

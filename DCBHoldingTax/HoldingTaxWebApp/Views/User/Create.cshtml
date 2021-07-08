@@ -175,6 +175,38 @@
             //    $("#UserFullName").val(empTxt);
             //});
 
+            $("#EmpolyeeId").change(function () {
+                var empolyeeId = $("#EmpolyeeId").val();
+
+                var json = {
+                    EmpolyeeId: empolyeeId
+                };
+
+                $("#UserFullName").val("");
+                $("#MobileNumber").val("");
+                $("#Email").val("");
+
+                $.ajax({
+                    url: '@Url.Action("GetAllDataByEmpolyeeId", "User")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        $("#UserFullName").val(data.EmployeeName);
+                        $("#MobileNumber").val(data.ContactNo);
+                        $("#Email").val(data.Email);
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'Failed!', 'Fetching data failed for employee details.', 'error'
+                        )
+                    }
+                });
+            });
+
+
+
+
             $("#kt_form_2").validate({
                 rules: {
                     EmpolyeeId: {

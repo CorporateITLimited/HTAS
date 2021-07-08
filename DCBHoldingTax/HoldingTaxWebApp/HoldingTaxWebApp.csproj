@@ -242,7 +242,7 @@
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-1.css" />
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-2.css" />
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-3.css" />
-    <Content Include="Theme\dist\assets\css\pages\wizard\wizard-4.css" />
+    <Content Include="Content\wizard-test.css" />
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-5.css" />
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-6.css" />
     <Content Include="Theme\dist\assets\css\style.bundle.css" />
@@ -353,7 +353,7 @@
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-1.js" />
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-2.js" />
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-3.js" />
-    <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-4.js" />
+    <Content Include="Scripts\wizard-test.js" />
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-5.js" />
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-6.js" />
     <Content Include="Theme\dist\assets\js\pages\features\base\dropdown.js" />

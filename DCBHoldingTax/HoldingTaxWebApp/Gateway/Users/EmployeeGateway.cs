@@ -57,8 +57,7 @@ namespace HoldingTaxWebApp.Gateway.Users
                         EmpolyeeId = Convert.ToInt32(Data_Reader["EmpolyeeId"]),
                         FatherName = Data_Reader["FatherName"].ToString(),
                         MotherName = Data_Reader["MotherName"].ToString(),
-                        NID = Data_Reader["NID"] !=
-                                                DBNull.Value ? Convert.ToInt32(Data_Reader["NID"]) : (int?)null,
+                        NID = Data_Reader["NID"].ToString(),
                         Remarks = Data_Reader["ContactNo"].ToString(),
                         Sex = Data_Reader["Sex"].ToString(),
                         CreatedByUserName = Data_Reader["CreatedByUserName"].ToString(),
@@ -151,8 +150,7 @@ namespace HoldingTaxWebApp.Gateway.Users
                     Employee.EmpolyeeId = Convert.ToInt32(Data_Reader["EmpolyeeId"]);
                     Employee.FatherName = Data_Reader["FatherName"].ToString();
                     Employee.MotherName = Data_Reader["MotherName"].ToString();
-                    Employee.NID = Data_Reader["NID"] !=
-                                           DBNull.Value ? Convert.ToInt32(Data_Reader["NID"]) : (int?)null;
+                    Employee.NID = Data_Reader["NID"].ToString();
                     Employee.Remarks = Data_Reader["Remarks"].ToString();
                     Employee.Sex = Data_Reader["Sex"].ToString();
                     Employee.CreatedByUserName = Data_Reader["CreatedByUserName"].ToString();
@@ -219,7 +217,7 @@ namespace HoldingTaxWebApp.Gateway.Users
                 Sql_Command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = employee.Email;
                 Sql_Command.Parameters.Add("@DOB", SqlDbType.DateTime).Value = employee.DOB;
                 Sql_Command.Parameters.Add("@Sex", SqlDbType.NVarChar).Value = employee.Sex;
-                Sql_Command.Parameters.Add("@NID", SqlDbType.Int).Value = employee.NID;
+                Sql_Command.Parameters.Add("@NID", SqlDbType.NVarChar).Value = employee.NID;
                 Sql_Command.Parameters.Add("@Remarks", SqlDbType.NVarChar).Value = employee.Remarks;
                 Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = employee.CreatedBy;
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = employee.CreateDate;
@@ -290,7 +288,7 @@ namespace HoldingTaxWebApp.Gateway.Users
                 Sql_Command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = employee.Email;
                 Sql_Command.Parameters.Add("@DOB", SqlDbType.DateTime).Value = employee.DOB;
                 Sql_Command.Parameters.Add("@Sex", SqlDbType.NVarChar).Value = employee.Sex;
-                Sql_Command.Parameters.Add("@NID", SqlDbType.Int).Value = employee.NID;
+                Sql_Command.Parameters.Add("@NID", SqlDbType.NVarChar).Value = employee.NID;
                 Sql_Command.Parameters.Add("@Remarks", SqlDbType.NVarChar).Value = employee.Remarks;
                 Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = employee.CreatedBy;
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = employee.CreateDate;
