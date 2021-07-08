@@ -513,6 +513,16 @@ namespace HoldingTaxWebApp.Controllers.Users
         //}
 
 
+        public JsonResult GetAllDataByEmpolyeeId(int EmpolyeeId)
+        {
+            var data = _employeeOfficialManager.GetEmployeeById(EmpolyeeId);
+            return new JsonResult
+            {
+                Data = data,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
         #endregion
 
 

@@ -187,21 +187,15 @@ namespace HoldingTaxWebApp.Controllers.Users
                         return View(employee);
                     }
 
-                    if (employee.EmployeeName == null)
+                    if (string.IsNullOrEmpty(employee.EmployeeName))
                     {
                         ModelState.AddModelError("", "Employee Name is required.");
                         return View(employee);
                     }
 
-                    if (employee.NID == null)
+                    if (string.IsNullOrEmpty(employee.NID))
                     {
                         ModelState.AddModelError("", "NID is required.");
-                        return View(employee);
-                    }
-
-                    if (employee.Email == null)
-                    {
-                        ModelState.AddModelError("", "Email is required.");
                         return View(employee);
                     }
 
@@ -360,11 +354,6 @@ namespace HoldingTaxWebApp.Controllers.Users
                         return View(employee);
                     }
 
-                    if (employee.Email == null)
-                    {
-                        ModelState.AddModelError("", "Email is required.");
-                        return View(employee);
-                    }
 
                     if (employee.Sex == null)
                     {

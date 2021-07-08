@@ -25,7 +25,7 @@
                 <h5 class="text-dark font-weight-bold my-1 mr-5">Official</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted">Create</a>
+                        <a href="#" class="text-muted">Update</a>
                     </li>
                 </ul>
             </div>
@@ -41,7 +41,7 @@
             <div class="col-md-12">
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
-                        <h3 class="card-title"> Create Official</h3>
+                        <h3 class="card-title"> Uodate Official</h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
@@ -102,11 +102,29 @@
 
                                     @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        <select class="form-control" id="Sex" name="Sex">
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Others">Others</option>
-                                        </select>
+                                        @if (Model.Sex == "পুরুষ")
+                                        {
+                                            <select class="form-control" id="Sex" name="Sex">
+                                                <option value="পুরুষ" selected>পুরুষ</option>
+                                                <option value="মহিলা">মহিলা</option>
+                                                <option value="অন্যান্য">অন্যান্য</option>
+                                            </select>
+                                        }
+                                        else if (Model.Sex == "মহিলা")
+                                        {
+                                            <select class="form-control" id="Sex" name="Sex">
+                                                <option value="পুরুষ">পুরুষ</option>
+                                                <option value="মহিলা" selected>মহিলা</option>
+                                                <option value="অন্যান্য">অন্যান্য</option>
+                                            </select>
+                                        }
+                                        else
+                                        { <select class="form-control" id="Sex" name="Sex">
+                                                <option value="পুরুষ">পুরুষ</option>
+                                                <option value="মহিলা">মহিলা</option>
+                                                <option value="অন্যান্য" selected>অন্যান্য</option>
+                                            </select>}
+
                                         @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
