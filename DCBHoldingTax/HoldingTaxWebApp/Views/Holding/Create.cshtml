@@ -1,0 +1,514 @@
+﻿@model HoldingTaxWebApp.Models.Holding.Holder
+@{
+    ViewBag.Title = "Create";
+}
+
+@section Sheets{
+    <link href="~/Content/wizard-holding.css" rel="stylesheet" type="text/css" />
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+}
+
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">ঢাকা সেনানিবাসস্থ আবাসিক এলাকার ডাটাবেজ প্রস্তুতের ফর্ম </h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted"> প্লট/ফ্ল্যাট মালিক কর্তৃক পূরণীয় অংশ </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>Back</a>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+        <div class="card card-custom card-transparent">
+            <div class="card-body p-0">
+                <!--begin: Wizard-->
+                <div class="wizard wizard-4" id="kt_wizard" data-wizard-state="step-first" data-wizard-clickable="true">
+                    <!--begin: Wizard Nav-->
+                    <div class="wizard-nav">
+                        <div class="wizard-steps">
+                            <!--begin::Wizard Step 1 Nav-->
+                            <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
+                                <div class="wizard-wrapper">
+                                    <div class="wizard-number">১</div>
+                                    <div class="wizard-label">
+                                        <div class="wizard-title">ব্যাক্তিগত তথ্য </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Wizard Step 1 Nav-->
+                            <!--begin::Wizard Step 2 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-wrapper">
+                                    <div class="wizard-number">২</div>
+                                    <div class="wizard-label">
+                                        <div class="wizard-title">জমি ও ভবন সংক্রান্ত তথ্য</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Wizard Step 2 Nav-->
+                            <!--begin::Wizard Step 3 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-wrapper">
+                                    <div class="wizard-number">৩, ৪</div>
+                                    <div class="wizard-label">
+                                        <div class="wizard-title">ফ্ল্যাটসমূহের বিববরণ </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Wizard Step 3 Nav-->
+                            <!--begin::Wizard Step 4 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-wrapper">
+                                    <div class="wizard-number">4</div>
+                                    <div class="wizard-label">
+                                        <div class="wizard-title">Completed</div>
+                                        <div class="wizard-desc">Review and Submit</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Wizard Step 4 Nav-->
+                        </div>
+                        <!--end: Wizard Nav-->
+                        <!--begin: Wizard Body-->
+                        <div class="card card-custom card-shadowless rounded-top-0">
+                            <div class="card-body p-0">
+                                <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+                                    <div class="col-xl-12 col-md-12 col-sm-12">
+                                        <!--begin: Wizard Form-->
+                                        <form class="form mt-0 mt-lg-10" id="kt_form">
+                                            <!--begin: Wizard Step 1-->
+                                            <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">ব্যাক্তিগত তথ্য</div>
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control" id="AreaId" name="AreaId">
+                                                            <option value="">নির্বাচন করুন</option>
+                                                            <option value="1">ডিওএইচএস মহাখালী</option>
+                                                            <option value="2">ডিওএইচএস বনানী</option>
+                                                        </select>
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.PlotId, "প্লট/বাড়ী নম্বর ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control" id="PlotId" name="PlotId">
+                                                            <option value="">নির্বাচন করুন</option>
+                                                            <option value="1">প্লট নম্বর ১</option>
+                                                            <option value="2">প্লট নম্বর ২</option>
+                                                            <option value="3">প্লট নম্বর ২৩</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row m-2">
+                                                    <label class="col-lg-2 col-form-label text-lg-right" for="road_number">রোড নম্বর </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" id="road_number" name="road_number" />
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label text-lg-right" for="road_name">রোডের নাম</label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" id="road_name" name="road_name" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.HolderName, "প্লট/ফ্ল্যাট মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.HolderName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.NID, "এনআইডি নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.NID, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.Gender, "লিঙ্গ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control" id="Gender" name="Gender">
+                                                            <option value="">নির্বাচন করুন</option>
+                                                            <option value="1">পুরুষ</option>
+                                                            <option value="2">মহিলা</option>
+                                                        </select>
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.MaritialStatus, "বৈবাহিক অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control" id="MaritialStatus" name="MaritialStatus">
+                                                            <option value="">নির্বাচন করুন</option>
+                                                            <option value="বিবাহিত">বিবাহিত</option>
+                                                            <option value="অবিবাহিত">অবিবাহিত</option>
+                                                            <option value="বিপত্নীক/বিধবা">বিপত্নীক/বিধবা</option>
+                                                            <option value="তালাকপ্রাপ্ত">তালাকপ্রাপ্ত</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.Father, "পিতার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Father, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.Mother, "মাতার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Mother, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.Spouse, "স্বামী/স্ত্রীর নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Spouse, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.Email, "ই-মেইল", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.Contact1, "ল্যান্ডলাইন নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Contact1, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.Contact2, "মোবাইল নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Contact2, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.PresentAdd, "বর্তমান ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.TextAreaFor(model => model.PresentAdd, new { @class = "form-control", placeholder = "" })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.PermanentAdd, "স্থায়ী ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.TextAreaFor(model => model.PermanentAdd, new { @class = "form-control", placeholder = "" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.ContactAdd, "পত্র যোগাযোগের ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.TextAreaFor(model => model.ContactAdd, new { @class = "form-control", placeholder = "" })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.PreviousDueTax, "আগের অর্থ বছর পর্যন্ত বকেয়া", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.PreviousDueTax, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.ImageLocation, "পাসপোর্ট সাইজের ছবি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <input type="file" name="image_file" id="ImageUpload" />
+                                                        <br />
+                                                        <img id="imgpreview" src="#" style="border:1px solid black;" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!--end: Wizard Step 1-->
+                                            <!--begin: Wizard Step 2-->
+                                            <div class="pb-5" data-wizard-type="step-content">
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">জমি ও ভবন সংক্রান্ত তথ্য</div>
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.OwnershipSourceId, "মালিকানার সূত্র", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control" id="OwnershipSourceId" name="OwnershipSourceId">
+                                                            <option value="">নির্বাচন করুন</option>
+                                                            <option value="1">বরাদ্দসূত্র</option>
+                                                            <option value="2">ক্রয়সূত্র</option>
+                                                            <option value="3">দানসূত্র</option>
+                                                            <option value="4">উত্তরাধিকারসূত্র</option>
+                                                        </select>
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.OwnerType, "মালিকানার ধরন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control" id="OwnerType" name="OwnerType">
+                                                            <option value="">নির্বাচন করুন</option>
+                                                            <option value="সামরিক">সামরিক</option>
+                                                            <option value="বেসামরিক">বেসামরিক</option>
+                                                            <option value="খেতাব প্রাপ্ত মুক্তিযোদ্ধা">খেতাব প্রাপ্ত মুক্তিযোদ্ধা</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.Document1, "মুক্তিযোদ্ধার প্রমাণাদি ১", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <input type="file" name="document_file_1" id="" />
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.Document2, "মুক্তিযোদ্ধার প্রমাণাদি ২", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <input type="file" name="document_file_2" id="" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.BuildingTypeId, "ভবনের ধরন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control" id="BuildingTypeId" name="BuildingTypeId">
+                                                            <option value="">নির্বাচন করুন</option>
+                                                            <option value="1">আবাসিক</option>
+                                                            <option value="2">বাণিজ্যিক</option>
+                                                            <option value="3">উভয় </option>
+                                                        </select>
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.AmountOfLand, "জমির পরিমাণ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-3">
+                                                        @Html.EditorFor(model => model.AmountOfLand, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                    <label class="col-form-label text-lg-left">বর্গফুট</label>
+                                                </div>
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.TotalFloor, "মোট তলার সংখ্যা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.TotalFloor, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.EachFloorArea, "প্রতিতলার আয়তন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-3">
+                                                        @Html.EditorFor(model => model.EachFloorArea, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                    <label class="col-form-label text-lg-left">বর্গফুট</label>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.TotalFlat, "মোট ফ্ল্যাট সংখ্যা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.TotalFlat, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.HoldersFlatNumber, "নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.HoldersFlatNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end: Wizard Step 2-->
+                                            <!--begin: Wizard Step 3-->
+                                            <div class="pb-5" data-wizard-type="step-content">
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">ফ্ল্যাটসমূহের বিববরণ </div>
+                                                <div class="row m-2">
+                                                    <table class="table table-bordered table-success" width="100" id="flat_details">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>তলা </th>
+                                                                <th>ফ্ল্যাট নম্বর </th>
+                                                                <th>ফ্ল্যাটের আয়তন </th>
+                                                                <th>নিজ বসতি/ভাড়া </th>
+                                                                <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
+                                                                <th>সম্পত্তির ধরন</th>
+                                                                <th>মালিকানা </th>
+                                                                <th>&nbsp; </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="10%;">
+                                                                    <select class="form-control">
+                                                                        <option value="">১</option>
+                                                                        <option value="">২</option>
+                                                                        <option value="">৩</option>
+                                                                        <option value="">৪</option>
+                                                                        <option value="">৫</option>
+                                                                        <option value="">৬</option>
+                                                                        <option value="">৭</option>
+                                                                        <option value="">৮</option>
+                                                                        <option value="">৯</option>
+                                                                        <option value="">১০</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td width="13%;"><input type="text" class="form-control" /></td>
+                                                                <td width="14%;"><input type="number" class="form-control" /></td>
+                                                                <td width="12%;">
+                                                                    <select class="form-control">
+                                                                        <option value="">নিজ বসতি</option>
+                                                                        <option value="">ভাড়া</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td width="14%;"><input type="number" class="form-control" /></td>
+                                                                <td width="15%;">
+                                                                    <select class="form-control">
+                                                                        <option value="">নিজস্ব মালিকানা</option>
+                                                                        <option value="">ভাড়া</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td width="13%;"><input type="text" class="form-control" /></td>
+                                                                <td width="5%;"><button class="btn btn-success btn-sm" id="add_new_details"><i class="fas fa-plus"></i></button></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!--end: Wizard Step 3-->
+                                            <!--begin: Wizard Step 4-->
+                                            <div class="pb-5" data-wizard-type="step-content">
+                                                <!--begin::Section-->
+                                                <h4 class="mb-10 font-weight-bold text-dark">Review your Details and Submit</h4>
+
+                                                <!--end::Section-->
+                                            </div>
+                                            <!--end: Wizard Step 4-->
+                                            <!--begin: Wizard Actions-->
+                                            <div class="d-flex justify-content-between border-top mt-5 pt-10">
+                                                <div class="mr-2">
+                                                    <button type="button" class="btn btn-light-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-prev">Previous</button>
+                                                </div>
+                                                <div>
+                                                    <button type="button" class="btn btn-success font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-submit">Submit</button>
+                                                    <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next">Next</button>
+                                                </div>
+                                            </div>
+                                            <!--end: Wizard Actions-->
+                                        </form>
+                                        <!--end: Wizard Form-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end: Wizard Bpdy-->
+                    </div>
+                    <!--end: Wizard-->
+                </div>
+            </div>
+        </div>
+        <!--end::Container-->
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/wizard-holding.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $('#AreaId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#PlotId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#Gender').select2({
+
+                allowClear: true
+            });
+            $('#MaritialStatus').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            autosize($('#PresentAdd'));
+            autosize($('#PermanentAdd'));
+            autosize($('#ContactAdd'));
+
+            function readUrl(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("img#imgpreview")
+                            .attr("src", e.target.result)
+                            .width(300)
+                            .height(300);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#ImageUpload").change(function () {
+                readUrl(this);
+            });
+
+
+            $('#OwnershipSourceId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#OwnerType').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#BuildingTypeId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+
+
+
+            $("#add_new_details").on('click', function (e) {
+                e.preventDefault();
+                var flat_details_table = $('#flat_details tbody');
+                flat_details_table.append('<tr> <td width="10%;">'+
+                    '<select class="form-control">' +
+                    '<option value="">১</option>' +
+                    '<option value="">২</option>' +
+                    '<option value="">৩</option>' +
+                    '<option value="">৪</option>' +
+                    '<option value="">৫</option>' +
+                    '<option value="">৬</option>' +
+                    '<option value="">৭</option>' +
+                    '<option value="">৮</option>' +
+                    '<option value="">৯</option>' +
+                    '<option value="">১০</option>' +
+                    '</select>' +
+                    '</td>' +
+                    '<td width="13%;"><input type="text" class="form-control" /></td>' +
+                    '<td width="14%;"><input type="number" class="form-control" /></td>' +
+                    '<td width="12%;">' +
+                    ' <select class="form-control">' +
+                    '    <option value="">নিজ বসতি</option>' +
+                    '   <option value="">ভাড়া</option>' +
+                    '</select>' +
+                    '</td>' +
+                    '<td width="14%;"><input type="number" class="form-control" /></td>' +
+                    '<td width="15%;">' +
+                    '    <select class="form-control">' +
+                    '       <option value="">নিজস্ব মালিকানা</option>' +
+                    '      <option value="">ভাড়া</option>' +
+                    ' </select>' +
+                    '</td>' +
+                    '<td width="13%;"><input type="text" class="form-control" /></td>' +
+                '<td width="5%;"><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
+			});
+
+            $('#flat_details tbody').on('click', '.remove', function (e) {
+                e.preventDefault();
+                $(this).parents('tr').css("background-color", "red").fadeOut(1000, function () {
+                    $(this).remove();
+                });
+            });
+
+
+
+
+        });
+    </script>
+}
+
+

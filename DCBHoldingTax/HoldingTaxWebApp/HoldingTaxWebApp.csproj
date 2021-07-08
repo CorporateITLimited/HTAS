@@ -97,6 +97,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\FormDesign.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\wizard-holding.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\banner.jfif" />
     <Content Include="Images\banner_bg.jpg" />
@@ -216,6 +217,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\wizard-holding.js" />
     <Content Include="Theme\dist\assets\css\pages\error\error-3.css" />
     <Content Include="Theme\dist\assets\css\pages\error\error-4.css" />
     <Content Include="Theme\dist\assets\css\pages\error\error-5.css" />
@@ -2459,6 +2461,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Holding\HoldingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Users\DesignationController.cs" />
     <Compile Include="Controllers\Users\EmployeeController.cs" />
@@ -2486,7 +2489,13 @@
     <Compile Include="Manager\Users\UserManager.cs" />
     <Compile Include="Models\DOHSArea.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
+    <Compile Include="Models\Holding\HolderFlat.cs" />
+    <Compile Include="Models\Plots\ConstructionProgress.cs" />
+    <Compile Include="Models\Plots\DesignApproval.cs" />
+    <Compile Include="Models\Plots\OthetPlotOwner.cs" />
     <Compile Include="Models\Plots\Plot.cs" />
+    <Compile Include="Models\Plots\PlotOwner.cs" />
+    <Compile Include="Models\Plots\UnauthPortion.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
     <Compile Include="Models\Users\Employee.cs" />
@@ -2581,6 +2590,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Holding\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
