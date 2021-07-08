@@ -1,19 +1,14 @@
 ﻿
 fieldset {
-    /*background-color: #e8f2fa;*/
-    background-color: #3e67b133 /*#26abe4;*/
+    
 }
 
 legend {
-    /*background-color: #a9d3fb;*/ /*1280b1*/
-    background-color: #0BB783; /*#1280b1;*/
-    color: white;
-    font-weight: 300;
+    color: #0BB783;
+    font-weight: 500;
     font-size: 1.3em;
-    padding-left: 20px;
-    /*margin-left: 15px;
-    /*margin-top: 15px;*/
-    /*padding: 5px 10px;*/
+    /*background-color: #0BB783;
+    padding-left: 10px;*/
 }
 
 /*input {

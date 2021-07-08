@@ -101,15 +101,10 @@
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                     <!--begin::Entry-->
-                    <div class="d-flex flex-column-fluid">
-                        <!--begin::Container-->
-                        <div class="container">
-                            <!--begin::Dashboard-->
-                            @RenderBody()
-                            <!--end::Dashboard-->
-                        </div>
-                        <!--end::Container-->
-                    </div>
+                    <!--begin::Dashboard-->
+                    @RenderBody()
+                    <!--end::Dashboard-->
+                    <!--end::Container-->
                     <!--end::Entry-->
                 </div>
                 <!--end::Content-->
@@ -164,6 +159,15 @@
     <script src="~/Theme/dist/assets/js/scripts.bundle.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     @RenderSection("Scripts", required: false)
+    <script>
+        function goBack() {
+            if (history.length === 1) {
+                window.location = "/Home/Index"
+            } else {
+                history.back();
+            }
+        }
+    </script>
     <!--end::Global Theme Bundle-->
 </body>
 <!--end::Body-->

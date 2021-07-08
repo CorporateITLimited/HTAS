@@ -341,10 +341,6 @@ namespace HoldingTaxWebApp.Controllers.Users
                     if (employee == null)
                         return HttpNotFound();
 
-                    Employee EmployeeForUpdate = _employeeManager.GetEmployeeById(employee.EmpolyeeId);
-                    if (EmployeeForUpdate == null)
-                        return HttpNotFound();
-
                     if (!ModelState.IsValid)
                     {
                         var errors = ModelState.Values.SelectMany(v => v.Errors);
@@ -375,12 +371,13 @@ namespace HoldingTaxWebApp.Controllers.Users
                         ModelState.AddModelError("", "Gender is required.");
                         return View(employee);
                     }
-
+                    if (employee.StringDOB != null)
+                        employee.DOB = DateTime.ParseExact(employee.StringDOB, "dd/MM/yyyy", null);
 
                     employee.CreatedBy = null;
                     employee.CreateDate = null;
-                    employee.IsActive = employee.IsActive;
-                    employee.IsDeleted = false;
+                    employee.IsActive = null;
+                    employee.IsDeleted = null;
                     employee.LastUpdated = DateTime.Now;
                     employee.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
 
