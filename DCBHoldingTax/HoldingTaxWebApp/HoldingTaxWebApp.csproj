@@ -2484,6 +2484,9 @@
     <Compile Include="Manager\Users\EmployeeManager.cs" />
     <Compile Include="Manager\Users\RoleManager.cs" />
     <Compile Include="Manager\Users\UserManager.cs" />
+    <Compile Include="Models\DOHSArea.cs" />
+    <Compile Include="Models\Holding\Holder.cs" />
+    <Compile Include="Models\Plots\Plot.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
     <Compile Include="Models\Users\Employee.cs" />
@@ -2587,6 +2590,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Users\Plot\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
