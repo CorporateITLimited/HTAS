@@ -1,4 +1,4 @@
-﻿@model HoldingTaxWebApp.Models.Holding.Holder
+﻿@model HoldingTaxWebApp.ViewModels.HolderVM
 @{
     ViewBag.Title = "Create";
 }
@@ -10,6 +10,20 @@
         input[type=number]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
+        }
+        .line {
+            display: inline-block;
+        }
+
+        span.error {
+            display: block;
+            visibility: hidden;
+            color: red;
+            font-size: 90%;
+        }
+
+        tr.error {
+            background-color: rgba(255,0,0,0.35);
         }
     </style>
 }
@@ -90,8 +104,9 @@
                             <div class="card-body p-0">
                                 <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
                                     <div class="col-xl-12 col-md-12 col-sm-12">
+                                        <span id="details_error" style="color:red;"></span>
                                         <!--begin: Wizard Form-->
-                                        <form class="form mt-0 mt-lg-10" id="kt_form">
+                                        <form class="form mt-0 mt-lg-10" id="kt_form" enctype="multipart/form-data" method="post" action="/Holding/AddOrUpdate">
                                             <!--begin: Wizard Step 1-->
                                             <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">ব্যাক্তিগত তথ্য</div>
@@ -224,7 +239,7 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.ImageLocation, "পাসপোর্ট সাইজের ছবি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="file" name="image_file" id="ImageUpload" />
+                                                        <input type="file" name="image_file" id="image_file" />
                                                         <br />
                                                         <img id="imgpreview" src="#" style="border:1px solid black;" />
                                                     </div>
@@ -261,12 +276,12 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.Document1, "মুক্তিযোদ্ধার প্রমাণাদি ১", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="file" name="document_file_1" id="" />
+                                                        <input type="file" name="document_file_1" id="document_file_1" />
                                                     </div>
 
                                                     @Html.LabelFor(model => model.Document2, "মুক্তিযোদ্ধার প্রমাণাদি ২", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="file" name="document_file_2" id="" />
+                                                        <input type="file" name="document_file_2" id="document_file_2" />
                                                     </div>
                                                 </div>
 
@@ -320,9 +335,9 @@
                                                     <table class="table table-bordered table-success" width="100" id="flat_details">
                                                         <thead>
                                                             <tr>
-                                                                <th>তলা </th>
+                                                                <th>তলা</th>
                                                                 <th>ফ্ল্যাট নম্বর </th>
-                                                                <th>ফ্ল্যাটের আয়তন </th>
+                                                                <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
                                                                 <th>নিজ বসতি/ভাড়া </th>
                                                                 <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
                                                                 <th>সম্পত্তির ধরন</th>
@@ -333,39 +348,40 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td width="10%;">
-                                                                    <select class="form-control">
-                                                                        <option value="">১</option>
-                                                                        <option value="">২</option>
-                                                                        <option value="">৩</option>
-                                                                        <option value="">৪</option>
-                                                                        <option value="">৫</option>
-                                                                        <option value="">৬</option>
-                                                                        <option value="">৭</option>
-                                                                        <option value="">৮</option>
-                                                                        <option value="">৯</option>
-                                                                        <option value="">১০</option>
+                                                                    <select class="form-control FlorNo">
+                                                                        <option value="1">১</option>
+                                                                        <option value="2">২</option>
+                                                                        <option value="3">৩</option>
+                                                                        <option value="4">৪</option>
+                                                                        <option value="5">৫</option>
+                                                                        <option value="6">৬</option>
+                                                                        <option value="7">৭</option>
+                                                                        <option value="8">৮</option>
+                                                                        <option value="9">৯</option>
+                                                                        <option value="10">১০</option>
                                                                     </select>
                                                                 </td>
-                                                                <td width="13%;"><input type="text" class="form-control" /></td>
-                                                                <td width="14%;"><input type="number" class="form-control" /></td>
+                                                                <td width="13%;"><input type="text" class="form-control FlatNo" /></td>
+                                                                <td width="14%;"><input type="number" class="form-control FlatArea" placeholder="0" /></td>
                                                                 <td width="12%;">
-                                                                    <select class="form-control">
-                                                                        <option value="">নিজ বসতি</option>
-                                                                        <option value="">ভাড়া</option>
+                                                                    <select class="form-control OwnOrRent">
+                                                                        <option value="1">নিজ বসতি</option>
+                                                                        <option value="2">ভাড়া</option>
                                                                     </select>
                                                                 </td>
-                                                                <td width="14%;"><input type="number" class="form-control" /></td>
+                                                                <td width="14%;"><input type="number" class="form-control MonthlyRent" placeholder="0" /></td>
                                                                 <td width="15%;">
-                                                                    <select class="form-control">
-                                                                        <option value="">নিজস্ব মালিকানা</option>
-                                                                        <option value="">ভাড়া</option>
+                                                                    <select class="form-control SelfOwned">
+                                                                        <option value="1">নিজস্ব মালিকানা</option>
+                                                                        <option value="2">ভাড়া</option>
                                                                     </select>
                                                                 </td>
-                                                                <td width="13%;"><input type="text" class="form-control" /></td>
+                                                                <td width="13%;"><input type="text" class="form-control OwnerName" /></td>
                                                                 <td width="5%;"><button class="btn btn-success btn-sm" id="add_new_details"><i class="fas fa-plus"></i></button></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
+
                                                 </div>
                                             </div>
                                             <!--end: Wizard Step 3-->
@@ -385,66 +401,66 @@
                                                 <div class="form-group row m-2">
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>বরাদ্দ পত্র নম্বর :</b></label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="boraddo_pottro_number" value="" readonly="readonly" />
                                                     </div>
 
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>তারিখ :</b></label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="boraddo_pottro_date" value="" readonly="readonly" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row m-2">
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>ইজারার মেয়াদ :</b></label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="ejarar_meyad" value="" readonly="readonly" />
                                                     </div>
 
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>মেয়াদোত্তীর্ণের তারিখ :</b></label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="ejarar_expiary_date" value="" readonly="readonly" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row m-2">
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>নামজারী আদেশের পত্র নং :</b></label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="namzari_number" value="" readonly="readonly" />
                                                     </div>
 
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>তারিখ :</b></label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="namzari_date" value="" readonly="readonly" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row m-2">
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>রেকর্ড সংশোধনের তারিখ : </b></label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="record_update_date" value="" readonly="readonly" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row m-2">
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>প্রথম নকশা অনুমোদনের তারিখ : </b></label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="first_design_date" value="" readonly="readonly" />
                                                     </div>
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>অনুমোদন নম্বর : </b></label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="first_design_number" value="" readonly="readonly" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row m-2">
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>সর্বশেষ সংশোধিত নকশা  অনুমোদনের তারিখ :</b></label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="last_design_date" value="" readonly="readonly" />
                                                     </div>
 
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>অনুমোদন নম্বর :</b></label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="last_design_number" value="" readonly="readonly" />
                                                     </div>
                                                 </div>
 
@@ -479,109 +495,11 @@
 </div>
 
 @section Scripts {
+   
+    @*// this script includes all js funtionality*@
+
     <script src="~/Scripts/wizard-holding.js"></script>
-    <script>
-        jQuery(document).ready(function () {
-            $('#AreaId').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-            $('#PlotId').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-            $('#Gender').select2({
-
-                allowClear: true
-            });
-            $('#MaritialStatus').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-            autosize($('#PresentAdd'));
-            autosize($('#PermanentAdd'));
-            autosize($('#ContactAdd'));
-
-            function readUrl(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $("img#imgpreview")
-                            .attr("src", e.target.result)
-                            .width(300)
-                            .height(300);
-                    }
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-            $("#ImageUpload").change(function () {
-                readUrl(this);
-            });
-
-
-            $('#OwnershipSourceId').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-            $('#OwnerType').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-            $('#BuildingTypeId').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-
-
-
-            $("#add_new_details").on('click', function (e) {
-                e.preventDefault();
-                var flat_details_table = $('#flat_details tbody');
-                flat_details_table.append('<tr> <td width="10%;">' +
-                    '<select class="form-control">' +
-                    '<option value="">১</option>' +
-                    '<option value="">২</option>' +
-                    '<option value="">৩</option>' +
-                    '<option value="">৪</option>' +
-                    '<option value="">৫</option>' +
-                    '<option value="">৬</option>' +
-                    '<option value="">৭</option>' +
-                    '<option value="">৮</option>' +
-                    '<option value="">৯</option>' +
-                    '<option value="">১০</option>' +
-                    '</select>' +
-                    '</td>' +
-                    '<td width="13%;"><input type="text" class="form-control" /></td>' +
-                    '<td width="14%;"><input type="number" class="form-control" /></td>' +
-                    '<td width="12%;">' +
-                    ' <select class="form-control">' +
-                    '    <option value="">নিজ বসতি</option>' +
-                    '   <option value="">ভাড়া</option>' +
-                    '</select>' +
-                    '</td>' +
-                    '<td width="14%;"><input type="number" class="form-control" /></td>' +
-                    '<td width="15%;">' +
-                    '    <select class="form-control">' +
-                    '       <option value="">নিজস্ব মালিকানা</option>' +
-                    '      <option value="">ভাড়া</option>' +
-                    ' </select>' +
-                    '</td>' +
-                    '<td width="13%;"><input type="text" class="form-control" /></td>' +
-                    '<td width="5%;"><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
-            });
-
-            $('#flat_details tbody').on('click', '.remove', function (e) {
-                e.preventDefault();
-                $(this).parents('tr').css("background-color", "red").fadeOut(1000, function () {
-                    $(this).remove();
-                });
-            });
-
-
-
-
-        });
-    </script>
+    
 }
 
 
