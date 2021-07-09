@@ -10,14 +10,17 @@ namespace HoldingTaxWebApp.Models.Holding
     {
         public int HolderId { get; set; }
 
-
         [Display(Name = "Holder Name")]
         public string HolderName { get; set; }
+
+        [Display(Name = "Area Name")]
         public int? AreaId { get; set; }
+
         [Display(Name = "Area Name")]
         public string AreaName { get; set; }
 
         public int? PlotId { get; set; }
+
         [Display(Name = "Plot Id Number")]
         public string PlotIdNumber { get; set; }
 
@@ -69,6 +72,10 @@ namespace HoldingTaxWebApp.Models.Holding
         public int? HoldersFlatNumber { get; set; }
         [Display(Name = "Previous Due Tax")]
         public decimal? PreviousDueTax { get; set; }
+
+        [Display(Name = "Image Location")]
+        public string ImageLocation { get; set; }
+
         [Display(Name = "Document1")]
         public string Document1 { get; set; }
         [Display(Name = "Document2")]
