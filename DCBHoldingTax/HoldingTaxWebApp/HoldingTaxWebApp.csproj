@@ -2460,12 +2460,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RentTaxTateController.cs" />
     <Compile Include="Controllers\Users\DesignationController.cs" />
     <Compile Include="Controllers\Users\EmployeeController.cs" />
     <Compile Include="Controllers\Users\RoleController.cs" />
     <Compile Include="Controllers\Users\UserController.cs" />
     <Compile Include="Controllers\Users\UserPermissionController.cs" />
     <Compile Include="Gateway\AccountGateway.cs" />
+    <Compile Include="Gateway\ConstantGateway.cs" />
     <Compile Include="Gateway\DefaultGateway.cs" />
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
@@ -2484,6 +2486,7 @@
     <Compile Include="Manager\Users\EmployeeManager.cs" />
     <Compile Include="Manager\Users\RoleManager.cs" />
     <Compile Include="Manager\Users\UserManager.cs" />
+    <Compile Include="Models\Constant\RentTaxRate.cs" />
     <Compile Include="Models\DOHSArea.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
     <Compile Include="Models\Plots\Plot.cs" />
@@ -2581,6 +2584,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\RentTaxTate\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
