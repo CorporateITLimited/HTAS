@@ -2490,6 +2490,7 @@
     <Compile Include="Models\DOHSArea.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
     <Compile Include="Models\Plots\Plot.cs" />
+    <Compile Include="Models\Tax\OwnTaxRate.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
     <Compile Include="Models\Users\Employee.cs" />
