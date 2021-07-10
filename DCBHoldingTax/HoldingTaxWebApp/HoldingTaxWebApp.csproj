@@ -217,6 +217,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\wizard-PlotOwner.js" />
     <Content Include="Scripts\wizard-holding.js" />
     <Content Include="Theme\dist\assets\css\pages\error\error-3.css" />
     <Content Include="Theme\dist\assets\css\pages\error\error-4.css" />

@@ -10,7 +10,7 @@ namespace HoldingTaxWebApp.Models.Plots
     {
         public int ConsProgressId { get; set; }
         [Display(Name = "প্লট আইডি নম্বর")]
-        public int? PlotId { get; set; }
+        public int PlotId { get; set; }
         [Display(Name = "আইডি নম্বর")]
         public string PlotIdNumber { get; set; }
         [Display(Name = "প্লট মালিকের ঘোষণা")]
