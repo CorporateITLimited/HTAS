@@ -40,5 +40,7 @@ namespace HoldingTaxWebApp.Models.Holding
         public string UpdatedByUserName { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
+        public decimal? MonthlyRent { get; set; }
+        public int SelfOwned { get; set; }
     }
 }

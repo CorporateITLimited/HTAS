@@ -29,23 +29,11 @@ var KTWizard4 = function () {
                 validator.validate().then(function (status) {
                     if (status == 'Valid') {
                         wizard.goTo(wizard.getNewStep());
-
-                        KTUtil.scrollTop();
-                    } else {
                         KTUtil.scrollTop();
                     }
-                    //} else {
-                    //	Swal.fire({
-                    //		text: "Sorry, looks like there are some errors detected, please try again.",
-                    //		icon: "error",
-                    //		buttonsStyling: false,
-                    //		confirmButtonText: "Ok, got it!",
-                    //		customClass: {
-                    //			confirmButton: "btn font-weight-bold btn-light"
-                    //		}
-                    //	}).then(function () {
-                    //		KTUtil.scrollTop();
-                    //	});
+                    else {
+                        KTUtil.scrollTop();
+                    }
                 });
             }
 
@@ -58,34 +46,141 @@ var KTWizard4 = function () {
         });
 
         // Submit event
-        //_wizardObj.on('submit', function (wizard) {
-        //    Swal.fire({
-        //        text: "All is good! Please confirm the form submission.",
-        //        icon: "success",
-        //        showCancelButton: true,
-        //        buttonsStyling: false,
-        //        confirmButtonText: "Yes, submit!",
-        //        cancelButtonText: "No, cancel",
-        //        customClass: {
-        //            confirmButton: "btn font-weight-bold btn-primary",
-        //            cancelButton: "btn font-weight-bold btn-default"
-        //        }
-        //    }).then(function (result) {
-        //        if (result.value) {
-        //            _formEl.submit(); // Submit form
-        //        } else if (result.dismiss === 'cancel') {
-        //            Swal.fire({
-        //                text: "Your form has not been submitted!.",
-        //                icon: "error",
-        //                buttonsStyling: false,
-        //                confirmButtonText: "Ok, got it!",
-        //                customClass: {
-        //                    confirmButton: "btn font-weight-bold btn-primary",
-        //                }
-        //            });
-        //        }
-        //    });
-        //});
+        _wizardObj.on('submit', function (wizard) {
+            Swal.fire({
+                text: "All is good! Please confirm the form submission.",
+                icon: "success",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, submit!",
+                cancelButtonText: "No, cancel",
+                customClass: {
+                    confirmButton: "btn font-weight-bold btn-primary",
+                    cancelButton: "btn font-weight-bold btn-danger"
+                }
+            }).then(function (result) {
+                if (result.value) {
+                    //_formEl.submit(); // Submit form
+                    var isAllValid = true;
+                    var list = [];
+                    $('#flat_details tbody tr').each(function (index, ele) {
+                        var florNo = parseInt($('.FlorNo option:selected', this).val()) || 0;
+                        var flatNo = $('.FlatNo', this).val().trim();
+                        var flatArea = parseFloat($('.FlatArea', this).val()) || 0;
+                        var ownOrRent = parseInt($('.OwnOrRent option:selected', this).val()) || 0;
+                        var monthlyRent = parseFloat($('.MonthlyRent', this).val()) || 0;
+                        var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
+                        var ownerName = $('.OwnerName', this).val().trim();
+
+                        var detailsData = {
+                            HolderFlatId: 0,
+                            FlorNo: florNo,
+                            FlatNo: flatNo,
+                            FlatArea: flatArea,
+                            OwnOrRent: ownOrRent,
+                            SelfOwned: selfOwned,
+                            MonthlyRent: monthlyRent,
+                            OwnerName: ownerName
+                        }
+                        list.push(detailsData);
+                    });
+
+                    //if (list.length == 0) {
+                    //    $('#details_error').text('At least one flat details required.');
+                    //    isAllValid = false;
+                    //}
+
+                    if (!isAllValid) {
+                        Swal.fire({
+                            text: "Please fill all the required fields.!",
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok",
+                            customClass: {
+                                confirmButton: "btn font-weight-bold btn-success",
+                            }
+                        });
+                        $('#details_error').text('Please fill all the required fields.');
+                        KTUtil.scrollTop();
+                    }
+                    else {
+                        var data = {
+                            HolderId: 0,
+                            AreaId: parseInt($('#AreaId option:selected').val()) || 0,
+                            PlotId: parseInt($('#PlotId option:selected').val()) || 0,
+                            HolderName: $('#HolderName').val().trim(),
+                            NID: $('#NID').val().trim(),
+                            Gender: parseInt($('#Gender option:selected').val()) || 0,
+                            MaritialStatus: $('#MaritialStatus option:selected').val(),
+                            Father: $('#Father').val().trim(),
+                            Mother: $('#Mother').val().trim(),
+                            Spouse: $('#Spouse').val().trim(),
+                            Contact1: $('#Contact1').val().trim(),
+                            Contact2: $('#Contact2').val().trim(),
+                            Email: $('#Email').val().trim(),
+                            PresentAdd: $('#PresentAdd').val().trim(),
+                            PermanentAdd: $('#PermanentAdd').val().trim(),
+                            ContactAdd: $('#ContactAdd').val().trim(),
+                            OwnershipSourceId: parseInt($('#OwnershipSourceId option:selected').val()) || 0,
+                            OwnerType: $('#OwnerType option:selected').val(),
+                            BuildingTypeId: parseInt($('#BuildingTypeId option:selected').val()) || 0,
+                            AmountOfLand: parseFloat($('#AmountOfLand').val()) || 0,
+                            TotalFloor: parseFloat($('#TotalFloor').val()) || 0,
+                            EachFloorArea: parseFloat($('#EachFloorArea').val()) || 0,
+                            TotalFlat: parseInt($('#TotalFlat').val()) || 0,
+                            HoldersFlatNumber: parseInt($('#TotalFlat').val()) || 0,
+                            PreviousDueTax: parseFloat($('#PreviousDueTax').val()) || 0,
+                            HolderFlatList: list,
+                            image_file: $("#image_file").get(0).files[0]
+                        };
+
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Holding/AddOrUpdate',
+                            data: JSON.stringify(data),
+                            contentType: 'application/json',
+                            success: function (d) {
+                                if (d.status === "success") {
+                                    list = [];
+                                    $('#flat_details tbody').empty();
+                                    swal.fire({
+                                        "icon": 'success',
+                                        "title": 'Your work has been saved',
+                                        "timer": 1500
+                                    });
+                                    setTimeout(function () { window.location.href = "/Holding/Create"; }, 2000);
+                                }
+                                else if (d.status === "error") {
+                                    alert('Error');
+                                } else if (d.status === "no_user") {
+                                    alert('Session gone');
+                                }
+                                else {
+                                    alert('error_full');
+                                }
+                                $('#bill_submit').val('Save');
+                            },
+                            error: function (error) {
+                                console.log(error);
+                                $('#bill_submit').val('Save');
+                            }
+                        });
+                    }
+                }
+                else if (result.dismiss === 'cancel') {
+                    Swal.fire({
+                        text: "Your form has not been submitted!.",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn font-weight-bold btn-success",
+                        }
+                    });
+                }
+            });
+        });
     }
 
     var _initValidation = function () {
@@ -95,134 +190,133 @@ var KTWizard4 = function () {
             _formEl,
             {
                 fields: {
-                    //AreaId: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //PlotId: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //HolderName: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //NID: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //Gender: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //MaritialStatus: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //Gender: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //Father: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //Mother: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //Email: {
-                    //    validators: {
-                    //        emailAddress: {
-                    //            message: 'বৈধ ই-মেইল এড্রেস দিন '
-                    //        }
-                    //    }
-                    //},
-                    //Contact1: {
-                    //    validators: {
-                    //        numeric: {
-                    //            message: 'বৈধ মোবাইল নম্বর দিন'
-                    //        }
-                    //    }
-                    //},
-                    //Contact2: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        },
-                    //        numeric: {
-                    //            message: 'বৈধ নম্বর দিন'
-                    //        }
-                    //    }
-                    //},
-                    //PresentAdd: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //PermanentAdd: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //ContactAdd: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //PreviousDueTax: {
-                    //    validators: {
-                    //        numeric: {
-                    //            message: 'বৈধ ভ্যালু দিন'
-                    //        }
-                    //    }
-                    //},
-                    //image_file: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'পাসপোর্ট সাইজের ছবি আবশ্যক'
-                    //        }
-                    //    }
-                    //}
+                    AreaId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    PlotId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    HolderName: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    NID: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    Gender: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    MaritialStatus: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    Gender: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    Father: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    Mother: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    Email: {
+                        validators: {
+                            emailAddress: {
+                                message: 'বৈধ ই-মেইল এড্রেস দিন '
+                            }
+                        }
+                    },
+                    Contact1: {
+                        validators: {
+                            numeric: {
+                                message: 'বৈধ মোবাইল নম্বর দিন'
+                            }
+                        }
+                    },
+                    Contact2: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            },
+                            numeric: {
+                                message: 'বৈধ নম্বর দিন'
+                            }
+                        }
+                    },
+                    PresentAdd: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    PermanentAdd: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    ContactAdd: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    PreviousDueTax: {
+                        validators: {
+                            numeric: {
+                                message: 'বৈধ ভ্যালু দিন'
+                            }
+                        }
+                    },
+                    image_file: {
+                        validators: {
+                            notEmpty: {
+                                message: 'পাসপোর্ট সাইজের ছবি আবশ্যক'
+                            }
+                        }
+                    }
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
-                    // Bootstrap Framework Integration
                     bootstrap: new FormValidation.plugins.Bootstrap({
-                        //eleInvalidClass: '',
+                        eleInvalidClass: '',
                         eleValidClass: '',
                     })
                 }
@@ -234,78 +328,92 @@ var KTWizard4 = function () {
             _formEl,
             {
                 fields: {
-                    //OwnershipSourceId: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //OwnerType: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //BuildingTypeId: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        }
-                    //    }
-                    //},
-                    //AmountOfLand: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        },
-                    //        numeric: {
-                    //            message: 'বৈধ ভ্যালু দিন'
-                    //        }
-                    //    }
-                    //},
-                    //TotalFloor: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        },
-                    //        numeric: {
-                    //            message: 'বৈধ ভ্যালু দিন'
-                    //        }
-                    //    }
-                    //},
-                    //EachFloorArea: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        },
-                    //        numeric: {
-                    //            message: 'বৈধ ভ্যালু দিন'
-                    //        }
-                    //    }
-                    //},
-                    //TotalFlat: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        },
-                    //        numeric: {
-                    //            message: 'বৈধ ভ্যালু দিন'
-                    //        }
-                    //    }
-                    //},
-                    //HoldersFlatNumber: {
-                    //    validators: {
-                    //        notEmpty: {
-                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                    //        },
-                    //        numeric: {
-                    //            message: 'বৈধ ভ্যালু দিন'
-                    //        }
-                    //    }
-                    //}
+                    OwnershipSourceId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    OwnerType: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    BuildingTypeId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    AmountOfLand: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            },
+                            numeric: {
+                                message: 'বৈধ ভ্যালু দিন'
+                            }
+                        }
+                    },
+                    TotalFloor: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            },
+                            numeric: {
+                                message: 'বৈধ ভ্যালু দিন'
+                            }
+                        }
+                    },
+                    EachFloorArea: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            },
+                            numeric: {
+                                message: 'বৈধ ভ্যালু দিন'
+                            }
+                        }
+                    },
+                    TotalFlat: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            },
+                            numeric: {
+                                message: 'বৈধ ভ্যালু দিন'
+                            }
+                        }
+                    },
+                    HoldersFlatNumber: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            },
+                            numeric: {
+                                message: 'বৈধ ভ্যালু দিন'
+                            }
+                        }
+                    }
                 },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap: new FormValidation.plugins.Bootstrap({
+                        eleInvalidClass: '',
+                        eleValidClass: '',
+                    })
+                }
+            }
+        ));
+
+        // Step 3
+        _validations.push(FormValidation.formValidation(
+            _formEl,
+            {
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
                     // Bootstrap Framework Integration
@@ -317,53 +425,10 @@ var KTWizard4 = function () {
             }
         ));
 
-        // Step 3
+        // Step 4
         _validations.push(FormValidation.formValidation(
             _formEl,
             {
-                fields: {
-                    ccname: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Credit card name is required'
-                            }
-                        }
-                    },
-                    ccnumber: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Credit card number is required'
-                            },
-                            creditCard: {
-                                message: 'The credit card number is not valid'
-                            }
-                        }
-                    },
-                    ccmonth: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Credit card month is required'
-                            }
-                        }
-                    },
-                    ccyear: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Credit card year is required'
-                            }
-                        }
-                    },
-                    cccvv: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Credit card CVV is required'
-                            },
-                            digits: {
-                                message: 'The CVV value is not valid. Only numbers is allowed'
-                            }
-                        }
-                    }
-                },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
                     // Bootstrap Framework Integration
@@ -388,6 +453,218 @@ var KTWizard4 = function () {
     };
 }();
 
+
 jQuery(document).ready(function () {
+
     KTWizard4.init();
+
+    $('#AreaId').select2({
+        placeholder: "--নির্বাচন করুন--",
+        allowClear: true
+    });
+    $('#PlotId').select2({
+        placeholder: "--নির্বাচন করুন--",
+        allowClear: true
+    });
+    $('#Gender').select2({
+
+        allowClear: true
+    });
+    $('#MaritialStatus').select2({
+        placeholder: "--নির্বাচন করুন--",
+        allowClear: true
+    });
+    autosize($('#PresentAdd'));
+    autosize($('#PermanentAdd'));
+    autosize($('#ContactAdd'));
+
+    function readUrl(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("img#imgpreview")
+                    .attr("src", e.target.result)
+                    .width(300)
+                    .height(300);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#image_file").change(function () {
+        readUrl(this);
+    });
+
+
+    $('#OwnershipSourceId').select2({
+        placeholder: "--নির্বাচন করুন--",
+        allowClear: true
+    });
+    $('#OwnerType').select2({
+        placeholder: "--নির্বাচন করুন--",
+        allowClear: true
+    });
+    $('#BuildingTypeId').select2({
+        placeholder: "--নির্বাচন করুন--",
+        allowClear: true
+    });
+
+
+
+    $("#add_new_details").on('click', function (e) {
+        e.preventDefault();
+        var flat_details_table = $('#flat_details tbody');
+        flat_details_table.append('<tr> <td width="10%;">' +
+            '<select class="form-control FlorNo">' +
+            '<option value="1">১</option>' +
+            '<option value="2">২</option>' +
+            '<option value="3">৩</option>' +
+            '<option value="4">৪</option>' +
+            '<option value="5">৫</option>' +
+            '<option value="6">৬</option>' +
+            '<option value="7">৭</option>' +
+            '<option value="8">৮</option>' +
+            '<option value="9">৯</option>' +
+            '<option value="10">১০</option>' +
+            '</select>' +
+            '</td>' +
+            '<td width="13%;"><input type="text" class="form-control FlatNo" /></td>' +
+            '<td width="14%;"><input type="number" class="form-control FlatArea" placeholder="0" /></td>' +
+            '<td width="12%;">' +
+            ' <select class="form-control OwnOrRent">' +
+            '    <option value="">নিজ বসতি</option>' +
+            '   <option value="">ভাড়া</option>' +
+            '</select>' +
+            '</td>' +
+            '<td width="14%;"><input type="number" class="form-control MonthlyRent" placeholder="0" /></td>' +
+            '<td width="15%;">' +
+            '    <select class="form-control SelfOwned">' +
+            '       <option value="">নিজস্ব মালিকানা</option>' +
+            '      <option value="">ভাড়া</option>' +
+            ' </select>' +
+            '</td>' +
+            '<td width="13%;"><input type="text" class="form-control OwnerName" /></td>' +
+            '<td width="5%;"><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
+    });
+
+    $('#flat_details tbody').on('click', '.remove', function (e) {
+        e.preventDefault();
+        $(this).parents('tr').css("background-color", "red").fadeOut(1000, function () {
+            $(this).remove();
+        });
+    });
+
+    $("#image_file").change(function () {
+        var data = new FormData();
+        data.append("fileBase", $("#image_file").get(0).files[0]);
+        $.ajax({
+            type: 'POST',
+            url: '/Holding/GetImage',
+            data: data, // modify
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (d) {
+                console.log(d);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+    $("#document_file_1").change(function () {
+        var data = new FormData();
+        data.append("fileBase", $("#document_file_1").get(0).files[0]);
+        $.ajax({
+            type: 'POST',
+            url: '/Holding/GetDocFile1',
+            data: data, // modify
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (d) {
+                console.log(d);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+    $("#document_file_2").change(function () {
+        var data = new FormData();
+        data.append("fileBase", $("#document_file_2").get(0).files[0]);
+        $.ajax({
+            type: 'POST',
+            url: '/Holding/GetDocFile2',
+            data: data, // modify
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (d) {
+                console.log(d);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+
+
+    //debugger;
+    //var data = new FormData();
+    //data.append("HolderId", 0);
+    //data.append("AreaId", parseInt($('#AreaId option:selected').val()) || 0);
+    //data.append("PlotId", parseInt($('#PlotId option:selected').val()) || 0);
+    //data.append("HolderName", $('#HolderName').val().trim());
+    //data.append("NID", $('#NID').val().trim());
+    //data.append("Gender", parseInt($('#Gender option:selected').val()) || 0);
+    //data.append("MaritialStatus", $('#MaritialStatus option:selected').val());
+    //data.append("Father", $('#Father').val().trim());
+    //data.append("Mother", $('#Mother').val().trim());
+    //data.append("Spouse", $('#Spouse').val().trim());
+    //data.append("Contact1", $('#Contact1').val().trim());
+    //data.append("Contact2", $('#Contact2').val().trim());
+    //data.append("Email", $('#Email').val().trim());
+    //data.append("PresentAdd", $('#PresentAdd').val().trim());
+    //data.append("PermanentAdd", $('#PermanentAdd').val().trim());
+    //data.append("ContactAdd", $('#ContactAdd').val().trim());
+    //data.append("OwnershipSourceId", parseInt($('#OwnershipSourceId option:selected').val()) || 0);
+    //data.append("OwnerType", $('#OwnerType option:selected').val());
+    //data.append("BuildingTypeId", parseInt($('#BuildingTypeId option:selected').val()) || 0);
+    //data.append("AmountOfLand", parseFloat($('#AmountOfLand').val()) || 0);
+    //data.append("TotalFloor", parseFloat($('#TotalFloor').val()) || 0);
+    //data.append("EachFloorAre", parseFloat($('#EachFloorArea').val()) || 0);
+    //data.append("TotalFla", parseInt($('#TotalFlat').val()) || 0);
+    //data.append("HoldersFlatNumber", parseInt($('#TotalFlat').val()) || 0);
+    //data.append("PreviousDueTax", parseFloat($('#PreviousDueTax').val()) || 0);
+    //alert('list started');
+    //debugger;
+    //// var index = 0;
+    //// for (var dd of list) {
+    ////     var falt_data = dd;
+    ////     ///formData.append("HolderFlatList[" + index + "]", pair.key);
+    ////     formData.append("HolderFlatList[" + index + "].HolderFlatId", falt_data.HolderFlatId);
+    ////     formData.append("HolderFlatList[" + index + "].FlorNo", falt_data.FlorNo);
+    ////     formData.append("HolderFlatList[" + index + "].FlatNo", falt_data.FlatNo);
+    ////     formData.append("HolderFlatList[" + index + "].FlatArea", falt_data.FlatArea);
+    ////     formData.append("HolderFlatList[" + index + "].OwnOrRent", falt_data.OwnOrRent);
+    ////     formData.append("HolderFlatList[" + index + "].SelfOwned", falt_data.SelfOwned);
+    ////     formData.append("HolderFlatList[" + index + "].MonthlyRent", falt_data.MonthlyRent);
+    ////     formData.append("HolderFlatList[" + index + "].OwnerName", falt_data.OwnerName);
+    ////     index++;
+    ////}
+    ////for (var i = 0; i < list.length; i++) {
+    ////    formData.append("HolderFlatList[" + i + "].HolderFlatId", list.HolderFlatId);
+    ////    formData.append("HolderFlatList[" + i + "].FlorNo", list.FlorNo);
+    ////    formData.append("HolderFlatList[" + i + "].FlatNo", list.FlatNo);
+    ////    formData.append("HolderFlatList[" + i + "].FlatArea", list.FlatArea);
+    ////    formData.append("HolderFlatList[" + i + "].OwnOrRent", list.OwnOrRent);
+    ////    formData.append("HolderFlatList[" + i + "].SelfOwned", list.SelfOwned);
+    ////    formData.append("HolderFlatList[" + i + "].MonthlyRent", list.MonthlyRent);
+    ////    formData.append("HolderFlatList[" + i + "].OwnerName", list.OwnerName);
+    ////}
+    //data.append("HolderFlatList", JSON.stringify(list));
+    //// //data.append("image_file", $("#image_file").get(0).files[0]);
+    //// //data.append("document_file_1", $("#document_file_1").get(0).files[0]);
+    //// //data.append("document_file_2", $("#document_file_2").get(0).files[0]);
 });
