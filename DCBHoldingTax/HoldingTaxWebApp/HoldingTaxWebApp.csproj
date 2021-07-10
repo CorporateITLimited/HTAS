@@ -2471,7 +2471,12 @@
     <Compile Include="Controllers\Users\UserPermissionController.cs" />
     <Compile Include="Gateway\AccountGateway.cs" />
     <Compile Include="Gateway\ConstantGateway.cs" />
+    <Compile Include="Gateway\DBO\LeaseQuotaGateway.cs" />
+    <Compile Include="Gateway\DBO\OfficialStatusGateway.cs" />
+    <Compile Include="Gateway\DBO\OwnershipSourceGateway.cs" />
+    <Compile Include="Gateway\DBO\StatusTypeGateway.cs" />
     <Compile Include="Gateway\DefaultGateway.cs" />
+    <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
@@ -2492,6 +2497,10 @@
     <Compile Include="Manager\Users\RoleManager.cs" />
     <Compile Include="Manager\Users\UserManager.cs" />
     <Compile Include="Models\Constant\RentTaxRate.cs" />
+    <Compile Include="Models\DBO\LeaseQuota.cs" />
+    <Compile Include="Models\DBO\OfficialStatus.cs" />
+    <Compile Include="Models\DBO\OwnershipSource.cs" />
+    <Compile Include="Models\DBO\StatusType.cs" />
     <Compile Include="Models\DOHSArea.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
     <Compile Include="Models\Plots\Plot.cs" />
