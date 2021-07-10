@@ -244,7 +244,7 @@
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-1.css" />
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-2.css" />
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-3.css" />
-    <Content Include="Content\wizard-test.css" />
+    <Content Include="Theme\dist\assets\css\pages\wizard\wizard-4.css" />
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-5.css" />
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-6.css" />
     <Content Include="Theme\dist\assets\css\style.bundle.css" />
@@ -355,7 +355,7 @@
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-1.js" />
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-2.js" />
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-3.js" />
-    <Content Include="Scripts\wizard-test.js" />
+    <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-4.js" />
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-5.js" />
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-6.js" />
     <Content Include="Theme\dist\assets\js\pages\features\base\dropdown.js" />
@@ -2463,6 +2463,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Holding\HoldingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
     <Compile Include="Controllers\Users\DesignationController.cs" />
     <Compile Include="Controllers\Users\EmployeeController.cs" />
@@ -2472,6 +2473,7 @@
     <Compile Include="Gateway\AccountGateway.cs" />
     <Compile Include="Gateway\ConstantGateway.cs" />
     <Compile Include="Gateway\DefaultGateway.cs" />
+    <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
     <Compile Include="Gateway\Users\RoleGateway.cs" />
@@ -2485,6 +2487,7 @@
     <Compile Include="Helpers\ConvertNullableObj.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Manager\AccountManager.cs" />
+    <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
     <Compile Include="Manager\Users\DesignationManager.cs" />
     <Compile Include="Manager\Users\EmployeeManager.cs" />
     <Compile Include="Manager\Users\RoleManager.cs" />
@@ -2507,6 +2510,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\HolderVM.cs" />
     <Compile Include="ViewModels\LogInVM.cs" />
+    <Compile Include="ViewModels\Plots\PlotOwnerCombineVM.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
     <Compile Include="ViewModels\UserPermission.cs" />
   </ItemGroup>
@@ -2596,6 +2600,10 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Holding\Create.cshtml" />
+    <Content Include="Views\PlotOwner\Index.cshtml" />
+    <Content Include="Views\PlotOwner\Details.cshtml" />
+    <Content Include="Views\PlotOwner\Create.cshtml" />
+    <Content Include="Views\PlotOwner\Edit.cshtml" />
     <Content Include="Views\Holding\Index.cshtml" />
     <Content Include="Views\RentTaxTate\Index.cshtml" />
     <None Include="Web.Debug.config">
@@ -2607,7 +2615,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Users\Plot\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
