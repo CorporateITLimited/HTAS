@@ -2460,6 +2460,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
     <Compile Include="Controllers\Users\DesignationController.cs" />
     <Compile Include="Controllers\Users\EmployeeController.cs" />
@@ -2469,6 +2470,7 @@
     <Compile Include="Gateway\AccountGateway.cs" />
     <Compile Include="Gateway\ConstantGateway.cs" />
     <Compile Include="Gateway\DefaultGateway.cs" />
+    <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
     <Compile Include="Gateway\Users\RoleGateway.cs" />
@@ -2482,6 +2484,7 @@
     <Compile Include="Helpers\ConvertNullableObj.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Manager\AccountManager.cs" />
+    <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
     <Compile Include="Manager\Users\DesignationManager.cs" />
     <Compile Include="Manager\Users\EmployeeManager.cs" />
     <Compile Include="Manager\Users\RoleManager.cs" />
@@ -2490,6 +2493,8 @@
     <Compile Include="Models\DOHSArea.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
     <Compile Include="Models\Plots\Plot.cs" />
+    <Compile Include="Models\Plots\PlotOwner.cs" />
+    <Compile Include="Models\Plots\UnauthPortion.cs" />
     <Compile Include="Models\Tax\OwnTaxRate.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
@@ -2585,6 +2590,12 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Holding\Create.cshtml" />
+    <Content Include="Views\PlotOwner\Index.cshtml" />
+    <Content Include="Views\PlotOwner\Details.cshtml" />
+    <Content Include="Views\PlotOwner\Create.cshtml" />
+    <Content Include="Views\PlotOwner\Edit.cshtml" />
+    <Content Include="Views\Holding\Index.cshtml" />
     <Content Include="Views\RentTaxTate\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
