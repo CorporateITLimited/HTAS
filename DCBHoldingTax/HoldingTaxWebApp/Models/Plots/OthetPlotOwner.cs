@@ -11,7 +11,7 @@ namespace HoldingTaxWebApp.Models.Plots
         public int OthetPlotOwnerId { get; set; }
         [Display(Name = "অন্যান্য মালিকের নাম")]
         public string OthetOwneeName { get; set; }
-        public int? PlotOwnerId { get; set; }
+        public int PlotOwnerId { get; set; }
         [Display(Name = "প্লট মালিকের নাম")]
         public string PlotOwnerName { get; set; }
         [Display(Name = "ঠিকানা")]
