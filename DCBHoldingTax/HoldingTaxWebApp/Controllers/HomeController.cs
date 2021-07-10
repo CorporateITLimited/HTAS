@@ -98,7 +98,16 @@ namespace COMSApp.Controllers
 
             //int parsed_number = int.Parse(english_text); // 1234567890
 
-            if (!IsAllBanglaDigits("১৭মি"))
+            if (!IsAllBanglaDigits("১৭.০০মি"))
+            {
+                newData = "no";
+            }
+            else
+            {
+                newData = "yees";
+            }
+
+            if (!IsAllEnglistDigits("17.54x"))
             {
                 newData = "no";
             }
@@ -122,9 +131,10 @@ namespace COMSApp.Controllers
             return View();
         }
 
-        bool IsAllEnglistDigits(string s)
+        bool IsAllEnglistDigits(string str)
         {
-            foreach (char c in s)
+            str = str.Replace(".", string.Empty);
+            foreach (char c in str)
             {
                 if (!char.IsDigit(c))
                     return false;
@@ -132,10 +142,11 @@ namespace COMSApp.Controllers
             return true;
         }
 
-        bool IsAllBanglaDigits(string s)
+        bool IsAllBanglaDigits(string str)
         {
-            var myData = string.Concat(s.Select(c => (char)('0' + c - '\u09E6')));
-            foreach (char c in myData)
+            str = str.Replace(".", string.Empty);
+            var newData = string.Concat(str.Select(c => (char)('0' + c - '\u09E6')));
+            foreach (char c in newData)
             {
                 if (!char.IsDigit(c))
                     return false;

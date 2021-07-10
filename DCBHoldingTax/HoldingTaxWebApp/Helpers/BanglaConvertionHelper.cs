@@ -72,5 +72,29 @@ namespace HoldingTaxWebApp.Helpers
             int.TryParse(replacedValue, out int val);
             return val;
         }
+
+
+        public static bool IsValidEnglishStringValue(string str)
+        {
+            str = str.Replace(".", string.Empty);
+            foreach (char c in str)
+            {
+                if (!char.IsDigit(c))
+                    return false;
+            }
+            return true;
+        }
+
+        public static bool IsValidBanglaStringValue(string str)
+        {
+            str = str.Replace(".", string.Empty);
+            var newData = string.Concat(str.Select(c => (char)('0' + c - '\u09E6')));
+            foreach (char c in newData)
+            {
+                if (!char.IsDigit(c))
+                    return false;
+            }
+            return true;
+        }
     }
 }
