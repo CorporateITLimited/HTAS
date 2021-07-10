@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -7,7 +8,7 @@ namespace HoldingTaxWebApp.Helpers
 {
     public class BanglaConvertionHelper
     {
-        public static string ReplaceDecimalValue(decimal? param)
+        public static string DecimalValueEnglish2Bangla(decimal? param)
         {
             if (param != null)
             {
@@ -37,7 +38,7 @@ namespace HoldingTaxWebApp.Helpers
 
         }
 
-        public static string ReplaceIntegerValue(int? param)
+        public static string IntegerValueEnglish2Bangla(int? param)
         {
             if (param != null)
             {
@@ -53,5 +54,23 @@ namespace HoldingTaxWebApp.Helpers
 
         }
 
+        public static decimal DecimalValueBangla2English(string param)
+        {
+             string replacedValue =  param.Replace("০", "0").Replace("১", "1").Replace("২", "2").Replace("৩", "3")
+                                               .Replace("৪", "4").Replace("৫", "5").Replace("৬", "6").Replace("৭", "7")
+                                               .Replace("৮", "8").Replace("৯", "9");
+            decimal.TryParse(replacedValue, out decimal val);
+            return val;
+        }
+
+        public static int IntegerValueBangla2English(string param)
+        {
+            string replacedValue = param.Replace("০", "0").Replace("১", "1").Replace("২", "2").Replace("৩", "3")
+                                              .Replace("৪", "4").Replace("৫", "5").Replace("৬", "6").Replace("৭", "7")
+                                              .Replace("৮", "8").Replace("৯", "9");
+
+            int.TryParse(replacedValue, out int val);
+            return val;
+        }
     }
 }

@@ -190,128 +190,121 @@ var KTWizard4 = function () {
             _formEl,
             {
                 fields: {
-                    AreaId: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    PlotId: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    HolderName: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    NID: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    Gender: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    MaritialStatus: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    Gender: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    Father: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    Mother: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    Email: {
-                        validators: {
-                            emailAddress: {
-                                message: 'বৈধ ই-মেইল এড্রেস দিন '
-                            }
-                        }
-                    },
-                    Contact1: {
-                        validators: {
-                            numeric: {
-                                message: 'বৈধ মোবাইল নম্বর দিন'
-                            }
-                        }
-                    },
-                    Contact2: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ নম্বর দিন'
-                            }
-                        }
-                    },
-                    PresentAdd: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    PermanentAdd: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    ContactAdd: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    PreviousDueTax: {
-                        validators: {
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    image_file: {
-                        validators: {
-                            notEmpty: {
-                                message: 'পাসপোর্ট সাইজের ছবি আবশ্যক'
-                            }
-                        }
-                    }
+                    //AreaId: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //PlotId: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //HolderName: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //NID: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //Gender: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //MaritialStatus: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //}
+                    //Father: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //Mother: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //Email: {
+                    //    validators: {
+                    //        emailAddress: {
+                    //            message: 'বৈধ ই-মেইল এড্রেস দিন '
+                    //        }
+                    //    }
+                    //},
+                    //Contact1: {
+                    //    validators: {
+                    //        numeric: {
+                    //            message: 'বৈধ মোবাইল নম্বর দিন'
+                    //        }
+                    //    }
+                    //},
+                    //Contact2: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        },
+                    //        numeric: {
+                    //            message: 'বৈধ নম্বর দিন'
+                    //        }
+                    //    }
+                    //},
+                    //PresentAdd: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //PermanentAdd: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //ContactAdd: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //PreviousDueTax: {
+                    //    validators: {
+                    //        numeric: {
+                    //            message: 'বৈধ ভ্যালু দিন'
+                    //        }
+                    //    }
+                    //},
+                    //image_file: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'পাসপোর্ট সাইজের ছবি আবশ্যক'
+                    //        }
+                    //    }
+                    //}
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
@@ -328,77 +321,77 @@ var KTWizard4 = function () {
             _formEl,
             {
                 fields: {
-                    OwnershipSourceId: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    OwnerType: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    BuildingTypeId: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    AmountOfLand: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    TotalFloor: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    EachFloorArea: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    TotalFlat: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    HoldersFlatNumber: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    }
+                    //OwnershipSourceId: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //OwnerType: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //BuildingTypeId: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        }
+                    //    }
+                    //},
+                    //AmountOfLand: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        },
+                    //        numeric: {
+                    //            message: 'বৈধ ভ্যালু দিন'
+                    //        }
+                    //    }
+                    //},
+                    //TotalFloor: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        },
+                    //        numeric: {
+                    //            message: 'বৈধ ভ্যালু দিন'
+                    //        }
+                    //    }
+                    //},
+                    //EachFloorArea: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        },
+                    //        numeric: {
+                    //            message: 'বৈধ ভ্যালু দিন'
+                    //        }
+                    //    }
+                    //},
+                    //TotalFlat: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        },
+                    //        numeric: {
+                    //            message: 'বৈধ ভ্যালু দিন'
+                    //        }
+                    //    }
+                    //},
+                    //HoldersFlatNumber: {
+                    //    validators: {
+                    //        notEmpty: {
+                    //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                    //        },
+                    //        numeric: {
+                    //            message: 'বৈধ ভ্যালু দিন'
+                    //        }
+                    //    }
+                    //}
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
@@ -456,159 +449,8 @@ var KTWizard4 = function () {
 
 jQuery(document).ready(function () {
 
+
     KTWizard4.init();
-
-    $('#AreaId').select2({
-        placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-    });
-    $('#PlotId').select2({
-        placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-    });
-    $('#Gender').select2({
-
-        allowClear: true
-    });
-    $('#MaritialStatus').select2({
-        placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-    });
-    autosize($('#PresentAdd'));
-    autosize($('#PermanentAdd'));
-    autosize($('#ContactAdd'));
-
-    function readUrl(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $("img#imgpreview")
-                    .attr("src", e.target.result)
-                    .width(300)
-                    .height(300);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("#image_file").change(function () {
-        readUrl(this);
-    });
-
-
-    $('#OwnershipSourceId').select2({
-        placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-    });
-    $('#OwnerType').select2({
-        placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-    });
-    $('#BuildingTypeId').select2({
-        placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-    });
-
-
-
-    $("#add_new_details").on('click', function (e) {
-        e.preventDefault();
-        var flat_details_table = $('#flat_details tbody');
-        flat_details_table.append('<tr> <td width="10%;">' +
-            '<select class="form-control FlorNo">' +
-            '<option value="1">১</option>' +
-            '<option value="2">২</option>' +
-            '<option value="3">৩</option>' +
-            '<option value="4">৪</option>' +
-            '<option value="5">৫</option>' +
-            '<option value="6">৬</option>' +
-            '<option value="7">৭</option>' +
-            '<option value="8">৮</option>' +
-            '<option value="9">৯</option>' +
-            '<option value="10">১০</option>' +
-            '</select>' +
-            '</td>' +
-            '<td width="13%;"><input type="text" class="form-control FlatNo" /></td>' +
-            '<td width="14%;"><input type="number" class="form-control FlatArea" placeholder="0" /></td>' +
-            '<td width="12%;">' +
-            ' <select class="form-control OwnOrRent">' +
-            '    <option value="">নিজ বসতি</option>' +
-            '   <option value="">ভাড়া</option>' +
-            '</select>' +
-            '</td>' +
-            '<td width="14%;"><input type="number" class="form-control MonthlyRent" placeholder="0" /></td>' +
-            '<td width="15%;">' +
-            '    <select class="form-control SelfOwned">' +
-            '       <option value="">নিজস্ব মালিকানা</option>' +
-            '      <option value="">ভাড়া</option>' +
-            ' </select>' +
-            '</td>' +
-            '<td width="13%;"><input type="text" class="form-control OwnerName" /></td>' +
-            '<td width="5%;"><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
-    });
-
-    $('#flat_details tbody').on('click', '.remove', function (e) {
-        e.preventDefault();
-        $(this).parents('tr').css("background-color", "red").fadeOut(1000, function () {
-            $(this).remove();
-        });
-    });
-
-    $("#image_file").change(function () {
-        var data = new FormData();
-        data.append("fileBase", $("#image_file").get(0).files[0]);
-        $.ajax({
-            type: 'POST',
-            url: '/Holding/GetImage',
-            data: data, // modify
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (d) {
-                console.log(d);
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
-    });
-    $("#document_file_1").change(function () {
-        var data = new FormData();
-        data.append("fileBase", $("#document_file_1").get(0).files[0]);
-        $.ajax({
-            type: 'POST',
-            url: '/Holding/GetDocFile1',
-            data: data, // modify
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (d) {
-                console.log(d);
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
-    });
-    $("#document_file_2").change(function () {
-        var data = new FormData();
-        data.append("fileBase", $("#document_file_2").get(0).files[0]);
-        $.ajax({
-            type: 'POST',
-            url: '/Holding/GetDocFile2',
-            data: data, // modify
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (d) {
-                console.log(d);
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
-    });
-
-
 
     //debugger;
     //var data = new FormData();
