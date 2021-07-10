@@ -28,7 +28,7 @@ namespace HoldingTaxWebApp.Models.Constant
         [Display(Name = "তৈরিকারী")]
         public string CreatedByName { get; set; }
         public DateTime? LastUpdated { get; set; }
-        [Display(Name = "পরিবর্তনকারী")]
+        [Display(Name = "হালনাগাদকারী")]
         public string LastUpdatedByName { get; set; }
         public int? LastUpdatedBy { get; set; }
         public bool? IsActive { get; set; }
