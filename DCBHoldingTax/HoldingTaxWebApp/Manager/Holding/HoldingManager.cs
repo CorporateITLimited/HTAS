@@ -77,6 +77,11 @@ namespace HoldingTaxWebApp.Manager.Holding
         {
             return _holdingGateway.GetPerSqrFeetPrice(areaId, buildingTypeId);
         }
+
+        public int GetMAXId()
+        {
+            return _holdingGateway.GetMAXId();
+        }
         #endregion
     }
 }

@@ -197,7 +197,12 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     vm.IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null;
                     vm.CreatedBy = Data_Reader["CreatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null;
                     vm.LastUpdatedBy = Data_Reader["LastUpdatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null;
+                    vm.RoadNo = Convert.ToString(Data_Reader["RoadNo"]);
+                    vm.RoadName = Convert.ToString(Data_Reader["RoadName"]);
                 };
+
+                vm.StringCreateDate = $"{vm.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
+                vm.StringLastUpdated = $"{vm.LastUpdated:dd/MM/yyyy HH:mm:ss tt}";
 
                 Data_Reader.Close();
                 Sql_Connection.Close();
@@ -267,7 +272,6 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@ImageLocation", SqlDbType.NVarChar).Value = model.ImageLocation;
                 Sql_Command.Parameters.Add("@Document1", SqlDbType.NVarChar).Value = model.Document1;
                 Sql_Command.Parameters.Add("@Document2", SqlDbType.NVarChar).Value = model.Document2;
-                Sql_Command.Parameters.Add("@PreviousDueTax", SqlDbType.Decimal).Value = model.PreviousDueTax;
 
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = model.CreateDate;
                 Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = model.CreatedBy;
@@ -419,6 +423,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Clear();
 
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "select_by_holderid";
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = id;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -448,11 +453,11 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         IsSelfOwned = Data_Reader["IsSelfOwned"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsSelfOwned"]) : (bool?)null,
                         MonthlyRent = Data_Reader["MonthlyRent"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["MonthlyRent"]) : (decimal?)null,
                         OwnerName = Convert.ToString(Data_Reader["OwnerName"]),
-                        SelfOwned = Data_Reader["SelfOwned"] != DBNull.Value ? Convert.ToInt32(Data_Reader["SelfOwned"]) : (int?)null,
+                        SelfOwn = Data_Reader["SelfOwn"] != DBNull.Value ? Convert.ToInt32(Data_Reader["SelfOwn"]) : (int?)null,
                         SelfOwnType = Convert.ToString(Data_Reader["SelfOwnType"]),
                         CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
-                        CreatedByUsername = Data_Reader["CreatedByUsername"].ToString(),
-                        UpdatedByUsername = Data_Reader["UpdatedByUserName"].ToString(),
+                       // CreatedByUsername = Data_Reader["CreatedByUsername"].ToString(),
+                        //UpdatedByUsername = Data_Reader["UpdatedByUserName"].ToString(),
                         LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null,
                         IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null,
                         IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
@@ -512,7 +517,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@IsSelfOwned", SqlDbType.Bit).Value = model.IsSelfOwned;
                 Sql_Command.Parameters.Add("@OwnerName", SqlDbType.NVarChar).Value = model.OwnerName;
                 Sql_Command.Parameters.Add("@MonthlyRent", SqlDbType.Decimal).Value = model.MonthlyRent;
-                Sql_Command.Parameters.Add("@SelfOwn", SqlDbType.Int).Value = model.SelfOwned;
+                Sql_Command.Parameters.Add("@SelfOwn", SqlDbType.Int).Value = model.SelfOwn;
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = model.CreateDate;
                 Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = model.CreatedBy;
                 Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = model.LastUpdated;
@@ -580,7 +585,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@IsSelfOwned", SqlDbType.Bit).Value = model.IsSelfOwned;
                 Sql_Command.Parameters.Add("@OwnerName", SqlDbType.NVarChar).Value = model.OwnerName;
                 Sql_Command.Parameters.Add("@MonthlyRent", SqlDbType.Decimal).Value = model.MonthlyRent;
-                Sql_Command.Parameters.Add("@SelfOwn", SqlDbType.Int).Value = model.SelfOwned;
+                Sql_Command.Parameters.Add("@SelfOwn", SqlDbType.Int).Value = model.SelfOwn;
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = model.CreateDate;
                 Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = model.CreatedBy;
                 Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = model.LastUpdated;
@@ -693,6 +698,70 @@ namespace HoldingTaxWebApp.Gateway.Holding
             }
 
         }
+
+        public int GetMAXId()
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spHolderMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "max_id";
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                int id = 0;
+                int? nullId = null;
+
+                while (Data_Reader.Read())
+                {
+                    nullId = Data_Reader["MaxId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["MaxId"]) : (int?)null;
+                };
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                id = nullId ?? default(int);
+
+                return id;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
 
         #endregion
     }

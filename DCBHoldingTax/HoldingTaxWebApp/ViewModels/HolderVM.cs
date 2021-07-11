@@ -118,6 +118,9 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "Create Date")]
         public DateTime? CreateDate { get; set; }
 
+        [Display(Name = "Create Date")]
+        public string StringCreateDate { get; set; }
+
         public int? CreatedBy { get; set; }
 
         [Display(Name = "Created By ")]
@@ -125,6 +128,9 @@ namespace HoldingTaxWebApp.ViewModels
 
         [Display(Name = "Updated Date ")]
         public DateTime? LastUpdated { get; set; }
+
+        [Display(Name = "Updated Date ")]
+        public string StringLastUpdated { get; set; }
 
         public int? LastUpdatedBy { get; set; }
 
@@ -141,6 +147,12 @@ namespace HoldingTaxWebApp.ViewModels
         public HttpPostedFileBase image_file { get; set; }
         public HttpPostedFileBase document_file_1 { get; set; }
         public HttpPostedFileBase document_file_2 { get; set; }
+
+        [Display(Name = "Road No ")]
+        public string RoadNo { get; set; }
+
+        [Display(Name = "Road Name ")]
+        public string RoadName { get; set; }
 
 
         public HolderVM()
