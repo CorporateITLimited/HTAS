@@ -44,9 +44,9 @@ namespace HoldingTaxWebApp.Gateway.Dbo
                     {
 
 
-                        
-      
-                        
+
+
+
                         BuildingTypeId = Convert.ToInt32(Data_Reader["BuildingTypeId"]),
                         BuildingTypeName = Data_Reader["BuildingTypeName"].ToString(),
                         CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
@@ -88,3 +88,6 @@ namespace HoldingTaxWebApp.Gateway.Dbo
             }
 
         }
+    }
+
+   

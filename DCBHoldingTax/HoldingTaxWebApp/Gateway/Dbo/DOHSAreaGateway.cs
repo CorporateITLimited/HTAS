@@ -42,15 +42,15 @@ namespace HoldingTaxWebApp.Gateway.Dbo
                     DOHSArea dohsarea = new Dohsarea
                     {
 
-                        
 
-                         AreaId  = Convert.ToInt32(Data_Reader["AreaId"]),
-                         AreaName = Data_Reader["AreaName "].ToString(),
+
+                        AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
+                        AreaName = Data_Reader["AreaName "].ToString(),
                         MedicalAmount = Convert.ToInt32(Data_Reader["MedicalAmount"]),
                         TotalArea = Data_Reader["TotalArea"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["TotalArea"]) : (Decimal?)null,
-                       CurrentPlotNumber  = Convert.ToInt32(Data_Reader["CurrentPlotNumber"]),
-                       CurrentFlatNumber  = Convert.ToInt32(Data_Reader["CurrentFlatNumber"]),
+                        CurrentPlotNumber = Convert.ToInt32(Data_Reader["CurrentPlotNumber"]),
+                        CurrentFlatNumber = Convert.ToInt32(Data_Reader["CurrentFlatNumber"]),
                         CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
                         CreatedBy = Data_Reader["CreatedBy"] !=
                                                 DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
@@ -91,3 +91,4 @@ namespace HoldingTaxWebApp.Gateway.Dbo
 
         }
     }
+}
