@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +11,8 @@ namespace HoldingTaxWebApp.Models.Dbo
         [Display(Name = "বিল্ডিং টাইপ আইডি")]
         public int BuildingTypeId { get; set; }
         [Display(Name = "বিল্ডিং টাইপ নাম")]
+        public string BuildingTypeName { get; set; }
+        [Display(Name = "তারিখ তৈরি করুন")]
         public DateTime? CreateDate { get; set; }
         [Display(Name = "তৈরিকারী")]
         public int CreatedBy { get; set; }
@@ -21,6 +24,8 @@ namespace HoldingTaxWebApp.Models.Dbo
         public bool? IsActive { get; set; }
         [Display(Name = "মুছে ফেলা ")]
         public bool? IsDeleted { get; set; }
+
+        
 
     }
 }

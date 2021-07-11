@@ -1,5 +1,9 @@
-﻿using System;
+﻿using HoldingTaxWebApp.Helpers;
+using HoldingTaxWebApp.Models.Dbo;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -44,9 +48,6 @@ namespace HoldingTaxWebApp.Gateway.Dbo
                     {
 
 
-
-
-
                         BuildingTypeId = Convert.ToInt32(Data_Reader["BuildingTypeId"]),
                         BuildingTypeName = Data_Reader["BuildingTypeName"].ToString(),
                         CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
@@ -66,7 +67,7 @@ namespace HoldingTaxWebApp.Gateway.Dbo
                 Data_Reader.Close();
                 Sql_Connection.Close();
 
-                return constantvalueList;
+                return buildingtypeList;
             }
             catch (SqlException exception)
             {
@@ -88,6 +89,7 @@ namespace HoldingTaxWebApp.Gateway.Dbo
             }
 
         }
-    }
 
-   
+
+    }
+}

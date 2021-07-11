@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using HoldingTaxWebApp.Models.Dbo;
+using HoldingTaxWebApp.Models;
+using System.Data.SqlClient;
+using System.Data;
+using HoldingTaxWebApp.Helpers;
 
 namespace HoldingTaxWebApp.Gateway.Dbo
 {
@@ -39,14 +44,14 @@ namespace HoldingTaxWebApp.Gateway.Dbo
 
                 while (Data_Reader.Read())
                 {
-                    DOHSArea dohsarea = new Dohsarea
+                    DOHSArea dohsarea = new DOHSarea()
                     {
 
 
 
                         AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
                         AreaName = Data_Reader["AreaName "].ToString(),
-                        MedicalAmount = Convert.ToInt32(Data_Reader["MedicalAmount"]),
+             
                         TotalArea = Data_Reader["TotalArea"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["TotalArea"]) : (Decimal?)null,
                         CurrentPlotNumber = Convert.ToInt32(Data_Reader["CurrentPlotNumber"]),
@@ -68,7 +73,7 @@ namespace HoldingTaxWebApp.Gateway.Dbo
                 Data_Reader.Close();
                 Sql_Connection.Close();
 
-                return constantvalueList;
+                return dohsareaList;
             }
             catch (SqlException exception)
             {
