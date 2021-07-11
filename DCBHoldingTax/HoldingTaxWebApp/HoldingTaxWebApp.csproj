@@ -97,7 +97,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\FormDesign.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\wizard-holding.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\banner.jfif" />
     <Content Include="Images\banner_bg.jpg" />
@@ -245,7 +244,7 @@
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-1.css" />
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-2.css" />
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-3.css" />
-    <Content Include="Theme\dist\assets\css\pages\wizard\wizard-4.css" />
+    <Content Include="Content\wizard-test.css" />
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-5.css" />
     <Content Include="Theme\dist\assets\css\pages\wizard\wizard-6.css" />
     <Content Include="Theme\dist\assets\css\style.bundle.css" />
@@ -356,7 +355,7 @@
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-1.js" />
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-2.js" />
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-3.js" />
-    <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-4.js" />
+    <Content Include="Scripts\wizard-test.js" />
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-5.js" />
     <Content Include="Theme\dist\assets\js\pages\custom\wizard\wizard-6.js" />
     <Content Include="Theme\dist\assets\js\pages\features\base\dropdown.js" />
@@ -2462,7 +2461,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Holding\HoldingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
@@ -2474,8 +2472,13 @@
     <Compile Include="Gateway\AccountGateway.cs" />
     <Compile Include="Gateway\CommonListGateway.cs" />
     <Compile Include="Gateway\ConstantGateway.cs" />
+    <Compile Include="Gateway\DBO\LeaseQuotaGateway.cs" />
+    <Compile Include="Gateway\DBO\OfficialStatusGateway.cs" />
+    <Compile Include="Gateway\DBO\OwnershipSourceGateway.cs" />
+    <Compile Include="Gateway\DBO\StatusTypeGateway.cs" />
     <Compile Include="Gateway\DefaultGateway.cs" />
     <Compile Include="Gateway\Holding\HoldingGateway.cs" />
+    <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
@@ -2500,12 +2503,12 @@
     <Compile Include="Manager\Users\UserManager.cs" />
     <Compile Include="Models\CommonList.cs" />
     <Compile Include="Models\Constant\RentTaxRate.cs" />
+    <Compile Include="Models\DBO\LeaseQuota.cs" />
+    <Compile Include="Models\DBO\OfficialStatus.cs" />
+    <Compile Include="Models\DBO\OwnershipSource.cs" />
+    <Compile Include="Models\DBO\StatusType.cs" />
     <Compile Include="Models\DOHSArea.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
-    <Compile Include="Models\Holding\HolderFlat.cs" />
-    <Compile Include="Models\Plots\ConstructionProgress.cs" />
-    <Compile Include="Models\Plots\DesignApproval.cs" />
-    <Compile Include="Models\Plots\OthetPlotOwner.cs" />
     <Compile Include="Models\Plots\Plot.cs" />
     <Compile Include="Models\Plots\PlotOwner.cs" />
     <Compile Include="Models\Plots\UnauthPortion.cs" />
@@ -2515,9 +2518,7 @@
     <Compile Include="Models\Users\Employee.cs" />
     <Compile Include="Models\Users\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\HolderVM.cs" />
     <Compile Include="ViewModels\LogInVM.cs" />
-    <Compile Include="ViewModels\Plots\PlotOwnerCombineVM.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
     <Compile Include="ViewModels\UserPermission.cs" />
   </ItemGroup>
@@ -2622,6 +2623,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Users\Plot\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
