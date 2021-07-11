@@ -77,7 +77,7 @@ namespace HoldingTaxWebApp.Gateway.Plots
                         LeaveDate = Data_Reader["LeaveDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LeaveDate"]) : (DateTime?)null,
                         LeaseAuthority = Data_Reader["LeaseAuthority"].ToString(),
                         LeaseType = Data_Reader["LeaseType"].ToString(),
-                        LeasePeriod = Data_Reader["LeasePeriod"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LeavePeriod"]) : (Int32?)null,
+                        LeasePeriod = Data_Reader["LeasePeriod"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LeasePeriod"]) : (Int32?)null,
                         LeaseQuotaId = Convert.ToInt32(Data_Reader["LeaseQuotaId"]),
                         HandOverOffice = Data_Reader["HandOverOffice"].ToString(),
                         HandOverLetterNo = Data_Reader["HandOverLetterNo"].ToString(),
