@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HoldingTaxWebApp.Helpers;
+using HoldingTaxWebApp.Manager;
+using HoldingTaxWebApp.Manager.Holding;
 using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.ViewModels;
 
@@ -11,6 +13,17 @@ namespace HoldingTaxWebApp.Controllers.Holding
 {
     public class HoldingController : Controller
     {
+        private readonly bool CanAccess = false;
+        private readonly bool CanReadWrite = false;
+        private readonly CommonListManager _commonListManager;
+        private readonly HoldingManager _holdingManager;
+
+        public HoldingController()
+        {
+            _commonListManager = new CommonListManager();
+            _holdingManager = new HoldingManager();
+        }
+
         // GET: Holding
         public ActionResult Index()
         {
@@ -25,6 +38,17 @@ namespace HoldingTaxWebApp.Controllers.Holding
         [HttpGet]
         public ActionResult Create()
         {
+            //ViewBag.AreaId = new SelectList(_constantManager.GetAllRentTaxRates(), "AreaId", "AreaName");
+            //ViewBag.PlotId = new SelectList(_constantManager.GetAllRentTaxRates(), "AreaId", "AreaName");
+            //ViewBag.OwnershipSourceId = new SelectList(_constantManager.GetAllRentTaxRates(), "AreaId", "AreaName");
+            //ViewBag.BuildingTypeId = new SelectList(_constantManager.GetAllRentTaxRates(), "AreaId", "AreaName");
+
+            ViewBag.Gender = new SelectList(_commonListManager.GetAllGender(), "TypeId", "TypeName");
+            ViewBag.MaritialStatus = new SelectList(_commonListManager.GetAllMaritalStatus(), "TypeId", "TypeName");
+            ViewBag.OwnerType = new SelectList(_commonListManager.GetAllOwnerShipType(), "TypeId", "TypeName");
+            ViewBag.FlorNo = _commonListManager.GetAllFloor();
+            ViewBag.OwnOrRent = _commonListManager.GetAllOwnOrRent();
+            ViewBag.SelfOwned = _commonListManager.GetAllOwnType();
             return View();
         }
 
@@ -46,7 +70,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     System.IO.Stream fileContent = file.InputStream;
                 }
 
-               // int uid = 0;
+                // int uid = 0;
                 return new JsonResult { Data = new { status } };
 
                 #region old 
@@ -227,7 +251,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             //    TempData["PM"] = "Permission Denied.";
             //    return new JsonResult { Data = "forbidden" };
             //}
-            
+
         }
 
         [HttpGet]
@@ -240,6 +264,12 @@ namespace HoldingTaxWebApp.Controllers.Holding
         public ActionResult Edit(Holder holder)
         {
             return View();
+        }
+
+
+        public JsonResult GetRatePerSquareFeet(int AreaId, int BuildingTypeId)
+        {
+            return new JsonResult { Data = _holdingManager.GetPerSqrFeetPrice(AreaId, BuildingTypeId) };
         }
 
         public JsonResult GetImage(HttpPostedFileBase fileBase)
@@ -259,7 +289,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 Session["ImageFile"] = null;
                 return new JsonResult { Data = "not_done" };
             }
-           
+
         }
 
         public JsonResult GetDocFile1(HttpPostedFileBase fileBase)

@@ -85,7 +85,73 @@ namespace COMSApp.Controllers
 
         public ActionResult Test()
         {
+            string data = "১২৩we";
+            var newData = "";
+
+
+
+           // int? number = 1234567890;
+
+            string bengali_text = "১৭মি";//string.Concat(number.ToString().Select(c => (char)('\u09E6' + c - '0'))); // "১২৩৪৫৬৭৮৯০"
+
+            string english_text = string.Concat(bengali_text.Select(c => (char)('0' + c - '\u09E6'))); // "1234567890"
+
+            //int parsed_number = int.Parse(english_text); // 1234567890
+
+            if (!IsAllBanglaDigits("১৭.০০মি"))
+            {
+                newData = "no";
+            }
+            else
+            {
+                newData = "yees";
+            }
+
+            if (!IsAllEnglistDigits("17.54x"))
+            {
+                newData = "no";
+            }
+            else
+            {
+                newData = "yees";
+            }
+
+            //if (IsAllDigits(data))
+            //{
+            //    newData = " " + BanglaConvertionHelper.DecimalValueBangla2English(data);
+            //}
+            //else
+            //{
+            //    newData = " ";
+            //}
+
+            //var isNumeric = int.TryParse("১২৩", out int n); return false
+
+            ViewBag.Data = newData;
             return View();
+        }
+
+        bool IsAllEnglistDigits(string str)
+        {
+            str = str.Replace(".", string.Empty);
+            foreach (char c in str)
+            {
+                if (!char.IsDigit(c))
+                    return false;
+            }
+            return true;
+        }
+
+        bool IsAllBanglaDigits(string str)
+        {
+            str = str.Replace(".", string.Empty);
+            var newData = string.Concat(str.Select(c => (char)('0' + c - '\u09E6')));
+            foreach (char c in newData)
+            {
+                if (!char.IsDigit(c))
+                    return false;
+            }
+            return true;
         }
 
         //[HttpPost]

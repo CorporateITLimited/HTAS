@@ -12,7 +12,7 @@ namespace HoldingTaxWebApp.Models.Plots
         [Display(Name = "আইডি নম্বর")]
         public string PlotIdNumber { get; set; }
         [Display(Name = "অবস্থান এলাকা")]
-        public int? AreaId { get; set; }
+        public int AreaId { get; set; }
 
         [Display(Name = "অবস্থান এলাকা")]
         public string AreaName { get; set; }
@@ -21,6 +21,9 @@ namespace HoldingTaxWebApp.Models.Plots
         public string RoadNo { get; set; }
         [Display(Name = "প্লট নং")]
         public string PlotNo { get; set; }
+
+        [Display(Name = "এলাকা")]
+        public decimal? TotalArea { get; set; }
 
         [Display(Name = "যুক্তকরণের তারিখ ")]
         public DateTime? CreateDate { get; set; }

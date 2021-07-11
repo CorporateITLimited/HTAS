@@ -1,24 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using HoldingTaxWebApp.Helpers;
+using HoldingTaxWebApp.Models.DBO;
 using HoldingTaxWebApp.Models;
-using HoldingTaxWebApp.Models.Constant;
+using System.Data.SqlClient;
+using System.Data;
+using HoldingTaxWebApp.Helpers;
 
-namespace HoldingTaxWebApp.Gateway
+namespace HoldingTaxWebApp.Gateway.DBO
 {
-    public class ConstantGateway:DefaultGateway
+    public class OfficialStatusGateway : DefaultGateway
     {
-        //Get all Rent tax rates .........................
-        public List<RentTaxRate> GetAllRentTaxRates()
+        public List<OfficialStatus> GetAllOfficialStatus()
         {
-
             try
             {
-                Sql_Query = "[dbo].[spRentTaxRate]";
+                Sql_Query = "[dbo].[spOfficialStatusMaster]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -41,24 +39,18 @@ namespace HoldingTaxWebApp.Gateway
                 Sql_Connection.Open();
                 Data_Reader = Sql_Command.ExecuteReader();
 
-                List<RentTaxRate> RentTaxRateList = new List<RentTaxRate>();
+                List<OfficialStatus> officialStatusList = new List<OfficialStatus>();
 
                 while (Data_Reader.Read())
                 {
-                    RentTaxRate rentTaxRate = new RentTaxRate
+                    OfficialStatus officialStatus = new OfficialStatus
                     {
 
-
-                        RentTaxRateId = Convert.ToInt32(Data_Reader["RentTaxRateId"]),
-                        AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
-                        BuildingTypeId = Convert.ToInt32(Data_Reader["BuildingTypeId"]),
-                        PerSqfRent = Convert.ToDecimal(Data_Reader["PerSqfRent"]),
-                        //!= DBNull.Value ? Convert.ToDecimal(Data_Reader["PerSqfRent"]) : (decimal?)null,
+                        OfficialStatusId = Convert.ToInt32(Data_Reader["OfficialStatusId"]),
                         Remarks = Data_Reader["Remarks"].ToString(),
-                        AreaName = Data_Reader["AreaName"].ToString(),
-                        BuildingTypeName = Data_Reader["BuildingTypeName"].ToString(),
-                        CreatedByName = Data_Reader["CreatedByName"].ToString(),
-                        LastUpdatedByName = Data_Reader["LastUpdatedByName"].ToString(),
+                        OffStatusName = Data_Reader["OffStatusName"].ToString(),
+                        //CreatedByName = Data_Reader["CreatedByName"].ToString(),
+                        //LastUpdatedByName = Data_Reader["LastUpdatedByName"].ToString(),
                         CreatedBy = Data_Reader["CreatedBy"] !=
                                                     DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
                         CreateDate = Data_Reader["CreateDate"] != DBNull.Value ?
@@ -73,13 +65,13 @@ namespace HoldingTaxWebApp.Gateway
                                                     DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null
                     };
 
-                    RentTaxRateList.Add(rentTaxRate);
+                    officialStatusList.Add(officialStatus);
                 }
 
                 Data_Reader.Close();
                 Sql_Connection.Close();
 
-                return RentTaxRateList;
+                return officialStatusList;
             }
             catch (SqlException exception)
             {
@@ -99,8 +91,6 @@ namespace HoldingTaxWebApp.Gateway
                 if (Sql_Connection.State == ConnectionState.Open)
                     Sql_Connection.Close();
             }
-
         }
-
     }
 }

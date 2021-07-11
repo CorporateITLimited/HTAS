@@ -14,9 +14,9 @@ namespace HoldingTaxWebApp.Models
         [Display(Name = "Total Area")]
         public decimal? TotalArea { get; set; }
         [Display(Name = "Current Plot Number")]
-        public int? CurrentPlotNumber { get; set; }
+        public int CurrentPlotNumber { get; set; }
         [Display(Name = "Current Flat Number")]
-        public int? CurrentFlatNumber { get; set; }
+        public int CurrentFlatNumber { get; set; }
 
         [Display(Name = "Create Date")]
         public DateTime? CreateDate { get; set; }

@@ -11,6 +11,7 @@
             -webkit-appearance: none;
             margin: 0;
         }
+
         .line {
             display: inline-block;
         }
@@ -36,7 +37,7 @@
                 <h5 class="text-dark font-weight-bold my-1 mr-5">ঢাকা সেনানিবাসস্থ আবাসিক এলাকার ডাটাবেজ প্রস্তুতের ফর্ম </h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted"> প্লট/ফ্ল্যাট মালিক কর্তৃক পূরণীয় অংশ </a>
+                        <a href="#" class="text-muted"> প্লট/বাড়ী/ফ্ল্যাট মালিক কর্তৃক পূরণীয় অংশ </a>
                     </li>
                 </ul>
             </div>
@@ -109,18 +110,23 @@
                                         <form class="form mt-0 mt-lg-10" id="kt_form" enctype="multipart/form-data" method="post" action="/Holding/AddOrUpdate">
                                             <!--begin: Wizard Step 1-->
                                             <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
-                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">ব্যাক্তিগত তথ্য</div>
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
+                                                    ব্যাক্তিগত তথ্য &nbsp;
+                                                    <label class="show_plot"></label>
+                                                </div>
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         <select class="form-control" id="AreaId" name="AreaId">
                                                             <option value="">নির্বাচন করুন</option>
-                                                            <option value="1">ডিওএইচএস মহাখালী</option>
-                                                            <option value="2">ডিওএইচএস বনানী</option>
+                                                            <option value="1">বনানী ডিওএইচএস </option>
+                                                            <option value="2">মহাখালী ডিওএইচএস </option>
+                                                            <option value="3">বারিধারা ডিওএইচএস</option>
+                                                            <option value="4">মিরপুর ডিওএইচএস</option>
                                                         </select>
                                                     </div>
 
-                                                    @Html.LabelFor(model => model.PlotId, "প্লট/বাড়ী নম্বর ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    @Html.LabelFor(model => model.PlotId, "প্লট/বাড়ী/ফ্ল্যাট নম্বর ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         <select class="form-control" id="PlotId" name="PlotId">
                                                             <option value="">নির্বাচন করুন</option>
@@ -157,22 +163,18 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.Gender, "লিঙ্গ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <select class="form-control" id="Gender" name="Gender">
-                                                            <option value="">নির্বাচন করুন</option>
-                                                            <option value="1">পুরুষ</option>
-                                                            <option value="2">মহিলা</option>
-                                                        </select>
+                                                        @Html.DropDownListFor(model => model.Gender, null, " নির্বাচন করুন ", new
+                                                   {
+                                                       @class = "form-control",
+                                                   })
                                                     </div>
 
                                                     @Html.LabelFor(model => model.MaritialStatus, "বৈবাহিক অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <select class="form-control" id="MaritialStatus" name="MaritialStatus">
-                                                            <option value="">নির্বাচন করুন</option>
-                                                            <option value="বিবাহিত">বিবাহিত</option>
-                                                            <option value="অবিবাহিত">অবিবাহিত</option>
-                                                            <option value="বিপত্নীক/বিধবা">বিপত্নীক/বিধবা</option>
-                                                            <option value="তালাকপ্রাপ্ত">তালাকপ্রাপ্ত</option>
-                                                        </select>
+                                                        @Html.DropDownListFor(model => model.MaritialStatus, null, " নির্বাচন করুন ", new
+                                                   {
+                                                       @class = "form-control",
+                                                   })
                                                     </div>
                                                 </div>
 
@@ -249,7 +251,10 @@
                                             <!--end: Wizard Step 1-->
                                             <!--begin: Wizard Step 2-->
                                             <div class="pb-5" data-wizard-type="step-content">
-                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">জমি ও ভবন সংক্রান্ত তথ্য</div>
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
+                                                    জমি ও ভবন সংক্রান্ত তথ্য &nbsp;
+                                                    <label class="show_plot"></label>
+                                                </div>
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.OwnershipSourceId, "মালিকানার সূত্র", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
@@ -264,12 +269,10 @@
 
                                                     @Html.LabelFor(model => model.OwnerType, "মালিকানার ধরন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <select class="form-control" id="OwnerType" name="OwnerType">
-                                                            <option value="">নির্বাচন করুন</option>
-                                                            <option value="সামরিক">সামরিক</option>
-                                                            <option value="বেসামরিক">বেসামরিক</option>
-                                                            <option value="খেতাব প্রাপ্ত মুক্তিযোদ্ধা">খেতাব প্রাপ্ত মুক্তিযোদ্ধা</option>
-                                                        </select>
+                                                        @Html.DropDownListFor(model => model.OwnerType, null, " নির্বাচন করুন ", new
+                                                 {
+                                                     @class = "form-control",
+                                                 })
                                                     </div>
                                                 </div>
 
@@ -291,8 +294,9 @@
                                                         <select class="form-control" id="BuildingTypeId" name="BuildingTypeId">
                                                             <option value="">নির্বাচন করুন</option>
                                                             <option value="1">আবাসিক</option>
-                                                            <option value="2">বাণিজ্যিক</option>
-                                                            <option value="3">উভয় </option>
+                                                            <option value="2">আবাসিক(কাঁচা/টিনশেড/সেমিপাকা)</option>
+                                                            <option value="3">বাণিজ্যিক</option>
+                                                            <option value="4">আবাসিক+বাণিজ্যিক</option>
                                                         </select>
                                                     </div>
 
@@ -330,7 +334,10 @@
                                             <!--end: Wizard Step 2-->
                                             <!--begin: Wizard Step 3-->
                                             <div class="pb-5" data-wizard-type="step-content">
-                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">ফ্ল্যাটসমূহের বিববরণ </div>
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
+                                                    ফ্ল্যাটসমূহের বিববরণ &nbsp;
+                                                    <label class="show_plot"></label>
+                                                </div>
                                                 <div class="row m-2">
                                                     <table class="table table-bordered table-success" width="100" id="flat_details">
                                                         <thead>
@@ -349,31 +356,35 @@
                                                             <tr>
                                                                 <td width="10%;">
                                                                     <select class="form-control FlorNo">
-                                                                        <option value="1">১</option>
-                                                                        <option value="2">২</option>
-                                                                        <option value="3">৩</option>
-                                                                        <option value="4">৪</option>
-                                                                        <option value="5">৫</option>
-                                                                        <option value="6">৬</option>
-                                                                        <option value="7">৭</option>
-                                                                        <option value="8">৮</option>
-                                                                        <option value="9">৯</option>
-                                                                        <option value="10">১০</option>
+                                                                        @foreach (var item in ViewBag.FlorNo)
+                                                                        {
+                                                                            <option value="@item.TypeId">
+                                                                                @item.TypeName
+                                                                            </option>
+                                                                        }
                                                                     </select>
                                                                 </td>
                                                                 <td width="13%;"><input type="text" class="form-control FlatNo" /></td>
                                                                 <td width="14%;"><input type="number" class="form-control FlatArea" placeholder="0" /></td>
                                                                 <td width="12%;">
                                                                     <select class="form-control OwnOrRent">
-                                                                        <option value="1">নিজ বসতি</option>
-                                                                        <option value="2">ভাড়া</option>
+                                                                        @foreach (var item in ViewBag.OwnOrRent)
+                                                                        {
+                                                                            <option value="@item.TypeId">
+                                                                                @item.TypeName
+                                                                            </option>
+                                                                        }
                                                                     </select>
                                                                 </td>
-                                                                <td width="14%;"><input type="number" class="form-control MonthlyRent" placeholder="0" /></td>
+                                                                <td width="14%;"><input type="number" class="form-control MonthlyRent" placeholder="0" readonly /></td>
                                                                 <td width="15%;">
                                                                     <select class="form-control SelfOwned">
-                                                                        <option value="1">নিজস্ব মালিকানা</option>
-                                                                        <option value="2">ভাড়া</option>
+                                                                        @foreach (var item in ViewBag.SelfOwned)
+                                                                        {
+                                                                            <option value="@item.TypeId">
+                                                                                @item.TypeName
+                                                                            </option>
+                                                                        }
                                                                     </select>
                                                                 </td>
                                                                 <td width="13%;"><input type="text" class="form-control OwnerName" /></td>
@@ -389,7 +400,8 @@
                                             <div class="pb-5" data-wizard-type="step-content">
                                                 <!--begin::Section-->
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
-                                                    বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য
+                                                    বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য&nbsp;
+                                                    <label class="show_plot"></label>
                                                 </div>
                                                 <div class="form-group row m-2">
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>বরাদ্দ গ্রহীতার নাম :</b></label>
@@ -495,11 +507,189 @@
 </div>
 
 @section Scripts {
-   
-    @*// this script includes all js funtionality*@
-
+    @*save funtionality implemented in this js*@
     <script src="~/Scripts/wizard-holding.js"></script>
-    
+    <script>
+        jQuery(document).ready(function () {
+
+            var ratePerSquareFeet = 1;
+
+            $('#AreaId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#PlotId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#Gender').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#MaritialStatus').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#OwnershipSourceId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#OwnerType').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#BuildingTypeId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+
+
+            autosize($('#PresentAdd'));
+            autosize($('#PermanentAdd'));
+            autosize($('#ContactAdd'));
+
+
+            function readUrl(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("img#imgpreview")
+                            .attr("src", e.target.result)
+                            .width(150)
+                            .height(150);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#image_file").change(function () {
+                readUrl(this);
+            });
+
+            // plot name show in every heading
+            $('#PlotId').change(function () {
+                var plotName = $('#PlotId option:selected').text();
+                $(".show_plot").text("");
+                $(".show_plot").text("( প্লট/বাড়ী/ফ্ল্যাট নম্বর : " + plotName + " )");
+            });
+
+            $('#BuildingTypeId').change(function () {
+                debugger;
+                var areaId = parseInt($('#AreaId option:selected').val());
+                var buildingTypeId = parseInt($('#BuildingTypeId option:selected').val());
+                var json = {
+                    AreaId: areaId,
+                    BuildingTypeId: buildingTypeId
+                };
+                $.ajax({
+                    url: '/Holding/GetRatePerSquareFeet',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        ratePerSquareFeet = parseInt(data);
+                        console.log(data);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+            });
+
+            // file upload
+            $("#image_file").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#image_file").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Holding/GetImage',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $("#document_file_1").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#document_file_1").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Holding/GetDocFile1',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $("#document_file_2").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#document_file_2").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Holding/GetDocFile2',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            $("#add_new_details").on('click', function (e) {
+                e.preventDefault();
+                var flat_details_table = $('#flat_details tbody');
+                flat_details_table.append('<tr> <td width="10%;">' +
+                    '<select class="form-control FlorNo"> ' +
+                    '@foreach (var item in ViewBag.FlorNo)
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                    '<td width="13%;"><input type="text" class="form-control FlatNo" /></td>' +
+                    '<td width="14%;"><input type="number" class="form-control FlatArea" placeholder="0" /></td>' +
+                    '<td width="12%;">' +
+                    ' <select class="form-control OwnOrRent">' +
+                    '@foreach (var item in ViewBag.OwnOrRent)
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                    '<td width="14%;"><input type="number" class="form-control MonthlyRent" placeholder="0" /></td>' +
+                    '<td width="15%;">' +
+                    '    <select class="form-control SelfOwned">' +
+                    '@foreach (var item in ViewBag.SelfOwned)
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                    '<td width="13%;"><input type="text" class="form-control OwnerName" /></td>' +
+                    '<td width="5%;"><button class="remove btn btn-danger btn-sm"><i class="fas fa-minus"></i></button></td></tr>');
+            });
+
+            $('#flat_details tbody').on('click', '.remove', function (e) {
+                e.preventDefault();
+                $(this).parents('tr').css("background-color", "red").fadeOut(1000, function () {
+                    $(this).remove();
+                });
+            });
+
+            $('#flat_details tbody').on('change', '.FlatArea', function () {
+                ratePerSquareFeet = 5;
+                var currRow = $(this).closest('tr');
+                var area = parseFloat(currRow.find('.FlatArea', this).val());
+                var rentMontly = area * ratePerSquareFeet;
+                currRow.find('.MonthlyRent').val(rentMontly.toFixed(2));
+            });
+
+        });
+    </script>
 }
 
 

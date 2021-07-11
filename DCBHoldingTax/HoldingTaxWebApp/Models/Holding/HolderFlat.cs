@@ -12,35 +12,49 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "Holder Name")]
         public int? HolderId { get; set; }
-        [Display(Name = "Holder Name")]
-        public string HolderName { get; set; }
+
         [Display(Name = "Flor No")]
         public int? FlorNo { get; set; }
+
         [Display(Name = "Flat No")]
         public string FlatNo { get; set; }
+
         [Display(Name = "Flat Area")]
         public decimal? FlatArea { get; set; }
 
         [Display(Name = "Own Or Rent")]
         public int? OwnOrRent { get; set; }
+
+        public string OwnOrRentType { get; set; }
+
         [Display(Name = "Is Self Owned?")]
         public bool? IsSelfOwned { get; set; }
+
         [Display(Name = "Owner Name")]
         public string OwnerName { get; set; }
+
         [Display(Name = "Create Date")]
         public DateTime? CreateDate { get; set; }
         public int? CreatedBy { get; set; }
+
         [Display(Name = "Created By ")]
-        public string CreatedByUserName { get; set; }
+        public string CreatedByUsername { get; set; }
+
         [Display(Name = "Updated Date ")]
         public DateTime? LastUpdated { get; set; }
+
         public int? LastUpdatedBy { get; set; }
 
         [Display(Name = "Updated By")]
-        public string UpdatedByUserName { get; set; }
+        public string UpdatedByUsername { get; set; }
+
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
+
+        [Display(Name = "Monthly Rent")]
         public decimal? MonthlyRent { get; set; }
-        public int SelfOwned { get; set; }
+
+        public int? SelfOwned { get; set; }
+        public string SelfOwnType { get; set; }
     }
 }

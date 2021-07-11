@@ -14,7 +14,7 @@ namespace HoldingTaxWebApp.ViewModels.Plots
         #region Plot Owner Portion Start
         public int PlotOwnerId { get; set; }
         [Display(Name = "আইডি নম্বর")]
-        public int? PlotId { get; set; }
+        public int PlotId { get; set; }
 
         [Display(Name = "আইডি নম্বর")]
         public string PlotIdNumber { get; set; }
@@ -23,7 +23,7 @@ namespace HoldingTaxWebApp.ViewModels.Plots
         [Display(Name = "প্লট মালিকের বর্তমান অবস্থা")]
         public bool? IsAlive { get; set; }
         [Display(Name = "প্লট মালিকের অফিসিয়াল অবস্থা")]
-        public int? OfficialStatusId { get; set; }
+        public int OfficialStatusId { get; set; }
         [Display(Name = "প্লট মালিকের অফিসিয়াল অবস্থা")]
         public string OffStatusName { get; set; }
         [Display(Name = "বর্তমান ঠিকানা")]
@@ -36,23 +36,23 @@ namespace HoldingTaxWebApp.ViewModels.Plots
         public string Email { get; set; }
         [Display(Name = "প্লটের আয়তন")]
 
-        public decimal? PlotVolume { get; set; }
+        public decimal? TotalArea { get; set; }
         public DateTime? LeaveDate { get; set; }
         [Display(Name = "ইজারার তারিখ")]
         public string StringLeaveDate { get; set; }
         [Display(Name = "ইজারা কর্তৃপক্ষ")]
-        public string LeaveAuthority { get; set; }
+        public string LeaseAuthority { get; set; }
         [Display(Name = "লিজের ধরণ")]
-        public string LeaveType { get; set; }
-        [Display(Name = "লিজের সময়কাল")]
-        public int? LeavePeriod { get; set; }
-        [Display(Name = "লিজের অবশিষ্ট সময়")]
+        public string LeaseType { get; set; }
+        [Display(Name = "লিজের সময়কাল(বছর)")]
+        public int? LeasePeriod { get; set; }
+        [Display(Name = "লিজের অবশিষ্ট সময়(বছর)")]
         public int? LeaveExPeriod { get; set; }
 
         [Display(Name = "লিজ কোটা")]
-        public int? LeaveQuotaId { get; set; }
+        public int LeaseQuotaId { get; set; }
         [Display(Name = "লিজ কোটা")]
-        public string LeaveQuotaName { get; set; }
+        public string LeaseQuotaName { get; set; }
 
         [Display(Name = "হস্তান্তরকারী দপ্তরের নাম")]
         public string HandOverOffice { get; set; }
@@ -61,7 +61,7 @@ namespace HoldingTaxWebApp.ViewModels.Plots
         [Display(Name = "ভূমি উন্নয়ন চার্জ")]
         public decimal? LandDevelopChange { get; set; }
         [Display(Name = "জমির বর্তমান অবস্থা")]
-        public int? ConsStatusId { get; set; }
+        public int ConsStatusId { get; set; }
         [Display(Name = "জমির বর্তমান অবস্থা")]
         public string ConsStatusName { get; set; }
         [Display(Name = "নথি নং ১")]
@@ -187,6 +187,23 @@ namespace HoldingTaxWebApp.ViewModels.Plots
         public decimal? FineAmount { get; set; }
         #endregion
         //UnauthPortion End
+
+
+        //Common Portion
+        [Display(Name = "যুক্তকরণের তারিখ ")]
+        public DateTime? CreateDate { get; set; }
+        public int? CreatedBy { get; set; }
+        [Display(Name = "যুক্ত করেছেন ")]
+        public string CreatedByUserName { get; set; }
+        [Display(Name = "শেষ হালনাগাদের তারিখ ")]
+        public DateTime? LastUpdated { get; set; }
+        [Display(Name = "শেষ হালনাগাদ করেছেন  ")]
+        public string UpdatedByUserName { get; set; }
+        public int? LastUpdatedBy { get; set; }
+        [Display(Name = "সক্রিয়তা ")]
+        public bool? IsActive { get; set; }
+        public bool? IsDeleted { get; set; }
+
 
 
 

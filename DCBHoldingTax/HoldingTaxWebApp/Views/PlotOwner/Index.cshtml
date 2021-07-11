@@ -1,0 +1,163 @@
+﻿@model IEnumerable<HoldingTaxWebApp.Models.Plots.PlotOwner>
+@{
+    ViewBag.Title = "Index";
+}
+@section Sheets{
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
+}
+
+
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">জমি মালিকানার বিবরন</h5>
+                @*<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item text-muted">
+                            <a href="" class="text-muted">Crud</a>
+                        </li>
+                    </ul>*@
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="card card-custom">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        জমি মালিকদের তালিকা
+                    </h3>
+                </div>
+                <div class="card-toolbar">
+                    <!--begin::Dropdown-->
+                    <!--end::Dropdown-->
+                    <!--begin::Button-->
+                    <a href="~/PlotOwner/Create" class="btn btn-primary font-weight-bolder">
+                        <i class="fas fa-plus">
+                        </i>নতুন মালিক
+                    </a>
+
+                  
+
+                    <!--end::Button-->
+                </div>
+            </div>
+            <div class="card-body">
+                <!--begin: Search Form-->
+                <!--begin::Search Form-->
+                <div class="mb-7">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-xl-8">
+                            <div class="row align-items-center">
+                                <div class="col-md-4 my-2 my-md-0">
+                                    <div class="input-icon">
+                                        <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
+                                        <span>
+                                            <i class="flaticon2-search-1 text-muted"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--end::Search Form-->
+                <!--end: Search Form-->
+                <!--begin: Datatable-->
+                <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
+                    <thead>
+                            <tr>
+
+                                <th>@Html.DisplayNameFor(model => model.PlotOwnerName)</th>
+                                <th>@Html.DisplayNameFor(model => model.PlotIdNumber)</th>
+                                <th>@Html.DisplayNameFor(model => model.ConsStatusName)</th>
+                                <th>@Html.DisplayNameFor(model => model.LeaseQuotaName)</th>
+
+                                <th>@Html.DisplayNameFor(model => model.TotalArea)</th>
+                                <th>@Html.DisplayNameFor(model => model.OffStatusName)</th>
+
+                                <th></th>
+
+
+                            </tr>
+                        </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PlotOwnerName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PlotIdNumber)
+                                        </td>
+                                        <td >
+                                            @Html.DisplayFor(modelItem => item.ConsStatusName)
+                                        </td>
+                                        <td>
+
+                                            @Html.DisplayFor(modelItem => item.LeaseQuotaName)
+
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalArea)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OffStatusName)
+                                        </td>
+
+
+                                       
+
+
+                                        <td>
+                                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/PlotOwner/Edit/@item.PlotOwnerId" title="Edit">
+                                                <b> <i class="fa fa-edit"></i>  </b>
+                                            </a>
+                                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/PlotOwner/Details/@item.PlotOwnerId" title="Details View">
+                                                <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                            </a>
+                                        </td>
+
+
+                                    </tr>
+                                }
+                            </tbody>
+
+                </table>
+                <!--end: Datatable-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        jQuery(document).ready(function () {
+            $('#kt_datatable').KTDatatable({
+                search: {
+                    input: $('#kt_datatable_search_query'),
+                    key: 'generalSearch',
+                },
+                layout: {
+                    class: 'datatable-bordered',
+                }
+            });
+        });
+    </script>
+
+
+}
