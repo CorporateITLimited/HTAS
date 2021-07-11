@@ -2461,6 +2461,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Holding\HoldingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
@@ -2495,7 +2496,9 @@
     <Compile Include="Manager\AccountManager.cs" />
     <Compile Include="Manager\CommonListManager.cs" />
     <Compile Include="Manager\ConstantManager.cs" />
+    <Compile Include="Manager\DBO\OwnershipSourceManager.cs" />
     <Compile Include="Manager\Holding\HoldingManager.cs" />
+    <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
     <Compile Include="Manager\Users\DesignationManager.cs" />
     <Compile Include="Manager\Users\EmployeeManager.cs" />
@@ -2509,6 +2512,7 @@
     <Compile Include="Models\DBO\StatusType.cs" />
     <Compile Include="Models\DOHSArea.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
+    <Compile Include="Models\Holding\HolderFlat.cs" />
     <Compile Include="Models\Plots\Plot.cs" />
     <Compile Include="Models\Plots\PlotOwner.cs" />
     <Compile Include="Models\Plots\UnauthPortion.cs" />
@@ -2518,7 +2522,9 @@
     <Compile Include="Models\Users\Employee.cs" />
     <Compile Include="Models\Users\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\HolderVM.cs" />
     <Compile Include="ViewModels\LogInVM.cs" />
+    <Compile Include="ViewModels\Plots\PlotOwnerCombineVM.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
     <Compile Include="ViewModels\UserPermission.cs" />
   </ItemGroup>
