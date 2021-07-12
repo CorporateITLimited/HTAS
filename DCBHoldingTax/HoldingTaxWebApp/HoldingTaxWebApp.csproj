@@ -2473,15 +2473,11 @@
     <Compile Include="Gateway\ConstantGateway.cs" />
     <Compile Include="Gateway\DBO\ConstructionStatusGateway.cs" />
     <Compile Include="Gateway\DBO\LeaseQuotaGateway.cs" />
+    <Compile Include="Gateway\Dbo\BuildingTypeGateway.cs" />
+    <Compile Include="Gateway\Dbo\DOHSAreaGateway.cs" />
     <Compile Include="Gateway\DBO\OfficialStatusGateway.cs" />
     <Compile Include="Gateway\DBO\OwnershipSourceGateway.cs" />
     <Compile Include="Gateway\DBO\StatusTypeGateway.cs" />
-    <Compile Include="Gateway\Dbo\BuildingTypeGateway.cs" />
-    <Compile Include="Gateway\Dbo\DOHSAreaGateway.cs" />
-    <Compile Include="Gateway\Dbo\LeaseQuotaGateway.cs" />
-    <Compile Include="Gateway\Dbo\OfficialStatusGateway.cs" />
-    <Compile Include="Gateway\Dbo\OwnershipSourceGateway.cs" />
-    <Compile Include="Gateway\Dbo\StatusTypeGateway.cs" />
     <Compile Include="Gateway\DefaultGateway.cs" />
     <Compile Include="Gateway\Holding\HoldingGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
@@ -2519,13 +2515,8 @@
     <Compile Include="Models\DBO\OfficialStatus.cs" />
     <Compile Include="Models\DBO\OwnershipSource.cs" />
     <Compile Include="Models\DBO\StatusType.cs" />
-    <Compile Include="Models\DOHSArea.cs" />
     <Compile Include="Models\Dbo\BuildingType.cs" />
     <Compile Include="Models\Dbo\DOHSArea.cs" />
-    <Compile Include="Models\Dbo\LeaseQuota.cs" />
-    <Compile Include="Models\Dbo\OfficialStatus.cs" />
-    <Compile Include="Models\Dbo\OwnershipSource.cs" />
-    <Compile Include="Models\Dbo\StatusType.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
     <Compile Include="Models\Holding\HolderFlat.cs" />
     <Compile Include="Models\Plots\ConstructionProgress.cs" />
@@ -2633,6 +2624,10 @@
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\RentTaxTate\Index.cshtml" />
     <Content Include="Views\Holding\Details.cshtml" />
+    <Content Include="Views\PlotOwner\Create.cshtml" />
+    <Content Include="Views\PlotOwner\Details.cshtml" />
+    <Content Include="Views\PlotOwner\Edit.cshtml" />
+    <Content Include="Views\PlotOwner\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
