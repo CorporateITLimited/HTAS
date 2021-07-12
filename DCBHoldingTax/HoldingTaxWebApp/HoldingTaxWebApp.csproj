@@ -2513,6 +2513,9 @@
     <Compile Include="Models\DOHSArea.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
     <Compile Include="Models\Holding\HolderFlat.cs" />
+    <Compile Include="Models\Plots\ConstructionProgress.cs" />
+    <Compile Include="Models\Plots\DesignApproval.cs" />
+    <Compile Include="Models\Plots\OthetPlotOwner.cs" />
     <Compile Include="Models\Plots\Plot.cs" />
     <Compile Include="Models\Plots\PlotOwner.cs" />
     <Compile Include="Models\Plots\UnauthPortion.cs" />
