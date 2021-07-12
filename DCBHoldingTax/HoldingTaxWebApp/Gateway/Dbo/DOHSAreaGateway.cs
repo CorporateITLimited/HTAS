@@ -44,14 +44,10 @@ namespace HoldingTaxWebApp.Gateway.Dbo
 
                 while (Data_Reader.Read())
                 {
-                    DOHSArea dohsarea = new DOHSarea()
+                    DOHSArea dohsarea = new DOHSArea()
                     {
-
-
-
                         AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
                         AreaName = Data_Reader["AreaName "].ToString(),
-             
                         TotalArea = Data_Reader["TotalArea"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["TotalArea"]) : (Decimal?)null,
                         CurrentPlotNumber = Convert.ToInt32(Data_Reader["CurrentPlotNumber"]),

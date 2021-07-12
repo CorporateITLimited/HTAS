@@ -46,19 +46,15 @@ namespace HoldingTaxWebApp.Gateway.Dbo
                 {
                     BuildingType buildingtype = new BuildingType
                     {
-
-
                         BuildingTypeId = Convert.ToInt32(Data_Reader["BuildingTypeId"]),
                         BuildingTypeName = Data_Reader["BuildingTypeName"].ToString(),
                         CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
-                        CreatedBy = Data_Reader["CreatedBy"] !=
-                                                DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
+                        CreatedBy = Convert.ToInt32(Data_Reader["CreatedBy"]),
                         LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null,
                         LastUpdatedBy = Data_Reader["LastUpdatedBy"] !=
                                                 DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null,
                         IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null,
                         IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
-
                     };
 
                     buildingtypeList.Add(buildingtype);

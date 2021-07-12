@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace HoldingTaxWebApp.Models.Dbo
 {
-    public class DohsArea
+    public class DOHSArea
     {
         [Display(Name = "এলাকার আইডি")]
         public int AreaId { get; set; }
