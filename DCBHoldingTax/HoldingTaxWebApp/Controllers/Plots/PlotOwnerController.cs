@@ -1,4 +1,5 @@
-﻿using HoldingTaxWebApp.Manager.Plots;
+﻿using HoldingTaxWebApp.Manager.DBO;
+using HoldingTaxWebApp.Manager.Plots;
 using HoldingTaxWebApp.Models.Plots;
 using HoldingTaxWebApp.ViewModels.Plots;
 using System;
@@ -12,10 +13,20 @@ namespace HoldingTaxWebApp.Controllers.Plots
     public class PlotOwnerController : Controller
     {
         private readonly PlotOwnerManager _PlotOwnerManager;
+        private readonly PlotManager _PlotManager;
+        //private readonly OwnershipSourceManager _OwnershipSourceManager;
+        private readonly LeaseQuotaManager _LeaseQuotaManager;
+        private readonly OfficialStatusManager _OfficialStatusManager;
+        private readonly ConstructionStatusManager _ConstructionStatusManager;
 
         public PlotOwnerController()
         {
             _PlotOwnerManager = new PlotOwnerManager();
+            _PlotManager = new PlotManager();
+           //_OwnershipSourceManager = new OwnershipSourceManager();
+            _LeaseQuotaManager = new LeaseQuotaManager();
+            _OfficialStatusManager = new OfficialStatusManager();
+            _ConstructionStatusManager = new ConstructionStatusManager();
         }
 
         // GET: PlotOwner
@@ -220,24 +231,29 @@ namespace HoldingTaxWebApp.Controllers.Plots
         // GET: PlotOwner/Create
         public ActionResult Create()
         {
+            ViewBag.PlotId = new SelectList(_PlotManager.GetAllPlot(), "PlotId", "PlotIdNumber");
+            ViewBag.LeaseQuotaId = new SelectList(_LeaseQuotaManager.GetAllLeaseQuota(), "LeaseQuotaId", "LeaseQuotaName");
+            ViewBag.OfficialStatusId = new SelectList(_OfficialStatusManager.GetAllOfficialStatus(), "OfficialStatusId", "OffStatusName");
+            //ViewBag.OwnershipSourceId = new SelectList(_OwnershipSourceManager.GetAllOwnershipSource(), "OwnershipSourceId", "SourceName");
+            ViewBag.ConsStatusId = new SelectList(_ConstructionStatusManager.GetAllConstructionStatus(), "ConsStatusId", "ConsStatusName");
             return View();
         }
 
         // POST: PlotOwner/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+        //[HttpPost]
+        //public ActionResult Create(FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         // GET: PlotOwner/Edit/5
         public ActionResult Edit(int id)
@@ -358,7 +374,11 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
                 };
 
-
+                ViewBag.PlotId = new SelectList(_PlotManager.GetAllPlot(), "PlotId", "PlotIdNumber", plotOwnerVM.PlotId);
+                ViewBag.LeaseQuotaId = new SelectList(_PlotManager.GetAllPlot(), "PlotId", "LeaseQuotaName", plotOwnerVM.LeaseQuotaId);
+                ViewBag.OfficialStatusId = new SelectList(_PlotManager.GetAllPlot(), "OfficialStatusId", "OffStatusName", plotOwnerVM.OfficialStatusId);
+                //ViewBag.OwnershipSourceId = new SelectList(_OwnershipSourceManager.GetAllOwnershipSource(), "OwnershipSourceId", "SourceName");
+                ViewBag.ConsStatusId = new SelectList(_ConstructionStatusManager.GetAllConstructionStatus(), "ConsStatusId", "ConsStatusName", plotOwnerVM.ConsStatusId);
 
                 return View(plotOwnerVM);
             }
@@ -371,20 +391,20 @@ namespace HoldingTaxWebApp.Controllers.Plots
         }
 
         // POST: PlotOwner/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+        //[HttpPost]
+        //public ActionResult Edit(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         // GET: PlotOwner/Delete/5
         public ActionResult Delete(int id)

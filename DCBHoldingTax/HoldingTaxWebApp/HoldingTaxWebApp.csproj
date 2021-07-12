@@ -2473,6 +2473,7 @@
     <Compile Include="Gateway\AccountGateway.cs" />
     <Compile Include="Gateway\CommonListGateway.cs" />
     <Compile Include="Gateway\ConstantGateway.cs" />
+    <Compile Include="Gateway\DBO\ConstructionStatusGateway.cs" />
     <Compile Include="Gateway\DBO\LeaseQuotaGateway.cs" />
     <Compile Include="Gateway\DBO\OfficialStatusGateway.cs" />
     <Compile Include="Gateway\DBO\OwnershipSourceGateway.cs" />
@@ -2496,6 +2497,9 @@
     <Compile Include="Manager\AccountManager.cs" />
     <Compile Include="Manager\CommonListManager.cs" />
     <Compile Include="Manager\ConstantManager.cs" />
+    <Compile Include="Manager\DBO\ConstructionStatusManager.cs" />
+    <Compile Include="Manager\DBO\LeaseQuotaManager.cs" />
+    <Compile Include="Manager\DBO\OfficialStatusManager.cs" />
     <Compile Include="Manager\DBO\OwnershipSourceManager.cs" />
     <Compile Include="Manager\Holding\HoldingManager.cs" />
     <Compile Include="Manager\Plots\PlotManager.cs" />
@@ -2506,6 +2510,7 @@
     <Compile Include="Manager\Users\UserManager.cs" />
     <Compile Include="Models\CommonList.cs" />
     <Compile Include="Models\Constant\RentTaxRate.cs" />
+    <Compile Include="Models\DBO\ConstructionStatus.cs" />
     <Compile Include="Models\DBO\LeaseQuota.cs" />
     <Compile Include="Models\DBO\OfficialStatus.cs" />
     <Compile Include="Models\DBO\OwnershipSource.cs" />

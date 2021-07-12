@@ -114,17 +114,18 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.PlotId, "প্লট নং", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <select class="form-control" id="AreaId" name="AreaId">
-                                                            <option value="">নির্বাচন করুন</option>
-                                                            <option value="1">প্লট নম্বর ১</option>
-                                                            <option value="2">প্লট নম্বর ২</option>
-                                                            <option value="3">প্লট নম্বর ২৩</option>
-                                                        </select>
+                                                        @Html.DropDownListFor(model => model.PlotId, null, "-- নির্বাচন করুন --", new
+                                                   {
+                                                       @class = "form-control",
+                                                       @name = "PlotId",
+                                                       @id = "PlotId"
+                                                   })
+                                                        @Html.ValidationMessageFor(model => model.PlotId, "", new { @class = "text-danger" })
                                                     </div>
 
-                                                 
+
                                                 </div>
-                                        
+
 
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.PlotOwnerName, "প্লট মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -145,12 +146,13 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.OfficialStatusId, "প্লট মালিকের অফিসিয়াল অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <select class="form-control" id="OfficialStatusId" name="OfficialStatusId">
-                                                            <option value="">নির্বাচন করুন</option>
-                                                            <option value="1">প্রতিরক্ষা</option>
-                                                            <option value="2">সাময়িক কর্মকর্তা</option>
-                                                            <option value="3">বেসাময়িক</option>
-                                                        </select>
+                                                        @Html.DropDownListFor(model => model.OfficialStatusId, null, "-- নির্বাচন করুন --", new
+                                                   {
+                                                       @class = "form-control",
+                                                       @name = "OfficialStatusId",
+                                                       @id = "OfficialStatusId"
+                                                   })
+                                                        @Html.ValidationMessageFor(model => model.OfficialStatusId, "", new { @class = "text-danger" })
                                                     </div>
 
                                                     @Html.LabelFor(model => model.PresentAdd, "বর্তমান ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -209,13 +211,13 @@
 
                                                     @Html.LabelFor(model => model.LeaseQuotaId, "লিজ কোটা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <select class="form-control" id="LeaseQuotaId" name="LeaseQuotaId">
-                                                            <option value="">নির্বাচন করুন</option>
-                                                            <option value="1">শহীদ পরিবার</option>
-                                                            <option value="2">মুক্তিযুদ্ধা</option>
-                                                            <option value="3">প্রতিরক্ষা</option>
-                                                            <option value="4">বেসাময়িক</option>
-                                                        </select>
+                                                        @Html.DropDownListFor(model => model.LeaseQuotaId, null, "-- নির্বাচন করুন --", new
+                                                   {
+                                                       @class = "form-control",
+                                                       @name = "LeaseQuotaId",
+                                                       @id = "LeaseQuotaId"
+                                                   })
+                                                        @Html.ValidationMessageFor(model => model.LeaseQuotaId, "", new { @class = "text-danger" })
                                                     </div>
                                                 </div>
 
@@ -239,12 +241,13 @@
 
                                                     @Html.LabelFor(model => model.ConsStatusId, "জমির বর্তমান অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <select class="form-control" id="ConsStatusId" name="ConsStatusId">
-                                                            <option value="">নির্বাচন করুন</option>
-                                                            <option value="1">বাড়ি নির্মান হয়েছে</option>
-                                                            <option value="2">বাড়ি নির্মান চলছে</option>
-                                                            <option value="3">খালী</option>
-                                                        </select>
+                                                        @Html.DropDownListFor(model => model.ConsStatusId, null, "-- নির্বাচন করুন --", new
+                                                   {
+                                                       @class = "form-control",
+                                                       @name = "ConsStatusId",
+                                                       @id = "ConsStatusId"
+                                                   })
+                                                        @Html.ValidationMessageFor(model => model.ConsStatusId, "", new { @class = "text-danger" })
                                                     </div>
                                                 </div>
 
@@ -283,39 +286,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @*<tr>
-                                                                    <td width="10%;">
-                                                                        <select class="form-control FlorNo">
-                                                                            <option value="1">১</option>
-                                                                            <option value="2">২</option>
-                                                                            <option value="3">৩</option>
-                                                                            <option value="4">৪</option>
-                                                                            <option value="5">৫</option>
-                                                                            <option value="6">৬</option>
-                                                                            <option value="7">৭</option>
-                                                                            <option value="8">৮</option>
-                                                                            <option value="9">৯</option>
-                                                                            <option value="10">১০</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td width="13%;"><input type="text" class="form-control FlatNo" /></td>
-                                                                    <td width="14%;"><input type="number" class="form-control FlatArea" placeholder="0" /></td>
-                                                                    <td width="12%;">
-                                                                        <select class="form-control OwnOrRent">
-                                                                            <option value="1">নিজ বসতি</option>
-                                                                            <option value="2">ভাড়া</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td width="14%;"><input type="number" class="form-control MonthlyRent" placeholder="0" /></td>
-                                                                    <td width="15%;">
-                                                                        <select class="form-control SelfOwned">
-                                                                            <option value="1">নিজস্ব মালিকানা</option>
-                                                                            <option value="2">ভাড়া</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td width="13%;"><input type="text" class="form-control OwnerName" /></td>
-                                                                    <td width="5%;"><button class="btn btn-success btn-sm" id="add_new_details"><i class="fas fa-plus"></i></button></td>
-                                                                </tr>*@
+                                                           
                                                         </tbody>
                                                     </table>
 
@@ -343,7 +314,7 @@
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.DevelopDeposit, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
-                                                    
+
                                                     @Html.LabelFor(model => model.FloorNumber, "ভবনের তলার সংখ্যা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.FloorNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
@@ -360,7 +331,7 @@
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.StringGroundFCDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
-                                                   
+
                                                 </div>
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.StringFirstFCDate, "২য় তলা সমাপ্তের তারিখ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -372,7 +343,7 @@
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.StringSccFCDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
-                                                    
+
                                                 </div>
 
                                                 <div class="form-group row m-2">
@@ -425,7 +396,7 @@
                                                         @Html.EditorFor(model => model.SubmittedPortion, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
-                                                   
+
                                                 </div>
 
                                             </div>
@@ -455,7 +426,7 @@
                                                     </div>
                                                     <label class="col-form-label text-lg-left">বর্গফুট</label>
 
-                                                  
+
                                                     @Html.LabelFor(model => model.RemovedUnauthArea, "অপসারিত অননুমোদিত নির্মান", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-3">
                                                         @Html.EditorFor(model => model.RemovedUnauthArea, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
@@ -484,11 +455,11 @@
                                                         @Html.EditorFor(model => model.FineAmount, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
-                                                  
+
 
                                                 </div>
 
-                                              
+
 
                                             </div>
                                             <!--end: Wizard Step 4-->
@@ -522,7 +493,7 @@
 @section Scripts {
 
     @*// this script includes all js funtionality*@
-<script src="~/Scripts/wizard-PlotOwner.js"></script>
+    <script src="~/Scripts/wizard-PlotOwner.js"></script>
 }
 
 

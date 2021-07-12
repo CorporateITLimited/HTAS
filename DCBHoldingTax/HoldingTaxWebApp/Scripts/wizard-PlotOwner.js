@@ -149,7 +149,7 @@ var KTWizard4 = function () {
                                         "title": 'Your work has been saved',
                                         "timer": 1500
                                     });
-                                    setTimeout(function () { window.location.href = "/Holding/Create"; }, 2000);
+                                    setTimeout(function () { window.location.href = "/PlotOwner/Index"; }, 2000);
                                 }
                                 else if (d.status === "error") {
                                     alert('Error');
