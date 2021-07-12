@@ -216,8 +216,6 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Scripts\wizard-PlotOwner.js" />
-    <Content Include="Scripts\wizard-holding.js" />
     <Content Include="Theme\dist\assets\css\pages\error\error-3.css" />
     <Content Include="Theme\dist\assets\css\pages\error\error-4.css" />
     <Content Include="Theme\dist\assets\css\pages\error\error-5.css" />
@@ -2478,6 +2476,12 @@
     <Compile Include="Gateway\DBO\OfficialStatusGateway.cs" />
     <Compile Include="Gateway\DBO\OwnershipSourceGateway.cs" />
     <Compile Include="Gateway\DBO\StatusTypeGateway.cs" />
+    <Compile Include="Gateway\Dbo\BuildingTypeGateway.cs" />
+    <Compile Include="Gateway\Dbo\DOHSAreaGateway.cs" />
+    <Compile Include="Gateway\Dbo\LeaseQuotaGateway.cs" />
+    <Compile Include="Gateway\Dbo\OfficialStatusGateway.cs" />
+    <Compile Include="Gateway\Dbo\OwnershipSourceGateway.cs" />
+    <Compile Include="Gateway\Dbo\StatusTypeGateway.cs" />
     <Compile Include="Gateway\DefaultGateway.cs" />
     <Compile Include="Gateway\Holding\HoldingGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
@@ -2516,6 +2520,12 @@
     <Compile Include="Models\DBO\OwnershipSource.cs" />
     <Compile Include="Models\DBO\StatusType.cs" />
     <Compile Include="Models\DOHSArea.cs" />
+    <Compile Include="Models\Dbo\BuildingType.cs" />
+    <Compile Include="Models\Dbo\DOHSArea.cs" />
+    <Compile Include="Models\Dbo\LeaseQuota.cs" />
+    <Compile Include="Models\Dbo\OfficialStatus.cs" />
+    <Compile Include="Models\Dbo\OwnershipSource.cs" />
+    <Compile Include="Models\Dbo\StatusType.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
     <Compile Include="Models\Holding\HolderFlat.cs" />
     <Compile Include="Models\Plots\ConstructionProgress.cs" />
@@ -2621,12 +2631,6 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Test.cshtml" />
-    <Content Include="Views\Holding\Create.cshtml" />
-    <Content Include="Views\PlotOwner\Index.cshtml" />
-    <Content Include="Views\PlotOwner\Details.cshtml" />
-    <Content Include="Views\PlotOwner\Create.cshtml" />
-    <Content Include="Views\PlotOwner\Edit.cshtml" />
-    <Content Include="Views\Holding\Index.cshtml" />
     <Content Include="Views\RentTaxTate\Index.cshtml" />
     <Content Include="Views\Holding\Details.cshtml" />
     <None Include="Web.Debug.config">
