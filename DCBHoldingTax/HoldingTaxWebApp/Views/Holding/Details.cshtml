@@ -1,0 +1,596 @@
+﻿@model HoldingTaxWebApp.ViewModels.HolderVM
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Sheets{
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
+}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">প্লট/বাড়ী মালিক</h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted">বিশদ তথ্য </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-custom gutter-b example example-compact">
+                    <div class="card-header">
+                        <div class="row offset-1">
+                            <h3 class="card-title">
+                                <b class="kt-font-brand">@Model.HolderName</b>  &nbsp; এর বিশদ তথ্য
+                            </h3>
+
+                            <div class="card-toolbar">
+                                <div class="example-tools justify-content-center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row offset-1">
+                            <div class="col-lg-5">
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.AreaName)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.AreaName)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label ">
+                                        @Html.DisplayNameFor(model => model.PlotNo)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.PlotNo)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label ">
+                                        @Html.DisplayNameFor(model => model.RoadNo)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.RoadNo)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.RoadName)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.RoadName)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.HolderName)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.HolderName)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.NID)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.NID)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.GenderType)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.GenderType)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.MaritialStatusType)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.MaritialStatusType)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.Father)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.Father)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.Mother)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.Mother)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.Spouse)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.Spouse)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.Contact1)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.Contact1)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.Contact2)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.Contact2)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.Email)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.Email)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.PresentAdd)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.PresentAdd)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.PermanentAdd)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.PermanentAdd)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.ContactAdd)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.ContactAdd)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.ImageLocation)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.ImageLocation)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.PreviousDueTax)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.PreviousDueTax)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.SourceName)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.SourceName)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.OwnerTypeName)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.OwnerTypeName)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.Document1)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.Document1)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.Document2)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.Document2)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.OwnerTypeName)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.OwnerTypeName)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.BuildingTypeName)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.BuildingTypeName)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.AmountOfLand)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.AmountOfLand)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.TotalFloor)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.TotalFloor)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.EachFloorArea)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.EachFloorArea)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.TotalFlat)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.TotalFlat)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.HoldersFlatNumber)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.HoldersFlatNumber)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.CreatedByUsername)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.CreatedByUsername)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringCreateDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringCreateDate)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.UpdatedByUsername)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.UpdatedByUsername)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringLastUpdated)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringLastUpdated)
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-lg-5">
+                                @*<div class="form-group form-group-xs row">
+                                        <label class="col-4 col-form-label">
+                                            @Html.DisplayNameFor(model => model.CreatedByUserName)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-6">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @Html.DisplayFor(model => model.CreatedByUserName)
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-4 col-form-label">
+                                            @Html.DisplayNameFor(model => model.CreateDate)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-6">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @Html.DisplayFor(model => model.CreateDate)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-4 col-form-label">
+                                            @Html.DisplayNameFor(model => model.UpdatedByUserName)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-6">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @Html.DisplayFor(model => model.UpdatedByUserName)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-4 col-form-label ">
+                                            @Html.DisplayNameFor(model => model.LastUpdated)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-6">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @Html.DisplayFor(model => model.LastUpdated)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-4 col-form-label">
+                                            @Html.DisplayNameFor(model => model.UserName)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-6">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @Html.DisplayFor(model => model.UserName)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-4 col-form-label">
+                                            @Html.DisplayNameFor(model => model.IsActive)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-6">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @if (Model.IsActive == true)
+                                                {
+                                                    <span class="text-success font-weight-bolder">সক্রিয়</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-danger font-weight-bolder">নিষ্ক্রিয়</span>
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>*@
+
+
+
+                            </div>
+
+                            <div class="row">
+                                <h2> ফ্ল্যাটসমূহের বিবরণ</h2>
+                                <table class="table table-bordered table-success" width="100" id="flat_details">
+                                    <thead>
+                                        <tr>
+                                            <th>তলা</th>
+                                            <th>ফ্ল্যাট নম্বর </th>
+                                            <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
+                                            <th>নিজ বসতি/ভাড়া </th>
+                                            <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
+                                            <th>সম্পত্তির ধরন</th>
+                                            <th>মালিকানা </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.HolderFlatList)
+                                        {
+                                            <tr>
+                                                <td>@item.FlorNo</td>
+                                                <td>@item.FlatNo</td>
+                                                <td>@item.FlatArea</td>
+                                                <td>@item.OwnOrRentType</td>
+                                                <td>@item.MonthlyRent </td>
+                                                <td>@item.SelfOwnType </td>
+                                                <td>@item.OwnerName</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <a href="~/Holding/Edit/@Model.AreaId" class="btn btn-outline-success btn-md">
+                                    <i class="fas fa-pen"></i>হালনাগাদের পেজে  যান
+                                </a>
+                                <a href="~/Holding/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+

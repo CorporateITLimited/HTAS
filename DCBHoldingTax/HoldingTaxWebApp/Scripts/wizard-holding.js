@@ -78,7 +78,7 @@ var KTWizard4 = function () {
                             FlatNo: flatNo,
                             FlatArea: flatArea,
                             OwnOrRent: ownOrRent,
-                            SelfOwned: selfOwned,
+                            SelfOwn: selfOwned,
                             MonthlyRent: monthlyRent,
                             OwnerName: ownerName
                         }
@@ -128,7 +128,7 @@ var KTWizard4 = function () {
                             TotalFloor: parseFloat($('#TotalFloor').val()) || 0,
                             EachFloorArea: parseFloat($('#EachFloorArea').val()) || 0,
                             TotalFlat: parseInt($('#TotalFlat').val()) || 0,
-                            HoldersFlatNumber: parseInt($('#TotalFlat').val()) || 0,
+                            HoldersFlatNumber: parseInt($('#HoldersFlatNumber').val()) || 0,
                             PreviousDueTax: parseFloat($('#PreviousDueTax').val()) || 0,
                             HolderFlatList: list,
                             image_file: $("#image_file").get(0).files[0]
@@ -137,7 +137,7 @@ var KTWizard4 = function () {
 
                         $.ajax({
                             type: 'POST',
-                            url: '/Holding/AddOrUpdate',
+                            url: '/Holding/AddData',
                             data: JSON.stringify(data),
                             contentType: 'application/json',
                             success: function (d) {
@@ -231,7 +231,7 @@ var KTWizard4 = function () {
                     //            message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                     //        }
                     //    }
-                    //}
+                    //},
                     //Father: {
                     //    validators: {
                     //        notEmpty: {

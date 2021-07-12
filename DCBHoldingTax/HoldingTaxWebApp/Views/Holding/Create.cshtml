@@ -107,7 +107,7 @@
                                     <div class="col-xl-12 col-md-12 col-sm-12">
                                         <span id="details_error" style="color:red;"></span>
                                         <!--begin: Wizard Form-->
-                                        <form class="form mt-0 mt-lg-10" id="kt_form" enctype="multipart/form-data" method="post" action="/Holding/AddOrUpdate">
+                                        <form class="form mt-0 mt-lg-10" id="kt_form" enctype="multipart/form-data" method="post" action="/Holding/AddData">
                                             <!--begin: Wizard Step 1-->
                                             <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
@@ -128,23 +128,21 @@
 
                                                     @Html.LabelFor(model => model.PlotId, "প্লট/বাড়ী/ফ্ল্যাট নম্বর ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <select class="form-control" id="PlotId" name="PlotId">
-                                                            <option value="">নির্বাচন করুন</option>
-                                                            <option value="1">প্লট নম্বর ১</option>
-                                                            <option value="2">প্লট নম্বর ২</option>
-                                                            <option value="3">প্লট নম্বর ২৩</option>
-                                                        </select>
+                                                        @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
+                                                    {
+                                                        @class = "form-control",
+                                                    })
                                                     </div>
                                                 </div>
                                                 <div class="form-group row m-2">
                                                     <label class="col-lg-2 col-form-label text-lg-right" for="road_number">রোড নম্বর </label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control" id="road_number" name="road_number" />
+                                                        <input type="text" class="form-control border-0" id="road_number" name="road_number" readonly />
                                                     </div>
 
                                                     <label class="col-lg-2 col-form-label text-lg-right" for="road_name">রোডের নাম</label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control" id="road_name" name="road_name" />
+                                                        <input type="text" class="form-control border-0" id="road_name" name="road_name" readonly />
                                                     </div>
                                                 </div>
 
@@ -258,13 +256,10 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.OwnershipSourceId, "মালিকানার সূত্র", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <select class="form-control" id="OwnershipSourceId" name="OwnershipSourceId">
-                                                            <option value="">নির্বাচন করুন</option>
-                                                            <option value="1">বরাদ্দসূত্র</option>
-                                                            <option value="2">ক্রয়সূত্র</option>
-                                                            <option value="3">দানসূত্র</option>
-                                                            <option value="4">উত্তরাধিকারসূত্র</option>
-                                                        </select>
+                                                        @Html.DropDownListFor(model => model.OwnershipSourceId, null, " নির্বাচন করুন ", new
+                                                    {
+                                                        @class = "form-control",
+                                                    })
                                                     </div>
 
                                                     @Html.LabelFor(model => model.OwnerType, "মালিকানার ধরন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -276,7 +271,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group row m-2">
+                                                <div class="form-group row m-2" style="display: none;" id="war_proves">
                                                     @Html.LabelFor(model => model.Document1, "মুক্তিযোদ্ধার প্রমাণাদি ১", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         <input type="file" name="document_file_1" id="document_file_1" />
@@ -335,7 +330,7 @@
                                             <!--begin: Wizard Step 3-->
                                             <div class="pb-5" data-wizard-type="step-content">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
-                                                    ফ্ল্যাটসমূহের বিববরণ &nbsp;
+                                                    ফ্ল্যাটসমূহের বিবরণ &nbsp;
                                                     <label class="show_plot"></label>
                                                 </div>
                                                 <div class="row m-2">
@@ -522,26 +517,26 @@
                 placeholder: "--নির্বাচন করুন--",
                 allowClear: true
             });
-            $('#Gender').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-            $('#MaritialStatus').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-            $('#OwnershipSourceId').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-            $('#OwnerType').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-            $('#BuildingTypeId').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
+            //$('#Gender').select2({
+            //    placeholder: "--নির্বাচন করুন--",
+            //    allowClear: true
+            //});
+            //$('#MaritialStatus').select2({
+            //    placeholder: "--নির্বাচন করুন--",
+            //    allowClear: true
+            //});
+            //$('#OwnershipSourceId').select2({
+            //    placeholder: "--নির্বাচন করুন--",
+            //    allowClear: true
+            //});
+            //$('#OwnerType').select2({
+            //    placeholder: "--নির্বাচন করুন--",
+            //    allowClear: true
+            //});
+            //$('#BuildingTypeId').select2({
+            //    placeholder: "--নির্বাচন করুন--",
+            //    allowClear: true
+            //});
 
 
             autosize($('#PresentAdd'));
@@ -570,6 +565,26 @@
                 var plotName = $('#PlotId option:selected').text();
                 $(".show_plot").text("");
                 $(".show_plot").text("( প্লট/বাড়ী/ফ্ল্যাট নম্বর : " + plotName + " )");
+
+                $("#road_number").val("");
+                $("#road_name").val("");
+                //var plotid = parseInt($('#PlotId option:selected').val());
+                //var json = {
+                //    PlotId: plotid,
+                //};
+                //$.ajax({
+                //    url: '/Holding/GetPlotDetails',
+                //    type: "POST",
+                //    contentType: "application/json; charset=utf-8",
+                //    data: JSON.stringify(json),
+                //    success: function (data) {
+                //        $("#road_number").val(data.EmployeeName);
+                //        $("#road_name").val(data.ContactNo);
+                //    },
+                //    error: function (e) {
+                //        console.log(e);
+                //    }
+                //});
             });
 
             $('#BuildingTypeId').change(function () {
@@ -650,6 +665,16 @@
                     }
                 });
             });
+
+            $('#OwnerType').change(function () {
+                var val = parseInt($('#OwnerType option:selected').val()) || 0;
+                if (val === 3) {
+                    $("#war_proves").show();
+                } else {
+                    $("#war_proves").hide();
+                }
+            });
+
 
             $("#add_new_details").on('click', function (e) {
                 e.preventDefault();

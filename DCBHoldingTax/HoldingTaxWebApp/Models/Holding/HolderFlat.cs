@@ -54,7 +54,7 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "Monthly Rent")]
         public decimal? MonthlyRent { get; set; }
 
-        public int? SelfOwned { get; set; }
+        public int? SelfOwn { get; set; }
         public string SelfOwnType { get; set; }
     }
 }

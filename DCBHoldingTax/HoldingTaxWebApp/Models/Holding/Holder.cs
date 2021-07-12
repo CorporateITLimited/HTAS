@@ -51,13 +51,13 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "Spouse")]
         public string Spouse { get; set; }
 
-        [Display(Name = "Mobile No")]
+        [Display(Name = "Land No")]
         public string Contact1 { get; set; }
 
-        [Display(Name = "Land No")]
+        [Display(Name = "Mobile No")]
         public string Contact2 { get; set; }
 
-        [Display(Name = "Land No")]
+        [Display(Name = "Email ")]
         public string Email { get; set; }
 
         [Display(Name = "Present Address")]
@@ -134,5 +134,17 @@ namespace HoldingTaxWebApp.Models.Holding
         public bool? IsActive { get; set; }
 
         public bool? IsDeleted { get; set; }
+
+        [Display(Name = "Create Date")]
+        public string StringCreateDate { get; set; }
+
+        [Display(Name = "Updated Date ")]
+        public string StringLastUpdated { get; set; }
+
+        [Display(Name = "Road No ")]
+        public string RoadNo { get; set; }
+
+        [Display(Name = "Road No ")]
+        public string RoadName { get; set; }
     }
 }

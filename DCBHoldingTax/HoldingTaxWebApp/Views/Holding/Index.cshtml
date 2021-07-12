@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<HoldingTaxWebApp.Models.Holding.Holder>
 @{
     ViewBag.Title = "Index";
 }
@@ -82,84 +82,54 @@
                 <!--end: Search Form-->
                 <!--begin: Datatable-->
                 <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
-                    @*<thead>
-                            <tr>
-
-                                <th>@Html.DisplayNameFor(model => model.UserName)</th>
-                                <th>@Html.DisplayNameFor(model => model.UserFullName)</th>
-                                <th>@Html.DisplayNameFor(model => model.RoleName)</th>
-                                <th>@Html.DisplayNameFor(model => model.EmployeeName)</th>
-
-                                <th>@Html.DisplayNameFor(model => model.Email)</th>
-                                <th>@Html.DisplayNameFor(model => model.MobileNumber)</th>
-
-                                <th></th>
-
-
-                            </tr>
-                        </thead>*@
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.AreaName)</th>
+                            <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
+                            <th>@Html.DisplayNameFor(model => model.HolderName)</th>
+                            <th>@Html.DisplayNameFor(model => model.Contact2)</th>
+                            <th>@Html.DisplayNameFor(model => model.OwnerTypeName)</th>
+                            <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        @*@foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.UserName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.UserFullName)
-                                        </td>
-                                        <td class="role_name">
-                                            @Html.DisplayFor(modelItem => item.RoleName)
-                                        </td>
-                                        <td>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AreaName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PlotNo)
+                                </td>
+                                <td class="role_name">
+                                    @Html.DisplayFor(modelItem => item.HolderName)
+                                </td>
+                                <td>
 
-                                            @Html.DisplayFor(modelItem => item.EmployeeName)
+                                    @Html.DisplayFor(modelItem => item.Contact2)
 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Email)
-                                        </td>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OwnerTypeName)
+                                </td>
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.MobileNumber)
-                                        </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BuildingTypeName)
+                                </td>
 
-
-                                        @if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin) ||
-                                            (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleManagement))
-                                                                {
-                                                                    <td>
-                                                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/User/Edit/@item.UserId" title="Edit">
-                                                                            <b> <i class="fa fa-edit"></i>  </b>
-                                                                        </a>
-                                                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/User/Details/@item.UserId" title="Details View">
-                                                                            <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                                                        </a>
-                                                                    </td>
-                                                                }
-                                                                else
-                                                                {
-                                                                    <td>
-                                                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/User/Details/@item.UserId" title="Details View">
-                                                                            <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                                                        </a>
-                                                                    </td>
-                                                                }
-
-
-                                        <td>
-                                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/User/Edit/@item.UserId" title="Edit">
-                                                <b> <i class="fa fa-edit"></i>  </b>
-                                            </a>
-                                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/User/Details/@item.UserId" title="Details View">
-                                                <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                            </a>
-                                        </td>
-
-
-                                    </tr>
-                                }
-                            </tbody>*@
+                                <td>
+                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/Edit/@item.HolderId" title="Edit">
+                                        <b> <i class="fa fa-edit"></i>  </b>
+                                    </a>
+                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/Details/@item.HolderId" title="Details View">
+                                        <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
 
                 </table>
                 <!--end: Datatable-->

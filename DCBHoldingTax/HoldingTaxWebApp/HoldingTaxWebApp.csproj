@@ -2623,6 +2623,7 @@
     <Content Include="Views\PlotOwner\Edit.cshtml" />
     <Content Include="Views\Holding\Index.cshtml" />
     <Content Include="Views\RentTaxTate\Index.cshtml" />
+    <Content Include="Views\Holding\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2632,7 +2633,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Users\Plot\" />
+    <Folder Include="Documents\Holders\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
