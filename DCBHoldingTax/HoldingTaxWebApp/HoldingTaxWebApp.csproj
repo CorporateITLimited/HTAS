@@ -216,6 +216,8 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\wizard-holding.js" />
+    <Content Include="Scripts\wizard-PlotOwner.js" />
     <Content Include="Theme\dist\assets\css\pages\error\error-3.css" />
     <Content Include="Theme\dist\assets\css\pages\error\error-4.css" />
     <Content Include="Theme\dist\assets\css\pages\error\error-5.css" />
@@ -2628,6 +2630,8 @@
     <Content Include="Views\PlotOwner\Details.cshtml" />
     <Content Include="Views\PlotOwner\Edit.cshtml" />
     <Content Include="Views\PlotOwner\Index.cshtml" />
+    <Content Include="Views\Holding\Create.cshtml" />
+    <Content Include="Views\Holding\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

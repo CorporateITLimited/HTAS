@@ -62,29 +62,49 @@ var KTWizard4 = function () {
                 if (result.value) {
                     //_formEl.submit(); // Submit form
                     var isAllValid = true;
-                    var list = [];
-                    $('#flat_details tbody tr').each(function (index, ele) {
-                        var florNo = parseInt($('.FlorNo option:selected', this).val()) || 0;
-                        var flatNo = $('.FlatNo', this).val().trim();
-                        var flatArea = parseFloat($('.FlatArea', this).val()) || 0;
-                        var ownOrRent = parseInt($('.OwnOrRent option:selected', this).val()) || 0;
-                        var monthlyRent = parseFloat($('.MonthlyRent', this).val()) || 0;
-                        var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
-                        var ownerName = $('.OwnerName', this).val().trim();
+                    var OthetPlotOwnerlist = [];
+                    var DesignApprovallist = [];
+                    $('#tableOther tbody tr').each(function (index, ele) {
+                        var OthetOwneeName = $('.OthetOwneeName', this).val().trim();
+                        var Address = $('.Address', this).val().trim();
+                        var Remarks = $('.Remarks', this).val().trim();
+                        
 
-                        var detailsData = {
-                            HolderFlatId: 0,
-                            FlorNo: florNo,
-                            FlatNo: flatNo,
-                            FlatArea: flatArea,
-                            OwnOrRent: ownOrRent,
-                            SelfOwned: selfOwned,
-                            MonthlyRent: monthlyRent,
-                            OwnerName: ownerName
+                        var OthetPlotOwner = {
+                            OthetOwneeName: OthetOwneeName,
+                            Address: Address,
+                            Remarks: Remarks
                         }
-                        list.push(detailsData);
+                        OthetPlotOwnerlist.push(OthetPlotOwner);
                     });
 
+
+
+                    $('#addDesign tbody tr').each(function (index, ele) {
+                        var StringMEO_NCCDate = $('.StringMEO_NCCDate', this).val().trim();
+                        var Reference = $('.Reference', this).val().trim();
+                        var ApprovalNo = $('.ApprovalNo', this).val().trim();
+                        var StringApprovalDate = $('.StringApprovalDate', this).val().trim();
+                        var ApprovalLetterNo = $('.ApprovalLetterNo', this).val().trim();
+                        var FlorNumber = $('.FlorNumber', this).val().trim();
+                        var GroundFlorArea = $('.GroundFlorArea', this).val().trim();
+                        var OtherFlorArea = $('.OtherFlorArea', this).val().trim();
+                        
+                        
+
+                        var DesignApproval = {
+                            StringMEO_NCCDate: StringMEO_NCCDate,
+                            Reference: Reference,
+                            ApprovalNo: ApprovalNo,
+                            StringApprovalDate: StringApprovalDate,
+                            ApprovalLetterNo: ApprovalLetterNo,
+                            FlorNumber: FlorNumber,
+                            GroundFlorArea: GroundFlorArea,
+                            OtherFlorArea: OtherFlorArea
+                           
+                        }
+                        DesignApprovallist.push(DesignApproval);
+                    });
                     //if (list.length == 0) {
                     //    $('#details_error').text('At least one flat details required.');
                     //    isAllValid = false;
@@ -130,7 +150,7 @@ var KTWizard4 = function () {
                             TotalFlat: parseInt($('#TotalFlat').val()) || 0,
                             HoldersFlatNumber: parseInt($('#TotalFlat').val()) || 0,
                             PreviousDueTax: parseFloat($('#PreviousDueTax').val()) || 0,
-                            HolderFlatList: list,
+                           ///HolderFlatList: list,
                             image_file: $("#image_file").get(0).files[0]
                         };
 
@@ -373,197 +393,6 @@ var KTWizard4 = function () {
 jQuery(document).ready(function () {
 
     KTWizard4.init();
-
-
-    $('#PlotId').select2({
-        placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-    });
- 
-   // $('#MaritialStatus').select2({
-      //  placeholder: "--নির্বাচন করুন--",
-     //   allowClear: true
-   // });
-   // autosize($('#PresentAdd'));
-   // autosize($('#PermanentAdd'));
-   // autosize($('#ContactAdd'));
-
- 
-
-
-    //$('#OwnershipSourceId').select2({
-       // placeholder: "--নির্বাচন করুন--",
-       // allowClear: true
-    //});
-    //$('#OwnerType').select2({
-       // placeholder: "--নির্বাচন করুন--",
-       // allowClear: true
-   // });
-  
-
-
-
-         $('#StringLeaveDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringCompletionDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringGroundFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringFirstFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringSccFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringThirdFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringForthFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringFivthFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringSixFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringOtherFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('.StringMEO_NCCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('.StringApprovalDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         
-
-
-
-
-
-  $("#LeaseType").change(function () {
-          var otherOwnerTableHead = $('#tableOther thead');
-          var otherOwnerTableBody = $('#tableOther tbody');
-    //#যৌথ
-        var la =$('#LeaseType').val().trim();
-        if(la == "যৌথ"){
-                 otherOwnerTableHead.append('<th>'+
-            
-            '<th>অন্য মালিকের নাম</th>' +
-            '<th>ঠিকানা</th>' +
-            '<th>মন্তব্য</th>' +
-            '<th><button class="btn btn-success btn-sm" id="addOthersOwner"><i class="fas fa-plus"></i></button></th></tr>')
-            }
-            else{ 
-            otherOwnerTableHead.empty();
-            otherOwnerTableBody.empty();
-            }
-    });
-
-    $("#addOthersOwner").on('click', function () {
-        //e.preventDefault();
-        var otherOwnerTableBody = $('#tableOther tbody');
-        otherOwnerTableBody.append('<tr>'+
-            '<td><input type="text" class="form-control OthetOwneeName" name="OthetOwneeName" /></td>' +
-            '<td><input type="text" class="form-control Address" name="Address" /></td>' +
-            '<td><input type="text" class="form-control Remarks" name="Remarks" /></td>' +
-            '<td><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
-    });
-
-
-    $('#tableOther tbody').on('click', '.remove', function (e) {
-        e.preventDefault();
-        $(this).parents('tr').css("background-color", "red").fadeOut(1000, function () {
-            $(this).remove();
-        });
-    });
-
-
-   $("#addDesign").on('click', function () {
-        //e.preventDefault();
-        var DesignTableBody = $('#DesignTable tbody');
-        DesignTableBody.append('<tr>'+
-            '<td><input type="text" class="form-control StringMEO_NCCDate" name="StringMEO_NCCDate" /></td>' +
-            '<td><input type="text" class="form-control Reference" name="Reference" /></td>' +
-            '<td><input type="text" class="form-control ApprovalNo" name="ApprovalNo" /></td>' +
-            '<td><input type="text" class="form-control StringApprovalDate" name="StringApprovalDate" /></td>' +
-            '<td><input type="text" class="form-control ApprovalLetterNo" name="ApprovalLetterNo" /></td>' +
-            '<td><input type="text" class="form-control FlorNumber" name="FlorNumber" /></td>' +
-            '<td><input type="text" class="form-control GroundFlorArea" name="GroundFlorArea" /></td>' +
-            '<td><input type="text" class="form-control OtherFlorArea" name="OtherFlorArea" /></td>' +
-            '<td><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
-    });
-
-  $('#DesignTable tbody').on('click', '.remove', function (e) {
-        e.preventDefault();
-        $(this).parents('tr').css("background-color", "red").fadeOut(1000, function () {
-            $(this).remove();
-        });
-    });
 
 
 
