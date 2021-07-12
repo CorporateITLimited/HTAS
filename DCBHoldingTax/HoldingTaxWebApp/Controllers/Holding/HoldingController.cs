@@ -128,158 +128,158 @@ namespace HoldingTaxWebApp.Controllers.Holding
             {
                 string status = "error";
 
-                ////checking session first
-                //int uid = 0;
-                //if (Session[CommonConstantHelper.UserId] != null && Convert.ToInt32(Session[CommonConstantHelper.UserId]) > 0)
-                //{
-                //    uid = Convert.ToInt32(Session[CommonConstantHelper.UserId]);
-                //}
-                //else
-                //{
-                //    status = "no_user";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                //checking session first
+                int uid = 0;
+                if (Session[CommonConstantHelper.UserId] != null && Convert.ToInt32(Session[CommonConstantHelper.UserId]) > 0)
+                {
+                    uid = Convert.ToInt32(Session[CommonConstantHelper.UserId]);
+                }
+                else
+                {
+                    status = "no_user";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                ////checking if data is null
-                //if (hvm == null)
-                //{
-                //    status = "null";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                //checking if data is null
+                if (hvm == null)
+                {
+                    status = "null";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //// global declaration
+                // global declaration
                 Holder holder = new Holder();
                 int maxId = _holdingManager.GetMAXId();
 
 
-                //// validations
+                // validations
 
-                //if (hvm.AreaId > 0)
-                //{
-                //    holder.AreaId = hvm.AreaId;
-                //}
-                //else
-                //{
-                //    status = "area_id";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.AreaId > 0)
+                {
+                    holder.AreaId = hvm.AreaId;
+                }
+                else
+                {
+                    status = "area_id";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.PlotId > 0)
-                //{
-                //    holder.PlotId = hvm.PlotId;
-                //}
-                //else
-                //{
-                //    status = "plot_id";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.PlotId > 0)
+                {
+                    holder.PlotId = hvm.PlotId;
+                }
+                else
+                {
+                    status = "plot_id";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (!string.IsNullOrWhiteSpace(hvm.HolderName))
-                //{
-                //    holder.HolderName = hvm.HolderName;
-                //}
-                //else
-                //{
-                //    status = "holder_name";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(hvm.HolderName))
+                {
+                    holder.HolderName = hvm.HolderName;
+                }
+                else
+                {
+                    status = "holder_name";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (!string.IsNullOrWhiteSpace(hvm.NID))
-                //{
-                //    holder.NID = hvm.NID;
-                //}
-                //else
-                //{
-                //    status = "nid";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(hvm.NID))
+                {
+                    holder.NID = hvm.NID;
+                }
+                else
+                {
+                    status = "nid";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.Gender > 0)
-                //{
-                //    holder.Gender = hvm.Gender;
-                //}
-                //else
-                //{
-                //    status = "gender";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.Gender > 0)
+                {
+                    holder.Gender = hvm.Gender;
+                }
+                else
+                {
+                    status = "gender";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.MaritialStatus > 0)
-                //{
-                //    holder.MaritialStatus = hvm.MaritialStatus;
-                //}
-                //else
-                //{
-                //    status = "marital_status";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.MaritialStatus > 0)
+                {
+                    holder.MaritialStatus = hvm.MaritialStatus;
+                }
+                else
+                {
+                    status = "marital_status";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (!string.IsNullOrWhiteSpace(hvm.Father))
-                //{
-                //    holder.Father = hvm.Father;
-                //}
-                //else
-                //{
-                //    status = "father";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(hvm.Father))
+                {
+                    holder.Father = hvm.Father;
+                }
+                else
+                {
+                    status = "father";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (!string.IsNullOrWhiteSpace(hvm.Mother))
-                //{
-                //    holder.Mother = hvm.Mother;
-                //}
-                //else
-                //{
-                //    status = "mother";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(hvm.Mother))
+                {
+                    holder.Mother = hvm.Mother;
+                }
+                else
+                {
+                    status = "mother";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //holder.Spouse = !string.IsNullOrWhiteSpace(hvm.Spouse) ? hvm.Spouse : string.Empty;
-                //holder.Contact1 = !string.IsNullOrWhiteSpace(hvm.Contact1) ? hvm.Contact1 : string.Empty;
+                holder.Spouse = !string.IsNullOrWhiteSpace(hvm.Spouse) ? hvm.Spouse : string.Empty;
+                holder.Contact1 = !string.IsNullOrWhiteSpace(hvm.Contact1) ? hvm.Contact1 : string.Empty;
 
-                //if (!string.IsNullOrWhiteSpace(hvm.Contact2))
-                //{
-                //    holder.Contact2 = hvm.Contact2;
-                //}
-                //else
-                //{
-                //    status = "contact_2";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(hvm.Contact2))
+                {
+                    holder.Contact2 = hvm.Contact2;
+                }
+                else
+                {
+                    status = "contact_2";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //holder.Email = !string.IsNullOrWhiteSpace(hvm.Email) ? hvm.Email : string.Empty;
+                holder.Email = !string.IsNullOrWhiteSpace(hvm.Email) ? hvm.Email : string.Empty;
 
-                //if (!string.IsNullOrWhiteSpace(hvm.PresentAdd))
-                //{
-                //    holder.PresentAdd = hvm.PresentAdd;
-                //}
-                //else
-                //{
-                //    status = "present_add";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(hvm.PresentAdd))
+                {
+                    holder.PresentAdd = hvm.PresentAdd;
+                }
+                else
+                {
+                    status = "present_add";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (!string.IsNullOrWhiteSpace(hvm.PermanentAdd))
-                //{
-                //    holder.PermanentAdd = hvm.PermanentAdd;
-                //}
-                //else
-                //{
-                //    status = "parmanent_add";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(hvm.PermanentAdd))
+                {
+                    holder.PermanentAdd = hvm.PermanentAdd;
+                }
+                else
+                {
+                    status = "parmanent_add";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (!string.IsNullOrWhiteSpace(hvm.ContactAdd))
-                //{
-                //    holder.ContactAdd = hvm.ContactAdd;
-                //}
-                //else
-                //{
-                //    status = "contact_add";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(hvm.ContactAdd))
+                {
+                    holder.ContactAdd = hvm.ContactAdd;
+                }
+                else
+                {
+                    status = "contact_add";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //holder.PreviousDueTax = hvm.PreviousDueTax != null && hvm.PreviousDueTax > 0 ? hvm.PreviousDueTax : 0;
+                holder.PreviousDueTax = hvm.PreviousDueTax != null && hvm.PreviousDueTax > 0 ? hvm.PreviousDueTax : 0;
 
 
                 if (Session["ImageFile"] != null)
@@ -318,124 +318,124 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                //if (hvm.OwnershipSourceId > 0)
-                //{
-                //    holder.OwnershipSourceId = hvm.OwnershipSourceId;
-                //}
-                //else
-                //{
-                //    status = "owner_ship_source";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.OwnershipSourceId > 0)
+                {
+                    holder.OwnershipSourceId = hvm.OwnershipSourceId;
+                }
+                else
+                {
+                    status = "owner_ship_source";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.OwnerType > 0)
-                //{
-                //    holder.OwnerType = hvm.OwnerType;
-                //    if (holder.OwnerType == 3 && Session["DocFile1"] == null && Session["DocFile2"] == null)
-                //    {
-                //        status = "war_doc";
-                //        return new JsonResult { Data = new { status } };
-                //    }
-                //    if (Session["DocFile1"] != null)
-                //    {
-                //        var file = (HttpPostedFileBase)Session["DocFile1"];
-                //        if (file != null && file.ContentLength > 0)
-                //        {
-                //            holder.Document1 = string.Empty;
-                //        }
-                //        else
-                //        {
-                //            holder.Document1 = string.Empty;
-                //        }
-                //    }
+                if (hvm.OwnerType > 0)
+                {
+                    holder.OwnerType = hvm.OwnerType;
+                    if (holder.OwnerType == 3 && Session["DocFile1"] == null && Session["DocFile2"] == null)
+                    {
+                        status = "war_doc";
+                        return new JsonResult { Data = new { status } };
+                    }
+                    if (Session["DocFile1"] != null)
+                    {
+                        var file = (HttpPostedFileBase)Session["DocFile1"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            holder.Document1 = string.Empty;
+                        }
+                        else
+                        {
+                            holder.Document1 = string.Empty;
+                        }
+                    }
 
-                //    if (Session["DocFile2"] != null)
-                //    {
-                //        var file = (HttpPostedFileBase)Session["DocFile2"];
-                //        if (file != null && file.ContentLength > 0)
-                //        {
-                //            holder.Document2 = string.Empty;
-                //        }
-                //        else
-                //        {
-                //            holder.Document2 = string.Empty;
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                //    status = "owner_type";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                    if (Session["DocFile2"] != null)
+                    {
+                        var file = (HttpPostedFileBase)Session["DocFile2"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            holder.Document2 = string.Empty;
+                        }
+                        else
+                        {
+                            holder.Document2 = string.Empty;
+                        }
+                    }
+                }
+                else
+                {
+                    status = "owner_type";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.BuildingTypeId > 0)
-                //{
-                //    holder.BuildingTypeId = hvm.BuildingTypeId;
-                //}
-                //else
-                //{
-                //    status = "building_type";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.BuildingTypeId > 0)
+                {
+                    holder.BuildingTypeId = hvm.BuildingTypeId;
+                }
+                else
+                {
+                    status = "building_type";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.AmountOfLand != null && hvm.AmountOfLand > 0)
-                //{
-                //    holder.AmountOfLand = hvm.AmountOfLand;
-                //}
-                //else
-                //{
-                //    status = "amount_of_land";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.AmountOfLand != null && hvm.AmountOfLand > 0)
+                {
+                    holder.AmountOfLand = hvm.AmountOfLand;
+                }
+                else
+                {
+                    status = "amount_of_land";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.TotalFloor != null && hvm.TotalFloor > 0)
-                //{
-                //    holder.TotalFloor = hvm.TotalFloor;
-                //}
-                //else
-                //{
-                //    status = "total_floor";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.TotalFloor != null && hvm.TotalFloor > 0)
+                {
+                    holder.TotalFloor = hvm.TotalFloor;
+                }
+                else
+                {
+                    status = "total_floor";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.EachFloorArea != null && hvm.EachFloorArea > 0)
-                //{
-                //    holder.EachFloorArea = hvm.EachFloorArea;
-                //}
-                //else
-                //{
-                //    status = "each_floor_area";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.EachFloorArea != null && hvm.EachFloorArea > 0)
+                {
+                    holder.EachFloorArea = hvm.EachFloorArea;
+                }
+                else
+                {
+                    status = "each_floor_area";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.TotalFlat != null && hvm.TotalFlat > 0)
-                //{
-                //    holder.TotalFlat = hvm.TotalFlat;
-                //}
-                //else
-                //{
-                //    status = "total_flat";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.TotalFlat != null && hvm.TotalFlat > 0)
+                {
+                    holder.TotalFlat = hvm.TotalFlat;
+                }
+                else
+                {
+                    status = "total_flat";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.HoldersFlatNumber != null && hvm.HoldersFlatNumber > 0)
-                //{
-                //    holder.HoldersFlatNumber = hvm.HoldersFlatNumber;
-                //}
-                //else
-                //{
-                //    status = "holders_flat_number";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.HoldersFlatNumber != null && hvm.HoldersFlatNumber > 0)
+                {
+                    holder.HoldersFlatNumber = hvm.HoldersFlatNumber;
+                }
+                else
+                {
+                    status = "holders_flat_number";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //holder.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-                //holder.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-                //holder.CreateDate = DateTime.Now;
-                //holder.LastUpdated = DateTime.Now;
-                //holder.IsActive = true;
-                //holder.IsDeleted = false;
+                holder.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                holder.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                holder.CreateDate = DateTime.Now;
+                holder.LastUpdated = DateTime.Now;
+                holder.IsActive = true;
+                holder.IsDeleted = false;
 
-                int holderId = 0;//_holdingManager.InsertHolder(holder);
+                int holderId = _holdingManager.InsertHolder(holder);
 
                 if (holderId > 0 && holderId == maxId)
                 {
