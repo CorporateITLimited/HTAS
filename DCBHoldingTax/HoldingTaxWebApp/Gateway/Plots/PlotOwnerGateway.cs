@@ -180,7 +180,7 @@ namespace HoldingTaxWebApp.Gateway.Plots
                     vm.LeaveDate = Data_Reader["LeaveDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LeaveDate"]) : (DateTime?)null;
                     vm.LeaseAuthority = Data_Reader["LeaseAuthority"].ToString();
                     vm.LeaseType = Data_Reader["LeaseType"].ToString();
-                    vm.LeasePeriod = Data_Reader["LeasePeriod"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LeavePeriod"]) : (Int32?)null;
+                    vm.LeasePeriod = Data_Reader["LeasePeriod"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LeasePeriod"]) : (Int32?)null;
                     vm.LeaseQuotaId = Convert.ToInt32(Data_Reader["LeaseQuotaId"]);
                     vm.HandOverOffice = Data_Reader["HandOverOffice"].ToString();
                     vm.HandOverLetterNo = Data_Reader["HandOverLetterNo"].ToString();
