@@ -2484,6 +2484,7 @@
     <Compile Include="Gateway\Holding\HoldingGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
+    <Compile Include="Gateway\Tax\HoldingTaxGateway.cs" />
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
     <Compile Include="Gateway\Users\RoleGateway.cs" />
@@ -2527,7 +2528,9 @@
     <Compile Include="Models\Plots\Plot.cs" />
     <Compile Include="Models\Plots\PlotOwner.cs" />
     <Compile Include="Models\Plots\UnauthPortion.cs" />
+    <Compile Include="Models\Tax\HoldingTax.cs" />
     <Compile Include="Models\Tax\OwnTaxRate.cs" />
+    <Compile Include="Models\Tax\RentedFlatTax.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
     <Compile Include="Models\Users\Employee.cs" />
