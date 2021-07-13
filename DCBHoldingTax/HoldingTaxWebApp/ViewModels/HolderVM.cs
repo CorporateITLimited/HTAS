@@ -20,6 +20,7 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "Area Name")]
         public string AreaName { get; set; }
 
+
         public int PlotId { get; set; }
 
         [Display(Name = "Plot Id Number")]
@@ -52,13 +53,13 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "Spouse")]
         public string Spouse { get; set; }
 
-        [Display(Name = "Mobile No")]
+        [Display(Name = "Land No")]
         public string Contact1 { get; set; }
 
-        [Display(Name = "Land No")]
+        [Display(Name = "Mobile No")]
         public string Contact2 { get; set; }
 
-        [Display(Name = "Land No")]
+        [Display(Name = "Email ")]
         public string Email { get; set; }
 
         [Display(Name = "Present Address")]
@@ -91,20 +92,39 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "Amount of land")]
         public decimal? AmountOfLand { get; set; }
 
+        [Display(Name = "Amount of land")]
+        public string StrAmountOfLand { get; set; }
+
         [Display(Name = "Total Floor")]
         public int? TotalFloor { get; set; }
+
+        [Display(Name = "Total Floor")]
+        public string StrTotalFloor { get; set; }
 
         [Display(Name = "Each Floor Area")]
         public decimal? EachFloorArea { get; set; }
 
+        [Display(Name = "Each Floor Area")]
+        public string StrEachFloorArea { get; set; }
+
+
         [Display(Name = "Total Flat")]
         public int? TotalFlat { get; set; }
+
+        [Display(Name = "Total Flat")]
+        public string StrTotalFlat { get; set; }
 
         [Display(Name = "Holders Flat Number")]
         public int? HoldersFlatNumber { get; set; }
 
+        [Display(Name = "Holders Flat Number")]
+        public string StrHoldersFlatNumber { get; set; }
+
         [Display(Name = "Previous Due Tax")]
         public decimal? PreviousDueTax { get; set; }
+
+        [Display(Name = "Previous Due Tax")]
+        public string StrPreviousDueTax { get; set; }
 
         [Display(Name = "Image Location")]
         public string ImageLocation { get; set; }
@@ -118,9 +138,6 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "Create Date")]
         public DateTime? CreateDate { get; set; }
 
-        [Display(Name = "Create Date")]
-        public string StringCreateDate { get; set; }
-
         public int? CreatedBy { get; set; }
 
         [Display(Name = "Created By ")]
@@ -128,9 +145,6 @@ namespace HoldingTaxWebApp.ViewModels
 
         [Display(Name = "Updated Date ")]
         public DateTime? LastUpdated { get; set; }
-
-        [Display(Name = "Updated Date ")]
-        public string StringLastUpdated { get; set; }
 
         public int? LastUpdatedBy { get; set; }
 
@@ -142,18 +156,21 @@ namespace HoldingTaxWebApp.ViewModels
 
         public bool? IsDeleted { get; set; }
 
-        public List<HolderFlat> HolderFlatList { get; set; }
+        [Display(Name = "Create Date")]
+        public string StringCreateDate { get; set; }
 
-        public HttpPostedFileBase image_file { get; set; }
-        public HttpPostedFileBase document_file_1 { get; set; }
-        public HttpPostedFileBase document_file_2 { get; set; }
+        [Display(Name = "Updated Date ")]
+        public string StringLastUpdated { get; set; }
 
         [Display(Name = "Road No ")]
         public string RoadNo { get; set; }
 
-        [Display(Name = "Road Name ")]
+        [Display(Name = "Road No ")]
         public string RoadName { get; set; }
-
+        public List<HolderFlat> HolderFlatList { get; set; }
+        public HttpPostedFileBase image_file { get; set; }
+        public HttpPostedFileBase document_file_1 { get; set; }
+        public HttpPostedFileBase document_file_2 { get; set; }
 
         public HolderVM()
         {

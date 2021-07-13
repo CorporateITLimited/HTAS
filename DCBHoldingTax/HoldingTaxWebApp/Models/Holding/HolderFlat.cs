@@ -22,6 +22,9 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "Flat Area")]
         public decimal? FlatArea { get; set; }
 
+        [Display(Name = "Flat Area")]
+        public string StrFlatArea { get; set; }
+
         [Display(Name = "Own Or Rent")]
         public int? OwnOrRent { get; set; }
 
@@ -54,7 +57,11 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "Monthly Rent")]
         public decimal? MonthlyRent { get; set; }
 
+        [Display(Name = "Monthly Rent")]
+        public string StrMonthlyRent { get; set; }
+
         public int? SelfOwn { get; set; }
         public string SelfOwnType { get; set; }
+        public string FloorTypeName { get; set; }
     }
 }

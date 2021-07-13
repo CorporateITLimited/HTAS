@@ -571,23 +571,23 @@
 
                 $("#road_number").val("");
                 $("#road_name").val("");
-                //var plotid = parseInt($('#PlotId option:selected').val());
-                //var json = {
-                //    PlotId: plotid,
-                //};
-                //$.ajax({
-                //    url: '/Holding/GetPlotDetails',
-                //    type: "POST",
-                //    contentType: "application/json; charset=utf-8",
-                //    data: JSON.stringify(json),
-                //    success: function (data) {
-                //        $("#road_number").val(data.EmployeeName);
-                //        $("#road_name").val(data.ContactNo);
-                //    },
-                //    error: function (e) {
-                //        console.log(e);
-                //    }
-                //});
+                var plotid = parseInt($('#PlotId option:selected').val());
+                var json = {
+                    PlotId: plotid,
+                };
+                $.ajax({
+                    url: '/Holding/GetPlotDetails',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        $("#road_number").val(data.RoadNo);
+                        $("#road_name").val(data.RoadName);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
             });
 
             $('#BuildingTypeId').change(function () {
@@ -708,13 +708,13 @@
                 });
             });
 
-            $('#flat_details tbody').on('change', '.FlatArea', function () {
-                ratePerSquareFeet = 5;
-                var currRow = $(this).closest('tr');
-                var area = parseFloat(currRow.find('.FlatArea', this).val());
-                var rentMontly = area * ratePerSquareFeet;
-                currRow.find('.MonthlyRent').val(rentMontly.toFixed(2));
-            });
+            //$('#flat_details tbody').on('change', '.FlatArea', function () {
+            //    ratePerSquareFeet = 5;
+            //    var currRow = $(this).closest('tr');
+            //    var area = parseFloat(currRow.find('.FlatArea', this).val());
+            //    var rentMontly = area * ratePerSquareFeet;
+            //    currRow.find('.MonthlyRent').val(rentMontly.toFixed(2));
+            //});
 
         });
     </script>

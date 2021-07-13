@@ -97,6 +97,14 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 OwnershipSourceId = holder.OwnershipSourceId,
                 OwnerType = holder.OwnerType,
                 PlotId = holder.PlotId,
+
+                // converted values
+               StrAmountOfLand = holder.StrAmountOfLand,
+               StrPreviousDueTax = holder.StrPreviousDueTax,
+               StrEachFloorArea = holder.StrEachFloorArea,
+               StrHoldersFlatNumber = holder.StrHoldersFlatNumber,
+               StrTotalFlat = holder.StrTotalFlat,
+               StrTotalFloor = holder.StrTotalFloor
             };
 
             return View(vm);
@@ -156,9 +164,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 // validations
 
-                if (hvm.AreaId > 0)
+                if ( hvm.AreaId > 0)
                 {
-                    holder.AreaId = hvm.AreaId;
+                    holder.AreaId =  hvm.AreaId;
                 }
                 else
                 {
@@ -166,9 +174,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                if (hvm.PlotId > 0)
+                if (  hvm.PlotId > 0)
                 {
-                    holder.PlotId = hvm.PlotId;
+                    holder.PlotId =   hvm.PlotId;
                 }
                 else
                 {
@@ -176,9 +184,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                if (!string.IsNullOrWhiteSpace(hvm.HolderName))
+                if (!string.IsNullOrWhiteSpace(  hvm.HolderName))
                 {
-                    holder.HolderName = hvm.HolderName;
+                    holder.HolderName =   hvm.HolderName;
                 }
                 else
                 {
@@ -186,9 +194,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                if (!string.IsNullOrWhiteSpace(hvm.NID))
+                if (!string.IsNullOrWhiteSpace(  hvm.NID))
                 {
-                    holder.NID = hvm.NID;
+                    holder.NID =   hvm.NID;
                 }
                 else
                 {
@@ -196,9 +204,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                if (hvm.Gender > 0)
+                if (  hvm.Gender > 0)
                 {
-                    holder.Gender = hvm.Gender;
+                    holder.Gender =   hvm.Gender;
                 }
                 else
                 {
@@ -206,9 +214,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                if (hvm.MaritialStatus > 0)
+                if (  hvm.MaritialStatus > 0)
                 {
-                    holder.MaritialStatus = hvm.MaritialStatus;
+                    holder.MaritialStatus =   hvm.MaritialStatus;
                 }
                 else
                 {
@@ -216,9 +224,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                if (!string.IsNullOrWhiteSpace(hvm.Father))
+                if (!string.IsNullOrWhiteSpace(  hvm.Father))
                 {
-                    holder.Father = hvm.Father;
+                    holder.Father =   hvm.Father;
                 }
                 else
                 {
@@ -226,9 +234,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                if (!string.IsNullOrWhiteSpace(hvm.Mother))
+                if (!string.IsNullOrWhiteSpace(  hvm.Mother))
                 {
-                    holder.Mother = hvm.Mother;
+                    holder.Mother =   hvm.Mother;
                 }
                 else
                 {
@@ -236,12 +244,12 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                holder.Spouse = !string.IsNullOrWhiteSpace(hvm.Spouse) ? hvm.Spouse : string.Empty;
-                holder.Contact1 = !string.IsNullOrWhiteSpace(hvm.Contact1) ? hvm.Contact1 : string.Empty;
+                holder.Spouse = !string.IsNullOrWhiteSpace(  hvm.Spouse) ?   hvm.Spouse : string.Empty;
+                holder.Contact1 = !string.IsNullOrWhiteSpace(  hvm.Contact1) ?   hvm.Contact1 : string.Empty;
 
-                if (!string.IsNullOrWhiteSpace(hvm.Contact2))
+                if (!string.IsNullOrWhiteSpace(  hvm.Contact2))
                 {
-                    holder.Contact2 = hvm.Contact2;
+                    holder.Contact2 =   hvm.Contact2;
                 }
                 else
                 {
@@ -249,11 +257,11 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                holder.Email = !string.IsNullOrWhiteSpace(hvm.Email) ? hvm.Email : string.Empty;
+                holder.Email = !string.IsNullOrWhiteSpace(  hvm.Email) ?   hvm.Email : string.Empty;
 
-                if (!string.IsNullOrWhiteSpace(hvm.PresentAdd))
+                if (!string.IsNullOrWhiteSpace(  hvm.PresentAdd))
                 {
-                    holder.PresentAdd = hvm.PresentAdd;
+                    holder.PresentAdd =   hvm.PresentAdd;
                 }
                 else
                 {
@@ -261,9 +269,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                if (!string.IsNullOrWhiteSpace(hvm.PermanentAdd))
+                if (!string.IsNullOrWhiteSpace(  hvm.PermanentAdd))
                 {
-                    holder.PermanentAdd = hvm.PermanentAdd;
+                    holder.PermanentAdd =   hvm.PermanentAdd;
                 }
                 else
                 {
@@ -271,9 +279,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                if (!string.IsNullOrWhiteSpace(hvm.ContactAdd))
+                if (!string.IsNullOrWhiteSpace(  hvm.ContactAdd))
                 {
-                    holder.ContactAdd = hvm.ContactAdd;
+                    holder.ContactAdd =   hvm.ContactAdd;
                 }
                 else
                 {
@@ -281,7 +289,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                holder.PreviousDueTax = hvm.PreviousDueTax != null && hvm.PreviousDueTax > 0 ? hvm.PreviousDueTax : 0;
+                holder.PreviousDueTax =   hvm.PreviousDueTax != null &&   hvm.PreviousDueTax > 0 ?   hvm.PreviousDueTax : 0;
 
 
                 if (Session["ImageFile"] != null)
@@ -300,13 +308,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                         var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                         fileOldName = fileOldName.Replace(" ", string.Empty);
                         var newFilename = maxId + "_" + fileOldName + extension;
-                        newFilename = "~/Documents/Holders/Images/" + newFilename;
+                        newFilename = "/Documents/Holders/Images/" + newFilename;
 
                         if (System.IO.File.Exists(newFilename))
                             System.IO.File.Delete(newFilename);
                         file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
-                        holder.ImageLocation = CommonConstantHelper.DevRootDirectoryFaisal + newFilename;
+                        holder.ImageLocation = newFilename;
                     }
                     else
                     {
@@ -347,13 +355,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
                             var newFilename = maxId + "_doc1_" + fileOldName + extension;
-                            newFilename = "~/Documents/Holders/FFDocuments/" + newFilename;
+                            newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
 
                             if (System.IO.File.Exists(newFilename))
                                 System.IO.File.Delete(newFilename);
                             file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
-                            holder.Document1 = CommonConstantHelper.DevRootDirectoryFaisal + newFilename;
+                            holder.Document1 = newFilename;
                         }
                         else
                         {
@@ -370,13 +378,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
                             var newFilename = maxId + "_doc2_" + fileOldName + extension;
-                            newFilename = "~/Documents/Holders/FFDocuments/" + newFilename;
+                            newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
 
                             if (System.IO.File.Exists(newFilename))
                                 System.IO.File.Delete(newFilename);
                             file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
-                            holder.Document2 = CommonConstantHelper.DevRootDirectoryFaisal + newFilename;
+                            holder.Document2 = newFilename;
                         }
                         else
                         {
@@ -525,6 +533,30 @@ namespace HoldingTaxWebApp.Controllers.Holding
         }
 
 
+        public ActionResult DownloadFile(string filePath)
+        {
+            //string fullName = Server.MapPath(filePath);
+
+            string fullName = CommonConstantHelper.ServerRootDirectory + filePath;
+            //Request.MapPath(fullPath);
+
+            string nameOfDoc = filePath.Substring(filePath.LastIndexOf('/') + 1);
+
+            byte[] fileBytes = GetFile(fullName);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, nameOfDoc);
+
+        }
+
+        byte[] GetFile(string s)
+        {
+            FileStream fs = System.IO.File.OpenRead(s);
+            byte[] data = new byte[fs.Length];
+            int br = fs.Read(data, 0, data.Length);
+            if (br != fs.Length)
+                throw new IOException(s);
+            return data;
+        }
+
         public JsonResult GetRatePerSquareFeet(int AreaId, int BuildingTypeId)
         {
             return new JsonResult { Data = _holdingManager.GetPerSqrFeetPrice(AreaId, BuildingTypeId) };
@@ -532,7 +564,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
         public JsonResult GetPlotDetails(int PlotId)
         {
-            return new JsonResult { Data = _holdingManager.GetPerSqrFeetPrice(0, 0) };
+            return new JsonResult { Data = _plotManager.GetPlotById(PlotId) };
         }
 
         public JsonResult GetImage(HttpPostedFileBase fileBase)

@@ -135,7 +135,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
 
                 Sql_Command.Parameters.Clear();
 
-                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Select;
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Details;
                 Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = id;
 
                 SqlParameter result = new SqlParameter
@@ -203,6 +203,12 @@ namespace HoldingTaxWebApp.Gateway.Holding
 
                 vm.StringCreateDate = $"{vm.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
                 vm.StringLastUpdated = $"{vm.LastUpdated:dd/MM/yyyy HH:mm:ss tt}";
+                vm.StrPreviousDueTax = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.PreviousDueTax);
+                vm.StrAmountOfLand = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.EachFloorArea);
+                vm.StrEachFloorArea = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.AmountOfLand);
+                vm.StrHoldersFlatNumber = BanglaConvertionHelper.IntegerValueEnglish2Bangla(vm.HoldersFlatNumber);
+                vm.StrTotalFlat = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.TotalFlat);
+                vm.StrTotalFloor = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.TotalFloor);
 
                 Data_Reader.Close();
                 Sql_Connection.Close();
@@ -463,7 +469,11 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
                         CreatedBy = Data_Reader["CreatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
                         LastUpdatedBy = Data_Reader["LastUpdatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null,
+                        FloorTypeName = Data_Reader["FloorTypeName"].ToString()
                     };
+
+                    model.StrFlatArea = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.FlatArea);
+                    model.StrMonthlyRent = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.MonthlyRent);
 
                     vm.Add(model);
                 }

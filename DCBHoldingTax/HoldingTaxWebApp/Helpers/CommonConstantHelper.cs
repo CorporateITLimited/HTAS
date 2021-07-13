@@ -79,7 +79,8 @@ namespace HoldingTaxWebApp.Helpers
 
         #region server
         public const string DevRootDirectoryFaisal = @"C:/Users/acer/Documents/GitHub/HTAS/DCBHoldingTax/HoldingTaxWebApp";
-        public const string ServerRootDirectory = @"C:/inetpub/wwwroot/PIMS";
+
+        public const string ServerRootDirectory = @"C:/Users/acer/Documents/GitHub/HTAS/DCBHoldingTax/HoldingTaxWebApp";
         #endregion
 
 

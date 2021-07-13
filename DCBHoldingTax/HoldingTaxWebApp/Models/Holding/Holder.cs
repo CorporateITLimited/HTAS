@@ -19,6 +19,7 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "Area Name")]
         public string AreaName { get; set; }
 
+
         public int PlotId { get; set; }
 
         [Display(Name = "Plot Id Number")]
@@ -90,20 +91,39 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "Amount of land")]
         public decimal? AmountOfLand { get; set; }
 
+        [Display(Name = "Amount of land")]
+        public string StrAmountOfLand { get; set; }
+
         [Display(Name = "Total Floor")]
         public int? TotalFloor { get; set; }
+
+        [Display(Name = "Total Floor")]
+        public string StrTotalFloor { get; set; }
 
         [Display(Name = "Each Floor Area")]
         public decimal? EachFloorArea { get; set; }
 
+        [Display(Name = "Each Floor Area")]
+        public string StrEachFloorArea { get; set; }
+
+
         [Display(Name = "Total Flat")]
         public int? TotalFlat { get; set; }
+
+        [Display(Name = "Total Flat")]
+        public string StrTotalFlat { get; set; }
 
         [Display(Name = "Holders Flat Number")]
         public int? HoldersFlatNumber { get; set; }
 
+        [Display(Name = "Holders Flat Number")]
+        public string StrHoldersFlatNumber { get; set; }
+
         [Display(Name = "Previous Due Tax")]
         public decimal? PreviousDueTax { get; set; }
+
+        [Display(Name = "Previous Due Tax")]
+        public string StrPreviousDueTax { get; set; }
 
         [Display(Name = "Image Location")]
         public string ImageLocation { get; set; }
@@ -146,5 +166,8 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "Road No ")]
         public string RoadName { get; set; }
+
+
+       
     }
 }
