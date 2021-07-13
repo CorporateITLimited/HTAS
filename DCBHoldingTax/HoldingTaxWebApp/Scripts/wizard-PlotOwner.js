@@ -125,6 +125,8 @@ var KTWizard4 = function () {
                     }
                     else {
                         var data = {
+                            
+
                             HolderId: 0,
                             AreaId: parseInt($('#AreaId option:selected').val()) || 0,
                             PlotId: parseInt($('#PlotId option:selected').val()) || 0,
