@@ -375,8 +375,8 @@ namespace HoldingTaxWebApp.Controllers.Plots
                 };
 
                 ViewBag.PlotId = new SelectList(_PlotManager.GetAllPlot(), "PlotId", "PlotIdNumber", plotOwnerVM.PlotId);
-                ViewBag.LeaseQuotaId = new SelectList(_PlotManager.GetAllPlot(), "PlotId", "LeaseQuotaName", plotOwnerVM.LeaseQuotaId);
-                ViewBag.OfficialStatusId = new SelectList(_PlotManager.GetAllPlot(), "OfficialStatusId", "OffStatusName", plotOwnerVM.OfficialStatusId);
+                ViewBag.LeaseQuotaId = new SelectList(_LeaseQuotaManager.GetAllLeaseQuota(), "LeaseQuotaId", "LeaseQuotaName", plotOwnerVM.LeaseQuotaId);
+                ViewBag.OfficialStatusId = new SelectList(_OfficialStatusManager.GetAllOfficialStatus(), "OfficialStatusId", "OffStatusName", plotOwnerVM.OfficialStatusId);
                 //ViewBag.OwnershipSourceId = new SelectList(_OwnershipSourceManager.GetAllOwnershipSource(), "OwnershipSourceId", "SourceName");
                 ViewBag.ConsStatusId = new SelectList(_ConstructionStatusManager.GetAllConstructionStatus(), "ConsStatusId", "ConsStatusName", plotOwnerVM.ConsStatusId);
 
