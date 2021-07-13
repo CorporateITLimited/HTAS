@@ -90,6 +90,13 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
                         CreatedBy = Data_Reader["CreatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
                         LastUpdatedBy = Data_Reader["LastUpdatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null,
+
+                        //this part done by Masum  ====================
+                        AllocationLetterNo = Convert.ToString(Data_Reader["AllocationLetterNo"]),
+                        NamjariLetterNo = Convert.ToString(Data_Reader["NamjariLetterNo"]),
+                        AllocationDate = Data_Reader["AllocationDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["AllocationDate"]) : (DateTime?)null,
+                        NamjariDate = Data_Reader["NamjariDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["NamjariDate"]) : (DateTime?)null,
+                        RecordCorrectionDate = Data_Reader["RecordCorrectionDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["RecordCorrectionDate"]) : (DateTime?)null,
                     };
 
                     vm.Add(model);
@@ -199,10 +206,20 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     vm.LastUpdatedBy = Data_Reader["LastUpdatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null;
                     vm.RoadNo = Convert.ToString(Data_Reader["RoadNo"]);
                     vm.RoadName = Convert.ToString(Data_Reader["RoadName"]);
+
+                    //done by masum =====================
+                    vm.AllocationLetterNo = Convert.ToString(Data_Reader["AllocationLetterNo"]);
+                    vm.NamjariLetterNo = Convert.ToString(Data_Reader["NamjariLetterNo"]);
+                    vm.AllocationDate = Data_Reader["AllocationDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["AllocationDate"]) : (DateTime?)null;
+                    vm.NamjariDate = Data_Reader["NamjariDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["NamjariDate"]) : (DateTime?)null;
+                    vm.RecordCorrectionDate = Data_Reader["RecordCorrectionDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["RecordCorrectionDate"]) : (DateTime?)null;
                 };
 
                 vm.StringCreateDate = $"{vm.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
                 vm.StringLastUpdated = $"{vm.LastUpdated:dd/MM/yyyy HH:mm:ss tt}";
+                vm.StringAllocationDate = $"{vm.AllocationDate:dd/MM/yyyy}";
+                vm.StringNamjariDate = $"{vm.NamjariDate:dd/MM/yyyy}";
+                vm.StringRecordCorrectionDate = $"{vm.RecordCorrectionDate:dd/MM/yyyy}";
                 vm.StrPreviousDueTax = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.PreviousDueTax);
                 vm.StrAmountOfLand = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.EachFloorArea);
                 vm.StrEachFloorArea = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.AmountOfLand);
@@ -285,6 +302,13 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = model.LastUpdatedBy;
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
+
+                //created by Masum ===================
+                Sql_Command.Parameters.Add("@AllocationLetterNo", SqlDbType.NVarChar).Value = model.AllocationLetterNo;
+                Sql_Command.Parameters.Add("@NamjariLetterNo", SqlDbType.NVarChar).Value = model.NamjariLetterNo;
+                Sql_Command.Parameters.Add("@AllocationDate", SqlDbType.DateTime).Value = model.AllocationDate;
+                Sql_Command.Parameters.Add("@NamjariDate", SqlDbType.DateTime).Value = model.NamjariDate;
+                Sql_Command.Parameters.Add("@RecordCorrectionDate", SqlDbType.DateTime).Value = model.RecordCorrectionDate;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -374,6 +398,13 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
 
+
+                //created by Masum ===================
+                Sql_Command.Parameters.Add("@AllocationLetterNo", SqlDbType.NVarChar).Value = model.AllocationLetterNo;
+                Sql_Command.Parameters.Add("@NamjariLetterNo", SqlDbType.NVarChar).Value = model.NamjariLetterNo;
+                Sql_Command.Parameters.Add("@AllocationDate", SqlDbType.DateTime).Value = model.AllocationDate;
+                Sql_Command.Parameters.Add("@NamjariDate", SqlDbType.DateTime).Value = model.NamjariDate;
+                Sql_Command.Parameters.Add("@RecordCorrectionDate", SqlDbType.DateTime).Value = model.RecordCorrectionDate;
                 SqlParameter result = new SqlParameter
                 {
                     ParameterName = "@result",
@@ -462,7 +493,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         SelfOwn = Data_Reader["SelfOwn"] != DBNull.Value ? Convert.ToInt32(Data_Reader["SelfOwn"]) : (int?)null,
                         SelfOwnType = Convert.ToString(Data_Reader["SelfOwnType"]),
                         CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
-                       // CreatedByUsername = Data_Reader["CreatedByUsername"].ToString(),
+                        // CreatedByUsername = Data_Reader["CreatedByUsername"].ToString(),
                         //UpdatedByUsername = Data_Reader["UpdatedByUserName"].ToString(),
                         LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null,
                         IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null,

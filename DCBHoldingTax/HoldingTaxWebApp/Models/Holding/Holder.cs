@@ -168,6 +168,24 @@ namespace HoldingTaxWebApp.Models.Holding
         public string RoadName { get; set; }
 
 
-       
+        [Display(Name = "AllocationLetterNo")]
+        public string AllocationLetterNo { get; set; }
+        [Display(Name = "NamjariLetterNo")]
+        public string NamjariLetterNo { get; set; }
+        [Display(Name = "Allocation Date")]
+        public DateTime? AllocationDate { get; set; }
+
+        [Display(Name = "Allocation Date")]
+        public string StringAllocationDate { get; set; }
+        [Display(Name = "Namjari Date")]
+        public DateTime? NamjariDate { get; set; }
+
+        [Display(Name = "Namjari Date")]
+        public string StringNamjariDate { get; set; }
+        [Display(Name = "RecordCorrection Date")]
+        public DateTime? RecordCorrectionDate { get; set; }
+
+        [Display(Name = "RecordCorrection Date")]
+        public string StringRecordCorrectionDate { get; set; }
     }
 }
