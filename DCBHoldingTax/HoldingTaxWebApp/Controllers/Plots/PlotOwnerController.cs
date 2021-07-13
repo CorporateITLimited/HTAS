@@ -232,7 +232,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
         // GET: PlotOwner/Create
         public ActionResult Create()
         {
-            ViewBag.PlotId = new SelectList(_PlotManager.GetAllPlot(), "PlotId", "PlotIdNumber");
+            ViewBag.PlotId = new SelectList(_PlotOwnerManager.GetPlot(), "PlotId", "PlotIdNumber");
             ViewBag.LeaseQuotaId = new SelectList(_LeaseQuotaManager.GetAllLeaseQuota(), "LeaseQuotaId", "LeaseQuotaName");
             ViewBag.OfficialStatusId = new SelectList(_OfficialStatusManager.GetAllOfficialStatus(), "OfficialStatusId", "OffStatusName");
             //ViewBag.OwnershipSourceId = new SelectList(_OwnershipSourceManager.GetAllOwnershipSource(), "OwnershipSourceId", "SourceName");
@@ -443,17 +443,53 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
                 if (POVM.PlotOwnerId == 0) //IsNullOrEmpty(POVM.NoaId.ToString())
                 {
+                    if(POVM.StringCompletionDate != null)
+                    {
+                        POVM.CompletionDate = DateTime.ParseExact(POVM.StringCompletionDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringFirstFCDate != null)
+                    {
+                        POVM.FirstFCDate = DateTime.ParseExact(POVM.StringFirstFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringFivthFCDate != null)
+                    {
+                        POVM.FivthFCDate = DateTime.ParseExact(POVM.StringFivthFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringForthFCDate != null)
+                    {
+                        POVM.ForthFCDate = DateTime.ParseExact(POVM.StringForthFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringGroundFCDate != null)
+                    {
+                        POVM.GroundFCDate = DateTime.ParseExact(POVM.StringGroundFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringGroundFCDate != null)
+                    {
+                        POVM.GroundFCDate = DateTime.ParseExact(POVM.StringGroundFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringLeaveDate != null)
+                    {
+                        POVM.LeaveDate = DateTime.ParseExact(POVM.StringLeaveDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringOtherFCDate != null)
+                    {
+                        POVM.OtherFCDate = DateTime.ParseExact(POVM.StringOtherFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringSccFCDate != null)
+                    {
+                        POVM.SccFCDate = DateTime.ParseExact(POVM.StringSccFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringSixFCDate != null)
+                    {
+                        POVM.SixFCDate = DateTime.ParseExact(POVM.StringSixFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringThirdFCDate != null)
+                    {
+                        POVM.ThirdFCDate = DateTime.ParseExact(POVM.StringThirdFCDate, "dd/MM/yyyy", null);
+                    }
 
-                    POVM.CompletionDate = DateTime.ParseExact(POVM.StringCompletionDate, "dd/MM/yyyy", null);
-                    POVM.FirstFCDate = DateTime.ParseExact(POVM.StringFirstFCDate, "dd/MM/yyyy", null);
-                    POVM.FivthFCDate = DateTime.ParseExact(POVM.StringFivthFCDate, "dd/MM/yyyy", null);
-                    POVM.ForthFCDate = DateTime.ParseExact(POVM.StringForthFCDate, "dd/MM/yyyy", null);
-                    POVM.GroundFCDate = DateTime.ParseExact(POVM.StringGroundFCDate, "dd/MM/yyyy", null);
-                    POVM.LeaveDate = DateTime.ParseExact(POVM.StringLeaveDate, "dd/MM/yyyy", null);
-                    POVM.OtherFCDate = DateTime.ParseExact(POVM.StringOtherFCDate, "dd/MM/yyyy", null);
-                    POVM.SccFCDate = DateTime.ParseExact(POVM.StringSccFCDate, "dd/MM/yyyy", null);
-                    POVM.SixFCDate = DateTime.ParseExact(POVM.StringSixFCDate, "dd/MM/yyyy", null);
-                    POVM.ThirdFCDate = DateTime.ParseExact(POVM.StringThirdFCDate, "dd/MM/yyyy", null);
+
+                   
 
 
                     PlotOwnerCombineVM plotw = new PlotOwnerCombineVM()
@@ -561,13 +597,13 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             DesignApproval Details = new DesignApproval()
                             {
                                 PlotId = POVM.PlotId,
-                                ApprovalDate = DateTime.ParseExact(item.StringApprovalDate, "dd/MM/yyyy", null),
+                                ApprovalDate = item.ApprovalDate,
                                 ApprovalLetterNo = item.ApprovalLetterNo,
                                 ApprovalNo = item.ApprovalNo,
                                 FlorNumber = item.FlorNumber,
                                 Reference = item.Reference,
                                 GroundFlorArea = item.GroundFlorArea,
-                                MEO_NCCDate = DateTime.ParseExact(item.StringMEO_NCCDate, "dd/MM/yyyy", null),
+                                MEO_NCCDate = item.MEO_NCCDate,
                                 OtherFlorArea = item.OtherFlorArea,
                                 IsActive = true,
                                 IsDeleted = false,
@@ -576,8 +612,16 @@ namespace HoldingTaxWebApp.Controllers.Plots
                                 LastUpdated = DateTime.Now,
                                 LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
 
-
                             };
+                            if (item.StringApprovalDate != null)
+                            {
+                                Details.ApprovalDate = DateTime.ParseExact(item.StringApprovalDate, "dd/MM/yyyy", null);
+                            }
+                            if (item.StringMEO_NCCDate != null)
+                            {
+                                Details.MEO_NCCDate = DateTime.ParseExact(item.StringMEO_NCCDate, "dd/MM/yyyy", null);
+                            }
+
                             string returnString = CommonConstantHelper.Success;
                             if (Details.ApprovalNo > 0)
                             {
@@ -605,16 +649,50 @@ namespace HoldingTaxWebApp.Controllers.Plots
                 }
                 else
                 {
-                    POVM.CompletionDate = DateTime.ParseExact(POVM.StringCompletionDate, "dd/MM/yyyy", null);
-                    POVM.FirstFCDate = DateTime.ParseExact(POVM.StringFirstFCDate, "dd/MM/yyyy", null);
-                    POVM.FivthFCDate = DateTime.ParseExact(POVM.StringFivthFCDate, "dd/MM/yyyy", null);
-                    POVM.ForthFCDate = DateTime.ParseExact(POVM.StringForthFCDate, "dd/MM/yyyy", null);
-                    POVM.GroundFCDate = DateTime.ParseExact(POVM.StringGroundFCDate, "dd/MM/yyyy", null);
-                    POVM.LeaveDate = DateTime.ParseExact(POVM.StringLeaveDate, "dd/MM/yyyy", null);
-                    POVM.OtherFCDate = DateTime.ParseExact(POVM.StringOtherFCDate, "dd/MM/yyyy", null);
-                    POVM.SccFCDate = DateTime.ParseExact(POVM.StringSccFCDate, "dd/MM/yyyy", null);
-                    POVM.SixFCDate = DateTime.ParseExact(POVM.StringSixFCDate, "dd/MM/yyyy", null);
-                    POVM.ThirdFCDate = DateTime.ParseExact(POVM.StringThirdFCDate, "dd/MM/yyyy", null);
+                    if (POVM.StringCompletionDate != null)
+                    {
+                        POVM.CompletionDate = DateTime.ParseExact(POVM.StringCompletionDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringFirstFCDate != null)
+                    {
+                        POVM.FirstFCDate = DateTime.ParseExact(POVM.StringFirstFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringFivthFCDate != null)
+                    {
+                        POVM.FivthFCDate = DateTime.ParseExact(POVM.StringFivthFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringForthFCDate != null)
+                    {
+                        POVM.ForthFCDate = DateTime.ParseExact(POVM.StringForthFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringGroundFCDate != null)
+                    {
+                        POVM.GroundFCDate = DateTime.ParseExact(POVM.StringGroundFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringGroundFCDate != null)
+                    {
+                        POVM.GroundFCDate = DateTime.ParseExact(POVM.StringGroundFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringLeaveDate != null)
+                    {
+                        POVM.LeaveDate = DateTime.ParseExact(POVM.StringLeaveDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringOtherFCDate != null)
+                    {
+                        POVM.OtherFCDate = DateTime.ParseExact(POVM.StringOtherFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringSccFCDate != null)
+                    {
+                        POVM.SccFCDate = DateTime.ParseExact(POVM.StringSccFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringSixFCDate != null)
+                    {
+                        POVM.SixFCDate = DateTime.ParseExact(POVM.StringSixFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringThirdFCDate != null)
+                    {
+                        POVM.ThirdFCDate = DateTime.ParseExact(POVM.StringThirdFCDate, "dd/MM/yyyy", null);
+                    }
 
 
                     PlotOwnerCombineVM plotw = new PlotOwnerCombineVM()
@@ -747,6 +825,14 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
 
                             };
+                            if (item.StringApprovalDate != null)
+                            {
+                                Details.ApprovalDate = DateTime.ParseExact(item.StringApprovalDate, "dd/MM/yyyy", null);
+                            }
+                            if (item.StringMEO_NCCDate != null)
+                            {
+                                Details.MEO_NCCDate = DateTime.ParseExact(item.StringMEO_NCCDate, "dd/MM/yyyy", null);
+                            }
                             string returnString = CommonConstantHelper.Success;
                             if (Details.ApprovalNo > 0)
                             {

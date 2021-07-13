@@ -398,7 +398,82 @@ namespace HoldingTaxWebApp.Gateway.Plots
 
         }
 
+        //get Plot for select 
+        public List<Plot> GetPlot()
+        {
+            try
+            {
+                Sql_Query = "[Plot].[spPlotOwnerMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
 
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "selectPlot";
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<Plot> vm = new List<Plot>();
+
+                while (Data_Reader.Read())
+                {
+                    Plot model = new Plot
+                    {
+
+
+                       
+
+
+                      
+                        PlotId = Convert.ToInt32(Data_Reader["PlotId"]),
+                        PlotIdNumber = Data_Reader["PlotIdNumber"].ToString(),
+                        PlotNo = Data_Reader["PlotNo"].ToString()
+
+
+                    };
+
+                    vm.Add(model);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
 
 
         //Create Plot Owner Details
@@ -523,7 +598,7 @@ namespace HoldingTaxWebApp.Gateway.Plots
         {
             try
             {
-                Sql_Query = "[employee].[spEmployeeAdvanceLoanMaster]";
+                Sql_Query = "[Plot].[spPlotOwnerMaster]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,

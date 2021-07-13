@@ -83,9 +83,20 @@
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                     <div class="col-5">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.IsAlive)
-                                        </span>
+                                        @if (Model.IsAlive == true)
+                                        {
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                জীবিত
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                মৃত
+                                            </span>
+                                            
+                                        }
+
                                     </div>
                                 </div>
 
@@ -292,40 +303,43 @@
 
                             </div>
                         </div>
+                        @if (Model.LeaseType == "যৌথ")
+                        {
+                            <div class="separator separator-dashed my-10"></div>
+                            <div class="row offset-1">
+                                <legend>অন্যান্য মালিকের বিবরণ</legend>
+                                <br />
+                                <br />
+                                <table class="table table-bordered table-success" width="100" id="tblOthetOwneeName">
+                                    <thead>
+                                        <tr>
+                                            <th>সিরিয়াল নাম্বার</th>
+                                            <th>প্লট মালিকের নাম</th>
+                                            <th>ঠিকানা</th>
+                                            <th>মন্তব্য</th>
 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{ int i = 1;
+                                            foreach (var item in Model.OthetPlotOwner)
+                                            {
+                                                <tr>
+                                                    <td>@i</td>
+                                                    <td>@item.OthetOwneeName</td>
+                                                    <td>@item.Address</td>
+                                                    <td>@item.Remarks</td>
 
-                        <div class="separator separator-dashed my-10"></div>
-                        <div class="row offset-1">
-                            <legend>অন্যান্য মালিকের বিবরণ</legend>
-                            <br />
-                            <br />
-                            <table class="table table-bordered table-success" width="100" id="tblOthetOwneeName">
-                                <thead>
-                                    <tr>
-                                        <th>সিরিয়াল নাম্বার</th>
-                                        <th>প্লট মালিকের নাম</th>
-                                        <th>ঠিকানা</th>
-                                        <th>মন্তব্য</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @{ int i = 1;
-                                        foreach (var item in Model.OthetPlotOwner)
-                                        {
-                                            <tr>
-                                                <td>@i</td>
-                                                <td>@item.OthetOwneeName</td>
-                                                <td>@item.Address</td>
-                                                <td>@item.Remarks</td>
-
-                                            </tr>
-                                            i = i + 1;
+                                                </tr>
+                                                i = i + 1;
+                                            }
                                         }
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                                            }
+
+                       
 
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">

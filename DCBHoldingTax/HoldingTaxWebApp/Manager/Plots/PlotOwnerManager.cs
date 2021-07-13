@@ -50,6 +50,15 @@ namespace HoldingTaxWebApp.Manager.Plots
 
         }
 
+        //get Plot for select 
+        public List<Plot> GetPlot()
+        {
+            return _PlotOwnerGateway.GetPlot();
+
+        }
+
+
+
 
 
 
@@ -77,6 +86,10 @@ namespace HoldingTaxWebApp.Manager.Plots
         {
             return _PlotOwnerGateway.GetOthetPlotOwnerById(id);
         }
+
+
+
+
 
 
         //Create Plot Owner Details
