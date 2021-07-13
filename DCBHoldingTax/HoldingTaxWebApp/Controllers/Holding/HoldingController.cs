@@ -128,6 +128,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
             {
                 string status = "error";
 
+                //return new JsonResult { Data = new { status } };
+
                 //checking session first
                 int uid = 0;
                 if (Session[CommonConstantHelper.UserId] != null && Convert.ToInt32(Session[CommonConstantHelper.UserId]) > 0)
@@ -136,14 +138,14 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "no_user";
+                    status = "সেশন এর মেয়াদ শেষ";
                     return new JsonResult { Data = new { status } };
                 }
 
                 //checking if data is null
                 if (hvm == null)
                 {
-                    status = "null";
+                    status = "কোনো ডাটা পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -160,7 +162,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "area_id";
+                    status = "এলাকার নাম পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -170,7 +172,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "plot_id";
+                    status = "প্লট/বাড়ী/ফ্ল্যাট নম্বর পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -180,7 +182,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "holder_name";
+                    status = "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -190,7 +192,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "nid";
+                    status = "জাতীয় পরিচয়পত্র পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -200,7 +202,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "gender";
+                    status = "লিঙ্গ পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -210,7 +212,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "marital_status";
+                    status = "বৈবাহিক অবস্থা পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -220,7 +222,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "father";
+                    status = "পিতার নাম পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -230,7 +232,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "mother";
+                    status = "মাতার নাম পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -243,7 +245,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "contact_2";
+                    status = "মোবাইল নম্বর পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -255,7 +257,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "present_add";
+                    status = "বর্তমান ঠিকানা পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -265,7 +267,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "parmanent_add";
+                    status = "স্থায়ী ঠিকানা পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -275,7 +277,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "contact_add";
+                    status = "পত্র যোগাযোগের ঠিকানা পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -291,7 +293,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                         if (extensions != "image/jpg" && extensions != "image/jpeg" && extensions != "image/pjpeg" &&
                            extensions != "image/gif" && extensions != "image/png" && extensions != "image/x-png")
                         {
-                            status = "ppsize_image_format";
+                            status = "পাসপোর্ট সাইজের ছবির ফরমেট ঠিক নেই";
                             return new JsonResult { Data = new { status } };
                         }
                         var extension = Path.GetExtension(file.FileName);
@@ -308,13 +310,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     }
                     else
                     {
-                        status = "ppsize_image";
+                        status = "পাসপোর্ট সাইজের ছবি পাওয়া যাই নি";
                         return new JsonResult { Data = new { status } };
                     }
                 }
                 else
                 {
-                    status = "ppsize_image";
+                    status = "পাসপোর্ট সাইজের ছবি পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -324,7 +326,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "owner_ship_source";
+                    status = "মালিকানার সূত্র পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -333,15 +335,25 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     holder.OwnerType = hvm.OwnerType;
                     if (holder.OwnerType == 3 && Session["DocFile1"] == null && Session["DocFile2"] == null)
                     {
-                        status = "war_doc";
+                        status = "খেতাব প্রাপ্ত মুক্তিযোদ্ধার ক্ষেত্রে  প্রমাণাদি সংযুক্ত করুন (একটি বা দুইটি)";
                         return new JsonResult { Data = new { status } };
                     }
-                    if (Session["DocFile1"] != null)
+                    if (holder.OwnerType == 3 && Session["DocFile1"] != null)
                     {
-                        var file = (HttpPostedFileBase)Session["DocFile1"];
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile1"];
                         if (file != null && file.ContentLength > 0)
                         {
-                            holder.Document1 = string.Empty;
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc1_" + fileOldName + extension;
+                            newFilename = "~/Documents/Holders/FFDocuments/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            holder.Document1 = CommonConstantHelper.DevRootDirectoryFaisal + newFilename;
                         }
                         else
                         {
@@ -349,12 +361,22 @@ namespace HoldingTaxWebApp.Controllers.Holding
                         }
                     }
 
-                    if (Session["DocFile2"] != null)
+                    if (holder.OwnerType == 3 && Session["DocFile2"] != null)
                     {
-                        var file = (HttpPostedFileBase)Session["DocFile2"];
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile2"];
                         if (file != null && file.ContentLength > 0)
                         {
-                            holder.Document2 = string.Empty;
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc2_" + fileOldName + extension;
+                            newFilename = "~/Documents/Holders/FFDocuments/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            holder.Document2 = CommonConstantHelper.DevRootDirectoryFaisal + newFilename;
                         }
                         else
                         {
@@ -364,7 +386,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "owner_type";
+                    status = "মালিকানার ধরন পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -374,7 +396,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "building_type";
+                    status = "ভবনের ধরন পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -384,7 +406,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "amount_of_land";
+                    status = "জমির পরিমাণ পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -394,7 +416,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "total_floor";
+                    status = "মোট তলার সংখ্যা পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -404,7 +426,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "each_floor_area";
+                    status = "প্রতিতলার আয়তন পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -414,7 +436,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "total_flat";
+                    status = "মোট ফ্ল্যাট সংখ্যা পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -424,7 +446,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "holders_flat_number";
+                    status = "নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -478,9 +500,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
             }
             catch (Exception exception)
             {
-                TempData["EM"] = "error | " + exception.Message.ToString();
-                return new JsonResult { Data = "error" };
-
+                string status = exception.Message.ToString();
+                return new JsonResult { Data = new { status } };
             }
             //}
             //else

@@ -19,5 +19,10 @@ namespace HoldingTaxWebApp.Manager.Plots
         {
             return _plotGateway.GetAllPlot();
         }
+
+        public Plot GetPlotById(int id)
+        {
+            return _plotGateway.GetPlotById(id);
+        }
     }
 }

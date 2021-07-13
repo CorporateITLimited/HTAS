@@ -147,7 +147,7 @@
                                                 </div>
 
                                                 <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.HolderName, "প্লট/ফ্ল্যাট মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    @Html.LabelFor(model => model.HolderName, "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.HolderName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
@@ -272,13 +272,16 @@
                                                 </div>
 
                                                 <div class="form-group row m-2" style="display: none;" id="war_proves">
-                                                    @Html.LabelFor(model => model.Document1, "মুক্তিযোদ্ধার প্রমাণাদি ১", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        <input type="file" name="document_file_1" id="document_file_1" />
+                                                    @*@Html.LabelFor(model => model.Document1, "মুক্তিযোদ্ধার প্রমাণাদি ১", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })*@
+                                                    <div class="col-lg-6">
+                                                        @*<input type="file" name="document_file_1" id="document_file_1" />*@
                                                     </div>
 
-                                                    @Html.LabelFor(model => model.Document2, "মুক্তিযোদ্ধার প্রমাণাদি ২", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    @Html.LabelFor(model => model.Document2, "মুক্তিযোদ্ধার প্রমাণাদি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
+                                                        <input type="file" name="document_file_1" id="document_file_1"  />
+                                                        <br />
+                                                        <br />
                                                         <input type="file" name="document_file_2" id="document_file_2" />
                                                     </div>
                                                 </div>
@@ -550,8 +553,8 @@
                     reader.onload = function (e) {
                         $("img#imgpreview")
                             .attr("src", e.target.result)
-                            .width(150)
-                            .height(150);
+                            .width(200)
+                            .height(200);
                     }
                     reader.readAsDataURL(input.files[0]);
                 }
@@ -564,7 +567,7 @@
             $('#PlotId').change(function () {
                 var plotName = $('#PlotId option:selected').text();
                 $(".show_plot").text("");
-                $(".show_plot").text("( প্লট/বাড়ী/ফ্ল্যাট নম্বর : " + plotName + " )");
+               // $(".show_plot").text("( প্লট/বাড়ী/ফ্ল্যাট নম্বর : " + plotName + " )");
 
                 $("#road_number").val("");
                 $("#road_name").val("");

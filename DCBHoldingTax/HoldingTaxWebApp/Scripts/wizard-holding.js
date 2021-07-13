@@ -151,19 +151,34 @@ var KTWizard4 = function () {
                                     });
                                     setTimeout(function () { window.location.href = "/Holding/Create"; }, 2000);
                                 }
-                                else if (d.status === "error") {
-                                    alert('Error');
-                                } else if (d.status === "no_user") {
-                                    alert('Session gone');
+                                else if (d.status !== "success") {
+                                    Swal.fire({
+                                        text: d.status,
+                                        icon: "error",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "Ok",
+                                        customClass: {
+                                            confirmButton: "btn font-weight-bold btn-danger",
+                                        }
+                                    });
+                                    $('#details_error').text(d.status);
+                                    //KTUtil.scrollTop();
                                 }
                                 else {
-                                    alert('error_full');
+                                    Swal.fire({
+                                        text: "Unknow Error",
+                                        icon: "error",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "Ok",
+                                        customClass: {
+                                            confirmButton: "btn font-weight-bold btn-danger",
+                                        }
+                                    });
+                                    $('#details_error').text(d.status);
                                 }
-                                $('#bill_submit').val('Save');
                             },
                             error: function (error) {
                                 console.log(error);
-                                $('#bill_submit').val('Save');
                             }
                         });
                     }

@@ -38,5 +38,7 @@ namespace HoldingTaxWebApp.Models.Plots
         [Display(Name = "সক্রিয়তা ")]
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
+
+        public string RoadName { get; set; }
     }
 }
