@@ -216,6 +216,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\wizard-holding-update.js" />
     <Content Include="Scripts\wizard-holding.js" />
     <Content Include="Scripts\wizard-PlotOwnerEdit.js" />
     <Content Include="Scripts\wizard-PlotOwnerCreate.js" />
@@ -2501,7 +2502,9 @@
     <Compile Include="Manager\AccountManager.cs" />
     <Compile Include="Manager\CommonListManager.cs" />
     <Compile Include="Manager\ConstantManager.cs" />
+    <Compile Include="Manager\DBO\BuildingTypeManager.cs" />
     <Compile Include="Manager\DBO\ConstructionStatusManager.cs" />
+    <Compile Include="Manager\DBO\DOHSAreaManager.cs" />
     <Compile Include="Manager\DBO\LeaseQuotaManager.cs" />
     <Compile Include="Manager\DBO\OfficialStatusManager.cs" />
     <Compile Include="Manager\DBO\OwnershipSourceManager.cs" />
@@ -2636,6 +2639,7 @@
     <Content Include="Views\PlotOwner\Index.cshtml" />
     <Content Include="Views\Holding\Create.cshtml" />
     <Content Include="Views\Holding\Index.cshtml" />
+    <Content Include="Views\Holding\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
