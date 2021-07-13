@@ -279,7 +279,7 @@
 
                                                     @Html.LabelFor(model => model.Document2, "মুক্তিযোদ্ধার প্রমাণাদি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="file" name="document_file_1" id="document_file_1"  />
+                                                        <input type="file" name="document_file_1" id="document_file_1" />
                                                         <br />
                                                         <br />
                                                         <input type="file" name="document_file_2" id="document_file_2" />
@@ -401,74 +401,75 @@
                                                     বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য&nbsp;
                                                     <label class="show_plot"></label>
                                                 </div>
+                                                @*<div class="form-group row m-2">
+                                                        <label class="col-lg-2 col-form-label text-lg-right"><b>বরাদ্দ গ্রহীতার নাম :</b></label>
+                                                        <div class="col-lg-10">
+                                                            <input type="text" class="form-control border-0" id="boraddo_grohita_name" value="বরাদ্দ গ্রহীতার নাম বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য" readonly="readonly" />
+                                                        </div>
+                                                    </div>*@
+
                                                 <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>বরাদ্দ গ্রহীতার নাম :</b></label>
-                                                    <div class="col-lg-10">
-                                                        <input type="text" class="form-control border-0" id="boraddo_grohita_name" value="বরাদ্দ গ্রহীতার নাম বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য" readonly="readonly" />
+                                                    @Html.LabelFor(model => model.AllocationLetterNo, "বরাদ্দ পত্র নম্বর :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.AllocationLetterNo, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.StringAllocationDate, "তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.StringAllocationDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>বরাদ্দ পত্র নম্বর :</b></label>
-                                                    <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="boraddo_pottro_number" value="" readonly="readonly" />
-                                                    </div>
-
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>তারিখ :</b></label>
-                                                    <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="boraddo_pottro_date" value="" readonly="readonly" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>ইজারার মেয়াদ :</b></label>
+                                                    <label class="col-lg-2 col-form-label text-lg-right">ইজারার মেয়াদ :</label>
                                                     <div class="col-lg-4">
                                                         <input type="text" class="form-control border-0" id="ejarar_meyad" value="" readonly="readonly" />
                                                     </div>
 
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>মেয়াদোত্তীর্ণের তারিখ :</b></label>
+                                                    <label class="col-lg-2 col-form-label text-lg-right">মেয়াদোত্তীর্ণের তারিখ :</label>
                                                     <div class="col-lg-4">
                                                         <input type="text" class="form-control border-0" id="ejarar_expiary_date" value="" readonly="readonly" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>নামজারী আদেশের পত্র নং :</b></label>
+                                                    @Html.LabelFor(model => model.NamjariLetterNo, "নামজারী আদেশের পত্র নং :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="namzari_number" value="" readonly="readonly" />
+                                                        @Html.EditorFor(model => model.NamjariLetterNo, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>তারিখ :</b></label>
+                                                    @Html.LabelFor(model => model.StringNamjariDate, "তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="namzari_date" value="" readonly="readonly" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>রেকর্ড সংশোধনের তারিখ : </b></label>
-                                                    <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="record_update_date" value="" readonly="readonly" />
+                                                        @Html.EditorFor(model => model.StringNamjariDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>প্রথম নকশা অনুমোদনের তারিখ : </b></label>
+                                                    @Html.LabelFor(model => model.StringRecordCorrectionDate, "রেকর্ড সংশোধনের তারিখ : ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.StringRecordCorrectionDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+
+                                                    <label class="col-lg-2 col-form-label text-lg-right">প্রথম নকশা অনুমোদনের তারিখ</label>
                                                     <div class="col-lg-4">
                                                         <input type="text" class="form-control border-0" id="first_design_date" value="" readonly="readonly" />
                                                     </div>
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>অনুমোদন নম্বর : </b></label>
+                                                    <label class="col-lg-2 col-form-label text-lg-right">অনুমোদন নম্বর : </label>
                                                     <div class="col-lg-4">
                                                         <input type="text" class="form-control border-0" id="first_design_number" value="" readonly="readonly" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>সর্বশেষ সংশোধিত নকশা  অনুমোদনের তারিখ :</b></label>
+                                                    <label class="col-lg-2 col-form-label text-lg-right">সর্বশেষ সংশোধিত নকশা  অনুমোদনের তারিখ :</label>
                                                     <div class="col-lg-4">
                                                         <input type="text" class="form-control border-0" id="last_design_date" value="" readonly="readonly" />
                                                     </div>
 
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>অনুমোদন নম্বর :</b></label>
+                                                    <label class="col-lg-2 col-form-label text-lg-right">অনুমোদন নম্বর :</label>
                                                     <div class="col-lg-4">
                                                         <input type="text" class="form-control border-0" id="last_design_number" value="" readonly="readonly" />
                                                     </div>
@@ -546,6 +547,31 @@
             autosize($('#PermanentAdd'));
             autosize($('#ContactAdd'));
 
+
+            $('#StringAllocationDate').datepicker({
+                rtl: KTUtil.isRTL(),
+                todayBtn: "linked",
+                clearBtn: true,
+                todayHighlight: true,
+                format: "dd/mm/yyyy",
+                autoclose: true
+            });
+            $('#StringNamjariDate').datepicker({
+                rtl: KTUtil.isRTL(),
+                todayBtn: "linked",
+                clearBtn: true,
+                todayHighlight: true,
+                format: "dd/mm/yyyy",
+                autoclose: true
+            });
+            $('#StringRecordCorrectionDate').datepicker({
+                rtl: KTUtil.isRTL(),
+                todayBtn: "linked",
+                clearBtn: true,
+                todayHighlight: true,
+                format: "dd/mm/yyyy",
+                autoclose: true
+            });
 
             function readUrl(input) {
                 if (input.files && input.files[0]) {

@@ -131,7 +131,11 @@ var KTWizard4 = function () {
                             HoldersFlatNumber: parseInt($('#HoldersFlatNumber').val()) || 0,
                             PreviousDueTax: parseFloat($('#PreviousDueTax').val()) || 0,
                             HolderFlatList: list,
-                            image_file: $("#image_file").get(0).files[0]
+                            AllocationLetterNo: $('#AllocationLetterNo').val().trim(),
+                            StringAllocationDate: $('#StringAllocationDate').val().trim(),
+                            NamjariLetterNo: $('#NamjariLetterNo').val().trim(),
+                            StringNamjariDate: $('#StringNamjariDate').val().trim(),
+                            StringRecordCorrectionDate: $('#StringRecordCorrectionDate').val().trim()
                         };
 
 
@@ -249,16 +253,16 @@ var KTWizard4 = function () {
                     },
                     Father: {
                         validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //}
                         }
                     },
                     Mother: {
                         validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //}
                         }
                     },
                     Email: {
@@ -277,9 +281,9 @@ var KTWizard4 = function () {
                     },
                     Contact2: {
                         validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //},
                             numeric: {
                                 message: 'বৈধ নম্বর দিন'
                             }
@@ -287,23 +291,23 @@ var KTWizard4 = function () {
                     },
                     PresentAdd: {
                         validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //}
                         }
                     },
                     PermanentAdd: {
                         validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //}
                         }
                     },
                     ContactAdd: {
                         validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //}
                         }
                     },
                     PreviousDueTax: {
@@ -315,9 +319,9 @@ var KTWizard4 = function () {
                     },
                     image_file: {
                         validators: {
-                            notEmpty: {
-                                message: 'পাসপোর্ট সাইজের ছবি আবশ্যক'
-                            }
+                            //notEmpty: {
+                            //    message: 'পাসপোর্ট সাইজের ছবি আবশ্যক'
+                            //}
                         }
                     }
                 },
@@ -359,9 +363,9 @@ var KTWizard4 = function () {
                     },
                     AmountOfLand: {
                         validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //},
                             numeric: {
                                 message: 'বৈধ ভ্যালু দিন'
                             }
@@ -369,9 +373,9 @@ var KTWizard4 = function () {
                     },
                     TotalFloor: {
                         validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //},
                             numeric: {
                                 message: 'বৈধ ভ্যালু দিন'
                             }
@@ -379,9 +383,9 @@ var KTWizard4 = function () {
                     },
                     EachFloorArea: {
                         validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //},
                             numeric: {
                                 message: 'বৈধ ভ্যালু দিন'
                             }
@@ -389,9 +393,9 @@ var KTWizard4 = function () {
                     },
                     TotalFlat: {
                         validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //},
                             numeric: {
                                 message: 'বৈধ ভ্যালু দিন'
                             }
@@ -399,9 +403,9 @@ var KTWizard4 = function () {
                     },
                     HoldersFlatNumber: {
                         validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //},
                             numeric: {
                                 message: 'বৈধ ভ্যালু দিন'
                             }
@@ -422,6 +426,79 @@ var KTWizard4 = function () {
         _validations.push(FormValidation.formValidation(
             _formEl,
             {
+                fields: {
+                    OwnershipSourceId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    OwnerType: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    BuildingTypeId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    AmountOfLand: {
+                        validators: {
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //},
+                            numeric: {
+                                message: 'বৈধ ভ্যালু দিন'
+                            }
+                        }
+                    },
+                    TotalFloor: {
+                        validators: {
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //},
+                            numeric: {
+                                message: 'বৈধ ভ্যালু দিন'
+                            }
+                        }
+                    },
+                    EachFloorArea: {
+                        validators: {
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //},
+                            numeric: {
+                                message: 'বৈধ ভ্যালু দিন'
+                            }
+                        }
+                    },
+                    TotalFlat: {
+                        validators: {
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //},
+                            numeric: {
+                                message: 'বৈধ ভ্যালু দিন'
+                            }
+                        }
+                    },
+                    HoldersFlatNumber: {
+                        validators: {
+                            //notEmpty: {
+                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            //},
+                            numeric: {
+                                message: 'বৈধ ভ্যালু দিন'
+                            }
+                        }
+                    }
+                },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
                     // Bootstrap Framework Integration
