@@ -79,6 +79,15 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         TotalFlat = Data_Reader["TotalFlat"] != DBNull.Value ? Convert.ToInt32(Data_Reader["TotalFlat"]) : (int?)null,
                         HoldersFlatNumber = Data_Reader["HoldersFlatNumber"] != DBNull.Value ? Convert.ToInt32(Data_Reader["HoldersFlatNumber"]) : (int?)null,
                         PreviousDueTax = Data_Reader["PreviousDueTax"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["PreviousDueTax"]) : (decimal?)null,
+
+                        //this part done by Masum  ====================
+                        AllocationLetterNo = Convert.ToString(Data_Reader["AllocationLetterNo"]),
+                        NamjariLetterNo = Convert.ToString(Data_Reader["NamjariLetterNo"]),
+                        AllocationDate = Data_Reader["AllocationDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["AllocationDate"]) : (DateTime?)null,
+                        NamjariDate = Data_Reader["NamjariDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["NamjariDate"]) : (DateTime?)null,
+                        RecordCorrectionDate = Data_Reader["RecordCorrectionDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["RecordCorrectionDate"]) : (DateTime?)null,
+
+
                         ImageLocation = Convert.ToString(Data_Reader["ImageLocation"]),
                         Document1 = Convert.ToString(Data_Reader["Document1"]),
                         Document2 = Convert.ToString(Data_Reader["Document2"]),
@@ -193,6 +202,15 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     vm.TotalFlat = Data_Reader["TotalFlat"] != DBNull.Value ? Convert.ToInt32(Data_Reader["TotalFlat"]) : (int?)null;
                     vm.HoldersFlatNumber = Data_Reader["HoldersFlatNumber"] != DBNull.Value ? Convert.ToInt32(Data_Reader["HoldersFlatNumber"]) : (int?)null;
                     vm.PreviousDueTax = Data_Reader["PreviousDueTax"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["PreviousDueTax"]) : (decimal?)null;
+
+                    //done by masum =====================
+                    vm.AllocationLetterNo = Convert.ToString(Data_Reader["AllocationLetterNo"]);
+                    vm.NamjariLetterNo = Convert.ToString(Data_Reader["NamjariLetterNo"]);
+                    vm.AllocationDate = Data_Reader["AllocationDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["AllocationDate"]) : (DateTime?)null;
+                    vm.NamjariDate = Data_Reader["NamjariDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["NamjariDate"]) : (DateTime?)null;
+                    vm.RecordCorrectionDate = Data_Reader["RecordCorrectionDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["RecordCorrectionDate"]) : (DateTime?)null;
+
+
                     vm.ImageLocation = Convert.ToString(Data_Reader["ImageLocation"]);
                     vm.Document1 = Convert.ToString(Data_Reader["Document1"]);
                     vm.Document2 = Convert.ToString(Data_Reader["Document2"]);
@@ -292,6 +310,15 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@TotalFlat", SqlDbType.Int).Value = model.TotalFlat;
                 Sql_Command.Parameters.Add("@HoldersFlatNumber", SqlDbType.Int).Value = model.HoldersFlatNumber;
                 Sql_Command.Parameters.Add("@PreviousDueTax", SqlDbType.Decimal).Value = model.PreviousDueTax;
+
+                //created by Masum ===================
+                Sql_Command.Parameters.Add("@AllocationLetterNo", SqlDbType.NVarChar).Value = model.AllocationLetterNo;
+                Sql_Command.Parameters.Add("@NamjariLetterNo", SqlDbType.NVarChar).Value = model.NamjariLetterNo;
+                Sql_Command.Parameters.Add("@AllocationDate", SqlDbType.DateTime).Value = model.AllocationDate;
+                Sql_Command.Parameters.Add("@NamjariDate", SqlDbType.DateTime).Value = model.NamjariDate;
+                Sql_Command.Parameters.Add("@RecordCorrectionDate", SqlDbType.DateTime).Value = model.RecordCorrectionDate;
+
+
                 Sql_Command.Parameters.Add("@ImageLocation", SqlDbType.NVarChar).Value = model.ImageLocation;
                 Sql_Command.Parameters.Add("@Document1", SqlDbType.NVarChar).Value = model.Document1;
                 Sql_Command.Parameters.Add("@Document2", SqlDbType.NVarChar).Value = model.Document2;
@@ -386,6 +413,15 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@TotalFlat", SqlDbType.Int).Value = model.TotalFlat;
                 Sql_Command.Parameters.Add("@HoldersFlatNumber", SqlDbType.Int).Value = model.HoldersFlatNumber;
                 Sql_Command.Parameters.Add("@PreviousDueTax", SqlDbType.Decimal).Value = model.PreviousDueTax;
+
+                //created by Masum ===================
+                Sql_Command.Parameters.Add("@AllocationLetterNo", SqlDbType.NVarChar).Value = model.AllocationLetterNo;
+                Sql_Command.Parameters.Add("@NamjariLetterNo", SqlDbType.NVarChar).Value = model.NamjariLetterNo;
+                Sql_Command.Parameters.Add("@AllocationDate", SqlDbType.DateTime).Value = model.AllocationDate;
+                Sql_Command.Parameters.Add("@NamjariDate", SqlDbType.DateTime).Value = model.NamjariDate;
+                Sql_Command.Parameters.Add("@RecordCorrectionDate", SqlDbType.DateTime).Value = model.RecordCorrectionDate;
+
+
                 Sql_Command.Parameters.Add("@ImageLocation", SqlDbType.NVarChar).Value = model.ImageLocation;
                 Sql_Command.Parameters.Add("@Document1", SqlDbType.NVarChar).Value = model.Document1;
                 Sql_Command.Parameters.Add("@Document2", SqlDbType.NVarChar).Value = model.Document2;
