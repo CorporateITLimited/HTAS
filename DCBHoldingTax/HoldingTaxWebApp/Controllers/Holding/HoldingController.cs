@@ -88,6 +88,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 UpdatedByUsername = holder.UpdatedByUsername,
                 RoadName = holder.RoadName,
                 RoadNo = holder.RoadNo,
+                AreaPlotFlatData = holder.AreaPlotFlatData,
 
                 // id values
                 AreaId = holder.AreaId,

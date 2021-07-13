@@ -187,5 +187,7 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "RecordCorrection Date")]
         public string StringRecordCorrectionDate { get; set; }
+
+        public string AreaPlotFlatData { get; set; }
     }
 }

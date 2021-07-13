@@ -189,11 +189,9 @@ namespace HoldingTaxWebApp.ViewModels
 
         [Display(Name = "RecordCorrection Date")]
         public string StringRecordCorrectionDate { get; set; }
+        public string AreaPlotFlatData { get; set; }
 
         public List<HolderFlat> HolderFlatList { get; set; }
-        public HttpPostedFileBase image_file { get; set; }
-        public HttpPostedFileBase document_file_1 { get; set; }
-        public HttpPostedFileBase document_file_2 { get; set; }
 
         public HolderVM()
         {
