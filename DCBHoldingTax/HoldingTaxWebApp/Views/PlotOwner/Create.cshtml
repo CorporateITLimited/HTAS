@@ -122,7 +122,16 @@
                                                    })
                                                         @Html.ValidationMessageFor(model => model.PlotId, "", new { @class = "text-danger" })
                                                     </div>
-
+                                                    @Html.LabelFor(model => model.ConsStatusId, "জমির বর্তমান অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.DropDownListFor(model => model.ConsStatusId, null, "-- নির্বাচন করুন --", new
+                                                   {
+                                                       @class = "form-control",
+                                                       @name = "ConsStatusId",
+                                                       @id = "ConsStatusId"
+                                                   })
+                                                        @Html.ValidationMessageFor(model => model.ConsStatusId, "", new { @class = "text-danger" })
+                                                    </div>
 
                                                 </div>
 
@@ -239,16 +248,7 @@
                                                         @Html.EditorFor(model => model.LandDevelopChange, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
-                                                    @Html.LabelFor(model => model.ConsStatusId, "জমির বর্তমান অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.DropDownListFor(model => model.ConsStatusId, null, "-- নির্বাচন করুন --", new
-                                                   {
-                                                       @class = "form-control",
-                                                       @name = "ConsStatusId",
-                                                       @id = "ConsStatusId"
-                                                   })
-                                                        @Html.ValidationMessageFor(model => model.ConsStatusId, "", new { @class = "text-danger" })
-                                                    </div>
+                                                 
                                                 </div>
 
                                                 <div class="mt-2">
@@ -495,7 +495,8 @@
   
    
 @*save funtionality implemented in this js*@
-<script src="~/Scripts/wizard-PlotOwner.js"></script>
+<script src="~/Scripts/wizard-PlotOwnerCreate.js"></script>
+
     <script>
         function addRow() {
             debugger;
@@ -688,12 +689,12 @@
         DesignTableBody.append('<tr>'+
             '<td><input type="text" class="form-control StringMEO_NCCDate" name="StringMEO_NCCDate" /></td>' +
             '<td><input type="text" class="form-control Reference" name="Reference" /></td>' +
-            '<td><input type="text" class="form-control ApprovalNo" name="ApprovalNo" /></td>' +
+            '<td><input type="number" class="form-control ApprovalNo" name="ApprovalNo" /></td>' +
             '<td><input type="text" class="form-control StringApprovalDate" name="StringApprovalDate" /></td>' +
             '<td><input type="text" class="form-control ApprovalLetterNo" name="ApprovalLetterNo" /></td>' +
-            '<td><input type="text" class="form-control FlorNumber" name="FlorNumber" /></td>' +
-            '<td><input type="text" class="form-control GroundFlorArea" name="GroundFlorArea" /></td>' +
-            '<td><input type="text" class="form-control OtherFlorArea" name="OtherFlorArea" /></td>' +
+            '<td><input type="number" class="form-control FlorNumber" name="FlorNumber" /></td>' +
+            '<td><input type="number" class="form-control GroundFlorArea" name="GroundFlorArea" /></td>' +
+            '<td><input type="number" class="form-control OtherFlorArea" name="OtherFlorArea" /></td>' +
             '<td><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
 
 

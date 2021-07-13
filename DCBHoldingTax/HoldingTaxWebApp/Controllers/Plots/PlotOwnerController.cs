@@ -1,4 +1,5 @@
-﻿using HoldingTaxWebApp.Manager.DBO;
+﻿using HoldingTaxWebApp.Helpers;
+using HoldingTaxWebApp.Manager.DBO;
 using HoldingTaxWebApp.Manager.Plots;
 using HoldingTaxWebApp.Models.Plots;
 using HoldingTaxWebApp.ViewModels.Plots;
@@ -231,7 +232,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
         // GET: PlotOwner/Create
         public ActionResult Create()
         {
-            ViewBag.PlotId = new SelectList(_PlotManager.GetAllPlot(), "PlotId", "PlotIdNumber");
+            ViewBag.PlotId = new SelectList(_PlotOwnerManager.GetPlot(), "PlotId", "PlotIdNumber");
             ViewBag.LeaseQuotaId = new SelectList(_LeaseQuotaManager.GetAllLeaseQuota(), "LeaseQuotaId", "LeaseQuotaName");
             ViewBag.OfficialStatusId = new SelectList(_OfficialStatusManager.GetAllOfficialStatus(), "OfficialStatusId", "OffStatusName");
             //ViewBag.OwnershipSourceId = new SelectList(_OwnershipSourceManager.GetAllOwnershipSource(), "OwnershipSourceId", "SourceName");
@@ -427,5 +428,453 @@ namespace HoldingTaxWebApp.Controllers.Plots
                 return View();
             }
         }
+
+
+
+
+        #region Save Data
+
+        [HttpPost]
+        public JsonResult AddOrUpdate(PlotOwnerCombineVM POVM)
+        {
+            try
+            {
+                string status = "error";
+
+                if (POVM.PlotOwnerId == 0) //IsNullOrEmpty(POVM.NoaId.ToString())
+                {
+                    if(POVM.StringCompletionDate != null)
+                    {
+                        POVM.CompletionDate = DateTime.ParseExact(POVM.StringCompletionDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringFirstFCDate != null)
+                    {
+                        POVM.FirstFCDate = DateTime.ParseExact(POVM.StringFirstFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringFivthFCDate != null)
+                    {
+                        POVM.FivthFCDate = DateTime.ParseExact(POVM.StringFivthFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringForthFCDate != null)
+                    {
+                        POVM.ForthFCDate = DateTime.ParseExact(POVM.StringForthFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringGroundFCDate != null)
+                    {
+                        POVM.GroundFCDate = DateTime.ParseExact(POVM.StringGroundFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringGroundFCDate != null)
+                    {
+                        POVM.GroundFCDate = DateTime.ParseExact(POVM.StringGroundFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringLeaveDate != null)
+                    {
+                        POVM.LeaveDate = DateTime.ParseExact(POVM.StringLeaveDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringOtherFCDate != null)
+                    {
+                        POVM.OtherFCDate = DateTime.ParseExact(POVM.StringOtherFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringSccFCDate != null)
+                    {
+                        POVM.SccFCDate = DateTime.ParseExact(POVM.StringSccFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringSixFCDate != null)
+                    {
+                        POVM.SixFCDate = DateTime.ParseExact(POVM.StringSixFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringThirdFCDate != null)
+                    {
+                        POVM.ThirdFCDate = DateTime.ParseExact(POVM.StringThirdFCDate, "dd/MM/yyyy", null);
+                    }
+
+
+                   
+
+
+                    PlotOwnerCombineVM plotw = new PlotOwnerCombineVM()
+                    {
+                        ////PlotOwner Portion
+                        PhoneNumber = POVM.PhoneNumber,
+                        ConsStatusId = POVM.ConsStatusId,
+                        Email = POVM.Email,
+                        HandOverLetterNo = POVM.HandOverLetterNo,
+                        HandOverOffice = POVM.HandOverOffice,
+                        IsAlive = POVM.IsAlive,
+                        LandDevelopChange = POVM.LandDevelopChange,
+                        LeaseAuthority = POVM.LeaseAuthority,
+                        LeasePeriod = POVM.LeasePeriod,
+                        LeaseQuotaId = POVM.LeaseQuotaId,
+                        LeaseType = POVM.LeaseType,
+                        LeaveDate = POVM.LeaveDate,
+                        OfficialStatusId = POVM.OfficialStatusId,
+                        PermanentAdd = POVM.PermanentAdd,
+                        PlotId = POVM.PlotId,
+                        PlotOwnerName = POVM.PlotOwnerName,
+                        PresentAdd = POVM.PresentAdd,
+
+                        /////Construction Progress
+
+                        OwnerDeclaration = POVM.OwnerDeclaration,
+                        RealBuilder = POVM.RealBuilder,
+                        DevelopDeposit = POVM.DevelopDeposit,
+                        FloorNumber = POVM.FloorNumber,
+                        CompletionDate = POVM.CompletionDate,
+                        GroundFCDate  = POVM.GroundFCDate,
+                        FirstFCDate = POVM.FirstFCDate,
+                        SccFCDate = POVM.SccFCDate,
+                        ThirdFCDate = POVM.ThirdFCDate,
+                        ForthFCDate = POVM.ForthFCDate,
+                        FivthFCDate = POVM.FivthFCDate,
+                        SixFCDate = POVM.SixFCDate,
+                        OtherFCDate = POVM.OtherFCDate,
+                        OwnerPortion = POVM.OwnerPortion,
+                        DeveloperPortion = POVM.DeveloperPortion,
+                        BuyerPortion = POVM.BuyerPortion,
+                        SubmittedPortion = POVM.SubmittedPortion,
+
+                        ////UnauthPortion
+                        TotalUnauthArea = POVM.TotalUnauthArea,
+                        FineFreeArea = POVM.FineFreeArea,
+                        WithFineUnauth = POVM.WithFineUnauth,
+                        RemovedUnauthArea = POVM.RemovedUnauthArea,
+                        NonRemovedUnauth = POVM.NonRemovedUnauth,
+                        FineRate = POVM.FineRate,
+                        FineAmount = POVM.FineAmount,
+
+
+                        ////Common portion
+
+                        IsActive = true,
+                        IsDeleted = false,
+                        CreateDate = DateTime.Now,
+                        CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                        LastUpdated = DateTime.Now,
+                        LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                        
+
+                    };
+
+                    int ownerId = _PlotOwnerManager.PlotOwnerInsert(plotw);
+                    if(ownerId > 0) {
+
+                        foreach (OthetPlotOwner item2 in POVM.OthetPlotOwner)
+                        {
+                            OthetPlotOwner Details2 = new OthetPlotOwner()
+                            {
+                                PlotOwnerId = ownerId,
+                                OthetOwneeName = item2.OthetOwneeName,
+                                Address = item2.Address,
+                                Remarks = item2.Remarks,
+                                IsActive = true,
+                                IsDeleted = false,
+                                CreateDate = DateTime.Now,
+                                CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                LastUpdated = DateTime.Now,
+                                LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+
+
+                            };
+                            string returnString = CommonConstantHelper.Success;
+                            if (Details2.OthetOwneeName.Length != 0)
+                            {
+                                returnString = _PlotOwnerManager.OthetPlotOwnerInsert(Details2);
+                            }
+                            if (returnString != CommonConstantHelper.Success)
+
+                            {
+                                status = "error_details";
+                                break;
+                            }
+                            else
+                            {
+                                status = "success";
+                            }
+                        }
+
+                        foreach (DesignApproval item in POVM.DesignApproval)
+                        {
+                            DesignApproval Details = new DesignApproval()
+                            {
+                                PlotId = POVM.PlotId,
+                                ApprovalDate = item.ApprovalDate,
+                                ApprovalLetterNo = item.ApprovalLetterNo,
+                                ApprovalNo = item.ApprovalNo,
+                                FlorNumber = item.FlorNumber,
+                                Reference = item.Reference,
+                                GroundFlorArea = item.GroundFlorArea,
+                                MEO_NCCDate = item.MEO_NCCDate,
+                                OtherFlorArea = item.OtherFlorArea,
+                                IsActive = true,
+                                IsDeleted = false,
+                                CreateDate = DateTime.Now,
+                                CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                LastUpdated = DateTime.Now,
+                                LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+
+                            };
+                            if (item.StringApprovalDate != null)
+                            {
+                                Details.ApprovalDate = DateTime.ParseExact(item.StringApprovalDate, "dd/MM/yyyy", null);
+                            }
+                            if (item.StringMEO_NCCDate != null)
+                            {
+                                Details.MEO_NCCDate = DateTime.ParseExact(item.StringMEO_NCCDate, "dd/MM/yyyy", null);
+                            }
+
+                            string returnString = CommonConstantHelper.Success;
+                            if (Details.ApprovalNo > 0)
+                            {
+                                returnString = _PlotOwnerManager.DesignApprovalInsert(Details);
+                            }
+                            if (returnString != CommonConstantHelper.Success)
+
+                            {
+                                status = "error_details";
+                                break;
+                            }
+                            else
+                            {
+                                status = "success";
+                            }
+                        }
+
+                    }
+
+                   
+
+                   
+                 
+                    return new JsonResult { Data = new { status } };
+                }
+                else
+                {
+                    if (POVM.StringCompletionDate != null)
+                    {
+                        POVM.CompletionDate = DateTime.ParseExact(POVM.StringCompletionDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringFirstFCDate != null)
+                    {
+                        POVM.FirstFCDate = DateTime.ParseExact(POVM.StringFirstFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringFivthFCDate != null)
+                    {
+                        POVM.FivthFCDate = DateTime.ParseExact(POVM.StringFivthFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringForthFCDate != null)
+                    {
+                        POVM.ForthFCDate = DateTime.ParseExact(POVM.StringForthFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringGroundFCDate != null)
+                    {
+                        POVM.GroundFCDate = DateTime.ParseExact(POVM.StringGroundFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringGroundFCDate != null)
+                    {
+                        POVM.GroundFCDate = DateTime.ParseExact(POVM.StringGroundFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringLeaveDate != null)
+                    {
+                        POVM.LeaveDate = DateTime.ParseExact(POVM.StringLeaveDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringOtherFCDate != null)
+                    {
+                        POVM.OtherFCDate = DateTime.ParseExact(POVM.StringOtherFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringSccFCDate != null)
+                    {
+                        POVM.SccFCDate = DateTime.ParseExact(POVM.StringSccFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringSixFCDate != null)
+                    {
+                        POVM.SixFCDate = DateTime.ParseExact(POVM.StringSixFCDate, "dd/MM/yyyy", null);
+                    }
+                    if (POVM.StringThirdFCDate != null)
+                    {
+                        POVM.ThirdFCDate = DateTime.ParseExact(POVM.StringThirdFCDate, "dd/MM/yyyy", null);
+                    }
+
+
+                    PlotOwnerCombineVM plotw = new PlotOwnerCombineVM()
+                    {
+                        ////PlotOwner Portion
+                        PlotOwnerId = POVM.PlotOwnerId,
+                        PhoneNumber = POVM.PhoneNumber,
+                        ConsStatusId = POVM.ConsStatusId,
+                        Email = POVM.Email,
+                        HandOverLetterNo = POVM.HandOverLetterNo,
+                        HandOverOffice = POVM.HandOverOffice,
+                        IsAlive = POVM.IsAlive,
+                        LandDevelopChange = POVM.LandDevelopChange,
+                        LeaseAuthority = POVM.LeaseAuthority,
+                        LeasePeriod = POVM.LeasePeriod,
+                        LeaseQuotaId = POVM.LeaseQuotaId,
+                        LeaseType = POVM.LeaseType,
+                        LeaveDate = POVM.LeaveDate,
+                        OfficialStatusId = POVM.OfficialStatusId,
+                        PermanentAdd = POVM.PermanentAdd,
+                        PlotId = POVM.PlotId,
+                        PlotOwnerName = POVM.PlotOwnerName,
+                        PresentAdd = POVM.PresentAdd,
+
+                        /////Construction Progress
+                        ConsProgressId = POVM.ConsProgressId,
+                        OwnerDeclaration = POVM.OwnerDeclaration,
+                        RealBuilder = POVM.RealBuilder,
+                        DevelopDeposit = POVM.DevelopDeposit,
+                        FloorNumber = POVM.FloorNumber,
+                        CompletionDate = POVM.CompletionDate,
+                        GroundFCDate = POVM.GroundFCDate,
+                        FirstFCDate = POVM.FirstFCDate,
+                        SccFCDate = POVM.SccFCDate,
+                        ThirdFCDate = POVM.ThirdFCDate,
+                        ForthFCDate = POVM.ForthFCDate,
+                        FivthFCDate = POVM.FivthFCDate,
+                        SixFCDate = POVM.SixFCDate,
+                        OtherFCDate = POVM.OtherFCDate,
+                        OwnerPortion = POVM.OwnerPortion,
+                        DeveloperPortion = POVM.DeveloperPortion,
+                        BuyerPortion = POVM.BuyerPortion,
+                        SubmittedPortion = POVM.SubmittedPortion,
+
+                        ////UnauthPortion
+                        UnauthComId = POVM.UnauthComId,
+                        TotalUnauthArea = POVM.TotalUnauthArea,
+                        FineFreeArea = POVM.FineFreeArea,
+                        WithFineUnauth = POVM.WithFineUnauth,
+                        RemovedUnauthArea = POVM.RemovedUnauthArea,
+                        NonRemovedUnauth = POVM.NonRemovedUnauth,
+                        FineRate = POVM.FineRate,
+                        FineAmount = POVM.FineAmount,
+
+
+                        ////Common portion
+
+                        IsActive = true,
+                        IsDeleted = false,
+                        CreateDate = DateTime.Now,
+                        CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                        LastUpdated = DateTime.Now,
+                        LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+
+
+                    };
+
+                    int ownerId = _PlotOwnerManager.PlotOwnerUpdate(plotw);
+                    if (ownerId > 0)
+                    {
+                        _PlotOwnerManager.OthetPlotOwnerDelete(ownerId);
+                        
+                        foreach (OthetPlotOwner item2 in POVM.OthetPlotOwner)
+                        {
+                            OthetPlotOwner Details2 = new OthetPlotOwner()
+                            {
+                                OthetPlotOwnerId = item2.OthetPlotOwnerId,
+                                PlotOwnerId = POVM.PlotOwnerId,
+                                OthetOwneeName = item2.OthetOwneeName,
+                                Address = item2.Address,
+                                Remarks = item2.Remarks,
+                                IsActive = true,
+                                IsDeleted = false,
+                                CreateDate = DateTime.Now,
+                                CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                LastUpdated = DateTime.Now,
+                                LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+
+
+                            };
+                            string returnString = CommonConstantHelper.Success;
+                            if (Details2.OthetOwneeName.Length != 0)
+                            {
+                                returnString = _PlotOwnerManager.OthetPlotOwnerInsert(Details2);
+                            }
+                            if (returnString != CommonConstantHelper.Success)
+
+                            {
+                                status = "error_details";
+                                break;
+                            }
+                            else
+                            {
+                                status = "success";
+                            }
+                        }
+
+                        _PlotOwnerManager.DesignApprovalDelete(POVM.PlotId);
+
+                        foreach (DesignApproval item in POVM.DesignApproval)
+                        {
+                            DesignApproval Details = new DesignApproval()
+                            {
+                                DesignAppId = item.DesignAppId,
+                                PlotId = POVM.PlotId,
+                                ApprovalDate = DateTime.ParseExact(item.StringApprovalDate, "dd/MM/yyyy", null),
+                                ApprovalLetterNo = item.ApprovalLetterNo,
+                                ApprovalNo = item.ApprovalNo,
+                                FlorNumber = item.FlorNumber,
+                                Reference = item.Reference,
+                                GroundFlorArea = item.GroundFlorArea,
+                                MEO_NCCDate = DateTime.ParseExact(item.StringMEO_NCCDate, "dd/MM/yyyy", null),
+                                OtherFlorArea = item.OtherFlorArea,
+                                IsActive = true,
+                                IsDeleted = false,
+                                CreateDate = DateTime.Now,
+                                CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                LastUpdated = DateTime.Now,
+                                LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+
+
+                            };
+                            if (item.StringApprovalDate != null)
+                            {
+                                Details.ApprovalDate = DateTime.ParseExact(item.StringApprovalDate, "dd/MM/yyyy", null);
+                            }
+                            if (item.StringMEO_NCCDate != null)
+                            {
+                                Details.MEO_NCCDate = DateTime.ParseExact(item.StringMEO_NCCDate, "dd/MM/yyyy", null);
+                            }
+                            string returnString = CommonConstantHelper.Success;
+                            if (Details.ApprovalNo > 0)
+                            {
+                                returnString = _PlotOwnerManager.DesignApprovalInsert(Details);
+                            }
+                            if (returnString != CommonConstantHelper.Success)
+
+                            {
+                                status = "error_details";
+                                break;
+                            }
+                            else
+                            {
+                                status = "success";
+                            }
+                        }
+
+                    }
+
+
+
+
+
+                    return new JsonResult { Data = new { status } };
+                }
+
+
+            }
+            catch (Exception exception)
+            {
+                TempData["EM"] = "error | " + exception.Message.ToString();
+                return new JsonResult { Data = "error" };
+
+            }
+
+        }
+
+        #endregion  
+
+
+
+
+
     }
 }
