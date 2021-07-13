@@ -279,7 +279,7 @@
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                     <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
-                                            <img src="@Model.ImageLocation" alt="Passport Size Image" height="200" width="200" />
+                                            <img src="@Model.ImageLocation" alt="Passport Size Image" height="200" width="200" style="border:1px solid black;" />
                                         </span>
                                     </div>
                                 </div>
@@ -363,8 +363,14 @@
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                         <div class="col-6">
                                             <span class="form-control-plaintext kt-font-bolder">
-                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document1" title="Download">প্রমাণাদি ১</a>
-                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document2" title="Download">প্রমাণাদি ২</a>
+                                                @if (!string.IsNullOrWhiteSpace(Model.Document1))
+                                                {
+                                                    <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document1" title="Download">ডাউনলোড প্রমাণাদি ১</a>
+                                                }
+                                                @if (!string.IsNullOrWhiteSpace(Model.Document2))
+                                                {
+                                                    <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document2" title="Download">ডাউনলোড প্রমাণাদি ২</a>
+                                                }
                                             </span>
                                         </div>
                                     </div>
@@ -460,13 +466,186 @@
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
                             <legend>    বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য</legend>
+                            <div class="col-lg-5">
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        বরাদ্দ গ্রহীতার নাম
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            &nbsp;
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.AllocationLetterNo)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.AllocationLetterNo)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        ইজারার মেয়াদ :
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            &nbsp;
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.NamjariLetterNo)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.NamjariLetterNo)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringRecordCorrectionDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringRecordCorrectionDate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        প্রথম নকশা অনুমোদনের তারিখ
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            &nbsp;
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        সর্বশেষ সংশোধিত নকশা  অনুমোদনের তারিখ
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            &nbsp;
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-lg-5">
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        &nbsp;
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder">  &nbsp; </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            &nbsp;
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringAllocationDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringAllocationDate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        মেয়াদোত্তীর্ণের তারিখ
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            &nbsp;
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringNamjariDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringNamjariDate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        &nbsp;
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder">   &nbsp; </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            &nbsp;
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        অনুমোদন নম্বর
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            &nbsp;
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-4 col-form-label">
+                                        অনুমোদন নম্বর
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            &nbsp;
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
 
                         <div class="card-footer">
                             <div class="text-center">
                                 <a href="~/Holding/Edit/@Model.AreaId" class="btn btn-outline-success btn-md">
-                                    <i class="fas fa-pen"></i>হালনাগাদের পেজে  যান
+                                    <i class="fas fa-pen"></i>আপডেট পেজে  যান
                                 </a>
                                 <a href="~/Holding/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>
                             </div>

@@ -226,8 +226,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 vm.StrAmountOfLand = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.EachFloorArea);
                 vm.StrEachFloorArea = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.AmountOfLand);
                 vm.StrHoldersFlatNumber = BanglaConvertionHelper.IntegerValueEnglish2Bangla(vm.HoldersFlatNumber);
-                vm.StrTotalFlat = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.TotalFlat);
-                vm.StrTotalFloor = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.TotalFloor);
+                vm.StrTotalFlat = BanglaConvertionHelper.IntegerValueEnglish2Bangla(vm.TotalFlat);
+                vm.StrTotalFloor = BanglaConvertionHelper.IntegerValueEnglish2Bangla(vm.TotalFloor);
 
                 Data_Reader.Close();
                 Sql_Connection.Close();
@@ -390,11 +390,9 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@TotalFlat", SqlDbType.Int).Value = model.TotalFlat;
                 Sql_Command.Parameters.Add("@HoldersFlatNumber", SqlDbType.Int).Value = model.HoldersFlatNumber;
                 Sql_Command.Parameters.Add("@PreviousDueTax", SqlDbType.Decimal).Value = model.PreviousDueTax;
-
                 Sql_Command.Parameters.Add("@ImageLocation", SqlDbType.NVarChar).Value = model.ImageLocation;
                 Sql_Command.Parameters.Add("@Document1", SqlDbType.NVarChar).Value = model.Document1;
                 Sql_Command.Parameters.Add("@Document2", SqlDbType.NVarChar).Value = model.Document2;
-                Sql_Command.Parameters.Add("@PreviousDueTax", SqlDbType.Decimal).Value = model.PreviousDueTax;
 
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = model.CreateDate;
                 Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = model.CreatedBy;
