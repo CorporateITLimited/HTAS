@@ -97,6 +97,14 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 OwnershipSourceId = holder.OwnershipSourceId,
                 OwnerType = holder.OwnerType,
                 PlotId = holder.PlotId,
+
+                // converted values
+               StrAmountOfLand = holder.StrAmountOfLand,
+               StrPreviousDueTax = holder.StrPreviousDueTax,
+               StrEachFloorArea = holder.StrEachFloorArea,
+               StrHoldersFlatNumber = holder.StrHoldersFlatNumber,
+               StrTotalFlat = holder.StrTotalFlat,
+               StrTotalFloor = holder.StrTotalFloor
             };
 
             return View(vm);
@@ -128,158 +136,160 @@ namespace HoldingTaxWebApp.Controllers.Holding
             {
                 string status = "error";
 
-                ////checking session first
-                //int uid = 0;
-                //if (Session[CommonConstantHelper.UserId] != null && Convert.ToInt32(Session[CommonConstantHelper.UserId]) > 0)
-                //{
-                //    uid = Convert.ToInt32(Session[CommonConstantHelper.UserId]);
-                //}
-                //else
-                //{
-                //    status = "no_user";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                //return new JsonResult { Data = new { status } };
 
-                ////checking if data is null
-                //if (hvm == null)
-                //{
-                //    status = "null";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                //checking session first
+                int uid = 0;
+                if (Session[CommonConstantHelper.UserId] != null && Convert.ToInt32(Session[CommonConstantHelper.UserId]) > 0)
+                {
+                    uid = Convert.ToInt32(Session[CommonConstantHelper.UserId]);
+                }
+                else
+                {
+                    status = "সেশন এর মেয়াদ শেষ";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //// global declaration
+                //checking if data is null
+                if (hvm == null)
+                {
+                    status = "কোনো ডাটা পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
+
+                // global declaration
                 Holder holder = new Holder();
                 int maxId = _holdingManager.GetMAXId();
 
 
-                //// validations
+                // validations
 
-                //if (hvm.AreaId > 0)
-                //{
-                //    holder.AreaId = hvm.AreaId;
-                //}
-                //else
-                //{
-                //    status = "area_id";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if ( hvm.AreaId > 0)
+                {
+                    holder.AreaId =  hvm.AreaId;
+                }
+                else
+                {
+                    status = "এলাকার নাম পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.PlotId > 0)
-                //{
-                //    holder.PlotId = hvm.PlotId;
-                //}
-                //else
-                //{
-                //    status = "plot_id";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (  hvm.PlotId > 0)
+                {
+                    holder.PlotId =   hvm.PlotId;
+                }
+                else
+                {
+                    status = "প্লট/বাড়ী/ফ্ল্যাট নম্বর পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (!string.IsNullOrWhiteSpace(hvm.HolderName))
-                //{
-                //    holder.HolderName = hvm.HolderName;
-                //}
-                //else
-                //{
-                //    status = "holder_name";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(  hvm.HolderName))
+                {
+                    holder.HolderName =   hvm.HolderName;
+                }
+                else
+                {
+                    status = "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (!string.IsNullOrWhiteSpace(hvm.NID))
-                //{
-                //    holder.NID = hvm.NID;
-                //}
-                //else
-                //{
-                //    status = "nid";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(  hvm.NID))
+                {
+                    holder.NID =   hvm.NID;
+                }
+                else
+                {
+                    status = "জাতীয় পরিচয়পত্র পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.Gender > 0)
-                //{
-                //    holder.Gender = hvm.Gender;
-                //}
-                //else
-                //{
-                //    status = "gender";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (  hvm.Gender > 0)
+                {
+                    holder.Gender =   hvm.Gender;
+                }
+                else
+                {
+                    status = "লিঙ্গ পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.MaritialStatus > 0)
-                //{
-                //    holder.MaritialStatus = hvm.MaritialStatus;
-                //}
-                //else
-                //{
-                //    status = "marital_status";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (  hvm.MaritialStatus > 0)
+                {
+                    holder.MaritialStatus =   hvm.MaritialStatus;
+                }
+                else
+                {
+                    status = "বৈবাহিক অবস্থা পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (!string.IsNullOrWhiteSpace(hvm.Father))
-                //{
-                //    holder.Father = hvm.Father;
-                //}
-                //else
-                //{
-                //    status = "father";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(  hvm.Father))
+                {
+                    holder.Father =   hvm.Father;
+                }
+                else
+                {
+                    status = "পিতার নাম পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (!string.IsNullOrWhiteSpace(hvm.Mother))
-                //{
-                //    holder.Mother = hvm.Mother;
-                //}
-                //else
-                //{
-                //    status = "mother";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(  hvm.Mother))
+                {
+                    holder.Mother =   hvm.Mother;
+                }
+                else
+                {
+                    status = "মাতার নাম পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //holder.Spouse = !string.IsNullOrWhiteSpace(hvm.Spouse) ? hvm.Spouse : string.Empty;
-                //holder.Contact1 = !string.IsNullOrWhiteSpace(hvm.Contact1) ? hvm.Contact1 : string.Empty;
+                holder.Spouse = !string.IsNullOrWhiteSpace(  hvm.Spouse) ?   hvm.Spouse : string.Empty;
+                holder.Contact1 = !string.IsNullOrWhiteSpace(  hvm.Contact1) ?   hvm.Contact1 : string.Empty;
 
-                //if (!string.IsNullOrWhiteSpace(hvm.Contact2))
-                //{
-                //    holder.Contact2 = hvm.Contact2;
-                //}
-                //else
-                //{
-                //    status = "contact_2";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(  hvm.Contact2))
+                {
+                    holder.Contact2 =   hvm.Contact2;
+                }
+                else
+                {
+                    status = "মোবাইল নম্বর পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //holder.Email = !string.IsNullOrWhiteSpace(hvm.Email) ? hvm.Email : string.Empty;
+                holder.Email = !string.IsNullOrWhiteSpace(  hvm.Email) ?   hvm.Email : string.Empty;
 
-                //if (!string.IsNullOrWhiteSpace(hvm.PresentAdd))
-                //{
-                //    holder.PresentAdd = hvm.PresentAdd;
-                //}
-                //else
-                //{
-                //    status = "present_add";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(  hvm.PresentAdd))
+                {
+                    holder.PresentAdd =   hvm.PresentAdd;
+                }
+                else
+                {
+                    status = "বর্তমান ঠিকানা পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (!string.IsNullOrWhiteSpace(hvm.PermanentAdd))
-                //{
-                //    holder.PermanentAdd = hvm.PermanentAdd;
-                //}
-                //else
-                //{
-                //    status = "parmanent_add";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(  hvm.PermanentAdd))
+                {
+                    holder.PermanentAdd =   hvm.PermanentAdd;
+                }
+                else
+                {
+                    status = "স্থায়ী ঠিকানা পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (!string.IsNullOrWhiteSpace(hvm.ContactAdd))
-                //{
-                //    holder.ContactAdd = hvm.ContactAdd;
-                //}
-                //else
-                //{
-                //    status = "contact_add";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (!string.IsNullOrWhiteSpace(  hvm.ContactAdd))
+                {
+                    holder.ContactAdd =   hvm.ContactAdd;
+                }
+                else
+                {
+                    status = "পত্র যোগাযোগের ঠিকানা পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //holder.PreviousDueTax = hvm.PreviousDueTax != null && hvm.PreviousDueTax > 0 ? hvm.PreviousDueTax : 0;
+                holder.PreviousDueTax =   hvm.PreviousDueTax != null &&   hvm.PreviousDueTax > 0 ?   hvm.PreviousDueTax : 0;
 
 
                 if (Session["ImageFile"] != null)
@@ -291,151 +301,171 @@ namespace HoldingTaxWebApp.Controllers.Holding
                         if (extensions != "image/jpg" && extensions != "image/jpeg" && extensions != "image/pjpeg" &&
                            extensions != "image/gif" && extensions != "image/png" && extensions != "image/x-png")
                         {
-                            status = "ppsize_image_format";
+                            status = "পাসপোর্ট সাইজের ছবির ফরমেট ঠিক নেই";
                             return new JsonResult { Data = new { status } };
                         }
                         var extension = Path.GetExtension(file.FileName);
                         var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                         fileOldName = fileOldName.Replace(" ", string.Empty);
                         var newFilename = maxId + "_" + fileOldName + extension;
-                        newFilename = "~/Documents/Holders/Images/" + newFilename;
+                        newFilename = "/Documents/Holders/Images/" + newFilename;
 
                         if (System.IO.File.Exists(newFilename))
                             System.IO.File.Delete(newFilename);
                         file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
-                        holder.ImageLocation = CommonConstantHelper.DevRootDirectoryFaisal + newFilename;
+                        holder.ImageLocation = newFilename;
                     }
                     else
                     {
-                        status = "ppsize_image";
+                        status = "পাসপোর্ট সাইজের ছবি পাওয়া যাই নি";
                         return new JsonResult { Data = new { status } };
                     }
                 }
                 else
                 {
-                    status = "ppsize_image";
+                    status = "পাসপোর্ট সাইজের ছবি পাওয়া যাই নি";
                     return new JsonResult { Data = new { status } };
                 }
 
-                //if (hvm.OwnershipSourceId > 0)
-                //{
-                //    holder.OwnershipSourceId = hvm.OwnershipSourceId;
-                //}
-                //else
-                //{
-                //    status = "owner_ship_source";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.OwnershipSourceId > 0)
+                {
+                    holder.OwnershipSourceId = hvm.OwnershipSourceId;
+                }
+                else
+                {
+                    status = "মালিকানার সূত্র পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.OwnerType > 0)
-                //{
-                //    holder.OwnerType = hvm.OwnerType;
-                //    if (holder.OwnerType == 3 && Session["DocFile1"] == null && Session["DocFile2"] == null)
-                //    {
-                //        status = "war_doc";
-                //        return new JsonResult { Data = new { status } };
-                //    }
-                //    if (Session["DocFile1"] != null)
-                //    {
-                //        var file = (HttpPostedFileBase)Session["DocFile1"];
-                //        if (file != null && file.ContentLength > 0)
-                //        {
-                //            holder.Document1 = string.Empty;
-                //        }
-                //        else
-                //        {
-                //            holder.Document1 = string.Empty;
-                //        }
-                //    }
+                if (hvm.OwnerType > 0)
+                {
+                    holder.OwnerType = hvm.OwnerType;
+                    if (holder.OwnerType == 3 && Session["DocFile1"] == null && Session["DocFile2"] == null)
+                    {
+                        status = "খেতাব প্রাপ্ত মুক্তিযোদ্ধার ক্ষেত্রে  প্রমাণাদি সংযুক্ত করুন (একটি বা দুইটি)";
+                        return new JsonResult { Data = new { status } };
+                    }
+                    if (holder.OwnerType == 3 && Session["DocFile1"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile1"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc1_" + fileOldName + extension;
+                            newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
 
-                //    if (Session["DocFile2"] != null)
-                //    {
-                //        var file = (HttpPostedFileBase)Session["DocFile2"];
-                //        if (file != null && file.ContentLength > 0)
-                //        {
-                //            holder.Document2 = string.Empty;
-                //        }
-                //        else
-                //        {
-                //            holder.Document2 = string.Empty;
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                //    status = "owner_type";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
-                //if (hvm.BuildingTypeId > 0)
-                //{
-                //    holder.BuildingTypeId = hvm.BuildingTypeId;
-                //}
-                //else
-                //{
-                //    status = "building_type";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                            holder.Document1 = newFilename;
+                        }
+                        else
+                        {
+                            holder.Document1 = string.Empty;
+                        }
+                    }
 
-                //if (hvm.AmountOfLand != null && hvm.AmountOfLand > 0)
-                //{
-                //    holder.AmountOfLand = hvm.AmountOfLand;
-                //}
-                //else
-                //{
-                //    status = "amount_of_land";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                    if (holder.OwnerType == 3 && Session["DocFile2"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile2"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc2_" + fileOldName + extension;
+                            newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
 
-                //if (hvm.TotalFloor != null && hvm.TotalFloor > 0)
-                //{
-                //    holder.TotalFloor = hvm.TotalFloor;
-                //}
-                //else
-                //{
-                //    status = "total_floor";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
-                //if (hvm.EachFloorArea != null && hvm.EachFloorArea > 0)
-                //{
-                //    holder.EachFloorArea = hvm.EachFloorArea;
-                //}
-                //else
-                //{
-                //    status = "each_floor_area";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                            holder.Document2 = newFilename;
+                        }
+                        else
+                        {
+                            holder.Document2 = string.Empty;
+                        }
+                    }
+                }
+                else
+                {
+                    status = "মালিকানার ধরন পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.TotalFlat != null && hvm.TotalFlat > 0)
-                //{
-                //    holder.TotalFlat = hvm.TotalFlat;
-                //}
-                //else
-                //{
-                //    status = "total_flat";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.BuildingTypeId > 0)
+                {
+                    holder.BuildingTypeId = hvm.BuildingTypeId;
+                }
+                else
+                {
+                    status = "ভবনের ধরন পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //if (hvm.HoldersFlatNumber != null && hvm.HoldersFlatNumber > 0)
-                //{
-                //    holder.HoldersFlatNumber = hvm.HoldersFlatNumber;
-                //}
-                //else
-                //{
-                //    status = "holders_flat_number";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                if (hvm.AmountOfLand != null && hvm.AmountOfLand > 0)
+                {
+                    holder.AmountOfLand = hvm.AmountOfLand;
+                }
+                else
+                {
+                    status = "জমির পরিমাণ পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                //holder.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-                //holder.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-                //holder.CreateDate = DateTime.Now;
-                //holder.LastUpdated = DateTime.Now;
-                //holder.IsActive = true;
-                //holder.IsDeleted = false;
+                if (hvm.TotalFloor != null && hvm.TotalFloor > 0)
+                {
+                    holder.TotalFloor = hvm.TotalFloor;
+                }
+                else
+                {
+                    status = "মোট তলার সংখ্যা পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
-                int holderId = 0;//_holdingManager.InsertHolder(holder);
+                if (hvm.EachFloorArea != null && hvm.EachFloorArea > 0)
+                {
+                    holder.EachFloorArea = hvm.EachFloorArea;
+                }
+                else
+                {
+                    status = "প্রতিতলার আয়তন পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
+
+                if (hvm.TotalFlat != null && hvm.TotalFlat > 0)
+                {
+                    holder.TotalFlat = hvm.TotalFlat;
+                }
+                else
+                {
+                    status = "মোট ফ্ল্যাট সংখ্যা পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
+
+                if (hvm.HoldersFlatNumber != null && hvm.HoldersFlatNumber > 0)
+                {
+                    holder.HoldersFlatNumber = hvm.HoldersFlatNumber;
+                }
+                else
+                {
+                    status = "নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
+
+                holder.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                holder.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                holder.CreateDate = DateTime.Now;
+                holder.LastUpdated = DateTime.Now;
+                holder.IsActive = true;
+                holder.IsDeleted = false;
+
+                int holderId = _holdingManager.InsertHolder(holder);
 
                 if (holderId > 0 && holderId == maxId)
                 {
@@ -478,9 +508,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
             }
             catch (Exception exception)
             {
-                TempData["EM"] = "error | " + exception.Message.ToString();
-                return new JsonResult { Data = "error" };
-
+                string status = exception.Message.ToString();
+                return new JsonResult { Data = new { status } };
             }
             //}
             //else
@@ -504,6 +533,30 @@ namespace HoldingTaxWebApp.Controllers.Holding
         }
 
 
+        public ActionResult DownloadFile(string filePath)
+        {
+            //string fullName = Server.MapPath(filePath);
+
+            string fullName = CommonConstantHelper.ServerRootDirectory + filePath;
+            //Request.MapPath(fullPath);
+
+            string nameOfDoc = filePath.Substring(filePath.LastIndexOf('/') + 1);
+
+            byte[] fileBytes = GetFile(fullName);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, nameOfDoc);
+
+        }
+
+        byte[] GetFile(string s)
+        {
+            FileStream fs = System.IO.File.OpenRead(s);
+            byte[] data = new byte[fs.Length];
+            int br = fs.Read(data, 0, data.Length);
+            if (br != fs.Length)
+                throw new IOException(s);
+            return data;
+        }
+
         public JsonResult GetRatePerSquareFeet(int AreaId, int BuildingTypeId)
         {
             return new JsonResult { Data = _holdingManager.GetPerSqrFeetPrice(AreaId, BuildingTypeId) };
@@ -511,7 +564,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
         public JsonResult GetPlotDetails(int PlotId)
         {
-            return new JsonResult { Data = _holdingManager.GetPerSqrFeetPrice(0, 0) };
+            return new JsonResult { Data = _plotManager.GetPlotById(PlotId) };
         }
 
         public JsonResult GetImage(HttpPostedFileBase fileBase)

@@ -14,19 +14,19 @@ namespace HoldingTaxWebApp.Helpers
             {
                 if (param > 0)
                 {
-                    decimal? fractionValue = param - Math.Truncate(param ?? default(decimal));
-                    if (fractionValue > 0)
-                    {
-                        return param.ToString().Replace("0", "০").Replace("1", "১").Replace("2", "২").Replace("3", "৩")
-                                               .Replace("4", "৪").Replace("5", "৫").Replace("6", "৬").Replace("7", "৭")
-                                               .Replace("8", "৮").Replace("9", "৯");
-                    }
-                    else
-                    {
-                        return param.ToString().Replace("0", "০").Replace("1", "১").Replace("2", "২").Replace("3", "৩")
-                                               .Replace("4", "৪").Replace("5", "৫").Replace("6", "৬").Replace("7", "৭")
-                                               .Replace("8", "৮").Replace("9", "৯") + ".০০";
-                    }
+                    //decimal? fractionValue = param - Math.Truncate(param ?? default(decimal));
+                    //if (fractionValue > 0)
+                    //{
+                    return param.ToString().Replace("0", "০").Replace("1", "১").Replace("2", "২").Replace("3", "৩")
+                                           .Replace("4", "৪").Replace("5", "৫").Replace("6", "৬").Replace("7", "৭")
+                                           .Replace("8", "৮").Replace("9", "৯");
+                    //}
+                    //else
+                    //{
+                    //    return param.ToString().Replace("0", "০").Replace("1", "১").Replace("2", "২").Replace("3", "৩")
+                    //                           .Replace("4", "৪").Replace("5", "৫").Replace("6", "৬").Replace("7", "৭")
+                    //                           .Replace("8", "৮").Replace("9", "৯") + ".০০";
+                    //}
                 }
                 else
                 {
@@ -56,9 +56,9 @@ namespace HoldingTaxWebApp.Helpers
 
         public static decimal DecimalValueBangla2English(string param)
         {
-             string replacedValue =  param.Replace("০", "0").Replace("১", "1").Replace("২", "2").Replace("৩", "3")
-                                               .Replace("৪", "4").Replace("৫", "5").Replace("৬", "6").Replace("৭", "7")
-                                               .Replace("৮", "8").Replace("৯", "9");
+            string replacedValue = param.Replace("০", "0").Replace("১", "1").Replace("২", "2").Replace("৩", "3")
+                                              .Replace("৪", "4").Replace("৫", "5").Replace("৬", "6").Replace("৭", "7")
+                                              .Replace("৮", "8").Replace("৯", "9");
             decimal.TryParse(replacedValue, out decimal val);
             return val;
         }

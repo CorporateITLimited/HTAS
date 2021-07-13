@@ -19,6 +19,7 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "Area Name")]
         public string AreaName { get; set; }
 
+
         public int PlotId { get; set; }
 
         [Display(Name = "Plot Id Number")]
@@ -90,20 +91,39 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "Amount of land")]
         public decimal? AmountOfLand { get; set; }
 
+        [Display(Name = "Amount of land")]
+        public string StrAmountOfLand { get; set; }
+
         [Display(Name = "Total Floor")]
         public int? TotalFloor { get; set; }
+
+        [Display(Name = "Total Floor")]
+        public string StrTotalFloor { get; set; }
 
         [Display(Name = "Each Floor Area")]
         public decimal? EachFloorArea { get; set; }
 
+        [Display(Name = "Each Floor Area")]
+        public string StrEachFloorArea { get; set; }
+
+
         [Display(Name = "Total Flat")]
         public int? TotalFlat { get; set; }
+
+        [Display(Name = "Total Flat")]
+        public string StrTotalFlat { get; set; }
 
         [Display(Name = "Holders Flat Number")]
         public int? HoldersFlatNumber { get; set; }
 
+        [Display(Name = "Holders Flat Number")]
+        public string StrHoldersFlatNumber { get; set; }
+
         [Display(Name = "Previous Due Tax")]
         public decimal? PreviousDueTax { get; set; }
+
+        [Display(Name = "Previous Due Tax")]
+        public string StrPreviousDueTax { get; set; }
 
         [Display(Name = "Image Location")]
         public string ImageLocation { get; set; }
@@ -146,5 +166,26 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "Road No ")]
         public string RoadName { get; set; }
+
+
+        [Display(Name = "AllocationLetterNo")]
+        public string AllocationLetterNo { get; set; }
+        [Display(Name = "NamjariLetterNo")]
+        public string NamjariLetterNo { get; set; }
+        [Display(Name = "Allocation Date")]
+        public DateTime? AllocationDate { get; set; }
+
+        [Display(Name = "Allocation Date")]
+        public string StringAllocationDate { get; set; }
+        [Display(Name = "Namjari Date")]
+        public DateTime? NamjariDate { get; set; }
+
+        [Display(Name = "Namjari Date")]
+        public string StringNamjariDate { get; set; }
+        [Display(Name = "RecordCorrection Date")]
+        public DateTime? RecordCorrectionDate { get; set; }
+
+        [Display(Name = "RecordCorrection Date")]
+        public string StringRecordCorrectionDate { get; set; }
     }
 }
