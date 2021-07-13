@@ -105,6 +105,18 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "Previous Due Tax")]
         public decimal? PreviousDueTax { get; set; }
 
+        [Display(Name = "AllocationLetterNo")]
+        public string AllocationLetterNo { get; set; }
+        [Display(Name = "NamjariLetterNo")]
+        public string NamjariLetterNo { get; set; }
+        [Display(Name = "Allocation Date")]
+        public DateTime? AllocationDate { get; set; }
+        [Display(Name = "Namjari Date")]
+        public DateTime? NamjariDate { get; set; }
+        [Display(Name = "RecordCorrection Date")]
+        public DateTime? RecordCorrectionDate { get; set; }
+
+
         [Display(Name = "Image Location")]
         public string ImageLocation { get; set; }
 
