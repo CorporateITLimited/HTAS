@@ -64,13 +64,18 @@ var KTWizard4 = function () {
                     var isAllValid = true;
                     var OthetPlotOwnerlist = [];
                     var DesignApprovallist = [];
+                    debugger;
                     $('#tableOther tbody tr').each(function (index, ele) {
+                        debugger;
+                        var OthetPlotOwnerId = parseInt($('.OthetPlotOwnerId', this).val()) || 0;
+                        debugger;
                         var OthetOwneeName = $('.OthetOwneeName', this).val().trim();
                         var Address = $('.Address', this).val().trim();
                         var Remarks = $('.Remarks', this).val().trim();
                         
 
                         var OthetPlotOwner = {
+                            OthetPlotOwnerId: OthetPlotOwnerId,
                             OthetOwneeName: OthetOwneeName,
                             Address: Address,
                             Remarks: Remarks
@@ -81,6 +86,7 @@ var KTWizard4 = function () {
 
 
                     $('#DesignTable tbody tr').each(function (index, ele) {
+                        var DesignAppId =  parseInt($('.DesignAppId', this).val()) || 0;
                         var StringMEO_NCCDate = $('.StringMEO_NCCDate', this).val().trim();
                         var Reference = $('.Reference', this).val().trim();
                         var ApprovalNo = parseInt($('.ApprovalNo', this).val().trim());
@@ -91,6 +97,7 @@ var KTWizard4 = function () {
                         var OtherFlorArea = parseFloat($('.OtherFlorArea', this).val().trim());
                         
                         var DesignApproval = {
+                            DesignAppId: DesignAppId,
                             StringMEO_NCCDate: StringMEO_NCCDate,
                             Reference: Reference,
                             ApprovalNo: ApprovalNo,
@@ -121,7 +128,8 @@ var KTWizard4 = function () {
                     else {
                         var data = {
                             
-
+                            PlotOwnerId: parseInt($('#PlotOwnerId').val()) || 0,
+                          
                             PlotId: parseInt($('#PlotId option:selected').val()) || 0,
                             PlotOwnerName: $('#PlotOwnerName').val().trim(),
                             IsAlive: $('#IsAlive').val().trim(),
@@ -142,7 +150,8 @@ var KTWizard4 = function () {
 
 
 
-
+                            
+                            ConsProgressId: parseInt($('#ConsProgressId').val()) || 0,
                             OwnerDeclaration: $('#OwnerDeclaration').val().trim(),
                             RealBuilder: $('#RealBuilder').val().trim(),
                             DevelopDeposit: parseFloat($('#DevelopDeposit').val().trim()),
@@ -164,7 +173,7 @@ var KTWizard4 = function () {
 
 
 
-                          
+                            UnauthComId: parseInt($('#UnauthComId').val()) || 0,
                             TotalUnauthArea: parseFloat($('#TotalUnauthArea').val()) || 0,
                             FineFreeArea: parseFloat($('#FineFreeArea').val()) || 0,
                             WithFineUnauth: parseFloat($('#WithFineUnauth').val()) || 0,
@@ -172,6 +181,9 @@ var KTWizard4 = function () {
                             NonRemovedUnauth: parseFloat($('#NonRemovedUnauth').val()) || 0,
                             FineRate: parseFloat($('#FineRate').val()) || 0,
                             FineAmount: parseFloat($('#FineAmount').val()) || 0,
+
+                            DesignApproval: DesignApprovallist,
+                            OthetPlotOwner: OthetPlotOwnerlist
                            
                           
                         };
@@ -201,11 +213,11 @@ var KTWizard4 = function () {
                                 else {
                                     alert('error_full');
                                 }
-                                $('#bill_submit').val('Save');
+                                $('#bill_submit').val('Update');
                             },
                             error: function (error) {
                                 console.log(error);
-                                $('#bill_submit').val('Save');
+                                $('#bill_submit').val('Update');
                             }
                         });
                     }
@@ -232,14 +244,14 @@ var KTWizard4 = function () {
             _formEl,
             {
                 fields: {
-                    LeaseType1: {
+                    LeaseType: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             }
                         }
                     },
-                    PlotId1: {
+                    PlotId: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
@@ -247,13 +259,34 @@ var KTWizard4 = function () {
                         }
                     },
                    
+                    ConsStatusId: {
+                       validators: {
+                           notEmpty: {
+                               message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                           }
+                       }
+                   },
+                     OfficialStatusId: {
+                       validators: {
+                           notEmpty: {
+                               message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                           }
+                       }
+                   },
+                     LeaseQuotaId: {
+                       validators: {
+                           notEmpty: {
+                               message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                           }
+                       }
+                   },
                  
                  
                 
                   
                   
                   
-                    PresentAdd1: {
+                    PresentAdd: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
