@@ -7,7 +7,7 @@ using HoldingTaxWebApp.Models;
 using System.Data.SqlClient;
 using System.Data;
 using HoldingTaxWebApp.Helpers;
-using HoldingTaxWebApp.Models.Plots;
+
 
 namespace HoldingTaxWebApp.Gateway.Plots
 {

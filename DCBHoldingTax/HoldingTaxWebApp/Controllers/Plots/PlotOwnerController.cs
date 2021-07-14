@@ -121,7 +121,18 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     DesignApproval Approval = new DesignApproval()
                     {
                         StringApprovalDate = $"{item.ApprovalDate:dd/MM/yyyy}",
-                        StringMEO_NCCDate = $"{item.MEO_NCCDate:dd/MM/yyyy}"
+                        StringMEO_NCCDate = $"{item.MEO_NCCDate:dd/MM/yyyy}",
+                       
+                        ApprovalLetterNo = item.ApprovalLetterNo,
+                        ApprovalDate = item.ApprovalDate,
+                        ApprovalNo = item.ApprovalNo,
+                        CreateDate = item.CreateDate,
+                        CreatedBy = item.CreatedBy,
+                        DesignAppId = item.DesignAppId,
+                        FlorNumber = item.FlorNumber,
+                        GroundFlorArea = item.GroundFlorArea,
+                        MEO_NCCDate = item.MEO_NCCDate,
+                        Reference = item.Reference,
                     };
                     DesignApprovalVM.Add(Approval);
                 }
@@ -279,7 +290,18 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     DesignApproval Approval = new DesignApproval()
                     {
                         StringApprovalDate = $"{item.ApprovalDate:dd/MM/yyyy}",
-                        StringMEO_NCCDate = $"{item.MEO_NCCDate:dd/MM/yyyy}"
+                        StringMEO_NCCDate = $"{item.MEO_NCCDate:dd/MM/yyyy}",
+                        ApprovalLetterNo = item.ApprovalLetterNo,
+                        ApprovalDate = item.ApprovalDate,
+                        ApprovalNo = item.ApprovalNo,
+                        CreateDate = item.CreateDate,
+                        CreatedBy = item.CreatedBy,
+                        DesignAppId = item.DesignAppId,
+                        FlorNumber = item.FlorNumber,
+                        GroundFlorArea = item.GroundFlorArea,
+                        MEO_NCCDate = item.MEO_NCCDate,
+                        Reference = item.Reference,
+                        
                     };
                     DesignApprovalVM.Add(Approval);
                 }
@@ -556,6 +578,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     };
 
                     int ownerId = _PlotOwnerManager.PlotOwnerInsert(plotw);
+
                     if(ownerId > 0) {
 
                         foreach (OthetPlotOwner item2 in POVM.OthetPlotOwner)

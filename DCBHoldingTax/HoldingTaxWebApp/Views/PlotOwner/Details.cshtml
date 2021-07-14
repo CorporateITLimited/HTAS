@@ -340,7 +340,7 @@
                                             }
 
                        
-
+                        @*//@if(Model.DesignApproval. )*@
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
                             <legend>নকশা অনুমোদনের বিবরণ</legend>
@@ -605,7 +605,7 @@
                         </div>
 
 
-
+                        @if(Model.TotalUnauthArea > 0) { 
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
                             <legend>   অননুমোদিত নির্মান তথ্য</legend>
@@ -702,7 +702,7 @@
 
                             </div>
                         </div>
-
+                        }
 
 
 
