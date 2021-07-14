@@ -196,8 +196,10 @@ var KTWizard4 = function () {
                             contentType: 'application/json',
                             success: function (d) {
                                 if (d.status === "success") {
-                                    list = [];
-                                    $('#flat_details tbody').empty();
+                                    DesignApprovallist = [];
+                                    OthetPlotOwnerlist = [];
+                                    $('#DesignTable tbody').empty();
+                                    $('#tableOther tbody').empty();
                                     swal.fire({
                                         "icon": 'success',
                                         "title": 'Your work has been saved',

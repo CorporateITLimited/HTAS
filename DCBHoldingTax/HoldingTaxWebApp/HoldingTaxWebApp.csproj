@@ -1925,52 +1925,8 @@
     <Content Include="Theme\dist\assets\media\svg\shapes\abstract-8.svg" />
     <Content Include="Theme\dist\assets\media\svg\shapes\abstract-9.svg" />
     <Content Include="Theme\dist\assets\media\svg\social-icons\google.svg" />
-    <Content Include="Theme\dist\assets\media\users\100_1.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_10.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_11.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_12.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_13.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_14.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_2.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_3.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_4.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_5.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_6.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_7.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_8.jpg" />
-    <Content Include="Theme\dist\assets\media\users\100_9.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_1.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_10.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_11.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_12.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_13.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_14.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_15.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_16.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_17.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_18.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_19.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_2.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_20.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_21.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_22.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_23.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_24.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_25.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_3.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_4.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_5.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_6.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_7.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_8.jpg" />
-    <Content Include="Theme\dist\assets\media\users\300_9.jpg" />
     <Content Include="Theme\dist\assets\media\users\blank.png" />
     <Content Include="Theme\dist\assets\media\users\default.jpg" />
-    <Content Include="Theme\dist\assets\media\users\user1.jpg" />
-    <Content Include="Theme\dist\assets\media\users\user2.jpg" />
-    <Content Include="Theme\dist\assets\media\users\user3.jpg" />
-    <Content Include="Theme\dist\assets\media\users\user4.jpg" />
-    <Content Include="Theme\dist\assets\media\users\user5.jpg" />
     <Content Include="Theme\dist\assets\plugins\custom\ckeditor\ckeditor-balloon-block.bundle.js" />
     <Content Include="Theme\dist\assets\plugins\custom\ckeditor\ckeditor-balloon.bundle.js" />
     <Content Include="Theme\dist\assets\plugins\custom\ckeditor\ckeditor-classic.bundle.js" />
@@ -2643,10 +2599,7 @@
     <Content Include="Views\PlotOwner\Index.cshtml" />
     <Content Include="Views\Holding\Create.cshtml" />
     <Content Include="Views\Holding\Index.cshtml" />
-    <Content Include="Views\HoldingTax\Index.cshtml" />
-    <Content Include="Views\HoldingTax\Details.cshtml" />
-    <Content Include="Views\HoldingTax\Create.cshtml" />
-    <Content Include="Views\HoldingTax\Edit.cshtml" />
+    <Content Include="Views\Holding\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2658,6 +2611,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Documents\Holders\FFDocuments\" />
     <Folder Include="Documents\Holders\Images\" />
+    <Folder Include="Views\HoldingTax\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

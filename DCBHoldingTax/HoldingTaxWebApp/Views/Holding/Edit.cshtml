@@ -6,6 +6,26 @@
 @section Sheets{
     <link href="~/Content/wizard-holding.css" rel="stylesheet" type="text/css" />
     <style>
+        /*add for more steps */
+        /*.wizard.wizard-4 .wizard-nav .wizard-steps .wizard-step {
+            -ms-flex: 0 0 calc(20% - 0.20rem);
+            flex: 0 0 calc(20% - 0.20rem);
+            width: calc(20% - 0.20rem);
+            justify-content: flex-start;
+        }
+
+            .wizard.wizard-4 .wizard-nav .wizard-steps .wizard-step .wizard-wrapper {
+                padding: 1.5rem 1rem;
+                flex-wrap: nowrap;
+                align-items: stretch;
+            }
+
+        .wizard-label {
+            padding: 5px;
+            flex-wrap: nowrap;
+            align-items: stretch;
+        }*/
+
         input[type=number]::-webkit-inner-spin-button,
         input[type=number]::-webkit-outer-spin-button {
             -webkit-appearance: none;
@@ -237,12 +257,27 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.ImageLocation, "পাসপোর্ট সাইজের ছবি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="file" name="image_file" id="image_file" />
+                                                        @*<input type="file" name="image_file" id="image_file" class="form-control" />
+                                                            <span class="form-text text-info">
+                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                            </span>
+                                                            <br />
+                                                            <img id="imgpreview" src="@Model.ImageLocation" width="200" height="200" style="border:1px solid black;" alt="Passport Size Image" />*@
+
+                                                        <div class="image-input image-input-outline" id="kt_image_1">
+                                                            <div class="image-input-wrapper" style="background-image: url(@Model.ImageLocation)"></div>
+                                                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="ছবি পরিবর্তন করুন">
+                                                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                                                <input type="file" name="image_file" id="image_file" accept=".png, .x-png, .jpg, .jpeg, .pjpeg, .gif" />
+                                                                <input type="hidden" name="profile_avatar_remove" />
+                                                            </label>
+                                                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="ছবি বাতিল করুন">
+                                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                            </span>
+                                                        </div>
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                                         </span>
-                                                        <br />
-                                                        <img id="imgpreview" src="@Model.ImageLocation" width="200" height="200" style="border:1px solid black;" alt="Passport Size Image" />
                                                     </div>
                                                 </div>
 
@@ -431,7 +466,7 @@
                                                                     </select>
                                                                 </td>
                                                                 <td width="13%;"><input type="text" class="form-control OwnerName" /></td>
-                                                                <td width="5%;"><button class="btn btn-success btn-sm" id="add_new_details"><i class="fas fa-plus"></i></button></td>
+                                                                <td width="5%;"><button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button></td>
                                                             </tr>
                                                             @if (Model.HolderFlatList.Count() > 0 && Model.HolderFlatList != null)
                                                             {
@@ -485,7 +520,7 @@
                                                                             </select>
                                                                         </td>
                                                                         <td width="13%;"><input type="text" class="form-control OwnerName" value="@item.OwnerName" /></td>
-                                                                        <td width="5%;"><button class="remove btn btn-danger btn-sm"><i class="fas fa-minus"></i></button></td>
+                                                                        <td width="5%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td>
                                                                     </tr>
                                                                 }
                                                             }
@@ -611,7 +646,7 @@
     <script src="~/Scripts/wizard-holding-update.js"></script>
     <script>
         jQuery(document).ready(function () {
-
+            var avatar1 = new KTImageInput('kt_image_1');
             var ratePerSquareFeet = 1;
 
             $('#AreaId').select2({
@@ -849,7 +884,7 @@
                     '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
                     '<td width="13%;"><input type="text" class="form-control OwnerName" /></td>' +
-                    '<td width="5%;"><button class="remove btn btn-danger btn-sm"><i class="fas fa-minus"></i></button></td></tr>');
+                    '<td width="5%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr>');
             });
 
             $('#flat_details tbody').on('click', '.remove', function (e) {
