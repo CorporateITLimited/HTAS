@@ -1,6 +1,7 @@
 ﻿using HoldingTaxWebApp.Gateway.Holding;
 using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Models.Holding;
+using HoldingTaxWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +82,11 @@ namespace HoldingTaxWebApp.Manager.Holding
         public int GetMAXId()
         {
             return _holdingGateway.GetMAXId();
+        }
+
+        public HolderVM GetAllotmentNamjariDesignByPlotId(int PlotId)
+        {
+            return _holdingGateway.GetAllotmentNamjariDesignByPlotId(PlotId);
         }
         #endregion
     }
