@@ -719,6 +719,27 @@
                         console.log(e);
                     }
                 });
+
+                $.ajax({
+                    url: '/Holding/GetAllotmentNamjariDesignByPlotId',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        $("#PlotOwnerName").val(data.PlotOwnerName);
+                        $("#LeasePeriod").val(data.LeasePeriod);
+                        $("#StringLeaseExpiryDate").val(data.StringLeaseExpiryDate);
+                        $("#FirstApprovalLetterNo").val(data.FirstApprovalLetterNo);
+                        $("#LastApprovalLetterNo").val(data.LastApprovalLetterNo);
+                        $("#StringFirstApprovalDate").val(data.StringFirstApprovalDate);
+                        $("#StringLastApprovalDate").val(data.StringLastApprovalDate);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+
+
             });
 
             $('#BuildingTypeId').change(function () {
