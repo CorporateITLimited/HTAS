@@ -2503,7 +2503,9 @@
     <Compile Include="Manager\AccountManager.cs" />
     <Compile Include="Manager\CommonListManager.cs" />
     <Compile Include="Manager\ConstantManager.cs" />
+    <Compile Include="Manager\DBO\BuildingTypeManager.cs" />
     <Compile Include="Manager\DBO\ConstructionStatusManager.cs" />
+    <Compile Include="Manager\DBO\DOHSAreaManager.cs" />
     <Compile Include="Manager\DBO\LeaseQuotaManager.cs" />
     <Compile Include="Manager\DBO\OfficialStatusManager.cs" />
     <Compile Include="Manager\DBO\OwnershipSourceManager.cs" />
