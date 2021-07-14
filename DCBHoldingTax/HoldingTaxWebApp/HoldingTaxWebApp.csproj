@@ -216,9 +216,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Scripts\wizard-holding-update.js" />
     <Content Include="Scripts\wizard-holding.js" />
-    <Content Include="Scripts\wizard-PlotOwner.js" />
+    <Content Include="Scripts\wizard-PlotOwnerEdit.js" />
+    <Content Include="Scripts\wizard-PlotOwnerCreate.js" />
     <Content Include="Theme\dist\assets\css\pages\error\error-3.css" />
     <Content Include="Theme\dist\assets\css\pages\error\error-4.css" />
     <Content Include="Theme\dist\assets\css\pages\error\error-5.css" />
@@ -2422,6 +2422,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
+    <Compile Include="Controllers\Tax\HoldingTaxController.cs" />
     <Compile Include="Controllers\Users\DesignationController.cs" />
     <Compile Include="Controllers\Users\EmployeeController.cs" />
     <Compile Include="Controllers\Users\RoleController.cs" />
@@ -2441,6 +2442,9 @@
     <Compile Include="Gateway\Holding\HoldingGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
+    <Compile Include="Gateway\Tax\HoldingTaxGateway.cs" />
+    <Compile Include="Gateway\Tax\OwnFlatTaxGateway.cs" />
+    <Compile Include="Gateway\Tax\RentedFlatTaxGateway.cs" />
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
     <Compile Include="Gateway\Users\RoleGateway.cs" />
@@ -2465,6 +2469,7 @@
     <Compile Include="Manager\Holding\HoldingManager.cs" />
     <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
+    <Compile Include="Manager\Tax\HoldingTaxManager.cs" />
     <Compile Include="Manager\Users\DesignationManager.cs" />
     <Compile Include="Manager\Users\EmployeeManager.cs" />
     <Compile Include="Manager\Users\RoleManager.cs" />
@@ -2486,7 +2491,10 @@
     <Compile Include="Models\Plots\Plot.cs" />
     <Compile Include="Models\Plots\PlotOwner.cs" />
     <Compile Include="Models\Plots\UnauthPortion.cs" />
+    <Compile Include="Models\Tax\HoldingTax.cs" />
+    <Compile Include="Models\Tax\OwnFlatTax.cs" />
     <Compile Include="Models\Tax\OwnTaxRate.cs" />
+    <Compile Include="Models\Tax\RentedFlatTax.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
     <Compile Include="Models\Users\Employee.cs" />
@@ -2603,6 +2611,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Documents\Holders\FFDocuments\" />
     <Folder Include="Documents\Holders\Images\" />
+    <Folder Include="Views\HoldingTax\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

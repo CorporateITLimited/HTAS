@@ -64,6 +64,7 @@ var KTWizard4 = function () {
                     var isAllValid = true;
                     var OthetPlotOwnerlist = [];
                     var DesignApprovallist = [];
+                    debugger;
                     $('#tableOther tbody tr').each(function (index, ele) {
                         var OthetOwneeName = $('.OthetOwneeName', this).val().trim();
                         var Address = $('.Address', this).val().trim();
@@ -80,18 +81,16 @@ var KTWizard4 = function () {
 
 
 
-                    $('#addDesign tbody tr').each(function (index, ele) {
+                    $('#DesignTable tbody tr').each(function (index, ele) {
                         var StringMEO_NCCDate = $('.StringMEO_NCCDate', this).val().trim();
                         var Reference = $('.Reference', this).val().trim();
-                        var ApprovalNo = $('.ApprovalNo', this).val().trim();
+                        var ApprovalNo = parseInt($('.ApprovalNo', this).val().trim());
                         var StringApprovalDate = $('.StringApprovalDate', this).val().trim();
                         var ApprovalLetterNo = $('.ApprovalLetterNo', this).val().trim();
-                        var FlorNumber = $('.FlorNumber', this).val().trim();
-                        var GroundFlorArea = $('.GroundFlorArea', this).val().trim();
-                        var OtherFlorArea = $('.OtherFlorArea', this).val().trim();
+                        var FlorNumber = parseInt($('.FlorNumber', this).val().trim());
+                        var GroundFlorArea = parseFloat($('.GroundFlorArea', this).val().trim());
+                        var OtherFlorArea = parseFloat($('.OtherFlorArea', this).val().trim());
                         
-                        
-
                         var DesignApproval = {
                             StringMEO_NCCDate: StringMEO_NCCDate,
                             Reference: Reference,
@@ -105,10 +104,7 @@ var KTWizard4 = function () {
                         }
                         DesignApprovallist.push(DesignApproval);
                     });
-                    //if (list.length == 0) {
-                    //    $('#details_error').text('At least one flat details required.');
-                    //    isAllValid = false;
-                    //}
+                 
 
                     if (!isAllValid) {
                         Swal.fire({
@@ -125,45 +121,77 @@ var KTWizard4 = function () {
                     }
                     else {
                         var data = {
-                            HolderId: 0,
-                            AreaId: parseInt($('#AreaId option:selected').val()) || 0,
+                            
+                            PlotOwnerId: 0,
                             PlotId: parseInt($('#PlotId option:selected').val()) || 0,
-                            HolderName: $('#HolderName').val().trim(),
-                            NID: $('#NID').val().trim(),
-                            Gender: parseInt($('#Gender option:selected').val()) || 0,
-                            MaritialStatus: $('#MaritialStatus option:selected').val(),
-                            Father: $('#Father').val().trim(),
-                            Mother: $('#Mother').val().trim(),
-                            Spouse: $('#Spouse').val().trim(),
-                            Contact1: $('#Contact1').val().trim(),
-                            Contact2: $('#Contact2').val().trim(),
-                            Email: $('#Email').val().trim(),
+                            PlotOwnerName: $('#PlotOwnerName').val().trim(),
+                            IsAlive: $('#IsAlive').val().trim(),
+                            OfficialStatusId: parseInt($('#OfficialStatusId option:selected').val()) || 0,
                             PresentAdd: $('#PresentAdd').val().trim(),
                             PermanentAdd: $('#PermanentAdd').val().trim(),
-                            ContactAdd: $('#ContactAdd').val().trim(),
-                            OwnershipSourceId: parseInt($('#OwnershipSourceId option:selected').val()) || 0,
-                            OwnerType: $('#OwnerType option:selected').val(),
-                            BuildingTypeId: parseInt($('#BuildingTypeId option:selected').val()) || 0,
-                            AmountOfLand: parseFloat($('#AmountOfLand').val()) || 0,
-                            TotalFloor: parseFloat($('#TotalFloor').val()) || 0,
-                            EachFloorArea: parseFloat($('#EachFloorArea').val()) || 0,
-                            TotalFlat: parseInt($('#TotalFlat').val()) || 0,
-                            HoldersFlatNumber: parseInt($('#TotalFlat').val()) || 0,
-                            PreviousDueTax: parseFloat($('#PreviousDueTax').val()) || 0,
-                           ///HolderFlatList: list,
-                            image_file: $("#image_file").get(0).files[0]
+                            PhoneNumber: $('#PhoneNumber').val().trim(),
+                            Email: $('#Email').val().trim(),
+                            StringLeaveDate: $('#StringLeaveDate').val().trim(),
+                            LeaseAuthority: $('#LeaseAuthority').val().trim(),
+                            LeaseType: $('#LeaseType').val().trim(),
+                            LeasePeriod: parseInt($('#LeasePeriod').val().trim()),
+                            LeaseQuotaId: parseInt($('#LeaseQuotaId option:selected').val()) || 0,
+                            HandOverOffice: $('#HandOverOffice').val().trim(),
+                            HandOverLetterNo: $('#HandOverLetterNo').val().trim(),
+                            LandDevelopChange: parseFloat($('#LandDevelopChange').val().trim()),
+                            ConsStatusId: parseInt($('#ConsStatusId option:selected').val()) || 0,
+
+
+
+
+                            OwnerDeclaration: $('#OwnerDeclaration').val().trim(),
+                            RealBuilder: $('#RealBuilder').val().trim(),
+                            DevelopDeposit: parseFloat($('#DevelopDeposit').val().trim()),
+                            FloorNumber: parseInt($('#FloorNumber').val().trim()),
+                            StringCompletionDate: $('#StringCompletionDate').val().trim(),
+                            StringGroundFCDate: $('#StringGroundFCDate').val().trim(),
+                            StringFirstFCDate: $('#StringFirstFCDate').val().trim(),
+                            StringSccFCDate: $('#StringSccFCDate').val().trim(),
+                            StringThirdFCDate: $('#StringThirdFCDate').val().trim(),
+                            StringForthFCDate: $('#StringForthFCDate').val().trim(),
+                            StringFivthFCDate: $('#StringFivthFCDate').val().trim(),
+                            StringSixFCDate: $('#StringSixFCDate').val().trim(),
+                            StringOtherFCDate: $('#StringOtherFCDate').val().trim(),
+                            OwnerPortion: $('#OwnerPortion').val().trim(),
+                            DeveloperPortion: $('#DeveloperPortion').val().trim(),
+                            BuyerPortion: $('#BuyerPortion').val().trim(),
+                            SubmittedPortion: $('#SubmittedPortion').val().trim(),
+
+
+
+
+                          
+                            TotalUnauthArea: parseFloat($('#TotalUnauthArea').val()) || 0,
+                            FineFreeArea: parseFloat($('#FineFreeArea').val()) || 0,
+                            WithFineUnauth: parseFloat($('#WithFineUnauth').val()) || 0,
+                            RemovedUnauthArea: parseFloat($('#RemovedUnauthArea').val()) || 0,
+                            NonRemovedUnauth: parseFloat($('#NonRemovedUnauth').val()) || 0,
+                            FineRate: parseFloat($('#FineRate').val()) || 0,
+                            FineAmount: parseFloat($('#FineAmount').val()) || 0,
+
+                            DesignApproval: DesignApprovallist,
+                            OthetPlotOwner: OthetPlotOwnerlist
+                           
+                          
                         };
 
 
                         $.ajax({
                             type: 'POST',
-                            url: '/Holding/AddOrUpdate',
+                            url: '/PlotOwner/AddOrUpdate',
                             data: JSON.stringify(data),
                             contentType: 'application/json',
                             success: function (d) {
                                 if (d.status === "success") {
-                                    list = [];
-                                    $('#flat_details tbody').empty();
+                                    DesignApprovallist = [];
+                                    OthetPlotOwnerlist = [];
+                                    $('#DesignTable tbody').empty();
+                                    $('#tableOther tbody').empty();
                                     swal.fire({
                                         "icon": 'success',
                                         "title": 'Your work has been saved',
@@ -210,28 +238,49 @@ var KTWizard4 = function () {
             _formEl,
             {
                 fields: {
-                    LeaseType1: {
+                    LeaseType: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             }
                         }
                     },
-                    PlotId1: {
+                    PlotId: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             }
                         }
                     },
-                   
+                     ConsStatusId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                      OfficialStatusId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                      LeaseQuotaId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+
                  
                  
                 
                   
                   
                   
-                    PresentAdd1: {
+                    PresentAdd: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
