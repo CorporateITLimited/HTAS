@@ -505,8 +505,9 @@
                 '<td><input type="text" class="form-control OthetOwneeName" name="OthetOwneeName" /></td>' +
                 '<td><input type="text" class="form-control Address" name="Address" /></td>' +
                 '<td><input type="text" class="form-control Remarks" name="Remarks" /></td>' +
-                '<td><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
+                '<td><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
         }
+        //remove btn btn-danger btn-sm
     </script>
     <script>
          jQuery(document).ready(function () {
@@ -653,15 +654,15 @@
             '<th>অন্য মালিকের নাম</th>' +
             '<th>ঠিকানা</th>' +
             '<th>মন্তব্য</th>' +
-            '<th><span class="btn btn-success btn-sm addOthersOwner" id="addOthersOwner" name="addOthersOwner"  onclick="addRow()"><i class="fas fa-plus"></i></span></th></tr>')
+            '<th><span class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3 addOthersOwner" id="addOthersOwner" name="addOthersOwner"  onclick="addRow()"><i class="fas fa-plus"></i></span></th></tr>')
             }
             else{
             otherOwnerTableHead.empty();
             otherOwnerTableBody.empty();
             }
     });
-
-
+        //btn btn-icon btn-light btn-hover-primary btn-sm mx-3
+        //btn btn-success btn-sm
 
     //$("#addOthersOwner").on('click', function (e) {
     //    //e.preventDefault();
