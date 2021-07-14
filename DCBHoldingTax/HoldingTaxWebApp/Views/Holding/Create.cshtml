@@ -405,9 +405,9 @@
                                                     <label class="show_plot"></label>
                                                 </div>
                                                 <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>বরাদ্দ গ্রহীতার নাম :</b></label>
+                                                    @Html.LabelFor(model => model.PlotOwnerName, "বরাদ্দ গ্রহীতার নাম :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-10">
-                                                        <input type="text" class="form-control border-0" id="boraddo_grohita_name" value="বরাদ্দ গ্রহীতার নাম বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="PlotOwnerName" value="" readonly="readonly" />
                                                     </div>
                                                 </div>
 
@@ -424,14 +424,14 @@
                                                 </div>
 
                                                 <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right">ইজারার মেয়াদ :</label>
+                                                    @Html.LabelFor(model => model.LeasePeriod, "ইজারার মেয়াদ (বছর):", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="ejarar_meyad" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="LeasePeriod" value="" readonly="readonly" />
                                                     </div>
 
-                                                    <label class="col-lg-2 col-form-label text-lg-right">মেয়াদোত্তীর্ণের তারিখ :</label>
+                                                    @Html.LabelFor(model => model.LeaseExpiryDate, "মেয়াদোত্তীর্ণের তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="ejarar_expiary_date" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="StringLeaseExpiryDate" value="" readonly="readonly" />
                                                     </div>
                                                 </div>
 
@@ -456,25 +456,26 @@
 
                                                 <div class="form-group row m-2">
 
-                                                    <label class="col-lg-2 col-form-label text-lg-right">প্রথম নকশা অনুমোদনের তারিখ</label>
+                                                    @Html.LabelFor(model => model.StringFirstApprovalDate, "প্রথম নকশা অনুমোদনের তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="first_design_date" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="StringFirstApprovalDate" value="" readonly="readonly" />
                                                     </div>
-                                                    <label class="col-lg-2 col-form-label text-lg-right">অনুমোদন নম্বর : </label>
+
+                                                    @Html.LabelFor(model => model.FirstApprovalLetterNo, "অনুমোদন নম্বর :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="first_design_number" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="FirstApprovalLetterNo" value="" readonly="readonly" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right">সর্বশেষ সংশোধিত নকশা  অনুমোদনের তারিখ :</label>
+                                                    @Html.LabelFor(model => model.StringLastApprovalDate, "সর্বশেষ সংশোধিত নকশা অনুমোদনের তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="last_design_date" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="StringLastApprovalDate" value="" readonly="readonly" />
                                                     </div>
 
-                                                    <label class="col-lg-2 col-form-label text-lg-right">অনুমোদন নম্বর :</label>
+                                                    @Html.LabelFor(model => model.LastApprovalLetterNo, "অনুমোদন নম্বর :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="last_design_number" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="LastApprovalLetterNo" value="" readonly="readonly" />
                                                     </div>
                                                 </div>
 
@@ -619,6 +620,26 @@
                         console.log(e);
                     }
                 });
+
+                $.ajax({
+                    url: '/Holding/GetAllotmentNamjariDesignByPlotId',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        $("#PlotOwnerName").val(data.PlotOwnerName);
+                        $("#LeasePeriod").val(data.LeasePeriod);
+                        $("#StringLeaseExpiryDate").val(data.StringLeaseExpiryDate);
+                        $("#FirstApprovalLetterNo").val(data.FirstApprovalLetterNo);
+                        $("#LastApprovalLetterNo").val(data.LastApprovalLetterNo);
+                        $("#StringFirstApprovalDate").val(data.StringFirstApprovalDate);
+                        $("#StringLastApprovalDate").val(data.StringLastApprovalDate);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+
             });
 
             $('#BuildingTypeId').change(function () {

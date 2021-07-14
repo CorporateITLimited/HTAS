@@ -54,6 +54,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
             //if (listOfHolders == null || listOfHolders.Count() <= 0)
             //    return HttpNotFound();
 
+            HolderVM holderVMOtherData = _holdingManager.GetAllotmentNamjariDesignByPlotId(holder.PlotId);
+
             HolderVM vm = new HolderVM()
             {
                 AmountOfLand = holder.AmountOfLand,
@@ -62,15 +64,12 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 Contact1 = holder.Contact1,
                 Contact2 = holder.Contact2,
                 ContactAdd = holder.ContactAdd,
-                StringCreateDate = holder.StringCreateDate,
-                CreatedByUsername = holder.CreatedByUsername,
                 Document1 = holder.Document1,
                 Document2 = holder.Document2,
                 EachFloorArea = holder.EachFloorArea,
                 Email = holder.Email,
                 Father = holder.Father,
                 GenderType = holder.GenderType,
-                HolderFlatList = listOfHolders,
                 HolderId = holder.HolderId,
                 HolderName = holder.HolderName,
                 HoldersFlatNumber = holder.HoldersFlatNumber,
@@ -86,15 +85,16 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 PreviousDueTax = holder.PreviousDueTax,
                 SourceName = holder.SourceName,
                 Spouse = holder.Spouse,
-                StringLastUpdated = holder.StringLastUpdated,
                 TotalFlat = holder.TotalFlat,
                 TotalFloor = holder.TotalFloor,
-                UpdatedByUsername = holder.UpdatedByUsername,
                 RoadName = holder.RoadName,
                 RoadNo = holder.RoadNo,
                 AreaPlotFlatData = holder.AreaPlotFlatData,
                 NamjariLetterNo = holder.NamjariLetterNo,
                 AllocationLetterNo = holder.AllocationLetterNo,
+
+                // list
+                HolderFlatList = listOfHolders,
 
                 // id values
                 AreaId = holder.AreaId,
@@ -113,10 +113,25 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 StrTotalFlat = holder.StrTotalFlat,
                 StrTotalFloor = holder.StrTotalFloor,
 
+                // action by
+                CreatedByUsername = holder.CreatedByUsername,
+                UpdatedByUsername = holder.UpdatedByUsername,
+
                 // string date
                 StringAllocationDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holder.StringAllocationDate),
                 StringNamjariDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holder.StringNamjariDate),
-                StringRecordCorrectionDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holder.StringRecordCorrectionDate)
+                StringRecordCorrectionDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holder.StringRecordCorrectionDate),
+                StringLastUpdated = holder.StringLastUpdated,
+                StringCreateDate = holder.StringCreateDate,
+
+                // other data allotment namjari design approval
+                FirstApprovalLetterNo = holderVMOtherData.FirstApprovalLetterNo,
+                StringFirstApprovalDate = holderVMOtherData.StringFirstApprovalDate,
+                LastApprovalLetterNo = holderVMOtherData.LastApprovalLetterNo,
+                StringLastApprovalDate = holderVMOtherData.StringLastApprovalDate,
+                LeasePeriod = holderVMOtherData.LeasePeriod,
+                StringLeaseExpiryDate = holderVMOtherData.StringLeaseExpiryDate,
+                PlotOwnerName = holderVMOtherData.PlotOwnerName
             };
 
 
@@ -282,7 +297,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    holder.Contact2 = null ;
+                    holder.Contact2 = null;
                     //status = "মোবাইল নম্বর পাওয়া যাই নি";
                     //return new JsonResult { Data = new { status } };
                 }
@@ -626,6 +641,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
             //if (listOfHolders == null || listOfHolders.Count() <= 0)
             //    return HttpNotFound();
 
+            HolderVM holderVMOtherData = _holdingManager.GetAllotmentNamjariDesignByPlotId(holder.PlotId);
+
             HolderVM hvm = new HolderVM()
             {
                 AmountOfLand = holder.AmountOfLand,
@@ -680,7 +697,16 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 // string date
                 StringAllocationDate = holder.StringAllocationDate,
                 StringNamjariDate = holder.StringNamjariDate,
-                StringRecordCorrectionDate = holder.StringRecordCorrectionDate
+                StringRecordCorrectionDate = holder.StringRecordCorrectionDate,
+
+
+                FirstApprovalLetterNo = holderVMOtherData.FirstApprovalLetterNo,
+                StringFirstApprovalDate = holderVMOtherData.StringFirstApprovalDate,
+                LastApprovalLetterNo = holderVMOtherData.LastApprovalLetterNo,
+                StringLastApprovalDate = holderVMOtherData.StringLastApprovalDate,
+                LeasePeriod = holderVMOtherData.LeasePeriod,
+                StringLeaseExpiryDate = holderVMOtherData.StringLeaseExpiryDate,
+                PlotOwnerName = holderVMOtherData.PlotOwnerName
             };
 
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", hvm.AreaId);
@@ -1208,6 +1234,12 @@ namespace HoldingTaxWebApp.Controllers.Holding
             if (br != fs.Length)
                 throw new IOException(s);
             return data;
+        }
+
+
+        public JsonResult GetAllotmentNamjariDesignByPlotId(int PlotId)
+        {
+            return new JsonResult { Data = _holdingManager.GetAllotmentNamjariDesignByPlotId(PlotId) };
         }
 
         public JsonResult GetRatePerSquareFeet(int AreaId, int BuildingTypeId)

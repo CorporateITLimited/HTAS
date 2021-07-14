@@ -278,13 +278,13 @@
                                                         <label class="col-lg-2 col-form-label text-lg-right">&nbsp;</label>
                                                         <div class="col-lg-4">
                                                             @*@if (!string.IsNullOrWhiteSpace(Model.Document1))
-                                                            {
-                                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document1" title="Download">ডাউনলোড প্রমাণাদি ১</a>
-                                                            }
-                                                            @if (!string.IsNullOrWhiteSpace(Model.Document2))
-                                                            {
-                                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document2" title="Download">ডাউনলোড প্রমাণাদি ২</a>
-                                                            }*@
+                                                                {
+                                                                    <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document1" title="Download">ডাউনলোড প্রমাণাদি ১</a>
+                                                                }
+                                                                @if (!string.IsNullOrWhiteSpace(Model.Document2))
+                                                                {
+                                                                    <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document2" title="Download">ডাউনলোড প্রমাণাদি ২</a>
+                                                                }*@
                                                         </div>
 
                                                         @Html.LabelFor(model => model.Document2, "মুক্তিযোদ্ধার প্রমাণাদি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -507,9 +507,9 @@
                                                     <label class="show_plot">- @Model.AreaPlotFlatData </label>
                                                 </div>
                                                 <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right"><b>বরাদ্দ গ্রহীতার নাম :</b></label>
+                                                    @Html.LabelFor(model => model.PlotOwnerName, "বরাদ্দ গ্রহীতার নাম :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-10">
-                                                        <input type="text" class="form-control border-0" id="boraddo_grohita_name" value="বরাদ্দ গ্রহীতার নাম বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="PlotOwnerName" name="PlotOwnerName" value="@Model.PlotOwnerName" readonly="readonly" />
                                                     </div>
                                                 </div>
 
@@ -526,14 +526,14 @@
                                                 </div>
 
                                                 <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right">ইজারার মেয়াদ :</label>
+                                                    @Html.LabelFor(model => model.LeasePeriod, "ইজারার মেয়াদ (বছর):", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="ejarar_meyad" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="LeasePeriod" name="LeasePeriod" value="@Model.LeasePeriod" readonly="readonly" />
                                                     </div>
 
-                                                    <label class="col-lg-2 col-form-label text-lg-right">মেয়াদোত্তীর্ণের তারিখ :</label>
+                                                    @Html.LabelFor(model => model.LeaseExpiryDate, "মেয়াদোত্তীর্ণের তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="ejarar_expiary_date" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="StringLeaseExpiryDate" name="StringLeaseExpiryDate" value="@Model.StringLeaseExpiryDate" readonly="readonly" />
                                                     </div>
                                                 </div>
 
@@ -558,28 +558,28 @@
 
                                                 <div class="form-group row m-2">
 
-                                                    <label class="col-lg-2 col-form-label text-lg-right">প্রথম নকশা অনুমোদনের তারিখ</label>
+                                                    @Html.LabelFor(model => model.StringFirstApprovalDate, "প্রথম নকশা অনুমোদনের তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="first_design_date" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="StringFirstApprovalDate" name="StringFirstApprovalDate" value="@Model.StringFirstApprovalDate" readonly="readonly" />
                                                     </div>
-                                                    <label class="col-lg-2 col-form-label text-lg-right">অনুমোদন নম্বর : </label>
+
+                                                    @Html.LabelFor(model => model.FirstApprovalLetterNo, "অনুমোদন নম্বর :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="first_design_number" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="FirstApprovalLetterNo" name="FirstApprovalLetterNo" value="@Model.FirstApprovalLetterNo" readonly="readonly" />
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right">সর্বশেষ সংশোধিত নকশা  অনুমোদনের তারিখ :</label>
+                                                    @Html.LabelFor(model => model.StringLastApprovalDate, "সর্বশেষ সংশোধিত নকশা অনুমোদনের তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="last_design_date" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="StringLastApprovalDate" name="StringLastApprovalDate" value="@Model.StringLastApprovalDate" readonly="readonly" />
                                                     </div>
 
-                                                    <label class="col-lg-2 col-form-label text-lg-right">অনুমোদন নম্বর :</label>
+                                                    @Html.LabelFor(model => model.LastApprovalLetterNo, "অনুমোদন নম্বর :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="last_design_number" value="" readonly="readonly" />
+                                                        <input type="text" class="form-control border-0" id="LastApprovalLetterNo" name="LastApprovalLetterNo" value="@Model.LastApprovalLetterNo" readonly="readonly" />
                                                     </div>
                                                 </div>
-
                                                 <!--end::Section-->
                                             </div>
                                             <!--end: Wizard Step 4-->
