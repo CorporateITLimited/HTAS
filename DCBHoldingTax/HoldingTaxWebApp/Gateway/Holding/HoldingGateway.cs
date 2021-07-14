@@ -1,5 +1,6 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Models.Holding;
+using HoldingTaxWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -804,6 +805,70 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     Sql_Connection.Close();
             }
 
+        }
+
+        public HolderVM GetAllotmentNamjariDesignByPlotId(int PlotId)
+        {
+            try
+            {
+                Sql_Query = "[dbo].[spGetAllotmentNamjariDesignByPlotId]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = PlotId;
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                HolderVM vm = new HolderVM();
+
+                while (Data_Reader.Read())
+                {
+                    vm.PlotId = Convert.ToInt32(Data_Reader["PlotId"]);
+                    vm.PlotOwnerName = Convert.ToString(Data_Reader["PlotOwnerName"]);
+                    vm.LeaseDate = Data_Reader["LeaseDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LeaseDate"]) : (DateTime?)null;
+                    vm.LeasePeriod = Data_Reader["LeasePeriod"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LeasePeriod"]) : (int?)null;
+                    vm.LeaseExpiryDate = Data_Reader["LeaseExpiryDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LeaseExpiryDate"]) : (DateTime?)null;
+                    vm.FirstApprovalDate = Data_Reader["FirstApprovalDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["FirstApprovalDate"]) : (DateTime?)null;
+                    vm.FirstApprovalLetterNo = Convert.ToString(Data_Reader["FirstApprovalLetterNo"]);
+                    vm.LastApprovalDate = Data_Reader["LastApprovalDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LastApprovalDate"]) : (DateTime?)null;
+                    vm.LastApprovalLetterNo = Convert.ToString(Data_Reader["LastApprovalLetterNo"]);
+                };
+
+                vm.StringLeaseDate = $"{vm.LeaseDate:dd/MM/yyyy}";
+                vm.StringLeaseExpiryDate = $"{vm.LeaseExpiryDate:dd/MM/yyyy}";
+                vm.StringFirstApprovalDate = $"{vm.FirstApprovalDate:dd/MM/yyyy}";
+                vm.StringLastApprovalDate = $"{vm.LastApprovalDate:dd/MM/yyyy}";
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
         }
 
 

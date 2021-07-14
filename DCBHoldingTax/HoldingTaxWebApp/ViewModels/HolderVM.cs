@@ -191,6 +191,22 @@ namespace HoldingTaxWebApp.ViewModels
         public string StringRecordCorrectionDate { get; set; }
         public string AreaPlotFlatData { get; set; }
 
+
+        public string PlotOwnerName { get; set; }
+        public DateTime? LeaseDate { get; set; }
+        public string StringLeaseDate { get; set; }
+        public int? LeasePeriod { get; set; }
+        public DateTime? LeaseExpiryDate { get; set; }
+        public string StringLeaseExpiryDate { get; set; }
+        public DateTime? FirstApprovalDate { get; set; }
+        public string StringFirstApprovalDate { get; set; }
+        public string FirstApprovalLetterNo { get; set; }
+        public DateTime? LastApprovalDate { get; set; }
+        public string StringLastApprovalDate { get; set; }
+        public string LastApprovalLetterNo { get; set; }
+
+
+
         public List<HolderFlat> HolderFlatList { get; set; }
 
         public HolderVM()
