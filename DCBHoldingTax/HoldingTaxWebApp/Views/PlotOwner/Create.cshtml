@@ -252,8 +252,8 @@
                                                 </div>
 
                                                 <div class="mt-2">
-                                                    <table class="table" id="tableOther">
-                                                        <thead></thead>
+                                                    <table class="table table-bordered table-hover table-sm" id="tableOther">
+                                                        <thead class="thead-light"></thead>
                                                         <tbody></tbody>
                                                     </table>
                                                 </div>
@@ -271,8 +271,8 @@
                                             <div class="pb-5" data-wizard-type="step-content">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">নকশা অনুমোদনের বিবরন</div>
                                                 <div class="row m-2">
-                                                    <table class="table table-bordered table-success" width="100" id="DesignTable">
-                                                        <thead>
+                                                    <table class="table table-bordered table-hover table-sm" width="100" id="DesignTable">
+                                                        <thead class="thead-light">
                                                             <tr>
                                                                 <th>এম ই ও এনওসি তারিখ</th>
                                                                 <th>বোর্ড মিটিং রেফারেন্স</th>
@@ -282,7 +282,7 @@
                                                                 <th>তলার সংখ্যা</th>
                                                                 <th>গ্রাউন্ড ফ্লোরের আয়তন</th>
                                                                 <th>অন্যান্য ফ্লোরের আয়তন</th>
-                                                                <th><button class="btn btn-success btn-sm" id="addDesign"><i class="fas fa-plus"></i></button></th>
+                                                                <th><button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="addDesign"><i class="fas fa-plus"></i></button></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -696,7 +696,7 @@
             '<td><input type="number" class="form-control FlorNumber" name="FlorNumber" /></td>' +
             '<td><input type="number" class="form-control GroundFlorArea" name="GroundFlorArea" /></td>' +
             '<td><input type="number" class="form-control OtherFlorArea" name="OtherFlorArea" /></td>' +
-            '<td><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
+            '<td><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
 
 
          $('.StringMEO_NCCDate').datepicker({

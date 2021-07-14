@@ -299,15 +299,15 @@
                                                 </div>
 
                                                 <div class="mt-2">
-                                                    <table class="table" id="tableOther">
-                                                        <thead>
+                                                    <table class="table table-bordered table-hover table-sm" id="tableOther">
+                                                        <thead class="thead-light">
                                                             @if (Model.LeaseType == "যৌথ")
                                                             {
                                                                 <tr>
                                                                     <th>অন্য মালিকের নাম</th>
                                                                     <th>ঠিকানা</th>
                                                                     <th>মন্তব্য</th>
-                                                                    <th><span class="btn btn-success btn-sm addOthersOwner" id="addOthersOwner" name="addOthersOwner" onclick="addRow()"><i class="fas fa-plus"></i></span></th>
+                                                                    <th><span class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3 addOthersOwner" id="addOthersOwner" name="addOthersOwner" onclick="addRow()"><i class="fas fa-plus"></i></span></th>
                                                                 </tr>
                                                             }
                                                         </thead>
@@ -325,7 +325,7 @@
 
                                                                         <td><input type="text" class="form-control Remarks" name="Remarks" value="@item.Remarks" /></td>
 
-                                                                        <td><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td>
+                                                                        <td><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3" id="remove_old_details"><i class="fas fa-minus"></i></button></td>
                                                                     </tr>
 
 
@@ -349,8 +349,8 @@
                                             <div class="pb-5" data-wizard-type="step-content">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">নকশা অনুমোদনের বিবরন</div>
                                                 <div class="row m-2">
-                                                    <table class="table table-bordered table-success" width="100" id="DesignTable">
-                                                        <thead>
+                                                    <table class="table table-bordered table-hover table-sm" width="100" id="DesignTable">
+                                                        <thead class="thead-light">
                                                             <tr>
                                                                 <th>এম ই ও এনওসি তারিখ</th>
                                                                 <th>বোর্ড মিটিং রেফারেন্স</th>
@@ -377,7 +377,7 @@
                                                                     <td><input type="number" class="form-control FlorNumber" name="FlorNumber" value="@item1.FlorNumber"/></td>
                                                                     <td><input type="number" class="form-control GroundFlorArea" name="GroundFlorArea" value="@item1.GroundFlorArea"/></td>
                                                                     <td><input type="number" class="form-control OtherFlorArea" name="OtherFlorArea" value="@item1.OtherFlorArea"/></td>
-                                                                    <td><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td>
+                                                                    <td><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3" id="remove_old_details"><i class="fas fa-minus"></i></button></td>
 
                                                                 </tr>
 
@@ -599,7 +599,7 @@
                 '<td><input type="text" class="form-control OthetOwneeName" name="OthetOwneeName" /></td>' +
                 '<td><input type="text" class="form-control Address" name="Address" /></td>' +
                 '<td><input type="text" class="form-control Remarks" name="Remarks" /></td>' +
-                '<td><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
+                '<td><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
         }
     </script>
     <script>
@@ -747,7 +747,7 @@
             '<th>অন্য মালিকের নাম</th>' +
             '<th>ঠিকানা</th>' +
             '<th>মন্তব্য</th>' +
-            '<th><span class="btn btn-success btn-sm addOthersOwner" id="addOthersOwner" name="addOthersOwner"  onclick="addRow()"><i class="fas fa-plus"></i></span></th></tr>')
+            '<th><span class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3 addOthersOwner" id="addOthersOwner" name="addOthersOwner"  onclick="addRow()"><i class="fas fa-plus"></i></span></th></tr>')
             }
             else{
             otherOwnerTableHead.empty();
@@ -789,7 +789,7 @@
             '<td><input type="text" class="form-control FlorNumber" name="FlorNumber" /></td>' +
             '<td><input type="text" class="form-control GroundFlorArea" name="GroundFlorArea" /></td>' +
             '<td><input type="text" class="form-control OtherFlorArea" name="OtherFlorArea" /></td>' +
-            '<td><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
+            '<td><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
 
 
          $('.StringMEO_NCCDate').datepicker({
