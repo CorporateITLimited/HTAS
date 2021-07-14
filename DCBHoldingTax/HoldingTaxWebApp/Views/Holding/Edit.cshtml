@@ -382,8 +382,8 @@
                                                     <label class="show_plot">- @Model.AreaPlotFlatData </label>
                                                 </div>
                                                 <div class="row m-2">
-                                                    <table class="table table-bordered table-success" width="100" id="flat_details">
-                                                        <thead>
+                                                    <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
+                                                        <thead class="thead-light">
                                                             <tr>
                                                                 <th>তলা</th>
                                                                 <th>ফ্ল্যাট নম্বর </th>
@@ -396,7 +396,6 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @**@
                                                             @if (Model.HolderFlatList.Count() > 0 && Model.HolderFlatList != null)
                                                             {
                                                                 foreach (var item in Model.HolderFlatList)
