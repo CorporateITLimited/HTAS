@@ -2513,6 +2513,7 @@
     <Compile Include="Manager\Holding\HoldingManager.cs" />
     <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
+    <Compile Include="Manager\Tax\HoldingTaxManager.cs" />
     <Compile Include="Manager\Users\DesignationManager.cs" />
     <Compile Include="Manager\Users\EmployeeManager.cs" />
     <Compile Include="Manager\Users\RoleManager.cs" />
@@ -2642,6 +2643,10 @@
     <Content Include="Views\PlotOwner\Index.cshtml" />
     <Content Include="Views\Holding\Create.cshtml" />
     <Content Include="Views\Holding\Index.cshtml" />
+    <Content Include="Views\HoldingTax\Index.cshtml" />
+    <Content Include="Views\HoldingTax\Details.cshtml" />
+    <Content Include="Views\HoldingTax\Create.cshtml" />
+    <Content Include="Views\HoldingTax\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2653,7 +2658,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Documents\Holders\FFDocuments\" />
     <Folder Include="Documents\Holders\Images\" />
-    <Folder Include="Views\HoldingTax\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
