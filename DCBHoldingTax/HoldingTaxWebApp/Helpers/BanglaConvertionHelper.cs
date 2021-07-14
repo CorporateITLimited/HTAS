@@ -30,7 +30,7 @@ namespace HoldingTaxWebApp.Helpers
                 }
                 else
                 {
-                    return "০.০০";
+                    return "";
                 }
             }
             else
