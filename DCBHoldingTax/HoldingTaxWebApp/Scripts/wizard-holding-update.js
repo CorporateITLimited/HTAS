@@ -65,6 +65,7 @@ var KTWizard4 = function () {
                     var isAllValid = true;
                     var list = [];
                     $('#flat_details tbody tr').each(function (index, ele) {
+                        var holderFlatId = parseInt($('.HolderFlatId', this).val()) || 0;
                         var florNo = parseInt($('.FlorNo option:selected', this).val()) || 0;
                         var flatNo = $('.FlatNo', this).val().trim();
                         var flatArea = parseFloat($('.FlatArea', this).val()) || 0;
@@ -74,7 +75,7 @@ var KTWizard4 = function () {
                         var ownerName = $('.OwnerName', this).val().trim();
 
                         var detailsData = {
-                            HolderFlatId: 0,
+                            HolderFlatId: holderFlatId,
                             FlorNo: florNo,
                             FlatNo: flatNo,
                             FlatArea: flatArea,
@@ -106,7 +107,7 @@ var KTWizard4 = function () {
                     }
                     else {
                         var data = {
-                            HolderId: 0,
+                            HolderId: parseInt($('#HolderId').val()),
                             AreaId: parseInt($('#AreaId option:selected').val()) || 0,
                             PlotId: parseInt($('#PlotId option:selected').val()) || 0,
                             HolderName: $('#HolderName').val().trim(),
@@ -142,7 +143,7 @@ var KTWizard4 = function () {
 
                         $.ajax({
                             type: 'POST',
-                            url: '/Holding/AddData',
+                            url: '/Holding/UpdateData',
                             data: JSON.stringify(data),
                             contentType: 'application/json',
                             success: function (d) {
@@ -150,7 +151,7 @@ var KTWizard4 = function () {
                                     list = [];
                                     $('#flat_details tbody').empty();
                                     Swal.fire({
-                                        text: "নূতন প্লট/ফ্ল্যাট/বাড়ী মালিকের তথ্য সফলভাবে সাবমিট করা হয়েছে ",
+                                        text: "প্লট/ফ্ল্যাট/বাড়ী মালিকের তথ্য সফলভাবে আপডেট করা হয়েছে",
                                         icon: "success",
                                         buttonsStyling: false,
                                         confirmButtonText: "সাফল্য",
@@ -175,7 +176,7 @@ var KTWizard4 = function () {
                                 }
                                 else {
                                     Swal.fire({
-                                        text: "Unknow Error",
+                                        text: "Unknown Error",
                                         icon: "error",
                                         buttonsStyling: false,
                                         confirmButtonText: "Ok",
@@ -494,7 +495,7 @@ var KTWizard4 = function () {
             }
         ));
 
-       
+
     }
 
     return {

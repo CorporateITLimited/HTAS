@@ -1,6 +1,6 @@
 ﻿@model HoldingTaxWebApp.ViewModels.HolderVM
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
 @section Sheets{
@@ -107,20 +107,21 @@
                                     <div class="col-xl-12 col-md-12 col-sm-12">
                                         <span id="details_error" style="color:red;"></span>
                                         <!--begin: Wizard Form-->
-                                        <form class="form mt-0 mt-lg-10" id="kt_form" enctype="multipart/form-data" method="post" action="/Holding/AddData">
+                                        <form class="form mt-0 mt-lg-10" id="kt_form" enctype="multipart/form-data" method="post" action="/Holding/UpdateData">
+                                            @Html.HiddenFor(m => m.HolderId)
                                             <!--begin: Wizard Step 1-->
                                             <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
                                                     ব্যাক্তিগত তথ্য &nbsp;
-                                                    <label class="show_plot"></label>
+                                                    <label class="show_plot">- @Model.AreaPlotFlatData </label>
                                                 </div>
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.DropDownListFor(model => model.AreaId, null, " নির্বাচন করুন ", new
-                                                  {
-                                                      @class = "form-control",
-                                                  })
+                                                   {
+                                                       @class = "form-control",
+                                                   })
                                                     </div>
 
                                                     @Html.LabelFor(model => model.PlotId, "প্লট/বাড়ী/ফ্ল্যাট নম্বর ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -134,12 +135,12 @@
                                                 <div class="form-group row m-2">
                                                     <label class="col-lg-2 col-form-label text-lg-right" for="road_number">রোড নম্বর </label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="road_number" name="road_number" readonly />
+                                                        <input type="text" class="form-control border-0" id="road_number" name="road_number" value="@Model.RoadNo" readonly />
                                                     </div>
 
                                                     <label class="col-lg-2 col-form-label text-lg-right" for="road_name">রোডের নাম</label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="road_name" name="road_name" readonly />
+                                                        <input type="text" class="form-control border-0" id="road_name" name="road_name" value="@Model.RoadName" readonly />
                                                     </div>
                                                 </div>
 
@@ -241,8 +242,7 @@
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                                         </span>
                                                         <br />
-                                                        <img id="imgpreview" src="#" style="border:1px solid black;" />
-
+                                                        <img id="imgpreview" src="@Model.ImageLocation" width="200" height="200" style="border:1px solid black;" alt="Passport Size Image" />
                                                     </div>
                                                 </div>
 
@@ -252,7 +252,7 @@
                                             <div class="pb-5" data-wizard-type="step-content">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
                                                     জমি ও ভবন সংক্রান্ত তথ্য &nbsp;
-                                                    <label class="show_plot"></label>
+                                                    <label class="show_plot">- @Model.AreaPlotFlatData </label>
                                                 </div>
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.OwnershipSourceId, "মালিকানার সূত্র", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -271,26 +271,68 @@
                                                  })
                                                     </div>
                                                 </div>
+                                                @if (Model.OwnerType == 3)
+                                                {
+                                                    <div class="form-group row m-2" id="war_proves_old">
+                                                        @*@Html.LabelFor(model => model.Document1, "আগের প্রমাণাদি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })*@
+                                                        <label class="col-lg-2 col-form-label text-lg-right">&nbsp;</label>
+                                                        <div class="col-lg-4">
+                                                            @*@if (!string.IsNullOrWhiteSpace(Model.Document1))
+                                                            {
+                                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document1" title="Download">ডাউনলোড প্রমাণাদি ১</a>
+                                                            }
+                                                            @if (!string.IsNullOrWhiteSpace(Model.Document2))
+                                                            {
+                                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document2" title="Download">ডাউনলোড প্রমাণাদি ২</a>
+                                                            }*@
+                                                        </div>
 
-                                                <div class="form-group row m-2" style="display: none;" id="war_proves">
-                                                    @*@Html.LabelFor(model => model.Document1, "মুক্তিযোদ্ধার প্রমাণাদি ১", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })*@
-                                                    <div class="col-lg-6">
-                                                        @*<input type="file" name="document_file_1" id="document_file_1" />*@
+                                                        @Html.LabelFor(model => model.Document2, "মুক্তিযোদ্ধার প্রমাণাদি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                        <div class="col-lg-4">
+
+                                                            @if (!string.IsNullOrWhiteSpace(Model.Document1))
+                                                            {
+                                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document1" title="Download">ডাউনলোড প্রমাণাদি ১</a>
+                                                            }
+                                                            <input type="file" name="document_file_1" id="document_file_1" />
+                                                            <span class="form-text text-info">
+                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                            </span>
+                                                            <br />
+                                                            @if (!string.IsNullOrWhiteSpace(Model.Document2))
+                                                            {
+                                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document2" title="Download">ডাউনলোড প্রমাণাদি ২</a>
+                                                            }
+                                                            <input type="file" name="document_file_2" id="document_file_2" />
+                                                            <span class="form-text text-info">
+                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                            </span>
+                                                        </div>
                                                     </div>
 
-                                                    @Html.LabelFor(model => model.Document2, "মুক্তিযোদ্ধার প্রমাণাদি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        <input type="file" name="document_file_1" id="document_file_1" />
-                                                        <span class="form-text text-info">
-                                                            সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
-                                                        </span>
-                                                        <br />
-                                                        <input type="file" name="document_file_2" id="document_file_2" />
-                                                        <span class="form-text text-info">
-                                                            সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
-                                                        </span>
+                                                }
+                                                else
+                                                {
+                                                    <div class="form-group row m-2" style="display: none;" id="war_proves">
+                                                        @*@Html.LabelFor(model => model.Document1, "মুক্তিযোদ্ধার প্রমাণাদি ১", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })*@
+                                                        <div class="col-lg-6">
+                                                            @*<input type="file" name="document_file_1" id="document_file_1" />*@
+                                                        </div>
+
+                                                        @Html.LabelFor(model => model.Document2, "মুক্তিযোদ্ধার প্রমাণাদি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                        <div class="col-lg-4">
+                                                            <input type="file" name="document_file_1" id="document_file_1" />
+                                                            <span class="form-text text-info">
+                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                            </span>
+                                                            <br />
+                                                            <input type="file" name="document_file_2" id="document_file_2" />
+                                                            <span class="form-text text-info">
+                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                            </span>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                }
 
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.BuildingTypeId, "ভবনের ধরন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -337,7 +379,7 @@
                                             <div class="pb-5" data-wizard-type="step-content">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
                                                     ফ্ল্যাটসমূহের বিবরণ &nbsp;
-                                                    <label class="show_plot"></label>
+                                                    <label class="show_plot">- @Model.AreaPlotFlatData </label>
                                                 </div>
                                                 <div class="row m-2">
                                                     <table class="table table-bordered table-success" width="100" id="flat_details">
@@ -354,43 +396,103 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td width="10%;">
-                                                                    <select class="form-control FlorNo">
-                                                                        @foreach (var item in ViewBag.FlorNo)
-                                                                        {
-                                                                            <option value="@item.TypeId">
-                                                                                @item.TypeName
-                                                                            </option>
-                                                                        }
-                                                                    </select>
-                                                                </td>
-                                                                <td width="13%;"><input type="text" class="form-control FlatNo" /></td>
-                                                                <td width="14%;"><input type="number" class="form-control FlatArea" placeholder="0" /></td>
-                                                                <td width="12%;">
-                                                                    <select class="form-control OwnOrRent">
-                                                                        @foreach (var item in ViewBag.OwnOrRent)
-                                                                        {
-                                                                            <option value="@item.TypeId">
-                                                                                @item.TypeName
-                                                                            </option>
-                                                                        }
-                                                                    </select>
-                                                                </td>
-                                                                <td width="14%;"><input type="number" class="form-control MonthlyRent" placeholder="0" /></td>
-                                                                <td width="15%;">
-                                                                    <select class="form-control SelfOwned">
-                                                                        @foreach (var item in ViewBag.SelfOwned)
-                                                                        {
-                                                                            <option value="@item.TypeId">
-                                                                                @item.TypeName
-                                                                            </option>
-                                                                        }
-                                                                    </select>
-                                                                </td>
-                                                                <td width="13%;"><input type="text" class="form-control OwnerName" /></td>
-                                                                <td width="5%;"><button class="btn btn-success btn-sm" id="add_new_details"><i class="fas fa-plus"></i></button></td>
-                                                            </tr>
+                                                            @**@
+                                                            @if (Model.HolderFlatList.Count() > 0 && Model.HolderFlatList != null)
+                                                            {
+                                                                foreach (var item in Model.HolderFlatList)
+                                                                {
+                                                                    <tr>
+                                                                        <input type="hidden" id="HolderFlatId" class="HolderFlatId" value="@item.HolderFlatId" />
+                                                                        <td width="10%;">
+                                                                            <select class="form-control FlorNo">
+                                                                                <option value="@item.FlorNo">@item.FloorTypeName</option>
+                                                                                @foreach (var floor in ViewBag.FlorNo)
+                                                                                {
+                                                                                    if (item.FlorNo != floor.TypeId)
+                                                                                    {
+                                                                                        <option value="@floor.TypeId">
+                                                                                            @floor.TypeName
+                                                                                        </option>
+                                                                                    }
+                                                                                }
+                                                                            </select>
+                                                                        </td>
+                                                                        <td width="13%;"><input type="text" class="form-control FlatNo" value="@item.FlatNo" /></td>
+                                                                        <td width="14%;"><input type="number" class="form-control FlatArea" value="@item.FlatArea" placeholder="0" /></td>
+                                                                        <td width="12%;">
+                                                                            <select class="form-control OwnOrRent">
+                                                                                <option value="@item.OwnOrRent">@item.OwnOrRentType</option>
+                                                                                @foreach (var onw in ViewBag.OwnOrRent)
+                                                                                {
+                                                                                    if (item.OwnOrRent != onw.TypeId)
+                                                                                    {
+                                                                                        <option value="@onw.TypeId">
+                                                                                            @onw.TypeName
+                                                                                        </option>
+                                                                                    }
+                                                                                }
+                                                                            </select>
+                                                                        </td>
+                                                                        <td width="14%;"><input type="number" class="form-control MonthlyRent" value="@item.MonthlyRent" placeholder="0" /></td>
+                                                                        <td width="15%;">
+                                                                            <select class="form-control SelfOwned">
+                                                                                <option value="@item.SelfOwn">@item.SelfOwnType</option>
+                                                                                @foreach (var own_ in ViewBag.SelfOwned)
+                                                                                {
+                                                                                    if (item.OwnOrRent != own_.TypeId)
+                                                                                    {
+                                                                                        <option value="@own_.TypeId">
+                                                                                            @own_.TypeName
+                                                                                        </option>
+                                                                                    }
+                                                                                }
+                                                                            </select>
+                                                                        </td>
+                                                                        <td width="13%;"><input type="text" class="form-control OwnerName" value="@item.OwnerName" /></td>
+                                                                        <td width="5%;"><button class="btn btn-success btn-sm" id="add_new_details"><i class="fas fa-plus"></i></button></td>
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <tr>
+                                                                    <td width="10%;">
+                                                                        <select class="form-control FlorNo">
+                                                                            @foreach (var item in ViewBag.FlorNo)
+                                                                            {
+                                                                                <option value="@item.TypeId">
+                                                                                    @item.TypeName
+                                                                                </option>
+                                                                            }
+                                                                        </select>
+                                                                    </td>
+                                                                    <td width="13%;"><input type="text" class="form-control FlatNo" /></td>
+                                                                    <td width="14%;"><input type="number" class="form-control FlatArea" placeholder="0" /></td>
+                                                                    <td width="12%;">
+                                                                        <select class="form-control OwnOrRent">
+                                                                            @foreach (var item in ViewBag.OwnOrRent)
+                                                                            {
+                                                                                <option value="@item.TypeId">
+                                                                                    @item.TypeName
+                                                                                </option>
+                                                                            }
+                                                                        </select>
+                                                                    </td>
+                                                                    <td width="14%;"><input type="number" class="form-control MonthlyRent" placeholder="0" /></td>
+                                                                    <td width="15%;">
+                                                                        <select class="form-control SelfOwned">
+                                                                            @foreach (var item in ViewBag.SelfOwned)
+                                                                            {
+                                                                                <option value="@item.TypeId">
+                                                                                    @item.TypeName
+                                                                                </option>
+                                                                            }
+                                                                        </select>
+                                                                    </td>
+                                                                    <td width="13%;"><input type="text" class="form-control OwnerName" /></td>
+                                                                    <td width="5%;"><button class="btn btn-success btn-sm" id="add_new_details"><i class="fas fa-plus"></i></button></td>
+                                                                </tr>
+                                                            }
                                                         </tbody>
                                                     </table>
 
@@ -402,7 +504,7 @@
                                                 <!--begin::Section-->
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
                                                     বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য&nbsp;
-                                                    <label class="show_plot"></label>
+                                                    <label class="show_plot">- @Model.AreaPlotFlatData </label>
                                                 </div>
                                                 <div class="form-group row m-2">
                                                     <label class="col-lg-2 col-form-label text-lg-right"><b>বরাদ্দ গ্রহীতার নাম :</b></label>
@@ -484,9 +586,7 @@
                                             <!--begin: Wizard Actions-->
                                             <div class="d-flex justify-content-between border-top mt-5 pt-10">
                                                 <div class="mr-2">
-                                                    <button type="button" class="btn btn-light-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-prev">
-                                                        পূর্ববর্তী পেজে যান
-                                                    </button>
+                                                    <button type="button" class="btn btn-light-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-prev"> পূর্ববর্তী পেজে যান</button>
                                                 </div>
                                                 <div>
                                                     <button type="button" class="btn btn-success font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-submit">সাবমিট করুন</button>
@@ -512,7 +612,7 @@
 
 @section Scripts {
     @*save and validation funtionality implemented in this js*@
-    <script src="~/Scripts/wizard-holding.js"></script>
+    <script src="~/Scripts/wizard-holding-update.js"></script>
     <script>
         jQuery(document).ready(function () {
 
@@ -704,8 +804,11 @@
                 var val = parseInt($('#OwnerType option:selected').val()) || 0;
                 if (val === 3) {
                     $("#war_proves").show();
+                    $("#war_proves_old").show();
+
                 } else {
                     $("#war_proves").hide();
+                    $("#war_proves_old").hide();
                 }
             });
 
@@ -713,7 +816,7 @@
             $("#add_new_details").on('click', function (e) {
                 e.preventDefault();
                 var flat_details_table = $('#flat_details tbody');
-                flat_details_table.append('<tr> <td width="10%;">' +
+                flat_details_table.append('<tr>  <input type="hidden" id="HolderFlatId" class="HolderFlatId" value="0" /><td width="10%;">' +
                     '<select class="form-control FlorNo"> ' +
                     '@foreach (var item in ViewBag.FlorNo)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
