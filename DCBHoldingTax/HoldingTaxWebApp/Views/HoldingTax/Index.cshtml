@@ -1,0 +1,121 @@
+﻿@model IEnumerable<HoldingTaxWebApp.Models.Tax.HoldingTax>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FinancialYearId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalRent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxFromRent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxFromOwnProperty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalHoldingTax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surcharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rebate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WrongInfoCharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.FinancialYearId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalRent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxFromRent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxFromOwnProperty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalHoldingTax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surcharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rebate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WrongInfoCharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HoldingTaxId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HoldingTaxId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HoldingTaxId })
+        </td>
+    </tr>
+}
+
+</table>

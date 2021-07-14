@@ -27,6 +27,26 @@
             background-color: rgba(255,0,0,0.35);
         }
     </style>
+    
+    <style>
+        .wizard.wizard-4 .wizard-nav .wizard-steps .wizard-step {
+            -ms-flex: 0 0 calc(20% - 0.20rem);
+            flex: 0 0 calc(20% - 0.20rem); 
+            width: calc(20% - 0.20rem);
+            justify-content:flex-start;
+        }
+            .wizard.wizard-4 .wizard-nav .wizard-steps .wizard-step .wizard-wrapper {
+                padding: 1.5rem 1rem;
+                flex-wrap: nowrap;
+                align-items: stretch;
+            }
+
+        .wizard-label {
+            padding: 5px;
+            flex-wrap: nowrap;
+            align-items: stretch;
+        }
+    </style>
 }
 
 
@@ -83,7 +103,7 @@
                                 <div class="wizard-wrapper">
                                     <div class="wizard-number">৩</div>
                                     <div class="wizard-label">
-                                        <div class="wizard-title">নির্মান অগ্রগতি ও ফ্ল্যাট মালিকানার বিবরন </div>
+                                        <div class="wizard-title">নির্মান অগ্রগতি ও ফ্ল্যাট মালিকানা</div>
                                     </div>
                                 </div>
                             </div>
@@ -92,12 +112,24 @@
                             <div class="wizard-step" data-wizard-type="step">
                                 <div class="wizard-wrapper">
                                     <div class="wizard-number">৪</div>
+                                    <br />
                                     <div class="wizard-label">
                                         <div class="wizard-title">অননুমোদিত নির্মান তথ্য</div>
                                     </div>
                                 </div>
                             </div>
                             <!--end::Wizard Step 4 Nav-->
+                            <!--begin::Wizard Step 5 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-wrapper">
+                                    <div class="wizard-number">5</div>
+                                    <br />
+                                    <div class="wizard-label">
+                                        <div class="wizard-title">নির্মান তথ্য</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Wizard Step 5 Nav-->
                         </div>
                         <!--end: Wizard Nav-->
                         <!--begin: Wizard Body-->
@@ -248,7 +280,7 @@
                                                         @Html.EditorFor(model => model.LandDevelopChange, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
-                                                 
+
                                                 </div>
 
                                                 <div class="mt-2">
@@ -260,10 +292,6 @@
 
 
                                             </div>
-
-
-
-
 
 
                                             <!--end: Wizard Step 1-->
@@ -285,9 +313,7 @@
                                                                 <th><button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="addDesign"><i class="fas fa-plus"></i></button></th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
-                                                           
-                                                        </tbody>
+                                                        <tbody></tbody>
                                                     </table>
 
                                                 </div>
@@ -463,6 +489,9 @@
 
                                             </div>
                                             <!--end: Wizard Step 4-->
+                                            <!--begin: Wizard Step 5-->
+                                            
+                                            <!--end: Wizard Step 5-->
                                             <!--begin: Wizard Actions-->
                                             <div class="d-flex justify-content-between border-top mt-5 pt-10">
                                                 <div class="mr-2">
