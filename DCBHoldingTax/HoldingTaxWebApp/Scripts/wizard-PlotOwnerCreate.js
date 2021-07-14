@@ -194,10 +194,10 @@ var KTWizard4 = function () {
                                     $('#tableOther tbody').empty();
                                     swal.fire({
                                         "icon": 'success',
-                                        "title": 'Your work has been saved',
-                                        "timer": 1500
+                                        "title": 'Plot Owner Information has been saved',
+                                        "timer": 1000
                                     });
-                                    setTimeout(function () { window.location.href = "/PlotOwner/Index"; }, 2000);
+                                    setTimeout(function () { window.location.href = "/PlotOwner/Index"; }, 1000);
                                 }
                                 else if (d.status === "error") {
                                     alert('Error');
@@ -287,7 +287,7 @@ var KTWizard4 = function () {
                             }
                         }
                     },
-                    PermanentAdd1: {
+                    PlotOwnerName: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'

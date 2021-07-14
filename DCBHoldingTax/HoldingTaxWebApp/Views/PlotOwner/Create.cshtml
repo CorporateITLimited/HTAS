@@ -125,7 +125,7 @@
                                     <div class="wizard-number">5</div>
                                     <br />
                                     <div class="wizard-label">
-                                        <div class="wizard-title">নির্মান তথ্য</div>
+                                        <div class="wizard-title">প্রয়োজনীয় নথি সংযুক্ত করন</div>
                                     </div>
                                 </div>
                             </div>
@@ -172,6 +172,9 @@
                                                     @Html.LabelFor(model => model.PlotOwnerName, "প্লট মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.PlotOwnerName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.ValidationMessageFor(model => model.PlotOwnerName, "", new { @class = "text-danger" })
+
+
                                                     </div>
 
                                                     @Html.LabelFor(model => model.IsAlive, "প্লট মালিকের বর্তমান অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -546,7 +549,18 @@
         placeholder: "--নির্বাচন করুন--",
         allowClear: true
     });
-
+    $('#ConsStatusId').select2({
+        placeholder: "--নির্বাচন করুন--",
+        allowClear: true
+    });
+      $('#OfficialStatusId').select2({
+        placeholder: "--নির্বাচন করুন--",
+        allowClear: true
+    });
+    $('#LeaseQuotaId').select2({
+        placeholder: "--নির্বাচন করুন--",
+        allowClear: true
+    });
    // $('#MaritialStatus').select2({
       //  placeholder: "--নির্বাচন করুন--",
      //   allowClear: true
