@@ -382,8 +382,8 @@
                                                     <label class="show_plot">- @Model.AreaPlotFlatData </label>
                                                 </div>
                                                 <div class="row m-2">
-                                                    <table class="table table-bordered table-success" width="100" id="flat_details">
-                                                        <thead>
+                                                    <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
+                                                        <thead class="thead-light">
                                                             <tr>
                                                                 <th>তলা</th>
                                                                 <th>ফ্ল্যাট নম্বর </th>
@@ -396,7 +396,43 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @**@
+                                                            <tr>
+                                                                <td width="10%;">
+                                                                    <select class="form-control FlorNo">
+                                                                        @foreach (var item in ViewBag.FlorNo)
+                                                                        {
+                                                                            <option value="@item.TypeId">
+                                                                                @item.TypeName
+                                                                            </option>
+                                                                        }
+                                                                    </select>
+                                                                </td>
+                                                                <td width="13%;"><input type="text" class="form-control FlatNo" /></td>
+                                                                <td width="14%;"><input type="number" class="form-control FlatArea" placeholder="0" /></td>
+                                                                <td width="12%;">
+                                                                    <select class="form-control OwnOrRent">
+                                                                        @foreach (var item in ViewBag.OwnOrRent)
+                                                                        {
+                                                                            <option value="@item.TypeId">
+                                                                                @item.TypeName
+                                                                            </option>
+                                                                        }
+                                                                    </select>
+                                                                </td>
+                                                                <td width="14%;"><input type="number" class="form-control MonthlyRent" placeholder="0" /></td>
+                                                                <td width="15%;">
+                                                                    <select class="form-control SelfOwned">
+                                                                        @foreach (var item in ViewBag.SelfOwned)
+                                                                        {
+                                                                            <option value="@item.TypeId">
+                                                                                @item.TypeName
+                                                                            </option>
+                                                                        }
+                                                                    </select>
+                                                                </td>
+                                                                <td width="13%;"><input type="text" class="form-control OwnerName" /></td>
+                                                                <td width="5%;"><button class="btn btn-success btn-sm" id="add_new_details"><i class="fas fa-plus"></i></button></td>
+                                                            </tr>
                                                             @if (Model.HolderFlatList.Count() > 0 && Model.HolderFlatList != null)
                                                             {
                                                                 foreach (var item in Model.HolderFlatList)
@@ -449,49 +485,9 @@
                                                                             </select>
                                                                         </td>
                                                                         <td width="13%;"><input type="text" class="form-control OwnerName" value="@item.OwnerName" /></td>
-                                                                        <td width="5%;"><button class="btn btn-success btn-sm" id="add_new_details"><i class="fas fa-plus"></i></button></td>
+                                                                        <td width="5%;"><button class="remove btn btn-danger btn-sm"><i class="fas fa-minus"></i></button></td>
                                                                     </tr>
                                                                 }
-                                                            }
-                                                            else
-                                                            {
-                                                                <tr>
-                                                                    <td width="10%;">
-                                                                        <select class="form-control FlorNo">
-                                                                            @foreach (var item in ViewBag.FlorNo)
-                                                                            {
-                                                                                <option value="@item.TypeId">
-                                                                                    @item.TypeName
-                                                                                </option>
-                                                                            }
-                                                                        </select>
-                                                                    </td>
-                                                                    <td width="13%;"><input type="text" class="form-control FlatNo" /></td>
-                                                                    <td width="14%;"><input type="number" class="form-control FlatArea" placeholder="0" /></td>
-                                                                    <td width="12%;">
-                                                                        <select class="form-control OwnOrRent">
-                                                                            @foreach (var item in ViewBag.OwnOrRent)
-                                                                            {
-                                                                                <option value="@item.TypeId">
-                                                                                    @item.TypeName
-                                                                                </option>
-                                                                            }
-                                                                        </select>
-                                                                    </td>
-                                                                    <td width="14%;"><input type="number" class="form-control MonthlyRent" placeholder="0" /></td>
-                                                                    <td width="15%;">
-                                                                        <select class="form-control SelfOwned">
-                                                                            @foreach (var item in ViewBag.SelfOwned)
-                                                                            {
-                                                                                <option value="@item.TypeId">
-                                                                                    @item.TypeName
-                                                                                </option>
-                                                                            }
-                                                                        </select>
-                                                                    </td>
-                                                                    <td width="13%;"><input type="text" class="form-control OwnerName" /></td>
-                                                                    <td width="5%;"><button class="btn btn-success btn-sm" id="add_new_details"><i class="fas fa-plus"></i></button></td>
-                                                                </tr>
                                                             }
                                                         </tbody>
                                                     </table>
@@ -719,6 +715,27 @@
                         console.log(e);
                     }
                 });
+
+                $.ajax({
+                    url: '/Holding/GetAllotmentNamjariDesignByPlotId',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        $("#PlotOwnerName").val(data.PlotOwnerName);
+                        $("#LeasePeriod").val(data.LeasePeriod);
+                        $("#StringLeaseExpiryDate").val(data.StringLeaseExpiryDate);
+                        $("#FirstApprovalLetterNo").val(data.FirstApprovalLetterNo);
+                        $("#LastApprovalLetterNo").val(data.LastApprovalLetterNo);
+                        $("#StringFirstApprovalDate").val(data.StringFirstApprovalDate);
+                        $("#StringLastApprovalDate").val(data.StringLastApprovalDate);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+
+
             });
 
             $('#BuildingTypeId').change(function () {

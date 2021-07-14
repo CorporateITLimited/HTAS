@@ -71,6 +71,11 @@ namespace HoldingTaxWebApp.Manager.Holding
                 return CommonConstantHelper.Failed;
         }
 
+        public int DeleteHoldersFlatDataByHolderId(int HolderId)
+        {
+            return _holdingGateway.DeleteHoldersFlatDataByHolderId(HolderId);
+        }
+
         #endregion
 
         #region frontend queries
