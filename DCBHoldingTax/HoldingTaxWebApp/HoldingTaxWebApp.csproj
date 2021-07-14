@@ -216,7 +216,6 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Scripts\wizard-holding-update.js" />
     <Content Include="Scripts\wizard-holding.js" />
     <Content Include="Scripts\wizard-PlotOwnerEdit.js" />
     <Content Include="Scripts\wizard-PlotOwnerCreate.js" />
@@ -2487,6 +2486,9 @@
     <Compile Include="Gateway\Holding\HoldingGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
+    <Compile Include="Gateway\Tax\HoldingTaxGateway.cs" />
+    <Compile Include="Gateway\Tax\OwnFlatTaxGateway.cs" />
+    <Compile Include="Gateway\Tax\RentedFlatTaxGateway.cs" />
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
     <Compile Include="Gateway\Users\RoleGateway.cs" />
@@ -2532,7 +2534,10 @@
     <Compile Include="Models\Plots\Plot.cs" />
     <Compile Include="Models\Plots\PlotOwner.cs" />
     <Compile Include="Models\Plots\UnauthPortion.cs" />
+    <Compile Include="Models\Tax\HoldingTax.cs" />
+    <Compile Include="Models\Tax\OwnFlatTax.cs" />
     <Compile Include="Models\Tax\OwnTaxRate.cs" />
+    <Compile Include="Models\Tax\RentedFlatTax.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
     <Compile Include="Models\Users\Employee.cs" />
@@ -2637,7 +2642,6 @@
     <Content Include="Views\PlotOwner\Index.cshtml" />
     <Content Include="Views\Holding\Create.cshtml" />
     <Content Include="Views\Holding\Index.cshtml" />
-    <Content Include="Views\Holding\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
