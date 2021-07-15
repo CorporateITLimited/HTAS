@@ -2600,6 +2600,10 @@
     <Content Include="Views\Holding\Create.cshtml" />
     <Content Include="Views\Holding\Index.cshtml" />
     <Content Include="Views\Holding\Edit.cshtml" />
+    <Content Include="Views\HoldingTax\Create.cshtml" />
+    <Content Include="Views\HoldingTax\Details.cshtml" />
+    <Content Include="Views\HoldingTax\Edit.cshtml" />
+    <Content Include="Views\HoldingTax\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2611,7 +2615,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Documents\Holders\FFDocuments\" />
     <Folder Include="Documents\Holders\Images\" />
-    <Folder Include="Views\HoldingTax\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
