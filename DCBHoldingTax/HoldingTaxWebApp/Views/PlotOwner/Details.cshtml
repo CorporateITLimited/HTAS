@@ -163,17 +163,36 @@
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.TotalArea)
+                                        @Html.DisplayNameFor(model => model.Doc1)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                     <div class="col-5">
                                         <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.TotalArea)
+                                            @if (!string.IsNullOrWhiteSpace(Model.Doc1))
+                                            {
+                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc1" title="Download">ডাউনলোড প্রমাণাদি ১</a>
+                                            }
+                                          
                                         </span>
                                     </div>
                                 </div>
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.Doc2)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @if (!string.IsNullOrWhiteSpace(Model.Doc2))
+                                            {
+                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc2" title="Download">ডাউনলোড প্রমাণাদি 2</a>
+                                            }
 
-                              
+                                        </span>
+                                    </div>
+                                </div>
+                            
+                       
 
                             </div>
 

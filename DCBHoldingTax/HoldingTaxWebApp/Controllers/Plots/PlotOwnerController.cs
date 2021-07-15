@@ -5,6 +5,7 @@ using HoldingTaxWebApp.Models.Plots;
 using HoldingTaxWebApp.ViewModels.Plots;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,7 +25,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
         {
             _PlotOwnerManager = new PlotOwnerManager();
             _PlotManager = new PlotManager();
-           //_OwnershipSourceManager = new OwnershipSourceManager();
+            //_OwnershipSourceManager = new OwnershipSourceManager();
             _LeaseQuotaManager = new LeaseQuotaManager();
             _OfficialStatusManager = new OfficialStatusManager();
             _ConstructionStatusManager = new ConstructionStatusManager();
@@ -44,46 +45,46 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     PlotOwner PlotOwnerVM = new PlotOwner()
                     {
 
-                       IsActive = item.IsActive,
-                       IsDeleted = item.IsDeleted,
+                        IsActive = item.IsActive,
+                        IsDeleted = item.IsDeleted,
 
-                       PlotOwnerId = item.PlotOwnerId,
-                       PlotOwnerName = item.PlotOwnerName,
-                       ConsStatusId = item.ConsStatusId,
-                       ConsStatusName = item.ConsStatusName,
-                       CreateDate = item.CreateDate,
-                       CreatedBy = item.CreatedBy,
-                       CreatedByUserName = item.CreatedByUserName,
-                       Doc1 = item.Doc1,
-                       Doc2 = item.Doc2,
-                       Doc3 = item.Doc3,
-                       Doc4 = item.Doc4,
-                       Doc5 = item.Doc5,
-                       Doc6 = item.Doc6,
-                       Email = item.Email,
-                       HandOverLetterNo = item.HandOverLetterNo,
-                       HandOverOffice = item.HandOverOffice,
-                       IsAlive = item.IsAlive,
-                       LandDevelopChange = item.LandDevelopChange,
-                       LastUpdated = item.LastUpdated,
-                       LastUpdatedBy = item.LastUpdatedBy,
-                       LeaseAuthority = item.LeaseAuthority,
-                       LeasePeriod = item.LeasePeriod,
-                       LeaseQuotaId = item.LeaseQuotaId,
-                       LeaseQuotaName = item.LeaseQuotaName,
-                       LeaseType = item.LeaseType,
-                       LeaveDate = item.LeaveDate,
-                       LeaveExPeriod = item.LeaveExPeriod,
-                       OfficialStatusId = item.OfficialStatusId,
-                       OffStatusName = item.OffStatusName,
-                       PermanentAdd = item.PermanentAdd,
-                       PhoneNumber = item.PhoneNumber,
-                       PlotId = item.PlotId,
-                       PlotIdNumber = item.PlotIdNumber,
-                       PresentAdd = item.PresentAdd,
-                       StringLeaveDate = $"{item.LeaveDate:dd/MM/yyyy}",
-                       TotalArea = item.TotalArea,
-                       UpdatedByUserName = item.UpdatedByUserName
+                        PlotOwnerId = item.PlotOwnerId,
+                        PlotOwnerName = item.PlotOwnerName,
+                        ConsStatusId = item.ConsStatusId,
+                        ConsStatusName = item.ConsStatusName,
+                        CreateDate = item.CreateDate,
+                        CreatedBy = item.CreatedBy,
+                        CreatedByUserName = item.CreatedByUserName,
+                        Doc1 = item.Doc1,
+                        Doc2 = item.Doc2,
+                        Doc3 = item.Doc3,
+                        Doc4 = item.Doc4,
+                        Doc5 = item.Doc5,
+                        Doc6 = item.Doc6,
+                        Email = item.Email,
+                        HandOverLetterNo = item.HandOverLetterNo,
+                        HandOverOffice = item.HandOverOffice,
+                        IsAlive = item.IsAlive,
+                        LandDevelopChange = item.LandDevelopChange,
+                        LastUpdated = item.LastUpdated,
+                        LastUpdatedBy = item.LastUpdatedBy,
+                        LeaseAuthority = item.LeaseAuthority,
+                        LeasePeriod = item.LeasePeriod,
+                        LeaseQuotaId = item.LeaseQuotaId,
+                        LeaseQuotaName = item.LeaseQuotaName,
+                        LeaseType = item.LeaseType,
+                        LeaveDate = item.LeaveDate,
+                        LeaveExPeriod = item.LeaveExPeriod,
+                        OfficialStatusId = item.OfficialStatusId,
+                        OffStatusName = item.OffStatusName,
+                        PermanentAdd = item.PermanentAdd,
+                        PhoneNumber = item.PhoneNumber,
+                        PlotId = item.PlotId,
+                        PlotIdNumber = item.PlotIdNumber,
+                        PresentAdd = item.PresentAdd,
+                        StringLeaveDate = $"{item.LeaveDate:dd/MM/yyyy}",
+                        TotalArea = item.TotalArea,
+                        UpdatedByUserName = item.UpdatedByUserName
 
                     };
                     PlotOwnerListVM.Add(PlotOwnerVM);
@@ -122,7 +123,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     {
                         StringApprovalDate = $"{item.ApprovalDate:dd/MM/yyyy}",
                         StringMEO_NCCDate = $"{item.MEO_NCCDate:dd/MM/yyyy}",
-                       
+
                         ApprovalLetterNo = item.ApprovalLetterNo,
                         ApprovalDate = item.ApprovalDate,
                         ApprovalNo = item.ApprovalNo,
@@ -229,7 +230,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                 };
 
 
-                
+
                 return View(plotOwnerVM);
             }
             catch (Exception exception)
@@ -301,7 +302,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         GroundFlorArea = item.GroundFlorArea,
                         MEO_NCCDate = item.MEO_NCCDate,
                         Reference = item.Reference,
-                        
+
                     };
                     DesignApprovalVM.Add(Approval);
                 }
@@ -461,11 +462,12 @@ namespace HoldingTaxWebApp.Controllers.Plots
         {
             try
             {
+                var maxId = DateTime.Now.ToString("yyyyMMddHHmmssfff");
                 string status = "error";
 
                 if (POVM.PlotOwnerId == 0) //IsNullOrEmpty(POVM.NoaId.ToString())
                 {
-                    if(POVM.StringCompletionDate != null)
+                    if (POVM.StringCompletionDate != null)
                     {
                         POVM.CompletionDate = DateTime.ParseExact(POVM.StringCompletionDate, "dd/MM/yyyy", null);
                     }
@@ -510,8 +512,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         POVM.ThirdFCDate = DateTime.ParseExact(POVM.StringThirdFCDate, "dd/MM/yyyy", null);
                     }
 
-
-                   
+                    
 
 
                     PlotOwnerCombineVM plotw = new PlotOwnerCombineVM()
@@ -542,7 +543,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         DevelopDeposit = POVM.DevelopDeposit,
                         FloorNumber = POVM.FloorNumber,
                         CompletionDate = POVM.CompletionDate,
-                        GroundFCDate  = POVM.GroundFCDate,
+                        GroundFCDate = POVM.GroundFCDate,
                         FirstFCDate = POVM.FirstFCDate,
                         SccFCDate = POVM.SccFCDate,
                         ThirdFCDate = POVM.ThirdFCDate,
@@ -573,13 +574,191 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
                         LastUpdated = DateTime.Now,
                         LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                        
+
 
                     };
 
+
+                   
+                    if (Session["DocFile1"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile1"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            if (file.ContentLength > 2 * 1024 * 1024)
+                            {
+                                status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc1_" + fileOldName + extension;
+                            newFilename = "/Documents/Plots/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            plotw.Doc1 = newFilename;
+                        }
+                        else
+                        {
+                            plotw.Doc1 = null;
+                        }
+                    }
+
+                    if (Session["DocFile2"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile2"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            if (file.ContentLength > 2 * 1024 * 1024)
+                            {
+                                status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc2_" + fileOldName + extension;
+                            newFilename = "/Documents/Plots/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            plotw.Doc2 = newFilename;
+                        }
+                        else
+                        {
+                            plotw.Doc2 = null;
+                        }
+                    }
+
+                    if (Session["DocFile3"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile3"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            if (file.ContentLength > 2 * 1024 * 1024)
+                            {
+                                status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc3_" + fileOldName + extension;
+                            newFilename = "/Documents/Plots/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            plotw.Doc3 = newFilename;
+                        }
+                        else
+                        {
+                            plotw.Doc3 = null;
+                        }
+                    }
+
+                    if (Session["DocFile4"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile4"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            if (file.ContentLength > 2 * 1024 * 1024)
+                            {
+                                status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc4_" + fileOldName + extension;
+                            newFilename = "/Documents/Plots/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            plotw.Doc4 = newFilename;
+                        }
+                        else
+                        {
+                            plotw.Doc4 = null;
+                        }
+                    }
+
+                    if (Session["DocFile5"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile5"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            if (file.ContentLength > 2 * 1024 * 1024)
+                            {
+                                status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc5_" + fileOldName + extension;
+                            newFilename = "/Documents/Plots/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            plotw.Doc5 = newFilename;
+                        }
+                        else
+                        {
+                            plotw.Doc5 = null;
+                        }
+                    }
+                    if (Session["DocFile6"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile6"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            if (file.ContentLength > 2 * 1024 * 1024)
+                            {
+                                status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc6_" + fileOldName + extension;
+                            newFilename = "/Documents/Plots/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            plotw.Doc6 = newFilename;
+                        }
+                        else
+                        {
+                            plotw.Doc6 = null;
+                        }
+                    }
+
+
+
                     int ownerId = _PlotOwnerManager.PlotOwnerInsert(plotw);
 
-                    if(ownerId > 0) {
+                    if (ownerId > 0)
+                    {
 
                         foreach (OthetPlotOwner item2 in POVM.OthetPlotOwner)
                         {
@@ -664,10 +843,10 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
                     }
 
-                   
 
-                   
-                 
+
+
+
                     return new JsonResult { Data = new { status } };
                 }
                 else
@@ -783,11 +962,192 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
                     };
 
+
+                    if (Session["DocFile1"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile1"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            if (file.ContentLength > 2 * 1024 * 1024)
+                            {
+                                status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc1_" + fileOldName + extension;
+                            newFilename = "/Documents/Plots/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            plotw.Doc1 = newFilename;
+                        }
+                        else
+                        {
+                            plotw.Doc1 = null;
+                        }
+                    }
+
+                    if (Session["DocFile2"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile2"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            if (file.ContentLength > 2 * 1024 * 1024)
+                            {
+                                status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc2_" + fileOldName + extension;
+                            newFilename = "/Documents/Plots/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            plotw.Doc2 = newFilename;
+                        }
+                        else
+                        {
+                            plotw.Doc2 = null;
+                        }
+                    }
+
+                    if (Session["DocFile3"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile3"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            if (file.ContentLength > 2 * 1024 * 1024)
+                            {
+                                status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc3_" + fileOldName + extension;
+                            newFilename = "/Documents/Plots/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            plotw.Doc3 = newFilename;
+                        }
+                        else
+                        {
+                            plotw.Doc3 = null;
+                        }
+                    }
+
+                    if (Session["DocFile4"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile4"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            if (file.ContentLength > 2 * 1024 * 1024)
+                            {
+                                status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc4_" + fileOldName + extension;
+                            newFilename = "/Documents/Plots/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            plotw.Doc4 = newFilename;
+                        }
+                        else
+                        {
+                            plotw.Doc4 = null;
+                        }
+                    }
+
+                    if (Session["DocFile5"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile5"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            if (file.ContentLength > 2 * 1024 * 1024)
+                            {
+                                status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc5_" + fileOldName + extension;
+                            newFilename = "/Documents/Plots/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            plotw.Doc5 = newFilename;
+                        }
+                        else
+                        {
+                            plotw.Doc5 = null;
+                        }
+                    }
+                    if (Session["DocFile6"] != null)
+                    {
+                        HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile6"];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            if (file.ContentLength > 2 * 1024 * 1024)
+                            {
+                                status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+
+                            var extension = Path.GetExtension(file.FileName);
+                            var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                            fileOldName = fileOldName.Replace(" ", string.Empty);
+                            var newFilename = maxId + "_doc6_" + fileOldName + extension;
+                            newFilename = "/Documents/Plots/" + newFilename;
+
+                            if (System.IO.File.Exists(newFilename))
+                                System.IO.File.Delete(newFilename);
+                            file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                            plotw.Doc6 = newFilename;
+                        }
+                        else
+                        {
+                            plotw.Doc6 = null;
+                        }
+                    }
+
+
+
+
+
+
+
+
                     int ownerId = _PlotOwnerManager.PlotOwnerUpdate(plotw);
                     if (ownerId > 0)
                     {
                         _PlotOwnerManager.OthetPlotOwnerDelete(ownerId);
-                        
+
                         foreach (OthetPlotOwner item2 in POVM.OthetPlotOwner)
                         {
                             OthetPlotOwner Details2 = new OthetPlotOwner()
@@ -893,10 +1253,101 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
         }
 
-        #endregion  
+        #endregion
 
 
+        #region Document Upload
 
+        public JsonResult GetDocFile1(HttpPostedFileBase fileBase)
+        {
+            if (fileBase != null)
+            {
+                Session["DocFile1"] = null;
+                Session["DocFile1"] = fileBase;
+                return new JsonResult { Data = "done" };
+            }
+            else
+            {
+                Session["DocFile1"] = null;
+                return new JsonResult { Data = "not_done" };
+            }
+        }
+
+        public JsonResult GetDocFile2(HttpPostedFileBase fileBase)
+        {
+            if (fileBase != null)
+            {
+                Session["DocFile2"] = null;
+                Session["DocFile2"] = fileBase;
+                return new JsonResult { Data = "done" };
+            }
+            else
+            {
+                Session["DocFile2"] = null;
+                return new JsonResult { Data = "not_done" };
+            }
+        }
+
+        public JsonResult GetDocFile3(HttpPostedFileBase fileBase)
+        {
+            if (fileBase != null)
+            {
+                Session["DocFile3"] = null;
+                Session["DocFile3"] = fileBase;
+                return new JsonResult { Data = "done" };
+            }
+            else
+            {
+                Session["DocFile3"] = null;
+                return new JsonResult { Data = "not_done" };
+            }
+        }
+
+        public JsonResult GetDocFile4(HttpPostedFileBase fileBase)
+        {
+            if (fileBase != null)
+            {
+                Session["DocFile4"] = null;
+                Session["DocFile4"] = fileBase;
+                return new JsonResult { Data = "done" };
+            }
+            else
+            {
+                Session["DocFile4"] = null;
+                return new JsonResult { Data = "not_done" };
+            }
+        }
+
+        public JsonResult GetDocFile5(HttpPostedFileBase fileBase)
+        {
+            if (fileBase != null)
+            {
+                Session["DocFile5"] = null;
+                Session["DocFile5"] = fileBase;
+                return new JsonResult { Data = "done" };
+            }
+            else
+            {
+                Session["DocFile5"] = null;
+                return new JsonResult { Data = "not_done" };
+            }
+        }
+
+        public JsonResult GetDocFile6(HttpPostedFileBase fileBase)
+        {
+            if (fileBase != null)
+            {
+                Session["DocFile6"] = null;
+                Session["DocFile6"] = fileBase;
+                return new JsonResult { Data = "done" };
+            }
+            else
+            {
+                Session["DocFile6"] = null;
+                return new JsonResult { Data = "not_done" };
+            }
+        }
+        #endregion
 
 
     }

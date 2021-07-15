@@ -48,12 +48,12 @@ var KTWizard4 = function () {
         // Submit event
         _wizardObj.on('submit', function (wizard) {
             Swal.fire({
-                text: "All is good! Please confirm the form submission.",
+                text: "জমি মালিকের সকল তথ্য সঠিক হলে সাবমিট নিশ্চিত করুন ",
                 icon: "success",
                 showCancelButton: true,
                 buttonsStyling: false,
-                confirmButtonText: "Yes, submit!",
-                cancelButtonText: "No, cancel",
+                confirmButtonText: "হ্যা, সাবমিট!",
+                cancelButtonText: "না, বাতিল",
                 customClass: {
                     confirmButton: "btn font-weight-bold btn-primary",
                     cancelButton: "btn font-weight-bold btn-danger"
@@ -114,7 +114,7 @@ var KTWizard4 = function () {
 
                     if (!isAllValid) {
                         Swal.fire({
-                            text: "Please fill all the required fields.!",
+                            text: "দয়াকরে সকল প্রয়োজনীয় তথ্য দিন!",
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "Ok",
@@ -122,7 +122,7 @@ var KTWizard4 = function () {
                                 confirmButton: "btn font-weight-bold btn-success",
                             }
                         });
-                        $('#details_error').text('Please fill all the required fields.');
+                        $('#details_error').text('দয়াকরে সকল প্রয়োজনীয় তথ্য দিন!');
                         KTUtil.scrollTop();
                     }
                     else {
@@ -202,7 +202,7 @@ var KTWizard4 = function () {
                                     $('#tableOther tbody').empty();
                                     swal.fire({
                                         "icon": 'success',
-                                        "title": 'Plot Owner Information has been Updated',
+                                        "title": 'সফল ভাবে হালনাগাদ করা হয়েছে ',
                                         "timer": 1000
                                     });
                                     setTimeout(function () { window.location.href = "/PlotOwner/Index"; }, 1000);
@@ -226,7 +226,7 @@ var KTWizard4 = function () {
                 }
                 else if (result.dismiss === 'cancel') {
                     Swal.fire({
-                        text: "Your form has not been submitted!.",
+                        text: "তথ্য সাবমিট  বাতিল করা হল !.",
                         icon: "error",
                         buttonsStyling: false,
                         confirmButtonText: "Ok, got it!",
