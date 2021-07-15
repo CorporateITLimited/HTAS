@@ -564,41 +564,57 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     }
                 }
 
-
                 int holderId = _holdingManager.InsertHolder(holder);
 
                 if (holderId > 0)
                 {
                     if (isValid)
                     {
-                        foreach (HolderFlat item in hvm.HolderFlatList)
+                        var newListFroUi = hvm.HolderFlatList.OrderBy(f => f.FlorNo);
+                        bool canInert = true;
+                        foreach (HolderFlat ui_item in newListFroUi)
                         {
-                            HolderFlat deatils = new HolderFlat()
+                            if (ui_item.HolderFlatId == 0 && ui_item.FlorNo == 1 && string.IsNullOrWhiteSpace(ui_item.FlatNo) && ui_item.OwnOrRent == 1 && ui_item.MonthlyRent == 0
+                            && ui_item.SelfOwn == 1 && string.IsNullOrWhiteSpace(ui_item.OwnerName) && ui_item.FlatArea == 0)
                             {
-                                CreateDate = DateTime.Now,
-                                CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                                FlatArea = item.FlatArea != null && item.FlatArea > 0 ? item.FlatArea : 0,
-                                FlatNo = !string.IsNullOrWhiteSpace(item.FlatNo) ? item.FlatNo : null,
-                                FlorNo = item.FlorNo,
-                                HolderFlatId = 0,
-                                HolderId = holderId,
-                                IsActive = true,
-                                IsDeleted = false,
-                                LastUpdated = DateTime.Now,
-                                LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                                IsSelfOwned = item.SelfOwn == 1 ? true : false,
-                                MonthlyRent = item.MonthlyRent != null && item.MonthlyRent > 0 ? item.MonthlyRent : 0,
-                                OwnerName = !string.IsNullOrWhiteSpace(item.OwnerName) ? item.OwnerName : null,
-                                OwnOrRent = item.OwnOrRent,
-                                SelfOwn = item.SelfOwn
-                            };
-
-                            string returnString = _holdingManager.HoldersFlatInsert(deatils);
-
-                            if (returnString != CommonConstantHelper.Success)
+                                canInert = false;
+                            }
+                            else
                             {
-                                status = "error_details";
-                                break;
+                                canInert = true;
+                            }
+                            if (canInert)
+                            {
+                                HolderFlat details = new HolderFlat()
+                                {
+                                    CreateDate = DateTime.Now,
+                                    CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                    FlatArea = ui_item.FlatArea != null && ui_item.FlatArea > 0 ? ui_item.FlatArea : null,
+                                    FlatNo = !string.IsNullOrWhiteSpace(ui_item.FlatNo) ? ui_item.FlatNo : null,
+                                    FlorNo = ui_item.FlorNo,
+                                    HolderFlatId = 0,
+                                    HolderId = holderId,
+                                    IsActive = true,
+                                    IsDeleted = false,
+                                    LastUpdated = DateTime.Now,
+                                    LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                    IsSelfOwned = ui_item.SelfOwn == 1 ? true : false,
+                                    MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : null,
+                                    OwnerName = !string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
+                                    OwnOrRent = ui_item.OwnOrRent,
+                                    SelfOwn = ui_item.SelfOwn
+                                };
+
+                                string returnString = _holdingManager.HoldersFlatInsert(details);
+                                if (returnString != CommonConstantHelper.Success)
+                                {
+                                    status = "Operation failed in child table";
+                                    return new JsonResult { Data = new { status } };
+                                }
+                                else
+                                {
+                                    status = "success";
+                                }
                             }
                             else
                             {
@@ -1165,7 +1181,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                     {
                                         CreateDate = DateTime.Now,
                                         CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                                        FlatArea = ui_item.FlatArea != null && ui_item.FlatArea > 0 ? ui_item.FlatArea : 0,
+                                        FlatArea = ui_item.FlatArea != null && ui_item.FlatArea > 0 ? ui_item.FlatArea : null,
                                         FlatNo = !string.IsNullOrWhiteSpace(ui_item.FlatNo) ? ui_item.FlatNo : null,
                                         FlorNo = ui_item.FlorNo,
                                         HolderFlatId = 0,
@@ -1175,7 +1191,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                         LastUpdated = DateTime.Now,
                                         LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
                                         IsSelfOwned = ui_item.SelfOwn == 1 ? true : false,
-                                        MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : 0,
+                                        MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : null,
                                         OwnerName = !string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
                                         OwnOrRent = ui_item.OwnOrRent,
                                         SelfOwn = ui_item.SelfOwn
