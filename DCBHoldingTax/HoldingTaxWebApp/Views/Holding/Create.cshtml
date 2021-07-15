@@ -5,9 +5,10 @@
 
 @section Sheets{
     <link href="~/Content/wizard-holding.css" rel="stylesheet" type="text/css" />
+    <script src="~/Theme/dist/assets/js/pages/crud/file-upload/dropzonejs.js"></script>
     <style>
         /*add for more steps */
-        /*.wizard.wizard-4 .wizard-nav .wizard-steps .wizard-step {
+        .wizard.wizard-4 .wizard-nav .wizard-steps .wizard-step {
             -ms-flex: 0 0 calc(20% - 0.20rem);
             flex: 0 0 calc(20% - 0.20rem);
             width: calc(20% - 0.20rem);
@@ -24,7 +25,7 @@
             padding: 5px;
             flex-wrap: nowrap;
             align-items: stretch;
-        }*/
+        }
 
         input[type=number]::-webkit-inner-spin-button,
         input[type=number]::-webkit-outer-spin-button {
@@ -54,10 +55,10 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">ঢাকা সেনানিবাসস্থ আবাসিক এলাকার ডাটাবেজ প্রস্তুতের ফর্ম </h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">প্লট/বাড়ী/ফ্ল্যাট মালিক</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted"> প্লট/বাড়ী/ফ্ল্যাট মালিক কর্তৃক পূরণীয় অংশ </a>
+                        <a href="#" class="text-muted">নতুন প্লট/বাড়ী/ফ্ল্যাট মালিকের তথ্য সংযুক্ত করুন</a>
                     </li>
                 </ul>
             </div>
@@ -263,7 +264,7 @@
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.Mother, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
-                                                   
+
 
                                                     @Html.LabelFor(model => model.PreviousDueTax, "আগের অর্থ বছর পর্যন্ত বকেয়া", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
@@ -324,10 +325,19 @@
                                                 </div>
 
                                                 <div class="form-group row m-2" style="display: none;" id="war_proves">
-                                                    @*@Html.LabelFor(model => model.Document1, "মুক্তিযোদ্ধার প্রমাণাদি ১", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })*@
-                                                    <div class="col-lg-6">
-                                                        @*<input type="file" name="document_file_1" id="document_file_1" />*@
-                                                    </div>
+                                                    @*@Html.LabelFor(model => model.Document1, "মুক্তিযোদ্ধার প্রমাণাদি ১", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                        <div class="col-lg-6">
+                                                        <div class="dropzone dropzone-default" id="kt_dropzone_222">
+                                                            <div class="dropzone-msg dz-message needsclick">
+                                                                <h3 class="dropzone-msg-title">Drop files here or click to upload.</h3>
+                                                                <span class="dropzone-msg-desc">
+                                                                    This is just a demo dropzone. Selected files are
+                                                                    <strong>not</strong>actually uploaded.
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                                                            </div>*@
+                                                    <div class="col-lg-6"></div>
 
                                                     @Html.LabelFor(model => model.Document2, "মুক্তিযোদ্ধার প্রমাণাদি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
@@ -404,8 +414,7 @@
                                                                 <th> <button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button></th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
-                                                        </tbody>
+                                                        <tbody></tbody>
                                                     </table>
 
                                                 </div>
@@ -500,12 +509,12 @@
                                             <div class="d-flex justify-content-between border-top mt-5 pt-10">
                                                 <div class="mr-2">
                                                     <button type="button" class="btn btn-light-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-prev">
-                                                        পূর্ববর্তী পেজে যান
+                                                        <i class="fas fa-arrow-left"></i> &nbsp;  পূর্ববর্তী ধাপ
                                                     </button>
                                                 </div>
                                                 <div>
                                                     <button type="button" class="btn btn-success font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-submit">সাবমিট করুন</button>
-                                                    <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next">পরবর্তী পেজে যান</button>
+                                                    <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next">পরবর্তী ধাপ &nbsp; <i class="fas fa-arrow-right"></i></button>
                                                 </div>
                                             </div>
                                             <!--end: Wizard Actions-->
@@ -528,7 +537,6 @@
 @section Scripts {
     @*save and validation funtionality implemented in this js*@
     <script src="~/Scripts/wizard-holding.js"></script>
-    @*<script src="~/Theme/dist/assets/js/pages/crud/file-upload/dropzonejs.js"></script>*@
     <script>
         jQuery(document).ready(function () {
             var invalidChars = ["-", "e", "+", "E"];
@@ -537,9 +545,6 @@
                     e.preventDefault();
                 }
             });
-
-            
-
             var avatar1 = new KTImageInput('kt_image_1');
             var ratePerSquareFeet = 1;
 

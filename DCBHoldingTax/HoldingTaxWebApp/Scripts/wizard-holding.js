@@ -49,11 +49,11 @@ var KTWizard4 = function () {
         _wizardObj.on('submit', function (wizard) {
 
             Swal.fire({
-                text: "নূতন প্লট/ফ্ল্যাট/বাড়ী মালিকের তথ্য সাবমিশন নিশ্চিত করুন।",
+                text: "নূতন প্লট/ফ্ল্যাট/বাড়ী মালিকের তথ্য সাবমিশন নিশ্চিত করুন",
                 icon: "success",
                 showCancelButton: true,
                 buttonsStyling: false,
-                confirmButtonText: "হ্যা, সাবমিট।",
+                confirmButtonText: "হ্যা, সাবমিট",
                 cancelButtonText: "না, বাতিল",
                 customClass: {
                     confirmButton: "btn font-weight-bold btn-primary",
@@ -96,7 +96,7 @@ var KTWizard4 = function () {
                             text: "অত্যাবশ্যকীয় ঘর গুলো পুরোন করুন",
                             icon: "error",
                             buttonsStyling: false,
-                            confirmButtonText: "হ্যা  ",
+                            confirmButtonText: "  হ্যা  ",
                             customClass: {
                                 confirmButton: "btn font-weight-bold btn-success",
                             }
@@ -150,10 +150,10 @@ var KTWizard4 = function () {
                                     list = [];
                                     $('#flat_details tbody').empty();
                                     Swal.fire({
-                                        text: "নূতন প্লট/ফ্ল্যাট/বাড়ী মালিকের তথ্য সফলভাবে সাবমিট করা হয়েছে",
+                                        text: "নূতন প্লট/ফ্ল্যাট/বাড়ী মালিকের তথ্য সফলভাবে সংযুক্ত করা হয়েছে",
                                         icon: "success",
                                         buttonsStyling: false,
-                                        confirmButtonText: "সাফল্য  ",
+                                        confirmButtonText: "সফলভাবে সম্পন্ন",
                                         customClass: {
                                             confirmButton: "btn font-weight-bold btn-success",
                                         }
@@ -165,7 +165,7 @@ var KTWizard4 = function () {
                                         text: d.status,
                                         icon: "error",
                                         buttonsStyling: false,
-                                        confirmButtonText: "Ok  ",
+                                        confirmButtonText: "  ERROR  ",
                                         customClass: {
                                             confirmButton: "btn font-weight-bold btn-danger",
                                         }
@@ -178,7 +178,7 @@ var KTWizard4 = function () {
                                         text: "Unknow Error",
                                         icon: "error",
                                         buttonsStyling: false,
-                                        confirmButtonText: "Ok  ",
+                                        confirmButtonText: "  ERROR  ",
                                         customClass: {
                                             confirmButton: "btn font-weight-bold btn-danger",
                                         }
@@ -194,10 +194,10 @@ var KTWizard4 = function () {
                 }
                 else if (result.dismiss === 'cancel') {
                     Swal.fire({
-                        text: "সাবমিশন বাতিল করা হয়েছে",
+                        text: "নূতন প্লট/ফ্ল্যাট/বাড়ী মালিকের তথ্যের সাবমিশন বাতিল করা হয়েছে",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "হ্যা  ",
+                        confirmButtonText: "  সম্পন্ন  ",
                         customClass: {
                             confirmButton: "btn font-weight-bold btn-success",
                         }
