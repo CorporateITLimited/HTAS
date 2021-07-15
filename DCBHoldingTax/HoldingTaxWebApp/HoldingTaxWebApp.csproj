@@ -2601,6 +2601,10 @@
     <Content Include="Views\Holding\Create.cshtml" />
     <Content Include="Views\Holding\Index.cshtml" />
     <Content Include="Views\Holding\Edit.cshtml" />
+    <Content Include="Views\HoldingTax\Create.cshtml" />
+    <Content Include="Views\HoldingTax\Details.cshtml" />
+    <Content Include="Views\HoldingTax\Edit.cshtml" />
+    <Content Include="Views\HoldingTax\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2637,7 +2641,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1110</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5213/</IISUrl>
+          <IISUrl>http://localhost:5223/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
