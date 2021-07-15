@@ -2611,6 +2611,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Documents\Holders\FFDocuments\" />
     <Folder Include="Documents\Holders\Images\" />
+    <Folder Include="Documents\Plots\" />
     <Folder Include="Views\HoldingTax\" />
   </ItemGroup>
   <ItemGroup>
