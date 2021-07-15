@@ -216,6 +216,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\wizard-holding-update.js" />
     <Content Include="Scripts\wizard-holding.js" />
     <Content Include="Scripts\wizard-PlotOwnerEdit.js" />
     <Content Include="Scripts\wizard-PlotOwnerCreate.js" />

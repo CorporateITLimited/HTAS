@@ -274,24 +274,29 @@ var KTWizard4 = function () {
                     Email: {
                         validators: {
                             emailAddress: {
-                                message: 'বৈধ ই-মেইল এড্রেস দিন '
+                                message: 'ইংরেজিতে ই-মেইল এড্রেস দিন '
+                            }
+                        }
+                    },
+                    Contact2: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            },
+                            numeric: {
+                                message: 'মোবাইল নম্বর ইংরেজিতে দিন'
+                            },
+                            stringLength: {
+                                min: 11,
+                                max: 11,
+                                message: '১১ সংখ্যার মোবাইল নম্বর দিন'
                             }
                         }
                     },
                     Contact1: {
                         validators: {
                             numeric: {
-                                message: 'বৈধ মোবাইল নম্বর দিন'
-                            }
-                        }
-                    },
-                    Contact2: {
-                        validators: {
-                            //notEmpty: {
-                            //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            //},
-                            numeric: {
-                                message: 'বৈধ নম্বর দিন'
+                                message: 'ল্যান্ডলাইন নম্বর ইংরেজিতে দিন'
                             }
                         }
                     },
@@ -319,7 +324,7 @@ var KTWizard4 = function () {
                     PreviousDueTax: {
                         validators: {
                             numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
+                                message: 'আগের অর্থ বছর পর্যন্ত বকেয়া ইংরেজিতে দিন'
                             }
                         }
                     },
@@ -373,7 +378,7 @@ var KTWizard4 = function () {
                             //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             //},
                             numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
+                                message: 'জমির পরিমাণ ইংরেজিতে দিন'
                             }
                         }
                     },
@@ -383,7 +388,7 @@ var KTWizard4 = function () {
                             //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             //},
                             numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
+                                message: 'মোট তলার সংখ্যা ইংরেজিতে দিন'
                             }
                         }
                     },
@@ -393,7 +398,7 @@ var KTWizard4 = function () {
                             //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             //},
                             numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
+                                message: 'প্রতিতলার আয়তন ইংরেজিতে দিন'
                             }
                         }
                     },
@@ -403,7 +408,7 @@ var KTWizard4 = function () {
                             //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             //},
                             numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
+                                message: 'মোট ফ্ল্যাট সংখ্যা ইংরেজিতে দিন'
                             }
                         }
                     },
@@ -413,7 +418,7 @@ var KTWizard4 = function () {
                             //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             //},
                             numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
+                                message: 'নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা ইংরেজিতে দিন'
                             }
                         }
                     }
@@ -494,8 +499,6 @@ var KTWizard4 = function () {
                 }
             }
         ));
-
-
     }
 
     return {

@@ -49,7 +49,7 @@ var KTWizard4 = function () {
         _wizardObj.on('submit', function (wizard) {
 
             Swal.fire({
-                text: "সাবমিশন নিশ্চিত করুন।",
+                text: "নূতন প্লট/ফ্ল্যাট/বাড়ী মালিকের তথ্য সাবমিশন নিশ্চিত করুন।",
                 icon: "success",
                 showCancelButton: true,
                 buttonsStyling: false,
@@ -96,7 +96,7 @@ var KTWizard4 = function () {
                             text: "অত্যাবশ্যকীয় ঘর গুলো পুরোন করুন",
                             icon: "error",
                             buttonsStyling: false,
-                            confirmButtonText: "হ্যা",
+                            confirmButtonText: "হ্যা  ",
                             customClass: {
                                 confirmButton: "btn font-weight-bold btn-success",
                             }
@@ -150,10 +150,10 @@ var KTWizard4 = function () {
                                     list = [];
                                     $('#flat_details tbody').empty();
                                     Swal.fire({
-                                        text: "নূতন প্লট/ফ্ল্যাট/বাড়ী মালিকের তথ্য সফলভাবে সাবমিট করা হয়েছে ",
+                                        text: "নূতন প্লট/ফ্ল্যাট/বাড়ী মালিকের তথ্য সফলভাবে সাবমিট করা হয়েছে",
                                         icon: "success",
                                         buttonsStyling: false,
-                                        confirmButtonText: "সাফল্য",
+                                        confirmButtonText: "সাফল্য  ",
                                         customClass: {
                                             confirmButton: "btn font-weight-bold btn-success",
                                         }
@@ -165,7 +165,7 @@ var KTWizard4 = function () {
                                         text: d.status,
                                         icon: "error",
                                         buttonsStyling: false,
-                                        confirmButtonText: "Ok",
+                                        confirmButtonText: "Ok  ",
                                         customClass: {
                                             confirmButton: "btn font-weight-bold btn-danger",
                                         }
@@ -178,7 +178,7 @@ var KTWizard4 = function () {
                                         text: "Unknow Error",
                                         icon: "error",
                                         buttonsStyling: false,
-                                        confirmButtonText: "Ok",
+                                        confirmButtonText: "Ok  ",
                                         customClass: {
                                             confirmButton: "btn font-weight-bold btn-danger",
                                         }
@@ -197,7 +197,7 @@ var KTWizard4 = function () {
                         text: "সাবমিশন বাতিল করা হয়েছে",
                         icon: "error",
                         buttonsStyling: false,
-                        confirmButtonText: "হ্যা",
+                        confirmButtonText: "হ্যা  ",
                         customClass: {
                             confirmButton: "btn font-weight-bold btn-success",
                         }
@@ -273,24 +273,32 @@ var KTWizard4 = function () {
                     Email: {
                         validators: {
                             emailAddress: {
-                                message: 'বৈধ ই-মেইল এড্রেস দিন '
-                            }
-                        }
-                    },
-                    Contact1: {
-                        validators: {
-                            numeric: {
-                                message: 'বৈধ মোবাইল নম্বর দিন'
+                                message: 'ইংরেজিতে ই-মেইল এড্রেস দিন '
                             }
                         }
                     },
                     Contact2: {
                         validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            },
+                            numeric: {
+                                message: 'মোবাইল নম্বর ইংরেজিতে দিন'
+                            },
+                            stringLength: {
+                                min: 11,
+                                max: 11,
+                                message: '১১ সংখ্যার মোবাইল নম্বর দিন'
+                            }
+                        }
+                    },
+                    Contact1: {
+                        validators: {
                             //notEmpty: {
                             //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             //},
                             numeric: {
-                                message: 'বৈধ নম্বর দিন'
+                                message: 'ল্যান্ডলাইন নম্বর ইংরেজিতে দিন'
                             }
                         }
                     },
@@ -318,7 +326,7 @@ var KTWizard4 = function () {
                     PreviousDueTax: {
                         validators: {
                             numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
+                                message: 'আগের অর্থ বছর পর্যন্ত বকেয়া ইংরেজিতে দিন'
                             }
                         }
                     },
@@ -372,7 +380,7 @@ var KTWizard4 = function () {
                             //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             //},
                             numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
+                                message: 'জমির পরিমাণ ইংরেজিতে দিন'
                             }
                         }
                     },
@@ -382,7 +390,7 @@ var KTWizard4 = function () {
                             //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             //},
                             numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
+                                message: 'মোট তলার সংখ্যা ইংরেজিতে দিন'
                             }
                         }
                     },
@@ -392,7 +400,7 @@ var KTWizard4 = function () {
                             //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             //},
                             numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
+                                message: 'প্রতিতলার আয়তন ইংরেজিতে দিন'
                             }
                         }
                     },
@@ -402,7 +410,7 @@ var KTWizard4 = function () {
                             //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             //},
                             numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
+                                message: 'মোট ফ্ল্যাট সংখ্যা ইংরেজিতে দিন'
                             }
                         }
                     },
@@ -412,7 +420,7 @@ var KTWizard4 = function () {
                             //    message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             //},
                             numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
+                                message: 'নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা ইংরেজিতে দিন'
                             }
                         }
                     }
@@ -494,7 +502,7 @@ var KTWizard4 = function () {
             }
         ));
 
-       
+
     }
 
     return {
