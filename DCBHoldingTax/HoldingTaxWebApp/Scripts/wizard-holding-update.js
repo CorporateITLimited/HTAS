@@ -137,7 +137,10 @@ var KTWizard4 = function () {
                             StringAllocationDate: $('#StringAllocationDate').val().trim(),
                             NamjariLetterNo: $('#NamjariLetterNo').val().trim(),
                             StringNamjariDate: $('#StringNamjariDate').val().trim(),
-                            StringRecordCorrectionDate: $('#StringRecordCorrectionDate').val().trim()
+                            StringRecordCorrectionDate: $('#StringRecordCorrectionDate').val().trim(),
+                            oldImg: $('#ImageLocation').val().trim(),
+                            oldDoc1: $('#Document1').val().trim(),
+                            oldDoc2: $('#Document2').val().trim()
                         };
 
 

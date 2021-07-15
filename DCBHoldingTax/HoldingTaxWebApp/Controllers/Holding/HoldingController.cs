@@ -684,7 +684,6 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 Contact1 = holder.Contact1,
                 Contact2 = holder.Contact2,
                 ContactAdd = holder.ContactAdd,
-                StringCreateDate = holder.StringCreateDate,
                 CreatedByUsername = holder.CreatedByUsername,
                 Document1 = holder.Document1,
                 Document2 = holder.Document2,
@@ -708,7 +707,6 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 PreviousDueTax = holder.PreviousDueTax,
                 SourceName = holder.SourceName,
                 Spouse = holder.Spouse,
-                StringLastUpdated = holder.StringLastUpdated,
                 TotalFlat = holder.TotalFlat,
                 TotalFloor = holder.TotalFloor,
                 UpdatedByUsername = holder.UpdatedByUsername,
@@ -726,11 +724,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 OwnershipSourceId = holder.OwnershipSourceId,
                 OwnerType = holder.OwnerType,
                 PlotId = holder.PlotId,
+                StringLastUpdated = holder.StringLastUpdated,
 
                 // string date
                 StringAllocationDate = holder.StringAllocationDate,
                 StringNamjariDate = holder.StringNamjariDate,
                 StringRecordCorrectionDate = holder.StringRecordCorrectionDate,
+                StringCreateDate = holder.StringCreateDate,
 
 
                 FirstApprovalLetterNo = holderVMOtherData.FirstApprovalLetterNo,
@@ -758,7 +758,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
         }
 
         [HttpPost]
-        public JsonResult UpdateData(HolderVM hvm)
+        public JsonResult UpdateData(HolderVM hvm, string oldImg, string oldDoc1, string oldDoc2)
         {
             //if (CanAccess && CanReadWrite)
             //{
@@ -972,8 +972,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                         var newFilename = maxId + "_" + fileOldName + extension;
                         newFilename = "/Documents/Holders/Images/" + newFilename;
 
-                        if (System.IO.File.Exists(newFilename))
-                            System.IO.File.Delete(newFilename);
+                        if (!string.IsNullOrWhiteSpace(oldImg))
+                        {
+                            var deletePathFile = Path.Combine(Server.MapPath(oldImg));
+                            if (System.IO.File.Exists(deletePathFile))
+                                System.IO.File.Delete(deletePathFile);
+                        }
+
                         file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                         holder.ImageLocation = newFilename;
@@ -1027,8 +1032,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                             var newFilename = maxId + "_doc1_" + fileOldName + extension;
                             newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
 
-                            if (System.IO.File.Exists(newFilename))
-                                System.IO.File.Delete(newFilename);
+                            if (!string.IsNullOrWhiteSpace(oldDoc1))
+                            {
+                                var deletePathFile = Path.Combine(Server.MapPath(oldDoc1));
+                                if (System.IO.File.Exists(deletePathFile))
+                                    System.IO.File.Delete(deletePathFile);
+                            }
+
                             file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                             holder.Document1 = newFilename;
@@ -1055,8 +1065,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                             var newFilename = maxId + "_doc2_" + fileOldName + extension;
                             newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
 
-                            if (System.IO.File.Exists(newFilename))
-                                System.IO.File.Delete(newFilename);
+                            if (!string.IsNullOrWhiteSpace(oldDoc2))
+                            {
+                                var deletePathFile = Path.Combine(Server.MapPath(oldDoc2));
+                                if (System.IO.File.Exists(deletePathFile))
+                                    System.IO.File.Delete(deletePathFile);
+                            }
+
                             file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                             holder.Document2 = newFilename;

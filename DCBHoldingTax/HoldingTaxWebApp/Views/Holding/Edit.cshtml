@@ -130,6 +130,9 @@
                                         <!--begin: Wizard Form-->
                                         <form class="form mt-0 mt-lg-10" id="kt_form" enctype="multipart/form-data" method="post" action="/Holding/UpdateData">
                                             @Html.HiddenFor(m => m.HolderId)
+                                            @Html.HiddenFor(m => m.ImageLocation)
+                                            @Html.HiddenFor(m => m.Document1)
+                                            @Html.HiddenFor(m => m.Document2)
                                             <!--begin: Wizard Step 1-->
                                             <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
