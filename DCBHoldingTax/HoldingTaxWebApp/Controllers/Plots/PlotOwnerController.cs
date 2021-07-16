@@ -918,6 +918,12 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         PlotId = POVM.PlotId,
                         PlotOwnerName = POVM.PlotOwnerName,
                         PresentAdd = POVM.PresentAdd,
+                        Doc1 = POVM.Doc1,
+                        Doc2 = POVM.Doc2,
+                        Doc3 = POVM.Doc3,
+                        Doc4 = POVM.Doc4,
+                        Doc5 = POVM.Doc5,
+                        Doc6 = POVM.Doc6,
 
                         /////Construction Progress
                         ConsProgressId = POVM.ConsProgressId,
@@ -980,8 +986,18 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var newFilename = maxId + "_doc1_" + fileOldName + extension;
                             newFilename = "/Documents/Plots/" + newFilename;
 
-                            if (System.IO.File.Exists(newFilename))
-                                System.IO.File.Delete(newFilename);
+                            //if (System.IO.File.Exists(newFilename))
+                            //    System.IO.File.Delete(newFilename);
+
+                            if (!string.IsNullOrWhiteSpace(plotw.Doc1))
+                            {
+                                var deletePathFile = Path.Combine(Server.MapPath(plotw.Doc1));
+                                if (System.IO.File.Exists(deletePathFile))
+                                    System.IO.File.Delete(deletePathFile);
+                            }
+
+
+
                             file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                             plotw.Doc1 = newFilename;
@@ -1009,8 +1025,15 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var newFilename = maxId + "_doc2_" + fileOldName + extension;
                             newFilename = "/Documents/Plots/" + newFilename;
 
-                            if (System.IO.File.Exists(newFilename))
-                                System.IO.File.Delete(newFilename);
+                            //if (System.IO.File.Exists(newFilename))
+                            //    System.IO.File.Delete(newFilename);
+                            if (!string.IsNullOrWhiteSpace(plotw.Doc2))
+                            {
+                                var deletePathFile = Path.Combine(Server.MapPath(plotw.Doc2));
+                                if (System.IO.File.Exists(deletePathFile))
+                                    System.IO.File.Delete(deletePathFile);
+                            }
+
                             file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                             plotw.Doc2 = newFilename;
@@ -1038,8 +1061,14 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var newFilename = maxId + "_doc3_" + fileOldName + extension;
                             newFilename = "/Documents/Plots/" + newFilename;
 
-                            if (System.IO.File.Exists(newFilename))
-                                System.IO.File.Delete(newFilename);
+                            //if (System.IO.File.Exists(newFilename))
+                            //    System.IO.File.Delete(newFilename);
+                            if (!string.IsNullOrWhiteSpace(plotw.Doc3))
+                            {
+                                var deletePathFile = Path.Combine(Server.MapPath(plotw.Doc3));
+                                if (System.IO.File.Exists(deletePathFile))
+                                    System.IO.File.Delete(deletePathFile);
+                            }
                             file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                             plotw.Doc3 = newFilename;
@@ -1067,8 +1096,14 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var newFilename = maxId + "_doc4_" + fileOldName + extension;
                             newFilename = "/Documents/Plots/" + newFilename;
 
-                            if (System.IO.File.Exists(newFilename))
-                                System.IO.File.Delete(newFilename);
+                            //if (System.IO.File.Exists(newFilename))
+                            //    System.IO.File.Delete(newFilename);
+                            if (!string.IsNullOrWhiteSpace(plotw.Doc4))
+                            {
+                                var deletePathFile = Path.Combine(Server.MapPath(plotw.Doc4));
+                                if (System.IO.File.Exists(deletePathFile))
+                                    System.IO.File.Delete(deletePathFile);
+                            }
                             file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                             plotw.Doc4 = newFilename;
@@ -1096,8 +1131,14 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var newFilename = maxId + "_doc5_" + fileOldName + extension;
                             newFilename = "/Documents/Plots/" + newFilename;
 
-                            if (System.IO.File.Exists(newFilename))
-                                System.IO.File.Delete(newFilename);
+                            //if (System.IO.File.Exists(newFilename))
+                            //    System.IO.File.Delete(newFilename);
+                            if (!string.IsNullOrWhiteSpace(plotw.Doc5))
+                            {
+                                var deletePathFile = Path.Combine(Server.MapPath(plotw.Doc5));
+                                if (System.IO.File.Exists(deletePathFile))
+                                    System.IO.File.Delete(deletePathFile);
+                            }
                             file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                             plotw.Doc5 = newFilename;
@@ -1107,6 +1148,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             plotw.Doc5 = null;
                         }
                     }
+
                     if (Session["DocFile6"] != null)
                     {
                         HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile6"];
@@ -1124,8 +1166,14 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var newFilename = maxId + "_doc6_" + fileOldName + extension;
                             newFilename = "/Documents/Plots/" + newFilename;
 
-                            if (System.IO.File.Exists(newFilename))
-                                System.IO.File.Delete(newFilename);
+                            //if (System.IO.File.Exists(newFilename))
+                            //    System.IO.File.Delete(newFilename);
+                            if (!string.IsNullOrWhiteSpace(plotw.Doc6))
+                            {
+                                var deletePathFile = Path.Combine(Server.MapPath(plotw.Doc6));
+                                if (System.IO.File.Exists(deletePathFile))
+                                    System.IO.File.Delete(deletePathFile);
+                            }
                             file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                             plotw.Doc6 = newFilename;

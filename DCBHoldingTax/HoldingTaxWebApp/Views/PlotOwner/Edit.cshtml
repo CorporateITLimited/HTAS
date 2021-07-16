@@ -143,12 +143,17 @@
                                             <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">জমি মালিকানা ও জমি হস্তান্তর তথ্য</div>
                                                 <div class="form-group row m-2">
-                                                    @*<input type="hidden" id="PlotOwnerId" @Model.PlotOwnerId name="PlotOwnerId"/>*@
+                                                   
                                                     @Html.HiddenFor(model => model.PlotOwnerId)
                                                     @Html.HiddenFor(model => model.UnauthComId)
                                                     @Html.HiddenFor(model => model.ConsProgressId)
-                                                    @*<input type="hidden" id="UnauthComId" @Model.UnauthComId  name="UnauthComId"/>
-                                                        <input type="hidden" id="ConsProgressId" @Model.ConsProgressId name="ConsProgressId"/>*@
+                                                    @Html.HiddenFor(m => m.Doc1)
+                                                    @Html.HiddenFor(m => m.Doc2)
+                                                    @Html.HiddenFor(m => m.Doc3)
+                                                    @Html.HiddenFor(m => m.Doc4)
+                                                    @Html.HiddenFor(m => m.Doc5)
+                                                    @Html.HiddenFor(m => m.Doc6)
+
                                                     @Html.LabelFor(model => model.PlotId, "প্লট নং", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.DropDownListFor(model => model.PlotId, null, "-- নির্বাচন করুন --", new
@@ -596,16 +601,32 @@
                                                     <div class="col-lg-6 col-md-6 ml-10">
                                                         @Html.LabelFor(model => model.Doc1, "জমি মালিকানার প্রমাণাদি", htmlAttributes: new { @class = "col-form-label text-lg-right" })
                                                         <br />
+                                                        @if (!string.IsNullOrWhiteSpace(Model.Doc1))
+                                                        {
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc1" title="Download">ডাউনলোড নথি নং ১</a>
+
+                                                        }
                                                         <input type="file" name="document_file_1" id="document_file_1" />
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                                         </span>
                                                         <br />
+
+                                                        @if (!string.IsNullOrWhiteSpace(Model.Doc2))
+                                                        {
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc2" title="Download">ডাউনলোড নথি নং ২</a>
+
+                                                        }
                                                         <input type="file" name="document_file_2" id="document_file_2" />
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                                         </span>
                                                         <br />
+                                                        @if (!string.IsNullOrWhiteSpace(Model.Doc3))
+                                                        {
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc3" title="Download">ডাউনলোড নথি নং ৩</a>
+
+                                                        }
                                                         <input type="file" name="document_file_3" id="document_file_3" />
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
@@ -616,16 +637,28 @@
                                                     <div class="col-lg-5 col-md-5">
                                                         @Html.LabelFor(model => model.Doc1, "জমি মালিকানার প্রমাণাদি", htmlAttributes: new { @class = "col-form-label text-lg-right" })
                                                         <br />
+                                                        @if (!string.IsNullOrWhiteSpace(Model.Doc4))
+                                                        {
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc4" title="Download">ডাউনলোড নথি নং ৪</a>
+                                                        }
                                                         <input type="file" name="document_file_4" id="document_file_4" />
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                                         </span>
                                                         <br />
+                                                        @if (!string.IsNullOrWhiteSpace(Model.Doc5))
+                                                        {
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc5" title="Download">ডাউনলোড নথি নং ৫</a>
+                                                        }
                                                         <input type="file" name="document_file_5" id="document_file_5" />
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                                         </span>
                                                         <br />
+                                                        @if (!string.IsNullOrWhiteSpace(Model.Doc6))
+                                                        {
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc6" title="Download">ডাউনলোড নথি নং ৬</a>
+                                                        }
                                                         <input type="file" name="document_file_6" id="document_file_6" />
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
@@ -637,11 +670,11 @@
                                             <!--begin: Wizard Actions-->
                                             <div class="d-flex justify-content-between border-top mt-5 pt-10">
                                                 <div class="mr-2">
-                                                    <button type="button" class="btn btn-light-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-prev"><i class="fas fa-chevron-left"></i>&nbsp;পূর্ববর্তী</button>
+                                                    <button type="button" class="btn btn-light-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-prev"><i class="fas fa-chevron-left"></i>&nbsp;পূর্ববর্তী ধাপ</button>
                                                 </div>
                                                 <div>
                                                     <button type="button" class="btn btn-success font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-submit">হালনাগাদ করুন</button>
-                                                    <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next">পরবর্তী &nbsp;<i class="fas fa-chevron-right"></i></button>
+                                                    <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next">পরবর্তী ধাপ &nbsp;<i class="fas fa-chevron-right"></i></button>
                                                 </div>
                                             </div>
                                             <!--end: Wizard Actions-->

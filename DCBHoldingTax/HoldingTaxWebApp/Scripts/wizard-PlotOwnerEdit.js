@@ -114,15 +114,15 @@ var KTWizard4 = function () {
 
                     if (!isAllValid) {
                         Swal.fire({
-                            text: "দয়াকরে সকল প্রয়োজনীয় তথ্য দিন!",
+                            text: "দয়া করে সকল প্রয়োজনীয় তথ্য দিন!",
                             icon: "error",
                             buttonsStyling: false,
-                            confirmButtonText: "Ok",
+                            confirmButtonText: "হ্যা",
                             customClass: {
                                 confirmButton: "btn font-weight-bold btn-success",
                             }
                         });
-                        $('#details_error').text('দয়াকরে সকল প্রয়োজনীয় তথ্য দিন!');
+                        $('#details_error').text('দয়া করে সকল প্রয়োজনীয় তথ্য দিন!');
                         KTUtil.scrollTop();
                     }
                     else {
@@ -147,7 +147,12 @@ var KTWizard4 = function () {
                             HandOverLetterNo: $('#HandOverLetterNo').val().trim(),
                             LandDevelopChange: parseFloat($('#LandDevelopChange').val().trim()),
                             ConsStatusId: parseInt($('#ConsStatusId option:selected').val()) || 0,
-
+                            Doc1: $('#Doc1').val().trim(),
+                            Doc2: $('#Doc2').val().trim(),
+                            Doc3: $('#Doc3').val().trim(),
+                            Doc4: $('#Doc4').val().trim(),
+                            Doc5: $('#Doc5').val().trim(),
+                            Doc6: $('#Doc6').val().trim(),
 
 
                             
