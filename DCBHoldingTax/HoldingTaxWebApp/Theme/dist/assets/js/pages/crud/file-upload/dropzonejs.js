@@ -179,6 +179,6 @@ var KTDropzoneDemo = function () {
     };
 }();
 
-KTUtil.ready(function() {
-    KTDropzoneDemo.init();
-});
+//KTUtil.ready(function() {
+//    KTDropzoneDemo.init();
+//});

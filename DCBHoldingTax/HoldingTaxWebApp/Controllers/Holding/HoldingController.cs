@@ -552,14 +552,23 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 holder.IsDeleted = false;
 
                 bool isValid = true;
-                if (hvm.HolderFlatList.Count() == 1)
+                bool isNullValid = true;
+
+                if (hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any())
                 {
-                    foreach (HolderFlat item in hvm.HolderFlatList)
+                    isNullValid = false;
+                }
+                if (isNullValid)
+                {
+                    if (hvm.HolderFlatList.Count() == 1)
                     {
-                        if (item.HolderFlatId == 0 && item.FlorNo == 1 && string.IsNullOrWhiteSpace(item.FlatNo) && item.OwnOrRent == 1 && item.MonthlyRent == 0
-                                && item.SelfOwn == 1 && string.IsNullOrWhiteSpace(item.OwnerName))
+                        foreach (HolderFlat item in hvm.HolderFlatList)
                         {
-                            isValid = false;
+                            if (item.HolderFlatId == 0 && item.FlorNo == 1 && string.IsNullOrWhiteSpace(item.FlatNo) && item.OwnOrRent == 1 && item.MonthlyRent == 0
+                                    && item.SelfOwn == 1 && string.IsNullOrWhiteSpace(item.OwnerName))
+                            {
+                                isValid = false;
+                            }
                         }
                     }
                 }
@@ -568,58 +577,66 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 if (holderId > 0)
                 {
-                    if (isValid)
-                    {
-                        var newListFroUi = hvm.HolderFlatList.OrderBy(f => f.FlorNo);
-                        bool canInert = true;
-                        foreach (HolderFlat ui_item in newListFroUi)
-                        {
-                            if (ui_item.HolderFlatId == 0 && ui_item.FlorNo == 1 && string.IsNullOrWhiteSpace(ui_item.FlatNo) && ui_item.OwnOrRent == 1 && ui_item.MonthlyRent == 0
-                            && ui_item.SelfOwn == 1 && string.IsNullOrWhiteSpace(ui_item.OwnerName) && ui_item.FlatArea == 0)
-                            {
-                                canInert = false;
-                            }
-                            else
-                            {
-                                canInert = true;
-                            }
-                            if (canInert)
-                            {
-                                HolderFlat details = new HolderFlat()
-                                {
-                                    CreateDate = DateTime.Now,
-                                    CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                                    FlatArea = ui_item.FlatArea != null && ui_item.FlatArea > 0 ? ui_item.FlatArea : null,
-                                    FlatNo = !string.IsNullOrWhiteSpace(ui_item.FlatNo) ? ui_item.FlatNo : null,
-                                    FlorNo = ui_item.FlorNo,
-                                    HolderFlatId = 0,
-                                    HolderId = holderId,
-                                    IsActive = true,
-                                    IsDeleted = false,
-                                    LastUpdated = DateTime.Now,
-                                    LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                                    IsSelfOwned = ui_item.SelfOwn == 1 ? true : false,
-                                    MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : null,
-                                    OwnerName = !string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
-                                    OwnOrRent = ui_item.OwnOrRent,
-                                    SelfOwn = ui_item.SelfOwn
-                                };
 
-                                string returnString = _holdingManager.HoldersFlatInsert(details);
-                                if (returnString != CommonConstantHelper.Success)
+                    if (isNullValid)
+                    {
+                        if (isValid)
+                        {
+                            var newListFroUi = hvm.HolderFlatList.OrderBy(f => f.FlorNo);
+                            bool canInert = true;
+                            foreach (HolderFlat ui_item in newListFroUi)
+                            {
+                                if (ui_item.HolderFlatId == 0 && ui_item.FlorNo == 1 && string.IsNullOrWhiteSpace(ui_item.FlatNo) && ui_item.OwnOrRent == 1 && ui_item.MonthlyRent == 0
+                                && ui_item.SelfOwn == 1 && string.IsNullOrWhiteSpace(ui_item.OwnerName) && ui_item.FlatArea == 0)
                                 {
-                                    status = "Operation failed in child table";
-                                    return new JsonResult { Data = new { status } };
+                                    canInert = false;
+                                }
+                                else
+                                {
+                                    canInert = true;
+                                }
+                                if (canInert)
+                                {
+                                    HolderFlat details = new HolderFlat()
+                                    {
+                                        CreateDate = DateTime.Now,
+                                        CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                        FlatArea = ui_item.FlatArea != null && ui_item.FlatArea > 0 ? ui_item.FlatArea : null,
+                                        FlatNo = !string.IsNullOrWhiteSpace(ui_item.FlatNo) ? ui_item.FlatNo : null,
+                                        FlorNo = ui_item.FlorNo,
+                                        HolderFlatId = 0,
+                                        HolderId = holderId,
+                                        IsActive = true,
+                                        IsDeleted = false,
+                                        LastUpdated = DateTime.Now,
+                                        LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                        IsSelfOwned = ui_item.SelfOwn == 1 ? true : false,
+                                        MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : null,
+                                        OwnerName = !string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
+                                        OwnOrRent = ui_item.OwnOrRent,
+                                        SelfOwn = ui_item.SelfOwn
+                                    };
+
+                                    string returnString = _holdingManager.HoldersFlatInsert(details);
+                                    if (returnString != CommonConstantHelper.Success)
+                                    {
+                                        status = "Operation failed in child table";
+                                        return new JsonResult { Data = new { status } };
+                                    }
+                                    else
+                                    {
+                                        status = "success";
+                                    }
                                 }
                                 else
                                 {
                                     status = "success";
                                 }
                             }
-                            else
-                            {
-                                status = "success";
-                            }
+                        }
+                        else
+                        {
+                            status = "success";
                         }
                     }
                     else
@@ -667,7 +684,6 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 Contact1 = holder.Contact1,
                 Contact2 = holder.Contact2,
                 ContactAdd = holder.ContactAdd,
-                StringCreateDate = holder.StringCreateDate,
                 CreatedByUsername = holder.CreatedByUsername,
                 Document1 = holder.Document1,
                 Document2 = holder.Document2,
@@ -691,7 +707,6 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 PreviousDueTax = holder.PreviousDueTax,
                 SourceName = holder.SourceName,
                 Spouse = holder.Spouse,
-                StringLastUpdated = holder.StringLastUpdated,
                 TotalFlat = holder.TotalFlat,
                 TotalFloor = holder.TotalFloor,
                 UpdatedByUsername = holder.UpdatedByUsername,
@@ -709,11 +724,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 OwnershipSourceId = holder.OwnershipSourceId,
                 OwnerType = holder.OwnerType,
                 PlotId = holder.PlotId,
+                StringLastUpdated = holder.StringLastUpdated,
 
                 // string date
                 StringAllocationDate = holder.StringAllocationDate,
                 StringNamjariDate = holder.StringNamjariDate,
                 StringRecordCorrectionDate = holder.StringRecordCorrectionDate,
+                StringCreateDate = holder.StringCreateDate,
 
 
                 FirstApprovalLetterNo = holderVMOtherData.FirstApprovalLetterNo,
@@ -741,7 +758,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
         }
 
         [HttpPost]
-        public JsonResult UpdateData(HolderVM hvm)
+        public JsonResult UpdateData(HolderVM hvm, string oldImg, string oldDoc1, string oldDoc2)
         {
             //if (CanAccess && CanReadWrite)
             //{
@@ -955,8 +972,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                         var newFilename = maxId + "_" + fileOldName + extension;
                         newFilename = "/Documents/Holders/Images/" + newFilename;
 
-                        if (System.IO.File.Exists(newFilename))
-                            System.IO.File.Delete(newFilename);
+                        if (!string.IsNullOrWhiteSpace(oldImg))
+                        {
+                            var deletePathFile = Path.Combine(Server.MapPath(oldImg));
+                            if (System.IO.File.Exists(deletePathFile))
+                                System.IO.File.Delete(deletePathFile);
+                        }
+
                         file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                         holder.ImageLocation = newFilename;
@@ -1010,8 +1032,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                             var newFilename = maxId + "_doc1_" + fileOldName + extension;
                             newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
 
-                            if (System.IO.File.Exists(newFilename))
-                                System.IO.File.Delete(newFilename);
+                            if (!string.IsNullOrWhiteSpace(oldDoc1))
+                            {
+                                var deletePathFile = Path.Combine(Server.MapPath(oldDoc1));
+                                if (System.IO.File.Exists(deletePathFile))
+                                    System.IO.File.Delete(deletePathFile);
+                            }
+
                             file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                             holder.Document1 = newFilename;
@@ -1038,8 +1065,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                             var newFilename = maxId + "_doc2_" + fileOldName + extension;
                             newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
 
-                            if (System.IO.File.Exists(newFilename))
-                                System.IO.File.Delete(newFilename);
+                            if (!string.IsNullOrWhiteSpace(oldDoc2))
+                            {
+                                var deletePathFile = Path.Combine(Server.MapPath(oldDoc2));
+                                if (System.IO.File.Exists(deletePathFile))
+                                    System.IO.File.Delete(deletePathFile);
+                            }
+
                             file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                             holder.Document2 = newFilename;
@@ -1141,14 +1173,23 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 holder.IsDeleted = null;
 
                 bool isValid = true;
-                if (hvm.HolderFlatList.Count() == 1)
+                bool isNullValid = true;
+
+                if (hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any())
                 {
-                    foreach (HolderFlat item in hvm.HolderFlatList)
+                    isNullValid = false;
+                }
+                if (isNullValid)
+                {
+                    if (hvm.HolderFlatList.Count() == 1)
                     {
-                        if (item.HolderFlatId == 0 && item.FlorNo == 1 && string.IsNullOrWhiteSpace(item.FlatNo) && item.OwnOrRent == 1 && item.MonthlyRent == 0
-                                && item.SelfOwn == 1 && string.IsNullOrWhiteSpace(item.OwnerName) && item.FlatArea == 0)
+                        foreach (HolderFlat item in hvm.HolderFlatList)
                         {
-                            isValid = false;
+                            if (item.HolderFlatId == 0 && item.FlorNo == 1 && string.IsNullOrWhiteSpace(item.FlatNo) && item.OwnOrRent == 1 && item.MonthlyRent == 0
+                                    && item.SelfOwn == 1 && string.IsNullOrWhiteSpace(item.OwnerName))
+                            {
+                                isValid = false;
+                            }
                         }
                     }
                 }
@@ -1157,79 +1198,86 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 if (holderId > 0)
                 {
-                    if (isValid)
+                    if (isNullValid)
                     {
-                        int count = _holdingManager.DeleteHoldersFlatDataByHolderId(holderId);
-                        if (count > 0)
+                        if (isValid)
                         {
-                            var newListFroUi = hvm.HolderFlatList.OrderBy(f => f.FlorNo);
-                            bool canInert = true;
-                            foreach (HolderFlat ui_item in newListFroUi)
+                            int count = _holdingManager.DeleteHoldersFlatDataByHolderId(holderId);
+                            if (count > 0)
                             {
-                                if (ui_item.HolderFlatId == 0 && ui_item.FlorNo == 1 && string.IsNullOrWhiteSpace(ui_item.FlatNo) && ui_item.OwnOrRent == 1 && ui_item.MonthlyRent == 0
-                                && ui_item.SelfOwn == 1 && string.IsNullOrWhiteSpace(ui_item.OwnerName) && ui_item.FlatArea == 0)
+                                var newListFroUi = hvm.HolderFlatList.OrderBy(f => f.FlorNo);
+                                bool canInert = true;
+                                foreach (HolderFlat ui_item in newListFroUi)
                                 {
-                                    canInert = false;
-                                }
-                                else
-                                {
-                                    canInert = true;
-                                }
-                                if (canInert)
-                                {
-                                    HolderFlat details = new HolderFlat()
+                                    if (ui_item.HolderFlatId == 0 && ui_item.FlorNo == 1 && string.IsNullOrWhiteSpace(ui_item.FlatNo) && ui_item.OwnOrRent == 1 && ui_item.MonthlyRent == 0
+                                    && ui_item.SelfOwn == 1 && string.IsNullOrWhiteSpace(ui_item.OwnerName) && ui_item.FlatArea == 0)
                                     {
-                                        CreateDate = DateTime.Now,
-                                        CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                                        FlatArea = ui_item.FlatArea != null && ui_item.FlatArea > 0 ? ui_item.FlatArea : null,
-                                        FlatNo = !string.IsNullOrWhiteSpace(ui_item.FlatNo) ? ui_item.FlatNo : null,
-                                        FlorNo = ui_item.FlorNo,
-                                        HolderFlatId = 0,
-                                        HolderId = holderId,
-                                        IsActive = true,
-                                        IsDeleted = false,
-                                        LastUpdated = DateTime.Now,
-                                        LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                                        IsSelfOwned = ui_item.SelfOwn == 1 ? true : false,
-                                        MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : null,
-                                        OwnerName = !string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
-                                        OwnOrRent = ui_item.OwnOrRent,
-                                        SelfOwn = ui_item.SelfOwn
-                                    };
-
-                                    string returnString = _holdingManager.HoldersFlatInsert(details);
-                                    //if (details.HolderFlatId > 0)
-                                    //{
-                                    //    returnString = _holdingManager.HoldersFlatUpdate(details);
-                                    //}
-                                    //else
-                                    //{
-                                    //    details.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-                                    //    details.CreateDate = DateTime.Now;
-                                    //    details.IsDeleted = false;
-                                    //    returnString = _holdingManager.HoldersFlatInsert(details);
-                                    //}
-
-                                    if (returnString != CommonConstantHelper.Success)
+                                        canInert = false;
+                                    }
+                                    else
                                     {
-                                        status = "Operation failed in child table";
-                                        return new JsonResult { Data = new { status } };
+                                        canInert = true;
+                                    }
+                                    if (canInert)
+                                    {
+                                        HolderFlat details = new HolderFlat()
+                                        {
+                                            CreateDate = DateTime.Now,
+                                            CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                            FlatArea = ui_item.FlatArea != null && ui_item.FlatArea > 0 ? ui_item.FlatArea : null,
+                                            FlatNo = !string.IsNullOrWhiteSpace(ui_item.FlatNo) ? ui_item.FlatNo : null,
+                                            FlorNo = ui_item.FlorNo,
+                                            HolderFlatId = 0,
+                                            HolderId = holderId,
+                                            IsActive = true,
+                                            IsDeleted = false,
+                                            LastUpdated = DateTime.Now,
+                                            LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                            IsSelfOwned = ui_item.SelfOwn == 1 ? true : false,
+                                            MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : null,
+                                            OwnerName = !string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
+                                            OwnOrRent = ui_item.OwnOrRent,
+                                            SelfOwn = ui_item.SelfOwn
+                                        };
+
+                                        string returnString = _holdingManager.HoldersFlatInsert(details);
+                                        //if (details.HolderFlatId > 0)
+                                        //{
+                                        //    returnString = _holdingManager.HoldersFlatUpdate(details);
+                                        //}
+                                        //else
+                                        //{
+                                        //    details.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                                        //    details.CreateDate = DateTime.Now;
+                                        //    details.IsDeleted = false;
+                                        //    returnString = _holdingManager.HoldersFlatInsert(details);
+                                        //}
+
+                                        if (returnString != CommonConstantHelper.Success)
+                                        {
+                                            status = "Operation failed in child table";
+                                            return new JsonResult { Data = new { status } };
+                                        }
+                                        else
+                                        {
+                                            status = "success";
+                                        }
                                     }
                                     else
                                     {
                                         status = "success";
                                     }
                                 }
-                                else
-                                {
-                                    status = "success";
-                                }
+                            }
+                            else
+                            {
+                                status = "Deletion failed from child table";
+                                return new JsonResult { Data = new { status } };
                             }
                         }
                         else
                         {
-                            status = "Deletion failed from child table";
-                            return new JsonResult { Data = new { status } };
+                            status = "success";
                         }
                     }
                     else

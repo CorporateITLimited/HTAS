@@ -7,7 +7,7 @@
     <link href="~/Content/wizard-holding.css" rel="stylesheet" type="text/css" />
     <style>
         /*add for more steps */
-        /*.wizard.wizard-4 .wizard-nav .wizard-steps .wizard-step {
+        .wizard.wizard-4 .wizard-nav .wizard-steps .wizard-step {
             -ms-flex: 0 0 calc(20% - 0.20rem);
             flex: 0 0 calc(20% - 0.20rem);
             width: calc(20% - 0.20rem);
@@ -24,7 +24,7 @@
             padding: 5px;
             flex-wrap: nowrap;
             align-items: stretch;
-        }*/
+        }
 
         input[type=number]::-webkit-inner-spin-button,
         input[type=number]::-webkit-outer-spin-button {
@@ -50,14 +50,15 @@
 }
 
 
+
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">ঢাকা সেনানিবাসস্থ আবাসিক এলাকার ডাটাবেজ প্রস্তুতের ফর্ম </h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">প্লট/বাড়ী/ফ্ল্যাট মালিক</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted"> প্লট/বাড়ী/ফ্ল্যাট মালিক কর্তৃক পূরণীয় অংশ </a>
+                        <a href="#" class="text-muted">প্লট/বাড়ী/ফ্ল্যাট মালিকের তথ্য হালনাগাদ করুন</a>
                     </li>
                 </ul>
             </div>
@@ -129,6 +130,9 @@
                                         <!--begin: Wizard Form-->
                                         <form class="form mt-0 mt-lg-10" id="kt_form" enctype="multipart/form-data" method="post" action="/Holding/UpdateData">
                                             @Html.HiddenFor(m => m.HolderId)
+                                            @Html.HiddenFor(m => m.ImageLocation)
+                                            @Html.HiddenFor(m => m.Document1)
+                                            @Html.HiddenFor(m => m.Document2)
                                             <!--begin: Wizard Step 1-->
                                             <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
@@ -599,11 +603,13 @@
                                             <!--begin: Wizard Actions-->
                                             <div class="d-flex justify-content-between border-top mt-5 pt-10">
                                                 <div class="mr-2">
-                                                    <button type="button" class="btn btn-light-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-prev"> পূর্ববর্তী পেজে যান</button>
+                                                    <button type="button" class="btn btn-light-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-prev">
+                                                        <i class="fas fa-arrow-left"></i> &nbsp;  পূর্ববর্তী ধাপ
+                                                    </button>
                                                 </div>
                                                 <div>
                                                     <button type="button" class="btn btn-success font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-submit">সাবমিট করুন</button>
-                                                    <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next">পরবর্তী পেজে যান</button>
+                                                    <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next">পরবর্তী ধাপ &nbsp; <i class="fas fa-arrow-right"></i></button>
                                                 </div>
                                             </div>
                                             <!--end: Wizard Actions-->
@@ -634,7 +640,6 @@
                     e.preventDefault();
                 }
             });
-
 
             var avatar1 = new KTImageInput('kt_image_1');
             var ratePerSquareFeet = 1;
