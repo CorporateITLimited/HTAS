@@ -2427,6 +2427,7 @@
     <Compile Include="Controllers\Users\DesignationController.cs" />
     <Compile Include="Controllers\Users\EmployeeController.cs" />
     <Compile Include="Controllers\Users\RoleController.cs" />
+    <Compile Include="Controllers\Users\HolderUserController.cs" />
     <Compile Include="Controllers\Users\UserController.cs" />
     <Compile Include="Controllers\Users\UserPermissionController.cs" />
     <Compile Include="Gateway\AccountGateway.cs" />
@@ -2449,6 +2450,7 @@
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
     <Compile Include="Gateway\Users\RoleGateway.cs" />
+    <Compile Include="Gateway\Users\HolderUserGateway.cs" />
     <Compile Include="Gateway\Users\UserGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2474,6 +2476,7 @@
     <Compile Include="Manager\Users\DesignationManager.cs" />
     <Compile Include="Manager\Users\EmployeeManager.cs" />
     <Compile Include="Manager\Users\RoleManager.cs" />
+    <Compile Include="Manager\Users\HolderUserManager.cs" />
     <Compile Include="Manager\Users\UserManager.cs" />
     <Compile Include="Models\CommonList.cs" />
     <Compile Include="Models\Constant\RentTaxRate.cs" />
@@ -2496,6 +2499,7 @@
     <Compile Include="Models\Tax\OwnFlatTax.cs" />
     <Compile Include="Models\Tax\OwnTaxRate.cs" />
     <Compile Include="Models\Tax\RentedFlatTax.cs" />
+    <Compile Include="Models\Users\HolderUser.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
     <Compile Include="Models\Users\Employee.cs" />
@@ -2605,6 +2609,7 @@
     <Content Include="Views\HoldingTax\Details.cshtml" />
     <Content Include="Views\HoldingTax\Edit.cshtml" />
     <Content Include="Views\HoldingTax\Index.cshtml" />
+    <Content Include="Views\HolderUser\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2617,7 +2622,6 @@
     <Folder Include="Documents\Holders\FFDocuments\" />
     <Folder Include="Documents\Holders\Images\" />
     <Folder Include="Documents\Plots\" />
-    <Folder Include="Views\HoldingTax\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
