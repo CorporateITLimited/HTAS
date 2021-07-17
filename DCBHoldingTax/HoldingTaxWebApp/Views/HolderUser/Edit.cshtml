@@ -1,9 +1,10 @@
-﻿@model HoldingTaxWebApp.Models.Users.clsUser
+﻿@model HoldingTaxWebApp.Models.Users.HolderUser
 @using HoldingTaxWebApp.Helpers
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
@@ -12,10 +13,10 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">সফটওয়্যার ব্যবহারকারী</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">সফটওয়্যার ব্যবহারকারী (হোল্ডার)</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted">ব্যবহারকারীর তথ্য হালনাগাদ করুন</a>
+                        <a href="#" class="text-muted">ব্যবহারকারীর (হোল্ডার) তথ্য হালনাগাদ করুন</a>
                     </li>
                 </ul>
             </div>
@@ -27,90 +28,65 @@
 </div>
 
 
-
 <div class="d-flex flex-column-fluid">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
-                        <h3 class="card-title">ব্যবহারকারীর তথ্য হালনাগাদ করুন</h3>
+                        <h3 class="card-title">ব্যবহারকারী (হোল্ডার) তথ্য হালনাগাদ করুন</h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
                         </div>
                     </div>
-                    @using (Html.BeginForm("Edit", "User", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_2", role = "form" }))
+                    @using (Html.BeginForm("Edit", "HolderUser", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_2", role = "form" }))
                     {
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.HolderUserId)
                         @Html.HiddenFor(m => m.LogInCredentialId)
-                        @Html.HiddenFor(m => m.UserId)
+                        @Html.HiddenFor(m => m.IsActive)
 
                         <div class="card-body">
                             <fieldset>
 
-                                <legend>General Information</legend>
+                                <legend>সাধারণ তথ্য</legend>
 
                                 <div class="form-group row m-2">
-                                    @Html.LabelFor(model => model.EmpolyeeId, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                    <div class="col-lg-4">
-                                        @Html.DropDownListFor(model => model.EmpolyeeId, null, "-- Select Employee --", new
+                                    @Html.LabelFor(model => model.HolderId, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-6">
+                                        @Html.DropDownListFor(model => model.HolderId, null, "-- Select --", new
                                    {
                                        @class = "form-control",
-                                       @name = "EmpolyeeId",
-                                       @id = "EmpolyeeId"
+                                       @name = "HolderId"
                                    })
-                                        @Html.ValidationMessageFor(model => model.EmpolyeeId, "", new { @class = "text-danger" })
+                                        @Html.ValidationMessageFor(model => model.HolderId, "", new { @class = "text-danger" })
                                     </div>
-
-                                    @Html.LabelFor(model => model.UserFullName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                    <div class="col-lg-4">
-                                        @Html.EditorFor(model => model.UserFullName, new { htmlAttributes = new { @class = "form-control", @name = "UserFullName", placeholder = "Enter user full name", @id = "UserFullName" } })
-                                        @Html.ValidationMessageFor(model => model.UserFullName, "", new { @class = "text-danger" })
-                                    </div>
+                                    <div class="col-lg-4"></div>
                                 </div>
-
-                                <div class="form-group row m-2">
-                                    @Html.LabelFor(model => model.UserDetails, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                    <div class="col-lg-4">
-                                        @Html.EditorFor(model => model.UserDetails, new { htmlAttributes = new { @class = "form-control", @name = "UserDetails", placeholder = "Enter user details", @id = "UserDetails" } })
-                                        @Html.ValidationMessageFor(model => model.UserDetails, "", new { @class = "text-danger" })
-                                    </div>
-
-                                    @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                    <div class="col-lg-4">
-                                        @Html.DropDownListFor(model => model.RoleId, null, "-- Select Role --", new
-                                   {
-                                       @class = "form-control",
-                                       @name = "RoleId",
-                                       @id = "RoleId"
-                                   })
-                                        @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
+                                <br />
                                 <div class="form-group row m-2">
                                     @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control", @name = "MobileNumber", placeholder = "Enter mobile number", @id = "MobileNumber" } })
+                                        @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter mobile number" } })
                                         @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
                                     </div>
 
                                     @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @name = "Email", placeholder = "Enter e-mail", @id = "Email" } })
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter e-mail" } })
                                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 
                                 <div class="separator separator-dashed my-10"></div>
 
-                                <legend>Account Information</legend>
+                                <legend>ব্যবহারকারীর (হোল্ডার) একাউন্ট এর তথ্য</legend>
                                 <div class="form-group row m-2">
                                     @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @name = "UserName", placeholder = "Enter username", @id = "UserName" } })
+                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter username in english" } })
                                         @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                                     </div>
 
@@ -125,15 +101,15 @@
                                 </div>
 
                                 <div class="form-group row m-2">
-                                    @Html.LabelFor(model => model.HashPassword, "পাসওয়ার্ড", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    @Html.LabelFor(model => model.HashPassword, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        @Html.PasswordFor(model => model.HashPassword, new { @class = "form-control", @name = "HashPassword", placeholder = "Enter password", @id = "HashPassword" })
+                                        @Html.PasswordFor(model => model.HashPassword, new { @class = "form-control", placeholder = "Enter password" })
                                         @Html.ValidationMessageFor(model => model.HashPassword, "", new { @class = "text-danger" })
                                     </div>
 
                                     @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", @name = "ConfirmPassword", placeholder = "Enter password again", @id = "ConfirmPassword" })
+                                        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", placeholder = "Enter password again" })
                                         @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -142,8 +118,8 @@
                         </div>
                         <div class="card-footer">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-pencil-alt"></i>হালনাগাদ করুন</button>
-                                <button type="button" onclick="window.location.href = '/User/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</button>
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>সাবমিট করুন</button>
+                                <button type="button" onclick="window.location.href = '/HolderUser/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</button>
                             </div>
                         </div>
                     }
@@ -153,39 +129,59 @@
     </div>
 </div>
 
+
+
+
+
 @section Scripts {
 
     <script>
 
-        $('#EmpolyeeId').select2({
-            placeholder: "-- Select Employee --",
-            allowClear: true
-        });
 
-        $('#RoleId').select2({
-            placeholder: "-- Select Role --",
-            allowClear: true
-        });
         jQuery(document).ready(function () {
-            //$("#EmpolyeeId").change(function () {
-            //    var empTxt = $("#EmpolyeeId option:selected").text().css("color", "black");
-            //    $("#UserFullName").val("");
-            //    $("#UserFullName").val(empTxt);
-            //});
+            $('#HolderId').select2({
+                placeholder: "-- Select --",
+                allowClear: true
+            });
+
+            $("#HolderId").change(function () {
+                var empolyeeId = $("#HolderId").val();
+
+                var json = {
+                    HolderId: empolyeeId
+                };
+
+                $("#MobileNumber").val("");
+                $("#Email").val("");
+
+                $.ajax({
+                    url: '@Url.Action("GetAllDataByHolderId", "HolderUser")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        $("#MobileNumber").val(data.Contact2);
+                        $("#Email").val(data.Email);
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'Failed!', 'Fetching data failed for employee details.', 'error'
+                        )
+                    }
+                });
+            });
 
             $("#kt_form_2").validate({
                 rules: {
-                    EmpolyeeId: {
+                    HolderId: {
                         required: true
                     },
                     UserName: {
                         required: true
                     },
-                    UserFullName: {
-                        required: true
-                    },
                     MobileNumber: {
-                        required: true
+                        required: true,
+                        digits: true
                     },
                     HashPassword: {
                         required: true
@@ -194,14 +190,30 @@
                         required: true,
                         equalTo: "#HashPassword"
                     },
-                    RoleId: {
-                        required: true
-                    },
                     Email: {
+                        required: true,
                         email: true
                     }
                 },
-
+                messages: {
+                    HolderId: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    UserName: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    MobileNumber: {
+                        required: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                        digits: "মোবাইল নম্বর ইংরেজিতে দিন"
+                    },
+                    Email: {
+                        required: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                        email: "ইংরেজিতে ই-মেইল এড্রেস দিন"
+                    },
+                    HashPassword: {
+                        required: "ঘরটি অবশ্যই পূরণ করতে হবে"
+                    },
+                    ConfirmPassword: {
+                        required: "ঘরটি অবশ্যই পূরণ করতে হবে এবং পাসওয়ার্ড এর সাথে মিল থাকতে হবে",
+                        equalTo: "পাসওয়ার্ড এবং কনফার্ম পাসওয়ার্ড একই দিন",
+                    }
+                },
                 invalidHandler: function (event, validator) {
                     KTUtil.scrollTop();
                 }
@@ -209,3 +221,5 @@
         });
     </script>
 }
+
+

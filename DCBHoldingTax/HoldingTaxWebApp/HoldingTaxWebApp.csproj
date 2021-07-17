@@ -2610,6 +2610,9 @@
     <Content Include="Views\HoldingTax\Edit.cshtml" />
     <Content Include="Views\HoldingTax\Index.cshtml" />
     <Content Include="Views\HolderUser\Index.cshtml" />
+    <Content Include="Views\HolderUser\Details.cshtml" />
+    <Content Include="Views\HolderUser\Create.cshtml" />
+    <Content Include="Views\HolderUser\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

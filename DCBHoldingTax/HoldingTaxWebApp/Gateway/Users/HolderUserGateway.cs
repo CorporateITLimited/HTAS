@@ -290,6 +290,7 @@ namespace HoldingTaxWebApp.Gateway.Users
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = user.IsDeleted;
                 Sql_Command.Parameters.Add("@HolderUserId", SqlDbType.Int).Value = user.HolderUserId;
                 Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = user.HolderId;
+                Sql_Command.Parameters.Add("@LogInCredentialId", SqlDbType.Int).Value = user.LogInCredentialId;
 
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = user.LastUpdatedBy;
                 Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = user.LastUpdated;

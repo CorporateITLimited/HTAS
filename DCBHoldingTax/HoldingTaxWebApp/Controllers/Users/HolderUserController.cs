@@ -1,4 +1,5 @@
 ﻿using HoldingTaxWebApp.Helpers;
+using HoldingTaxWebApp.Manager.Holding;
 using HoldingTaxWebApp.Manager.Users;
 using HoldingTaxWebApp.Models.Users;
 using HoldingTaxWebApp.ViewModels;
@@ -15,10 +16,12 @@ namespace HoldingTaxWebApp.Controllers.Users
         private readonly bool CanAccess = false;
         private readonly bool CanReadWrite = false;
         private readonly HolderUserManager _holderUserManager;
+        private readonly HoldingManager _holdingManager;
 
         public HolderUserController()
         {
             _holderUserManager = new HolderUserManager();
+            _holdingManager = new HoldingManager();
             //if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             //{
             //    List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
@@ -69,385 +72,338 @@ namespace HoldingTaxWebApp.Controllers.Users
             //}
         }
 
-        //[HttpGet]
-        //public ActionResult Details(int id)
-        //{
-        //    if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-        //          && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-        //          && (Session[CommonConstantHelper.UserId] != null))
-        //    {
-        //        if (CanAccess)
-        //        {
-        //            try
-        //            {
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //      && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //      && (Session[CommonConstantHelper.UserId] != null))
+            //{
+            //    if (CanAccess)
+            //    {
+            try
+            {
+                if (id <= 0)
+                    return HttpNotFound();
 
-        //                clsUser userVM = _holderUserManager.GetUserById(id);
+                HolderUser holderUser = _holderUserManager.GetHolderUserById(id);
 
-        //                if (userVM == null)
-        //                    return HttpNotFound();
+                if (holderUser == null)
+                    return HttpNotFound();
 
-        //                return View(userVM);
+                return View(holderUser);
 
-        //            }
-        //            catch (Exception exception)
-        //            {
-        //                TempData["EM"] = "error | " + exception.Message.ToString();
-        //                return View();
-        //            }
-        //        }
-        //        else
-        //        {
-        //            TempData["PM"] = "Permission Denied.";
-        //            return RedirectToAction("Index", "Home");
-        //        }
+            }
+            catch (Exception exception)
+            {
+                TempData["EM"] = "error | " + exception.Message.ToString();
+                return View();
+            }
+            //    }
+            //    else
+            //    {
+            //        TempData["PM"] = "Permission Denied.";
+            //        return RedirectToAction("Index", "Home");
+            //    }
 
-        //    }
-        //    else
-        //    {
-        //        TempData["EM"] = "Session Expired";
-        //        return RedirectToAction("LogIn", "Account");
-        //    }
-        //}
+            //}
+            //else
+            //{
+            //    TempData["EM"] = "Session Expired";
+            //    return RedirectToAction("LogIn", "Account");
+            //}
+        }
 
-        //[HttpGet]
-        //public ActionResult Create()
-        //{
-        //    if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-        //         && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-        //         && (Session[CommonConstantHelper.UserId] != null))
-        //    {
-        //        if (CanAccess && CanReadWrite)
-        //        {
+        [HttpGet]
+        public ActionResult Create()
+        {
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //     && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //     && (Session[CommonConstantHelper.UserId] != null))
+            //{
+            //    if (CanAccess && CanReadWrite)
+            //    {
+            ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderName");
+            ViewBag.IsActive = new SelectList(GetStatusForDropdown(), "Value", "Text");
+            return View();
+            //    }
+            //    else
+            //    {
+            //        TempData["PM"] = "Permission Denied.";
+            //        return RedirectToAction("Index", "Home");
+            //    }
+            //}
+            //else
+            //{
+            //    TempData["EM"] = "Session Expired";
+            //    return RedirectToAction("LogIn", "Account");
+            //}
 
-        //            //if (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin)
-        //            //{
-        //            //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName");
-        //            //}
-        //            //else
-        //            //{
-        //            //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleNonAdmin(), "RoleId", "RoleName");
-        //            //}
+        }
 
-        //            ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName");
-        //            ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName");
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(HolderUser user)
+        {
+            //if (CanAccess && CanReadWrite)
+            //{
+            try
+            {
 
-        //            return View();
+                if (user == null)
+                    return HttpNotFound();
 
-        //        }
-        //        else
-        //        {
-        //            TempData["PM"] = "Permission Denied.";
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        TempData["EM"] = "Session Expired";
-        //        return RedirectToAction("LogIn", "Account");
-        //    }
+                ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderName", user.HolderId);
 
-        //}
+                if (string.IsNullOrWhiteSpace(user.UserName))
+                {
+                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(user);
+                }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(clsUser user)
-        //{
-        //    if (CanAccess && CanReadWrite)
-        //    {
-        //        try
-        //        {
-        //            //if (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin)
-        //            //{
-        //            //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", user.RoleId);
-        //            //}
-        //            //else
-        //            //{
-        //            //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleNonAdmin(), "RoleId", "RoleName", user.RoleId);
-        //            //}
-        //            ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", user.RoleId);
-        //            ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName", user.EmpolyeeId);
+                if (string.IsNullOrWhiteSpace(user.HashPassword))
+                {
+                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(user);
+                }
 
+                if (!string.IsNullOrWhiteSpace(user.HashPassword))
+                {
+                    if (!user.HashPassword.Equals(user.ConfirmPassword))
+                    {
+                        ModelState.AddModelError("", "পাসওয়ার্ড এবং কনফার্ম পাসওয়ার্ড একই দিন");
+                        return View(user);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(user);
+                }
 
-        //            if (user == null)
-        //                return HttpNotFound();
+                if (user.HolderId == 0)
+                {
+                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(user);
+                }
 
+                if (string.IsNullOrWhiteSpace(user.MobileNumber))
+                {
+                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(user);
+                }
 
-        //            if (!ModelState.IsValid)
-        //            {
-        //                var errors = ModelState.Values.SelectMany(v => v.Errors);
-        //                ModelState.AddModelError("", errors.ToString());
-        //                return View(user);
-        //            }
+                if (string.IsNullOrWhiteSpace(user.Email))
+                {
+                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(user);
+                }
 
-        //            if (user.UserName == null)
-        //            {
-        //                ModelState.AddModelError("", "Username is required.");
-        //                return View(user);
-        //            }
+                user.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                user.CreateDate = DateTime.Now;
+                user.IsActive = true;
+                user.IsDeleted = false;
+                user.IsMobileNumberConfirmed = false;
+                user.IsEmailConfirmed = false;
+                user.UserTypeId = 2;
+                user.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                user.LastUpdated = DateTime.Now;
 
-        //            if (user.HashPassword == null)
-        //            {
-        //                ModelState.AddModelError("", "Password is required.");
-        //                return View(user);
-        //            }
+                user.HashPassword = PasswordHelper.EncryptPass(user.HashPassword);
 
-        //            if (!user.HashPassword.Equals(user.ConfirmPassword))
-        //            {
-        //                ModelState.AddModelError("", "Password does not match.");
-        //                return View(user);
-        //            }
+                string addUser = _holderUserManager.HolderUserInsert(user);
 
-        //            if (user.RoleId == 0)
-        //            {
-        //                ModelState.AddModelError("", "Role is required.");
-        //                return View(user);
-        //            }
+                if (addUser == CommonConstantHelper.Success)
+                {
+                    return RedirectToAction("Index", "HolderUser");
+                }
+                else if (addUser == CommonConstantHelper.Conflict)
+                {
+                    ModelState.AddModelError("", "ইউজারনেইম already exist.");
+                    return View(user);
+                }
+                else if (addUser == CommonConstantHelper.Error)
+                {
+                    ModelState.AddModelError("", "Error");
+                    TempData["EM"] = "Error.";
+                    return View(user);
+                }
+                else if (addUser == CommonConstantHelper.Failed)
+                {
+                    ModelState.AddModelError("", "Failed");
+                    return View(user);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Error Not Recognized");
+                    return View();
+                }
+            }
+            catch (Exception exception)
+            {
+                ModelState.AddModelError("", exception.Message.ToString());
+                return View();
+            }
+            //}
+            //else
+            //{
+            //    TempData["PM"] = "Permission Denied.";
+            //    return RedirectToAction("Index", "Home");
+            //}
+        }
 
-        //            if (user.EmpolyeeId == 0)
-        //            {
-        //                ModelState.AddModelError("", "Employee is required.");
-        //                return View(user);
-        //            }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //      && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //      && (Session[CommonConstantHelper.UserId] != null))
+            //{
 
-        //            user.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-        //            user.CreateDate = DateTime.Now;
-        //            user.IsActive = true;
-        //            user.IsDeleted = false;
-        //            user.IsMobileNumberConfirmed = false;
-        //            user.IsEmailConfirmed = false;
-        //            user.UserTypeId = 1;
-        //            user.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-        //            user.LastUpdated = DateTime.Now;
+            //    if (CanAccess && CanReadWrite)
+            //    {
+            try
+            {
+                if (id <= 0)
+                    return HttpNotFound();
 
-        //            user.HashPassword = PasswordHelper.EncryptPass(user.HashPassword);
+                HolderUser holderUser = _holderUserManager.GetHolderUserById(id);
 
-        //            string addUser = _holderUserManager.UserInsert(user);
+                if (holderUser == null)
+                    return HttpNotFound();
 
-        //            if (addUser == CommonConstantHelper.Success)
-        //            {
-        //                TempData["SM"] = "Successfully added new user.";
-        //                return RedirectToAction("Index", "User");
-        //            }
-        //            else if (addUser == CommonConstantHelper.Conflict)
-        //            {
-        //                ModelState.AddModelError("", "Username already exist.");
-        //                return View(user);
-        //            }
-        //            else if (addUser == CommonConstantHelper.Error)
-        //            {
-        //                ModelState.AddModelError("", "Error");
-        //                TempData["EM"] = "Error.";
-        //                return View(user);
-        //            }
-        //            else if (addUser == CommonConstantHelper.Failed)
-        //            {
-        //                ModelState.AddModelError("", "Failed");
-        //                return View(user);
-        //            }
-        //            else
-        //            {
-        //                ModelState.AddModelError("", "Error Not Recognized");
-        //                return View();
-        //            }
-        //        }
-        //        catch (Exception exception)
-        //        {
-        //            TempData["EM"] = "error | " + exception.Message.ToString();
-        //            return View();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        TempData["PM"] = "Permission Denied.";
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //}
+                ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForUpdate(), "HolderId", "HolderName", holderUser.HolderId);
 
-        //[HttpGet]
-        //public ActionResult Edit(int id)
-        //{
-        //    if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-        //          && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-        //          && (Session[CommonConstantHelper.UserId] != null))
-        //    {
+                return View(holderUser);
+            }
+            catch (Exception exception)
+            {
+                TempData["EM"] = "error | " + exception.Message.ToString();
+                return View();
+            }
+            //    }
+            //    else
+            //    {
+            //        TempData["PM"] = "Permission Denied.";
+            //        return RedirectToAction("Index", "Home");
+            //    }
+            //}
+            //else
+            //{
+            //    TempData["EM"] = "Session Expired";
+            //    return RedirectToAction("LogIn", "Account");
+            //}
+        }
 
-        //        if (CanAccess && CanReadWrite)
-        //        {
-        //            try
-        //            {
-        //                clsUser user = _holderUserManager.GetUserById(id);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(HolderUser user)
+        {
+            //if (CanAccess && CanReadWrite)
+            //{
+            try
+            {
 
-        //                if (user == null)
-        //                    return HttpNotFound();
+                if (user == null)
+                    return HttpNotFound();
 
-        //                clsUser updatableUserData = new clsUser()
-        //                {
-        //                    Email = user.Email,
-        //                    EmpolyeeId = user.EmpolyeeId,
-        //                    IsActive = user.LogIsActive,
-        //                    LogInCredentialId = user.LogInCredentialId,
-        //                    MobileNumber = user.MobileNumber,
-        //                    HashPassword = user.HashPassword,
-        //                    RoleId = user.RoleId,
-        //                    UserDetails = user.UserDetails,
-        //                    UserFullName = user.UserFullName,
-        //                    UserId = user.UserId,
-        //                    UserName = user.UserName,
-        //                    UserTypeId = user.UserTypeId,
-        //                    CreatedBy = user.CreatedBy,
-        //                    CreateDate = user.CreateDate,
-        //                    LastUpdated = user.LastUpdated,
-        //                    IsEmailConfirmed = user.IsEmailConfirmed,
-        //                    IsDeleted = user.IsDeleted,
-        //                    IsMobileNumberConfirmed = user.IsMobileNumberConfirmed,
-        //                    LastUpdatedBy = user.LastUpdatedBy
-        //                };
+                ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderName", user.HolderId);
 
-        //                //if (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin)
-        //                //{
-        //                //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", updatableUserData.RoleId);
-        //                //}
-        //                //else
-        //                //{
-        //                //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleNonAdmin(), "RoleId", "RoleName", updatableUserData.RoleId);
-        //                //}
+                if (string.IsNullOrWhiteSpace(user.UserName))
+                {
+                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(user);
+                }
 
-        //                ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", updatableUserData.RoleId);
-        //                ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName", updatableUserData.EmpolyeeId);
+                if (string.IsNullOrWhiteSpace(user.HashPassword))
+                {
+                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(user);
+                }
 
+                if (!string.IsNullOrWhiteSpace(user.HashPassword))
+                {
+                    if (!user.HashPassword.Equals(user.ConfirmPassword))
+                    {
+                        ModelState.AddModelError("", "পাসওয়ার্ড এবং কনফার্ম পাসওয়ার্ড একই দিন");
+                        return View(user);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(user);
+                }
 
-        //                return View(updatableUserData);
+                if (user.HolderId == 0)
+                {
+                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(user);
+                }
 
-        //            }
-        //            catch (Exception exception)
-        //            {
-        //                TempData["EM"] = "error | " + exception.Message.ToString();
-        //                return View();
-        //            }
-        //        }
-        //        else
-        //        {
-        //            TempData["PM"] = "Permission Denied.";
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        TempData["EM"] = "Session Expired";
-        //        return RedirectToAction("LogIn", "Account");
-        //    }
-        //}
+                if (string.IsNullOrWhiteSpace(user.MobileNumber))
+                {
+                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(user);
+                }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(clsUser user)
-        //{
-        //    if (CanAccess && CanReadWrite)
-        //    {
-        //        try
-        //        {
-        //            if (user == null)
-        //                return HttpNotFound();
+                if (string.IsNullOrWhiteSpace(user.Email))
+                {
+                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(user);
+                }
 
-        //            clsUser userForUpdate = _holderUserManager.GetUserById(user.LogInCredentialId);
-        //            if (userForUpdate == null)
-        //                return HttpNotFound();
+                user.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                user.CreateDate = DateTime.Now;
+                user.IsDeleted = null;
+                user.IsMobileNumberConfirmed = null;
+                user.IsEmailConfirmed = null;
+                user.UserTypeId = 2;
+                user.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                user.LastUpdated = DateTime.Now;
 
+                user.HashPassword = PasswordHelper.EncryptPass(user.HashPassword);
 
-        //            //if (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin)
-        //            //{
-        //            //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", user.RoleId);
-        //            //}
-        //            //else
-        //            //{
-        //            //    ViewBag.RoleId = new SelectList(_roleManager.GetAllRoleNonAdmin(), "RoleId", "RoleName", user.RoleId);
-        //            //}
-        //            ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", user.RoleId);
-        //            ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName", user.EmpolyeeId);
+                string addUser = _holderUserManager.HolderUserUpdate(user);
 
-
-        //            if (!ModelState.IsValid)
-        //            {
-        //                var errors = ModelState.Values.SelectMany(v => v.Errors);
-        //                ModelState.AddModelError("", errors.ToString());
-        //                return View(user);
-        //            }
-
-        //            if (user.UserName == null)
-        //            {
-        //                ModelState.AddModelError("", "Username is required.");
-        //                TempData["EM"] = "User name required.";
-        //                return View(user);
-        //            }
-
-        //            if (user.HashPassword == null)
-        //            {
-        //                ModelState.AddModelError("", "Password is required.");
-        //                return View(user);
-        //            }
-
-        //            if (!user.HashPassword.Equals(user.ConfirmPassword))
-        //            {
-        //                ModelState.AddModelError("", "Password does not match.");
-        //                return View(user);
-        //            }
-
-        //            if (user.RoleId == 0)
-        //            {
-        //                ModelState.AddModelError("", "Role is required.");
-        //                return View(user);
-        //            }
-
-        //            user.CreatedBy = null;
-        //            user.CreateDate = null;
-        //            user.LastUpdated = DateTime.Now;
-        //            user.IsEmailConfirmed = null;
-        //            user.IsDeleted = null;
-        //            user.IsMobileNumberConfirmed = null;
-        //            user.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-        //            user.UserTypeId = 1;
-        //            user.HashPassword = PasswordHelper.EncryptPass(user.HashPassword);
-
-        //            string updateUser = _holderUserManager.UserUpdate(user);
-
-        //            if (updateUser == CommonConstantHelper.Success)
-        //            {
-        //                TempData["SM"] = "Successfully updated user.";
-        //                return RedirectToAction("Index", "User");
-        //            }
-        //            else if (updateUser == CommonConstantHelper.Conflict)
-        //            {
-        //                ModelState.AddModelError("", "Username already exist.");
-        //                TempData["EM"] = "User name required.";
-        //                return View();
-        //            }
-        //            else if (updateUser == CommonConstantHelper.Error)
-        //            {
-        //                ModelState.AddModelError("", "Error.");
-        //                return View();
-        //            }
-        //            else if (updateUser == CommonConstantHelper.Failed)
-        //            {
-        //                ModelState.AddModelError("", "Failed.");
-        //                return View();
-        //            }
-        //            else
-        //            {
-        //                return View(user);
-        //            }
-        //        }
-        //        catch (Exception exception)
-        //        {
-        //            ModelState.AddModelError("", exception.Message.ToString());
-        //            return View();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        TempData["PM"] = "Permission Denied.";
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //}
+                if (addUser == CommonConstantHelper.Success)
+                {
+                    return RedirectToAction("Index", "HolderUser");
+                }
+                else if (addUser == CommonConstantHelper.Conflict)
+                {
+                    ModelState.AddModelError("", "ইউজারনেইম already exist.");
+                    return View(user);
+                }
+                else if (addUser == CommonConstantHelper.Error)
+                {
+                    ModelState.AddModelError("", "Error");
+                    TempData["EM"] = "Error.";
+                    return View(user);
+                }
+                else if (addUser == CommonConstantHelper.Failed)
+                {
+                    ModelState.AddModelError("", "Failed");
+                    return View(user);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Error Not Recognized");
+                    return View();
+                }
+            }
+            catch (Exception exception)
+            {
+                ModelState.AddModelError("", exception.Message.ToString());
+                return View();
+            }
+            //}
+            //else
+            //{
+            //    TempData["PM"] = "Permission Denied.";
+            //    return RedirectToAction("Index", "Home");
+            //}
+        }
 
         //#region Front End JS
 
@@ -464,17 +420,26 @@ namespace HoldingTaxWebApp.Controllers.Users
         ////}
 
 
-        //public JsonResult GetAllDataByEmpolyeeId(int EmpolyeeId)
-        //{
-        //    var data = _employeeOfficialManager.GetEmployeeById(EmpolyeeId);
-        //    return new JsonResult
-        //    {
-        //        Data = data,
-        //        JsonRequestBehavior = JsonRequestBehavior.AllowGet
-        //    };
-        //}
+        public JsonResult GetAllDataByHolderId(int HolderId)
+        {
+            var data = _holdingManager.GetHolderById(HolderId);
+            return new JsonResult
+            {
+                Data = data,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
 
         //#endregion
+
+        public IEnumerable<SelectListItem> GetStatusForDropdown()
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>() {
+                new SelectListItem(){ Text="Active", Value="true" },
+                new SelectListItem(){ Text="InActive", Value="false" }
+            };
+            return selectListItems;
+        }
 
 
     }
