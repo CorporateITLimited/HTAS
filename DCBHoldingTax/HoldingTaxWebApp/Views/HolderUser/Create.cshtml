@@ -86,14 +86,8 @@
                                         @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                                     </div>
 
+
                                     @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                    @*<div class="col-lg-4">
-                                            <select class="form-control" name="IsActive" id="IsActive" disabled>
-                                                <option value="true">Active</option>
-                                                <option value="flase">Inactive</option>
-                                            </select>
-                                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                                        </div>*@
                                     <div class="col-lg-4">
                                         @Html.DropDownListFor(model => model.IsActive, null, new
                                    {

@@ -46,7 +46,6 @@
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(m => m.HolderUserId)
                         @Html.HiddenFor(m => m.LogInCredentialId)
-                        @Html.HiddenFor(m => m.IsActive)
 
                         <div class="card-body">
                             <fieldset>
@@ -58,8 +57,7 @@
                                     <div class="col-lg-6">
                                         @Html.DropDownListFor(model => model.HolderId, null, "-- Select --", new
                                    {
-                                       @class = "form-control",
-                                       @name = "HolderId"
+                                       @class = "form-control"
                                    })
                                         @Html.ValidationMessageFor(model => model.HolderId, "", new { @class = "text-danger" })
                                     </div>
@@ -90,12 +88,13 @@
                                         @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                                     </div>
 
+
                                     @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        <select class="form-control" name="IsActive" id="IsActive">
-                                            <option value="true">Active</option>
-                                            <option value="flase">Inactive</option>
-                                        </select>
+                                        @Html.DropDownListFor(model => model.IsActive, null, new
+                                   {
+                                       @class = "form-control",
+                                   })
                                         @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
                                     </div>
                                 </div>

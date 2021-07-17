@@ -2460,6 +2460,7 @@
     <Compile Include="Helpers\CommonEntityHelper.cs" />
     <Compile Include="Helpers\ConvertNullableObj.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
+    <Compile Include="Helpers\StaticDataHelper.cs" />
     <Compile Include="Manager\AccountManager.cs" />
     <Compile Include="Manager\CommonListManager.cs" />
     <Compile Include="Manager\ConstantManager.cs" />

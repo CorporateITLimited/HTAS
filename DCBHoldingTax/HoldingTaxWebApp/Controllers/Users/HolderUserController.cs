@@ -124,7 +124,7 @@ namespace HoldingTaxWebApp.Controllers.Users
             //    if (CanAccess && CanReadWrite)
             //    {
             ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderName");
-            ViewBag.IsActive = new SelectList(GetStatusForDropdown(), "Value", "Text");
+            ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text");
             return View();
             //    }
             //    else
@@ -154,6 +154,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     return HttpNotFound();
 
                 ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderName", user.HolderId);
+                ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text");
 
                 if (string.IsNullOrWhiteSpace(user.UserName))
                 {
@@ -273,6 +274,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     return HttpNotFound();
 
                 ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForUpdate(), "HolderId", "HolderName", holderUser.HolderId);
+                ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", holderUser.IsActive);
 
                 return View(holderUser);
             }
@@ -308,6 +310,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     return HttpNotFound();
 
                 ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderName", user.HolderId);
+                ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", user.IsActive);
 
                 if (string.IsNullOrWhiteSpace(user.UserName))
                 {
@@ -430,16 +433,7 @@ namespace HoldingTaxWebApp.Controllers.Users
             };
         }
 
-        //#endregion
-
-        public IEnumerable<SelectListItem> GetStatusForDropdown()
-        {
-            List<SelectListItem> selectListItems = new List<SelectListItem>() {
-                new SelectListItem(){ Text="Active", Value="true" },
-                new SelectListItem(){ Text="InActive", Value="false" }
-            };
-            return selectListItems;
-        }
+        //
 
 
     }
