@@ -179,6 +179,7 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName");
                     ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName");
+                    ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text");
 
                     return View();
 
@@ -215,7 +216,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     //}
                     ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", user.RoleId);
                     ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName", user.EmpolyeeId);
-
+                    ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text");
 
                     if (user == null)
                         return HttpNotFound();
@@ -363,7 +364,7 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                         ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", updatableUserData.RoleId);
                         ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName", updatableUserData.EmpolyeeId);
-
+                        ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", updatableUserData.IsActive);
 
                         return View(updatableUserData);
 
@@ -413,6 +414,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                     //}
                     ViewBag.RoleId = new SelectList(_roleManager.GetAllRole(), "RoleId", "RoleName", user.RoleId);
                     ViewBag.EmpolyeeId = new SelectList(_employeeOfficialManager.GetAllEmployeeList(), "EmpolyeeId", "EmployeeName", user.EmpolyeeId);
+                    ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", user.IsActive);
 
 
                     if (!ModelState.IsValid)
@@ -522,6 +524,8 @@ namespace HoldingTaxWebApp.Controllers.Users
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+     
 
         #endregion
 

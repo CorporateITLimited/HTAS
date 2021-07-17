@@ -17,10 +17,10 @@ namespace HoldingTaxWebApp.Models.Users
         [Display(Name = "ব্যবহারকারীর বিশদ তথ্য ")]
         public string UserDetails { get; set; }
 
-        [Display(Name = "কর্মকর্তার নাম ")]
+        [Display(Name = "কর্মকর্তার/কর্মচারীর নাম ")]
         public int? EmpolyeeId { get; set; }
 
-        [Display(Name = "কর্মকর্তার নাম ")]
+        [Display(Name = "কর্মকর্তার/কর্মচারীর নাম ")]
         public string EmployeeName { get; set; }
 
         [Display(Name = "রোল ")]

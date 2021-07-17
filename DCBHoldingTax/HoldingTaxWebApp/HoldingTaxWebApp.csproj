@@ -2460,6 +2460,7 @@
     <Compile Include="Controllers\Users\DesignationController.cs" />
     <Compile Include="Controllers\Users\EmployeeController.cs" />
     <Compile Include="Controllers\Users\RoleController.cs" />
+    <Compile Include="Controllers\Users\HolderUserController.cs" />
     <Compile Include="Controllers\Users\UserController.cs" />
     <Compile Include="Controllers\Users\UserPermissionController.cs" />
     <Compile Include="AppDataSet\dsTax.cs">
@@ -2490,6 +2491,7 @@
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
     <Compile Include="Gateway\Users\RoleGateway.cs" />
+    <Compile Include="Gateway\Users\HolderUserGateway.cs" />
     <Compile Include="Gateway\Users\UserGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2499,6 +2501,7 @@
     <Compile Include="Helpers\CommonEntityHelper.cs" />
     <Compile Include="Helpers\ConvertNullableObj.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
+    <Compile Include="Helpers\StaticDataHelper.cs" />
     <Compile Include="Manager\AccountManager.cs" />
     <Compile Include="Manager\CommonListManager.cs" />
     <Compile Include="Manager\ConstantManager.cs" />
@@ -2515,6 +2518,7 @@
     <Compile Include="Manager\Users\DesignationManager.cs" />
     <Compile Include="Manager\Users\EmployeeManager.cs" />
     <Compile Include="Manager\Users\RoleManager.cs" />
+    <Compile Include="Manager\Users\HolderUserManager.cs" />
     <Compile Include="Manager\Users\UserManager.cs" />
     <Compile Include="Models\CommonList.cs" />
     <Compile Include="Models\Constant\RentTaxRate.cs" />
@@ -2537,6 +2541,7 @@
     <Compile Include="Models\Tax\OwnFlatTax.cs" />
     <Compile Include="Models\Tax\OwnTaxRate.cs" />
     <Compile Include="Models\Tax\RentedFlatTax.cs" />
+    <Compile Include="Models\Users\HolderUser.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
     <Compile Include="Models\Users\Employee.cs" />
@@ -2653,6 +2658,10 @@
     <Content Include="Views\HoldingTax\Details.cshtml" />
     <Content Include="Views\HoldingTax\Edit.cshtml" />
     <Content Include="Views\HoldingTax\Index.cshtml" />
+    <Content Include="Views\HolderUser\Index.cshtml" />
+    <Content Include="Views\HolderUser\Details.cshtml" />
+    <Content Include="Views\HolderUser\Create.cshtml" />
+    <Content Include="Views\HolderUser\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
