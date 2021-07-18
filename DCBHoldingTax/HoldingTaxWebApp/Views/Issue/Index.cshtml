@@ -1,7 +1,156 @@
-﻿
+﻿@model IEnumerable<HoldingTaxWebApp.Models.DBO.Issue>
 @{
     ViewBag.Title = "Index";
 }
+@section Sheets{
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
+}
 
-<h2>Index</h2>
 
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">হোল্ডারদের বার্তা</h5>
+                @*<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item text-muted">
+                            <a href="" class="text-muted">Crud</a>
+                        </li>
+                    </ul>*@
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="card card-custom">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        বার্তা তালিকা
+                    </h3>
+                </div>
+                <div class="card-toolbar">
+                    <!--begin::Dropdown-->
+                    <!--end::Dropdown-->
+                    <!--begin::Button-->
+                    <a href="~/Issue/Create" class="btn btn-primary font-weight-bolder">
+                        <i class="fas fa-plus">
+                        </i>নতুন বার্তা
+                    </a>
+
+
+
+                    <!--end::Button-->
+                </div>
+            </div>
+            <div class="card-body">
+                <!--begin: Search Form-->
+                <!--begin::Search Form-->
+                <div class="mb-7">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-xl-8">
+                            <div class="row align-items-center">
+                                <div class="col-md-4 my-2 my-md-0">
+                                    <div class="input-icon">
+                                        <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
+                                        <span>
+                                            <i class="flaticon2-search-1 text-muted"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--end::Search Form-->
+                <!--end: Search Form-->
+                <!--begin: Datatable-->
+                <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
+                    <thead>
+                        <tr>
+
+                            <th>@Html.DisplayNameFor(model => model.HolderName)</th>
+                            <th>@Html.DisplayNameFor(model => model.StatusName)</th>
+                            <th>@Html.DisplayNameFor(model => model.Subject)</th>
+                            <th>@Html.DisplayNameFor(model => model.StringSolvedDate)</th>
+
+                            <th>@Html.DisplayNameFor(model => model.Remarks)</th>
+                          
+
+                            <th></th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HolderName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StatusName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Subject)
+                                </td>
+                                <td>
+
+                                    @Html.DisplayFor(modelItem => item.StringSolvedDate)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Remarks)
+                                </td>
+
+
+                                <td>
+                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Edit/@item.IssueId" title="Edit">
+                                        <b> <i class="fa fa-edit"></i>  </b>
+                                    </a>
+                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Details/@item.IssueId" title="Details View">
+                                        <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                    </a>
+                                </td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+                <!--end: Datatable-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        jQuery(document).ready(function () {
+            $('#kt_datatable').KTDatatable({
+                search: {
+                    input: $('#kt_datatable_search_query'),
+                    key: 'generalSearch',
+                },
+                layout: {
+                    class: 'datatable-bordered',
+                }
+            });
+        });
+    </script>
+
+
+}
