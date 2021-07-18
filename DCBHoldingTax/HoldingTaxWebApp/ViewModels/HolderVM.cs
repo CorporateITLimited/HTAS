@@ -9,138 +9,141 @@ namespace HoldingTaxWebApp.ViewModels
 {
     public class HolderVM
     {
+         [Display(Name = "হোল্ডার আইডি")]
         public int HolderId { get; set; }
 
-        [Display(Name = "Holder Name")]
+        [Display(Name = "হোল্ডার নাম")]
         public string HolderName { get; set; }
 
-        [Display(Name = "Area Name")]
+        [Display(Name = "অঞ্চল এর আইডি")]
         public int AreaId { get; set; }
 
-        [Display(Name = "Area Name")]
+        [Display(Name = "অঞ্চল এর নাম")]
         public string AreaName { get; set; }
 
 
+        [Display(Name = "প্লট আইডি")]
+        
         public int PlotId { get; set; }
 
-        [Display(Name = "Plot Id Number")]
+        [Display(Name = "প্লটের আইডি নম্বর")]
         public string PlotIdNumber { get; set; }
 
-        [Display(Name = "Plot Number")]
+        [Display(Name = "প্লট নম্বর")]
         public string PlotNo { get; set; }
 
-        [Display(Name = "Plot Number")]
+        [Display(Name = "জাতীয় পরিচয়পত্র")]
         public string NID { get; set; }
 
-        [Display(Name = "Gender")]
+        [Display(Name = "লিঙ্গ")]
         public int? Gender { get; set; }
 
-        [Display(Name = "Gender Type")]
+        [Display(Name = "লিঙ্গ এর প্রকার")]
         public string GenderType { get; set; }
 
-        [Display(Name = "Maritial Status")]
+        [Display(Name = "বৈবাহিক অবস্থা")]
         public int? MaritialStatus { get; set; }
 
-        [Display(Name = "Maritial Status")]
+        [Display(Name = "বৈবাহিক স্থিতির ধরণ")]
         public string MaritialStatusType { get; set; }
 
-        [Display(Name = "Father's Name")]
+        [Display(Name = "বাবার নাম")]
         public string Father { get; set; }
 
-        [Display(Name = "Mother's Name")]
+        [Display(Name = "মায়ের নাম")]
         public string Mother { get; set; }
 
-        [Display(Name = "Spouse")]
+        [Display(Name = "স্বামী বা স্ত্রী ")]
         public string Spouse { get; set; }
 
-        [Display(Name = "Land No")]
+        [Display(Name = "ল্যান্ডলাইন নাম্বার")]
         public string Contact1 { get; set; }
 
-        [Display(Name = "Mobile No")]
+        [Display(Name = "মোবাইল নাম্বার")]
         public string Contact2 { get; set; }
 
-        [Display(Name = "Email ")]
+        [Display(Name = "ইমেল")]
         public string Email { get; set; }
 
-        [Display(Name = "Present Address")]
+        [Display(Name = "বর্তমান ঠিকানা")]
         public string PresentAdd { get; set; }
 
-        [Display(Name = "Permanent Address")]
+        [Display(Name = "স্থায়ী ঠিকানা")]
         public string PermanentAdd { get; set; }
 
-        [Display(Name = "Contact Address")]
+        [Display(Name = "যোগাযোগের ঠিকানা")]
         public string ContactAdd { get; set; }
 
-        [Display(Name = "Source Name")]
+        [Display(Name = "উৎসের আইডি")]
         public int OwnershipSourceId { get; set; }
 
-        [Display(Name = "Source Name")]
+        [Display(Name = "উৎসের নাম")]
         public string SourceName { get; set; }
 
-        [Display(Name = "Owner Type")]
+        [Display(Name = "মালিকের প্রকার")]
         public int? OwnerType { get; set; }
 
-        [Display(Name = "Owner Type")]
+        [Display(Name = "মালিকের প্রকারের নাম")]
         public string OwnerTypeName { get; set; }
 
-        [Display(Name = "Building Type")]
+        [Display(Name = "বিল্ডিং টাইপ আইডি")]
         public int BuildingTypeId { get; set; }
 
-        [Display(Name = "Building Type")]
+        [Display(Name = "বিল্ডিং টাইপ নাম")]
         public string BuildingTypeName { get; set; }
 
-        [Display(Name = "Amount of land")]
+        [Display(Name = "জমির পরিমাণ")]
         public decimal? AmountOfLand { get; set; }
 
-        [Display(Name = "Amount of land")]
+        [Display(Name = "জমির পরিমাণ")]
         public string StrAmountOfLand { get; set; }
 
-        [Display(Name = "Total Floor")]
+        [Display(Name = "টোটাল ফ্লোর")]
         public int? TotalFloor { get; set; }
 
-        [Display(Name = "Total Floor")]
+        [Display(Name = "টোটাল ফ্লোর")]
         public string StrTotalFloor { get; set; }
 
-        [Display(Name = "Each Floor Area")]
+        [Display(Name = "প্রতিটি তল এলাকা")]
         public decimal? EachFloorArea { get; set; }
 
-        [Display(Name = "Each Floor Area")]
+        [Display(Name = "প্রতিটি তল এলাকা")]
         public string StrEachFloorArea { get; set; }
 
 
-        [Display(Name = "Total Flat")]
+        [Display(Name = "মোট ফ্ল্যাট")]
         public int? TotalFlat { get; set; }
 
-        [Display(Name = "Total Flat")]
+        [Display(Name = "মোট ফ্ল্যাট")]
         public string StrTotalFlat { get; set; }
 
-        [Display(Name = "Holders Flat Number")]
+        [Display(Name = " হোল্ডার ফ্ল্যাট নম্বর")]
         public int? HoldersFlatNumber { get; set; }
 
-        [Display(Name = "Holders Flat Number")]
+        [Display(Name = "হোল্ডার ফ্ল্যাট নম্বর")]
         public string StrHoldersFlatNumber { get; set; }
 
-        [Display(Name = "Previous Due Tax")]
+        [Display(Name = "পূর্ববর্তী বকেয়া কর")]
         public decimal? PreviousDueTax { get; set; }
 
-        [Display(Name = "Previous Due Tax")]
+        [Display(Name = "পূর্ববর্তী বকেয়া কর")]
         public string StrPreviousDueTax { get; set; }
 
-        [Display(Name = "Image Location")]
+        [Display(Name = "চিত্র অবস্থান")]
         public string ImageLocation { get; set; }
 
-        [Display(Name = "Document1")]
+        [Display(Name = "নথি এক")]
         public string Document1 { get; set; }
 
-        [Display(Name = "Document2")]
+        [Display(Name = "দলিল")]
         public string Document2 { get; set; }
 
-        [Display(Name = "Create Date")]
+        [Display(Name = "তারিখ তৈরি করুন")]
         public DateTime? CreateDate { get; set; }
-
+        [Display(Name = "দ্বারা সৃষ্টি ")]
         public int? CreatedBy { get; set; }
 
-        [Display(Name = "Created By ")]
+        [Display(Name = "ব্যবহারকারীর নাম দ্বারা নির্মিত")]
         public string CreatedByUsername { get; set; }
 
         [Display(Name = "Updated Date ")]
