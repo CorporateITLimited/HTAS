@@ -181,5 +181,12 @@ namespace HoldingTaxWebApp.Models.Holding
         public string StringRecordCorrectionDate { get; set; }
         [Display(Name = "এলাকা প্লটফ্ল্যাট ডেটা")]
         public string AreaPlotFlatData { get; set; }
+
+
+
+        [Display(Name = "ব্যবহারকারীর নাম দ্বারা নির্মিত")]
+        public string CreatedByUsername { get; set; }
+        [Display(Name = "Updated By")]
+        public string UpdatedByUsername { get; set; }
     }
 }
