@@ -16,5 +16,8 @@ namespace HoldingTaxWebApp.Models.DBO
         public string Doc2 { get; set; }
 
         public bool? IsRead { get; set; }
+
+        public int MessageSender { get; set; }
+        public string MessageSenderName { get; set; }
     }
 }
