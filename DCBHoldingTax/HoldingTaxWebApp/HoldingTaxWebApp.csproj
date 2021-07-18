@@ -2627,6 +2627,7 @@
     <Folder Include="Documents\Holders\FFDocuments\" />
     <Folder Include="Documents\Holders\Images\" />
     <Folder Include="Documents\Plots\" />
+    <Folder Include="Reports\Tax\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
