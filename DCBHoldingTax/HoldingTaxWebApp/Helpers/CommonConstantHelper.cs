@@ -21,8 +21,10 @@ namespace HoldingTaxWebApp.Helpers
         public const string UserFullName = "UserFullName";
 
         public const string ReportParameter = "ReportParameter";
-        //public const string SupplierCode = "SupplierCode";
-        //public const string SupplierLegalName = "SupplierLegalName";
+
+        public const string HolderName = "HolderName";
+        public const string AreaPlotFlatData = "AreaPlotFlatData";
+        public const string HolderId = "HolderId";
 
         #endregion
 
