@@ -385,6 +385,14 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             private global::System.Data.DataColumn columnRebateRate;
             
+            private global::System.Data.DataColumn columnOwnFlConstantArea;
+            
+            private global::System.Data.DataColumn columnOwnFlConstantTax;
+            
+            private global::System.Data.DataColumn columnOwnFlConstantPerSq;
+            
+            private global::System.Data.DataColumn columnOwnerType;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtHoldingTaxDataTable() {
@@ -844,6 +852,38 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OwnFlConstantAreaColumn {
+                get {
+                    return this.columnOwnFlConstantArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OwnFlConstantTaxColumn {
+                get {
+                    return this.columnOwnFlConstantTax;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OwnFlConstantPerSqColumn {
+                get {
+                    return this.columnOwnFlConstantPerSq;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OwnerTypeColumn {
+                get {
+                    return this.columnOwnerType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -929,7 +969,11 @@ namespace HoldingTaxWebApp.AppDataSet {
                         decimal RentTaxRate, 
                         decimal SurchargeRate, 
                         decimal WrongInfoChargeRate, 
-                        decimal RebateRate) {
+                        decimal RebateRate, 
+                        decimal OwnFlConstantArea, 
+                        decimal OwnFlConstantTax, 
+                        decimal OwnFlConstantPerSq, 
+                        string OwnerType) {
                 dtHoldingTaxRow rowdtHoldingTaxRow = ((dtHoldingTaxRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -984,7 +1028,11 @@ namespace HoldingTaxWebApp.AppDataSet {
                         RentTaxRate,
                         SurchargeRate,
                         WrongInfoChargeRate,
-                        RebateRate};
+                        RebateRate,
+                        OwnFlConstantArea,
+                        OwnFlConstantTax,
+                        OwnFlConstantPerSq,
+                        OwnerType};
                 rowdtHoldingTaxRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtHoldingTaxRow);
                 return rowdtHoldingTaxRow;
@@ -1060,6 +1108,10 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnSurchargeRate = base.Columns["SurchargeRate"];
                 this.columnWrongInfoChargeRate = base.Columns["WrongInfoChargeRate"];
                 this.columnRebateRate = base.Columns["RebateRate"];
+                this.columnOwnFlConstantArea = base.Columns["OwnFlConstantArea"];
+                this.columnOwnFlConstantTax = base.Columns["OwnFlConstantTax"];
+                this.columnOwnFlConstantPerSq = base.Columns["OwnFlConstantPerSq"];
+                this.columnOwnerType = base.Columns["OwnerType"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1171,6 +1223,14 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnWrongInfoChargeRate);
                 this.columnRebateRate = new global::System.Data.DataColumn("RebateRate", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRebateRate);
+                this.columnOwnFlConstantArea = new global::System.Data.DataColumn("OwnFlConstantArea", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOwnFlConstantArea);
+                this.columnOwnFlConstantTax = new global::System.Data.DataColumn("OwnFlConstantTax", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOwnFlConstantTax);
+                this.columnOwnFlConstantPerSq = new global::System.Data.DataColumn("OwnFlConstantPerSq", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOwnFlConstantPerSq);
+                this.columnOwnerType = new global::System.Data.DataColumn("OwnerType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOwnerType);
                 this.columnHoldingTaxId.AutoIncrement = true;
                 this.columnHoldingTaxId.AutoIncrementSeed = -1;
                 this.columnHoldingTaxId.AutoIncrementStep = -1;
@@ -2181,6 +2241,70 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal OwnFlConstantArea {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.OwnFlConstantAreaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OwnFlConstantArea\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.OwnFlConstantAreaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal OwnFlConstantTax {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.OwnFlConstantTaxColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OwnFlConstantTax\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.OwnFlConstantTaxColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal OwnFlConstantPerSq {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.OwnFlConstantPerSqColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OwnFlConstantPerSq\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.OwnFlConstantPerSqColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OwnerType {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHoldingTax.OwnerTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OwnerType\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.OwnerTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsTotalRentNull() {
                 return this.IsNull(this.tabledtHoldingTax.TotalRentColumn);
             }
@@ -2777,6 +2901,54 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetRebateRateNull() {
                 this[this.tabledtHoldingTax.RebateRateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOwnFlConstantAreaNull() {
+                return this.IsNull(this.tabledtHoldingTax.OwnFlConstantAreaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOwnFlConstantAreaNull() {
+                this[this.tabledtHoldingTax.OwnFlConstantAreaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOwnFlConstantTaxNull() {
+                return this.IsNull(this.tabledtHoldingTax.OwnFlConstantTaxColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOwnFlConstantTaxNull() {
+                this[this.tabledtHoldingTax.OwnFlConstantTaxColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOwnFlConstantPerSqNull() {
+                return this.IsNull(this.tabledtHoldingTax.OwnFlConstantPerSqColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOwnFlConstantPerSqNull() {
+                this[this.tabledtHoldingTax.OwnFlConstantPerSqColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOwnerTypeNull() {
+                return this.IsNull(this.tabledtHoldingTax.OwnerTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOwnerTypeNull() {
+                this[this.tabledtHoldingTax.OwnerTypeColumn] = global::System.Convert.DBNull;
             }
         }
         

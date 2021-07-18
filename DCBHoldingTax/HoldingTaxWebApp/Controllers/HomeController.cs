@@ -57,6 +57,29 @@ namespace COMSApp.Controllers
             }
         }
 
+        public ActionResult Holder()
+        {
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //        && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //        && (Session[CommonConstantHelper.UserId] != null))
+            //{
+            //    if (CanAccess)
+            //    {
+            return View();
+            //    }
+            //    else
+            //    {
+            //        TempData["PM"] = "Permission Denied.";
+            //        return RedirectToAction("LogIn", "Account");
+            //    }
+            //}
+            //else
+            //{
+            //    TempData["EM"] = "Session Expired.";
+            //    return RedirectToAction("LogIn", "Account");
+            //}
+        }
+
 
         public ActionResult Reports()
         {
@@ -90,7 +113,7 @@ namespace COMSApp.Controllers
 
 
 
-           // int? number = 1234567890;
+            // int? number = 1234567890;
 
             string bengali_text = "১৭মি";//string.Concat(number.ToString().Select(c => (char)('\u09E6' + c - '0'))); // "১২৩৪৫৬৭৮৯০"
 
