@@ -2662,6 +2662,7 @@
     <Content Include="Views\HolderUser\Details.cshtml" />
     <Content Include="Views\HolderUser\Create.cshtml" />
     <Content Include="Views\HolderUser\Edit.cshtml" />
+    <Content Include="Views\Home\Holder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

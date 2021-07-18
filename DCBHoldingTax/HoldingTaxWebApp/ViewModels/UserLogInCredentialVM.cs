@@ -30,6 +30,18 @@ namespace HoldingTaxWebApp.ViewModels
         public bool? UserIsActive { get; set; }
         public bool? UserIsDeleted { get; set; }
         public string UserFullName { get; set; }
+        //[UserEmail], [IsEmailConfirmed], [MobileNumber], [IsMobileNumberConfirmed]
+        public string UserEmail { get; set; }
+        public string MobileNumber { get; set; }
+        public bool? IsEmailConfirmed { get; set; }
+        public bool? IsMobileNumberConfirmed { get; set; }
+
+        public string HolderName { get; set; }
+        public string AreaPlotFlatData { get; set; }
+        public string HolderMobileNumber { get; set; }
+        public bool? HolderIsMobileNumberConfirmed { get; set; }
+        public string HolderEmail { get; set; }
+        public bool? HolderIsEmailConfirmed { get; set; }
 
 
         public CommonEntityHelper CommonEntity { get; set; }
