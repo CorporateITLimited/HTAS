@@ -79,9 +79,9 @@ namespace HoldingTaxWebApp.Controllers
                     Session[CommonConstantHelper.RoleId] = logInCredentialVM.RoleId;
                     Session[CommonConstantHelper.RoleName] = logInCredentialVM.RoleName;
 
-                    //Session[CommonConstantHelper.SupplierId] = logInCredentialVM.SupplierId;
-                    //Session[CommonConstantHelper.SupplierCode] = logInCredentialVM.SupplierCode;
-                    //Session[CommonConstantHelper.SupplierLegalName] = logInCredentialVM.SupplierLegalName;
+                    Session[CommonConstantHelper.HolderId] = logInCredentialVM.HolderId;
+                    Session[CommonConstantHelper.HolderName] = logInCredentialVM.HolderName;
+                    Session[CommonConstantHelper.AreaPlotFlatData] = logInCredentialVM.AreaPlotFlatData;
 
                     string message = " " + Session[CommonConstantHelper.UserName];
 
@@ -149,9 +149,9 @@ namespace HoldingTaxWebApp.Controllers
                         Session.Remove(CommonConstantHelper.UserName);
                         Session.Remove(CommonConstantHelper.UserTypeId);
 
-                        //Session.Remove(CommonConstantHelper.SupplierId);
-                        //Session.Remove(CommonConstantHelper.SupplierCode);
-                        //Session.Remove(CommonConstantHelper.SupplierLegalName);
+                        Session.Remove(CommonConstantHelper.HolderId);
+                        Session.Remove(CommonConstantHelper.HolderName);
+                        Session.Remove(CommonConstantHelper.AreaPlotFlatData);
 
                         Session.Remove(CommonConstantHelper.UserId);
                         Session.Remove(CommonConstantHelper.UserFullName);

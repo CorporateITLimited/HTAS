@@ -4839,7 +4839,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
-    <Content Include="Views\Shared\_Layout_old.cshtml" />
     <Content Include="Views\Account\LogIn.cshtml" />
     <Content Include="Views\UserPermission\Create.cshtml" />
     <Content Include="Views\UserPermission\Details.cshtml" />
