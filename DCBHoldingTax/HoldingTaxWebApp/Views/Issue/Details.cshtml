@@ -1,4 +1,5 @@
 ﻿@model HoldingTaxWebApp.ViewModels.DBO.IssueCombineVM
+    @using HoldingTaxWebApp.Helpers
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -31,10 +32,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-custom gutter-b example example-compact">
-                    <div class="card-header">
+                    @*<div class="card-header">
                         <div class="row offset-1">
                             <h3 class="card-title">
-                                <b class="kt-font-brand">@Model.HolderName</b>  &nbsp; এর বার্তা @*তথ্য*@
+                                <b class="kt-font-brand">@Model.HolderName</b>  &nbsp; এর বার্তা 
                             </h3>
 
                             <div class="card-toolbar">
@@ -42,7 +43,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                     <div class="card-body">
                         <div class="row offset-1">
                             <legend> হোল্ডারদের বার্তা তথ্য</legend>
@@ -179,7 +180,7 @@
                       
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
-                            <legend>নকশা অনুমোদনের বিবরণ</legend>
+                            <legend>হোল্ডার এর সমস্যা সমূহের বিবরণ</legend>
                             <br />
                             <br />
                             <table class="table table-bordered table-success" width="100" id="flat_details">
@@ -188,9 +189,9 @@
                                         <th>সিরিয়াল নাম্বার</th>
                                         <th>হোল্ডার এর বার্তা</th>
                                         <th>বার্তার তারিখ</th>
-                                        <th>প্ল্যান আনুমোদন তারিখ</th>
-                                        <th>অনুমোদন নং</th>
-                                        <th>অনুমোদন পত্র নং</th>
+                                        <th>নথি ১</th>
+                                        <th>নথি ২</th>
+                                        <th>বর্তমান অবস্থা</th>
                                        
 
 
@@ -201,19 +202,16 @@
                                         foreach (var item in Model.IssueDetails)
                                         {
                                     <tr>
-                                        <td>@i</td>
+                                        <td>@BanglaConvertionHelper.IntegerValueEnglish2Bangla(i)</td>
                                         <td>@item.MsgDetails</td>
                                         <td>@item.StringMsgDate</td>
                                         <td>@item.Doc1</td>
                                         <td>@item.Doc2</td>
                                         @if(@item.IsRead == true){
-                                        <td>Sloved</td>
+                                        <td>সমাধান হয়েছে</td>
                                         }
-                                        else{<td>Pending</td>
+                                        else{<td>এখনো সমাধান হয়নি</td>
                                         }
-
-
-
 
                                     </tr>
                                             i = i + 1;
