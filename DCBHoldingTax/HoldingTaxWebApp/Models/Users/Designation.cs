@@ -8,13 +8,16 @@ namespace HoldingTaxWebApp.Models.Users
 {
     public class Designation
     {
+        [Display(Name = "পদবি আইডি")]
         public int DesignationId { get; set; }
-        [Display(Name = "Designation Name")]
+        [Display(Name = "পদবি নাম")]
         public string DesignationName { get; set; }
+        [Display(Name = "বর্ণনা")]
         public string Description { get; set; }
 
-        [Display(Name = "Is Active?")]
+        [Display(Name = "সক্রিয়")]
         public bool? IsActive { get; set; }
+        [Display(Name = "মুছে ফেলা ")]
         public bool? IsDeleted { get; set; }
     }
 }
