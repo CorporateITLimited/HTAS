@@ -93,7 +93,7 @@ namespace HoldingTaxWebApp.Controllers
                     }
                     else if (logInCredentialVM.UserTypeId == 2)
                     {
-                        return Content("You are owner");
+                        return RedirectToAction("Holder", "Home");
                     }
                     else
                     {

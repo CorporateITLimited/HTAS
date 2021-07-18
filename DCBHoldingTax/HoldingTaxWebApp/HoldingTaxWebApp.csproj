@@ -2668,6 +2668,7 @@
     <Content Include="Views\HolderUser\Details.cshtml" />
     <Content Include="Views\HolderUser\Create.cshtml" />
     <Content Include="Views\HolderUser\Edit.cshtml" />
+    <Content Include="Views\Home\Holder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2680,6 +2681,7 @@
     <Folder Include="Documents\Holders\FFDocuments\" />
     <Folder Include="Documents\Holders\Images\" />
     <Folder Include="Documents\Plots\" />
+    <Folder Include="Reports\Tax\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

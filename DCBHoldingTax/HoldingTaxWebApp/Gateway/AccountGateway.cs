@@ -53,16 +53,16 @@ namespace HoldingTaxWebApp.Gateway
                     credentialVM.UserTypeId = Convert.ToInt32(Data_Reader["UserTypeId"]);
                     credentialVM.LogIsActive = Convert.ToBoolean(Data_Reader["LogIsActive"]);
                     credentialVM.LogIsDeleted = Convert.ToBoolean(Data_Reader["LogIsDeleted"]);
-
-                    //credentialVM.SupplierId = Data_Reader["SupplierId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["SupplierId"]) : (int?)null;
-                    //credentialVM.SupplierCode = Data_Reader["SupplierCode"].ToString();
-                    //credentialVM.SupplierLegalName = Data_Reader["SupplierLegalName"].ToString();
-
+                    
+                    // user portion
                     credentialVM.UserId = Data_Reader["UserId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["UserId"]) : (int?)null;
                     credentialVM.RoleId = Data_Reader["RoleId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RoleId"]) : (int?)null;
                     credentialVM.RoleName = Data_Reader["RoleName"].ToString();
                     credentialVM.UserFullName = Data_Reader["UserFullName"].ToString();
-
+                    
+                    // holder portion
+                    credentialVM.HolderName = Data_Reader["HolderName"].ToString();
+                    credentialVM.AreaPlotFlatData = Data_Reader["AreaPlotFlatData"].ToString();
                 }
 
                 Data_Reader.Close();

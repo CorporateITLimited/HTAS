@@ -552,23 +552,17 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 holder.IsDeleted = false;
 
                 bool isValid = true;
-                bool isNullValid = true;
-
-                if (hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any())
-                {
-                    isNullValid = false;
-                }
+                bool isNullValid = hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any() ? false : true;
                 if (isNullValid)
                 {
                     if (hvm.HolderFlatList.Count() == 1)
                     {
                         foreach (HolderFlat item in hvm.HolderFlatList)
                         {
-                            if (item.HolderFlatId == 0 && item.FlorNo == 1 && string.IsNullOrWhiteSpace(item.FlatNo) && item.OwnOrRent == 1 && item.MonthlyRent == 0
-                                    && item.SelfOwn == 1 && string.IsNullOrWhiteSpace(item.OwnerName))
-                            {
-                                isValid = false;
-                            }
+                            isValid = item.HolderFlatId == 0 && item.FlorNo == 0 && string.IsNullOrWhiteSpace(item.FlatNo) && item.OwnOrRent == 1 && item.MonthlyRent == 0
+                                    && item.SelfOwn == 1 && string.IsNullOrWhiteSpace(item.OwnerName)
+                                ? false
+                                : true;
                         }
                     }
                 }
@@ -586,15 +580,10 @@ namespace HoldingTaxWebApp.Controllers.Holding
                             bool canInert = true;
                             foreach (HolderFlat ui_item in newListFroUi)
                             {
-                                if (ui_item.HolderFlatId == 0 && ui_item.FlorNo == 1 && string.IsNullOrWhiteSpace(ui_item.FlatNo) && ui_item.OwnOrRent == 1 && ui_item.MonthlyRent == 0
-                                && ui_item.SelfOwn == 1 && string.IsNullOrWhiteSpace(ui_item.OwnerName) && ui_item.FlatArea == 0)
-                                {
-                                    canInert = false;
-                                }
-                                else
-                                {
-                                    canInert = true;
-                                }
+                                canInert = ui_item.HolderFlatId == 0 && ui_item.FlorNo == 0 && string.IsNullOrWhiteSpace(ui_item.FlatNo) && ui_item.OwnOrRent == 1 && ui_item.MonthlyRent == 0
+                                && ui_item.SelfOwn == 1 && string.IsNullOrWhiteSpace(ui_item.OwnerName) && ui_item.FlatArea == 0
+                                    ? false
+                                    : true;
                                 if (canInert)
                                 {
                                     HolderFlat details = new HolderFlat()
@@ -1167,29 +1156,23 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 holder.CreatedBy = null;
                 holder.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-                holder.CreateDate = null; ;
+                holder.CreateDate = null;
                 holder.LastUpdated = DateTime.Now;
                 holder.IsActive = true;
                 holder.IsDeleted = null;
 
                 bool isValid = true;
-                bool isNullValid = true;
-
-                if (hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any())
-                {
-                    isNullValid = false;
-                }
+                bool isNullValid = hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any() ? false : true;
                 if (isNullValid)
                 {
                     if (hvm.HolderFlatList.Count() == 1)
                     {
                         foreach (HolderFlat item in hvm.HolderFlatList)
                         {
-                            if (item.HolderFlatId == 0 && item.FlorNo == 1 && string.IsNullOrWhiteSpace(item.FlatNo) && item.OwnOrRent == 1 && item.MonthlyRent == 0
-                                    && item.SelfOwn == 1 && string.IsNullOrWhiteSpace(item.OwnerName))
-                            {
-                                isValid = false;
-                            }
+                            isValid = item.HolderFlatId == 0 && item.FlorNo == 0 && string.IsNullOrWhiteSpace(item.FlatNo) && item.OwnOrRent == 1 && item.MonthlyRent == 0
+                                    && item.SelfOwn == 1 && string.IsNullOrWhiteSpace(item.OwnerName)
+                                ? false
+                                : true;
                         }
                     }
                 }
@@ -1209,15 +1192,11 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                 bool canInert = true;
                                 foreach (HolderFlat ui_item in newListFroUi)
                                 {
-                                    if (ui_item.HolderFlatId == 0 && ui_item.FlorNo == 1 && string.IsNullOrWhiteSpace(ui_item.FlatNo) && ui_item.OwnOrRent == 1 && ui_item.MonthlyRent == 0
-                                    && ui_item.SelfOwn == 1 && string.IsNullOrWhiteSpace(ui_item.OwnerName) && ui_item.FlatArea == 0)
-                                    {
-                                        canInert = false;
-                                    }
-                                    else
-                                    {
-                                        canInert = true;
-                                    }
+                                    canInert = ui_item.HolderFlatId == 0 && ui_item.FlorNo == 0 && string.IsNullOrWhiteSpace(ui_item.FlatNo) && ui_item.OwnOrRent == 1 && ui_item.MonthlyRent == 0
+                                    && ui_item.SelfOwn == 1 && string.IsNullOrWhiteSpace(ui_item.OwnerName) && ui_item.FlatArea == 0
+                                        ? false
+                                        : true;
+
                                     if (canInert)
                                     {
                                         HolderFlat details = new HolderFlat()
