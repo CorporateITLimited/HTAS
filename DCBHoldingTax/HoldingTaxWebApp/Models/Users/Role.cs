@@ -8,24 +8,24 @@ namespace HoldingTaxWebApp.Models.Users
 {
     public class Role
     {
+        [Display(Name = "ভূমিকা আইডি")]
         public int RoleId { get; set; }
-        [Display(Name = "Role Name")]
+        [Display(Name = "নামভূমিকা")]
         public string RoleName { get; set; }
 
-        [Display(Name = "Role Details")]
+        [Display(Name = "বিশদ ভূমিকা ")]
         public string RoleDetails { get; set; }
-        [Display(Name = "Create Date")]
+        [Display(Name = "তারিখ তৈরি করুন")]
         public DateTime? CreateDate { get; set; }
+        [Display(Name = "তৈরিকারী")]
         public int? CreatedBy { get; set; }
-        [Display(Name = "Created By")]
-        public string CreatedByUserName { get; set; }
-        [Display(Name = "Updated Date")]
+        [Display(Name = "সর্বশেষ সংষ্করণ")]
         public DateTime? LastUpdated { get; set; }
+        [Display(Name = "সর্বশেষ সংষ্করণ করেছেন")]
         public int? LastUpdatedBy { get; set; }
-
-        [Display(Name = "Updated By")]
-        public string UpdatedByUserName { get; set; }
+        [Display(Name = "সক্রিয়")]
         public bool? IsActive { get; set; }
+        [Display(Name = "মুছে ফেলা ")]
         public bool? IsDeleted { get; set; }
 
     }
