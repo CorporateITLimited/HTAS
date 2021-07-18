@@ -4778,6 +4778,7 @@
     <Compile Include="Manager\DBO\LeaseQuotaManager.cs" />
     <Compile Include="Manager\DBO\OfficialStatusManager.cs" />
     <Compile Include="Manager\DBO\OwnershipSourceManager.cs" />
+    <Compile Include="Manager\DBO\StatusTypeManager.cs" />
     <Compile Include="Manager\Holding\HoldingManager.cs" />
     <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
