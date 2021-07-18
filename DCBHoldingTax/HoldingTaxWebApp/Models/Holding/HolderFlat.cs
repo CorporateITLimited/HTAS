@@ -8,60 +8,60 @@ namespace HoldingTaxWebApp.Models.Holding
 {
     public class HolderFlat
     {
+        [Display(Name = "হোল্ডার ফ্ল্যাট আইডি")]
         public int HolderFlatId { get; set; }
 
-        [Display(Name = "Holder Name")]
+        [Display(Name = "হোল্ডার আইডি")]
         public int? HolderId { get; set; }
 
-        [Display(Name = "Flor No")]
+        [Display(Name = "ফ্লোর নং")]
         public int? FlorNo { get; set; }
 
-        [Display(Name = "Flat No")]
+        [Display(Name = "ফ্ল্যাট নং")]
         public string FlatNo { get; set; }
 
-        [Display(Name = "Flat Area")]
+        [Display(Name = "ফ্লাট অঞ্চল")]
         public decimal? FlatArea { get; set; }
 
-        [Display(Name = "Flat Area")]
+        [Display(Name = "ফ্লাট অঞ্চল")]
         public string StrFlatArea { get; set; }
 
-        [Display(Name = "Own Or Rent")]
+        [Display(Name = "নিজস্ব বা ভাড়া")]
         public int? OwnOrRent { get; set; }
 
+        
+         [Display(Name = "নিজস্ব বা ভাড়া প্রকার")]
         public string OwnOrRentType { get; set; }
 
-        [Display(Name = "Is Self Owned?")]
+        [Display(Name = "স্ব - মালিকানাধীন ? ")]
         public bool? IsSelfOwned { get; set; }
 
-        [Display(Name = "Owner Name")]
+        [Display(Name = "মালিকের নাম")]
         public string OwnerName { get; set; }
 
-        [Display(Name = "Create Date")]
+        [Display(Name = "তারিখ তৈরি করুন")]
         public DateTime? CreateDate { get; set; }
+        [Display(Name = "তৈরিকারী")]
         public int? CreatedBy { get; set; }
-
-        [Display(Name = "Created By ")]
-        public string CreatedByUsername { get; set; }
-
-        [Display(Name = "Updated Date ")]
+        [Display(Name = "সর্বশেষ সংষ্করণ")]
         public DateTime? LastUpdated { get; set; }
-
+        [Display(Name = "সর্বশেষ সংষ্করণ করেছেন")]
         public int? LastUpdatedBy { get; set; }
-
-        [Display(Name = "Updated By")]
-        public string UpdatedByUsername { get; set; }
-
+        [Display(Name = "সক্রিয়")]
         public bool? IsActive { get; set; }
+        [Display(Name = "মুছে ফেলা ")]
         public bool? IsDeleted { get; set; }
 
-        [Display(Name = "Monthly Rent")]
+        [Display(Name = "মাসিক ভাড়া")]
         public decimal? MonthlyRent { get; set; }
 
-        [Display(Name = "Monthly Rent")]
+        [Display(Name = "মাসিক ভাড়া")]
         public string StrMonthlyRent { get; set; }
-
+        [Display(Name = "স্ব - স্ব")]
         public int? SelfOwn { get; set; }
+        [Display(Name = "স্ব - নিজস্ব প্রকার")]
         public string SelfOwnType { get; set; }
+        [Display(Name = "ফ্লোর টাইপের নাম")]
         public string FloorTypeName { get; set; }
     }
 }
