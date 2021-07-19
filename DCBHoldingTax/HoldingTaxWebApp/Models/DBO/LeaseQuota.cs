@@ -12,7 +12,7 @@ namespace HoldingTaxWebApp.Models.DBO
         public int LeaseQuotaId { get; set; }
         [Display(Name = "ইজারা কোটার নাম")]
         public string LeaseQuotaName { get; set; }
-        [Display(Name = "তৈরিকারী")]
+        [Display(Name = "মন্তব্য")]
         public string Remarks { get; set; }
         [Display(Name = "তারিখ তৈরি করুন")]
         public DateTime? CreateDate { get; set; }
