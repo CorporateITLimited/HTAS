@@ -21,8 +21,9 @@ namespace HoldingTaxWebApp.Models.Constant
         public string Remarks { get; set; }
 
 
-
+        [Display(Name = "তারিখ তৈরি করুন")]
         public DateTime? CreateDate { get; set; }
+        [Display(Name = "তৈরিকারী")]
         public int? CreatedBy { get; set; }
 
         [Display(Name = "তৈরিকারী")]
@@ -31,7 +32,9 @@ namespace HoldingTaxWebApp.Models.Constant
         [Display(Name = "হালনাগাদকারী")]
         public string LastUpdatedByName { get; set; }
         public int? LastUpdatedBy { get; set; }
+        [Display(Name = "সক্রিয়")]
         public bool? IsActive { get; set; }
+        [Display(Name = "মুছে ফেলা ")]
         public bool? IsDeleted { get; set; }
     }
 }
