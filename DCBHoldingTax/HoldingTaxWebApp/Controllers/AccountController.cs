@@ -82,6 +82,7 @@ namespace HoldingTaxWebApp.Controllers
                     Session[CommonConstantHelper.HolderId] = logInCredentialVM.HolderId;
                     Session[CommonConstantHelper.HolderName] = logInCredentialVM.HolderName;
                     Session[CommonConstantHelper.AreaPlotFlatData] = logInCredentialVM.AreaPlotFlatData;
+                    Session[CommonConstantHelper.AreaId] = logInCredentialVM.AreaId;
 
                     string message = " " + Session[CommonConstantHelper.UserName];
 

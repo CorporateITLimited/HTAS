@@ -1,6 +1,7 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Web;
 using HoldingTaxWebApp.AppDataSet;
+using HoldingTaxWebApp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,7 +30,7 @@ namespace HoldingTaxWebApp.WebForms.Tax
         {
             cryRpt = new ReportDocument();
             cryRpt.Load(Server.MapPath("~/AppReports/Tax/rptGetHoldingTax.rpt"));
-            //cryRpt.SetDatabaseLogon("sa", "CIL###MjR019", @"119.18.147.80", "BR_PIMS1_DB");
+            cryRpt.SetDatabaseLogon("sa", "#PimsOne$1m#", @"119.18.146.107", "DCB_HTAS");
 
             CrystalReportViewer1.ReportSource = cryRpt;
 
@@ -44,13 +45,16 @@ namespace HoldingTaxWebApp.WebForms.Tax
         {
             //PMISEntities con = new PMISEntities();
             //Session["PCaseId"] = 2;
+            int? rptValueAreaId = Session[CommonConstantHelper.AreaId] != null ? Convert.ToInt32(Session[CommonConstantHelper.AreaId]) : (int?)null;
+            int? rptFinancialYearId = Session["FinancialYearId"] != null ? Convert.ToInt32(Session["FinancialYearId"]) : (int?)null;
+            int? rptHolderId = Session[CommonConstantHelper.HolderId] != null ? Convert.ToInt32(Session[CommonConstantHelper.HolderId]) : (int?)null;
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
             SqlCommand cmd = new SqlCommand("exec [Tax].[spGetHoldingTaxDetails] @AreaId,@FinancialYearId,@HolderId", con);
             cmd.CommandType = CommandType.Text; // always text
-            cmd.Parameters.AddWithValue("@AreaId", SqlDbType.Int).Value = 1;//Convert.ToInt32(Session["TenderDocId"]);
-            cmd.Parameters.AddWithValue("@FinancialYearId", SqlDbType.Int).Value = 1;//Convert.ToInt32(Session["TenderDocId"]);
-            cmd.Parameters.AddWithValue("@HolderId", SqlDbType.Int).Value = 2;//Convert.ToInt32(Session["TenderDocId"]);
+            cmd.Parameters.AddWithValue("@AreaId", SqlDbType.Int).Value = rptValueAreaId ?? (object)DBNull.Value; 
+            cmd.Parameters.AddWithValue("@FinancialYearId", SqlDbType.Int).Value = rptFinancialYearId ?? (object)DBNull.Value;
+            cmd.Parameters.AddWithValue("@HolderId", SqlDbType.Int).Value = rptHolderId ?? (object)DBNull.Value;
             try
             {
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
