@@ -427,7 +427,7 @@ namespace HoldingTaxWebApp.Gateway.DBO
                 Sql_Command.Parameters.Add("@Doc2", SqlDbType.NVarChar).Value = model.Doc2;
                 Sql_Command.Parameters.Add("@IsRead", SqlDbType.NVarChar).Value = model.IsRead;
                 Sql_Command.Parameters.Add("@MessageSender", SqlDbType.Int).Value = model.MessageSender;
-                Sql_Command.Parameters.Add("@MessageSenderName", SqlDbType.NVarChar).Value = model.MessageSenderName;
+                //Sql_Command.Parameters.Add("@MessageSenderName", SqlDbType.NVarChar).Value = model.MessageSenderName;
 
 
 
@@ -495,7 +495,7 @@ namespace HoldingTaxWebApp.Gateway.DBO
                 Sql_Command.Parameters.Add("@Doc2", SqlDbType.NVarChar).Value = model.Doc2;
                 Sql_Command.Parameters.Add("@IsRead", SqlDbType.NVarChar).Value = model.IsRead;
                 Sql_Command.Parameters.Add("@MessageSender", SqlDbType.Int).Value = model.MessageSender;
-                Sql_Command.Parameters.Add("@MessageSenderName", SqlDbType.NVarChar).Value = model.MessageSenderName;
+                //Sql_Command.Parameters.Add("@MessageSenderName", SqlDbType.NVarChar).Value = model.MessageSenderName;
 
 
                 SqlParameter result = new SqlParameter
