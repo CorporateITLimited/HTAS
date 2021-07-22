@@ -369,6 +369,7 @@ namespace HoldingTaxWebApp.Gateway.DBO
                         Doc2 = Data_Reader["Doc2"].ToString(),
                         MessageSenderName = Data_Reader["MessageSenderName"].ToString(),
                         MessageSender = Convert.ToInt32(Data_Reader["MessageSender"]),
+                        MessageSenderType = Convert.ToInt32(Data_Reader["MessageSenderType"]),
                         MsgDate = Data_Reader["MsgDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["MsgDate"]) : (DateTime?)null,
                         IsRead = Data_Reader["IsRead"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsRead"]) : (bool?)null,
                     };
@@ -495,6 +496,8 @@ namespace HoldingTaxWebApp.Gateway.DBO
                 Sql_Command.Parameters.Add("@Doc2", SqlDbType.NVarChar).Value = model.Doc2;
                 Sql_Command.Parameters.Add("@IsRead", SqlDbType.NVarChar).Value = model.IsRead;
                 Sql_Command.Parameters.Add("@MessageSender", SqlDbType.Int).Value = model.MessageSender;
+                Sql_Command.Parameters.Add("@MessageSenderType", SqlDbType.Int).Value = model.MessageSenderType;
+
                 //Sql_Command.Parameters.Add("@MessageSenderName", SqlDbType.NVarChar).Value = model.MessageSenderName;
 
 

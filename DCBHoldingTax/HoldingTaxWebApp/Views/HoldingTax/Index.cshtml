@@ -1,121 +1,161 @@
 ﻿@model IEnumerable<HoldingTaxWebApp.Models.Tax.HoldingTax>
+@using HoldingTaxWebApp.Helpers
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Sheets{
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
 
-<h2>Index</h2>
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকর</h5>
+                @*<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item text-muted">
+                            <a href="" class="text-muted">Crud</a>
+                        </li>
+                    </ul>*@
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
 
-        <th>
-            @Html.DisplayNameFor(model => model.FinancialYearId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalRent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TaxFromRent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TaxFromOwnProperty)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalHoldingTax)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Surcharge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rebate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WrongInfoCharge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastUpdated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastUpdatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="card card-custom">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        গৃহকরের তালিকা
+                    </h3>
+                </div>
+                <div class="card-toolbar">
+                    <a href="~/HoldingTax/Create" class="btn btn-primary font-weight-bolder">
+                        <i class="fas fa-plus">
+                        </i>নতুন গৃহকর প্রস্তুতকরণ
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="mb-7">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-xl-8">
+                            <div class="row align-items-center">
+                                <div class="col-md-4 my-2 my-md-0">
+                                    <div class="input-icon">
+                                        <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
+                                        <span>
+                                            <i class="flaticon2-search-1 text-muted"></i>
+                                        </span>
+                                    </div>
+                                </div>
 
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
+                            </div>
+                        </div>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.FinancialYearId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalRent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TaxFromRent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TaxFromOwnProperty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalHoldingTax)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Surcharge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rebate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WrongInfoCharge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastUpdated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastUpdatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.HoldingTaxId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.HoldingTaxId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.HoldingTaxId })
-        </td>
-    </tr>
+                    </div>
+                </div>
+                <!--end::Search Form-->
+                <!--begin: Datatable-->
+                <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
+                    <thead>
+                        <tr>
+
+                            <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TaxFromRent)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TaxFromOwnProperty)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TotalHoldingTax)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Rebate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NetTaxPayableAmount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.LastUpdated)
+                            </th>
+                            <th></th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FinancialYear)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TaxFromRent)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TaxFromOwnProperty)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalHoldingTax)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Rebate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NetTaxPayableAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastUpdated)
+                            </td>
+                            <td>
+                               
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="Edit">
+                                    <b> <i class="fa fa-edit"></i>  </b>
+                                </a>
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Details/@item.HoldingTaxId" title="Report View">
+                                    <b><i class="fa fa-chart-bar" aria-hidden="true"></i></b>
+                                </a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+
+                </table>
+                <!--end: Datatable-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        jQuery(document).ready(function () {
+            $('#kt_datatable').KTDatatable({
+                search: {
+                    input: $('#kt_datatable_search_query'),
+                    key: 'generalSearch',
+                },
+                layout: {
+                    class: 'datatable-bordered',
+                }
+            });
+        });
+    </script>
 }
 
-</table>
+
+

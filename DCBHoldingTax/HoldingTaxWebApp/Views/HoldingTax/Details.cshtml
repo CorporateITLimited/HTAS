@@ -1,178 +1,29 @@
-﻿@model HoldingTaxWebApp.Models.Tax.HoldingTax
-
+﻿
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "GetHoldersTaxInformation";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>HoldingTax</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.HolderId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HolderId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FinancialYearId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FinancialYearId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalRent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalRent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TaxFromRent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TaxFromRent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TaxFromOwnProperty)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TaxFromOwnProperty)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalHoldingTax)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalHoldingTax)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Surcharge)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Surcharge)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rebate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rebate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WrongInfoCharge)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WrongInfoCharge)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastUpdated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastUpdated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastUpdatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastUpdatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isFinalized)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isFinalized)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PaidAmount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PaidAmount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NetTaxPayableAmount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NetTaxPayableAmount)
-        </dd>
-
-    </dl>
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকর</h5>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.HoldingTaxId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="card card-custom">
+            <div style="justify-content:center;text-align:center; overflow-y:hidden;">
+                <iframe runat="server" id="Reports" src="~/WebForms/Tax/GetHoldingTax.aspx"
+                        style="width:100%; min-height:1000px;" frameBorder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

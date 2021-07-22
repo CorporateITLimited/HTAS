@@ -3,23 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using HoldingTaxWebApp.Gateway.Dbo;
+using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager.Tax;
+using HoldingTaxWebApp.Models.Tax;
 
 namespace HoldingTaxWebApp.Controllers.Tax
 {
     public class HoldingTaxController : Controller
     {
         private readonly HoldingTaxManager _holdingTaxManager;
+        private readonly FinancialYearGateway _financialYearGateway;
         public HoldingTaxController() {
             _holdingTaxManager = new HoldingTaxManager();
+            _financialYearGateway = new FinancialYearGateway();
         }
 
 
         // GET: HoldingTax
         public ActionResult Index()
         {
+            try
+            {
+                List<HoldingTax> holdingTaxes = new List<HoldingTax>();
 
-            return View();
+                if (Session[CommonConstantHelper.UserTypeId].ToString() == "2")
+                {
+                    var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
+                    holdingTaxes = _holdingTaxManager.GetAllHoldingTaxForHolder(HolderId);
+
+                }
+                else if (Session[CommonConstantHelper.UserTypeId].ToString() == "1")
+                {
+                    holdingTaxes = _holdingTaxManager.GetAllHoldingTax();
+                }
+                else
+                {
+                    return RedirectToAction("LogIn", "Account");
+                }
+
+                return View(holdingTaxes.ToList());
+            }
+            catch
+            {
+                TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
+                return RedirectToAction("LogIn", "Account");
+            }
         }
 
         // GET: HoldingTax/Details/5
@@ -31,6 +60,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
         // GET: HoldingTax/Create
         public ActionResult Create()
         {
+            ViewBag.FinancialYearId = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
             return View();
         }
 
@@ -38,6 +68,8 @@ namespace HoldingTaxWebApp.Controllers.Tax
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+            ViewBag.FinancialYearId = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYearName");
+
             try
             {
                 // TODO: Add insert logic here
@@ -78,20 +110,11 @@ namespace HoldingTaxWebApp.Controllers.Tax
             return View();
         }
 
-        // POST: HoldingTax/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        public JsonResult GenerateTax(int FinancialYearId)
+        {
+            int status = _holdingTaxManager.GenerateTax(FinancialYearId);
+            
+            return Json(status, JsonRequestBehavior.AllowGet);
+        }
     }
 }

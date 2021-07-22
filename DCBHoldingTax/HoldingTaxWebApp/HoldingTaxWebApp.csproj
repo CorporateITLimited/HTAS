@@ -2398,6 +2398,7 @@
     <Content Include="Content\dropzone.css" />
     <Content Include="Content\FormDesign.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\wizard-holding.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\banner.jfif" />
     <Content Include="Images\banner_bg.jpg" />

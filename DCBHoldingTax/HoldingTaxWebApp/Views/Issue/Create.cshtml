@@ -31,6 +31,7 @@
 
 
                     <form id="kt_inbox_compose_form">
+
                         <!--begin::Header-->
                         <div class="d-flex align-items-center justify-content-between py-5 pl-8 pr-5 border-bottom">
                             <h5 class="font-weight-bold m-0"> Message</h5>
@@ -39,17 +40,17 @@
                         <!--end::Header-->
                         <!--begin::Body-->
                         <div class="d-block">
-                           
+
                             <!--begin::Subject-->
                             <div class="border-bottom">
-                                <input class="form-control border-0 px-8 min-h-45px" name="compose_subject" placeholder="Subject" />
+                                <input type="text" class="form-control form-control-solid form-control-lg" id="@Model.Subject" name="@Model.Subject" placeholder="Subject">
                             </div>
                             <!--end::Subject-->
                             <!--begin::Message-->
-                            <div id="kt_inbox_compose_editor" class="border-0" style="height: 250px">
-                                <div class="col-lg-12 col-sm-24">
-                                    <textarea class="form-control" id="kt_autosize_1" rows="3"></textarea>
-                                </div>
+                            <div id="kt_inbox_compose_editor" class="border-0" style="height: 250px; padding-top:10px">
+
+                                <div class="ql-editor px-8 ql-blank" data-gramm="false" contenteditable="true" data-placeholder="Type message..." spellcheck="false"><p><br></p></div>
+
                             </div>
                             <!--end::Message-->
                             <!--begin::Attachments-->
@@ -131,7 +132,6 @@
                         </div>
                         <!--end::Footer-->
                     </form>
-
                 </div>
             </div>
         </div>
