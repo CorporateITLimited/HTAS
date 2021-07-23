@@ -14,10 +14,10 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "হোল্ডার নাম")]
         public string HolderName { get; set; }
 
-        [Display(Name = "অঞ্চল নাম")]
+        [Display(Name = "এলাকা")]
         public int AreaId { get; set; }
 
-        [Display(Name = "অঞ্চল নাম")]
+        [Display(Name = "এলাকা")]
         public string AreaName { get; set; }
 
         [Display(Name = "প্লট আইডি")]
@@ -138,9 +138,9 @@ namespace HoldingTaxWebApp.Models.Holding
         public DateTime? CreateDate { get; set; }
         [Display(Name = "তৈরিকারী")]
         public int? CreatedBy { get; set; }
-        [Display(Name = "সর্বশেষ সংষ্করণ")]
+        [Display(Name = "হালনাগাদকরণ")]
         public DateTime? LastUpdated { get; set; }
-        [Display(Name = "সর্বশেষ সংষ্করণ করেছেন")]
+        [Display(Name = "হালনাগাদকরণ করেছেন")]
         public int? LastUpdatedBy { get; set; }
         [Display(Name = "সক্রিয়")]
         public bool? IsActive { get; set; }

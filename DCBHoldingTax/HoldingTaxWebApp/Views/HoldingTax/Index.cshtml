@@ -72,6 +72,12 @@
 
                             <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
                             <th>
+                                @Html.DisplayNameFor(model => model.AreaName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PlotNo)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.TaxFromRent)
                             </th>
                             <th>
@@ -79,9 +85,6 @@
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.TotalHoldingTax)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Rebate)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.NetTaxPayableAmount)
@@ -102,6 +105,12 @@
                                 @Html.DisplayFor(modelItem => item.FinancialYear)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.AreaName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PlotNo)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.TaxFromRent)
                             </td>
                             <td>
@@ -111,16 +120,13 @@
                                 @Html.DisplayFor(modelItem => item.TotalHoldingTax)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Rebate)
-                            </td>
-                            <td>
                                 @Html.DisplayFor(modelItem => item.NetTaxPayableAmount)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.LastUpdated)
                             </td>
                             <td>
-                               
+
                                 <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="Edit">
                                     <b> <i class="fa fa-edit"></i>  </b>
                                 </a>
