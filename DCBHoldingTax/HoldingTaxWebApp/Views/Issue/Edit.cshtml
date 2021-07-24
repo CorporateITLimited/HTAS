@@ -2,7 +2,7 @@
 @using HoldingTaxWebApp.Helpers;
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -63,7 +63,7 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">Official</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Issue</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
                         <a href="#" class="text-muted">Edit</a>
@@ -85,12 +85,31 @@
 
 
                     <form id="kt_inbox_compose_form">
-                        <input type="hidden" id="@Model.IssueId" value="@Model.IssueId"/>
-                        <input type="hidden" id="@Model.HolderId" value="@Model.HolderId" />
-                        <input type="hidden" id="@Model.StatusTypeId"  value="@Model.StatusTypeId"/>
+                        <input type="hidden" id="IssueId" value="@Model.IssueId"/>
+                        <input type="hidden" id="HolderId" value="@Model.HolderId" />
+                       
                         <!--begin::Header-->
                         <div class="d-flex align-items-center justify-content-between py-5 pl-8 pr-5 border-bottom">
                             <h5 class="font-weight-bold m-0"> Message</h5>
+                            @if (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+                            {
+                            <div class="font-weight-bold m-0">
+
+                                @Html.DropDownListFor(model => model.StatusTypeId, null, "-- Select Designation --", new
+                           {
+                               @class = "form-control",
+                               @name = "StatusTypeId",
+                               @id = "StatusTypeId"
+                           })
+                                @Html.ValidationMessageFor(model => model.StatusTypeId, "", new { @class = "text-danger" })
+
+                            </div>
+                            }
+                            else
+                            {
+                                <input type="hidden" id="StatusTypeId" value="@Model.StatusTypeId" />
+                              <h5 class="font-weight-bold m-0"> @Model.StatusName</h5>
+                            }
 
                         </div>
                         <!--end::Header-->
@@ -103,14 +122,19 @@
                             </div>
                             <!--end::Subject-->
                             <!--begin::Message-->
-                            <div id="kt_inbox_compose_editor" class="border-0" style="height: 250px; padding-top:10px">
+                            @*<div id="kt_inbox_compose_editor" class="border-0" style="height: 250px; padding-top:10px">
 
                                 <div class="ql-editor px-8 ql-blank" data-gramm="false" contenteditable="true" data-placeholder="Type message..." spellcheck="false"><p><br></p></div>
+
+                            </div>*@
+                            <div class="form-control border-0" style="height: 250px; padding-top:10px">
+                                <textarea class="border-0" id="MsgDetails" style="padding-top:10px; width:100%" rows="7"></textarea>
+
 
                             </div>
                             <!--end::Message-->
                             <!--begin::Attachments-->
-                            <div class="dropzone dropzone-multi px-8 py-4" id="kt_inbox_compose_attachments">
+                            @*<div class="dropzone dropzone-multi px-8 py-4" id="kt_inbox_compose_attachments">
                                 <div class="dropzone-items">
                                     <div class="dropzone-item" style="display:none">
                                         <div class="dropzone-file">
@@ -135,7 +159,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
+
+                            <input type="file" name="document_file_1" id="document_file_1" />
+                            <input type="file" name="document_file_2" id="document_file_2" />
+                            <span class="form-text text-info">
+                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                            </span>
                             <!--end::Attachments-->
                         </div>
                         <!--end::Body-->
@@ -145,8 +175,8 @@
                             <div class="d-flex align-items-center mr-3">
                                 <!--begin::Send-->
                                 <div class="btn-group mr-4">
-                                    <span class="btn btn-primary font-weight-bold px-6">Send</span>
-                                    <span class="btn btn-primary font-weight-bold dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button"></span>
+                                    <span class="btn btn-primary font-weight-bold px-6" id="btnSend">Send</span>
+                                    @*<span class="btn btn-primary font-weight-bold dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button"></span>
                                     <div class="dropdown-menu dropdown-menu-sm dropup p-0 m-0 dropdown-menu-right">
                                         <ul class="navi py-3">
                                             <li class="navi-item">
@@ -174,13 +204,13 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div>*@
                                 </div>
                                 <!--end::Send-->
                                 <!--begin::Other-->
-                                <span class="btn btn-icon btn-sm btn-clean mr-2" id="kt_inbox_compose_attachments_select">
+                                @*<span class="btn btn-icon btn-sm btn-clean mr-2" id="kt_inbox_compose_attachments_select">
                                     <i class="flaticon2-clip-symbol"></i>
-                                </span>
+                                </span>*@
 
                             </div>
                             <!--end::Actions-->
@@ -199,6 +229,14 @@
                                     <li class="me">
                                         <div class="triangle"></div>
                                         <div class="message">
+                                            @if (!string.IsNullOrWhiteSpace(item.Doc1))
+                                            {
+                                                <a class="btn btn-outline-success btn-sm" href="~/Issue/DownloadFile?filePath=@item.Doc1" title="Download">ডাউনলোড নথি</a>
+                                            }
+                                            @if (!string.IsNullOrWhiteSpace(item.Doc2))
+                                            {
+                                                <a class="btn btn-outline-success btn-sm" href="~/Issue/DownloadFile?filePath=@item.Doc2" title="Download">ডাউনলোড নথি</a>
+                                            }
                                             @item.MsgDetails
                                         </div>
                                     </li>
@@ -208,6 +246,14 @@
                                     <li class="you">
                                         <div class="triangle"></div>
                                         <div class="message">
+                                            @if (!string.IsNullOrWhiteSpace(item.Doc1))
+                                            {
+                                                <a class="btn btn-outline-success btn-sm" href="~/Issue/DownloadFile?filePath=@item.Doc1" title="Download">ডাউনলোড নথি</a>
+                                            }
+                                            @if (!string.IsNullOrWhiteSpace(item.Doc2))
+                                            {
+                                                <a class="btn btn-outline-success btn-sm" href="~/Issue/DownloadFile?filePath=@item.Doc2" title="Download">ডাউনলোড নথি</a>
+                                            }
                                             @item.MsgDetails
                                         </div>
                                     </li>
@@ -222,8 +268,191 @@
     </div>
 </div>
 
-@section scripts{
+@section Scripts {
+
     <script>
+        autosize($('#MsgDetails'));
+         jQuery(document).ready(function () {
+
+
+         $("#kt_inbox_compose_form").validate({
+                rules: {
+                    Subject: {
+                        required: true
+                    },
+                    MsgDetails: {
+                        required: true
+                    },
+
+                },
+
+                invalidHandler: function (event, validator) {
+                    KTUtil.scrollTop();
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          $("#document_file_1").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#document_file_1").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Issue/GetDocFile1',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $("#document_file_2").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#document_file_2").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Issue/GetDocFile2',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+
+
+
+
+			$('#btnSend').click(function () {
+
+
+				var isAllValid = true;
+
+				//validate pcase  items
+
+				//$('#pcase_details_error').text('');
+
+				var list = [];
+
+				var errorItemCount = 0;
+
+
+
+                    var MsgDetails =  $('#MsgDetails').val().trim();
+
+					debugger;
+						var detailsItem = {
+							MsgDetails: MsgDetails
+						}
+						list.push(detailsItem);
+
+
+				if (list.length == 0) {
+					$('#bill_details_error').text('At least one Product required.');
+			        isAllValid = false;
+				}
+
+
+
+				// Bill validation
+
+				
+
+				if (!isAllValid) {
+					KTUtil.scrollTop();
+				}
+				else {
+					var data = {
+
+						Subject: $('#Subject').val(),
+						IssueId: parseInt($('#IssueId').val()) || 0,
+						HolderId: parseInt($('#HolderId').val()) || 0,
+						StatusTypeId: parseInt($('#StatusTypeId').val()) || 0,
+
+
+						IssueDetails: list
+					}
+
+					$.ajax({
+						type: 'POST',
+						url: '@Url.Action("AddOrUpdate", "Issue")',
+						data: JSON.stringify(data),
+						contentType: 'application/json',
+						success: function (d) {
+					if (d.status === "success") {
+								$('#Subject').val('');
+
+						list = [];
+
+						swal.fire({
+							"icon": 'success',
+									"title": 'Your work has been saved',
+									"timer": 1500
+								});
+						setTimeout(function () { window.location.href = "/Issue/Edit/@Model.IssueId"; }, 2000);
+					}
+					else if (d.status === "error") {
+						alert('Error');
+					}
+					else {
+						alert('error_full');
+					}
+							$('#btnSend').val('Send');
+				},
+						error: function (error) {
+					console.log(error);
+							$('#btnSend').val('Send');
+				}
+					});
+
+
+				}
+			});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
 
     </script>
 }
