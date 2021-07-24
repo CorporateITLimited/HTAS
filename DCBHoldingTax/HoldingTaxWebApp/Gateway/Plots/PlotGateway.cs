@@ -23,6 +23,8 @@ namespace HoldingTaxWebApp.Gateway.Plots
         public object LastUpdated { get; private set; }
         public object LastUpdatedBy { get; private set; }
         public object PlotId { get; private set; }
+        public object TotalArea { get; private set; }
+        public object RoadName { get; private set; }
 
         public List<Plot> GetAllPlot()
         {
@@ -229,10 +231,13 @@ namespace HoldingTaxWebApp.Gateway.Plots
                     Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = Plot.IsDeleted;
                     Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = Plot.LastUpdated;
                     Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = Plot.LastUpdatedBy;
-               
+                
+                    Sql_Command.Parameters.Add("@TotalArea", SqlDbType.Decimal).Value = Plot.TotalArea;
+                
+                    Sql_Command.Parameters.Add("@RoadName", SqlDbType.NVarChar).Value = Plot.RoadName;
 
 
-                    Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = Plot.PlotId;
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = Plot.PlotId;
 
 
 
