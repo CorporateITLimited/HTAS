@@ -48,13 +48,15 @@ namespace HoldingTaxWebApp.WebForms.Tax
             int? rptValueAreaId = Session[CommonConstantHelper.AreaId] != null ? Convert.ToInt32(Session[CommonConstantHelper.AreaId]) : (int?)null;
             int? rptFinancialYearId = Session["FinancialYearId"] != null ? Convert.ToInt32(Session["FinancialYearId"]) : (int?)null;
             int? rptHolderId = Session[CommonConstantHelper.HolderId] != null ? Convert.ToInt32(Session[CommonConstantHelper.HolderId]) : (int?)null;
+            int? rptHoldingTaxId = Session["HoldingTaxId"] != null ? Convert.ToInt32(Session["HoldingTaxId"]) : (int?)null;
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("exec [Tax].[spGetHoldingTaxDetails] @AreaId,@FinancialYearId,@HolderId", con);
+            SqlCommand cmd = new SqlCommand("exec [Tax].[spGetHoldingTaxDetails] @AreaId, @FinancialYearId, @HolderId, @HoldingTaxId", con);
             cmd.CommandType = CommandType.Text; // always text
             cmd.Parameters.AddWithValue("@AreaId", SqlDbType.Int).Value = rptValueAreaId ?? (object)DBNull.Value; 
             cmd.Parameters.AddWithValue("@FinancialYearId", SqlDbType.Int).Value = rptFinancialYearId ?? (object)DBNull.Value;
             cmd.Parameters.AddWithValue("@HolderId", SqlDbType.Int).Value = rptHolderId ?? (object)DBNull.Value;
+            cmd.Parameters.AddWithValue("@HoldingTaxId", SqlDbType.Int).Value = rptHoldingTaxId ?? (object)DBNull.Value;
             try
             {
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
