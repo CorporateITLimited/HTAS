@@ -54,6 +54,22 @@ namespace HoldingTaxWebApp.Models.Tax
         [Display(Name = "নেট কর প্রদেয় পরিমাণ")]
         public decimal? NetTaxPayableAmount { get; set; }
 
+        [Display(Name = "হোল্ডারের নাম")]
+        public string HolderName { get; set; }
+
+        [Display(Name = "প্লট নম্বর")]
+        public string PlotIdNumber { get; set; }
+
+        [Display(Name = "প্লট নম্বর")]
+        public string PlotNo { get; set; }
+        public int? AreaId { get; set; }
+
+        [Display(Name = "এলাকার নাম ")]
+        public string AreaName { get; set; }
+
+        [Display(Name = "হোল্ডারের প্লট/ফ্ল্যাট/বাড়ী এর তথ্য")]
+        public string AreaPlotFlatData { get; set; }
+
 
     }
 }

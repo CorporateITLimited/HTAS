@@ -46,36 +46,33 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 {
                     HoldingTax holdingtax = new HoldingTax()
                     {
-                        
 
-
-
-                         HoldingTaxId = Convert.ToInt32(Data_Reader["HoldingTaxId"]),
-                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
-                         FinancialYearId = Convert.ToInt32(Data_Reader["FinancialYearId"]),
-                         FinancialYear = Convert.ToString(Data_Reader["FinancialYear"]),
+                        HoldingTaxId = Convert.ToInt32(Data_Reader["HoldingTaxId"]),
+                        HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
+                        FinancialYearId = Convert.ToInt32(Data_Reader["FinancialYearId"]),
+                        FinancialYear = Convert.ToString(Data_Reader["FinancialYear"]),
 
                         TotalRent = Data_Reader["TotalRent"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["TotalRent"]) : (Decimal?)null,
 
-                         TaxFromRent = Data_Reader["TaxFromRent"] != DBNull.Value ?
+                        TaxFromRent = Data_Reader["TaxFromRent"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["TaxFromRent"]) : (Decimal?)null,
-                         TaxFromOwnProperty = Data_Reader["TaxFromOwnProperty"] != DBNull.Value ?
+                        TaxFromOwnProperty = Data_Reader["TaxFromOwnProperty"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["TaxFromOwnProperty"]) : (Decimal?)null,
 
-                          TotalHoldingTax= Data_Reader["TotalHoldingTax"] != DBNull.Value ?
+                        TotalHoldingTax = Data_Reader["TotalHoldingTax"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["TotalHoldingTax"]) : (Decimal?)null,
-                          Surcharge= Data_Reader["Surcharge"] != DBNull.Value ?
+                        Surcharge = Data_Reader["Surcharge"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["Surcharge"]) : (Decimal?)null,
 
-                          Rebate= Data_Reader["Rebate"] != DBNull.Value ?
+                        Rebate = Data_Reader["Rebate"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["Rebate"]) : (Decimal?)null,
-                            WrongInfoCharge= Data_Reader["WrongInfoCharge"] != DBNull.Value ?
+                        WrongInfoCharge = Data_Reader["WrongInfoCharge"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["WrongInfoCharge"]) : (Decimal?)null,
 
-                             Date = Data_Reader["Date"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["Date"]) : (DateTime?)null,
+                        Date = Data_Reader["Date"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["Date"]) : (DateTime?)null,
 
-                             EndDate = Data_Reader["EndDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["EndDate"]) : (DateTime?)null,
+                        EndDate = Data_Reader["EndDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["EndDate"]) : (DateTime?)null,
                         CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
                         CreatedBy = Data_Reader["CreatedBy"] !=
                                                 DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
@@ -87,18 +84,18 @@ namespace HoldingTaxWebApp.Gateway.Tax
 
                         isFinalized = Data_Reader["isFinalized"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
 
-                             PaidAmount = Data_Reader["PaidAmount"] != DBNull.Value ?
+                        PaidAmount = Data_Reader["PaidAmount"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["PaidAmount"]) : (Decimal?)null,
 
-                                    NetTaxPayableAmount = Data_Reader["NetTaxPayableAmount"] != DBNull.Value ?
+                        NetTaxPayableAmount = Data_Reader["NetTaxPayableAmount"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["NetTaxPayableAmount"]) : (Decimal?)null,
 
-
-
-
-
-
-
+                        AreaId = Data_Reader["AreaId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["AreaId"]) : (int?)null,
+                        AreaName = Convert.ToString(Data_Reader["AreaName"]),
+                        AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
+                        HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"])
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -146,7 +143,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 Sql_Command.Parameters.Clear();
 
                 // added to get holderid from session ===============================
-                
+
 
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "selectForHolder";
                 Sql_Command.Parameters.Add("@HolderId", SqlDbType.NVarChar).Value = HolderId;
@@ -169,15 +166,11 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 {
                     HoldingTax holdingtax = new HoldingTax()
                     {
-
-
-
-
                         HoldingTaxId = Convert.ToInt32(Data_Reader["HoldingTaxId"]),
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         FinancialYearId = Convert.ToInt32(Data_Reader["FinancialYearId"]),
                         FinancialYear = Convert.ToString(Data_Reader["FinancialYear"]),
-                        
+
                         TotalRent = Data_Reader["TotalRent"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["TotalRent"]) : (Decimal?)null,
 
@@ -215,13 +208,12 @@ namespace HoldingTaxWebApp.Gateway.Tax
 
                         NetTaxPayableAmount = Data_Reader["NetTaxPayableAmount"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["NetTaxPayableAmount"]) : (Decimal?)null,
-
-
-
-
-
-
-
+                        AreaId = Data_Reader["AreaId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["AreaId"]) : (int?)null,
+                        AreaName = Convert.ToString(Data_Reader["AreaName"]),
+                        AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
+                        HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"])
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -344,7 +336,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
 
                     };
 
-                    holdingtaxList=holdingtax;
+                    holdingtaxList = holdingtax;
                 }
 
                 Data_Reader.Close();
@@ -407,7 +399,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 return resultOutPut;
 
             }
-            catch(SqlException exception)
+            catch (SqlException exception)
             {
                 for (int i = 0; i < exception.Errors.Count; i++)
                 {
