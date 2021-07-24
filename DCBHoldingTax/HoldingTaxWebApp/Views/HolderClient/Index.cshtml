@@ -1,6 +1,5 @@
-﻿@model IEnumerable<HoldingTaxWebApp.Models.Tax.HoldingTax>
+﻿@model IEnumerable<HoldingTaxWebApp.Models.DBO.clsFinancialYear>
 @using HoldingTaxWebApp.Helpers
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,6 +7,8 @@
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
+
+
 
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -27,24 +28,25 @@
     </div>
 </div>
 
-
 <div class="d-flex flex-column-fluid">
     <div class="container">
         <div class="card card-custom">
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
                 <div class="card-title">
                     <h3 class="card-label">
-                        গৃহকরের তালিকা
+                        আর্থিক বছরের তালিকা
                     </h3>
                 </div>
                 <div class="card-toolbar">
-                    <a href="~/HoldingTax/Create" class="btn btn-primary font-weight-bolder">
-                        <i class="fas fa-plus">
-                        </i>নতুন গৃহকর প্রস্তুতকরণ
-                    </a>
+                    <!--begin::Dropdown-->
+                    <!--end::Dropdown-->
+                    <!--begin::Button-->
+                    <!--end::Button-->
                 </div>
             </div>
             <div class="card-body">
+                <!--begin: Search Form-->
+                <!--begin::Search Form-->
                 <div class="mb-7">
                     <div class="row align-items-center">
                         <div class="col-lg-9 col-xl-8">
@@ -65,33 +67,13 @@
                     </div>
                 </div>
                 <!--end::Search Form-->
+                <!--end: Search Form-->
                 <!--begin: Datatable-->
                 <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
                     <thead>
                         <tr>
 
                             <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.AreaName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PlotNo)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TaxFromRent)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TaxFromOwnProperty)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TotalHoldingTax)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.NetTaxPayableAmount)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LastUpdated)
-                            </th>
                             <th></th>
 
 
@@ -105,33 +87,8 @@
                                 @Html.DisplayFor(modelItem => item.FinancialYear)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.AreaName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PlotNo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TaxFromRent)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TaxFromOwnProperty)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TotalHoldingTax)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NetTaxPayableAmount)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LastUpdated)
-                            </td>
-                            <td>
-
-                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="Edit">
-                                    <b> <i class="fa fa-edit"></i>  </b>
-                                </a>
-                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Details/@item.HoldingTaxId" title="Report View">
-                                    <b><i class="fa fa-chart-bar" aria-hidden="true"></i></b>
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HolderClient/GetHoldersTaxInformation/@item.FinancialYearId" title="Details View">
+                                    <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
                                 </a>
                             </td>
                         </tr>
@@ -162,6 +119,3 @@
         });
     </script>
 }
-
-
-

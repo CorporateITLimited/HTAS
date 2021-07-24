@@ -10,10 +10,13 @@ namespace HoldingTaxWebApp.Models.Tax
     {
         [Display(Name = "হোল্ডিং ট্যাক্স আইডি")]
         public int HoldingTaxId { get; set; }
-        [Display(Name = "ধারক আইডি")]
+        [Display(Name = "হোল্ডার আইডি")]
         public int HolderId { get; set; }
         [Display(Name = "আর্থিক বছরের আইডি")]
         public int FinancialYearId { get; set; }
+        [Display(Name = "আর্থিক বছর")]
+        public string FinancialYear { get; set; }
+
         [Display(Name = "মোট ভাড়া")]
         public decimal? TotalRent { get; set; }
         [Display(Name = "ভাড়া থেকে ট্যাক্স")]
@@ -36,9 +39,9 @@ namespace HoldingTaxWebApp.Models.Tax
         public DateTime? CreateDate { get; set; }
         [Display(Name = "তৈরিকারী")]
         public int? CreatedBy { get; set; }
-        [Display(Name = "সর্বশেষ সংষ্করণ")]
+        [Display(Name = "হালনাগাদকরণ")]
         public DateTime? LastUpdated { get; set; }
-        [Display(Name = "সর্বশেষ সংষ্করণ করেছেন")]
+        [Display(Name = "হালনাগাদকরণ করেছেন")]
         public int? LastUpdatedBy { get; set; }
         [Display(Name = "সক্রিয়")]
         public bool? IsActive { get; set; }
@@ -51,6 +54,19 @@ namespace HoldingTaxWebApp.Models.Tax
         [Display(Name = "নেট কর প্রদেয় পরিমাণ")]
         public decimal? NetTaxPayableAmount { get; set; }
 
+        [Display(Name = "এলাকা")]
+        public int AreaId { get; set; }
 
+        [Display(Name = "এলাকা")]
+        public string AreaName { get; set; }
+
+        [Display(Name = "প্লট আইডি")]
+        public int PlotId { get; set; }
+
+        [Display(Name = "প্লটের আইডি নম্বর")]
+        public string PlotIdNumber { get; set; }
+
+        [Display(Name = "প্লটের আইডি নম্বর")]
+        public string PlotNo { get; set; }
     }
 }

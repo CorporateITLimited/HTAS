@@ -21,9 +21,19 @@ namespace HoldingTaxWebApp.Manager.Tax
             return _holdingTaxGateway.GetAllHoldingTax();
         }
 
+        public List<HoldingTax> GetAllHoldingTaxForHolder(int HolderId)
+        {
+            return _holdingTaxGateway.GetAllHoldingTaxForHolder(HolderId);
+        }
+
         public HoldingTax GetHoldingTaxById(int id)
         {
             return  _holdingTaxGateway.GetHoldingTaxById(id);
+        }
+
+        public int GenerateTax(int FinYearId)
+        {
+            return _holdingTaxGateway.GenerateTax(FinYearId);
         }
     }
 }

@@ -167,7 +167,28 @@ namespace HoldingTaxWebApp.Controllers.DBO
         // GET: Issue/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Issue issue = new Issue();
+            issue = _IssueManager.GetIssueById(id);
+            List<IssueDetails> issueDetailsList = new List<IssueDetails>();
+            issueDetailsList = _IssueManager.GetAllIssueDetailsByIssueId(id);
+
+            IssueCombineVM issueVM = new IssueCombineVM();
+            issueVM.IssueId = issue.IssueId ;
+            issueVM.HolderId = issue.HolderId;
+            issueVM.StatusTypeId = issue.StatusTypeId;
+            issueVM.Subject = issue.Subject;
+            issueVM.SolvedDate = issue.SolvedDate;
+            issueVM.StringSolvedDate = issue.StringSolvedDate;
+            issueVM.Remarks = issue.Remarks;
+            issueVM.CreatedByUserName = issue.CreatedByUserName;
+            issueVM.LastUpdatedBy = issue.LastUpdatedBy;
+            issueVM.UpdatedByUserName = issue.UpdatedByUserName;
+            issueVM.HolderName = issue.HolderName;
+            issueVM.StatusName = issue.StatusName;
+            issueVM.IssueDetails = issueDetailsList;
+
+
+            return View(issueVM);
         }
 
         // POST: Issue/Edit/5
@@ -237,7 +258,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
                         HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]),
                         StatusTypeId = 1,
                         Subject = issue.Subject,
-                        IssueDetailsId = item.IssueDetailsId,
+                        //IssueDetailsId = issue.IssueDetails,
                         IsActive = true,
                         IsDeleted = false,
                         CreateDate = DateTime.Now,
@@ -488,7 +509,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
                             IssueDetailsId = item.IssueDetailsId,
                             Doc1 = item.Doc1,
                             Doc2 = item.Doc2,
-                            IsRead = item.IsRead,
+                            //IsRead = item.IsRead,
                             MessageSender = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
                             MsgDetails = item.MsgDetails,
                             MsgDate = DateTime.Now,

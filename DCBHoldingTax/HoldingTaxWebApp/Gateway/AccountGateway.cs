@@ -64,6 +64,7 @@ namespace HoldingTaxWebApp.Gateway
                     credentialVM.HolderName = Data_Reader["HolderName"].ToString();
                     credentialVM.AreaPlotFlatData = Data_Reader["AreaPlotFlatData"].ToString();
                     credentialVM.HolderId = Data_Reader["HolderId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["HolderId"]) : (int?)null;
+                    credentialVM.AreaId = Data_Reader["AreaId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["AreaId"]) : (int?)null;
                 }
 
                 Data_Reader.Close();

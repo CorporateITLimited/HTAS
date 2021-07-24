@@ -63,15 +63,7 @@ namespace COMSApp.Controllers
             //        && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
             //        && (Session[CommonConstantHelper.UserId] != null))
             //{
-            //    if (CanAccess)
-            //    {
             return View();
-            //    }
-            //    else
-            //    {
-            //        TempData["PM"] = "Permission Denied.";
-            //        return RedirectToAction("LogIn", "Account");
-            //    }
             //}
             //else
             //{

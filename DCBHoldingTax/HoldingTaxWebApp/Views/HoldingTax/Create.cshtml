@@ -1,4 +1,4 @@
-﻿@*@model HoldingTaxWebApp.Models.Tax.HoldingTax*@
+﻿@model HoldingTaxWebApp.Models.Tax.HoldingTax
 
 @{
     ViewBag.Title = "Create";
@@ -38,12 +38,28 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        ...
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.FinancialYearId, "আর্থিক বছর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                            <div class="col-lg-8">
+                                @Html.DropDownListFor(model => model.FinancialYearId, null, "-- নির্বাচন করুন --", new
+                           {
+                               @class = "form-control",
+                               @name = "FinancialYearId",
+                               @id = "FinancialYearId"
+                           })
+                                @Html.ValidationMessageFor(model => model.FinancialYearId, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        
                     </div>
                     <div class="card-footer">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>Save</button>
+                            <button type="submit" id="btnSubmit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>Save</button>
                             <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
+                        </div>
+                        <div>
+                            <span  id="details_error"></span>
                         </div>
                     </div>
                 </div>
@@ -92,5 +108,68 @@
                 }
             });
         });
+    </script>
+    <script>
+        $('#FinancialYearId').select2({
+            placeholder: "--নির্বাচন করুন--",
+            allowClear: true
+        });
+    </script>
+    <script>
+        $("#btnSubmit").click(function (e) {
+            debugger;
+            var fy = $('#FinancialYearId').val();
+            var FinancialYearId= fy 
+            $.ajax({
+                type: 'GET',
+                url: '/HoldingTax/GenerateTax',
+                data: "FinancialYearId=" + fy ,
+                contentType: 'application/json',
+                success: function (status) {
+
+                    if (status === 202) {
+                        Swal.fire({
+                            text: "সফলভাবে সংযুক্ত করা হয়েছে",
+                            icon: "success",
+                            buttonsStyling: false,
+                            confirmButtonText: "সফলভাবে সম্পন্ন",
+                            customClass: {
+                                confirmButton: "btn font-weight-bold btn-success",
+                            }
+                        });
+                        setTimeout(function () { window.location.href = "/HoldingTax/Index"; }, 2000);
+                    }
+                    else if (status === 300) {
+                        Swal.fire({
+                            text: "  Already Exists  ",
+                            icon: "error",
+                            buttonsStyling: false,
+                            //confirmButtonText: " Canceled ",
+                            customClass: {
+                                confirmButton: "btn font-weight-bold btn-danger",
+                            }
+                        });
+                        $('#details_error').text(d.status);
+                        //KTUtil.scrollTop();
+                    }
+                    else {
+                        Swal.fire({
+                            text: "Unknown Error ",
+                            icon: "error",
+                            buttonsStyling: false,
+                            //confirmButtonText: "  ERROR  ",
+                            customClass: {
+                                confirmButton: "btn font-weight-bold btn-danger",
+                            }
+                        });
+                        $('#details_error').text(d.status);
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        })
+        
     </script>
 }

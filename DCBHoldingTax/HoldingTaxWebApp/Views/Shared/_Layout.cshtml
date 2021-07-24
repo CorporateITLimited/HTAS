@@ -40,9 +40,15 @@
                 <img alt="Logo" src="~/Theme/dist/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
             </a>
         }
-        else
+        else if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
         {
             <a href="~/Home/Holder">
+                <img alt="Logo" src="~/Theme/dist/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
+            </a>
+        }
+        else
+        {
+            <a href="#">
                 <img alt="Logo" src="~/Theme/dist/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
             </a>
         }
@@ -89,9 +95,15 @@
                                         <img alt="Logo" src="~/Theme/dist/assets/media/logos/logo-letter-9.png" class="max-h-35px" />
                                     </a>
                                 }
-                                else
+                                else if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
                                 {
                                     <a href="~/Home/Holder" class="mr-20">
+                                        <img alt="Logo" src="~/Theme/dist/assets/media/logos/logo-letter-9.png" class="max-h-35px" />
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="#" class="mr-20">
                                         <img alt="Logo" src="~/Theme/dist/assets/media/logos/logo-letter-9.png" class="max-h-35px" />
                                     </a>
                                 }

@@ -19,5 +19,6 @@ namespace HoldingTaxWebApp.Models.DBO
 
         public int MessageSender { get; set; }
         public string MessageSenderName { get; set; }
+        public int MessageSenderType { get; set; }
     }
 }

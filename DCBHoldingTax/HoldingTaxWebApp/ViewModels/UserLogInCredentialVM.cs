@@ -43,6 +43,7 @@ namespace HoldingTaxWebApp.ViewModels
         public string HolderEmail { get; set; }
         public bool? HolderIsEmailConfirmed { get; set; }
         public int? HolderId { get; set; }
+        public int? AreaId { get; set; }
 
         public CommonEntityHelper CommonEntity { get; set; }
 

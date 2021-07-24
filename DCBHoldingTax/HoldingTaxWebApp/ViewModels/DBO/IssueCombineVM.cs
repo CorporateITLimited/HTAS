@@ -34,6 +34,17 @@ namespace HoldingTaxWebApp.ViewModels.DBO
 
         public List<IssueDetails> IssueDetails { get; set; }
 
+
+        //for child tables
+
+        public string MsgDetailsList { get; set; }
+        public DateTime? MsgDateList { get; set; }
+        public string StringMsgDateList { get; set; }
+        public string Doc1List { get; set; }
+        public string Doc2List { get; set; }
+        public string MessageSenderNameList { get; set; }
+        public int MessageSenderTypeList { get; set; }
+
         public IssueCombineVM()
         {
             IssueDetails = new List<IssueDetails>();
