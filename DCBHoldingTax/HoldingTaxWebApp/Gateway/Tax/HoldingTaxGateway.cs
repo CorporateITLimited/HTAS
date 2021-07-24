@@ -46,10 +46,6 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 {
                     HoldingTax holdingtax = new HoldingTax()
                     {
-
-
-
-
                         HoldingTaxId = Convert.ToInt32(Data_Reader["HoldingTaxId"]),
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         FinancialYearId = Convert.ToInt32(Data_Reader["FinancialYearId"]),
@@ -85,7 +81,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null,
                         IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
 
-                        isFinalized = Data_Reader["isFinalized"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
+                        isFinalized = Data_Reader["isFinalized"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["isFinalized"]) : (bool?)null,
 
                         PaidAmount = Data_Reader["PaidAmount"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["PaidAmount"]) : (Decimal?)null,
@@ -97,11 +93,9 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
                         AreaName = Convert.ToString(Data_Reader["AreaName"]),
                         PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
-                        PlotNo = Convert.ToString(Data_Reader["PlotNo"])
-
-
-
-
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
+                        AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
+                        HolderName = Convert.ToString(Data_Reader["HolderName"])
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -173,9 +167,6 @@ namespace HoldingTaxWebApp.Gateway.Tax
                     HoldingTax holdingtax = new HoldingTax()
                     {
 
-
-
-
                         HoldingTaxId = Convert.ToInt32(Data_Reader["HoldingTaxId"]),
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         FinancialYearId = Convert.ToInt32(Data_Reader["FinancialYearId"]),
@@ -211,7 +202,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null,
                         IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
 
-                        isFinalized = Data_Reader["isFinalized"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
+                        isFinalized = Data_Reader["isFinalized"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["isFinalized"]) : (bool?)null,
 
                         PaidAmount = Data_Reader["PaidAmount"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["PaidAmount"]) : (Decimal?)null,
@@ -219,16 +210,12 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         NetTaxPayableAmount = Data_Reader["NetTaxPayableAmount"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["NetTaxPayableAmount"]) : (Decimal?)null,
 
-
-
                         AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
                         AreaName = Convert.ToString(Data_Reader["AreaName"]),
                         PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
-                        PlotNo = Convert.ToString(Data_Reader["PlotNo"])
-
-
-
-
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
+                        AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
+                        HolderName = Convert.ToString(Data_Reader["HolderName"])
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -265,7 +252,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
         {
             try
             {
-                Sql_Query = "[Tax].[spHoldingTax] ";
+                Sql_Query = "[Tax].[spHoldingTax]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -296,10 +283,6 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 {
                     HoldingTax holdingtax = new HoldingTax()
                     {
-
-
-
-
                         HoldingTaxId = Convert.ToInt32(Data_Reader["HoldingTaxId"]),
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         FinancialYearId = Convert.ToInt32(Data_Reader["FinancialYearId"]),
@@ -335,7 +318,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null,
                         IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
 
-                        isFinalized = Data_Reader["isFinalized"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
+                        isFinalized = Data_Reader["isFinalized"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["isFinalized"]) : (bool?)null,
 
                         PaidAmount = Data_Reader["PaidAmount"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["PaidAmount"]) : (Decimal?)null,
@@ -347,13 +330,12 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
                         AreaName = Convert.ToString(Data_Reader["AreaName"]),
                         PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
-                        PlotNo = Convert.ToString(Data_Reader["PlotNo"])
-
-
-
-
-
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
+                        AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
+                        HolderName = Convert.ToString(Data_Reader["HolderName"])
                     };
+
+                    holdingtax.SubTotalHoldingTax = holdingtax.NetTaxPayableAmount;
 
                     holdingtaxList = holdingtax;
                 }
@@ -383,6 +365,129 @@ namespace HoldingTaxWebApp.Gateway.Tax
             }
 
         }
+
+        public HoldingTax GetRebateAndWrongInfoByHoldingTaxId(int id)
+        {
+            try
+            {
+                Sql_Query = "[Tax].[spGetRebateAndWrongInfoByHoldingTaxId]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@HoldingTaxId", SqlDbType.Int).Value = id;
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                HoldingTax holdingtax = new HoldingTax();
+
+                while (Data_Reader.Read())
+                {
+
+                    holdingtax.SubTotalHoldingTax = Data_Reader["SubTotalHoldingTax"] != DBNull.Value ?
+                                            Convert.ToDecimal(Data_Reader["SubTotalHoldingTax"]) : (Decimal?)null;
+                    holdingtax.RebatePercent = Data_Reader["RebatePercent"] != DBNull.Value ?
+                                             Convert.ToDecimal(Data_Reader["RebatePercent"]) : (Decimal?)null;
+                    holdingtax.RebateValue = Data_Reader["RebateValue"] != DBNull.Value ?
+                                             Convert.ToDecimal(Data_Reader["RebateValue"]) : (Decimal?)null;
+                    holdingtax.WrongInfoChargePercent = Data_Reader["WrongInfoChargePercent"] != DBNull.Value ?
+                                             Convert.ToDecimal(Data_Reader["WrongInfoChargePercent"]) : (Decimal?)null;
+                    holdingtax.WrongInfoChargeValue = Data_Reader["WrongInfoChargeValue"] != DBNull.Value ?
+                                            Convert.ToDecimal(Data_Reader["WrongInfoChargeValue"]) : (Decimal?)null;
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return holdingtax;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
+
+        public int UpdateTax(HoldingTax tax)
+        {
+            try
+            {
+                Sql_Query = "[Tax].[spHoldingTax]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "only_update";
+                Sql_Command.Parameters.Add("@Rebate", SqlDbType.Decimal).Value = tax.Rebate;
+                Sql_Command.Parameters.Add("@WrongInfoCharge", SqlDbType.Decimal).Value = tax.WrongInfoCharge;
+                Sql_Command.Parameters.Add("@isFinalized", SqlDbType.Bit).Value = tax.isFinalized;
+                Sql_Command.Parameters.Add("@PaidAmount", SqlDbType.Decimal).Value = tax.PaidAmount;
+                Sql_Command.Parameters.Add("@NetTaxPayableAmount", SqlDbType.Decimal).Value = tax.NetTaxPayableAmount;
+                Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = tax.LastUpdatedBy;
+                Sql_Command.Parameters.Add("@HoldingTaxId", SqlDbType.Int).Value = tax.HoldingTaxId;
+                Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = tax.LastUpdated;
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
 
         public int GenerateTax(int FinYearid)
         {
