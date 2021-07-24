@@ -2447,6 +2447,7 @@
       <DependentUpon>dsTax.xsd</DependentUpon>
     </Content>
     <Content Include="WebForms\Tax\GetHoldingTax.aspx" />
+    <Content Include="WebForms\Tax\leterThree.aspx" />
     <None Include="AppDataSet\dsTax.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -4753,6 +4754,12 @@
       <DependentUpon>rptGetHoldingTax.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AppReports\Tax\rptleterThree.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptleterThree.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AppReports\Tax\subOwnTax.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4887,6 +4894,13 @@
     </Compile>
     <Compile Include="WebForms\Tax\GetHoldingTax.aspx.designer.cs">
       <DependentUpon>GetHoldingTax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Tax\leterThree.aspx.cs">
+      <DependentUpon>leterThree.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Tax\leterThree.aspx.designer.cs">
+      <DependentUpon>leterThree.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -5025,6 +5039,10 @@
     <EmbeddedResource Include="AppReports\Tax\rptGetHoldingTax.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptGetHoldingTax.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Tax\rptleterThree.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptleterThree.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Tax\subOwnTax.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
