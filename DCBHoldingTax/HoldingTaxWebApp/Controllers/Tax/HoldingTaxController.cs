@@ -14,7 +14,8 @@ namespace HoldingTaxWebApp.Controllers.Tax
     {
         private readonly HoldingTaxManager _holdingTaxManager;
         private readonly FinancialYearGateway _financialYearGateway;
-        public HoldingTaxController() {
+        public HoldingTaxController()
+        {
             _holdingTaxManager = new HoldingTaxManager();
             _financialYearGateway = new FinancialYearGateway();
         }
@@ -54,6 +55,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
         // GET: HoldingTax/Details/5
         public ActionResult Details(int id)
         {
+            Session["HoldingTaxId"] = id > 0 ? id : (object)null;
             return View();
         }
 
@@ -83,37 +85,125 @@ namespace HoldingTaxWebApp.Controllers.Tax
         }
 
         // GET: HoldingTax/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View();
+            if (id <= 0)
+                return HttpNotFound();
+
+            HoldingTax holdingTax = _holdingTaxManager.GetHoldingTaxById(id);
+            if (holdingTax == null)
+                return HttpNotFound();
+
+            var relatedData = _holdingTaxManager.GetRebateAndWrongInfoByHoldingTaxId(id);
+
+            holdingTax.RebatePercent = relatedData.RebatePercent;
+            holdingTax.WrongInfoChargePercent = relatedData.WrongInfoChargePercent;
+
+
+            return View(holdingTax);
         }
 
         // POST: HoldingTax/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(HoldingTax holdingTax)
         {
             try
             {
-                // TODO: Add update logic here
+                if (holdingTax == null)
+                    return HttpNotFound();
 
-                return RedirectToAction("Index");
+                //decimal? totalRebate = 0;
+                //decimal? totalWrongCharge = 0;
+                //decimal? totalPaidAmount = 0;
+                //decimal? subTotalTax = 0;
+                //var relatableData = _holdingTaxManager.GetRebateAndWrongInfoByHoldingTaxId(holdingTax.HoldingTaxId);
+
+                //subTotalTax = relatableData.SubTotalHoldingTax;
+
+                //if (holdingTax.RebateInfo == "Yes")
+                //{
+                //    totalRebate = relatableData.RebateValue;
+                //}
+                //else
+                //{
+                //    totalRebate = 0;
+                //}
+
+                //if (holdingTax.WrongInfo == "Yes")
+                //{
+                //    totalWrongCharge = relatableData.WrongInfoChargeValue;
+                //}
+                //else
+                //{
+                //    totalWrongCharge = 0;
+                //}
+
+                //if (holdingTax.PaidAmount != null && holdingTax.PaidAmount > 0)
+                //{
+                //    totalPaidAmount = holdingTax.PaidAmount;
+                //}
+                //else
+                //{
+                //    totalPaidAmount = 0;
+                //}
+
+
+                HoldingTax tax = new HoldingTax
+                {
+                    Rebate = holdingTax.RebateInfo == "Yes" ? holdingTax.Rebate : 0,
+                    WrongInfoCharge = holdingTax.WrongInfo == "Yes" ? holdingTax.WrongInfoCharge : 0,
+                    isFinalized = holdingTax.FinalizeInfo == "Yes" ? true : false,
+                    PaidAmount = holdingTax.PaidAmount != null && holdingTax.PaidAmount > 0 ? holdingTax.PaidAmount : 0,
+                    LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                    LastUpdated = DateTime.Now,
+                    HoldingTaxId = holdingTax.HoldingTaxId,
+                    NetTaxPayableAmount = holdingTax.SubTotalHoldingTax
+                };
+
+
+                string updateString = _holdingTaxManager.UpdateTax(tax);
+
+                if (updateString == CommonConstantHelper.Success)
+                {
+                    TempData["SM"] = "সফলভাবে হালনাগাদ করা হয়েছে";
+                    // return View();
+                    return RedirectToAction("Index", "HoldingTax");
+                }
+                else if (updateString == CommonConstantHelper.Error)
+                {
+                    ModelState.AddModelError("", "Error");
+                    TempData["EM"] = "Error.";
+                    return View(holdingTax);
+                }
+                else if (updateString == CommonConstantHelper.Failed)
+                {
+                    ModelState.AddModelError("", "Failed");
+                    return View(holdingTax);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Error Not Recognized");
+                    return View(holdingTax);
+                }
             }
-            catch
+            catch (Exception exception)
             {
-                return View();
+                ModelState.AddModelError("", exception.Message.ToString());
+                return View(holdingTax);
             }
         }
 
-        // GET: HoldingTax/Delete/5
-        public ActionResult Delete(int id)
+
+        public JsonResult GetRebateAndWrongInfoByHoldingTaxId(int id)
         {
-            return View();
+            return new JsonResult { Data = _holdingTaxManager.GetRebateAndWrongInfoByHoldingTaxId(id) };
         }
 
         public JsonResult GenerateTax(int FinancialYearId)
         {
             int status = _holdingTaxManager.GenerateTax(FinancialYearId);
-            
+
             return Json(status, JsonRequestBehavior.AllowGet);
         }
     }
