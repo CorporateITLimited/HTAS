@@ -38,16 +38,10 @@
                     </h3>
                 </div>
                 <div class="card-toolbar">
-                    @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
-                    {
-                        <a href="~/HoldingTax/Create" class="btn btn-primary font-weight-bolder">
-                            <i class="fas fa-plus">
-                            </i>নতুন গৃহকর প্রস্তুতকরণ
-                        </a>
-                    }
-                    else
-                    {
-                    }
+                    <a href="~/HoldingTax/Create" class="btn btn-primary font-weight-bolder">
+                        <i class="fas fa-plus">
+                        </i>নতুন গৃহকর প্রস্তুতকরণ
+                    </a>
                 </div>
             </div>
             <div class="card-body">
@@ -78,6 +72,12 @@
 
                             <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
                             <th>
+                                @Html.DisplayNameFor(model => model.AreaName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PlotNo)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.TaxFromRent)
                             </th>
                             <th>
@@ -85,9 +85,6 @@
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.TotalHoldingTax)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Rebate)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.NetTaxPayableAmount)
@@ -103,40 +100,41 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FinancialYear)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TaxFromRent)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TaxFromOwnProperty)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TotalHoldingTax)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Rebate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NetTaxPayableAmount)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LastUpdated)
-                                </td>
-                                <td>
-                                    @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
-                                    {
-                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="Edit">
-                                            <b> <i class="fa fa-edit"></i>  </b>
-                                        </a>
-                                    }
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Details/@item.HoldingTaxId" title="Report View">
-                                        <b><i class="fa fa-chart-bar" aria-hidden="true"></i></b>
-                                    </a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FinancialYear)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AreaName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PlotNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TaxFromRent)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TaxFromOwnProperty)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalHoldingTax)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NetTaxPayableAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastUpdated)
+                            </td>
+                            <td>
+
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="Edit">
+                                    <b> <i class="fa fa-edit"></i>  </b>
+                                </a>
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Details/@item.HoldingTaxId" title="Report View">
+                                    <b><i class="fa fa-chart-bar" aria-hidden="true"></i></b>
+                                </a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
 

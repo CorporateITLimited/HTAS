@@ -16,9 +16,9 @@ namespace HoldingTaxWebApp.Models.Dbo
         public DateTime? CreateDate { get; set; }
         [Display(Name = "তৈরিকারী")]
         public int? CreatedBy { get; set; }
-        [Display(Name = "সর্বশেষ সংষ্করণ")]
+        [Display(Name = "হালনাগাদকরণ")]
         public DateTime? LastUpdated { get; set; }
-        [Display(Name = "সর্বশেষ সংষ্করণ করেছেন")]
+        [Display(Name = "হালনাগাদকরণ করেছেন")]
         public int? LastUpdatedBy { get; set; }
         [Display(Name = "সক্রিয়")]
         public bool? IsActive { get; set; }

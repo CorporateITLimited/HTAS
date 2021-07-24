@@ -47,6 +47,9 @@ namespace HoldingTaxWebApp.Gateway.Tax
                     HoldingTax holdingtax = new HoldingTax()
                     {
 
+
+
+
                         HoldingTaxId = Convert.ToInt32(Data_Reader["HoldingTaxId"]),
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         FinancialYearId = Convert.ToInt32(Data_Reader["FinancialYearId"]),
@@ -90,12 +93,15 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         NetTaxPayableAmount = Data_Reader["NetTaxPayableAmount"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["NetTaxPayableAmount"]) : (Decimal?)null,
 
-                        AreaId = Data_Reader["AreaId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["AreaId"]) : (int?)null,
+
+                        AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
                         AreaName = Convert.ToString(Data_Reader["AreaName"]),
-                        AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
-                        HolderName = Convert.ToString(Data_Reader["HolderName"]),
                         PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
                         PlotNo = Convert.ToString(Data_Reader["PlotNo"])
+
+
+
+
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -166,6 +172,10 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 {
                     HoldingTax holdingtax = new HoldingTax()
                     {
+
+
+
+
                         HoldingTaxId = Convert.ToInt32(Data_Reader["HoldingTaxId"]),
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         FinancialYearId = Convert.ToInt32(Data_Reader["FinancialYearId"]),
@@ -208,12 +218,17 @@ namespace HoldingTaxWebApp.Gateway.Tax
 
                         NetTaxPayableAmount = Data_Reader["NetTaxPayableAmount"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["NetTaxPayableAmount"]) : (Decimal?)null,
-                        AreaId = Data_Reader["AreaId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["AreaId"]) : (int?)null,
+
+
+
+                        AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
                         AreaName = Convert.ToString(Data_Reader["AreaName"]),
-                        AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
-                        HolderName = Convert.ToString(Data_Reader["HolderName"]),
                         PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
                         PlotNo = Convert.ToString(Data_Reader["PlotNo"])
+
+
+
+
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -329,6 +344,10 @@ namespace HoldingTaxWebApp.Gateway.Tax
                                                 Convert.ToDecimal(Data_Reader["NetTaxPayableAmount"]) : (Decimal?)null,
 
 
+                        AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
+                        AreaName = Convert.ToString(Data_Reader["AreaName"]),
+                        PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"])
 
 
 
