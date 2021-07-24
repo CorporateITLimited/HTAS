@@ -187,7 +187,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
             issueVM.StatusName = issue.StatusName;
             issueVM.IssueDetails = issueDetailsList;
 
-
+            ViewBag.StatusTypeId = new SelectList(_StatusTypeManager.GetAllStatusType(), "StatusTypeId", "StatusName", issue.StatusTypeId);
             return View(issueVM);
         }
 
@@ -242,7 +242,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
 
                 if (issue.IssueId == 0) //IsNullOrEmpty(POVM.NoaId.ToString())
                 {
-                    if (issue.Subject != null)
+                    if (issue.Subject == null)
                     {
                         status = "অভিযোগের বিষয় লিখতে হবে";
                         return new JsonResult { Data = new { status } };
@@ -269,10 +269,11 @@ namespace HoldingTaxWebApp.Controllers.DBO
                     };
 
                     int issueId = _IssueManager.IssueInsert(Iss);
+                    //int issueId = 4;
 
-                   
 
-                    
+
+
 
                     if (issueId > 0)
                     {
@@ -398,8 +399,9 @@ namespace HoldingTaxWebApp.Controllers.DBO
                     {
                         HolderId = issue.HolderId,
                         IssueId = issue.IssueId,
-                        //StatusTypeId = 1,
+                        StatusTypeId = issue.StatusTypeId,
                         Subject = issue.Subject,
+                      
                         //SolvedDate = DateTime.Now,
                         IsActive = true,
                         IsDeleted = false,
@@ -410,22 +412,96 @@ namespace HoldingTaxWebApp.Controllers.DBO
 
                     };
 
+                    var issss = _IssueManager.GetIssueById(issue.IssueId);
+
+                    if(issss.SolvedDate == null) {
+
+                        if (issue.StatusTypeId == 3)
+                        {
+                            Iss.SolvedDate = DateTime.Now;
+                        }
+                    }
+
+                   
                     int issueId = _IssueManager.IssueUpdate(Iss);
-
-                  
-
-
-
-
-
-
-
-
-
 
                     foreach (IssueDetails item in issue.IssueDetails)
                     {
 
+                        //if (Session["DocFile1"] != null)
+                        //{
+                        //    HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile1"];
+                        //    if (file != null && file.ContentLength > 0)
+                        //    {
+                        //        if (file.ContentLength > 2 * 1024 * 1024)
+                        //        {
+                        //            status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                        //            return new JsonResult { Data = new { status } };
+                        //        }
+
+                        //        var extension = Path.GetExtension(file.FileName);
+                        //        var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                        //        fileOldName = fileOldName.Replace(" ", string.Empty);
+                        //        var newFilename = maxId + "_doc1_" + fileOldName + extension;
+                        //        newFilename = "/Documents/Issues/" + newFilename;
+
+                        //        //if (System.IO.File.Exists(newFilename))
+                        //        //    System.IO.File.Delete(newFilename);
+
+                        //        if (!string.IsNullOrWhiteSpace(item.Doc1))
+                        //        {
+                        //            var deletePathFile = Path.Combine(Server.MapPath(item.Doc1));
+                        //            if (System.IO.File.Exists(deletePathFile))
+                        //                System.IO.File.Delete(deletePathFile);
+                        //        }
+
+
+
+                        //        file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                        //        item.Doc1 = newFilename;
+                        //    }
+                        //    else
+                        //    {
+                        //        item.Doc1 = null;
+                        //    }
+                        //}
+
+                        //if (Session["DocFile2"] != null)
+                        //{
+                        //    HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile2"];
+                        //    if (file != null && file.ContentLength > 0)
+                        //    {
+                        //        if (file.ContentLength > 2 * 1024 * 1024)
+                        //        {
+                        //            status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                        //            return new JsonResult { Data = new { status } };
+                        //        }
+
+                        //        var extension = Path.GetExtension(file.FileName);
+                        //        var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                        //        fileOldName = fileOldName.Replace(" ", string.Empty);
+                        //        var newFilename = maxId + "_doc2_" + fileOldName + extension;
+                        //        newFilename = "/Documents/Issues/" + newFilename;
+
+                        //        //if (System.IO.File.Exists(newFilename))
+                        //        //    System.IO.File.Delete(newFilename);
+                        //        if (!string.IsNullOrWhiteSpace(item.Doc2))
+                        //        {
+                        //            var deletePathFile = Path.Combine(Server.MapPath(item.Doc2));
+                        //            if (System.IO.File.Exists(deletePathFile))
+                        //                System.IO.File.Delete(deletePathFile);
+                        //        }
+
+                        //        file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                        //        item.Doc2 = newFilename;
+                        //    }
+                        //    else
+                        //    {
+                        //        item.Doc2 = null;
+                        //    }
+                        //}
                         if (Session["DocFile1"] != null)
                         {
                             HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile1"];
@@ -443,18 +519,8 @@ namespace HoldingTaxWebApp.Controllers.DBO
                                 var newFilename = maxId + "_doc1_" + fileOldName + extension;
                                 newFilename = "/Documents/Issues/" + newFilename;
 
-                                //if (System.IO.File.Exists(newFilename))
-                                //    System.IO.File.Delete(newFilename);
-
-                                if (!string.IsNullOrWhiteSpace(item.Doc1))
-                                {
-                                    var deletePathFile = Path.Combine(Server.MapPath(item.Doc1));
-                                    if (System.IO.File.Exists(deletePathFile))
-                                        System.IO.File.Delete(deletePathFile);
-                                }
-
-
-
+                                if (System.IO.File.Exists(newFilename))
+                                    System.IO.File.Delete(newFilename);
                                 file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                                 item.Doc1 = newFilename;
@@ -482,15 +548,8 @@ namespace HoldingTaxWebApp.Controllers.DBO
                                 var newFilename = maxId + "_doc2_" + fileOldName + extension;
                                 newFilename = "/Documents/Issues/" + newFilename;
 
-                                //if (System.IO.File.Exists(newFilename))
-                                //    System.IO.File.Delete(newFilename);
-                                if (!string.IsNullOrWhiteSpace(item.Doc2))
-                                {
-                                    var deletePathFile = Path.Combine(Server.MapPath(item.Doc2));
-                                    if (System.IO.File.Exists(deletePathFile))
-                                        System.IO.File.Delete(deletePathFile);
-                                }
-
+                                if (System.IO.File.Exists(newFilename))
+                                    System.IO.File.Delete(newFilename);
                                 file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
 
                                 item.Doc2 = newFilename;
@@ -500,7 +559,6 @@ namespace HoldingTaxWebApp.Controllers.DBO
                                 item.Doc2 = null;
                             }
                         }
-
 
 
                         IssueDetails Details = new IssueDetails()
@@ -551,6 +609,41 @@ namespace HoldingTaxWebApp.Controllers.DBO
         }
 
         #endregion
+
+
+
+
+
+
+
+
+
+        public ActionResult DownloadFile(string filePath)
+        {
+            //string fullName = Server.MapPath(filePath);
+
+            string fullName = CommonConstantHelper.ServerRootDirectory + filePath;
+            //Request.MapPath(fullPath);
+
+            string nameOfDoc = filePath.Substring(filePath.LastIndexOf('/') + 1);
+
+            byte[] fileBytes = GetFile(fullName);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, nameOfDoc);
+
+        }
+
+        byte[] GetFile(string s)
+        {
+            FileStream fs = System.IO.File.OpenRead(s);
+            byte[] data = new byte[fs.Length];
+            int br = fs.Read(data, 0, data.Length);
+            if (br != fs.Length)
+                throw new IOException(s);
+            return data;
+        }
+
+
+
 
         #region Document Upload
 

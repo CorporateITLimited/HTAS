@@ -417,17 +417,28 @@ namespace HoldingTaxWebApp.Gateway.DBO
                 };
 
                 Sql_Command.Parameters.Clear();
+                if(model.IssueDetailsId > 0)
+                {
+                    Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Update;
 
-                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Insert;
+                }
+                else
+                {
+                    Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Insert;
+
+                }
 
                 Sql_Command.Parameters.Add("@IssueId", SqlDbType.Int).Value = model.IssueId;
                 Sql_Command.Parameters.Add("@MsgDate", SqlDbType.DateTime).Value = model.MsgDate;
 
                 Sql_Command.Parameters.Add("@MsgDetails", SqlDbType.NVarChar).Value = model.MsgDetails;
-                Sql_Command.Parameters.Add("@Doc1", SqlDbType.DateTime).Value = model.Doc1;
+                Sql_Command.Parameters.Add("@Doc1", SqlDbType.NVarChar).Value = model.Doc1;
                 Sql_Command.Parameters.Add("@Doc2", SqlDbType.NVarChar).Value = model.Doc2;
-                Sql_Command.Parameters.Add("@IsRead", SqlDbType.NVarChar).Value = model.IsRead;
+                Sql_Command.Parameters.Add("@IsRead", SqlDbType.Bit).Value = model.IsRead;
                 Sql_Command.Parameters.Add("@MessageSender", SqlDbType.Int).Value = model.MessageSender;
+
+                Sql_Command.Parameters.Add("@IssueDetailsId", SqlDbType.Int).Value = model.IssueDetailsId;
+
                 //Sql_Command.Parameters.Add("@MessageSenderName", SqlDbType.NVarChar).Value = model.MessageSenderName;
 
 
