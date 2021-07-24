@@ -198,7 +198,7 @@
                                 <div class="col-lg-2"></div>
                                 <div class="col-lg-8 text-center">
                                     <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-pencil-alt"></i>হালনাগাদ করুন</button>
-                                  @*  <button type="submit" class="btn btn-success mr-2">Submit</button>*@
+                                    @*  <button type="submit" class="btn btn-success mr-2">Submit</button>*@
                                     <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</button>
                                 </div>
                                 <div class="col-lg-2"></div>
@@ -237,8 +237,7 @@
                 }
             });
 
-            $('#RebateInfo').change(function () {
-                debugger;
+            $('input[type=radio][name=RebateInfo]').change(function () {
                 if (this.value === 'Yes') {
                     //$("#RebatePercent").text("");
                     $("#Rebate").val("");
@@ -252,7 +251,7 @@
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify(json),
                         success: function (data) {
-                          ///  $("#RebatePercent").text(data.RebatePercent + "%");
+                            ///  $("#RebatePercent").text(data.RebatePercent + "%");
                             $("#Rebate").val(data.RebateValue.toFixed(2));
                             var subTotal = $("#SubTotalHoldingTax").val();
                             var minusValue = data.RebateValue.toFixed(2);
@@ -264,47 +263,17 @@
                         }
                     });
                 }
+                else if (this.value === 'No') {
+                    var subTotal = $("#SubTotalHoldingTax").val();
+                    var minusValue = $("#Rebate").val();
+                    var exactValue = parseFloat(subTotal) + parseFloat(minusValue);
+                    $("#SubTotalHoldingTax").val(exactValue.toFixed(2));
+                    $("#Rebate").val("0");
+                }
             });
 
-            //$('.rebate_change_no').change(function () {
-            //    if (this.value === 'No') {
-            //        var holdingTaxId = parseInt($('#HoldingTaxId').val());
-            //        var json = {
-            //            id: holdingTaxId,
-            //        };
-            //        $.ajax({
-            //            url: '/HoldingTax/GetRebateAndWrongInfoByHoldingTaxId',
-            //            type: "POST",
-            //            contentType: "application/json; charset=utf-8",
-            //            data: JSON.stringify(json),
-            //            success: function (data) {
-            //                $("#RebatePercent").text(data.RebatePercent + "%");
-            //                $("#Rebate").val(data.RebateValue.toFixed(2));
-            //                var subTotal = $("#SubTotalHoldingTax").val();
-            //                var minusValue = data.RebateValue.toFixed(2);
-            //                var exactValue = subTotal - minusValue;
-            //                $("#SubTotalHoldingTax").val(exactValue.toFixed(2));
-
-            //                var rebateValue = $("#Rebate").val();
-            //                var subTotal = $("#SubTotalHoldingTax").val();
-            //                var exactValue = parseFloat(subTotal) + parseFloat(rebateValue);
-            //                $("#SubTotalHoldingTax").val(exactValue.toFixed(2));
-
-            //                $("#RebatePercent").text("");
-            //                $("#Rebate").val("");
-            //            },
-            //            error: function (e) {
-            //                console.log(e);
-            //            }
-            //        });
-
-            //    }
-            //});
-
-            $('#WrongInfo').change(function () {
-                debugger;
+            $('input[type=radio][name=WrongInfo]').change(function () {
                 if (this.value === 'Yes') {
-                    //$("#WrongInfoChargePercent").text("");
                     $("#WrongInfoCharge").val("");
                     var holdingTaxId = parseInt($('#HoldingTaxId').val());
                     var json = {
@@ -317,7 +286,7 @@
                         data: JSON.stringify(json),
                         success: function (data) {
                             debugger;
-                          //  $("#WrongInfoChargePercent").text(data.WrongInfoChargePercent + "%");
+                            //  $("#WrongInfoChargePercent").text(data.WrongInfoChargePercent + "%");
                             $("#WrongInfoCharge").val(data.WrongInfoChargeValue.toFixed(2));
                             var subTotal = $("#SubTotalHoldingTax").val();
                             var plusValue = data.WrongInfoChargeValue.toFixed(2);
@@ -328,7 +297,14 @@
                             console.log(e);
                         }
                     });
-                } else if (this.value === 'No') { alert('No'); }
+                }
+                else if (this.value === 'No') {
+                    var subTotal = $("#SubTotalHoldingTax").val();
+                    var plusValue = $("#WrongInfoCharge").val();
+                    var exactValue = parseFloat(subTotal) - parseFloat(plusValue);
+                    $("#SubTotalHoldingTax").val(exactValue.toFixed(2));
+                    $("#WrongInfoCharge").val("0");
+                }
             });
 
 
