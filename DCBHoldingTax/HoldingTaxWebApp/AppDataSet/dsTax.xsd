@@ -14,7 +14,7 @@
   <xs:element name="dsTax" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsTax" msprop:Generator_UserDSName="dsTax">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="dtHoldingTax" msprop:Generator_TableClassName="dtHoldingTaxDataTable" msprop:Generator_TableVarName="tabledtHoldingTax" msprop:Generator_TablePropName="dtHoldingTax" msprop:Generator_RowDeletingName="dtHoldingTaxRowDeleting" msprop:Generator_RowChangingName="dtHoldingTaxRowChanging" msprop:Generator_RowEvHandlerName="dtHoldingTaxRowChangeEventHandler" msprop:Generator_RowDeletedName="dtHoldingTaxRowDeleted" msprop:Generator_UserTableName="dtHoldingTax" msprop:Generator_RowChangedName="dtHoldingTaxRowChanged" msprop:Generator_RowEvArgName="dtHoldingTaxRowChangeEvent" msprop:Generator_RowClassName="dtHoldingTaxRow">
+        <xs:element name="dtHoldingTax" msprop:Generator_TableClassName="dtHoldingTaxDataTable" msprop:Generator_TableVarName="tabledtHoldingTax" msprop:Generator_RowChangedName="dtHoldingTaxRowChanged" msprop:Generator_TablePropName="dtHoldingTax" msprop:Generator_RowDeletingName="dtHoldingTaxRowDeleting" msprop:Generator_RowChangingName="dtHoldingTaxRowChanging" msprop:Generator_RowEvHandlerName="dtHoldingTaxRowChangeEventHandler" msprop:Generator_RowDeletedName="dtHoldingTaxRowDeleted" msprop:Generator_RowClassName="dtHoldingTaxRow" msprop:Generator_UserTableName="dtHoldingTax" msprop:Generator_RowEvArgName="dtHoldingTaxRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="HoldingTaxId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnHoldingTaxId" msprop:Generator_ColumnPropNameInRow="HoldingTaxId" msprop:Generator_ColumnPropNameInTable="HoldingTaxIdColumn" msprop:Generator_UserColumnName="HoldingTaxId" type="xs:int" />
@@ -167,7 +167,68 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="dtLetterThree" msprop:Generator_TableClassName="dtLetterThreeDataTable" msprop:Generator_TableVarName="tabledtLetterThree" msprop:Generator_TablePropName="dtLetterThree" msprop:Generator_RowDeletingName="dtLetterThreeRowDeleting" msprop:Generator_RowChangingName="dtLetterThreeRowChanging" msprop:Generator_RowEvHandlerName="dtLetterThreeRowChangeEventHandler" msprop:Generator_RowDeletedName="dtLetterThreeRowDeleted" msprop:Generator_UserTableName="dtLetterThree" msprop:Generator_RowChangedName="dtLetterThreeRowChanged" msprop:Generator_RowEvArgName="dtLetterThreeRowChangeEvent" msprop:Generator_RowClassName="dtLetterThreeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="HoldingTaxId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnHoldingTaxId" msprop:Generator_ColumnPropNameInRow="HoldingTaxId" msprop:Generator_ColumnPropNameInTable="HoldingTaxIdColumn" msprop:Generator_UserColumnName="HoldingTaxId" type="xs:int" />
+              <xs:element name="HolderId" msprop:Generator_ColumnVarNameInTable="columnHolderId" msprop:Generator_ColumnPropNameInRow="HolderId" msprop:Generator_ColumnPropNameInTable="HolderIdColumn" msprop:Generator_UserColumnName="HolderId" type="xs:int" />
+              <xs:element name="FinancialYearId" msprop:Generator_ColumnVarNameInTable="columnFinancialYearId" msprop:Generator_ColumnPropNameInRow="FinancialYearId" msprop:Generator_ColumnPropNameInTable="FinancialYearIdColumn" msprop:Generator_UserColumnName="FinancialYearId" type="xs:int" />
+              <xs:element name="NetTaxPayableAmount" msprop:Generator_ColumnVarNameInTable="columnNetTaxPayableAmount" msprop:Generator_ColumnPropNameInRow="NetTaxPayableAmount" msprop:Generator_ColumnPropNameInTable="NetTaxPayableAmountColumn" msprop:Generator_UserColumnName="NetTaxPayableAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FinancialYear" msprop:Generator_ColumnVarNameInTable="columnFinancialYear" msprop:Generator_ColumnPropNameInRow="FinancialYear" msprop:Generator_ColumnPropNameInTable="FinancialYearColumn" msprop:Generator_UserColumnName="FinancialYear" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HolderName" msprop:Generator_ColumnVarNameInTable="columnHolderName" msprop:Generator_ColumnPropNameInRow="HolderName" msprop:Generator_ColumnPropNameInTable="HolderNameColumn" msprop:Generator_UserColumnName="HolderName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HoldersFlatNumber" msprop:Generator_ColumnVarNameInTable="columnHoldersFlatNumber" msprop:Generator_ColumnPropNameInRow="HoldersFlatNumber" msprop:Generator_ColumnPropNameInTable="HoldersFlatNumberColumn" msprop:Generator_UserColumnName="HoldersFlatNumber" type="xs:int" minOccurs="0" />
+              <xs:element name="PlotNo" msprop:Generator_ColumnVarNameInTable="columnPlotNo" msprop:Generator_ColumnPropNameInRow="PlotNo" msprop:Generator_ColumnPropNameInTable="PlotNoColumn" msprop:Generator_UserColumnName="PlotNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RoadNo" msprop:Generator_ColumnVarNameInTable="columnRoadNo" msprop:Generator_ColumnPropNameInRow="RoadNo" msprop:Generator_ColumnPropNameInTable="RoadNoColumn" msprop:Generator_UserColumnName="RoadNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RoadName" msprop:Generator_ColumnVarNameInTable="columnRoadName" msprop:Generator_ColumnPropNameInRow="RoadName" msprop:Generator_ColumnPropNameInTable="RoadNameColumn" msprop:Generator_UserColumnName="RoadName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AreaId" msprop:Generator_ColumnVarNameInTable="columnAreaId" msprop:Generator_ColumnPropNameInRow="AreaId" msprop:Generator_ColumnPropNameInTable="AreaIdColumn" msprop:Generator_UserColumnName="AreaId" type="xs:int" minOccurs="0" />
+              <xs:element name="AreaName" msprop:Generator_ColumnVarNameInTable="columnAreaName" msprop:Generator_ColumnPropNameInRow="AreaName" msprop:Generator_ColumnPropNameInTable="AreaNameColumn" msprop:Generator_UserColumnName="AreaName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fineRate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnfineRate" msprop:Generator_ColumnPropNameInRow="fineRate" msprop:Generator_ColumnPropNameInTable="fineRateColumn" msprop:Generator_UserColumnName="fineRate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ExtraDue" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExtraDue" msprop:Generator_ColumnPropNameInRow="ExtraDue" msprop:Generator_ColumnPropNameInTable="ExtraDueColumn" msprop:Generator_UserColumnName="ExtraDue" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Due" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDue" msprop:Generator_ColumnPropNameInRow="Due" msprop:Generator_ColumnPropNameInTable="DueColumn" msprop:Generator_UserColumnName="Due" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
+    <xs:unique name="Constraint11">
+      <xs:selector xpath=".//mstns:dtLetterThree" />
+      <xs:field xpath="mstns:HoldingTaxId" />
+    </xs:unique>
   </xs:element>
 </xs:schema>
