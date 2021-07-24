@@ -33,14 +33,14 @@ namespace HoldingTaxWebApp.Models.Plots
         [Display(Name = "টাকার পরিমান")]
 
         public decimal? FineAmount { get; set; }
-        [Display(Name = "যুক্তকরণের তারিখ")]
+        [Display(Name = "অন্তর্ভুক্তির তারিখ")]
         public DateTime? CreateDate { get; set; }
         public int? CreatedBy { get; set; }
         [Display(Name = "যুক্ত করেছেন")]
         public string CreatedByUserName { get; set; }
-        [Display(Name = "শেষ হালনাগাদের তারিখ")]
+        [Display(Name = "সর্বশেষ হালনাগাদ")]
         public DateTime? LastUpdated { get; set; }
-        [Display(Name = "শেষ হালনাগাদ করেছেন")]
+        [Display(Name = "হালনাগাদকারী")]
         public string UpdatedByUserName { get; set; }
         public int? LastUpdatedBy { get; set; }
         [Display(Name = "সক্রিয়তা")]
