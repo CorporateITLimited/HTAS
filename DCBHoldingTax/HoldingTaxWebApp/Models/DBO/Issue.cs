@@ -15,12 +15,14 @@ namespace HoldingTaxWebApp.Models.DBO
         [Display(Name = "স্ট্যাটাস টাইপ আইডি")]
         public int StatusTypeId { get; set; }
         //[Display(Name = "তৈরিকারী")]
+        [Display(Name = "বিষয়")]
         public string Subject { get; set; }
         //[Display(Name = "তৈরিকারী")]
         //public string Details { get; set; }
         //public string Doc1 { get; set; }
         //public string Doc2 { get; set; }
-      
+        [Display(Name = "সমাধানের তারিখ")]
+
         public DateTime? SolvedDate { get; set; }
         //[Display(Name = "তৈরিকারী")]
         public string StringSolvedDate { get; set; }
@@ -30,20 +32,23 @@ namespace HoldingTaxWebApp.Models.DBO
         public DateTime? CreateDate { get; set; }
         [Display(Name = "তৈরিকারী")]
         public int? CreatedBy { get; set; }
-        [Display(Name = "সর্বশেষ সংষ্করণ")]
+        [Display(Name = "হালনাগাদকরণ")]
         public DateTime? LastUpdated { get; set; }
-        [Display(Name = "সর্বশেষ সংষ্করণ করেছেন")]
+        [Display(Name = "হালনাগাদকরণ করেছেন")]
         public int? LastUpdatedBy { get; set; }
         [Display(Name = "সক্রিয়")]
         public bool? IsActive { get; set; }
         [Display(Name = "মুছে ফেলা ")]
         public bool? IsDeleted { get; set; }
-
+        [Display(Name = "ব্যবহারকারীর নাম দ্বারা নির্মিত")]
         public string CreatedByUserName { get; set; }
+        [Display(Name = "ব্যবহারকারীর নাম দ্বারা আপডেট")]
         public string UpdatedByUserName { get; set; }
 
         ////out of table
+        [Display(Name = "ধারক এর নাম")]
         public string HolderName { get; set; }
+        [Display(Name = "স্ট্যাটাস এর নাম")]
         public string StatusName { get; set; }
 
 
