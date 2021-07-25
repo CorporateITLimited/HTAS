@@ -148,7 +148,9 @@ namespace HoldingTaxWebApp.Controllers.Tax
                 //    totalPaidAmount = 0;
                 //}
 
-
+                //holder.AllocationDate =   !string.IsNullOrWhiteSpace(hvm.StringAllocationDate)
+                //    ? (DateTime?)DateTime.ParseExact(hvm.StringAllocationDate, "dd/MM/yyyy", null)
+                //    : null;
                 HoldingTax tax = new HoldingTax
                 {
                     Rebate = holdingTax.RebateInfo == "Yes" ? holdingTax.Rebate : 0,
