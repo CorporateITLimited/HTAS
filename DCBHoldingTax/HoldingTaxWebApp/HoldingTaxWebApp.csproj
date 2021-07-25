@@ -4798,6 +4798,7 @@
     <Compile Include="Controllers\DBO\IssueController.cs" />
     <Compile Include="Controllers\Holding\HolderClientController.cs" />
     <Compile Include="Controllers\Holding\HoldingController.cs" />
+    <Compile Include="Controllers\Holding\NoticeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
@@ -4830,6 +4831,7 @@
     <Compile Include="Gateway\DBO\StatusTypeGateway.cs" />
     <Compile Include="Gateway\DefaultGateway.cs" />
     <Compile Include="Gateway\Holding\HoldingGateway.cs" />
+    <Compile Include="Gateway\Holding\NoticeGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
     <Compile Include="Gateway\Tax\HoldingTaxGateway.cs" />
@@ -4862,6 +4864,7 @@
     <Compile Include="Manager\DBO\OwnershipSourceManager.cs" />
     <Compile Include="Manager\DBO\StatusTypeManager.cs" />
     <Compile Include="Manager\Holding\HoldingManager.cs" />
+    <Compile Include="Manager\Holding\NoticeManager.cs" />
     <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
     <Compile Include="Manager\Tax\HoldingTaxManager.cs" />
@@ -4884,6 +4887,7 @@
     <Compile Include="Models\Dbo\DOHSArea.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
     <Compile Include="Models\Holding\HolderFlat.cs" />
+    <Compile Include="Models\Holding\Notice.cs" />
     <Compile Include="Models\Plots\ConstructionProgress.cs" />
     <Compile Include="Models\Plots\DesignApproval.cs" />
     <Compile Include="Models\Plots\OthetPlotOwner.cs" />
@@ -5054,6 +5058,9 @@
     <Content Include="Views\Home\Holder.cshtml" />
     <Content Include="Views\HolderClient\Index.cshtml" />
     <Content Include="Views\HolderClient\GetHoldersTaxInformation.cshtml" />
+    <Content Include="Views\Notice\Index.cshtml" />
+    <Content Include="Views\Notice\Create.cshtml" />
+    <Content Include="Views\Notice\NoticeReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
