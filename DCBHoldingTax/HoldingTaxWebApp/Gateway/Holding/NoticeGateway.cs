@@ -152,9 +152,9 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         Notice_2 = Data_Reader["2"] != DBNull.Value ? Convert.ToInt32(Data_Reader["2"]) : (int?)null,
                         Notice_3 = Data_Reader["3"] != DBNull.Value ? Convert.ToInt32(Data_Reader["3"]) : (int?)null
                     };
-                    model.NoticeName_1 = model.Notice_1 == 1 ? "নোটিশ নম্বর ১" : null;
-                    model.NoticeName_2 = model.Notice_2 == 2 ? "নোটিশ নম্বর ২" : null;
-                    model.NoticeName_3 = model.Notice_3 == 3 ? "নোটিশ নম্বর ৩" : null;
+                    model.NoticeName_1 = model.Notice_1 == 1 ? "১ নম্বর বিজ্ঞপ্তি দেখুন " : null;
+                    model.NoticeName_2 = model.Notice_2 == 2 ? "২ নম্বর বিজ্ঞপ্তি দেখুন " : null;
+                    model.NoticeName_3 = model.Notice_3 == 3 ? "৩ নম্বর বিজ্ঞপ্তি দেখুন " : null;
                     model.StringNoticeSentDate = $"{model.NoticeSentDate:dd/MM/yyyy HH:mm:ss tt}";
 
                     vm.Add(model);
@@ -233,9 +233,9 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         Notice_2 = Data_Reader["2"] != DBNull.Value ? Convert.ToInt32(Data_Reader["2"]) : (int?)null,
                         Notice_3 = Data_Reader["3"] != DBNull.Value ? Convert.ToInt32(Data_Reader["3"]) : (int?)null
                     };
-                    model.NoticeName_1 = model.Notice_1 == 1 ? "নোটিশ নম্বর ১" : null;
-                    model.NoticeName_2 = model.Notice_2 == 2 ? "নোটিশ নম্বর ২" : null;
-                    model.NoticeName_3 = model.Notice_3 == 3 ? "নোটিশ নম্বর ৩" : null;
+                    model.NoticeName_1 = model.Notice_1 == 1 ? "১ নম্বর বিজ্ঞপ্তি দেখুন " : null;
+                    model.NoticeName_2 = model.Notice_2 == 2 ? "২ নম্বর বিজ্ঞপ্তি দেখুন " : null;
+                    model.NoticeName_3 = model.Notice_3 == 3 ? "৩ নম্বর বিজ্ঞপ্তি দেখুন " : null;
                     model.StringNoticeSentDate = $"{model.NoticeSentDate:dd/MM/yyyy HH:mm:ss tt}";
 
                     vm.Add(model);

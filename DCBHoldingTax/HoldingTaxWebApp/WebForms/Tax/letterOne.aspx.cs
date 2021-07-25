@@ -45,10 +45,10 @@ namespace HoldingTaxWebApp.WebForms.Tax
         {
             //PMISEntities con = new PMISEntities();
             //Session["PCaseId"] = 2;
-            int? rptValueAreaId = Session[CommonConstantHelper.AreaId] != null ? Convert.ToInt32(Session[CommonConstantHelper.AreaId]) : (int?)null;
-            int? rptFinancialYearId = Session["FinancialYearId"] != null ? Convert.ToInt32(Session["FinancialYearId"]) : (int?)null;
-            int? rptHolderId = Session[CommonConstantHelper.HolderId] != null ? Convert.ToInt32(Session[CommonConstantHelper.HolderId]) : (int?)null;
-            int? rptHoldingTaxId = Session["HoldingTaxId"] != null ? Convert.ToInt32(Session["HoldingTaxId"]) : (int?)null;
+            int? rptValueAreaId = null;//Session[CommonConstantHelper.AreaId] != null ? Convert.ToInt32(Session[CommonConstantHelper.AreaId]) : (int?)null;
+            int? rptFinancialYearId = Session["FinacialYearID"] != null ? Convert.ToInt32(Session["FinacialYearID"]) : (int?)null;
+            int? rptHolderId = Session["HolderID"] != null ? Convert.ToInt32(Session["HolderID"]) : (int?)null;
+            int? rptHoldingTaxId = null;//Session["HoldingTaxId"] != null ? Convert.ToInt32(Session["HoldingTaxId"]) : (int?)null;
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
             SqlCommand cmd = new SqlCommand("exec [Tax].[spGetHoldingTaxDetails] @AreaId, @FinancialYearId, @HolderId, @HoldingTaxId", con);
