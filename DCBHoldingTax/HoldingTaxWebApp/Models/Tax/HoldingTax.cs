@@ -91,6 +91,8 @@ namespace HoldingTaxWebApp.Models.Tax
 
         [Display(Name = "হোল্ডারের নাম ")]
         public string HolderName { get; set; }
+        [Display(Name = "টাকা প্রদানের তারিখ")]
+        public DateTime? PaymentDate { get; set; }
 
     }
 }
