@@ -20,9 +20,9 @@ namespace HoldingTaxWebApp.Helpers
         public static IEnumerable<SelectListItem> GetNoticeTypeNameStatusForDropdown()
         {
             List<SelectListItem> selectListItems = new List<SelectListItem>() {
-                new SelectListItem(){ Text="নোটিশ নম্বর ১", Value="1" },
-                new SelectListItem(){ Text="নোটিশ নম্বর ২", Value="2" },
-                new SelectListItem(){ Text="নোটিশ নম্বর ৩", Value="3" }
+                new SelectListItem(){ Text="বিজ্ঞপ্তি নম্বর ১", Value="1" },
+                new SelectListItem(){ Text="বিজ্ঞপ্তি নম্বর ২", Value="2" },
+                new SelectListItem(){ Text="বিজ্ঞপ্তি নম্বর ৩", Value="3" }
             };
             return selectListItems;
         }
