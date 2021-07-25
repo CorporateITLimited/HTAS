@@ -399,7 +399,14 @@
                 });
             });
 
-
+           $("#StatusTypeId").change(function () {
+         $('#MsgDetails').val('');
+                var Status = $('#StatusTypeId option:selected').text();
+                var MsgDetails =  $('#MsgDetails').val().trim();
+        var MsgDetails = MsgDetails +' '+'আপনার ইস্যুটি বর্তমানে'+ ' '+Status+' '+'অবস্থায় রয়েছে |';
+        $('#MsgDetails').val(MsgDetails).trim();
+        //alert(MsgDetails);
+            });
 
 
 

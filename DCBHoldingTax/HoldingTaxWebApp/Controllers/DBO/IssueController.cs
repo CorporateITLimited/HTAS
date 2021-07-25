@@ -48,7 +48,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
                         StatusName = item.StatusName,
                         StatusTypeId = item.StatusTypeId,
                         Subject = item.Subject,
-
+                        StringSolvedDate = $"{item.SolvedDate:dd/MM/yyyy}",
 
 
                         IsActive = item.IsActive,
@@ -178,7 +178,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
             issueVM.StatusTypeId = issue.StatusTypeId;
             issueVM.Subject = issue.Subject;
             issueVM.SolvedDate = issue.SolvedDate;
-            issueVM.StringSolvedDate = issue.StringSolvedDate;
+            issueVM.StringSolvedDate = $"{issue.SolvedDate:dd/MM/yyyy}";
             issueVM.Remarks = issue.Remarks;
             issueVM.CreatedByUserName = issue.CreatedByUserName;
             issueVM.LastUpdatedBy = issue.LastUpdatedBy;

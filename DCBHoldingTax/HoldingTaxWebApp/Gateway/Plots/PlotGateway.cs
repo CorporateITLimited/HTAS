@@ -13,6 +13,18 @@ namespace HoldingTaxWebApp.Gateway.Plots
 {
     public class PlotGateway : DefaultGateway
     {
+        public object AreaId { get; private set; }
+        public object RoadNo { get; private set; }
+        public object PlotNo { get; private set; }
+        public object CreateDate { get; private set; }
+        public object CreatedBy { get; private set; }
+        public object IsActive { get; private set; }
+        public object IsDeleted { get; private set; }
+        public object LastUpdated { get; private set; }
+        public object LastUpdatedBy { get; private set; }
+        public object PlotId { get; private set; }
+        public object TotalArea { get; private set; }
+        public object RoadName { get; private set; }
 
         public List<Plot> GetAllPlot()
         {
@@ -181,5 +193,90 @@ namespace HoldingTaxWebApp.Gateway.Plots
                     Sql_Connection.Close();
             }
         }
+            public int PlotGatewayUpdate(PlotGateway Plot) 
+            {
+                try
+                {
+                    Sql_Query = "[Plot].[spPlot]";
+                    Sql_Command = new SqlCommand
+                    {
+                        CommandText = Sql_Query,
+                        Connection = Sql_Connection,
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    Sql_Command.Parameters.Clear();
+
+
+
+                    
+            Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Update;
+                    
+                    
+                      
+                      
+                   
+                    Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = Plot.AreaId;
+                    Sql_Command.Parameters.Add("@RoadNo", SqlDbType.NVarChar).Value = Plot.RoadNo;
+                    Sql_Command.Parameters.Add("@PlotNo", SqlDbType.NVarChar).Value = Plot.PlotNo;
+
+
+                  
+                    Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = Plot.CreateDate;
+                    Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = Plot.CreatedBy;
+                 
+                   
+                    Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = Plot.IsActive;
+         
+                    Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = Plot.IsDeleted;
+                    Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = Plot.LastUpdated;
+                    Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = Plot.LastUpdatedBy;
+                
+                    Sql_Command.Parameters.Add("@TotalArea", SqlDbType.Decimal).Value = Plot.TotalArea;
+                
+                    Sql_Command.Parameters.Add("@RoadName", SqlDbType.NVarChar).Value = Plot.RoadName;
+
+
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = Plot.PlotId;
+
+
+
+                    SqlParameter result = new SqlParameter
+                    {
+                        ParameterName = "@result",
+                        SqlDbType = SqlDbType.Int,
+                        Direction = ParameterDirection.Output
+                    };
+                    Sql_Command.Parameters.Add(result);
+
+                    Sql_Connection.Open();
+                    int rowAffected = Sql_Command.ExecuteNonQuery();
+                    Sql_Connection.Close();
+
+                    int resultOutPut = int.Parse(result.Value.ToString());
+
+                    return resultOutPut;
+                }
+                catch (SqlException exception)
+                {
+                    for (int i = 0; i < exception.Errors.Count; i++)
+                    {
+                        ErrorMessages.Append("Index #" + i + "\n" +
+                            "Message: " + exception.Errors[i].Message + "\n" +
+                            "Error Number: " + exception.Errors[i].Number + "\n" +
+                            "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                            "Source: " + exception.Errors[i].Source + "\n" +
+                            "Procedure: " + exception.Errors[i].Procedure + "\n");
+                    }
+                    throw new Exception(ErrorMessages.ToString());
+                }
+                finally
+                {
+                    if (Sql_Connection.State == ConnectionState.Open)
+                        Sql_Connection.Close();
+                }
+            }
+        
     }
+
 }
