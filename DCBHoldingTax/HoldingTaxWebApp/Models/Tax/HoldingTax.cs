@@ -72,16 +72,24 @@ namespace HoldingTaxWebApp.Models.Tax
         [Display(Name = "হোল্ডারের প্লট/ফ্ল্যাট/বাড়ী এর তথ্য")]
         public string AreaPlotFlatData { get; set; }
 
+        [Display(Name = "ছাড়")]
         public string RebateInfo { get; set; }
+
+        [Display(Name = "ভুল তথ্য চার্জ")]
         public string WrongInfo { get; set; }
+
+        [Display(Name = "চূড়ান্ত")]
         public string FinalizeInfo { get; set; }
 
+        [Display(Name = "নেট কর প্রদেয় পরিমাণ")]
         public decimal? SubTotalHoldingTax { get; set; }
 
         public decimal? RebateValue { get; set; }
         public decimal? RebatePercent { get; set; }
         public decimal? WrongInfoChargePercent { get; set; }
         public decimal? WrongInfoChargeValue { get; set; }
+
+        [Display(Name = "হোল্ডারের নাম ")]
         public string HolderName { get; set; }
 
     }
