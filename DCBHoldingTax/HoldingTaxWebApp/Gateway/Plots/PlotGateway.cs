@@ -276,7 +276,7 @@ namespace HoldingTaxWebApp.Gateway.Plots
                         Sql_Connection.Close();
                 }
             }
-        }
+        
     }
 
 }

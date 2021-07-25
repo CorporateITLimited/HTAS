@@ -83,7 +83,7 @@
                             <th>@Html.DisplayNameFor(model => model.Subject)</th>
                             <th>@Html.DisplayNameFor(model => model.StringSolvedDate)</th>
 
-                            <th>@Html.DisplayNameFor(model => model.Remarks)</th>
+                            @*<th>@Html.DisplayNameFor(model => model.Remarks)</th>*@
                           
 
                             <th></th>
@@ -109,18 +109,18 @@
                                     @Html.DisplayFor(modelItem => item.StringSolvedDate)
 
                                 </td>
-                                <td>
+                                @*<td>
                                     @Html.DisplayFor(modelItem => item.Remarks)
-                                </td>
+                                </td>*@
 
 
                                 <td>
                                     <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Edit/@item.IssueId" title="Edit">
                                         <b> <i class="fa fa-edit"></i>  </b>
                                     </a>
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Details/@item.IssueId" title="Details View">
+                                    @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Details/@item.IssueId" title="Details View">
                                         <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                    </a>
+                                    </a>*@
                                 </td>
 
 

@@ -6,6 +6,99 @@
 }
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
+<style>
+    #chat li {
+        padding: 10px 30px;
+    }
+
+    #chat .message {
+        padding: 10px;
+        color: #fff;
+        line-height: 25px;
+        max-width: 90%;
+        display: inline-block;
+        text-align: left;
+        border-radius: 5px;
+    }
+
+    #chat .doc {
+        padding: 5px;
+        color: #fff;
+        /*line-height: 25px;*/
+        max-width: 90%;
+        display: inline-block;
+        text-align: left;
+        border-radius: 2px;
+    }
+
+    #chat .me {
+        text-align: right;
+    }
+
+    #chat .you .btn {
+        color: black;
+        border: 3px solid #EB9F28;
+    }
+
+    #chat .me .btn {
+        color: black;
+        border: 3px solid #2272b0;
+    }
+
+        #chat .me .btn:hover {
+            background-color: #315D7D;
+            color: white;
+            border: 3px solid #2272b0
+        }
+
+    #chat .you .btn:hover {
+        background-color: #9A681A;
+        color: white;
+        border: 3px solid #EB9F28;
+    }
+
+    #chat .you .message {
+        background-color: #EB9F28;
+    }
+
+    #chat .me .message {
+        background-color: #2272b0;
+    }
+
+    #chat .triangle {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 10px 10px 10px;
+    }
+
+    #chat .you .triangle {
+        border-color: transparent transparent #EB9F28 transparent;
+        margin-left: 15px;
+    }
+
+    #chat .me .triangle {
+        border-color: transparent transparent #2272b0 transparent;
+        margin-left: 1130px;
+    }
+
+
+    #chat h2 {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    #chat h3 {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    #chat h3 {
+        color: #bbb;
+    }
+</style>
 }
 
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
@@ -191,7 +284,7 @@
                                         <th>বার্তার তারিখ</th>
                                         <th>নথি ১</th>
                                         <th>নথি ২</th>
-                                        <th>বর্তমান অবস্থা</th>
+                                        @*<th>বর্তমান অবস্থা</th>*@
                                        
 
 
@@ -207,11 +300,11 @@
                                         <td>@item.StringMsgDate</td>
                                         <td>@item.Doc1</td>
                                         <td>@item.Doc2</td>
-                                        @if(@item.IsRead == true){
+                                        @*@if(@item.IsRead == true){
                                         <td>সমাধান হয়েছে</td>
                                         }
                                         else{<td>এখনো সমাধান হয়নি</td>
-                                        }
+                                        }*@
 
                                     </tr>
                                             i = i + 1;

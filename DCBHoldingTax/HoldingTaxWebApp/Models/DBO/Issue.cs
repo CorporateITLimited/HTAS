@@ -14,15 +14,15 @@ namespace HoldingTaxWebApp.Models.DBO
         public int HolderId { get; set; }
         [Display(Name = "স্ট্যাটাস টাইপ আইডি")]
         public int StatusTypeId { get; set; }
-        [Display(Name = "তৈরিকারী")]
+        //[Display(Name = "তৈরিকারী")]
         public string Subject { get; set; }
-        [Display(Name = "তৈরিকারী")]
+        //[Display(Name = "তৈরিকারী")]
         //public string Details { get; set; }
         //public string Doc1 { get; set; }
         //public string Doc2 { get; set; }
       
         public DateTime? SolvedDate { get; set; }
-        [Display(Name = "তৈরিকারী")]
+        //[Display(Name = "তৈরিকারী")]
         public string StringSolvedDate { get; set; }
         [Display(Name = "মন্তব্য")]
         public string Remarks { get; set; }
