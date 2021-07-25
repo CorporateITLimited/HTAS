@@ -2449,6 +2449,8 @@
     <Content Include="WebForms\Tax\GetHoldingTax.aspx" />
     <Content Include="WebForms\Tax\leterThree.aspx" />
     <Content Include="WebForms\Tax\letterOne.aspx" />
+    <Content Include="WebForms\Tax\NonTaxPayingList.aspx" />
+    <Content Include="WebForms\Tax\TaxPlayerList.aspx" />
     <None Include="AppDataSet\dsTax.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -4767,6 +4769,12 @@
       <DependentUpon>rptleterThree.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AppReports\Tax\rptTaxPlayers.cs">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTaxPlayers.rpt</DependentUpon>
+    </Compile>
     <Compile Include="AppReports\Tax\subDOHAreaRent.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4922,6 +4930,20 @@
     <Compile Include="WebForms\Tax\letterOne.aspx.designer.cs">
       <DependentUpon>letterOne.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\Tax\NonTaxPayingList.aspx.cs">
+      <DependentUpon>NonTaxPayingList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Tax\NonTaxPayingList.aspx.designer.cs">
+      <DependentUpon>NonTaxPayingList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Tax\TaxPlayerList.aspx.cs">
+      <DependentUpon>TaxPlayerList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Tax\TaxPlayerList.aspx.designer.cs">
+      <DependentUpon>TaxPlayerList.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -5067,6 +5089,10 @@
     <EmbeddedResource Include="AppReports\Tax\rptleterThree.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptleterThree.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Tax\rptTaxPlayers.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTaxPlayers.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Tax\subDOHAreaRent.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
