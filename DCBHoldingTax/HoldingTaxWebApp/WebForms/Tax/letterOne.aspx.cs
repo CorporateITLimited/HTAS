@@ -32,24 +32,11 @@ namespace HoldingTaxWebApp.WebForms.Tax
             cryRpt.Load(Server.MapPath("~/AppReports/Tax/rptletterOne.rpt"));
             cryRpt.SetDatabaseLogon("sa", "#PimsOne$1m#", @"119.18.146.107", "DCB_HTAS");
 
-            CrystalReportViewer1.ReportSource = cryRpt;
-
-            dsTax tenderdata = Getdata(); // datasetname
-            cryRpt.SetDataSource(tenderdata);
-
-            CrystalReportViewer1.Zoom(100);
-            CrystalReportViewer1.ToolPanelView = ToolPanelViewType.None;
-            CrystalReportViewer1.HasExportButton = false;
-        }
-        private dsTax Getdata()    /*-----Return type is Dataset--------*/
-        {
-            //PMISEntities con = new PMISEntities();
-            //Session["PCaseId"] = 2;
-            int? rptValueAreaId = Session[CommonConstantHelper.AreaId] != null ? Convert.ToInt32(Session[CommonConstantHelper.AreaId]) : (int?)null;
-            int? rptFinancialYearId = Session["FinancialYearId"] != null ? Convert.ToInt32(Session["FinancialYearId"]) : (int?)null;
-            int? rptHolderId = Session[CommonConstantHelper.HolderId] != null ? Convert.ToInt32(Session[CommonConstantHelper.HolderId]) : (int?)null;
-            int? rptHoldingTaxId = Session["HoldingTaxId"] != null ? Convert.ToInt32(Session["HoldingTaxId"]) : (int?)null;
-
+            //done for two separate subreport ==================================================
+            int? rptValueAreaId = 1;
+            int? rptFinancialYearId = 3;
+            int? rptHolderId = 1;
+            int? rptHoldingTaxId = null;
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
             SqlCommand cmd = new SqlCommand("exec [Tax].[spGetHoldingTaxDetails] @AreaId, @FinancialYearId, @HolderId, @HoldingTaxId", con);
             cmd.CommandType = CommandType.Text; // always text
@@ -57,17 +44,32 @@ namespace HoldingTaxWebApp.WebForms.Tax
             cmd.Parameters.AddWithValue("@FinancialYearId", SqlDbType.Int).Value = rptFinancialYearId ?? (object)DBNull.Value;
             cmd.Parameters.AddWithValue("@HolderId", SqlDbType.Int).Value = rptHolderId ?? (object)DBNull.Value;
             cmd.Parameters.AddWithValue("@HoldingTaxId", SqlDbType.Int).Value = rptHoldingTaxId ?? (object)DBNull.Value;
+
+            dsTax list = new dsTax(); // same as dataset
             try
             {
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                dsTax list = new dsTax(); // same as dataset
+                
                 sda.Fill(list, "dtHoldingTax");
-                //for (int i = 0; i < list.dtListOfQuotedItems.Count(); i++)
-                //{
-                //    list.dtListOfQuotedItems.Rows[i][13] = "List of offered Lowest Quoted Items";
-                //}
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-                return list;
+
+
+
+
+            SqlCommand cmd2 = new SqlCommand("exec [constant].[spRentTaxRate] @StatementType=@StatementType,@result=Null", con);
+            cmd2.CommandType = CommandType.Text; // always text
+
+            cmd2.Parameters.AddWithValue("@StatementType", SqlDbType.NVarChar).Value = "selectForResidential";
+            try
+            {
+                SqlDataAdapter sda = new SqlDataAdapter(cmd2);
+                
+                sda.Fill(list, "dtAreaRentRate");
             }
             catch (Exception ex)
             {
@@ -77,6 +79,17 @@ namespace HoldingTaxWebApp.WebForms.Tax
             {
                 con.Close();
             }
+
+
+
+
+            CrystalReportViewer1.ReportSource = cryRpt;
+            cryRpt.SetDataSource(list);
+
+            CrystalReportViewer1.Zoom(100);
+            CrystalReportViewer1.ToolPanelView = ToolPanelViewType.None;
+            CrystalReportViewer1.HasExportButton = false;
         }
+
     }
 }
