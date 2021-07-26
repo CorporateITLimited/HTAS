@@ -93,6 +93,11 @@ namespace HoldingTaxWebApp.Models.Tax
         public string HolderName { get; set; }
         [Display(Name = "টাকা প্রদানের তারিখ")]
         public DateTime? PaymentDate { get; set; }
+        [Display(Name = "টাকা প্রদানের তারিখ")]
+        public string StringPaymentDate { get; set; }
+
+        [Display(Name = "নোট")]
+        public string Remarks { get; set; }
 
     }
 }

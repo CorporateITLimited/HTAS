@@ -96,7 +96,8 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
                         HolderName = Convert.ToString(Data_Reader["HolderName"]),
-                        PaymentDate = Data_Reader["PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["PaymentDate"]) : (DateTime?)null
+                        PaymentDate = Data_Reader["PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["PaymentDate"]) : (DateTime?)null,
+                        Remarks = Convert.ToString(Data_Reader["Remarks"])
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -217,7 +218,8 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
                         HolderName = Convert.ToString(Data_Reader["HolderName"]),
-                       PaymentDate = Data_Reader[" PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader[" PaymentDate"]) : (DateTime?)null
+                        PaymentDate = Data_Reader[" PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader[" PaymentDate"]) : (DateTime?)null,
+                        Remarks = Convert.ToString(Data_Reader["Remarks"])
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -265,7 +267,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 Sql_Command.Parameters.Clear();
 
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Details;
-                Sql_Command.Parameters.Add("@HoldingTaxId", SqlDbType.NVarChar).Value = id;
+                Sql_Command.Parameters.Add("@HoldingTaxId", SqlDbType.Int).Value = id;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -335,8 +337,11 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
                         HolderName = Convert.ToString(Data_Reader["HolderName"]),
-                        PaymentDate = Data_Reader["PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["PaymentDate"]) : (DateTime?)null
+                        PaymentDate = Data_Reader["PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["PaymentDate"]) : (DateTime?)null,
+                        Remarks = Convert.ToString(Data_Reader["Remarks"])
                     };
+
+                    holdingtax.StringPaymentDate = $"{holdingtax.PaymentDate:dd/MM/yyyy}";
 
                     holdingtax.SubTotalHoldingTax = holdingtax.NetTaxPayableAmount;
 
@@ -455,6 +460,9 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = tax.LastUpdatedBy;
                 Sql_Command.Parameters.Add("@HoldingTaxId", SqlDbType.Int).Value = tax.HoldingTaxId;
                 Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = tax.LastUpdated;
+                Sql_Command.Parameters.Add("@PaymentDate", SqlDbType.DateTime).Value = tax.PaymentDate;
+                Sql_Command.Parameters.Add("@Remarks", SqlDbType.NVarChar).Value = tax.Remarks;
+
                 SqlParameter result = new SqlParameter
                 {
                     ParameterName = "@result",
