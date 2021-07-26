@@ -186,7 +186,8 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "ব্যবহারকারীর নাম দ্বারা নির্মিত")]
         public string CreatedByUsername { get; set; }
-        [Display(Name = "Updated By")]
+
+        [Display(Name = "হালনাগাদকরণ করেছেন")]
         public string UpdatedByUsername { get; set; }
     }
 }

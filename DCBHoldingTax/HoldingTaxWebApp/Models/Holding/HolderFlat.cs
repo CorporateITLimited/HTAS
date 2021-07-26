@@ -47,7 +47,7 @@ namespace HoldingTaxWebApp.Models.Holding
         public DateTime? LastUpdated { get; set; }
         [Display(Name = "হালনাগাদকরণ করেছেন")]
         public int? LastUpdatedBy { get; set; }
-        [Display(Name = "সক্রিয়")]
+        [Display(Name = " সক্রিয়তা")]
         public bool? IsActive { get; set; }
         [Display(Name = "মুছে ফেলা ")]
         public bool? IsDeleted { get; set; }
@@ -55,13 +55,13 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "মাসিক ভাড়া")]
         public decimal? MonthlyRent { get; set; }
 
-        [Display(Name = "মাসিক ভাড়া")]
+        //[Display(Name = "মাসিক ভাড়া")]
         public string StrMonthlyRent { get; set; }
-        [Display(Name = "স্ব - স্ব")]
+       // [Display(Name = "স্ব-স্ব")]
         public int? SelfOwn { get; set; }
-        [Display(Name = "স্ব - নিজস্ব প্রকার")]
+        //[Display(Name = "স্ব-নিজস্ব প্রকার")]
         public string SelfOwnType { get; set; }
-        [Display(Name = "ফ্লোর টাইপের নাম")]
+       // [Display(Name = "ফ্লোর টাইপের নাম")]
         public string FloorTypeName { get; set; }
     }
 }

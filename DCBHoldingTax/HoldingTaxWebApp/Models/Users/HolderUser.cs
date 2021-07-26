@@ -55,9 +55,9 @@ namespace HoldingTaxWebApp.Models.Users
         public bool? LogIsActive { get; set; }
         [Display(Name = "লগ মুছে ফেলা হয়েছে")]
         public bool? LogIsDeleted { get; set; }
-        [Display(Name = "স্ট্রিং তৈরি তারিখ")]
+        [Display(Name = "তৈরি তারিখ")]
         public string StringCreateDate { get; set; }
-        [Display(Name = "স্ট্রিং সর্বশেষ আপডেট হয়েছে")]
+        [Display(Name = "সর্বশেষ আপডেট হয়েছে")]
         public string StringLastUpdated { get; set; }
 
     }
