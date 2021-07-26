@@ -95,7 +95,8 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
                         PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
-                        HolderName = Convert.ToString(Data_Reader["HolderName"])
+                        HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        PaymentDate = Data_Reader["PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["PaymentDate"]) : (DateTime?)null
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -215,7 +216,8 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
                         PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
-                        HolderName = Convert.ToString(Data_Reader["HolderName"])
+                        HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                       PaymentDate = Data_Reader[" PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader[" PaymentDate"]) : (DateTime?)null
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -332,7 +334,8 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
                         PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
-                        HolderName = Convert.ToString(Data_Reader["HolderName"])
+                        HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        PaymentDate = Data_Reader["PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["PaymentDate"]) : (DateTime?)null
                     };
 
                     holdingtax.SubTotalHoldingTax = holdingtax.NetTaxPayableAmount;
