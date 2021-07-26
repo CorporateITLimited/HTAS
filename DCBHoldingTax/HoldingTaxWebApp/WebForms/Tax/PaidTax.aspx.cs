@@ -41,8 +41,8 @@ namespace HoldingTaxWebApp.WebForms.Tax
         }
         private dsTax Getdata()    /*-----Return type is Dataset--------*/
         {
-
-            int? rptFinancialYearId = Session["FinancialYearId"] != null ? Convert.ToInt32(Session["FinancialYearId"]) : (int?)null;
+            int? rptFinancialYearId = 1;
+            //int? rptFinancialYearId = Session["FinancialYearId"] != null ? Convert.ToInt32(Session["FinancialYearId"]) : (int?)null;
 
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
