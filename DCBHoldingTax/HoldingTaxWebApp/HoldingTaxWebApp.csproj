@@ -2450,7 +2450,10 @@
     <Content Include="WebForms\Tax\leterThree.aspx" />
     <Content Include="WebForms\Tax\letterOne.aspx" />
     <Content Include="WebForms\Tax\NonTaxPayingList.aspx" />
+    <Content Include="WebForms\Tax\PaidTax.aspx" />
+    <Content Include="WebForms\Tax\Recoverabletax.aspx" />
     <Content Include="WebForms\Tax\TaxPlayerList.aspx" />
+    <Content Include="WebForms\Tax\UnPaidTax.aspx" />
     <None Include="AppDataSet\dsTax.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -4769,6 +4772,30 @@
       <DependentUpon>rptleterThree.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AppReports\Tax\rptNonTaxPlayers.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptNonTaxPlayers.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\Tax\rptUnPaidTax.cs">
+      <DependentUpon>rptUnPaidTax.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="AppReports\Tax\rptPaidTax.cs">
+      <DependentUpon>rptPaidTax.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="AppReports\Tax\rptRecoverabletax.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptRecoverabletax.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AppReports\Tax\rptTaxPlayers.cs">
       <SubType>Component</SubType>
       <AutoGen>True</AutoGen>
@@ -4941,12 +4968,33 @@
     <Compile Include="WebForms\Tax\NonTaxPayingList.aspx.designer.cs">
       <DependentUpon>NonTaxPayingList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\Tax\PaidTax.aspx.cs">
+      <DependentUpon>PaidTax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Tax\PaidTax.aspx.designer.cs">
+      <DependentUpon>PaidTax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Tax\Recoverabletax.aspx.cs">
+      <DependentUpon>Recoverabletax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Tax\Recoverabletax.aspx.designer.cs">
+      <DependentUpon>Recoverabletax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Tax\TaxPlayerList.aspx.cs">
       <DependentUpon>TaxPlayerList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="WebForms\Tax\TaxPlayerList.aspx.designer.cs">
       <DependentUpon>TaxPlayerList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Tax\UnPaidTax.aspx.cs">
+      <DependentUpon>UnPaidTax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Tax\UnPaidTax.aspx.designer.cs">
+      <DependentUpon>UnPaidTax.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -5096,6 +5144,22 @@
     <EmbeddedResource Include="AppReports\Tax\rptleterThree.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptleterThree.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Tax\rptNonTaxPlayers.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptNonTaxPlayers.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Tax\rptUnPaidTax.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptUnPaidTax.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Tax\rptPaidTax.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptPaidTax.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Tax\rptRecoverabletax.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptRecoverabletax.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Tax\rptTaxPlayers.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

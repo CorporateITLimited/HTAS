@@ -16,14 +16,14 @@ namespace HoldingTaxWebApp.AppReports.Tax {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class rptTaxPlayers : ReportClass {
+    public class rptRecoverabletax : ReportClass {
         
-        public rptTaxPlayers() {
+        public rptRecoverabletax() {
         }
         
         public override string ResourceName {
             get {
-                return "rptTaxPlayers.rpt";
+                return "rptRecoverabletax.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace HoldingTaxWebApp.AppReports.Tax {
         
         public override string FullResourceName {
             get {
-                return "HoldingTaxWebApp.AppReports.Tax.rptTaxPlayers.rpt";
+                return "HoldingTaxWebApp.AppReports.Tax.rptRecoverabletax.rpt";
             }
             set {
                 // Do nothing
@@ -130,9 +130,9 @@ namespace HoldingTaxWebApp.AppReports.Tax {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedrptTaxPlayers : Component, ICachedReport {
+    public class CachedrptRecoverabletax : Component, ICachedReport {
         
-        public CachedrptTaxPlayers() {
+        public CachedrptRecoverabletax() {
         }
         
         [Browsable(false)]
@@ -169,7 +169,7 @@ namespace HoldingTaxWebApp.AppReports.Tax {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            rptTaxPlayers rpt = new rptTaxPlayers();
+            rptRecoverabletax rpt = new rptRecoverabletax();
             rpt.Site = this.Site;
             return rpt;
         }

@@ -13,10 +13,9 @@ using System.Web.UI.WebControls;
 
 namespace HoldingTaxWebApp.WebForms.Tax
 {
-    public partial class NonTaxPayingList : System.Web.UI.Page
+    public partial class UnPaidTax : System.Web.UI.Page
     {
         private ReportDocument cryRpt;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -28,7 +27,7 @@ namespace HoldingTaxWebApp.WebForms.Tax
         private void cryreportshow()
         {
             cryRpt = new ReportDocument();
-            cryRpt.Load(Server.MapPath("~/AppReports/Tax/rptNonTaxPlayers.rpt"));
+            cryRpt.Load(Server.MapPath("~/AppReports/Tax/rptUnPaidTax.rpt"));
             cryRpt.SetDatabaseLogon("sa", "#PimsOne$1m#", @"119.18.146.107", "DCB_HTAS");
 
             CrystalReportViewer1.ReportSource = cryRpt;
@@ -43,20 +42,20 @@ namespace HoldingTaxWebApp.WebForms.Tax
         private dsTax Getdata()    /*-----Return type is Dataset--------*/
         {
 
-            //int? rptFinancialYearId = Session["FinancialYearId"] != null ? Convert.ToInt32(Session["FinancialYearId"]) : (int?)null;
+            int? rptFinancialYearId = Session["FinancialYearId"] != null ? Convert.ToInt32(Session["FinancialYearId"]) : (int?)null;
 
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("exec [rpt].[spTaxNonpPayingHolders] @FinancialYearId", con);
+            SqlCommand cmd = new SqlCommand("exec [rpt].[spUnPaidTax] @FinancialYearId", con);
             cmd.CommandType = CommandType.Text; // always text
 
-            cmd.Parameters.AddWithValue("@FinancialYearId", SqlDbType.Int).Value = 2;//rptFinancialYearId ?? (object)DBNull.Value;
+            cmd.Parameters.AddWithValue("@FinancialYearId", SqlDbType.Int).Value = rptFinancialYearId ?? (object)DBNull.Value;
 
             try
             {
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 dsTax list = new dsTax(); // same as dataset
-                sda.Fill(list, "dtTaxPayers");
+                sda.Fill(list, "dtRecoverableTax");
                 //for (int i = 0; i < list.dtListOfQuotedItems.Count(); i++)
                 //{
                 //    list.dtListOfQuotedItems.Rows[i][13] = "List of offered Lowest Quoted Items";
