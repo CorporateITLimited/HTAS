@@ -30,7 +30,12 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="card card-custom" id="kt_card_1">
+                    <div class="card-header">
+                        <h3 class="card-title">রিপোর্ট</h3>
+                        <div class="card-toolbar">
 
+                        </div>
+                    </div>
                     <div class="card-body row">
                         <div class="col-md-5">
                             <div class="form-group row">
@@ -48,30 +53,33 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <div class="form-group row">
-                               <label class="col-lg-4 col-form-label text-lg-right" for="ReportType">রিপোর্টের ধরণ</label>
+                                <label class="col-lg-4 col-form-label text-lg-right" for="ReportType">রিপোর্টের ধরণ</label>
                                 <div class="col-lg-8">
-                                   <select id="ReportType" class="form-control">
-                                       <option value="0">-- নির্বাচন করুন --</option>
-                                       <option value="1">সম্ভাব্য আদায়যোগ্য গৃহ কর</option>
-                                       <option value="2">আদায়কৃত গৃহ কর</option>
-                                       <option value="3">অনাদায় কৃত গৃহ কর</option>
-                                       <option value="1">গৃহ কর প্রদানকারী হোল্ডারদের তালিকা</option>
-                                       <option value="5">গৃহ কর প্রদান না করা হোল্ডারদের তালিকা</option>
-                                   </select>
+                                    <select id="ReportType" class="form-control">
+                                        <option value="0">-- নির্বাচন করুন --</option>
+                                        <option value="1">সম্ভাব্য আদায়যোগ্য গৃহ কর</option>
+                                        <option value="2">আদায়কৃত গৃহ কর</option>
+                                        <option value="3">অনাদায় কৃত গৃহ কর</option>
+                                        <option value="1">গৃহ কর প্রদানকারী হোল্ডারদের তালিকা</option>
+                                        <option value="5">গৃহ কর প্রদান না করা হোল্ডারদের তালিকা</option>
+                                    </select>
                                 </div>
 
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <div class="form-group row">
-                                <button type="button" class="btn btn-outline-success btn-md" id="report_button"><i class="fas fa-check"></i>Report</button>
-                                <button class="btn btn-outline-success btn-md" id="reset_button">Reset</button>
 
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-lg-5"></div>
+                            <div class="col-lg-7">
+                                <button type="button" class="btn btn-outline-success btn-md" id="report_button"><i class="fas fa-check"></i>Report</button>
+                                <button class="btn btn-outline-dark btn-md" id="reset_button">Reset</button>
                             </div>
                         </div>
-
                     </div>
                     <div class="card-body row">
                         <div class="col-md-12">
@@ -79,7 +87,7 @@
                             </div>
                         </div>
 
-                   
+
 
                     </div>
                 </div>
@@ -104,9 +112,12 @@
             allowClear: true
         });
 
+        var rptId= @ViewBag.ReportId;
+
          jQuery(document).ready(function () {
-
-
+             debugger;
+             $("#ReportType").val(rptId);
+             $('#ReportType').trigger('change');
 
             $("#report_button").click(function () {
                 var FinancialYearId = parseInt($("#FinancialYearId").val()) || 0;

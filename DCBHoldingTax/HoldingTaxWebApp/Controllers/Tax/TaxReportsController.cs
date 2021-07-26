@@ -39,8 +39,10 @@ namespace HoldingTaxWebApp.Controllers.Tax
         }
 
         // GET: TaxReports
-        public ActionResult Index()
+        public ActionResult Index(int rptId)
         {
+
+            ViewBag.ReportId = rptId;
             if ((Session[CommonConstantHelper.LogInCredentialId] != null)
                    && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
                    && (Session[CommonConstantHelper.UserId] != null))
