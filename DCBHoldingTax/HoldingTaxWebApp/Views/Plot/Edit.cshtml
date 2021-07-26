@@ -1,0 +1,179 @@
+﻿@model HoldingTaxWebApp.Models.Plots.Plot
+@using HoldingTaxWebApp.Helpers
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Sheets{
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
+}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">প্লট </h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted">প্লটের তথ্য  হালনাগাদ করুন</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-custom gutter-b example example-compact">
+                    <div class="card-header">
+                        <h3 class="card-title">প্লটের তথ্য হালনাগাদ করুন</h3>
+                        <div class="card-toolbar">
+                            <div class="example-tools justify-content-center">
+                            </div>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("Edit", "Plot", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_2", role = "form" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.PlotId)
+
+                        <div class="card-body">
+                            <fieldset>
+
+                                <legend>প্লটের সাধারণ তথ্য</legend>
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.AreaId, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.DropDownListFor(model => model.AreaId, null, "-- Select Area --", new
+                                   {
+                                       @class = "form-control",
+                                       @name = "AreaId",
+                                       @id = "AreaId"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.AreaId, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    @Html.LabelFor(model => model.PlotNo, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.PlotNo, new { htmlAttributes = new { @class = "form-control", @name = "PlotNo", placeholder = "Enter Plot No", @id = "PlotNo" } })
+                                        @Html.ValidationMessageFor(model => model.PlotNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.RoadNo, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.RoadNo, new { htmlAttributes = new { @class = "form-control", @name = "RoadNo", placeholder = "Enter Road No", @id = "RoadNo" } })
+                                        @Html.ValidationMessageFor(model => model.RoadNo, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    @Html.LabelFor(model => model.RoadName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.RoadName, new { htmlAttributes = new { @class = "form-control", @name = "RoadName", placeholder = "Enter Road Name", @id = "RoadName" } })
+                                        @Html.ValidationMessageFor(model => model.RoadName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.TotalArea, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.TotalArea, new { htmlAttributes = new { @class = "form-control", @name = "TotalArea", placeholder = "Enter Total Area", @id = "TotalArea" } })
+                                        @Html.ValidationMessageFor(model => model.TotalArea, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-1">
+                                         <input readonly class="form-control text-lg-left border-0" value="বর্গফুট" />
+                                    </div>
+
+
+                                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.DropDownListFor(model => model.IsActive, null, new
+                                   {
+                                       @class = "form-control"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                            </fieldset>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>হালনাগাদ করুন</button>
+                                <button type="button" onclick="window.location.href = '/Plot/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+
+    <script>
+
+        $('#AreaId').select2({
+            placeholder: "-- নির্বাচন করুন  --",
+            allowClear: true
+        });
+
+        jQuery(document).ready(function () {
+            //$("#EmpolyeeId").change(function () {
+            //    var empTxt = $("#EmpolyeeId option:selected").text().css("color", "black");
+            //    $("#UserFullName").val("");
+            //    $("#UserFullName").val(empTxt);
+            //});
+
+            $("#kt_form_2").validate({
+                rules: {
+                    AreaId: {
+                        required: true
+                    },
+                    PlotNo: {
+                        required: true
+                    },
+                    RoadNo: {
+                        required: true
+                    },
+                    TotalArea: {
+                        required: true,
+                        number: true
+                    }
+
+                },
+                messages: {
+                    AreaId: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    PlotNo: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    RoadNo: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    TotalArea: {
+                        required: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                        number: "এলাকার আয়তন ইংরেজিতে দিন"
+                    }
+                },
+                invalidHandler: function (event, validator) {
+                    KTUtil.scrollTop();
+                }
+            });
+        });
+    </script>
+}
+
+

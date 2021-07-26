@@ -2402,20 +2402,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\wizard-holding.css" />
     <Content Include="Global.asax" />
-    <Content Include="Images\banner.jfif" />
-    <Content Include="Images\banner_bg.jpg" />
-    <Content Include="Images\banner_left.jpg" />
-    <Content Include="Images\bgDown.png" />
-    <Content Include="Images\bgMiddle.png" />
-    <Content Include="Images\bgUp.png" />
-    <Content Include="Images\demo4-bg-footer.jpg" />
-    <Content Include="Images\footer.html" />
     <Content Include="Images\logo.gif" />
     <Content Include="Images\Logo_CBD.jpg" />
-    <Content Include="Images\Padma_Bridge_17.jpg" />
-    <Content Include="Images\PIMS-1-1140px.png-green.png" />
-    <Content Include="Images\PIMS-1-960px.png" />
-    <Content Include="Images\top_nav_bg.jpg" />
     <Content Include="libman.json" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -4827,6 +4815,7 @@
     <Compile Include="Controllers\Holding\HoldingController.cs" />
     <Compile Include="Controllers\Holding\NoticeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Plots\PlotController.cs" />
     <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
     <Compile Include="Controllers\Tax\HoldingTaxController.cs" />
@@ -5109,6 +5098,10 @@
     <Content Include="Views\Notice\Index.cshtml" />
     <Content Include="Views\Notice\Create.cshtml" />
     <Content Include="Views\Notice\NoticeReport.cshtml" />
+    <Content Include="Views\Plot\Index.cshtml" />
+    <Content Include="Views\Plot\Details.cshtml" />
+    <Content Include="Views\Plot\Create.cshtml" />
+    <Content Include="Views\Plot\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
