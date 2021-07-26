@@ -10,7 +10,7 @@ namespace HoldingTaxWebApp.Models.Plots
     {
         public int PlotId { get; set; }
 
-        [Display(Name = "প্লট নং")]
+        [Display(Name = "প্লট নম্বর")]
         public string PlotIdNumber { get; set; }
 
         [Display(Name = "এলাকার নাম")]
@@ -19,10 +19,10 @@ namespace HoldingTaxWebApp.Models.Plots
         [Display(Name = "এলাকার নাম")]
         public string AreaName { get; set; }
 
-        [Display(Name = "রাস্তা নং")]
+        [Display(Name = "রাস্তা নম্বর")]
         public string RoadNo { get; set; }
 
-        [Display(Name = "প্লট নং")]
+        [Display(Name = "প্লট নম্বর")]
         public string PlotNo { get; set; }
 
         [Display(Name = "এলাকার আয়তন")]
