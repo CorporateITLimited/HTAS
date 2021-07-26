@@ -4819,6 +4819,7 @@
     <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
     <Compile Include="Controllers\Tax\HoldingTaxController.cs" />
+    <Compile Include="Controllers\Tax\TaxReportsController.cs" />
     <Compile Include="Controllers\Users\DesignationController.cs" />
     <Compile Include="Controllers\Users\EmployeeController.cs" />
     <Compile Include="Controllers\Users\RoleController.cs" />
@@ -5102,6 +5103,8 @@
     <Content Include="Views\Plot\Details.cshtml" />
     <Content Include="Views\Plot\Create.cshtml" />
     <Content Include="Views\Plot\Edit.cshtml" />
+    <Content Include="Views\Home\ReportIndex.cshtml" />
+    <Content Include="Views\TaxReports\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -5116,7 +5119,6 @@
     <Folder Include="Documents\Issues\" />
     <Folder Include="Documents\Plots\" />
     <Folder Include="Models\Users\Plot\" />
-    <Folder Include="Reports\Tax\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
