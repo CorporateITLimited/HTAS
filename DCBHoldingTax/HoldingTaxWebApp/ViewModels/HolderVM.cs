@@ -140,73 +140,78 @@ namespace HoldingTaxWebApp.ViewModels
 
         [Display(Name = "তারিখ তৈরি করুন")]
         public DateTime? CreateDate { get; set; }
-        [Display(Name = "দ্বারা সৃষ্টি ")]
+        [Display(Name = "তৈরিকারী")]
         public int? CreatedBy { get; set; }
-
-        [Display(Name = "ব্যবহারকারীর নাম দ্বারা নির্মিত")]
-        public string CreatedByUsername { get; set; }
-
-        [Display(Name = "Updated Date ")]
+        [Display(Name = "হালনাগাদকরণ")]
         public DateTime? LastUpdated { get; set; }
-
+        [Display(Name = "হালনাগাদকরণ করেছেন")]
         public int? LastUpdatedBy { get; set; }
-
-        [Display(Name = "Updated By")]
-        public string UpdatedByUsername { get; set; }
-
-        [Display(Name = "Status")]
+        [Display(Name = "সক্রিয়")]
         public bool? IsActive { get; set; }
-
+        [Display(Name = "মুছে ফেলা ")]
         public bool? IsDeleted { get; set; }
 
-        [Display(Name = "Create Date")]
+        [Display(Name = "তারিখ তৈরি করুন")]
         public string StringCreateDate { get; set; }
 
-        [Display(Name = "Updated Date ")]
+        [Display(Name = "হালনাগাদকরণ")]
         public string StringLastUpdated { get; set; }
 
-        [Display(Name = "Road No ")]
+        [Display(Name = "রোড নং")]
         public string RoadNo { get; set; }
 
-        [Display(Name = "Road No ")]
+        [Display(Name = "রোড নং ")]
         public string RoadName { get; set; }
 
 
 
-        [Display(Name = "AllocationLetterNo")]
+        [Display(Name = "বরাদ্দপত্র সংখ্যা")]
         public string AllocationLetterNo { get; set; }
-        [Display(Name = "NamjariLetterNo")]
+        [Display(Name = "নামজারি চিঠি নং")]
         public string NamjariLetterNo { get; set; }
-        [Display(Name = "Allocation Date")]
+        [Display(Name = "বরাদ্দের তারিখ")]
         public DateTime? AllocationDate { get; set; }
 
-        [Display(Name = "Allocation Date")]
+        [Display(Name = "বরাদ্দের তারিখ")]
         public string StringAllocationDate { get; set; }
-        [Display(Name = "Namjari Date")]
+        [Display(Name = "নামজারি তারিখ")]
         public DateTime? NamjariDate { get; set; }
 
-        [Display(Name = "Namjari Date")]
+        [Display(Name = "নামজারি তারিখ")]
         public string StringNamjariDate { get; set; }
-        [Display(Name = "RecordCorrection Date")]
+        [Display(Name = "রেকর্ড সংশোধনের তারিখ")]
         public DateTime? RecordCorrectionDate { get; set; }
 
-        [Display(Name = "RecordCorrection Date")]
+        [Display(Name = "রেকর্ড সংশোধনের তারিখ")]
         public string StringRecordCorrectionDate { get; set; }
+        [Display(Name = "এরিয়া প্লট ফ্ল্যাট ডেটা")]
         public string AreaPlotFlatData { get; set; }
 
-
+        [Display(Name = "প্লট মালিকের নাম")]
         public string PlotOwnerName { get; set; }
+        [Display(Name = "ইজারা তারিখ")]
         public DateTime? LeaseDate { get; set; }
+        [Display(Name = "ইজারা তারিখ")]
         public string StringLeaseDate { get; set; }
+        [Display(Name = "ইজারা সময়কাল")]
         public int? LeasePeriod { get; set; }
+        [Display(Name = "ইজারা সমাপ্তির তারিখ")]
         public DateTime? LeaseExpiryDate { get; set; }
+        [Display(Name = "ইজারা সমাপ্তির তারিখ")]
         public string StringLeaseExpiryDate { get; set; }
+        [Display(Name = "প্রথম অনুমোদনের তারিখ")]
         public DateTime? FirstApprovalDate { get; set; }
+        [Display(Name = "প্রথম অনুমোদনের তারিখ")]
         public string StringFirstApprovalDate { get; set; }
+        [Display(Name = "প্রথম অনুমোদনের চিঠি")]
         public string FirstApprovalLetterNo { get; set; }
+        [Display(Name = "শেষ অনুমোদনের তারিখ")]
         public DateTime? LastApprovalDate { get; set; }
+        [Display(Name = "শেষ অনুমোদনের তারিখ")]
         public string StringLastApprovalDate { get; set; }
+        [Display(Name = "সর্বশেষ অনুমোদনের চিঠি")]
         public string LastApprovalLetterNo { get; set; }
+     
 
 
 
