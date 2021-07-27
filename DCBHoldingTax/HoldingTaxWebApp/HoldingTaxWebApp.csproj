@@ -2402,6 +2402,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\wizard-holding.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Cant-D4_white.png" />
+    <Content Include="Images\Cant-D4_white_logoless.png" />
+    <Content Include="Images\Cantonment-Dhaka4.jpg" />
+    <Content Include="Images\Cantonment-Dhaka4.png" />
     <Content Include="Images\dcb_1_eng_bn.jpg" />
     <Content Include="Images\dcb_1_eng_bn.png" />
     <Content Include="Images\dcb_2_bn.jpg" />
