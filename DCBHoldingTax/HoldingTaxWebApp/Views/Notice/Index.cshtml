@@ -17,19 +17,6 @@
                 <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকর সংক্রান্ত বিজ্ঞপ্তি </h5>
             </div>
         </div>
-        <div class="d-flex align-items-center flex-wrap">
-            @if (TempData["SM"] != null)
-            {
-                <div class="alert alert-custom alert-success fade show mb-5" role="alert">
-                    <div class="alert-text">@TempData["SM"]</div>
-                    <div class="alert-close">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true"><i class="ki ki-close"></i></span>
-                        </button>
-                    </div>
-                </div>
-            }
-        </div>
         <div class="d-flex align-items-center">
             <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
         </div>
@@ -38,6 +25,18 @@
 
 <div class="d-flex flex-column-fluid">
     <div class="container">
+
+        @if (TempData["SM"] != null)
+        {
+        <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
+            <div class="alert-text font-weight-bolder" style="color: #0BB783;">@TempData["SM"]</div>
+            <div class="alert-close">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                </button>
+            </div>
+        </div>
+        }
         <div class="card card-custom">
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
                 <div class="card-title">
@@ -102,45 +101,45 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FinancialYear)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AreaName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.HolderName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AreaPlotFlatData)
-                                </td>
-                                <td>
-                                    @if (!string.IsNullOrWhiteSpace(item.NoticeName_1))
-                                    {
-                                        <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.Notice_1, @HID = @item.HolderId }))">
-                                            @Html.DisplayFor(modelItem => item.NoticeName_1)
-                                        </a>
-                                    }
-                                </td>
-                                <td>
-                                    @if (!string.IsNullOrWhiteSpace(item.NoticeName_2))
-                                    {
-                                        <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.Notice_2, @HID = @item.HolderId }))">
-                                            @Html.DisplayFor(modelItem => item.NoticeName_2)
-                                        </a>
-                                    }
-                                </td>
-                                <td>
-                                    @if (!string.IsNullOrWhiteSpace(item.NoticeName_3))
-                                    {
-                                        <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.Notice_3, @HID = @item.HolderId }))">
-                                            @Html.DisplayFor(modelItem => item.NoticeName_3)
-                                        </a>
-                                    }
-                                </td>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FinancialYear)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AreaName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HolderName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AreaPlotFlatData)
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrWhiteSpace(item.NoticeName_1))
+                                        {
+                                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.Notice_1, @HID = @item.HolderId }))">
+                                                @Html.DisplayFor(modelItem => item.NoticeName_1)
+                                            </a>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrWhiteSpace(item.NoticeName_2))
+                                        {
+                                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.Notice_2, @HID = @item.HolderId }))">
+                                                @Html.DisplayFor(modelItem => item.NoticeName_2)
+                                            </a>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrWhiteSpace(item.NoticeName_3))
+                                        {
+                                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.Notice_3, @HID = @item.HolderId }))">
+                                                @Html.DisplayFor(modelItem => item.NoticeName_3)
+                                            </a>
+                                        }
+                                    </td>
 
-                            </tr>
+                                </tr>
                             }
                         </tbody>
 
