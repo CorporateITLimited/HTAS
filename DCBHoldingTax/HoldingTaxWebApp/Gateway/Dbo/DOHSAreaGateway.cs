@@ -7,8 +7,9 @@ using HoldingTaxWebApp.Models;
 using System.Data.SqlClient;
 using System.Data;
 using HoldingTaxWebApp.Helpers;
+using HoldingTaxWebApp.Models.DBO;
 
-namespace HoldingTaxWebApp.Gateway.Dbo
+namespace HoldingTaxWebApp.Gateway.DBO
 {
     public class DOHSAreaGateway : DefaultGateway
     {

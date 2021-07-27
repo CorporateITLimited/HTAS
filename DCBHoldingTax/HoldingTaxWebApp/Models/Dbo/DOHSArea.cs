@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace HoldingTaxWebApp.Models.Dbo
+namespace HoldingTaxWebApp.Models.DBO
 {
     public class DOHSArea
     {

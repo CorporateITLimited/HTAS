@@ -4826,6 +4826,7 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DBO\DOHSAreaController.cs" />
     <Compile Include="Controllers\DBO\IssueController.cs" />
     <Compile Include="Controllers\Holding\HolderClientController.cs" />
     <Compile Include="Controllers\Holding\HoldingController.cs" />
@@ -5126,6 +5127,8 @@
     <Content Include="Views\TaxReports\rptUnPaidTax.cshtml" />
     <Content Include="Views\TaxReports\rptTaxPlayers.cshtml" />
     <Content Include="Views\TaxReports\rptNonTaxPlayers.cshtml" />
+    <Content Include="Views\DOHSArea\Index.cshtml" />
+    <Content Include="Views\DOHSArea\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
