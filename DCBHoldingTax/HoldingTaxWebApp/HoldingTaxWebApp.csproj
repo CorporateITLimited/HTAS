@@ -2449,6 +2449,7 @@
     <Content Include="AppDataSet\dsTax.xsc">
       <DependentUpon>dsTax.xsd</DependentUpon>
     </Content>
+    <Content Include="Scripts\printThis.js" />
     <Content Include="WebForms\Tax\GetHoldingTax.aspx" />
     <Content Include="WebForms\Tax\leterThree.aspx" />
     <Content Include="WebForms\Tax\letterOne.aspx" />
