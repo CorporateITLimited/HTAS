@@ -34,7 +34,7 @@ namespace HoldingTaxWebApp.WebForms.Tax
 
             //done for two separate subreport ==================================================
             int? rptValueAreaId = 1;
-            int? rptFinancialYearId = 3;
+            int? rptFinancialYearId = 2;
             int? rptHolderId = 1;
             int? rptHoldingTaxId = null;
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);

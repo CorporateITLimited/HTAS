@@ -971,6 +971,26 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             private global::System.Data.DataColumn columnOwnerType;
             
+            private global::System.Data.DataColumn columnStartingDate;
+            
+            private global::System.Data.DataColumn columnFEndDate;
+            
+            private global::System.Data.DataColumn columnoldDate;
+            
+            private global::System.Data.DataColumn columnEndOfYear;
+            
+            private global::System.Data.DataColumn columnDuesPreviousYear;
+            
+            private global::System.Data.DataColumn columnDuesFineAmount;
+            
+            private global::System.Data.DataColumn columnTotalTaxWithSurcharge;
+            
+            private global::System.Data.DataColumn columnTotalTaxWithSurchargeDue;
+            
+            private global::System.Data.DataColumn columnrebateNew;
+            
+            private global::System.Data.DataColumn columnTotalNet;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtHoldingTaxDataTable() {
@@ -1462,6 +1482,86 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn StartingDateColumn {
+                get {
+                    return this.columnStartingDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FEndDateColumn {
+                get {
+                    return this.columnFEndDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn oldDateColumn {
+                get {
+                    return this.columnoldDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn EndOfYearColumn {
+                get {
+                    return this.columnEndOfYear;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DuesPreviousYearColumn {
+                get {
+                    return this.columnDuesPreviousYear;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DuesFineAmountColumn {
+                get {
+                    return this.columnDuesFineAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalTaxWithSurchargeColumn {
+                get {
+                    return this.columnTotalTaxWithSurcharge;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalTaxWithSurchargeDueColumn {
+                get {
+                    return this.columnTotalTaxWithSurchargeDue;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn rebateNewColumn {
+                get {
+                    return this.columnrebateNew;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalNetColumn {
+                get {
+                    return this.columnTotalNet;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1551,7 +1651,17 @@ namespace HoldingTaxWebApp.AppDataSet {
                         decimal OwnFlConstantArea, 
                         decimal OwnFlConstantTax, 
                         decimal OwnFlConstantPerSq, 
-                        string OwnerType) {
+                        string OwnerType, 
+                        System.DateTime StartingDate, 
+                        System.DateTime FEndDate, 
+                        System.DateTime oldDate, 
+                        System.DateTime EndOfYear, 
+                        decimal DuesPreviousYear, 
+                        decimal DuesFineAmount, 
+                        decimal TotalTaxWithSurcharge, 
+                        decimal TotalTaxWithSurchargeDue, 
+                        decimal rebateNew, 
+                        decimal TotalNet) {
                 dtHoldingTaxRow rowdtHoldingTaxRow = ((dtHoldingTaxRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1610,7 +1720,17 @@ namespace HoldingTaxWebApp.AppDataSet {
                         OwnFlConstantArea,
                         OwnFlConstantTax,
                         OwnFlConstantPerSq,
-                        OwnerType};
+                        OwnerType,
+                        StartingDate,
+                        FEndDate,
+                        oldDate,
+                        EndOfYear,
+                        DuesPreviousYear,
+                        DuesFineAmount,
+                        TotalTaxWithSurcharge,
+                        TotalTaxWithSurchargeDue,
+                        rebateNew,
+                        TotalNet};
                 rowdtHoldingTaxRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtHoldingTaxRow);
                 return rowdtHoldingTaxRow;
@@ -1690,6 +1810,16 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnOwnFlConstantTax = base.Columns["OwnFlConstantTax"];
                 this.columnOwnFlConstantPerSq = base.Columns["OwnFlConstantPerSq"];
                 this.columnOwnerType = base.Columns["OwnerType"];
+                this.columnStartingDate = base.Columns["StartingDate"];
+                this.columnFEndDate = base.Columns["FEndDate"];
+                this.columnoldDate = base.Columns["oldDate"];
+                this.columnEndOfYear = base.Columns["EndOfYear"];
+                this.columnDuesPreviousYear = base.Columns["DuesPreviousYear"];
+                this.columnDuesFineAmount = base.Columns["DuesFineAmount"];
+                this.columnTotalTaxWithSurcharge = base.Columns["TotalTaxWithSurcharge"];
+                this.columnTotalTaxWithSurchargeDue = base.Columns["TotalTaxWithSurchargeDue"];
+                this.columnrebateNew = base.Columns["rebateNew"];
+                this.columnTotalNet = base.Columns["TotalNet"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1809,6 +1939,26 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnOwnFlConstantPerSq);
                 this.columnOwnerType = new global::System.Data.DataColumn("OwnerType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOwnerType);
+                this.columnStartingDate = new global::System.Data.DataColumn("StartingDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStartingDate);
+                this.columnFEndDate = new global::System.Data.DataColumn("FEndDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFEndDate);
+                this.columnoldDate = new global::System.Data.DataColumn("oldDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnoldDate);
+                this.columnEndOfYear = new global::System.Data.DataColumn("EndOfYear", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEndOfYear);
+                this.columnDuesPreviousYear = new global::System.Data.DataColumn("DuesPreviousYear", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDuesPreviousYear);
+                this.columnDuesFineAmount = new global::System.Data.DataColumn("DuesFineAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDuesFineAmount);
+                this.columnTotalTaxWithSurcharge = new global::System.Data.DataColumn("TotalTaxWithSurcharge", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalTaxWithSurcharge);
+                this.columnTotalTaxWithSurchargeDue = new global::System.Data.DataColumn("TotalTaxWithSurchargeDue", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalTaxWithSurchargeDue);
+                this.columnrebateNew = new global::System.Data.DataColumn("rebateNew", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnrebateNew);
+                this.columnTotalNet = new global::System.Data.DataColumn("TotalNet", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalNet);
                 this.columnHoldingTaxId.AutoIncrement = true;
                 this.columnHoldingTaxId.AutoIncrementSeed = -1;
                 this.columnHoldingTaxId.AutoIncrementStep = -1;
@@ -4717,6 +4867,167 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime StartingDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtHoldingTax.StartingDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'StartingDate\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.StartingDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FEndDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtHoldingTax.FEndDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FEndDate\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.FEndDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime oldDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtHoldingTax.oldDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'oldDate\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.oldDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime EndOfYear {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtHoldingTax.EndOfYearColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EndOfYear\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.EndOfYearColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal DuesPreviousYear {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.DuesPreviousYearColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DuesPreviousYear\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.DuesPreviousYearColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal DuesFineAmount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.DuesFineAmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DuesFineAmount\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.DuesFineAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TotalTaxWithSurcharge {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.TotalTaxWithSurchargeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalTaxWithSurcharge\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.TotalTaxWithSurchargeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TotalTaxWithSurchargeDue {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.TotalTaxWithSurchargeDueColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalTaxWithSurchargeDue\' in table \'dtHoldingTax\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.TotalTaxWithSurchargeDueColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal rebateNew {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.rebateNewColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'rebateNew\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.rebateNewColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TotalNet {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.TotalNetColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalNet\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.TotalNetColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTotalRentNull() {
                 return this.IsNull(this.tabledtHoldingTax.TotalRentColumn);
             }
@@ -5361,6 +5672,126 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetOwnerTypeNull() {
                 this[this.tabledtHoldingTax.OwnerTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsStartingDateNull() {
+                return this.IsNull(this.tabledtHoldingTax.StartingDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetStartingDateNull() {
+                this[this.tabledtHoldingTax.StartingDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFEndDateNull() {
+                return this.IsNull(this.tabledtHoldingTax.FEndDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFEndDateNull() {
+                this[this.tabledtHoldingTax.FEndDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsoldDateNull() {
+                return this.IsNull(this.tabledtHoldingTax.oldDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetoldDateNull() {
+                this[this.tabledtHoldingTax.oldDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsEndOfYearNull() {
+                return this.IsNull(this.tabledtHoldingTax.EndOfYearColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetEndOfYearNull() {
+                this[this.tabledtHoldingTax.EndOfYearColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDuesPreviousYearNull() {
+                return this.IsNull(this.tabledtHoldingTax.DuesPreviousYearColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDuesPreviousYearNull() {
+                this[this.tabledtHoldingTax.DuesPreviousYearColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDuesFineAmountNull() {
+                return this.IsNull(this.tabledtHoldingTax.DuesFineAmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDuesFineAmountNull() {
+                this[this.tabledtHoldingTax.DuesFineAmountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotalTaxWithSurchargeNull() {
+                return this.IsNull(this.tabledtHoldingTax.TotalTaxWithSurchargeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotalTaxWithSurchargeNull() {
+                this[this.tabledtHoldingTax.TotalTaxWithSurchargeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotalTaxWithSurchargeDueNull() {
+                return this.IsNull(this.tabledtHoldingTax.TotalTaxWithSurchargeDueColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotalTaxWithSurchargeDueNull() {
+                this[this.tabledtHoldingTax.TotalTaxWithSurchargeDueColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsrebateNewNull() {
+                return this.IsNull(this.tabledtHoldingTax.rebateNewColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetrebateNewNull() {
+                this[this.tabledtHoldingTax.rebateNewColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotalNetNull() {
+                return this.IsNull(this.tabledtHoldingTax.TotalNetColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotalNetNull() {
+                this[this.tabledtHoldingTax.TotalNetColumn] = global::System.Convert.DBNull;
             }
         }
         
