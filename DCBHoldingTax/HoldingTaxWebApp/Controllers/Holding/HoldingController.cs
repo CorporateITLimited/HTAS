@@ -187,6 +187,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
+                if (hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any())
+                {
+                    status = "কমপক্ষে একটি ফ্ল্যাটের বিবরণ সাবমিট করুন";
+                    return new JsonResult { Data = new { status } };
+                }
+
+
                 ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", hvm.AreaId);
                 ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo", hvm.PlotId);
                 ViewBag.OwnershipSourceId = new SelectList(_ownershipSourceManager.GetAllOwnershipSource(), "OwnershipSourceId", "SourceName", hvm.OwnershipSourceId);
@@ -552,7 +559,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 holder.IsDeleted = false;
 
                 bool isValid = true;
-                bool isNullValid = hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any() ? false : true;
+                bool isNullValid = true; //hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any() ? false : true;
                 if (isNullValid)
                 {
                     if (hvm.HolderFlatList.Count() == 1)
@@ -560,12 +567,19 @@ namespace HoldingTaxWebApp.Controllers.Holding
                         foreach (HolderFlat item in hvm.HolderFlatList)
                         {
                             isValid = item.HolderFlatId == 0 && item.FlorNo == 0 && string.IsNullOrWhiteSpace(item.FlatNo) && item.OwnOrRent == 1 && item.MonthlyRent == 0
-                                    && item.SelfOwn == 1 && string.IsNullOrWhiteSpace(item.OwnerName)
+                                    && item.SelfOwn == 1 && string.IsNullOrWhiteSpace(item.OwnerName) && item.FlatArea == 0
                                 ? false
                                 : true;
                         }
                     }
                 }
+
+                if (!isValid)
+                {
+                    status = "কমপক্ষে একটি ফ্ল্যাট সঠিক  বিবরণসহ  সাবমিট করুন ";
+                    return new JsonResult { Data = new { status } };
+                }
+
 
                 int holderId = _holdingManager.InsertHolder(holder);
 
@@ -779,6 +793,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 if (hvm.HolderId <= 0)
                 {
                     status = "নিরাপত্তা ভঙ্গ";
+                    return new JsonResult { Data = new { status } };
+                }
+
+
+                if (hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any())
+                {
+                    status = "কমপক্ষে একটি ফ্ল্যাটের বিবরণ সাবমিট করুন";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1162,7 +1183,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 holder.IsDeleted = null;
 
                 bool isValid = true;
-                bool isNullValid = hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any() ? false : true;
+                bool isNullValid = true;//hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any() ? false : true;
                 if (isNullValid)
                 {
                     if (hvm.HolderFlatList.Count() == 1)
@@ -1170,12 +1191,20 @@ namespace HoldingTaxWebApp.Controllers.Holding
                         foreach (HolderFlat item in hvm.HolderFlatList)
                         {
                             isValid = item.HolderFlatId == 0 && item.FlorNo == 0 && string.IsNullOrWhiteSpace(item.FlatNo) && item.OwnOrRent == 1 && item.MonthlyRent == 0
-                                    && item.SelfOwn == 1 && string.IsNullOrWhiteSpace(item.OwnerName)
+                                    && item.SelfOwn == 1 && string.IsNullOrWhiteSpace(item.OwnerName) && item.FlatArea == 0
                                 ? false
                                 : true;
                         }
                     }
                 }
+
+
+                if (!isValid)
+                {
+                    status = "কমপক্ষে একটি ফ্ল্যাট সঠিক  বিবরণসহ  সাবমিট করুন ";
+                    return new JsonResult { Data = new { status } };
+                }
+
 
                 int holderId = _holdingManager.UpdateHolder(holder);
 
