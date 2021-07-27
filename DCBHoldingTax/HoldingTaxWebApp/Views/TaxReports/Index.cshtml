@@ -62,7 +62,7 @@
                                         <option value="1">সম্ভাব্য আদায়যোগ্য গৃহ কর</option>
                                         <option value="2">আদায়কৃত গৃহ কর</option>
                                         <option value="3">অনাদায় কৃত গৃহ কর</option>
-                                        <option value="1">গৃহ কর প্রদানকারী হোল্ডারদের তালিকা</option>
+                                        <option value="4">গৃহ কর প্রদানকারী হোল্ডারদের তালিকা</option>
                                         <option value="5">গৃহ কর প্রদান না করা হোল্ডারদের তালিকা</option>
                                     </select>
                                 </div>
@@ -123,41 +123,26 @@
                 var FinancialYearId = parseInt($("#FinancialYearId").val()) || 0;
                 var reportType = parseInt($("#ReportType").val()) || 0;
 
-                if (reportType === 1 && FinancialYearId !== 0) {
-                    $(".search-result").load("/TaxReports/rptApprovedSupplierItemList", { FinancialYearId: FinancialYearId });
+                if (reportType === 1) {
+                    $(".search-result").load("/TaxReports/rptRecoverabletax", { FinancialYearId: FinancialYearId });
                 }
-                else if (reportType === 2 && FinancialYearId !== 0) {
-                    $(".search-result").load("/TaxReports/rptNonApprovedSupplierItemList", { FinancialYearId: FinancialYearId });
+                else if (reportType === 2) {
+                    $(".search-result").load("/TaxReports/rptPaidTax", { FinancialYearId: FinancialYearId });
                 }
-                else if (reportType === 3 && FinancialYearId !== 0) {
-                    $(".search-result").load("/TaxReports/rptLocalApprovedItemList", { FinancialYearId: FinancialYearId });
+                else if (reportType === 3) {
+                    $(".search-result").load("/TaxReports/rptUnPaidTax", { FinancialYearId: FinancialYearId });
                 }
-                else if (reportType === 4 && FinancialYearId !== 0) {
-                    $(".search-result").load("/TaxReports/rptSeparateBearingItemsList", { FinancialYearId: FinancialYearId });
-                }
-
-                else if (reportType === 5 && FinancialYearId !== 0) {
-                    $(".search-result").load("/TaxReports/rptSurplusItems", { FinancialYearId: FinancialYearId });
+                else if (reportType === 4) {
+                    $(".search-result").load("/TaxReports/rptTaxPlayers", { FinancialYearId: FinancialYearId });
                 }
 
-                else if (reportType === 6 && FinancialYearId !== 0) {
-                    $(".search-result").load("/TaxReports/rptShopMadeItem", { FinancialYearId: FinancialYearId });
-
+                else if (reportType === 5) {
+                    $(".search-result").load("/TaxReports/rptNonTaxPlayers", { FinancialYearId: FinancialYearId });
                 }
-                else if (reportType === 7 && FinancialYearId !== 0) {
-                    $(".search-result").load("/TaxReports/rptSupplierwiseItem", { FinancialYearId: FinancialYearId });
 
-                }
-                else if (reportType === 8 && FinancialYearId !== 0) {
-                    $(".search-result").load("/TaxReports/rptItemwiseSupplier", { FinancialYearId: FinancialYearId });
 
-                }
-                else if (reportType === 9 && FinancialYearId !== 0) {
-                    $(".search-result").load("/TaxReports/rptSingleApprovedItem", { FinancialYearId: FinancialYearId });
-
-                }
                 else {
-                    Swal.fire('Error!', 'Please Select PCase Number and Report Type.', 'error')
+                    Swal.fire('Error!', 'দয়াকরে রিপোটের ধরণ নির্বাচন করুন |', 'error')
                 }
 
             });

@@ -36,14 +36,14 @@ namespace HoldingTaxWebApp.WebForms.Tax
             dsTax tenderdata = Getdata(); // datasetname
             cryRpt.SetDataSource(tenderdata);
 
-            CrystalReportViewer1.Zoom(100);
+            CrystalReportViewer1.Zoom(80);
             CrystalReportViewer1.ToolPanelView = ToolPanelViewType.None;
             CrystalReportViewer1.HasExportButton = false;
         }
         private dsTax Getdata()    /*-----Return type is Dataset--------*/
         {
-            int? rptFinancialYearId = 1;
-            //int? rptFinancialYearId = Session["FinancialYearId"] != null ? Convert.ToInt32(Session["FinancialYearId"]) : (int?)null;
+            //int? rptFinancialYearId = 1;
+            int? rptFinancialYearId = Session["FinancialYearId"] != null ? Convert.ToInt32(Session["FinancialYearId"]) : (int?)null;
 
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);

@@ -5105,6 +5105,11 @@
     <Content Include="Views\Plot\Edit.cshtml" />
     <Content Include="Views\Home\ReportIndex.cshtml" />
     <Content Include="Views\TaxReports\Index.cshtml" />
+    <Content Include="Views\TaxReports\rptRecoverabletax.cshtml" />
+    <Content Include="Views\TaxReports\rptPaidTax.cshtml" />
+    <Content Include="Views\TaxReports\rptUnPaidTax.cshtml" />
+    <Content Include="Views\TaxReports\rptTaxPlayers.cshtml" />
+    <Content Include="Views\TaxReports\rptNonTaxPlayers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

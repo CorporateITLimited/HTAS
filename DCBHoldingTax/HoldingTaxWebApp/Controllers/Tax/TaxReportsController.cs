@@ -51,7 +51,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
                 {
                     clsFinancialYear year = new clsFinancialYear();
                     ViewBag.FinancialYearId = new SelectList(_FinancialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
-                    
+
                     return View(year);
                 }
                 else
@@ -138,5 +138,71 @@ namespace HoldingTaxWebApp.Controllers.Tax
                 return View();
             }
         }
+
+
+        #region For Report Added by Hasan
+        public ActionResult rptRecoverabletax(int? FinancialYearId)
+        {
+            if(FinancialYearId == 0)
+            {
+                Session["FinancialYearId"] = null;
+            }
+            else
+            {
+                Session["FinancialYearId"] = FinancialYearId;
+            }
+            
+            return View();
+        }
+        public ActionResult rptPaidTax(int? FinancialYearId)
+        {
+            if (FinancialYearId == 0)
+            {
+                Session["FinancialYearId"] = null;
+            }
+            else
+            {
+                Session["FinancialYearId"] = FinancialYearId;
+            }
+            return View();
+        }
+        public ActionResult rptUnPaidTax(int? FinancialYearId)
+        {
+            if (FinancialYearId == 0)
+            {
+                Session["FinancialYearId"] = null;
+            }
+            else
+            {
+                Session["FinancialYearId"] = FinancialYearId;
+            }
+            return View();
+        }
+        public ActionResult rptTaxPlayers(int? FinancialYearId)
+        {
+            if (FinancialYearId == 0)
+            {
+                Session["FinancialYearId"] = null;
+            }
+            else
+            {
+                Session["FinancialYearId"] = FinancialYearId;
+            }
+            return View();
+        }
+        public ActionResult rptNonTaxPlayers(int? FinancialYearId)
+        {
+            if (FinancialYearId == 0)
+            {
+                Session["FinancialYearId"] = null;
+            }
+            else
+            {
+                Session["FinancialYearId"] = FinancialYearId;
+            }
+            return View();
+        }
+        #endregion
+
     }
 }
