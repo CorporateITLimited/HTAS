@@ -2402,8 +2402,23 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\wizard-holding.css" />
     <Content Include="Global.asax" />
-    <Content Include="Images\logo.gif" />
-    <Content Include="Images\Logo_CBD.jpg" />
+    <Content Include="Images\dcb_1_eng_bn.jpg" />
+    <Content Include="Images\dcb_1_eng_bn.png" />
+    <Content Include="Images\dcb_2_bn.jpg" />
+    <Content Include="Images\dcb_2_bn.png" />
+    <Content Include="Images\dcb_3_eng.jpg" />
+    <Content Include="Images\dcb_3_eng.png" />
+    <Content Include="Images\dcb_4_eng_bn.jpg" />
+    <Content Include="Images\dcb_4_eng_bn.png" />
+    <Content Include="Images\dcb_5_bn.jpg" />
+    <Content Include="Images\dcb_5_bn.png" />
+    <Content Include="Images\dcb_6_eng.jpg" />
+    <Content Include="Images\dcb_6_eng.png" />
+    <Content Include="Images\dcb_logo_.jpg" />
+    <Content Include="Images\dcb_logo_.png" />
+    <Content Include="Images\dcb_logo_ico_.ico" />
+    <Content Include="Images\logo_BD.gif" />
+    <Content Include="Images\Logo_DCB.jpg" />
     <Content Include="libman.json" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -2434,6 +2449,7 @@
     <Content Include="AppDataSet\dsTax.xsc">
       <DependentUpon>dsTax.xsd</DependentUpon>
     </Content>
+    <Content Include="Scripts\printThis.js" />
     <Content Include="WebForms\Tax\GetHoldingTax.aspx" />
     <Content Include="WebForms\Tax\leterThree.aspx" />
     <Content Include="WebForms\Tax\letterOne.aspx" />
@@ -4810,6 +4826,7 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DBO\DOHSAreaController.cs" />
     <Compile Include="Controllers\DBO\IssueController.cs" />
     <Compile Include="Controllers\Holding\HolderClientController.cs" />
     <Compile Include="Controllers\Holding\HoldingController.cs" />
@@ -5110,6 +5127,8 @@
     <Content Include="Views\TaxReports\rptUnPaidTax.cshtml" />
     <Content Include="Views\TaxReports\rptTaxPlayers.cshtml" />
     <Content Include="Views\TaxReports\rptNonTaxPlayers.cshtml" />
+    <Content Include="Views\DOHSArea\Index.cshtml" />
+    <Content Include="Views\DOHSArea\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

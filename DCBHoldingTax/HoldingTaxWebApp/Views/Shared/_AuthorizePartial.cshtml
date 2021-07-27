@@ -1,17 +1,25 @@
 ﻿@using HoldingTaxWebApp.Helpers;
 
 <div class="topbar-item">
-    <div class="btn btn-icon btn-hover-transparent-white w-auto d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
-        <div class="d-flex flex-column text-right pr-3">
-            <span class="text-white font-weight-bold font-size-sm d-none d-md-inline">@Session[CommonConstantHelper.UserName]</span>
-        </div>
-
+    <div class="btn btn-icon btn-hover-transparent-white w-auto d-flex align-items-center btn-lg px-2" style="pointer-events: none;">
+        @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+        {
+            <div class="d-flex flex-column text-right pr-3">
+                <span class="font-weight-bold font-size-sm d-none d-md-inline" style="color: white;">@Session[CommonConstantHelper.UserName]</span>
+            </div>
+        }
+        else
+        {
+            <div class="d-flex flex-column text-right pr-3">
+                <span class="font-weight-bold font-size-sm d-none d-md-inline" style="color: white; ">@Session[CommonConstantHelper.UserName]</span>
+            </div>
+        }
     </div>
     <span>
         @using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new { id = "logoutForm" }))
         {
             @Html.AntiForgeryToken()
-        <a class="btn btn-label btn-label-brand btn-bold" style="color:white;" href="javascript:document.getElementById('logoutForm').submit()">লগ আউট করুন</a>
+            <a class="btn btn-label btn-label-brand btn-bold" style="color: white;" href="javascript:document.getElementById('logoutForm').submit()">লগ আউট</a>
         }
     </span>
 </div>

@@ -1,5 +1,7 @@
 ﻿using HoldingTaxWebApp.Gateway.Dbo;
+using HoldingTaxWebApp.Gateway.DBO;
 using HoldingTaxWebApp.Models.Dbo;
+using HoldingTaxWebApp.Models.DBO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
