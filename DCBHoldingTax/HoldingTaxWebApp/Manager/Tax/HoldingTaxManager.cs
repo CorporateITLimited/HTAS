@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using HoldingTaxWebApp.Gateway.Tax;
 using HoldingTaxWebApp.Helpers;
+using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.Models.Tax;
 
 namespace HoldingTaxWebApp.Manager.Tax
@@ -51,6 +52,11 @@ namespace HoldingTaxWebApp.Manager.Tax
         public int GenerateTax(int FinYearId)
         {
             return _holdingTaxGateway.GenerateTax(FinYearId);
+        }
+
+        public List<ChartPaidAm> GetChartPaidAms()
+        {
+            return _holdingTaxGateway.GetForPaidAmmChart();
         }
     }
 }

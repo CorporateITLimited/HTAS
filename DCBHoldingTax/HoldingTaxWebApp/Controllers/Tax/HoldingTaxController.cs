@@ -7,6 +7,7 @@ using HoldingTaxWebApp.Gateway.Dbo;
 using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager.Tax;
 using HoldingTaxWebApp.Models.Tax;
+using HoldingTaxWebApp.Models.Holding;
 
 namespace HoldingTaxWebApp.Controllers.Tax
 {
@@ -14,6 +15,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
     {
         private readonly HoldingTaxManager _holdingTaxManager;
         private readonly FinancialYearGateway _financialYearGateway;
+
         public HoldingTaxController()
         {
             _holdingTaxManager = new HoldingTaxManager();
@@ -222,7 +224,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
         public JsonResult GetPaidAmmChart()
         {
-            var data = _holdingTaxManager.GetAllHoldingTax().ToList();
+            List<ChartPaidAm> data = _holdingTaxManager.GetChartPaidAms();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
     }

@@ -4930,6 +4930,7 @@
     <Compile Include="Models\DBO\StatusType.cs" />
     <Compile Include="Models\Dbo\BuildingType.cs" />
     <Compile Include="Models\Dbo\DOHSArea.cs" />
+    <Compile Include="Models\Holding\ChartPaidAm.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
     <Compile Include="Models\Holding\HolderFlat.cs" />
     <Compile Include="Models\Holding\Notice.cs" />

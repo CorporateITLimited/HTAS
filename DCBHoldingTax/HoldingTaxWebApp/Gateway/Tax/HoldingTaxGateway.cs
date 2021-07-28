@@ -1,4 +1,5 @@
 ﻿using HoldingTaxWebApp.Helpers;
+using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.Models.Tax;
 using System;
 using System.Collections.Generic;
@@ -556,7 +557,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
 
 
         //List
-        public List<HoldingTax> GetForPaidAmmChart()
+        public List<ChartPaidAm> GetForPaidAmmChart()
         {
             try
             {
@@ -584,27 +585,27 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 Sql_Connection.Open();
                 Data_Reader = Sql_Command.ExecuteReader();
 
-                List<HoldingTax> holdingtaxList = new List<HoldingTax>();
+                List<ChartPaidAm> chartList = new List<ChartPaidAm>();
 
                 while (Data_Reader.Read())
                 {
-                    HoldingTax holdingtax = new HoldingTax()
+                    ChartPaidAm chart = new ChartPaidAm()
                     {
 
 
                         MonthlyPaidAmount = Data_Reader["MonthlyPaidAmount"] != DBNull.Value ?
-                                                Convert.ToDecimal(Data_Reader["PaidAmount"]) : (Decimal?)null,
+                                                Convert.ToDecimal(Data_Reader["MonthlyPaidAmount"]) : (Decimal?)null,
                         AreaName = Convert.ToString(Data_Reader["AreaName"]),
                         MonthDate = Convert.ToString(Data_Reader["MonthDate"])
                     };
 
-                    holdingtaxList.Add(holdingtax);
+                    chartList.Add(chart);
                 }
 
                 Data_Reader.Close();
                 Sql_Connection.Close();
 
-                return holdingtaxList;
+                return chartList;
             }
             catch (SqlException exception)
             {
