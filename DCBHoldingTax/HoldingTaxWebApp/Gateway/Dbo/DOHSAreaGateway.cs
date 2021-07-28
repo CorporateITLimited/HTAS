@@ -92,5 +92,243 @@ namespace HoldingTaxWebApp.Gateway.DBO
             }
 
         }
+
+        public DOHSArea GetDOHSAreaId(int id)
+        {
+            try
+            {
+                Sql_Query = "[dbo].[spDOHSArea]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Details;
+                Sql_Command.Parameters.Add("@AreaId", SqlDbType.NVarChar).Value = id;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                DOHSArea dohsarea = new DOHSArea();
+
+                while (Data_Reader.Read())
+                {
+
+
+
+
+               
+                    dohsarea.AreaId = Convert.ToInt32(Data_Reader["AreaId"]);
+
+                    dohsarea.AreaName = Data_Reader["AreaNames"].ToString();
+
+                    dohsarea.CurrentPlotNumber = Convert.ToInt32(Data_Reader["CurrentPlotNumber"]);
+
+                    dohsarea.CurrentFlatNumber = Convert.ToInt32(Data_Reader["CurrentFlatNumber"]);
+
+                    dohsarea.CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null;
+                    dohsarea.CreatedBy = Data_Reader["CreatedBy"] !=
+                                            DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null;
+                    dohsarea.LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null;
+                    dohsarea.LastUpdatedBy = Data_Reader["LastUpdatedBy"] !=
+                                            DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null;
+                    dohsarea.IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null;
+                    dohsarea.IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null;
+
+
+
+
+
+
+
+                };
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return dohsarea;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+
+        }
+
+        public int DOHSAreaInsert(DOHSArea DOHS)
+        {
+            try
+            {
+                Sql_Query = "[dbo].[spDOHSArea]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+
+                Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = DOHS.AreaId;
+                Sql_Command.Parameters.Add("@AreaName", SqlDbType.NVarChar).Value = DOHS.AreaName;
+                Sql_Command.Parameters.Add("@TotalArea", SqlDbType.Decimal).Value = DOHS.TotalArea;
+                Sql_Command.Parameters.Add("@CurrentPlotNumber", SqlDbType.Int).Value = DOHS.CurrentPlotNumber;
+                Sql_Command.Parameters.Add("@CurrentFlatNumber", SqlDbType.Int).Value = DOHS.CurrentFlatNumber;
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Insert;
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Update;
+            
+                Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = DOHS.CreateDate;
+                Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = DOHS.CreatedBy;
+                
+               
+                Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = DOHS.IsActive;
+               
+                Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = DOHS.IsDeleted;
+                Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = DOHS.LastUpdated;
+                Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = DOHS.LastUpdatedBy;
+        
+
+
+
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+        public int DOHSAreaUpdate(DOHSArea DOHS)
+        {
+            try
+            {
+                Sql_Query = "[dbo].[spDOHSArea]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@AreaName", SqlDbType.NVarChar).Value = DOHS.AreaName;
+                Sql_Command.Parameters.Add("@TotalArea", SqlDbType.Decimal).Value = DOHS.TotalArea;
+                Sql_Command.Parameters.Add("@CurrentPlotNumber", SqlDbType.Int).Value = DOHS.CurrentPlotNumber;
+                Sql_Command.Parameters.Add("@CurrentFlatNumber", SqlDbType.Int).Value = DOHS.CurrentFlatNumber;
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Insert;
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Update;
+
+                Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = DOHS.CreateDate;
+                Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = DOHS.CreatedBy;
+
+
+                Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = DOHS.IsActive;
+
+                Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = DOHS.IsDeleted;
+                Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = DOHS.LastUpdated;
+                Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = DOHS.LastUpdatedBy;
+
+
+             
+
+
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
     }
 }
