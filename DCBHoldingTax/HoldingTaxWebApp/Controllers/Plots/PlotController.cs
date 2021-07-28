@@ -105,7 +105,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
             }
             else if (addPlot == CommonConstantHelper.Conflict)
             {
-                ModelState.AddModelError("", "একই এলাকার একই প্লট নম্বর ডাটাবেসে বিদ্যমান ৱয়েছে");
+                ModelState.AddModelError("", "একই এলাকার একই প্লট নম্বর ডাটাবেজে বিদ্যমান ৱয়েছে");
                 return View(plot);
             }
             else if (addPlot == CommonConstantHelper.Error)
@@ -194,7 +194,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
             }
             else if (updatePlot == CommonConstantHelper.Conflict)
             {
-                ModelState.AddModelError("", "একই এলাকার একই প্লট নম্বর ডাটাবেসে বিদ্যমান ৱয়েছে");
+                ModelState.AddModelError("", "একই এলাকার একই প্লট নম্বর ডাটাবেজে বিদ্যমান ৱয়েছে");
                 return View(plot);
             }
             else if (updatePlot == CommonConstantHelper.Error)

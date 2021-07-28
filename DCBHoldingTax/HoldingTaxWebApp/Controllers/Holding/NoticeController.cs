@@ -63,6 +63,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 ViewBag.FinancialYearId = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
                 ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
                 ViewBag.NoticeTypeId = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text");
+                var currDate = DateTime.Now;
+                ViewBag.DateTimeStr = "আজকের তারিখ : " + BanglaConvertionHelper.StringEnglish2StringBanglaDate(currDate.ToString("dd/MM/yyyy"));
 
                 return View();
             }
@@ -86,6 +88,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", notice.AreaId);
                 ViewBag.NoticeTypeId = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text", notice.NoticeTypeId);
 
+                var currDate = DateTime.Now;
+                ViewBag.DateTimeStr = "আজকের তারিখ : " + BanglaConvertionHelper.StringEnglish2StringBanglaDate(currDate.ToString("dd/MM/yyyy"));
+
                 if (notice.FinancialYearId <= 0)
                 {
                     ModelState.AddModelError("", "আর্থিক বছর নির্বাচন করুন");
@@ -97,6 +102,63 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     ModelState.AddModelError("", "নোটিশ নম্বর নির্বাচন করুন");
                     return View(notice);
                 }
+
+                bool IsNoticeSentUi = false;
+
+                //if (notice.NoticeTypeId == 1)
+                //{
+                //    DateTime startDate_notice_1 = new DateTime(DateTime.Now.Year, 7, 1);
+                //    DateTime endDate_notice_1 = new DateTime(DateTime.Now.Year, 7, 31);
+                //    DateTime newendDate_notice_1 = endDate_notice_1.Add(new TimeSpan(23, 59, 59));
+
+                //    if (DateTime.Now >= startDate_notice_1 && DateTime.Now <= newendDate_notice_1)
+                //    {
+                //        IsNoticeSentUi = true;
+                //    }
+                //    else
+                //    {
+                //        ModelState.AddModelError("", "গৃহকরের প্রাথমিক বিজ্ঞপ্তি পাঠানোর সময় এখনো হয়নি বা সময়সীমা অতিবাহিত হয়েছে");
+                //        return View(notice);
+                //    }
+                //}
+
+
+                //if (notice.NoticeTypeId == 2)
+                //{
+                //    DateTime startDate_notice_2 = new DateTime(DateTime.Now.Year, 11, 1);
+                //    DateTime endDate_notice_2 = new DateTime(DateTime.Now.Year, 11, 30);
+                //    DateTime newendDate_notice_2 = endDate_notice_2.Add(new TimeSpan(23, 59, 59));
+
+                //    if (DateTime.Now >= startDate_notice_2 && DateTime.Now <= newendDate_notice_2)
+                //    {
+                //        IsNoticeSentUi = true;
+                //    }
+                //    else
+                //    {
+                //        ModelState.AddModelError("", "রিবেটসহ গৃহকর প্রাপ্তির বিজ্ঞপ্তি পাঠানোর সময় এখনো হয়নি বা সময়সীমা অতিবাহিত হয়েছে");
+                //        return View(notice);
+                //    }
+                //}
+
+
+                //if (notice.NoticeTypeId == 3)
+                //{
+                //    DateTime startDate_notice_3 = new DateTime(DateTime.Now.Year, 5, 1);
+                //    DateTime endDate_notice_3 = new DateTime(DateTime.Now.Year, 5, 30);
+                //    DateTime newendDate_notice_3 = endDate_notice_3.Add(new TimeSpan(23, 59, 59));
+
+                //    if (DateTime.Now >= startDate_notice_3 && DateTime.Now <= newendDate_notice_3)
+                //    {
+                //        IsNoticeSentUi = true;
+                //    }
+                //    else
+                //    {
+                //        ModelState.AddModelError("", "গৃহকরের চূড়ান্ত বিজ্ঞপ্তি পাঠানোর সময় এখনো হয়নি বা সময়সীমা অতিবাহিত হয়েছে");
+                //        return View(notice);
+                //    }
+                //}
+
+
 
                 notice.CreateDate = DateTime.Now;
                 notice.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
@@ -110,31 +172,43 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 notice.NoticeLinkName = "";
                 notice.NoticeSentDate = DateTime.Now;
 
-                string sendNotice = _noticeManager.SendNotice(notice);
 
-                if (sendNotice == CommonConstantHelper.Success)
+                IsNoticeSentUi = true;
+
+                if (!IsNoticeSentUi)
                 {
-                    return RedirectToAction("Index", "Notice");
-                }
-                else if (sendNotice == CommonConstantHelper.Conflict)
-                {
-                    ModelState.AddModelError("", "Notice already sent.");
-                    return View(notice);
-                }
-                else if (sendNotice == CommonConstantHelper.Error)
-                {
-                    ModelState.AddModelError("", "Error");
-                    return View(notice);
-                }
-                else if (sendNotice == CommonConstantHelper.Failed)
-                {
-                    ModelState.AddModelError("", "Failed");
+                    ModelState.AddModelError("", "বিজ্ঞপ্তি পাঠানোর সময় এখনো হয়নি বা সময়সীমা অতিবাহিত হয়েছে");
                     return View(notice);
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Error Not Recognized");
-                    return View();
+                    string sendNotice = _noticeManager.SendNotice(notice);
+
+                    if (sendNotice == CommonConstantHelper.Success)
+                    {
+                        TempData["SM"] = "সফলভাবে বিজ্ঞপ্তি পাঠানো হয়েছে";
+                        return RedirectToAction("Index", "Notice");
+                    }
+                    else if (sendNotice == CommonConstantHelper.Conflict)
+                    {
+                        ModelState.AddModelError("", "Notice already sent.");
+                        return View(notice);
+                    }
+                    else if (sendNotice == CommonConstantHelper.Error)
+                    {
+                        ModelState.AddModelError("", "Error");
+                        return View(notice);
+                    }
+                    else if (sendNotice == CommonConstantHelper.Failed)
+                    {
+                        ModelState.AddModelError("", "Failed");
+                        return View(notice);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Error Not Recognized");
+                        return View();
+                    }
                 }
             }
             catch (Exception ex)

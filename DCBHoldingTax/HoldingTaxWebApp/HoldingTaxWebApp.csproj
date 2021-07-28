@@ -5139,6 +5139,8 @@
     <Content Include="Views\TaxReports\rptNonTaxPlayers.cshtml" />
     <Content Include="Views\DOHSArea\Index.cshtml" />
     <Content Include="Views\DOHSArea\Details.cshtml" />
+    <Content Include="Views\DOHSArea\Create.cshtml" />
+    <Content Include="Views\DOHSArea\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
