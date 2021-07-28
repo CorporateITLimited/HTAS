@@ -210,6 +210,9 @@ namespace HoldingTaxWebApp.ViewModels
         public string StringLeaseDate { get; set; }
         [Display(Name = "ইজারা সময়কাল")]
         public int? LeasePeriod { get; set; }
+
+        [Display(Name = "ইজারা সময়কাল")]
+        public string StrLeasePeriod { get; set; }
         [Display(Name = "ইজারা সমাপ্তির তারিখ")]
         public DateTime? LeaseExpiryDate { get; set; }
         [Display(Name = "ইজারা সমাপ্তির তারিখ")]
@@ -229,7 +232,7 @@ namespace HoldingTaxWebApp.ViewModels
      
 
 
-
+        // no need to convert in bangla
         public List<HolderFlat> HolderFlatList { get; set; }
 
         public HolderVM()

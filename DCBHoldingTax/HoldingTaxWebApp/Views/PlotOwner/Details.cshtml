@@ -1,7 +1,9 @@
 ﻿@model HoldingTaxWebApp.ViewModels.Plots.PlotOwnerCombineVM
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Details";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
@@ -46,7 +48,7 @@
                     <div class="card-body" id="print_div">
                         <div class="row offset-1">
                             <legend> জমি মালিকানা ও হস্তান্তর তথ্য</legend>
-                            <div class="col-lg-8">
+                            <div class="col-lg-5">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -254,9 +256,9 @@
                                     </div>
                                 }
 
-                                @*</div>
+                            </div>
 
-                                    <div class="col-lg-5">*@
+                            <div class="col-lg-5">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -381,7 +383,6 @@
                                 </div>
 
                             </div>
-                            <div class="col-lg-2"></div>
                         </div>
                         @if (Model.LeaseType == "যৌথ")
                         {
@@ -473,7 +474,7 @@
                         <div class="row offset-1">
                             <legend>   নির্মান অগ্রগতি ও ফ্ল্যাট মালিকানার তথ্য</legend>
 
-                            <div class="col-lg-8">
+                            <div class="col-lg-5">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.OwnerDeclaration)
@@ -569,9 +570,9 @@
                                     </div>
                                 </div>
 
-                            @*</div>
+                            </div>
 
-                            <div class="col-lg-5">*@
+                            <div class="col-lg-5">
 
 
                                 <div class="form-group form-group-xs row">
@@ -685,7 +686,6 @@
 
 
                             </div>
-                            <div class="col-lg-2"></div>
                         </div>
 
 
@@ -694,7 +694,7 @@
                             <div class="separator separator-dashed my-10"></div>
                             <div class="row offset-1">
                                 <legend>   অননুমোদিত নির্মান তথ্য</legend>
-                                <div class="col-lg-8">
+                                <div class="col-lg-5">
                                     <div class="form-group form-group-xs row">
                                         <label class="col-5 col-form-label">
                                             @Html.DisplayNameFor(model => model.TotalUnauthArea)
@@ -743,9 +743,9 @@
                                         </div>
                                     </div>
 
-                                @*</div>
+                                </div>
 
-                                <div class="col-lg-5">*@
+                                <div class="col-lg-5">
 
                                     <div class="form-group form-group-xs row">
                                         <label class="col-5 col-form-label">
@@ -784,7 +784,6 @@
                                     </div>
 
                                 </div>
-                                <div class="col-lg-2"></div>
                             </div>
                         }
                     </div>

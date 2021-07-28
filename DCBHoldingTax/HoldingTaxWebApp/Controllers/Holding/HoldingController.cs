@@ -126,11 +126,12 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 // other data allotment namjari design approval
                 FirstApprovalLetterNo = holderVMOtherData.FirstApprovalLetterNo,
-                StringFirstApprovalDate = holderVMOtherData.StringFirstApprovalDate,
+                StringFirstApprovalDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holderVMOtherData.StringFirstApprovalDate),
                 LastApprovalLetterNo = holderVMOtherData.LastApprovalLetterNo,
-                StringLastApprovalDate = holderVMOtherData.StringLastApprovalDate,
+                StringLastApprovalDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holderVMOtherData.StringLastApprovalDate),
                 LeasePeriod = holderVMOtherData.LeasePeriod,
-                StringLeaseExpiryDate = holderVMOtherData.StringLeaseExpiryDate,
+                StrLeasePeriod = BanglaConvertionHelper.IntegerValueEnglish2Bangla(holderVMOtherData.LeasePeriod),
+                StringLeaseExpiryDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holderVMOtherData.StringLeaseExpiryDate),
                 PlotOwnerName = holderVMOtherData.PlotOwnerName
             };
 
@@ -1395,6 +1396,35 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 return new JsonResult { Data = "not_done" };
             }
         }
+
+
+        #region HolderReport
+        public ActionResult HolderReport()
+        {
+            ViewBag.HolderId = new SelectList(_holdingManager.GetAllHolder(), "HolderId", "HolderName");
+            return View();
+        }
+        #endregion
+
+        #region rptHolderDetails
+        public ActionResult rptHolderDetails(int id)
+        {
+            Session["HolderID"] = id;
+            Session["AreaId"] = null;
+            Session["PlotId"] = null;
+            
+            return View();
+        }
+
+        public ActionResult rptHolderDetails2(int id)
+        {
+            Session["HolderID"] = id;
+            Session["AreaId"] = null;
+            Session["PlotId"] = null;
+
+            return View();
+        }
+        #endregion
 
     }
 }
