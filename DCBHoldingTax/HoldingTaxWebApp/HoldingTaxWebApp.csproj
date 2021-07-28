@@ -5150,6 +5150,7 @@
     <Content Include="Views\Holding\rptHolderDetails.cshtml" />
     <Content Include="Views\Holding\HolderReport.cshtml" />
     <Content Include="Views\Holding\rptHolderDetails2.cshtml" />
+    <Content Include="Views\HolderClient\HolderProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

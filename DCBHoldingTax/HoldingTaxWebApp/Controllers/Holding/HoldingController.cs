@@ -126,11 +126,12 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 // other data allotment namjari design approval
                 FirstApprovalLetterNo = holderVMOtherData.FirstApprovalLetterNo,
-                StringFirstApprovalDate = holderVMOtherData.StringFirstApprovalDate,
+                StringFirstApprovalDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holderVMOtherData.StringFirstApprovalDate),
                 LastApprovalLetterNo = holderVMOtherData.LastApprovalLetterNo,
-                StringLastApprovalDate = holderVMOtherData.StringLastApprovalDate,
+                StringLastApprovalDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holderVMOtherData.StringLastApprovalDate),
                 LeasePeriod = holderVMOtherData.LeasePeriod,
-                StringLeaseExpiryDate = holderVMOtherData.StringLeaseExpiryDate,
+                StrLeasePeriod = BanglaConvertionHelper.IntegerValueEnglish2Bangla(holderVMOtherData.LeasePeriod),
+                StringLeaseExpiryDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holderVMOtherData.StringLeaseExpiryDate),
                 PlotOwnerName = holderVMOtherData.PlotOwnerName
             };
 
