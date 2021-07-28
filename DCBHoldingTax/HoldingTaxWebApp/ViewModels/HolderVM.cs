@@ -157,6 +157,21 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "হালনাগাদকরণ")]
         public string StringLastUpdated { get; set; }
 
+
+
+        [Display(Name = "ব্যবহারকারীর নাম দ্বারা নির্মিত")]
+        public string CreatedByUsername { get; set; }
+
+        [Display(Name = "হালনাগাদকরণ করেছেন")]
+        public string UpdatedByUsername { get; set; }
+
+
+
+
+
+
+
+
         [Display(Name = "রোড নং")]
         public string RoadNo { get; set; }
 
