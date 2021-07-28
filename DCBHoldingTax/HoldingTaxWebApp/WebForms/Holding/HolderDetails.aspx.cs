@@ -52,7 +52,7 @@ namespace HoldingTaxWebApp.WebForms.Holding
             cmd.CommandType = CommandType.Text; // always text
             cmd.Parameters.AddWithValue("@AreaId", SqlDbType.Int).Value = rptAreaId ?? (object)DBNull.Value;
             cmd.Parameters.AddWithValue("@PlotId", SqlDbType.Int).Value = rptPlotId ?? (object)DBNull.Value;
-            cmd.Parameters.AddWithValue("@HolderId", SqlDbType.Int).Value = 2; //rptHolderId ?? (object)DBNull.Value;
+            cmd.Parameters.AddWithValue("@HolderId", SqlDbType.Int).Value = rptHolderId ?? (object)DBNull.Value;
             cmd.Parameters.AddWithValue("@StatementType", SqlDbType.NVarChar).Value = "combined";
             try
             {

@@ -679,10 +679,22 @@ namespace HoldingTaxWebApp.Controllers.DBO
             }
         }
 
-      
+
         #endregion
 
 
+
+
+        public JsonResult GetTopFiveIssue()
+        {
+            var data = _IssueManager.GetTopFiveIssue();
+
+            return new JsonResult
+            {
+                Data = data,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
 
     }
 }

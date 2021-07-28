@@ -1396,5 +1396,34 @@ namespace HoldingTaxWebApp.Controllers.Holding
             }
         }
 
+
+        #region HolderReport
+        public ActionResult HolderReport()
+        {
+            ViewBag.HolderId = new SelectList(_holdingManager.GetAllHolder(), "HolderId", "HolderName");
+            return View();
+        }
+        #endregion
+
+        #region rptHolderDetails
+        public ActionResult rptHolderDetails(int id)
+        {
+            Session["HolderID"] = id;
+            Session["AreaId"] = null;
+            Session["PlotId"] = null;
+            
+            return View();
+        }
+
+        public ActionResult rptHolderDetails2(int id)
+        {
+            Session["HolderID"] = id;
+            Session["AreaId"] = null;
+            Session["PlotId"] = null;
+
+            return View();
+        }
+        #endregion
+
     }
 }
