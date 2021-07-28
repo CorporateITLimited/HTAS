@@ -2454,6 +2454,7 @@
       <DependentUpon>dsTax.xsd</DependentUpon>
     </Content>
     <Content Include="Scripts\printThis.js" />
+    <Content Include="WebForms\Holding\HolderDetails.aspx" />
     <Content Include="WebForms\Tax\GetHoldingTax.aspx" />
     <Content Include="WebForms\Tax\leterThree.aspx" />
     <Content Include="WebForms\Tax\letterOne.aspx" />
@@ -4810,7 +4811,7 @@
       <DependentUpon>rptRecoverabletax.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="AppReports\Tax\rptTaxPlayers.cs">
+    <Compile Include="App_Start\rptTaxPlayers.cs">
       <SubType>Component</SubType>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4957,6 +4958,13 @@
     <Compile Include="ViewModels\Plots\PlotOwnerCombineVM.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
     <Compile Include="ViewModels\UserPermission.cs" />
+    <Compile Include="WebForms\Holding\HolderDetails.aspx.cs">
+      <DependentUpon>HolderDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Holding\HolderDetails.aspx.designer.cs">
+      <DependentUpon>HolderDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Tax\GetHoldingTax.aspx.cs">
       <DependentUpon>GetHoldingTax.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5194,7 +5202,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptRecoverabletax.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppReports\Tax\rptTaxPlayers.rpt">
+    <EmbeddedResource Include="App_Start\rptTaxPlayers.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTaxPlayers.cs</LastGenOutput>
     </EmbeddedResource>
