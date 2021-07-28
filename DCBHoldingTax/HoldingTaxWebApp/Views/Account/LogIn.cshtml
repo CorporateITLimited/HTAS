@@ -8,7 +8,7 @@
 <head>
     <base href="../../../../">
     <meta charset="utf-8" />
-    <title>DCB</title>
+    <title>গৃহসেবা</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -43,7 +43,7 @@
                         @using (Html.BeginForm("LogIn", "Account", null, FormMethod.Post, new { @class = "kt-form", @id = "kt_login", role = "form", novalidate = "novalidate" }))
                         {
                             <div class="pb-5 pb-lg-15">
-                                <h3 class="font-weight-bolder text-primary font-size-h2 font-size-h1-lg">Sign In</h3>
+                                <h3 class="font-weight-bolder text-primary font-size-h2 font-size-h1-lg">লগইন করুন</h3>
                             </div>
 
                             @Html.AntiForgeryToken()
@@ -64,12 +64,12 @@
 
 
                             <div class="form-group">
-                                <label class="font-size-h6 font-weight-bolder text-dark">Username</label>
+                                <label class="font-size-h6 font-weight-bolder text-dark">ইউজারনেইম</label>
                                 <input class="form-control h-auto py-7 px-6 rounded-lg border-0" type="text" name="UserName" autocomplete="off" required />
                             </div>
                             <div class="form-group">
                                 <div class="d-flex justify-content-between mt-n5">
-                                    <label class="font-size-h6 font-weight-bolder text-dark pt-5">Password</label>
+                                    <label class="font-size-h6 font-weight-bolder text-dark pt-5">পাসওয়ার্ড</label>
                                     @*<a href="#" class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5">Forgot Password ?</a>*@
                                 </div>
                                 <input class="form-control h-auto py-7 px-6 rounded-lg border-0" type="password" name="Password" autocomplete="off" required />

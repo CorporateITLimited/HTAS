@@ -8,23 +8,23 @@
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
-    <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
-        <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-            <div class="d-flex align-items-center flex-wrap mr-1">
-                <div class="d-flex align-items-baseline flex-wrap mr-5">
-                    <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকর সংক্রান্ত বিজ্ঞপ্তি </h5>
-                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-                        <li class="breadcrumb-item text-muted">
-                            <a href="#" class="text-muted">গৃহকর সংক্রান্ত নতুন বিজ্ঞপ্তি পাঠান</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="d-flex align-items-center">
-                <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকর সংক্রান্ত বিজ্ঞপ্তি </h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted">গৃহকর সংক্রান্ত নতুন বিজ্ঞপ্তি পাঠান</a>
+                    </li>
+                </ul>
             </div>
         </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
     </div>
+</div>
 
 
 <div class="d-flex flex-column-fluid">
@@ -50,6 +50,21 @@
                                 <legend>সাধারণ তথ্য</legend>
 
                                 <div class="form-group row m-2">
+
+                                    @Html.LabelFor(model => model.NoticeTypeId, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-6">
+                                        @Html.DropDownListFor(model => model.NoticeTypeId, null, "-- Select --", new
+                                   {
+                                       @class = "form-control",
+                                       @name = "NoticeTypeId",
+                                       @id = "NoticeTypeId"
+                                   })
+                                        @Html.ValidationMessageFor(model => model.NoticeTypeId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <label class="col-lg-4 col-form-label text-lg-left">@ViewBag.DateTimeStr</label>
+                                </div>
+
+                                <div class="form-group row m-2">
                                     @Html.LabelFor(model => model.FinancialYearId, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
                                         @Html.DropDownListFor(model => model.FinancialYearId, null, "-- Select --", new
@@ -61,21 +76,6 @@
                                         @Html.ValidationMessageFor(model => model.FinancialYearId, "", new { @class = "text-danger" })
                                     </div>
 
-
-                                    @Html.LabelFor(model => model.NoticeTypeId, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                    <div class="col-lg-4">
-                                        @Html.DropDownListFor(model => model.NoticeTypeId, null, "-- Select --", new
-                                   {
-                                       @class = "form-control",
-                                       @name = "NoticeTypeId",
-                                       @id = "NoticeTypeId"
-                                   })
-                                        @Html.ValidationMessageFor(model => model.NoticeTypeId, "", new { @class = "text-danger" })
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group row m-2">
                                     @Html.LabelFor(model => model.AreaId, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
                                         @Html.DropDownListFor(model => model.AreaId, null, "-- Select --", new
@@ -92,7 +92,7 @@
                         </div>
                         <div class="card-footer">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>সেভ করুন</button>
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>বিজ্ঞপ্তি পাঠান</button>
                                 <button type="button" onclick="window.location.href = '/Notice/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
                             </div>
                         </div>

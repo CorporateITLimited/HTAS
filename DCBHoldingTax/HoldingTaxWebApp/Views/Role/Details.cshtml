@@ -7,20 +7,21 @@
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
+
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">Role</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">রোল</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted">Details</a>
+                        <a href="" class="text-muted">রোলের বিশদ তথ্য</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="d-flex align-items-center">
-            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>Back</a>
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
         </div>
     </div>
 </div>
@@ -32,7 +33,7 @@
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
                         <div class="row ml-10">
-                            <h3 class="card-title">Details of  : &nbsp;<b class="kt-font-brand">@Model.RoleName</b></h3>
+                            <h3 class="card-title">   <b class="kt-font-brand">@Model.RoleName</b>  &nbsp; এর বিশদ তথ্য</h3>
                             <div class="card-toolbar">
                                 <div class="example-tools justify-content-center">
                                 </div>
@@ -124,8 +125,10 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-center">
-                            <a href="~/Role/Edit/@Model.RoleId" class="btn btn-outline-success btn-md"><i class="fas fa-pen"></i>Update</a>
-                            <a href="~/Role/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</a>
+                            <a href="~/Role/Edit/@Model.RoleId" class="btn btn-outline-success btn-md">
+                                <i class="fas fa-pen"></i>হালনাগাদের পেজে  যান
+                            </a>
+                            <a href="~/Role/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>
                         </div>
                     </div>
                 </div>
