@@ -46,8 +46,8 @@
                     <div class="card-body" id="print_div">
                         <div class="row offset-1">
                             <legend> ব্যাক্তিগত তথ্য</legend>
-                            <div class="col-lg-5">
 
+                            <div class="col-lg-8">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.AreaName)
@@ -171,9 +171,9 @@
 
 
 
-                            </div>
+                                @*</div>
 
-                            <div class="col-lg-5">
+                                    <div class="col-lg-5">*@
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -298,12 +298,13 @@
 
 
                             </div>
+                            <div class="col-lg-2"></div>
                         </div>
 
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
                             <legend>   জমি ও ভবন সংক্রান্ত তথ্য</legend>
-                            <div class="col-lg-5">
+                            <div class="col-lg-8">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.SourceName)
@@ -352,9 +353,9 @@
                                     </div>
                                 </div>
 
-                            </div>
+                                @*</div>
 
-                            <div class="col-lg-5">
+                                    <div class="col-lg-5">*@
 
                                 @if (Model.OwnerType == 3)
                                 {
@@ -426,7 +427,7 @@
                                         </span>
                                     </div>
                                 </div>
-
+                                <br />
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.StrHoldersFlatNumber)
@@ -440,46 +441,48 @@
                                 </div>
 
                             </div>
+                            <div class="col-lg-2"></div>
                         </div>
 
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
-                            <legend>   ফ্ল্যাটসমূহের বিবরণ</legend>
-                            <br />
-                            <br />
-                            <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
-                                <thead class="thead-light text-center">
-                                    <tr>
-                                        <th>তলা</th>
-                                        <th>ফ্ল্যাট নম্বর </th>
-                                        <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
-                                        <th>নিজ বসতি/ভাড়া </th>
-                                        <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
-                                        <th>সম্পত্তির ধরন</th>
-                                        <th>মালিকানা </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-center">
-                                    @foreach (var item in Model.HolderFlatList)
-                                    {
+                            <div class="col-lg-11">
+                                <legend>   ফ্ল্যাটসমূহের বিবরণ</legend>
+                                <br />
+                                <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
+                                    <thead class="thead-light text-center">
                                         <tr>
-                                            <td>@item.FloorTypeName</td>
-                                            <td>@item.FlatNo</td>
-                                            <td>@item.StrFlatArea</td>
-                                            <td>@item.OwnOrRentType</td>
-                                            <td>@item.StrMonthlyRent </td>
-                                            <td>@item.SelfOwnType </td>
-                                            <td>@item.OwnerName</td>
+                                            <th>তলা</th>
+                                            <th>ফ্ল্যাট নম্বর </th>
+                                            <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
+                                            <th>নিজ বসতি/ভাড়া </th>
+                                            <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
+                                            <th>সম্পত্তির ধরন</th>
+                                            <th>মালিকানা </th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        @foreach (var item in Model.HolderFlatList)
+                                        {
+                                            <tr>
+                                                <td>@item.FloorTypeName</td>
+                                                <td>@item.FlatNo</td>
+                                                <td>@item.StrFlatArea</td>
+                                                <td>@item.OwnOrRentType</td>
+                                                <td>@item.StrMonthlyRent </td>
+                                                <td>@item.SelfOwnType </td>
+                                                <td>@item.OwnerName</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
                             <legend>    বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য</legend>
-                            <div class="col-lg-5">
+                            <div class="col-lg-8">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.PlotOwnerName)
@@ -564,12 +567,12 @@
                                 </div>
 
 
-                            </div>
+                                @*</div>
 
-                            <div class="col-lg-5">
+                                    <div class="col-lg-5">*@
 
 
-                                <div class="form-group form-group-xs row">
+                                @*<div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         &nbsp;
                                     </label>
@@ -579,7 +582,7 @@
                                             &nbsp;
                                         </span>
                                     </div>
-                                </div>
+                                </div>*@
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -617,7 +620,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group form-group-xs row">
+                                @*<div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         &nbsp;
                                     </label>
@@ -627,7 +630,7 @@
                                             &nbsp;
                                         </span>
                                     </div>
-                                </div>
+                                </div>*@
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -652,7 +655,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-lg-2"></div>
                         </div>
                     </div>
 
