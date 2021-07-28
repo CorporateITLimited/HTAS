@@ -28,7 +28,10 @@ namespace HoldingTaxWebApp.Models.Users
         [Display(Name = "মুছে ফেলা ")]
         public bool? IsDeleted { get; set; }
 
+        [Display(Name = "তৈরিকারী")]
         public string CreatedByUserName { get; set; }
+
+        [Display(Name = "হালনাগাদকরণ করেছেন")]
         public string UpdatedByUserName { get; set; }
 
     }

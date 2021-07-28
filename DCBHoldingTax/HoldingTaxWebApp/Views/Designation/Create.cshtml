@@ -1,30 +1,31 @@
 ﻿@model HoldingTaxWebApp.Models.Users.Designation
 @using HoldingTaxWebApp.Helpers
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Create";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Sheets{
     <link href="~/Content/formdesign.css" rel="stylesheet" />
 }
 
+
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">Designation</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5"> পদবি</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted">Create</a>
+                        <a href="#" class="text-muted"> নতুন পদবি যুক্ত করুন</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="d-flex align-items-center">
-            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>Back</a>
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
         </div>
     </div>
 </div>
@@ -35,7 +36,7 @@
             <div class="col-md-12">
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
-                        <h3 class="card-title">  Create Designation</h3>
+                        <h3 class="card-title">  নতুন পদবি যুক্ত করুন</h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
@@ -48,7 +49,7 @@
 
                         <div class="card-body">
                             <fieldset>
-                                <legend>Designation Information</legend>
+                                <legend>পদবির সাধারণ তথ্য</legend>
                                 <div class="form-group row m-2">
                                     @Html.LabelFor(model => model.DesignationName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
@@ -59,7 +60,7 @@
 
                                     @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @name = "Description", @id = "Description", placeholder = "Enter designation description"})
+                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @name = "Description", @id = "Description", placeholder = "Enter designation description" })
                                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -79,8 +80,8 @@
                         </div>
                         <div class="card-footer">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>Save</button>
-                                <button type="button" onclick="window.location.href = '/Designation/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>সাবমিট  করুন</button>
+                                <button type="button" onclick="window.location.href = '/Designation/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
                             </div>
                         </div>
                     }

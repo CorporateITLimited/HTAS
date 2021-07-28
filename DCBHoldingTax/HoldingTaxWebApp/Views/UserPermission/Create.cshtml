@@ -17,21 +17,20 @@
     </style>
 }
 
-
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">User</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">সফটওয়্যার ব্যবহারকারীদের(ঢাকা ক্যাটনমেন্ট বোর্ড) অনুমতি প্রদান </h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted">Permissions</a>
+                        <a href="#" class="text-muted">অনুমতি প্রদান করুন </a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="d-flex align-items-center">
-            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>Back</a>
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
         </div>
     </div>
 </div>
@@ -43,7 +42,7 @@
             <div class="col-md-12">
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
-                        <h3 class="card-title">    Add/Update User Permission</h3>
+                        <h3 class="card-title"> সফটওয়্যার ব্যবহারকারীদের(ঢাকা ক্যাটনমেন্ট বোর্ড) অনুমতি প্রদান করুন </h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
@@ -51,19 +50,19 @@
                     </div>
                     <div class="card-body">
                         <fieldset>
-                            <legend>User Information</legend>
+                            <legend> ব্যবহারকারীদের তথ্য (ঢাকা ক্যাটনমেন্ট বোর্ড) </legend>
                             <div class="row m-2">
                                 <div class="col-sm-8 col-lg-8 col-md-8">
                                     <div class="form-group">
 
-                                        @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "" })
-                                        @Html.DropDownListFor(model => model.UserId, null, "-- Select User --", new
+                                        <label>ব্যবহারকারীর পুরো নাম (ইউজারনেইম)</label>
+                                        @Html.DropDownListFor(model => model.UserId, null, "-- ব্যবহারকারী নির্বাচন করুন  --", new
                                    {
                                        @class = "form-control",
                                        @name = "UserId",
                                        @id = "UserId"
                                    })
-                                        <span class="error">Select an User</span>
+                                        <span class="error">ব্যবহারকারী নির্বাচন করুন </span>
                                     </div>
                                 </div>
                             </div>
@@ -74,9 +73,9 @@
                                     <table class="table table-bordered table-active" id="user_permission_table">
                                         <thead>
                                             <tr>
-                                                <td class="text-left">User Permission</td>
-                                                <td class="text-left"><span class="font-weight-bold">Read Only</span></td>
-                                                <td class="text-left"><span class="font-weight-bold">Read and Write</span></td>
+                                                <td class="text-left">সফটওয়্যার এর ফাংশন/কাজের নাম </td>
+                                                <td class="text-left"><span class="font-weight-bold">শুধুমাত্র দেখতে পারবেন </span></td>
+                                                <td class="text-left"><span class="font-weight-bold">দেখতে এবং পরিচালনা করতে পারবেন </span></td>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -88,8 +87,8 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-center">
-                            <button type="button" class="btn btn-outline-success btn-md" id="save_button"><i class="fas fa-pencil-alt"></i>Update</button>
-                            <button type="button" class="btn btn-outline-primary btn-md" id="details_button"><i class="far fa-eye"></i>View Details</button>
+                            <button type="submit" class="btn btn-outline-success btn-md" id="save_button"><i class="fas fa-check"></i>হালনাগাদ করুন</button>
+                            <button type="button" class="btn btn-outline-primary btn-md" id="details_button"><i class="far fa-eye"></i>বিশদ তথ্য দেখুন </button>
                         </div>
                     </div>
                 </div>
@@ -106,7 +105,7 @@
         jQuery(document).ready(function () {
 
             $('#UserId').select2({
-                placeholder: "-- Select User --",
+                placeholder: "-- ব্যবহারকারী নির্বাচন করুন  --",
                 allowClear: true
             });
 
@@ -138,7 +137,7 @@
             var AcceptableItemTable = $('#user_permission_table tbody');
 
             $("#UserId").change(function () {
-
+                $('#UserId').siblings('span.error').css('visibility', 'hidden');
                 var userId = parseInt($("#UserId").val()) || 0;
 
                 var json = {
@@ -214,7 +213,7 @@
                 }
 
                 if (!isAllValid) {
-                    Swal.fire('Error!', 'Select an User first', 'info');
+                    Swal.fire('ত্রুটি!', 'একজন ব্যবহারকারী নির্বাচন করুন', 'info');
                     return;
                 } {
                     Swal.fire({

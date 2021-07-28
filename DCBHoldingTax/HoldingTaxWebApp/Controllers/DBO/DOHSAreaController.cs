@@ -38,7 +38,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
             {
                 if (id <= 0)
                     return HttpNotFound();
-                DOHSArea area = new DOHSArea();
+                DOHSArea area = _dOHSAreaManager.GetDOHSAreaId(id);
 
                 return View(area);
             }
@@ -109,7 +109,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
                 area.LastUpdated = DateTime.Now;
 
 
-                string addArea = "";//_roleManager.RoleInsert(area);
+                string addArea = _dOHSAreaManager.DOHSAreaInsert(area);
 
                 if (addArea == CommonConstantHelper.Success)
                 {
@@ -162,7 +162,11 @@ namespace HoldingTaxWebApp.Controllers.DBO
             //    {
             try
             {
-                DOHSArea area = new DOHSArea();//_roleManager.GetRoleById(id);
+
+                if (id <= 0)
+                    return HttpNotFound();
+
+                DOHSArea area = _dOHSAreaManager.GetDOHSAreaId(id);
 
                 if (area == null)
                     return HttpNotFound();
@@ -222,7 +226,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
                 area.LastUpdated = DateTime.Now;
 
 
-                string addArea = "";//_roleManager.RoleInsert(area);
+                string addArea = _dOHSAreaManager.DOHSAreaUpdate(area);
 
                 if (addArea == CommonConstantHelper.Success)
                 {

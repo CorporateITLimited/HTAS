@@ -17,23 +17,24 @@
 }
 
 
-<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
-    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-        <div class="d-flex align-items-center flex-wrap mr-1">
-            <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">Official</h5>
-                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-                    <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted">Create</a>
-                    </li>
-                </ul>
+
+    <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+        <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">কর্মকর্তা ও কর্মচারীবৃন্দ</h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item text-muted">
+                            <a href="" class="text-muted">নতুন কর্মকর্তা/কর্মচারীবৃন্দের যুক্ত করুন</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
             </div>
         </div>
-        <div class="d-flex align-items-center">
-            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>Back</a>
-        </div>
     </div>
-</div>
 
 <div class="d-flex flex-column-fluid">
     <div class="container">
@@ -41,7 +42,7 @@
             <div class="col-md-12">
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
-                        <h3 class="card-title"> Create Official</h3>
+                        <h3 class="card-title"> নতুন কর্মকর্তা/কর্মচারীবৃন্দের যুক্ত করুন</h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
@@ -54,7 +55,7 @@
 
                         <div class="card-body">
                             <fieldset>
-                                <legend>General Information</legend>
+                                <legend>সাধারণ তথ্য</legend>
 
                                 <div class="form-group row m-2">
                                     @Html.LabelFor(model => model.EmployeeName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -110,7 +111,8 @@
                                     </div>
                                 </div>
                                 <div class="separator separator-dashed my-10"></div>
-                                <legend>Contact Information</legend>
+
+                                <legend>যোগাযোগের তথ্য</legend>
 
                                 <div class="form-group row m-2">
                                     @Html.LabelFor(model => model.ContactNo, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -151,8 +153,8 @@
                         </div>
                         <div class="card-footer">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-plus"></i>Create</button>
-                                <button type="button" onclick="window.location.href = '/Employee/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>সাবমিট  করুন</button>
+                                <button type="button" onclick="window.location.href = '/Employee/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
                             </div>
                         </div>
                     }

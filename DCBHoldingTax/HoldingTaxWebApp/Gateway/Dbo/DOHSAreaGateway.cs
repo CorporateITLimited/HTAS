@@ -61,8 +61,12 @@ namespace HoldingTaxWebApp.Gateway.DBO
                                                 DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null,
                         IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null,
                         IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
-
+                        CreatedByUsername = Convert.ToString(Data_Reader["CreatedByUsername"]),
+                        UpdatedByUsername = Convert.ToString(Data_Reader["UpdatedByUsername"])
                     };
+
+                    dohsarea.StrCreateDate = $"{dohsarea.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
+                    dohsarea.StrLastUpdated = $"{dohsarea.LastUpdated:dd/MM/yyyy HH:mm:ss tt}";
 
                     dohsareaList.Add(dohsarea);
                 }
@@ -108,7 +112,7 @@ namespace HoldingTaxWebApp.Gateway.DBO
                 Sql_Command.Parameters.Clear();
 
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Details;
-                Sql_Command.Parameters.Add("@AreaId", SqlDbType.NVarChar).Value = id;
+                Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = id;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -125,19 +129,10 @@ namespace HoldingTaxWebApp.Gateway.DBO
 
                 while (Data_Reader.Read())
                 {
-
-
-
-
-               
                     dohsarea.AreaId = Convert.ToInt32(Data_Reader["AreaId"]);
-
-                    dohsarea.AreaName = Data_Reader["AreaNames"].ToString();
-
+                    dohsarea.AreaName = Data_Reader["AreaName"].ToString();
                     dohsarea.CurrentPlotNumber = Convert.ToInt32(Data_Reader["CurrentPlotNumber"]);
-
                     dohsarea.CurrentFlatNumber = Convert.ToInt32(Data_Reader["CurrentFlatNumber"]);
-
                     dohsarea.CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null;
                     dohsarea.CreatedBy = Data_Reader["CreatedBy"] !=
                                             DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null;
@@ -146,14 +141,14 @@ namespace HoldingTaxWebApp.Gateway.DBO
                                             DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null;
                     dohsarea.IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null;
                     dohsarea.IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null;
-
-
-
-
-
-
-
+                    dohsarea.TotalArea = Data_Reader["TotalArea"] != DBNull.Value ?
+                                               Convert.ToDecimal(Data_Reader["TotalArea"]) : (decimal?)null;
+                    dohsarea.CreatedByUsername = Convert.ToString(Data_Reader["CreatedByUsername"]);
+                    dohsarea.UpdatedByUsername = Convert.ToString(Data_Reader["UpdatedByUsername"]);
                 };
+
+                dohsarea.StrCreateDate = $"{dohsarea.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
+                dohsarea.StrLastUpdated = $"{dohsarea.LastUpdated:dd/MM/yyyy HH:mm:ss tt}";
 
                 Data_Reader.Close();
                 Sql_Connection.Close();
@@ -196,28 +191,19 @@ namespace HoldingTaxWebApp.Gateway.DBO
 
                 Sql_Command.Parameters.Clear();
 
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Insert;
 
                 Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = DOHS.AreaId;
                 Sql_Command.Parameters.Add("@AreaName", SqlDbType.NVarChar).Value = DOHS.AreaName;
                 Sql_Command.Parameters.Add("@TotalArea", SqlDbType.Decimal).Value = DOHS.TotalArea;
                 Sql_Command.Parameters.Add("@CurrentPlotNumber", SqlDbType.Int).Value = DOHS.CurrentPlotNumber;
                 Sql_Command.Parameters.Add("@CurrentFlatNumber", SqlDbType.Int).Value = DOHS.CurrentFlatNumber;
-
-                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Insert;
-                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Update;
-            
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = DOHS.CreateDate;
                 Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = DOHS.CreatedBy;
-                
-               
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = DOHS.IsActive;
-               
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = DOHS.IsDeleted;
                 Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = DOHS.LastUpdated;
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = DOHS.LastUpdatedBy;
-        
-
-
 
 
                 SqlParameter result = new SqlParameter
@@ -257,6 +243,7 @@ namespace HoldingTaxWebApp.Gateway.DBO
             }
 
         }
+
         public int DOHSAreaUpdate(DOHSArea DOHS)
         {
             try
@@ -271,28 +258,19 @@ namespace HoldingTaxWebApp.Gateway.DBO
 
                 Sql_Command.Parameters.Clear();
 
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Update;
+
+                Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = DOHS.AreaId;
                 Sql_Command.Parameters.Add("@AreaName", SqlDbType.NVarChar).Value = DOHS.AreaName;
                 Sql_Command.Parameters.Add("@TotalArea", SqlDbType.Decimal).Value = DOHS.TotalArea;
                 Sql_Command.Parameters.Add("@CurrentPlotNumber", SqlDbType.Int).Value = DOHS.CurrentPlotNumber;
                 Sql_Command.Parameters.Add("@CurrentFlatNumber", SqlDbType.Int).Value = DOHS.CurrentFlatNumber;
-
-                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Insert;
-                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Update;
-
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = DOHS.CreateDate;
                 Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = DOHS.CreatedBy;
-
-
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = DOHS.IsActive;
-
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = DOHS.IsDeleted;
                 Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = DOHS.LastUpdated;
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = DOHS.LastUpdatedBy;
-
-
-             
-
-
 
                 SqlParameter result = new SqlParameter
                 {

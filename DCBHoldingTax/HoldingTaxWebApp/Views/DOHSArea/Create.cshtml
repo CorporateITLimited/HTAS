@@ -79,14 +79,12 @@
                                     @Html.LabelFor(model => model.CurrentFlatNumber, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
                                         @Html.EditorFor(model => model.CurrentFlatNumber, new { htmlAttributes = new { @class = "form-control", @name = "CurrentFlatNumber", placeholder = "Enter current flat number", @id = "CurrentFlatNumber" } })
-                                        @Html.ValidationMessageFor(model => model.CurrentFlatNumber, "", new { @class = "text-danger" })
                                     </div>
 
 
                                     @Html.LabelFor(model => model.CurrentPlotNumber, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
                                         @Html.EditorFor(model => model.CurrentPlotNumber, new { htmlAttributes = new { @class = "form-control", @name = "CurrentPlotNumber", @id = "CurrentPlotNumber", placeholder = "Enter current plot number" } })
-                                        @Html.ValidationMessageFor(model => model.CurrentPlotNumber, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 
@@ -98,7 +96,6 @@
                                       @class = "form-control",
                                       @disabled = "disabled"
                                   })
-                                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
                                     </div>
 
                                 </div>
