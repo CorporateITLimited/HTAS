@@ -46,7 +46,7 @@
                     <div class="card-body" id="print_div">
                         <div class="row offset-1">
                             <legend> জমি মালিকানা ও হস্তান্তর তথ্য</legend>
-                            <div class="col-lg-5">
+                            <div class="col-lg-8">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -60,7 +60,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.PlotIdNumber)
@@ -72,9 +71,6 @@
                                         </span>
                                     </div>
                                 </div>
-
-
-
 
                                 <div class="form-group form-group-xs row">
 
@@ -124,7 +120,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.PermanentAdd)
@@ -160,6 +155,7 @@
                                         </span>
                                     </div>
                                 </div>
+
                                 @if (!string.IsNullOrWhiteSpace(Model.Doc1))
                                 {
                                     <div class="form-group form-group-xs row">
@@ -175,7 +171,9 @@
 
                                             </span>
                                         </div>
-                                    </div>}
+                                    </div>
+                                }
+
                                 @if (!string.IsNullOrWhiteSpace(Model.Doc2))
                                 {
                                     <div class="form-group form-group-xs row">
@@ -194,6 +192,7 @@
                                         </div>
                                     </div>
                                 }
+
                                 @if (!string.IsNullOrWhiteSpace(Model.Doc3))
                                 {
                                     <div class="form-group form-group-xs row">
@@ -208,6 +207,8 @@
                                         </div>
                                     </div>
                                 }
+
+
                                 @if (!string.IsNullOrWhiteSpace(Model.Doc4))
                                 {
                                     <div class="form-group form-group-xs row">
@@ -222,6 +223,7 @@
                                         </div>
                                     </div>
                                 }
+
                                 @if (!string.IsNullOrWhiteSpace(Model.Doc5))
                                 {
                                     <div class="form-group form-group-xs row">
@@ -236,6 +238,7 @@
                                         </div>
                                     </div>
                                 }
+
                                 @if (!string.IsNullOrWhiteSpace(Model.Doc6))
                                 {
                                     <div class="form-group form-group-xs row">
@@ -251,9 +254,9 @@
                                     </div>
                                 }
 
-                            </div>
+                                @*</div>
 
-                            <div class="col-lg-5">
+                                    <div class="col-lg-5">*@
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -364,6 +367,7 @@
                                         </span>
                                     </div>
                                 </div>
+
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.CreatedByUserName)
@@ -376,42 +380,43 @@
                                     </div>
                                 </div>
 
-
                             </div>
+                            <div class="col-lg-2"></div>
                         </div>
                         @if (Model.LeaseType == "যৌথ")
                         {
                             <div class="separator separator-dashed my-10"></div>
                             <div class="row offset-1">
-                                <legend>অন্যান্য মালিকের বিবরণ</legend>
-                                <br />
-                                <br />
-                                <table class="table table-bordered table-success" width="100" id="tblOthetOwneeName">
-                                    <thead>
-                                        <tr>
-                                            <th>সিরিয়াল নাম্বার</th>
-                                            <th>প্লট মালিকের নাম</th>
-                                            <th>ঠিকানা</th>
-                                            <th>মন্তব্য</th>
+                                <div class="col-lg-11">
+                                    <legend>অন্যান্য মালিকের বিবরণ</legend>
+                                    <br />
+                                    <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
+                                        <thead class="thead-light text-center">
+                                            <tr>
+                                                <th>সিরিয়াল নাম্বার</th>
+                                                <th>প্লট মালিকের নাম</th>
+                                                <th>ঠিকানা</th>
+                                                <th>মন্তব্য</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @{ int i = 1;
-                                            foreach (var item in Model.OthetPlotOwner)
-                                            {
-                                                <tr>
-                                                    <td>@i</td>
-                                                    <td>@item.OthetOwneeName</td>
-                                                    <td>@item.Address</td>
-                                                    <td>@item.Remarks</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            @{ int i = 1;
+                                                foreach (var item in Model.OthetPlotOwner)
+                                                {
+                                                    <tr>
+                                                        <td>@i</td>
+                                                        <td>@item.OthetOwneeName</td>
+                                                        <td>@item.Address</td>
+                                                        <td>@item.Remarks</td>
 
-                                                </tr>
-                                                i = i + 1;
+                                                    </tr>
+                                                    i = i + 1;
+                                                }
                                             }
-                                        }
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         }
 
@@ -419,54 +424,56 @@
                         @*//@if(Model.DesignApproval. )*@
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
-                            <legend>নকশা অনুমোদনের বিবরণ</legend>
-                            <br />
-                            <br />
-                            <table class="table table-bordered table-success" width="100" id="flat_details">
-                                <thead>
-                                    <tr>
-                                        <th>সিরিয়াল নাম্বার</th>
-                                        <th>এম ই ও এনওসি তারিখ</th>
-                                        <th>বোর্ড মিটিং রেফারেন্স</th>
-                                        <th>প্ল্যান আনুমোদন তারিখ</th>
-                                        <th>অনুমোদন নং</th>
-                                        <th>অনুমোদন পত্র নং</th>
-                                        <th>তলার সংখ্যা</th>
-                                        <th>গ্রাউন্ড ফ্লোরের আয়তন</th>
-                                        <th>অন্যান্য ফ্লোরের আয়তন</th>
+                            <div class="col-lg-11">
+                                <legend>নকশা অনুমোদনের বিবরণ</legend>
+                                <br />
+                                <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
+                                    <thead class="thead-light text-center">
+                                        <tr>
+                                            <th>সিরিয়াল নাম্বার</th>
+                                            <th>এম ই ও এনওসি তারিখ</th>
+                                            <th>বোর্ড মিটিং রেফারেন্স</th>
+                                            <th>প্ল্যান আনুমোদন তারিখ</th>
+                                            <th>অনুমোদন নং</th>
+                                            <th>অনুমোদন পত্র নং</th>
+                                            <th>তলার সংখ্যা</th>
+                                            <th>গ্রাউন্ড ফ্লোরের আয়তন</th>
+                                            <th>অন্যান্য ফ্লোরের আয়তন</th>
 
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @{ int i2 = 1;
-                                        foreach (var item in Model.DesignApproval)
-                                        {
-                                            <tr>
-                                                <td>@i2</td>
-                                                <td>@item.StringMEO_NCCDate</td>
-                                                <td>@item.Reference</td>
-                                                <td>@item.StringApprovalDate</td>
-                                                <td>@item.ApprovalNo</td>
-                                                <td>@item.ApprovalLetterNo</td>
-                                                <td>@item.FlorNumber</td>
-                                                <td>@item.GroundFlorArea</td>
-                                                <td>@item.OtherFlorArea</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        @{ int i2 = 1;
+                                            foreach (var item in Model.DesignApproval)
+                                            {
+                                                <tr>
+                                                    <td>@i2</td>
+                                                    <td>@item.StringMEO_NCCDate</td>
+                                                    <td>@item.Reference</td>
+                                                    <td>@item.StringApprovalDate</td>
+                                                    <td>@item.ApprovalNo</td>
+                                                    <td>@item.ApprovalLetterNo</td>
+                                                    <td>@item.FlorNumber</td>
+                                                    <td>@item.GroundFlorArea</td>
+                                                    <td>@item.OtherFlorArea</td>
 
 
-                                            </tr>
-                                            i2 = i2 + 1;
+                                                </tr>
+                                                i2 = i2 + 1;
+                                            }
                                         }
-                                    }
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
 
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
                             <legend>   নির্মান অগ্রগতি ও ফ্ল্যাট মালিকানার তথ্য</legend>
-                            <div class="col-lg-5">
+
+                            <div class="col-lg-8">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.OwnerDeclaration)
@@ -562,9 +569,9 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            @*</div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5">*@
 
 
                                 <div class="form-group form-group-xs row">
@@ -678,6 +685,7 @@
 
 
                             </div>
+                            <div class="col-lg-2"></div>
                         </div>
 
 
@@ -686,7 +694,7 @@
                             <div class="separator separator-dashed my-10"></div>
                             <div class="row offset-1">
                                 <legend>   অননুমোদিত নির্মান তথ্য</legend>
-                                <div class="col-lg-5">
+                                <div class="col-lg-8">
                                     <div class="form-group form-group-xs row">
                                         <label class="col-5 col-form-label">
                                             @Html.DisplayNameFor(model => model.TotalUnauthArea)
@@ -735,9 +743,9 @@
                                         </div>
                                     </div>
 
-                                </div>
+                                @*</div>
 
-                                <div class="col-lg-5">
+                                <div class="col-lg-5">*@
 
                                     <div class="form-group form-group-xs row">
                                         <label class="col-5 col-form-label">
@@ -775,9 +783,8 @@
                                         </div>
                                     </div>
 
-
-
                                 </div>
+                                <div class="col-lg-2"></div>
                             </div>
                         }
                     </div>

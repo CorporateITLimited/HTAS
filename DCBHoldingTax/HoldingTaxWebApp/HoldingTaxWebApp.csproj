@@ -4769,12 +4769,6 @@
       <DependentUpon>rptHolderDetails.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="AppReports\Holding\rptHolderDetails1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptHolderDetails.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="AppReports\Tax\rptletterOne.cs">
       <DependentUpon>rptletterOne.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
