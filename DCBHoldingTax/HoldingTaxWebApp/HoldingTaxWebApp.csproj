@@ -4742,6 +4742,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppReports\Holding\rptHolderDetails.cs">
+      <DependentUpon>rptHolderDetails.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="AppReports\Tax\rptletterOne.cs">
       <DependentUpon>rptletterOne.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5133,6 +5139,10 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AppReports\Holding\rptHolderDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptHolderDetails.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Tax\rptletterOne.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptletterOne.cs</LastGenOutput>
