@@ -4764,10 +4764,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppReports\Holding\rptHolderDetails.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>rptHolderDetails.rpt</DependentUpon>
       <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="AppReports\Holding\rptHolderDetails1.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptHolderDetails.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="AppReports\Tax\rptletterOne.cs">
       <DependentUpon>rptletterOne.rpt</DependentUpon>
@@ -5147,8 +5153,6 @@
     <Content Include="Views\TaxReports\rptNonTaxPlayers.cshtml" />
     <Content Include="Views\DOHSArea\Index.cshtml" />
     <Content Include="Views\DOHSArea\Details.cshtml" />
-    <Content Include="Views\DOHSArea\Create.cshtml" />
-    <Content Include="Views\DOHSArea\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -5174,7 +5178,7 @@
   <ItemGroup>
     <EmbeddedResource Include="AppReports\Holding\rptHolderDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptHolderDetails.cs</LastGenOutput>
+      <LastGenOutput>rptHolderDetails1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Tax\rptletterOne.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
