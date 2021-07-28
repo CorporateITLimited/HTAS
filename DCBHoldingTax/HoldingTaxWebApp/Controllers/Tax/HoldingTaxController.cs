@@ -218,5 +218,12 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
             return Json(status, JsonRequestBehavior.AllowGet);
         }
+
+
+        public JsonResult GetPaidAmmChart()
+        {
+            var data = _holdingTaxManager.GetAllHoldingTax().ToList();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
     }
 }

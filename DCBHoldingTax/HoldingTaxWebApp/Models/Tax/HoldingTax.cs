@@ -99,5 +99,8 @@ namespace HoldingTaxWebApp.Models.Tax
         [Display(Name = "নোট")]
         public string Remarks { get; set; }
 
+        [Display(Name = "নোট")]
+        public string MonthDate { get; set; }
+        public decimal? MonthlyPaidAmount { get; set; }
     }
 }

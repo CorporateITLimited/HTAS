@@ -553,5 +553,78 @@ namespace HoldingTaxWebApp.Gateway.Tax
                     Sql_Connection.Close();
             }
         }
+
+
+        //List
+        public List<HoldingTax> GetForPaidAmmChart()
+        {
+            try
+            {
+                Sql_Query = "[Tax].[spHoldingTax]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "PaidAmountChart";
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<HoldingTax> holdingtaxList = new List<HoldingTax>();
+
+                while (Data_Reader.Read())
+                {
+                    HoldingTax holdingtax = new HoldingTax()
+                    {
+
+
+                        MonthlyPaidAmount = Data_Reader["MonthlyPaidAmount"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["PaidAmount"]) : (Decimal?)null,
+                        AreaName = Convert.ToString(Data_Reader["AreaName"]),
+                        MonthDate = Convert.ToString(Data_Reader["MonthDate"])
+                    };
+
+                    holdingtaxList.Add(holdingtax);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return holdingtaxList;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
     }
 }
