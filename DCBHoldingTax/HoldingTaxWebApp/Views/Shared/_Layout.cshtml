@@ -18,7 +18,7 @@
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
-    @*<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />*@
+    <link rel="shortcut icon" href="~/Images/dcb_logo_ico_.ico" />
     @RenderSection("Sheets", required: false)
     <style>
         label.error {
@@ -37,19 +37,19 @@
         @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
         {
             <a href="~/Home/Index">
-                <img alt="Logo" src="~/Theme/dist/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
+                <img src="~/Images/dcb_logo_.png" alt="Logo" class="max-h-30px" />
             </a>
         }
         else if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
         {
             <a href="~/Home/Holder">
-                <img alt="Logo" src="~/Theme/dist/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
+                <img src="~/Images/dcb_logo_.png" alt="Logo" class="max-h-30px" />
             </a>
         }
         else
         {
             <a href="#">
-                <img alt="Logo" src="~/Theme/dist/assets/media/logos/logo-letter-9.png" class="max-h-30px" />
+                <img src="~/Images/dcb_logo_.png" alt="Logo" class="max-h-30px" />
             </a>
         }
         <!--end::Logo-->
@@ -91,25 +91,38 @@
                                 <!--begin::Logo-->
                                 @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
                                 {
-                                    <a href="~/Home/Index" class="mr-20">
-                                        <img alt="Logo" src="~/Theme/dist/assets/media/logos/logo-letter-9.png" class="max-h-35px" />
+                                    @*<a href="~/Home/Index" class="mr-20">
+                                            <img src="~/Images/dcb_logo_.png" alt="Logo" class="max-h-35px" />
+                                        </a>*@
+                                    <a href="~/Home/Index">
+                                        <img src="~/Images/dcb_5_bn.png" alt="Banner" class="max-h-70px" />
                                     </a>
+
                                 }
                                 else if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
                                 {
-                                    <a href="~/Home/Holder" class="mr-20">
-                                        <img alt="Logo" src="~/Theme/dist/assets/media/logos/logo-letter-9.png" class="max-h-35px" />
+                                    @*<a href="~/Home/Holder" class="mr-20">
+                                            <img src="~/Images/dcb_logo_.png" alt="Logo" class="max-h-35px" />
+                                        </a>*@
+                                    <a href="~/Home/Index">
+                                        <img src="~/Images/dcb_5_bn.png" alt="Banner" class="max-h-70px" />
                                     </a>
                                 }
                                 else
                                 {
-                                    <a href="#" class="mr-20">
-                                        <img alt="Logo" src="~/Theme/dist/assets/media/logos/logo-letter-9.png" class="max-h-35px" />
+                                    <a href="~/Home/Index">
+                                        <img src="~/Images/dcb_5_bn.png" alt="Banner" class="max-h-70px" />
                                     </a>
                                 }
                                 <!--end::Logo-->
+                                <!--end::Left-->
+
                             </div>
-                            <!--end::Left-->
+                            @*<div class="d-lg-flex align-items-center">
+                                        <h1 style="color:white;">
+                                            গৃহসেবা - অনলাইন গৃহকর ব্যবস্থাপনা উদ্যোগ, ঢাকা ক্যাণ্টনমেন্ট বোর্ড।
+                                        </h1>
+                                </div>*@
                             <!--begin::Topbar-->
                             <div class="topbar">
                                 <!--begin::User-->

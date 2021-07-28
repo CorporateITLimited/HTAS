@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-custom gutter-b example example-compact">
-                    <div class="card-header">
+                    <div class="card-header" id="print_header">
                         <div class="row offset-1">
                             <h3 class="card-title">
                                 <b class="kt-font-brand">@Model.PlotOwnerName</b>  &nbsp; এর বিশদ তথ্য
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="print_div">
                         <div class="row offset-1">
                             <legend> জমি মালিকানা ও হস্তান্তর তথ্য</legend>
                             <div class="col-lg-5">
@@ -203,7 +203,7 @@
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                         <div class="col-5">
                                             <span class="form-control-plaintext kt-font-bolder">
-                                                    <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc3" title="Download">ডাউনলোড নথি নং ৩</a>
+                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc3" title="Download">ডাউনলোড নথি নং ৩</a>
                                             </span>
                                         </div>
                                     </div>
@@ -413,401 +413,400 @@
                                     </tbody>
                                 </table>
                             </div>
-                                            }
+                        }
 
 
-                                            @*//@if(Model.DesignApproval. )*@
-                                            <div class="separator separator-dashed my-10"></div>
-                                            <div class="row offset-1">
-                                                <legend>নকশা অনুমোদনের বিবরণ</legend>
-                                                <br />
-                                                <br />
-                                                <table class="table table-bordered table-success" width="100" id="flat_details">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>সিরিয়াল নাম্বার</th>
-                                                            <th>এম ই ও এনওসি তারিখ</th>
-                                                            <th>বোর্ড মিটিং রেফারেন্স</th>
-                                                            <th>প্ল্যান আনুমোদন তারিখ</th>
-                                                            <th>অনুমোদন নং</th>
-                                                            <th>অনুমোদন পত্র নং</th>
-                                                            <th>তলার সংখ্যা</th>
-                                                            <th>গ্রাউন্ড ফ্লোরের আয়তন</th>
-                                                            <th>অন্যান্য ফ্লোরের আয়তন</th>
+                        @*//@if(Model.DesignApproval. )*@
+                        <div class="separator separator-dashed my-10"></div>
+                        <div class="row offset-1">
+                            <legend>নকশা অনুমোদনের বিবরণ</legend>
+                            <br />
+                            <br />
+                            <table class="table table-bordered table-success" width="100" id="flat_details">
+                                <thead>
+                                    <tr>
+                                        <th>সিরিয়াল নাম্বার</th>
+                                        <th>এম ই ও এনওসি তারিখ</th>
+                                        <th>বোর্ড মিটিং রেফারেন্স</th>
+                                        <th>প্ল্যান আনুমোদন তারিখ</th>
+                                        <th>অনুমোদন নং</th>
+                                        <th>অনুমোদন পত্র নং</th>
+                                        <th>তলার সংখ্যা</th>
+                                        <th>গ্রাউন্ড ফ্লোরের আয়তন</th>
+                                        <th>অন্যান্য ফ্লোরের আয়তন</th>
 
 
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @{ int i2 = 1;
-                                                            foreach (var item in Model.DesignApproval)
-                                                            {
-                                                                <tr>
-                                                                    <td>@i2</td>
-                                                                    <td>@item.StringMEO_NCCDate</td>
-                                                                    <td>@item.Reference</td>
-                                                                    <td>@item.StringApprovalDate</td>
-                                                                    <td>@item.ApprovalNo</td>
-                                                                    <td>@item.ApprovalLetterNo</td>
-                                                                    <td>@item.FlorNumber</td>
-                                                                    <td>@item.GroundFlorArea</td>
-                                                                    <td>@item.OtherFlorArea</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ int i2 = 1;
+                                        foreach (var item in Model.DesignApproval)
+                                        {
+                                            <tr>
+                                                <td>@i2</td>
+                                                <td>@item.StringMEO_NCCDate</td>
+                                                <td>@item.Reference</td>
+                                                <td>@item.StringApprovalDate</td>
+                                                <td>@item.ApprovalNo</td>
+                                                <td>@item.ApprovalLetterNo</td>
+                                                <td>@item.FlorNumber</td>
+                                                <td>@item.GroundFlorArea</td>
+                                                <td>@item.OtherFlorArea</td>
 
 
-                                                                </tr>
-                                                                i2 = i2 + 1;
-                                                            }
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                            </tr>
+                                            i2 = i2 + 1;
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
 
 
-                                            <div class="separator separator-dashed my-10"></div>
-                                            <div class="row offset-1">
-                                                <legend>   নির্মান অগ্রগতি ও ফ্ল্যাট মালিকানার তথ্য</legend>
-                                                <div class="col-lg-5">
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.OwnerDeclaration)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.OwnerDeclaration)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.RealBuilder)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.RealBuilder)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.DevelopDeposit)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.DevelopDeposit)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.FloorNumber)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.FloorNumber)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.OwnerPortion)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.OwnerPortion)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.DeveloperPortion)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.DeveloperPortion)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.BuyerPortion)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.BuyerPortion)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.SubmittedPortion)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.SubmittedPortion)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-lg-5">
-
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.StringCompletionDate)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.StringCompletionDate)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.StringGroundFCDate)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.StringGroundFCDate)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.StringFirstFCDate)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.StringFirstFCDate)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.StringSccFCDate)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.StringSccFCDate)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.StringThirdFCDate)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.StringThirdFCDate)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.StringForthFCDate)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.StringForthFCDate)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.StringFivthFCDate)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.StringFivthFCDate)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.StringSixFCDate)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.StringSixFCDate)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group form-group-xs row">
-                                                        <label class="col-5 col-form-label">
-                                                            @Html.DisplayNameFor(model => model.StringOtherFCDate)
-                                                        </label>
-                                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                        <div class="col-5">
-                                                            <span class="form-control-plaintext kt-font-bolder">
-                                                                @Html.DisplayFor(model => model.StringOtherFCDate)
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-
-
-                                                </div>
-                                            </div>
-
-
-                                            @if (Model.TotalUnauthArea > 0)
-                                            {
-                                                <div class="separator separator-dashed my-10"></div>
-                                                <div class="row offset-1">
-                                                    <legend>   অননুমোদিত নির্মান তথ্য</legend>
-                                                    <div class="col-lg-5">
-                                                        <div class="form-group form-group-xs row">
-                                                            <label class="col-5 col-form-label">
-                                                                @Html.DisplayNameFor(model => model.TotalUnauthArea)
-                                                            </label>
-                                                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                            <div class="col-5">
-                                                                <span class="form-control-plaintext kt-font-bolder">
-                                                                    @Html.DisplayFor(model => model.TotalUnauthArea)
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group form-group-xs row">
-                                                            <label class="col-5 col-form-label">
-                                                                @Html.DisplayNameFor(model => model.FineFreeArea)
-                                                            </label>
-                                                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                            <div class="col-5">
-                                                                <span class="form-control-plaintext kt-font-bolder">
-                                                                    @Html.DisplayFor(model => model.FineFreeArea)
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group form-group-xs row">
-                                                            <label class="col-5 col-form-label">
-                                                                @Html.DisplayNameFor(model => model.WithFineUnauth)
-                                                            </label>
-                                                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                            <div class="col-5">
-                                                                <span class="form-control-plaintext kt-font-bolder">
-                                                                    @Html.DisplayFor(model => model.WithFineUnauth)
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group form-group-xs row">
-                                                            <label class="col-5 col-form-label">
-                                                                @Html.DisplayNameFor(model => model.RemovedUnauthArea)
-                                                            </label>
-                                                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                            <div class="col-5">
-                                                                <span class="form-control-plaintext kt-font-bolder">
-                                                                    @Html.DisplayFor(model => model.RemovedUnauthArea)
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="col-lg-5">
-
-                                                        <div class="form-group form-group-xs row">
-                                                            <label class="col-5 col-form-label">
-                                                                @Html.DisplayNameFor(model => model.NonRemovedUnauth)
-                                                            </label>
-                                                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                            <div class="col-5">
-                                                                <span class="form-control-plaintext kt-font-bolder">
-                                                                    @Html.DisplayFor(model => model.NonRemovedUnauth)
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group form-group-xs row">
-                                                            <label class="col-5 col-form-label">
-                                                                @Html.DisplayNameFor(model => model.FineRate)
-                                                            </label>
-                                                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                            <div class="col-5">
-                                                                <span class="form-control-plaintext kt-font-bolder">
-                                                                    @Html.DisplayFor(model => model.FineRate)
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group form-group-xs row">
-                                                            <label class="col-5 col-form-label">
-                                                                @Html.DisplayNameFor(model => model.FineAmount)
-                                                            </label>
-                                                            <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                                            <div class="col-5">
-                                                                <span class="form-control-plaintext kt-font-bolder">
-                                                                    @Html.DisplayFor(model => model.FineAmount)
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                    </div>
-                                                </div>
-                                            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                            <div class="card-footer">
-                                                <div class="text-center">
-                                                    <a href="~/PlotOwner/Edit/@Model.PlotOwnerId" class="btn btn-outline-success btn-md">
-                                                        <i class="fas fa-pen"></i>হালনাগাদের পেজে  যান
-                                                    </a>
-                                                    <a href="~/PlotOwner/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                        <div class="separator separator-dashed my-10"></div>
+                        <div class="row offset-1">
+                            <legend>   নির্মান অগ্রগতি ও ফ্ল্যাট মালিকানার তথ্য</legend>
+                            <div class="col-lg-5">
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.OwnerDeclaration)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.OwnerDeclaration)
+                                        </span>
                                     </div>
                                 </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.RealBuilder)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.RealBuilder)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.DevelopDeposit)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.DevelopDeposit)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.FloorNumber)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.FloorNumber)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.OwnerPortion)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.OwnerPortion)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.DeveloperPortion)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.DeveloperPortion)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.BuyerPortion)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.BuyerPortion)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.SubmittedPortion)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.SubmittedPortion)
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-5">
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringCompletionDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringCompletionDate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringGroundFCDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringGroundFCDate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringFirstFCDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringFirstFCDate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringSccFCDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringSccFCDate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringThirdFCDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringThirdFCDate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringForthFCDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringForthFCDate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringFivthFCDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringFivthFCDate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringSixFCDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringSixFCDate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringOtherFCDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringOtherFCDate)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+
                             </div>
                         </div>
 
 
+                        @if (Model.TotalUnauthArea > 0)
+                        {
+                            <div class="separator separator-dashed my-10"></div>
+                            <div class="row offset-1">
+                                <legend>   অননুমোদিত নির্মান তথ্য</legend>
+                                <div class="col-lg-5">
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-5 col-form-label">
+                                            @Html.DisplayNameFor(model => model.TotalUnauthArea)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-5">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @Html.DisplayFor(model => model.TotalUnauthArea)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-5 col-form-label">
+                                            @Html.DisplayNameFor(model => model.FineFreeArea)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-5">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @Html.DisplayFor(model => model.FineFreeArea)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-5 col-form-label">
+                                            @Html.DisplayNameFor(model => model.WithFineUnauth)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-5">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @Html.DisplayFor(model => model.WithFineUnauth)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-5 col-form-label">
+                                            @Html.DisplayNameFor(model => model.RemovedUnauthArea)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-5">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @Html.DisplayFor(model => model.RemovedUnauthArea)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-5">
+
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-5 col-form-label">
+                                            @Html.DisplayNameFor(model => model.NonRemovedUnauth)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-5">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @Html.DisplayFor(model => model.NonRemovedUnauth)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-5 col-form-label">
+                                            @Html.DisplayNameFor(model => model.FineRate)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-5">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @Html.DisplayFor(model => model.FineRate)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-group-xs row">
+                                        <label class="col-5 col-form-label">
+                                            @Html.DisplayNameFor(model => model.FineAmount)
+                                        </label>
+                                        <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                        <div class="col-5">
+                                            <span class="form-control-plaintext kt-font-bolder">
+                                                @Html.DisplayFor(model => model.FineAmount)
+                                            </span>
+                                        </div>
+                                    </div>
 
 
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="text-center">
+                            <a href="~/PlotOwner/Edit/@Model.PlotOwnerId" class="btn btn-outline-success btn-md">
+                                <i class="fas fa-pen"></i>হালনাগাদের পেজে  যান
+                            </a>
+                            <a href="~/PlotOwner/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>
+                            <button id="print_this" class="btn btn-light-primary btn-md"><i class="fas fa-list"></i>প্রিন্ট করুন</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/printThis.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $("#print_this").on('click', function (e) {
+                e.preventDefault();
+                $("#print_div").printThis({
+                    header: $('#print_header')
+                });
+            });
+        });
+    </script>
+}
