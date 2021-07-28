@@ -91,28 +91,43 @@
                                 <!--begin::Logo-->
                                 @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
                                 {
-                                    @*<a href="~/Home/Index" class="mr-20">
-                                            <img src="~/Images/dcb_logo_.png" alt="Logo" class="max-h-35px" />
-                                        </a>*@
-                                    <a href="~/Home/Index">
-                                        <img src="~/Images/dcb_5_bn.png" alt="Banner" class="max-h-70px" />
-                                    </a>
+
+                                    <div class="LogoEdited">
+                                        <a href="~/Home/Index">
+                                            <img src="~/Images/dcb_logo_.png" class="max-h-100px" />
+                                        </a>
+
+                                    </div>
+                                    <div class="BannerEdited">
+                                        <img src="~/Images/Cant-D4_white_logoless.png" alt="Banner" class="max-h-70px" />
+                                    </div>
+
 
                                 }
                                 else if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
                                 {
-                                    @*<a href="~/Home/Holder" class="mr-20">
-                                            <img src="~/Images/dcb_logo_.png" alt="Logo" class="max-h-35px" />
-                                        </a>*@
-                                    <a href="~/Home/Index">
-                                        <img src="~/Images/dcb_5_bn.png" alt="Banner" class="max-h-70px" />
-                                    </a>
+
+                                    <div class="LogoEdited">
+                                        <a href="~/Home/Index">
+                                            <img src="~/Images/dcb_logo_.png" class="max-h-100px" />
+                                        </a>
+
+                                    </div>
+                                    <div class="BannerEdited">
+                                        <img src="~/Images/Cant-D4_white_logoless.png" alt="Banner" class="max-h-70px" />
+                                    </div>
                                 }
                                 else
                                 {
-                                    <a href="~/Home/Index">
-                                        <img src="~/Images/dcb_5_bn.png" alt="Banner" class="max-h-70px" />
-                                    </a>
+                                    <div class="LogoEdited">
+                                        <a href="~/Home/Index">
+                                            <img src="~/Images/dcb_logo_.png" class="max-h-100px" />
+                                        </a>
+
+                                    </div>
+                                    <div class="BannerEdited">
+                                        <img src="~/Images/Cant-D4_white_logoless.png" alt="Banner" class="max-h-70px" />
+                                    </div>
                                 }
                                 <!--end::Logo-->
                                 <!--end::Left-->
