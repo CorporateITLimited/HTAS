@@ -219,7 +219,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
                         HolderName = Convert.ToString(Data_Reader["HolderName"]),
-                        PaymentDate = Data_Reader[" PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader[" PaymentDate"]) : (DateTime?)null,
+                        PaymentDate = Data_Reader["PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["PaymentDate"]) : (DateTime?)null,
                         Remarks = Convert.ToString(Data_Reader["Remarks"])
                     };
 

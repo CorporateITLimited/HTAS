@@ -47,7 +47,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
                 return View(holdingTaxes.ToList());
             }
-            catch
+            catch(Exception ex)
             {
                 TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
                 return RedirectToAction("LogIn", "Account");
