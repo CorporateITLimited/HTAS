@@ -71,22 +71,22 @@ namespace HoldingTaxWebApp.Models.Holding
         public bool? IsDeleted { get; set; }
 
 
-        [Display(Name = "বিজ্ঞপ্তি নম্বর ১")]
+        [Display(Name = "গৃহকরের প্রাথমিক বিজ্ঞপ্তি")]
         public int? Notice_1 { get; set; }
 
-        [Display(Name = "বিজ্ঞপ্তি নম্বর ১")]
+        [Display(Name = "গৃহকরের প্রাথমিক বিজ্ঞপ্তি")]
         public string NoticeName_1 { get; set; }
 
-        [Display(Name = "বিজ্ঞপ্তি নম্বর ২")]
+        [Display(Name = "রিবেটসহ গৃহকর প্রাপ্তির বিজ্ঞপ্তি")]
         public int? Notice_2 { get; set; }
 
-        [Display(Name = "বিজ্ঞপ্তি নম্বর ২")]
+        [Display(Name = "রিবেটসহ গৃহকর প্রাপ্তির বিজ্ঞপ্তি")]
         public string NoticeName_2 { get; set; }
 
-        [Display(Name = "বিজ্ঞপ্তি নম্বর ৩")]
+        [Display(Name = "গৃহকরের চূড়ান্ত বিজ্ঞপ্তি")]
         public int? Notice_3 { get; set; }
 
-        [Display(Name = "বিজ্ঞপ্তি নম্বর ৩")]
+        [Display(Name = "গৃহকরের চূড়ান্ত বিজ্ঞপ্তি")]
         public string NoticeName_3 { get; set; }
     }
 }

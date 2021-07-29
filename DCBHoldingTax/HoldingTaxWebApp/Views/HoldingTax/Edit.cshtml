@@ -30,7 +30,7 @@
                 <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকরের তথ্য</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        @*<a href="#" class="text-muted">গৃহকরের তথ্য পরিবর্তন</a>*@
+                        <a href="#" class="text-muted">গৃহকরের তথ্য হালনাগাদ/পরিবর্তন</a>
                     </li>
                 </ul>
             </div>
@@ -48,7 +48,7 @@
 
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
-                        <h3 class="card-title">গৃহকরের তথ্য পরিবর্তন</h3>
+                        <h3 class="card-title">গৃহকরের তথ্য হালনাগাদ/পরিবর্তন</h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
 
@@ -89,29 +89,29 @@
 
 
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label text-lg-right">ছাড়: <span id="RebatePercent"> &nbsp; @Model.RebatePercent (%)</span></label>
-                                <div class="col-lg-1">
-                                    <div class="radio-inline">
+                                <label class="col-lg-2 col-form-label text-lg-right">রিবেট/ছাড়: <span id="RebatePercent"> &nbsp; @Model.RebatePercent (%)</span></label>
+                                <div class="col-lg-2">
+                                    <div class="">
                                         @if (Model.Rebate > 0)
                                         {
                                             <label class="radio radio-solid">
                                                 @Html.RadioButtonFor(model => model.RebateInfo, "Yes", new { @checked = "true" })
-                                                <span></span>হ্যা
+                                                <span></span>প্রযোজ্য
                                             </label>
                                             <label class="radio radio-solid">
                                                 @Html.RadioButtonFor(model => model.RebateInfo, "No")
-                                                <span></span>না
+                                                <span></span>প্রযোজ্য নয়
                                             </label>
                                         }
                                         else
                                         {
                                             <label class="radio radio-solid">
                                                 @Html.RadioButtonFor(model => model.RebateInfo, "Yes")
-                                                <span></span>হ্যা
+                                                <span></span>প্রযোজ্য
                                             </label>
                                             <label class="radio radio-solid">
                                                 @Html.RadioButtonFor(model => model.RebateInfo, "No", new { @checked = "true" })
-                                                <span></span>না
+                                                <span></span>প্রযোজ্য নয়
                                             </label>
                                         }
                                     </div>
@@ -128,29 +128,29 @@
                                     }
                                 </div>
 
-                                <label class="col-lg-2 col-form-label text-lg-right">চূড়ান্ত</label>
-                                <div class="col-lg-1">
-                                    <div class="radio-inline">
+                                <label class="col-lg-2 col-form-label text-lg-right">চুড়ান্ত করুন</label>
+                                <div class="col-lg-2">
+                                    <div class="">
                                         @if (Model.isFinalized == true)
                                         {
                                             <label class="radio radio-solid">
                                                 @Html.RadioButtonFor(model => model.FinalizeInfo, "Yes", new { @checked = "true" })
-                                                <span></span>হ্যা
+                                                <span></span>চুড়ান্ত
                                             </label>
                                             <label class="radio radio-solid">
                                                 @Html.RadioButtonFor(model => model.FinalizeInfo, "No")
-                                                <span></span>না
+                                                <span></span>চুড়ান্ত নয়
                                             </label>
                                         }
                                         else
                                         {
                                             <label class="radio radio-solid">
                                                 @Html.RadioButtonFor(model => model.FinalizeInfo, "Yes")
-                                                <span></span>হ্যা
+                                                <span></span>চুড়ান্ত
                                             </label>
                                             <label class="radio radio-solid">
                                                 @Html.RadioButtonFor(model => model.FinalizeInfo, "No", new { @checked = "true" })
-                                                <span></span>না
+                                                <span></span>চুড়ান্ত নয়
                                             </label>
                                         }
                                     </div>
@@ -160,32 +160,30 @@
 
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label text-lg-right">ভুল তথ্য চার্জ: <span id="WrongInfoChargePercent">&nbsp;@Model.WrongInfoChargePercent  (%)</span></label>
-                                <div class="col-lg-1">
-                                    <div class="radio-inline">
-                                        <div class="radio-inline">
-                                            @if (Model.WrongInfoCharge > 0)
-                                            {
-                                                <label class="radio radio-solid">
-                                                    @Html.RadioButtonFor(model => model.WrongInfo, "Yes", new { @checked = "true" })
-                                                    <span></span>হ্যা
-                                                </label>
-                                                <label class="radio radio-solid">
-                                                    @Html.RadioButtonFor(model => model.WrongInfo, "No")
-                                                    <span></span>না
-                                                </label>
-                                            }
-                                            else
-                                            {
-                                                <label class="radio radio-solid">
-                                                    @Html.RadioButtonFor(model => model.WrongInfo, "Yes")
-                                                    <span></span>হ্যা
-                                                </label>
-                                                <label class="radio radio-solid">
-                                                    @Html.RadioButtonFor(model => model.WrongInfo, "No", new { @checked = "true" })
-                                                    <span></span>না
-                                                </label>
-                                            }
-                                        </div>
+                                <div class="col-lg-2">
+                                    <div class="">
+                                        @if (Model.WrongInfoCharge > 0)
+                                        {
+                                            <label class="radio radio-solid">
+                                                @Html.RadioButtonFor(model => model.WrongInfo, "Yes", new { @checked = "true" })
+                                                <span></span>প্রযোজ্য
+                                            </label>
+                                            <label class="radio radio-solid">
+                                                @Html.RadioButtonFor(model => model.WrongInfo, "No")
+                                                <span></span>প্রযোজ্য নয়
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label class="radio radio-solid">
+                                                @Html.RadioButtonFor(model => model.WrongInfo, "Yes")
+                                                <span></span>প্রযোজ্য
+                                            </label>
+                                            <label class="radio radio-solid">
+                                                @Html.RadioButtonFor(model => model.WrongInfo, "No", new { @checked = "true" })
+                                                <span></span>প্রযোজ্য নয়
+                                            </label>
+                                        }
                                     </div>
                                 </div>
                                 <div class="col-lg-3">

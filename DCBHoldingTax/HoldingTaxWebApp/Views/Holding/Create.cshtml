@@ -155,13 +155,19 @@
 
                                                 </div>
                                                 <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.PlotId, "প্লট/বাড়ী/ফ্ল্যাট নম্বর ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+
+                                                    <label for="PlotId" class="col-lg-2 col-form-label text-lg-right">প্লট/বাড়ী/ফ্ল্যাট নম্বর</label>
                                                     <div class="col-lg-4">
-                                                        @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
-                                                    {
-                                                        @class = "form-control",
-                                                    })
+                                                        <select id="PlotId" name="PlotId" width="100%" class="tender_supplier form-control">
+                                                        </select>
                                                     </div>
+                                                    @*@Html.LabelFor(model => model.PlotId, "প্লট/বাড়ী/ফ্ল্যাট নম্বর ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                        <div class="col-lg-4">
+                                                            @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
+                                                        {
+                                                            @class = "form-control",
+                                                        })
+                                                        </div>*@
 
                                                     @Html.LabelFor(model => model.Spouse, "স্বামী/স্ত্রীর নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
@@ -622,6 +628,40 @@
             }
             $("#image_file").change(function () {
                 readUrl(this);
+            });
+
+
+            $("#AreaId").change(function () {
+                var areaId = $("#AreaId").val();
+
+                var json = {
+                    AreaId: areaId
+                };
+                $.ajax({
+                    url: '@Url.Action("GetAllPlotByAreaId", "Holding")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        if (data.length === 0) {
+                            Swal.fire(
+                                'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি' , 'info'
+                            )
+                        }
+                        else {
+                            $("#PlotId").empty();
+                            $("#PlotId").append("<option value=''>--নির্বাচন করুন--</option>");
+                            $.each(data, function (index, row) {
+                                $("#PlotId").append("<option value='" + row.PlotId + "'>" + row.PlotNo + "</option>");
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'error'
+                        )
+                    }
+                });
             });
 
             // plot name show in every heading

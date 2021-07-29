@@ -1335,7 +1335,12 @@ namespace HoldingTaxWebApp.Controllers.Holding
             return data;
         }
 
+        public JsonResult GetAllPlotByAreaId(int AreaId)
+        {
+            var data = _plotManager.GetPlotByAreaId(AreaId);
 
+            return new JsonResult { Data = data ?? null };
+        }
         public JsonResult GetAllotmentNamjariDesignByPlotId(int PlotId)
         {
             return new JsonResult { Data = _holdingManager.GetAllotmentNamjariDesignByPlotId(PlotId) };
@@ -1412,7 +1417,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             Session["HolderID"] = id;
             Session["AreaId"] = null;
             Session["PlotId"] = null;
-            
+
             return View();
         }
 

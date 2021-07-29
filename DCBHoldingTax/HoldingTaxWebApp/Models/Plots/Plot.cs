@@ -25,7 +25,7 @@ namespace HoldingTaxWebApp.Models.Plots
         [Display(Name = "প্লট নম্বর")]
         public string PlotNo { get; set; }
 
-        [Display(Name = "এলাকার আয়তন")]
+        [Display(Name = "প্লটের মোট আয়তন")]
         public decimal? TotalArea { get; set; }
 
         [Display(Name = "অন্তর্ভুক্তির তারিখ ")]

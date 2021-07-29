@@ -26,6 +26,11 @@ namespace HoldingTaxWebApp.Manager.Plots
             return _plotGateway.GetPlotById(id);
         }
 
+        public List<Plot> GetPlotByAreaId(int id)
+        {
+            return _plotGateway.GetPlotByAreaId(id);
+        }
+
         public string PlotGatewayUpdate(Plot Plot)
         {
             int result = _plotGateway.PlotGatewayUpdate(Plot);

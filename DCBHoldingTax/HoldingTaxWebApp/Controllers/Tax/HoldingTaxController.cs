@@ -99,13 +99,13 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
             var relatedData = _holdingTaxManager.GetRebateAndWrongInfoByHoldingTaxId(id);
 
-            DateTime startDate = new DateTime(DateTime.Now.Year, 6, 30);
-            DateTime newstartDate = startDate.Add(new TimeSpan(23, 59, 59));
+            //DateTime startDate = new DateTime(DateTime.Now.Year, 6, 30);
+            //DateTime newstartDate = startDate.Add(new TimeSpan(23, 59, 59));
 
-            DateTime endDate = new DateTime(DateTime.Now.Year, 12, 31);
-            DateTime newendDate = endDate.Add(new TimeSpan(23, 59, 59));
+            //DateTime endDate = new DateTime(DateTime.Now.Year, 12, 31);
+            //DateTime newendDate = endDate.Add(new TimeSpan(23, 59, 59));
 
-            holdingTax.Rebate = DateTime.Now > newstartDate && DateTime.Now < newendDate ? relatedData.RebateValue : 0;
+            holdingTax.Rebate = relatedData.RebateValue; //DateTime.Now > newstartDate && DateTime.Now < newendDate ? relatedData.RebateValue : 0;
             holdingTax.SubTotalHoldingTax = holdingTax.Rebate > 0 ? holdingTax.SubTotalHoldingTax - holdingTax.Rebate : holdingTax.SubTotalHoldingTax;
 
             holdingTax.RebatePercent = relatedData.RebatePercent;
