@@ -106,6 +106,74 @@ namespace HoldingTaxWebApp.Gateway.Users
 
         }
 
+
+        public List<Employee> GetAllEmployeeListForSelect()
+        {
+            try
+            {
+                Sql_Query = "[user].[spEmployeeMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "select_employee";
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+                List<Employee> EmployeeListVM = new List<Employee>();
+
+                while (Data_Reader.Read())
+                {
+                    Employee Employee = new Employee
+                    {
+                        EmployeeName = Data_Reader["EmployeeName"].ToString(),
+                        EmpolyeeId = Convert.ToInt32(Data_Reader["EmpolyeeId"]),
+                    };
+
+                    EmployeeListVM.Add(Employee);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return EmployeeListVM;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+
+            }
+
+        }
+
         public Employee GetEmployeeById(int id)
         {
             try

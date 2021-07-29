@@ -1,6 +1,7 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager.DBO;
 using HoldingTaxWebApp.Manager.Holding;
+using HoldingTaxWebApp.Manager.Users;
 using HoldingTaxWebApp.Models.Holding;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,14 @@ namespace HoldingTaxWebApp.Controllers.Holding
         private readonly NoticeManager _noticeManager;
         private readonly FinancialYearManager _financialYearManager;
         private readonly DOHSAreaManager _dOHSAreaManager;
+        private readonly EmployeeManager _employeeManager;
 
         public NoticeController()
         {
             _noticeManager = new NoticeManager();
             _financialYearManager = new FinancialYearManager();
             _dOHSAreaManager = new DOHSAreaManager();
+            _employeeManager = new EmployeeManager();
         }
 
         // GET: Notice
@@ -63,6 +66,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 ViewBag.FinancialYearId = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
                 ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
                 ViewBag.NoticeTypeId = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text");
+                ViewBag.EmpolyeeId = new SelectList(_employeeManager.GetAllEmployeeListForSelect(), "EmpolyeeId", "EmployeeName");
                 var currDate = DateTime.Now;
                 ViewBag.DateTimeStr = "আজকের তারিখ : " + BanglaConvertionHelper.StringEnglish2StringBanglaDate(currDate.ToString("dd/MM/yyyy"));
 
@@ -87,6 +91,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 ViewBag.FinancialYearId = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear", notice.FinancialYearId);
                 ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", notice.AreaId);
                 ViewBag.NoticeTypeId = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text", notice.NoticeTypeId);
+                ViewBag.EmpolyeeId = new SelectList(_employeeManager.GetAllEmployeeListForSelect(), "EmpolyeeId", "EmployeeName", notice.EmpolyeeId);
 
                 var currDate = DateTime.Now;
                 ViewBag.DateTimeStr = "আজকের তারিখ : " + BanglaConvertionHelper.StringEnglish2StringBanglaDate(currDate.ToString("dd/MM/yyyy"));
@@ -100,6 +105,12 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 if (notice.NoticeTypeId <= 0)
                 {
                     ModelState.AddModelError("", "নোটিশ নম্বর নির্বাচন করুন");
+                    return View(notice);
+                }
+
+                if (notice.EmpolyeeId <= 0 || notice.EmpolyeeId == null)
+                {
+                    ModelState.AddModelError("", "কর্মকর্তার নাম নির্বাচন করুন");
                     return View(notice);
                 }
 
@@ -191,7 +202,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     }
                     else if (sendNotice == CommonConstantHelper.Conflict)
                     {
-                        ModelState.AddModelError("", "Notice already sent.");
+                        ModelState.AddModelError("", "ইতিমধ্যে বিজ্ঞপ্তিটি পাঠানো হয়েছে");
                         return View(notice);
                     }
                     else if (sendNotice == CommonConstantHelper.Error)

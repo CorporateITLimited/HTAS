@@ -388,6 +388,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = model.LastUpdatedBy;
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
+                Sql_Command.Parameters.Add("@EmpolyeeId", SqlDbType.Int).Value = model.EmpolyeeId;
 
                 SqlParameter result = new SqlParameter
                 {

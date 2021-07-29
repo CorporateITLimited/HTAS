@@ -88,5 +88,12 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "গৃহকরের চূড়ান্ত বিজ্ঞপ্তি")]
         public string NoticeName_3 { get; set; }
+
+
+        [Display(Name = "কর্মকর্তার নাম")]
+        public int? EmpolyeeId { get; set; }
+
+        [Display(Name = "কর্মকর্তার নাম")]
+        public string EmployeeName { get; set; }
     }
 }
