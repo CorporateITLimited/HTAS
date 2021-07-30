@@ -92110,6 +92110,10 @@ body {
                 align-items: center;
                 padding: 0px 0.25rem;
                 padding: 0px 0.25rem;
+                /*background: rgb(254,254,254);
+                background: linear-gradient(180deg, rgba(254,254,254,0.048354375930059534) 60%, rgba(11,183,131,0.7150210425967262) 100%);*/
+                background: rgb(254,254,254);
+                background: linear-gradient(180deg, rgba(254,254,254,0.06796221906731448) 64%, rgba(152,224,202,1) 90%, rgba(11,183,131,1) 100%);
             }
 
                 .header-menu .menu-nav > .menu-item > .menu-link > .menu-arrow {
@@ -92173,6 +92177,7 @@ body {
                         font-weight: 400;
                         font-size: 1rem;
                         text-transform: initial;
+                        justify-content:center;
                     }
 
                     .header-menu .menu-nav > .menu-item > .menu-link .menu-label {

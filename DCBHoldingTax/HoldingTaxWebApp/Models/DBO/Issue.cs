@@ -21,10 +21,10 @@ namespace HoldingTaxWebApp.Models.DBO
         //public string Details { get; set; }
         //public string Doc1 { get; set; }
         //public string Doc2 { get; set; }
-        [Display(Name = "সমাধানের তারিখ")]
+        [Display(Name = "নিস্পত্তির তারিখ")]
 
         public DateTime? SolvedDate { get; set; }
-        //[Display(Name = "তৈরিকারী")]
+        [Display(Name = "নিস্পত্তির তারিখ")]
         public string StringSolvedDate { get; set; }
         [Display(Name = "মন্তব্য")]
         public string Remarks { get; set; }
@@ -46,7 +46,7 @@ namespace HoldingTaxWebApp.Models.DBO
         public string UpdatedByUserName { get; set; }
 
         ////out of table
-        [Display(Name = "ধারক এর নাম")]
+        [Display(Name = "হোল্ডার এর নাম")]
         public string HolderName { get; set; }
         [Display(Name = "স্ট্যাটাস এর নাম")]
         public string StatusName { get; set; }

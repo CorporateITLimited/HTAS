@@ -44,7 +44,7 @@ namespace HoldingTaxWebApp.ViewModels.DBO
         public string UpdatedByUserName { get; set; }
 
         ////out of table
-        [Display(Name = "ধারক এর নাম")]
+        [Display(Name = "হোল্ডার এর নাম")]
         public string HolderName { get; set; }
         [Display(Name = "স্ট্যাটাস এর নাম")]
         public string StatusName { get; set; }
@@ -57,7 +57,7 @@ namespace HoldingTaxWebApp.ViewModels.DBO
         public string MsgDetailsList { get; set; }
         [Display(Name = "বার্তা তারিখের তালিকা")]
         public DateTime? MsgDateList { get; set; }
-        [Display(Name = "স্ট্রিং বার্তার তারিখ তালিকা")]
+        [Display(Name = "বার্তার তারিখ")]
         public string StringMsgDateList { get; set; }
         [Display(Name = "ডকুমেন্ট 1 তালিকা")]
         public string Doc1List { get; set; }

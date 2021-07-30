@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<HoldingTaxWebApp.Models.DBO.Issue>
+
+
 @{
     ViewBag.Title = "Index";
 }
@@ -39,10 +41,14 @@
                     <!--begin::Dropdown-->
                     <!--end::Dropdown-->
                     <!--begin::Button-->
-                    <a href="~/Issue/Create" class="btn btn-primary font-weight-bolder">
-                        <i class="fas fa-plus">
-                        </i>নতুন বার্তা
-                    </a>
+                    @if ((Convert.ToInt32(Session[HoldingTaxWebApp.Helpers.CommonConstantHelper.UserTypeId]) == 2))
+                    {
+                        <a href="~/Issue/Create" class="btn btn-primary font-weight-bolder">
+                            <i class="fas fa-plus">
+                            </i>নতুন বার্তা
+                        </a>
+                    }
+
 
 
 
