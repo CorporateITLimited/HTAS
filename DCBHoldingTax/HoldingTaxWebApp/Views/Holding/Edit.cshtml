@@ -720,6 +720,39 @@
                 readUrl(this);
             });
 
+            $("#AreaId").change(function () {
+                var areaId = $("#AreaId").val();
+
+                var json = {
+                    AreaId: areaId
+                };
+                $.ajax({
+                    url: '@Url.Action("GetAllPlotByAreaId", "Holding")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        if (data.length === 0) {
+                            Swal.fire(
+                                'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি' , 'info'
+                            )
+                        }
+                        else {
+                            $("#PlotId").empty();
+                            $("#PlotId").append("<option value=''>--নির্বাচন করুন--</option>");
+                            $.each(data, function (index, row) {
+                                $("#PlotId").append("<option value='" + row.PlotId + "'>" + row.PlotNo + "</option>");
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'error'
+                        )
+                    }
+                });
+            });
+
             // plot name show in every heading
             $('#PlotId').change(function () {
                 var plotName = $('#PlotId option:selected').text();

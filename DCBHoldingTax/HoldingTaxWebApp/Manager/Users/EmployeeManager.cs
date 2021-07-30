@@ -22,6 +22,11 @@ namespace HoldingTaxWebApp.Manager.Users
             return _employeeGateway.GetAllEmployeeList();
         }
 
+        public List<Employee> GetAllEmployeeListForSelect()
+        {
+            return _employeeGateway.GetAllEmployeeListForSelect();
+        }
+
         public Employee GetEmployeeById(int id)
         {
             return _employeeGateway.GetEmployeeById(id);
@@ -41,7 +46,6 @@ namespace HoldingTaxWebApp.Manager.Users
                 return CommonConstantHelper.Failed;
 
         }
-
 
         public string EmployeeUpdate(Employee employee)
         {
