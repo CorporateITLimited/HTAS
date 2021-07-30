@@ -67,7 +67,7 @@
                                 </div>
                             </div>
 
-                            <legend>List of Users Permission</legend>
+                            <legend>সফটওয়্যার এর ফাংশন/কাজের বিবরণ</legend>
                             <div class="row m-2">
                                 <div class="col-md-12">
                                     <table class="table table-bordered table-active" id="user_permission_table">
@@ -217,13 +217,13 @@
                     return;
                 } {
                     Swal.fire({
-                        title: 'Changing User Permissions',
-                        text: 'Are you sure about updating User Permissions?',
+                        title: 'অনুমতি প্রদান',
+                        text: 'নির্বাচিত সফটওয়্যার ব্যবহারকারীকে (ঢাকা ক্যাটনমেন্ট বোর্ড) অনুমতি প্রদানে নিশ্চিত করুন',
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes'
+                        confirmButtonText: 'নিশ্চিত'
                     }).then((result) => {
                         if (result.value) {
 
@@ -266,8 +266,8 @@
                                             list = [];
                                             $('#user_permission_table tbody').empty();
                                             swal.fire({
-                                                "icon": 'success',
-                                                "title": 'Your work has been saved',
+                                                "icon": 'সাফল্য',
+                                                "title": 'সফলভাবে নির্বাচিত সফটওয়্যার ব্যবহারকারীকে (ঢাকা ক্যাটনমেন্ট বোর্ড) অনুমতি প্রদান করা হল।',
                                                 "timer": 1000
                                             });
                                             //setTimeout(function () { window.location.href = "/UserPermission/Index"; }, 1500);
@@ -303,7 +303,7 @@
             $("#details_button").on('click', function () {
 
                 if ($('#UserId').val() == "0" || ($('#UserId').val() == '')) {
-                    Swal.fire('Error!', 'Select an User first for view details', 'info');
+                    Swal.fire('ত্রুটি!', 'একজন ব্যবহারকারী নির্বাচন করুন', 'info');
                     return;
                 }
                 else {
