@@ -7,9 +7,10 @@ namespace HoldingTaxWebApp.Models.Holding
 {
     public class ChartPaidAm
     {
-        public string MonthDate { get; set; }
+        public int MonthDate { get; set; }
+        public int YearDate { get; set; }
         public string AreaName { get; set; }
-        public decimal? MonthlyPaidAmount { get; set; }
+        public int MonthlyPaidAmount { get; set; }
 
     }
 }

@@ -224,8 +224,22 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
         public JsonResult GetPaidAmmChart()
         {
-            List<ChartPaidAm> data = _holdingTaxManager.GetChartPaidAms();
-            return Json(data, JsonRequestBehavior.AllowGet);
+            List<ChartPaidAm> dataList = _holdingTaxManager.GetChartPaidAms();
+            var li = dataList.Select(s => new int[] {s.MonthDate, s.MonthlyPaidAmount }).ToList();
+            int[][] array = li.ToArray();
+            //foreach (var item in dataList)
+            //{
+            //    array= array.Append(item.MonthlyPaidAmount) ([item.MonthDate,item.MonthlyPaidAmount]);
+            //}
+            //    var ret = new[]
+            //{
+            //    new { label="PageViews", data = dataList.Select(x=>new int[]{ x.MonthDate, x.MonthlyPaidAmount })},
+            //    new { label="Visits", data = dataList.Select(x=>new int[]{ x.MonthDate, x.MonthlyPaidAmount })},
+            //    new { label="Visitors", data = dataList.Select(x=>new int[]{ x.MonthDate, x.MonthlyPaidAmount })}
+
+            //};
+
+            return Json(array, JsonRequestBehavior.AllowGet);
         }
     }
 }

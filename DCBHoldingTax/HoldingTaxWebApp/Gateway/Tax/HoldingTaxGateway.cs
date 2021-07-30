@@ -593,10 +593,10 @@ namespace HoldingTaxWebApp.Gateway.Tax
                     {
 
 
-                        MonthlyPaidAmount = Data_Reader["MonthlyPaidAmount"] != DBNull.Value ?
-                                                Convert.ToDecimal(Data_Reader["MonthlyPaidAmount"]) : (Decimal?)null,
+                        MonthlyPaidAmount = Convert.ToInt32(Data_Reader["MonthlyPaidAmount"]),
                         AreaName = Convert.ToString(Data_Reader["AreaName"]),
-                        MonthDate = Convert.ToString(Data_Reader["MonthDate"])
+                        MonthDate = Convert.ToInt32(Data_Reader["MonthDate"]),
+                        YearDate = Convert.ToInt32(Data_Reader["YearDate"]),
                     };
 
                     chartList.Add(chart);
