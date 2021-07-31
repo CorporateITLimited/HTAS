@@ -64,28 +64,58 @@ var KTWizard4 = function () {
                     //_formEl.submit(); // Submit form
                     var isAllValid = true;
                     var list = [];
-                    $('#flat_details tbody tr').each(function (index, ele) {
-                        var holderFlatId = parseInt($('.HolderFlatId', this).val()) || 0;
-                        var florNo = parseInt($('.FlorNo option:selected', this).val()) || 0;
-                        var flatNo = $('.FlatNo', this).val().trim();
-                        var flatArea = parseFloat($('.FlatArea', this).val()) || 0;
-                        var ownOrRent = parseInt($('.OwnOrRent option:selected', this).val()) || 0;
-                        var monthlyRent = parseFloat($('.MonthlyRent', this).val()) || 0;
-                        var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
-                        var ownerName = $('.OwnerName', this).val().trim();
+                    var isHolderOwner = $('#IsHolderAnOwner').val();
+                    if (isHolderOwner === 'true') {
+                        $('#flat_details tbody tr').each(function (index, ele) {
+                            var holderFlatId = 0;// parseInt($('.HolderFlatId', this).val()) || 0;
+                            var florNo = parseInt($('.FlorNo option:selected', this).val()) || 0;
+                            var flatNo = $('.FlatNo', this).val().trim();
+                            var flatArea = parseFloat($('.FlatArea', this).val()) || 0;
+                            var ownOrRent = parseInt($('.OwnOrRent option:selected', this).val()) || 0;
+                            var monthlyRent = parseFloat($('.MonthlyRent', this).val()) || 0;
+                            var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
+                            var ownerName = '';//$('.OwnerName', this).val().trim();
+                            var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
 
-                        var detailsData = {
-                            HolderFlatId: holderFlatId,
-                            FlorNo: florNo,
-                            FlatNo: flatNo,
-                            FlatArea: flatArea,
-                            OwnOrRent: ownOrRent,
-                            SelfOwn: selfOwned,
-                            MonthlyRent: monthlyRent,
-                            OwnerName: ownerName
-                        }
-                        list.push(detailsData);
-                    });
+                            var detailsData = {
+                                HolderFlatId: holderFlatId,
+                                FlorNo: florNo,
+                                FlatNo: flatNo,
+                                FlatArea: flatArea,
+                                OwnOrRent: ownOrRent,
+                                SelfOwn: selfOwned,
+                                MonthlyRent: monthlyRent,
+                                OwnerName: ownerName,
+                                IsCheckedByHolder: isCheckedByHolder
+                            }
+                            list.push(detailsData);
+                        });
+                    } else {
+                        $('#flat_details tbody tr').each(function (index, ele) {
+                            var holderFlatId = 0;//parseInt($('.HolderFlatId', this).val()) || 0;
+                            var florNo = parseInt($('.FlorNo', this).val()) || 0;
+                            var flatNo = $('.FlatNo', this).html();
+                            var flatArea = parseFloat($('.FlatArea', this).html()) || 0;
+                            var ownOrRent = parseInt($('.OwnOrRent option:selected', this).val()) || 0;
+                            var monthlyRent = parseFloat($('.MonthlyRent', this).val()) || 0;
+                            var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
+                            var ownerName = '';//$('.OwnerName', this).val().trim();
+                            var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
+
+                            var detailsData = {
+                                HolderFlatId: holderFlatId,
+                                FlorNo: florNo,
+                                FlatNo: flatNo,
+                                FlatArea: flatArea,
+                                OwnOrRent: ownOrRent,
+                                SelfOwn: selfOwned,
+                                MonthlyRent: monthlyRent,
+                                OwnerName: ownerName,
+                                IsCheckedByHolder: isCheckedByHolder
+                            }
+                            list.push(detailsData);
+                        });
+                    }
 
                     //if (list.length == 0) {
                     //    $('#details_error').text('At least one flat details required.');
@@ -138,6 +168,7 @@ var KTWizard4 = function () {
                             NamjariLetterNo: $('#NamjariLetterNo').val().trim(),
                             StringNamjariDate: $('#StringNamjariDate').val().trim(),
                             StringRecordCorrectionDate: $('#StringRecordCorrectionDate').val().trim(),
+                            IsHolderAnOwner: $("#IsHolderAnOwner").val(),
                             oldImg: $('#ImageLocation').val().trim(),
                             oldDoc1: $('#Document1').val().trim(),
                             oldDoc2: $('#Document2').val().trim()
@@ -336,6 +367,13 @@ var KTWizard4 = function () {
                             //notEmpty: {
                             //    message: 'পাসপোর্ট সাইজের ছবি আবশ্যক'
                             //}
+                        }
+                    },
+                    IsHolderAnOwner: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
                         }
                     }
                 },

@@ -235,6 +235,7 @@ namespace HoldingTaxWebApp.ViewModels
 
         // no need to convert in bangla
         public List<HolderFlat> HolderFlatList { get; set; }
+        public List<HolderFlat> HolderFlatListForEdit { get; set; }
 
         public HolderVM()
         {

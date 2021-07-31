@@ -79,6 +79,16 @@ namespace HoldingTaxWebApp.Manager.Holding
         #endregion
 
         #region frontend queries
+        public List<HolderFlat> GetAllFlatByPlotId(int PlotId)
+        {
+            return _holdingGateway.GetAllFlatByPlotId(PlotId);
+        }
+
+        public List<HolderFlat> GetAllFlatByPlotIdForEdit(int PlotId, int HolderId)
+        {
+            return _holdingGateway.GetAllFlatByPlotIdForEdit(PlotId, HolderId);
+        }
+
         public decimal GetPerSqrFeetPrice(int areaId, int buildingTypeId)
         {
             return _holdingGateway.GetPerSqrFeetPrice(areaId, buildingTypeId);
