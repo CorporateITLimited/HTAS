@@ -4564,6 +4564,7 @@
     <Compile Include="Gateway\DefaultGateway.cs" />
     <Compile Include="Gateway\Holding\HoldingGateway.cs" />
     <Compile Include="Gateway\Holding\NoticeGateway.cs" />
+    <Compile Include="Gateway\Plots\OldPlotOwnerGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
     <Compile Include="Gateway\Tax\HoldingTaxGateway.cs" />
@@ -4597,6 +4598,7 @@
     <Compile Include="Manager\DBO\StatusTypeManager.cs" />
     <Compile Include="Manager\Holding\HoldingManager.cs" />
     <Compile Include="Manager\Holding\NoticeManager.cs" />
+    <Compile Include="Manager\Plots\OldPlotOwnerManager.cs" />
     <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
     <Compile Include="Manager\Tax\HoldingTaxManager.cs" />
@@ -4623,6 +4625,8 @@
     <Compile Include="Models\Holding\Notice.cs" />
     <Compile Include="Models\Plots\ConstructionProgress.cs" />
     <Compile Include="Models\Plots\DesignApproval.cs" />
+    <Compile Include="Models\Plots\OldOthetPlotOwner.cs" />
+    <Compile Include="Models\Plots\OldPlotOwner.cs" />
     <Compile Include="Models\Plots\OthetPlotOwner.cs" />
     <Compile Include="Models\Plots\Plot.cs" />
     <Compile Include="Models\Plots\PlotOwner.cs" />
@@ -4643,6 +4647,7 @@
     <Compile Include="ViewModels\DBO\IssueCombineVM.cs" />
     <Compile Include="ViewModels\HolderVM.cs" />
     <Compile Include="ViewModels\LogInVM.cs" />
+    <Compile Include="ViewModels\Plots\OldPlotOwnerCombineVM.cs" />
     <Compile Include="ViewModels\Plots\PlotOwnerCombineVM.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
     <Compile Include="ViewModels\UserPermission.cs" />
