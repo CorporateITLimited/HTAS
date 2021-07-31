@@ -4474,6 +4474,12 @@
       <DependentUpon>rptNonTaxPlayers.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AppReports\Tax\rptTaxPlayers.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTaxPlayers.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AppReports\Tax\rptUnPaidTax.cs">
       <DependentUpon>rptUnPaidTax.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -4874,6 +4880,10 @@
     <EmbeddedResource Include="AppReports\Tax\rptNonTaxPlayers.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptNonTaxPlayers.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Tax\rptTaxPlayers.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTaxPlayers.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Tax\rptUnPaidTax.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

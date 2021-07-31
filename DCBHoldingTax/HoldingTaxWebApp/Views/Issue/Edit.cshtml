@@ -273,8 +273,8 @@
                                 if (Session[CommonConstantHelper.UserTypeId].ToString() == item.MessageSenderType.ToString())
                                 {
                                     <li class="me">
-                                        <h3>@item.MsgDate.Value.ToShortDateString()</h3>
-                                        <h2>@item.MessageSenderName</h2>
+                                        <h3>@item.MsgDate</h3>@*.Value.ToShortDateString()*@
+                                        <h2>এডমিন (@item.MessageSenderName)</h2>
 
                                         <div class="triangle"></div>
                                         <div class="doc">
@@ -295,8 +295,8 @@
                                 else
                                 {
                                     <li class="you">
-                                        <h3>@item.MsgDate.Value.ToShortDateString()</h3>
-                                        <h2>@item.MessageSenderName</h2>
+                                        <h3>@item.MsgDate</h3>
+                                        <h2>গৃহকর দাতা (@item.MessageSenderName)</h2>
                                         <div class="triangle"></div>
                                         <div class="message">
                                             @item.MsgDetails
