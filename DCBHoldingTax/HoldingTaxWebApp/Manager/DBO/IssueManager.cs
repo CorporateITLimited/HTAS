@@ -25,6 +25,11 @@ namespace HoldingTaxWebApp.Manager.DBO
 
         }
 
+        public List<Issue> GetAllIssueByHolderId(int id)
+        {
+            return _IssueGateway.GetAllIssueByHolderId(id);
+        }
+
 
         //Get Top 5 Issue List
         public List<Issue> GetTopFiveIssue()

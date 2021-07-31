@@ -93,9 +93,7 @@
                                 <th>@Html.DisplayNameFor(model => model.AreaName)</th>
                                 <th>@Html.DisplayNameFor(model => model.HolderName)</th>
                                 <th>@Html.DisplayNameFor(model => model.AreaPlotFlatData)</th>
-                                <th>@Html.DisplayNameFor(model => model.NoticeName_1)</th>
-                                <th>@Html.DisplayNameFor(model => model.NoticeName_2)</th>
-                                <th>@Html.DisplayNameFor(model => model.NoticeName_3)</th>
+                                <th>@Html.DisplayNameFor(model => model.NoticeName)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,30 +113,13 @@
                                         @Html.DisplayFor(modelItem => item.AreaPlotFlatData)
                                     </td>
                                     <td>
-                                        @if (!string.IsNullOrWhiteSpace(item.NoticeName_1))
+                                        @if (!string.IsNullOrWhiteSpace(item.NoticeName))
                                         {
-                                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.Notice_1, @HID = @item.HolderId }))">
-                                                @Html.DisplayFor(modelItem => item.NoticeName_1)
+                                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.NoticeTypeId, @HID = @item.HolderId }))">
+                                                @Html.DisplayFor(modelItem => item.NoticeName)
                                             </a>
                                         }
                                     </td>
-                                    <td>
-                                        @if (!string.IsNullOrWhiteSpace(item.NoticeName_2))
-                                        {
-                                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.Notice_2, @HID = @item.HolderId }))">
-                                                @Html.DisplayFor(modelItem => item.NoticeName_2)
-                                            </a>
-                                        }
-                                    </td>
-                                    <td>
-                                        @if (!string.IsNullOrWhiteSpace(item.NoticeName_3))
-                                        {
-                                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.Notice_3, @HID = @item.HolderId }))">
-                                                @Html.DisplayFor(modelItem => item.NoticeName_3)
-                                            </a>
-                                        }
-                                    </td>
-
                                 </tr>
                             }
                         </tbody>
@@ -152,9 +133,7 @@
                             <tr>
 
                                 <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
-                                <th>@Html.DisplayNameFor(model => model.NoticeName_1)</th>
-                                <th>@Html.DisplayNameFor(model => model.NoticeName_2)</th>
-                                <th>@Html.DisplayNameFor(model => model.NoticeName_3)</th>
+                                <th>@Html.DisplayNameFor(model => model.NoticeName)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -165,30 +144,13 @@
                                         @Html.DisplayFor(modelItem => item.FinancialYear)
                                     </td>
                                     <td>
-                                        @if (!string.IsNullOrWhiteSpace(item.NoticeName_1))
+                                        @if (!string.IsNullOrWhiteSpace(item.NoticeName))
                                         {
-                                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.Notice_1, @HID = @item.HolderId }))">
-                                                @Html.DisplayFor(modelItem => item.NoticeName_1)
+                                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.NoticeTypeId, @HID = @item.HolderId }))">
+                                                @Html.DisplayFor(modelItem => item.NoticeName)
                                             </a>
                                         }
                                     </td>
-                                    <td>
-                                        @if (!string.IsNullOrWhiteSpace(item.NoticeName_2))
-                                        {
-                                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.Notice_2, @HID = @item.HolderId }))">
-                                                @Html.DisplayFor(modelItem => item.NoticeName_2)
-                                            </a>
-                                        }
-                                    </td>
-                                    <td>
-                                        @if (!string.IsNullOrWhiteSpace(item.NoticeName_3))
-                                        {
-                                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.Notice_3, @HID = @item.HolderId }))">
-                                                @Html.DisplayFor(modelItem => item.NoticeName_3)
-                                            </a>
-                                        }
-                                    </td>
-
                                 </tr>
                             }
                         </tbody>

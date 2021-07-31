@@ -33,36 +33,77 @@ namespace HoldingTaxWebApp.Controllers.DBO
             try
             {
                 var IssueList = new List<Issue>();
-                IssueList = _IssueManager.GetAllIssue();
+               
 
                 List<Issue> IssueListVM = new List<Issue>();
-                foreach (var item in IssueList)
+                if (Session[CommonConstantHelper.UserTypeId].ToString() == "2")
                 {
-                    Issue IssueVM = new Issue()
+                    var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
+                    IssueList = _IssueManager.GetAllIssueByHolderId(HolderId);
+                    foreach (var item in IssueList)
                     {
-                        IssueId = item.IssueId,
-                        HolderId = item.HolderId,
-                        HolderName = item.HolderName,
-                        Remarks = item.Remarks,
-                        SolvedDate = item.SolvedDate,
-                        StatusName = item.StatusName,
-                        StatusTypeId = item.StatusTypeId,
-                        Subject = item.Subject,
-                        StringSolvedDate = $"{item.SolvedDate:dd/MM/yyyy}",
+                        Issue IssueVM = new Issue()
+                        {
+                            IssueId = item.IssueId,
+                            HolderId = item.HolderId,
+                            HolderName = item.HolderName,
+                            Remarks = item.Remarks,
+                            SolvedDate = item.SolvedDate,
+                            StatusName = item.StatusName,
+                            StatusTypeId = item.StatusTypeId,
+                            Subject = item.Subject,
+                            StringSolvedDate = $"{item.SolvedDate:dd/MM/yyyy}",
 
 
-                        IsActive = item.IsActive,
-                        IsDeleted = item.IsDeleted,
-                        CreateDate = item.CreateDate,
-                        CreatedBy = item.CreatedBy,
-                        CreatedByUserName = item.CreatedByUserName,
-                        LastUpdated = item.LastUpdated,
-                        LastUpdatedBy = item.LastUpdatedBy,
-                        UpdatedByUserName = item.UpdatedByUserName
+                            IsActive = item.IsActive,
+                            IsDeleted = item.IsDeleted,
+                            CreateDate = item.CreateDate,
+                            CreatedBy = item.CreatedBy,
+                            CreatedByUserName = item.CreatedByUserName,
+                            LastUpdated = item.LastUpdated,
+                            LastUpdatedBy = item.LastUpdatedBy,
+                            UpdatedByUserName = item.UpdatedByUserName
 
-                    };
-                    IssueListVM.Add(IssueVM);
+                        };
+                        IssueListVM.Add(IssueVM);
+                    }
                 }
+                else if (Session[CommonConstantHelper.UserTypeId].ToString() == "1")
+                {
+                    IssueList = _IssueManager.GetAllIssue();
+                    foreach (var item in IssueList)
+                    {
+                        Issue IssueVM = new Issue()
+                        {
+                            IssueId = item.IssueId,
+                            HolderId = item.HolderId,
+                            HolderName = item.HolderName,
+                            Remarks = item.Remarks,
+                            SolvedDate = item.SolvedDate,
+                            StatusName = item.StatusName,
+                            StatusTypeId = item.StatusTypeId,
+                            Subject = item.Subject,
+                            StringSolvedDate = $"{item.SolvedDate:dd/MM/yyyy}",
+
+
+                            IsActive = item.IsActive,
+                            IsDeleted = item.IsDeleted,
+                            CreateDate = item.CreateDate,
+                            CreatedBy = item.CreatedBy,
+                            CreatedByUserName = item.CreatedByUserName,
+                            LastUpdated = item.LastUpdated,
+                            LastUpdatedBy = item.LastUpdatedBy,
+                            UpdatedByUserName = item.UpdatedByUserName
+
+                        };
+                        IssueListVM.Add(IssueVM);
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("LogIn", "Account");
+                }
+               
                 return View(IssueListVM.ToList());
             }
             catch (Exception exception)

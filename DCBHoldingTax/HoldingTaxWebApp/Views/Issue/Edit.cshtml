@@ -399,14 +399,14 @@
                 });
             });
 
-           $("#StatusTypeId").change(function () {
-         $('#MsgDetails').val('');
-                var Status = $('#StatusTypeId option:selected').text();
-                var MsgDetails =  $('#MsgDetails').val().trim();
-        var MsgDetails = MsgDetails +' '+'আপনার ইস্যুটি বর্তমানে'+ ' '+Status+' '+'অবস্থায় রয়েছে |';
-        $('#MsgDetails').val(MsgDetails).trim();
-        //alert(MsgDetails);
-            });
+             $("#StatusTypeId").change(function () {
+                 $('#MsgDetails').val('');
+                 var Status = $('#StatusTypeId option:selected').text();
+                 var MsgDetails = $('#MsgDetails').val().trim();
+                 var MsgDetails = MsgDetails + ' ' + 'আপনার ইস্যুটি বর্তমানে' + ' ' + Status + ' ' + 'অবস্থায় রয়েছে |';
+                 $('#MsgDetails').val(MsgDetails).trim();
+                 //alert(MsgDetails);
+             });
 
 
 
@@ -471,11 +471,11 @@
 
 						list = [];
 
-						swal.fire({
-							"icon": 'success',
-									"title": 'Your work has been saved',
-									"timer": 1500
-								});
+                        swal.fire({
+                            "icon": 'success',
+                            "title": 'আপনার বার্তা সফলভাবে প্রেরণ করা হয়েছে',
+                            "timer": 1500
+                        });
 						setTimeout(function () { window.location.href = "/Issue/Edit/@Model.IssueId"; }, 2000);
 					}
 					else if (d.status === "error") {

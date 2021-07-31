@@ -55,10 +55,10 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">প্লট/বাড়ী/ফ্ল্যাট মালিক</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকরদাতা</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted">নতুন প্লট/বাড়ী/ফ্ল্যাট মালিকের তথ্য সংযুক্ত করুন</a>
+                        <a href="#" class="text-muted">নতুন গৃহকরদাতার তথ্য সংযুক্ত করুন</a>
                     </li>
                 </ul>
             </div>
@@ -132,9 +132,10 @@
                                             <!--begin: Wizard Step 1-->
                                             <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
-                                                    ব্যাক্তিগত তথ্য &nbsp;
+                                                    এলাকার তথ্য &nbsp;
                                                     <label class="show_plot"></label>
                                                 </div>
+
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
@@ -142,6 +143,43 @@
                                                   {
                                                       @class = "form-control",
                                                   })
+                                                    </div>
+
+
+                                                    <label class="col-lg-2 col-form-label text-lg-right" for="road_number">রোড নম্বর </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control border-0" id="road_number" name="road_number" readonly />
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    <label for="PlotId" class="col-lg-2 col-form-label text-lg-right">প্লট/বাড়ী/ফ্ল্যাট নম্বর</label>
+                                                    <div class="col-lg-4">
+                                                        <select id="PlotId" name="PlotId" width="100%" class="tender_supplier form-control"></select>
+                                                    </div>
+                                                    @*@Html.LabelFor(model => model.PlotId, "প্লট/বাড়ী/ফ্ল্যাট নম্বর ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                        <div class="col-lg-4">
+                                                            @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
+                                                        {
+                                                            @class = "form-control",
+                                                        })
+                                                        </div>*@
+
+                                                    <label class="col-lg-2 col-form-label text-lg-right" for="road_name">রোডের নাম</label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control border-0" id="road_name" name="road_name" readonly />
+                                                    </div>
+                                                </div>
+                                                <div class="separator separator-dashed my-10"></div>
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
+                                                    ব্যাক্তিগত তথ্য &nbsp;
+                                                    <label class="show_plot"></label>
+                                                </div>
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.HolderName, "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.HolderName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
 
@@ -155,80 +193,17 @@
 
                                                 </div>
                                                 <div class="form-group row m-2">
-
-                                                    <label for="PlotId" class="col-lg-2 col-form-label text-lg-right">প্লট/বাড়ী/ফ্ল্যাট নম্বর</label>
+                                                    @Html.LabelFor(model => model.NID, "এনআইডি নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        <select id="PlotId" name="PlotId" width="100%" class="tender_supplier form-control">
-                                                        </select>
+                                                        @Html.EditorFor(model => model.NID, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
-                                                    @*@Html.LabelFor(model => model.PlotId, "প্লট/বাড়ী/ফ্ল্যাট নম্বর ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                        <div class="col-lg-4">
-                                                            @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
-                                                        {
-                                                            @class = "form-control",
-                                                        })
-                                                        </div>*@
+
 
                                                     @Html.LabelFor(model => model.Spouse, "স্বামী/স্ত্রীর নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.Spouse, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
-
-                                                </div>
-
-                                                <div class="form-group row m-2">
-                                                    <label class="col-lg-2 col-form-label text-lg-right" for="road_number">রোড নম্বর </label>
-                                                    <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="road_number" name="road_number" readonly />
-                                                    </div>
-
-
-                                                    @Html.LabelFor(model => model.Email, "ই-মেইল", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
-
-
-                                                </div>
-
-                                                <div class="form-group row m-2">
-
-                                                    <label class="col-lg-2 col-form-label text-lg-right" for="road_name">রোডের নাম</label>
-                                                    <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="road_name" name="road_name" readonly />
-                                                    </div>
-
-                                                    @Html.LabelFor(model => model.Contact1, "ল্যান্ডলাইন নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.Contact1, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
-
-
-                                                </div>
-
-                                                <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.HolderName, "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.HolderName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
-
-                                                    @Html.LabelFor(model => model.Contact2, "মোবাইল নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.Contact2, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.NID, "এনআইডি নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.NID, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
-
-                                                    @Html.LabelFor(model => model.PresentAdd, "বর্তমান ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.TextAreaFor(model => model.PresentAdd, new { @class = "form-control", placeholder = "" })
-                                                    </div>
 
                                                 </div>
 
@@ -241,43 +216,64 @@
                                                    })
                                                     </div>
 
-                                                    @Html.LabelFor(model => model.PermanentAdd, "স্থায়ী ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+
+                                                    @Html.LabelFor(model => model.Email, "ই-মেইল", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.TextAreaFor(model => model.PermanentAdd, new { @class = "form-control", placeholder = "" })
+                                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
 
                                                 </div>
 
                                                 <div class="form-group row m-2">
-
                                                     @Html.LabelFor(model => model.Father, "পিতার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.Father, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
-                                                    @Html.LabelFor(model => model.ContactAdd, "পত্র যোগাযোগের ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    @Html.LabelFor(model => model.Contact2, "মোবাইল নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.TextAreaFor(model => model.ContactAdd, new { @class = "form-control", placeholder = "" })
+                                                        @Html.EditorFor(model => model.Contact2, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
-
-
                                                 </div>
 
                                                 <div class="form-group row m-2">
-
                                                     @Html.LabelFor(model => model.Mother, "মাতার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.Mother, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
+                                                    @Html.LabelFor(model => model.Contact1, "ল্যান্ডলাইন নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Contact1, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+
+                                                    @Html.LabelFor(model => model.PresentAdd, "বর্তমান ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.TextAreaFor(model => model.PresentAdd, new { @class = "form-control", placeholder = "" })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.PermanentAdd, "স্থায়ী ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.TextAreaFor(model => model.PermanentAdd, new { @class = "form-control", placeholder = "" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.ContactAdd, "পত্র যোগাযোগের ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.TextAreaFor(model => model.ContactAdd, new { @class = "form-control", placeholder = "" })
+                                                    </div>
 
                                                     @Html.LabelFor(model => model.PreviousDueTax, "আগের অর্থ বছর পর্যন্ত বকেয়া", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.PreviousDueTax, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
-                                                </div>
 
+                                                </div>
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.ImageLocation, "পাসপোর্ট সাইজের ছবি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">

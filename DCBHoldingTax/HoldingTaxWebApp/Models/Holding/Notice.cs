@@ -95,5 +95,8 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "কর্মকর্তার নাম")]
         public string EmployeeName { get; set; }
+
+        [Display(Name = "পদবির নাম")]
+        public string DesignationName { get; set; }
     }
 }
