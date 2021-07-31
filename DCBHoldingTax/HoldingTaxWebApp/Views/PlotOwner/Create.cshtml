@@ -742,6 +742,9 @@
     //#যৌথ
         var la =$('#LeaseType').val().trim();
         if(la == "যৌথ"){
+                otherOwnerTableHead.append('<tr>'+
+                    '<th COLSPAN="4" style="text-align:center"><h1>যৌথ মালিকানার ক্ষেত্রে অন্য মালিকদের তথ্য</h1></th></tr>')
+
                  otherOwnerTableHead.append('<tr>'+
             '<th>অন্য মালিকের নাম</th>' +
             '<th>ঠিকানা</th>' +

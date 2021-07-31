@@ -4474,6 +4474,12 @@
       <DependentUpon>rptNonTaxPlayers.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AppReports\Tax\rptTaxPlayers.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTaxPlayers.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AppReports\Tax\rptUnPaidTax.cs">
       <DependentUpon>rptUnPaidTax.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -4558,6 +4564,7 @@
     <Compile Include="Gateway\DefaultGateway.cs" />
     <Compile Include="Gateway\Holding\HoldingGateway.cs" />
     <Compile Include="Gateway\Holding\NoticeGateway.cs" />
+    <Compile Include="Gateway\Plots\OldPlotOwnerGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
     <Compile Include="Gateway\Tax\HoldingTaxGateway.cs" />
@@ -4591,6 +4598,7 @@
     <Compile Include="Manager\DBO\StatusTypeManager.cs" />
     <Compile Include="Manager\Holding\HoldingManager.cs" />
     <Compile Include="Manager\Holding\NoticeManager.cs" />
+    <Compile Include="Manager\Plots\OldPlotOwnerManager.cs" />
     <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
     <Compile Include="Manager\Tax\HoldingTaxManager.cs" />
@@ -4617,6 +4625,8 @@
     <Compile Include="Models\Holding\Notice.cs" />
     <Compile Include="Models\Plots\ConstructionProgress.cs" />
     <Compile Include="Models\Plots\DesignApproval.cs" />
+    <Compile Include="Models\Plots\OldOthetPlotOwner.cs" />
+    <Compile Include="Models\Plots\OldPlotOwner.cs" />
     <Compile Include="Models\Plots\OthetPlotOwner.cs" />
     <Compile Include="Models\Plots\Plot.cs" />
     <Compile Include="Models\Plots\PlotOwner.cs" />
@@ -4637,6 +4647,7 @@
     <Compile Include="ViewModels\DBO\IssueCombineVM.cs" />
     <Compile Include="ViewModels\HolderVM.cs" />
     <Compile Include="ViewModels\LogInVM.cs" />
+    <Compile Include="ViewModels\Plots\OldPlotOwnerCombineVM.cs" />
     <Compile Include="ViewModels\Plots\PlotOwnerCombineVM.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
     <Compile Include="ViewModels\UserPermission.cs" />
@@ -4874,6 +4885,10 @@
     <EmbeddedResource Include="AppReports\Tax\rptNonTaxPlayers.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptNonTaxPlayers.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Tax\rptTaxPlayers.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTaxPlayers.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Tax\rptUnPaidTax.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

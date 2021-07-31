@@ -104,7 +104,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
                     return RedirectToAction("LogIn", "Account");
                 }
                
-                return View(IssueListVM.ToList());
+                return View(IssueListVM);
             }
             catch (Exception exception)
             {
