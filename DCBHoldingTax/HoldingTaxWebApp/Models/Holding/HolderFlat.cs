@@ -63,5 +63,7 @@ namespace HoldingTaxWebApp.Models.Holding
         public string SelfOwnType { get; set; }
        // [Display(Name = "ফ্লোর টাইপের নাম")]
         public string FloorTypeName { get; set; }
+
+        public bool? IsCheckedByHolder { get; set; }
     }
 }

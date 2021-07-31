@@ -98,7 +98,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         AllocationDate = Data_Reader["AllocationDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["AllocationDate"]) : (DateTime?)null,
                         NamjariDate = Data_Reader["NamjariDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["NamjariDate"]) : (DateTime?)null,
                         RecordCorrectionDate = Data_Reader["RecordCorrectionDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["RecordCorrectionDate"]) : (DateTime?)null,
-                        AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"])
+                        AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
+                        IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null
                     };
 
                     vm.Add(model);
@@ -216,6 +217,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     vm.NamjariDate = Data_Reader["NamjariDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["NamjariDate"]) : (DateTime?)null;
                     vm.RecordCorrectionDate = Data_Reader["RecordCorrectionDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["RecordCorrectionDate"]) : (DateTime?)null;
                     vm.AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]);
+                    vm.IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null;
                 };
 
                 vm.StringCreateDate = $"{vm.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -307,6 +309,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = model.LastUpdatedBy;
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
+                Sql_Command.Parameters.Add("@IsHolderAnOwner", SqlDbType.Bit).Value = model.IsHolderAnOwner;
 
                 //created by Masum ===================
                 Sql_Command.Parameters.Add("@AllocationLetterNo", SqlDbType.NVarChar).Value = model.AllocationLetterNo;
@@ -401,6 +404,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = model.LastUpdatedBy;
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
+                Sql_Command.Parameters.Add("@IsHolderAnOwner", SqlDbType.Bit).Value = model.IsHolderAnOwner;
 
 
                 //created by Masum ===================
@@ -569,6 +573,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = model.LastUpdatedBy;
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
+                Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = model.IsCheckedByHolder;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -637,6 +642,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = model.LastUpdatedBy;
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
+                Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = model.IsCheckedByHolder;
 
                 SqlParameter result = new SqlParameter
                 {

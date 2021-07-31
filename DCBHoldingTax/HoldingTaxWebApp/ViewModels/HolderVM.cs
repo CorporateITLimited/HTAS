@@ -229,8 +229,9 @@ namespace HoldingTaxWebApp.ViewModels
         public string StringLastApprovalDate { get; set; }
         [Display(Name = "সর্বশেষ অনুমোদনের চিঠি")]
         public string LastApprovalLetterNo { get; set; }
-     
 
+        [Display(Name = "গৃহকরদাতা নিজেই কি মালিক?")]
+        public bool? IsHolderAnOwner { get; set; }
 
         // no need to convert in bangla
         public List<HolderFlat> HolderFlatList { get; set; }

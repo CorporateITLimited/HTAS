@@ -17,6 +17,15 @@ namespace HoldingTaxWebApp.Helpers
             return selectListItems;
         }
 
+        public static IEnumerable<SelectListItem> GetOwnerForDropdown()
+        {
+            List<SelectListItem> selectListItems = new List<SelectListItem>() {
+                new SelectListItem(){ Text="হ্যা মালিক", Value="true" },
+                new SelectListItem(){ Text="না মালিক নয়", Value="false" }
+            };
+            return selectListItems;
+        }
+
         public static IEnumerable<SelectListItem> GetNoticeTypeNameStatusForDropdown()
         {
             List<SelectListItem> selectListItems = new List<SelectListItem>() {

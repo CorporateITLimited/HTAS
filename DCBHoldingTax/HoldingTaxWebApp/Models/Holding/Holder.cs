@@ -189,5 +189,8 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "হালনাগাদকরণ করেছেন")]
         public string UpdatedByUsername { get; set; }
+
+        [Display(Name = "গৃহকরদাতা নিজেই কি মালিক?")]
+        public bool? IsHolderAnOwner { get; set; }
     }
 }
