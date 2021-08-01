@@ -2417,6 +2417,7 @@
       <DependentUpon>dsTax.xsd</DependentUpon>
     </Content>
     <Content Include="Scripts\printThis.js" />
+    <Content Include="Scripts\wizard-OldPlotOwnerCreate.js" />
     <Content Include="WebForms\Holding\HolderDetails.aspx" />
     <Content Include="WebForms\Tax\GetHoldingTax.aspx" />
     <Content Include="WebForms\Tax\leterThree.aspx" />
@@ -4530,6 +4531,7 @@
     <Compile Include="Controllers\Holding\HoldingController.cs" />
     <Compile Include="Controllers\Holding\NoticeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Plots\OldPlotOwnerController.cs" />
     <Compile Include="Controllers\Plots\PlotController.cs" />
     <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
@@ -4843,6 +4845,9 @@
     <Content Include="Views\Holding\HolderReport.cshtml" />
     <Content Include="Views\Holding\rptHolderDetails2.cshtml" />
     <Content Include="Views\HolderClient\HolderProfile.cshtml" />
+    <Content Include="Views\OldPlotOwner\Index.cshtml" />
+    <Content Include="Views\OldPlotOwner\Details.cshtml" />
+    <Content Include="Views\OldPlotOwner\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
