@@ -51,9 +51,7 @@
                                 </div>
 
                             </div>
-                        </div>
 
-                        <div class="col-md-6">
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label text-lg-right" for="ReportType">রিপোর্টের ধরণ</label>
                                 <div class="col-lg-8">
@@ -68,6 +66,24 @@
                                 </div>
 
                             </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-4 col-form-label text-lg-right" })
+                                <div class="col-lg-8">
+                                    @Html.DropDownListFor(model => model.AreaId, null, "-- নির্বাচন করুন --", new
+                               {
+                                   @class = "form-control",
+                                   @name = "AreaId",
+                                   @id = "AreaId"
+                               })
+                                </div>
+                            </div>
+
+                           
                         </div>
 
 
@@ -100,9 +116,17 @@
 
 
 @section Scripts {
-    
+
     <script>
         $('#FinancialYearId').select2({
+            placeholder: "--নির্বাচন করুন--",
+            allowClear: true
+        });
+        $('#AreaId').select2({
+            placeholder: "--নির্বাচন করুন--",
+            allowClear: true
+        });
+        $('#PlotId').select2({
             placeholder: "--নির্বাচন করুন--",
             allowClear: true
         });
@@ -114,58 +138,84 @@
 
         var rptId= @ViewBag.ReportId;
 
-         jQuery(document).ready(function () {
-             debugger;
-             $("#ReportType").val(rptId);
-             $('#ReportType').trigger('change');
+        jQuery(document).ready(function () {
+            debugger;
+
+
+             @*$("#AreaId").change(function () {
+                 var areaId = $("#AreaId").val();
+
+                 var json = {
+                     AreaId: areaId
+                 };
+                 $.ajax({
+                     url: '@Url.Action("GetAllPlotByAreaId", "Holding")',
+                     type: "POST",
+                     contentType: "application/json; charset=utf-8",
+                     data: JSON.stringify(json),
+                     success: function (data) {
+                         if (data.length === 0) {
+                             Swal.fire(
+                                 'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'info'
+                             )
+                         }
+                         else {
+                             $("#PlotId").empty();
+                             $("#PlotId").append("<option value=''>--নির্বাচন করুন--</option>");
+                             $.each(data, function (index, row) {
+                                 $("#PlotId").append("<option value='" + row.PlotId + "'>" + row.PlotNo + "</option>");
+                             });
+                         }
+                     },
+                     error: function () {
+                         Swal.fire(
+                             'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'error'
+                         )
+                     }
+                 });
+             });*@
+
+
+
+            $("#ReportType").val(rptId);
+            $('#ReportType').trigger('change');
 
             $("#report_button").click(function () {
                 var FinancialYearId = parseInt($("#FinancialYearId").val()) || 0;
+                var AreaId = parseInt($("#AreaId").val()) || 0;
+
                 var reportType = parseInt($("#ReportType").val()) || 0;
 
                 if (reportType === 1) {
-                    $(".search-result").load("/TaxReports/rptRecoverabletax", { FinancialYearId: FinancialYearId });
+                    $(".search-result").load("/TaxReports/rptRecoverabletax", { FinancialYearId: FinancialYearId, AreaId: AreaId });
                 }
                 else if (reportType === 2) {
-                    $(".search-result").load("/TaxReports/rptPaidTax", { FinancialYearId: FinancialYearId });
+                    $(".search-result").load("/TaxReports/rptPaidTax", { FinancialYearId: FinancialYearId, AreaId: AreaId });
                 }
                 else if (reportType === 3) {
-                    $(".search-result").load("/TaxReports/rptUnPaidTax", { FinancialYearId: FinancialYearId });
+                    $(".search-result").load("/TaxReports/rptUnPaidTax", { FinancialYearId: FinancialYearId, AreaId: AreaId });
                 }
                 else if (reportType === 4) {
-                    $(".search-result").load("/TaxReports/rptTaxPlayers", { FinancialYearId: FinancialYearId });
+                    $(".search-result").load("/TaxReports/rptTaxPlayers", { FinancialYearId: FinancialYearId, AreaId: AreaId });
                 }
 
                 else if (reportType === 5) {
-                    $(".search-result").load("/TaxReports/rptNonTaxPlayers", { FinancialYearId: FinancialYearId });
+                    $(".search-result").load("/TaxReports/rptNonTaxPlayers", { FinancialYearId: FinancialYearId, AreaId: AreaId });
                 }
 
-
                 else {
-                    Swal.fire('Error!', 'দয়াকরে রিপোটের ধরণ নির্বাচন করুন |', 'error')
+                    Swal.fire('Error!', 'রিপোটের ধরণ নির্বাচন করুন |', 'error')
                 }
 
             });
 
-
-
-
-
-
-
-
-
-
-          $("#reset_button").click(function () {
+            $("#reset_button").click(function () {
                 location.reload();
             });
 
         });
 
 
-
-
-
     </script>
-    
-    }
+
+}

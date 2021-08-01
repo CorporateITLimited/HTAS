@@ -34,6 +34,19 @@
 
 <div class="d-flex flex-column-fluid">
     <div class="container">
+
+        @if (TempData["SM"] != null)
+        {
+            <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
+                <div class="alert-text font-weight-bolder" style="color: #0BB783;">@TempData["SM"]</div>
+                <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                    </button>
+                </div>
+            </div>
+        }
+
         <div class="card card-custom">
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
                 <div class="card-title">
@@ -49,15 +62,6 @@
                         <i class="fas fa-plus">
                         </i>নতুন গৃহকরের হার
                     </a>
-
-                    @*@if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin) ||
-                            (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleManagement))
-                        {
-                            <a href="~/User/Create" class="btn btn-brand btn-elevate btn-icon-sm">
-                                <i class="la la-plus"></i>
-                                Add User
-                            </a>
-                        }*@
 
                     <!--end::Button-->
                 </div>
@@ -95,11 +99,8 @@
                             <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
                             <th>@Html.DisplayNameFor(model => model.PerSqfRent)</th>
                             <th>@Html.DisplayNameFor(model => model.Remarks)</th>
-
-                            @*<th>@Html.DisplayNameFor(model => model.CreatedByName)</th>*@
-                            <th>@Html.DisplayNameFor(model => model.LastUpdatedByName)</th>
+                            <th>@Html.DisplayNameFor(model => model.UpdatedByUsername)</th>
                             <th>@Html.DisplayNameFor(model => model.LastUpdated)</th>
-
                             <th></th>
 
 
@@ -108,45 +109,45 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AreaName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BuildingTypeName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PerSqfRent)
-                            </td>
-                            <td>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AreaName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BuildingTypeName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PerSqfRent)
+                                </td>
+                                <td>
 
-                                @Html.DisplayFor(modelItem => item.Remarks)
+                                    @Html.DisplayFor(modelItem => item.Remarks)
 
-                            </td>
-                            @*<td>
-                                @Html.DisplayFor(modelItem => item.CreatedByName)
-                            </td>*@
+                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.CreatedByName)
+                                    </td>*@
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LastUpdatedByName)
-                            </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UpdatedByUsername)
+                                </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LastUpdated)
-                            </td>
-
-
-                            <td>
-                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/RentTaxTate/Edit/@item.RentTaxRateId" title="Edit">
-                                    <b> <i class="fa fa-edit"></i>  </b>
-                                </a>
-                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/RentTaxTate/Details/@item.RentTaxRateId" title="Details View">
-                                    <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                </a>
-                            </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LastUpdated)
+                                </td>
 
 
-                        </tr>
+                                <td>
+                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/RentTaxTate/Edit/@item.RentTaxRateId" title="Edit">
+                                        <b> <i class="fa fa-edit"></i>  </b>
+                                    </a>
+                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/RentTaxTate/Details/@item.RentTaxRateId" title="Details View">
+                                        <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                    </a>
+                                </td>
+
+
+                            </tr>
                         }
                     </tbody>
 

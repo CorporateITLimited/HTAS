@@ -4848,6 +4848,9 @@
     <Content Include="Views\OldPlotOwner\Index.cshtml" />
     <Content Include="Views\OldPlotOwner\Details.cshtml" />
     <Content Include="Views\OldPlotOwner\Create.cshtml" />
+    <Content Include="Views\RentTaxTate\Details.cshtml" />
+    <Content Include="Views\RentTaxTate\Create.cshtml" />
+    <Content Include="Views\RentTaxTate\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
