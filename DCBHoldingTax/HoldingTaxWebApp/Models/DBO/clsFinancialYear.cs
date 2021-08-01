@@ -28,5 +28,9 @@ namespace HoldingTaxWebApp.Models.DBO
         public bool? IsActive { get; set; }
         [Display(Name = "মুছে ফেলা ")]
         public bool? IsDeleted { get; set; }
+
+
+        // for reporting only
+        public int? AreaId { get; set; }
     }
 }

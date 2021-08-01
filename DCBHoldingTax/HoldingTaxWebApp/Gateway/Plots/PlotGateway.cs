@@ -67,7 +67,8 @@ namespace HoldingTaxWebApp.Gateway.Plots
                         IsDeleted = Data_Reader["IsDeleted"] !=
                                                     DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
                         RoadName = Data_Reader["RoadName"].ToString(),
-                        AreaName = Data_Reader["AreaName"].ToString()
+                        AreaName = Data_Reader["AreaName"].ToString(),
+                        CombinedArea = Data_Reader["CombinedArea"].ToString()
                     };
 
                     plot.StrCreateDate = $"{plot.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -155,6 +156,7 @@ namespace HoldingTaxWebApp.Gateway.Plots
                                                 DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null;
                     plot.RoadName = Data_Reader["RoadName"].ToString();
                     plot.AreaName = Data_Reader["AreaName"].ToString();
+                    plot.CombinedArea = Data_Reader["CombinedArea"].ToString();
                 }
 
                 plot.StrCreateDate = $"{plot.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -240,7 +242,8 @@ namespace HoldingTaxWebApp.Gateway.Plots
                         IsDeleted = Data_Reader["IsDeleted"] !=
                                                     DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
                         RoadName = Data_Reader["RoadName"].ToString(),
-                        AreaName = Data_Reader["AreaName"].ToString()
+                        AreaName = Data_Reader["AreaName"].ToString(),
+                        CombinedArea = Data_Reader["CombinedArea"].ToString()
                     };
 
                     plot.StrCreateDate = $"{plot.CreateDate:dd/MM/yyyy HH:mm:ss tt}";

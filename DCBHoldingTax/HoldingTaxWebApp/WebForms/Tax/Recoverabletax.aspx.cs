@@ -44,13 +44,15 @@ namespace HoldingTaxWebApp.WebForms.Tax
         {
             //int? rptFinancialYearId = 1;
             int? rptFinancialYearId = Session["FinancialYearId"] != null ? Convert.ToInt32(Session["FinancialYearId"]) : (int?)null;
+            int? rptAreaId = Session["AreaId_"] != null ? Convert.ToInt32(Session["AreaId_"]) : (int?)null;
 
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("exec [rpt].[spRecoverabletax] @FinancialYearId", con);
+            SqlCommand cmd = new SqlCommand("exec [rpt].[spRecoverabletax] @FinancialYearId, @AreaId", con);
             cmd.CommandType = CommandType.Text; // always text
 
             cmd.Parameters.AddWithValue("@FinancialYearId", SqlDbType.Int).Value = rptFinancialYearId ?? (object)DBNull.Value;
+            cmd.Parameters.AddWithValue("@AreaId", SqlDbType.Int).Value = rptAreaId ?? (object)DBNull.Value;
 
             try
             {

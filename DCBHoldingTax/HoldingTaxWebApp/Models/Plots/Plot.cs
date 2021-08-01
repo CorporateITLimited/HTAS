@@ -51,5 +51,7 @@ namespace HoldingTaxWebApp.Models.Plots
 
         [Display(Name = "রাস্তার নাম")]
         public string RoadName { get; set; }
+
+        public string CombinedArea { get; set; }
     }
 }

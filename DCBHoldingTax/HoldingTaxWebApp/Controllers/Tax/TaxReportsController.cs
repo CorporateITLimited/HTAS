@@ -1,5 +1,6 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager.DBO;
+using HoldingTaxWebApp.Manager.Plots;
 using HoldingTaxWebApp.Models.DBO;
 using HoldingTaxWebApp.ViewModels;
 using System;
@@ -15,27 +16,29 @@ namespace HoldingTaxWebApp.Controllers.Tax
         private readonly bool CanAccess = false;
         private readonly bool CanReadWrite = false;
         private readonly FinancialYearManager _FinancialYearManager;
+        private readonly DOHSAreaManager _dOHSAreaManager;
 
         public TaxReportsController()
         {
             _FinancialYearManager = new FinancialYearManager();
+            _dOHSAreaManager = new DOHSAreaManager();
 
-            if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
-            {
-                List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
-                var single_permission = userPermisson.Where(p => p.ControllerName == "TaxReportsController").FirstOrDefault();
-                if (single_permission.ReadWriteStatus != null && single_permission.CanAccess != null)
-                {
-                    if (single_permission.CanAccess == true)
-                    {
-                        CanAccess = true;
-                    }
-                    if (single_permission.ReadWriteStatus == true)
-                    {
-                        CanReadWrite = true;
-                    }
-                }
-            }
+            //if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
+            //{
+            //    List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
+            //    var single_permission = userPermisson.Where(p => p.ControllerName == "TaxReportsController").FirstOrDefault();
+            //    if (single_permission.ReadWriteStatus != null && single_permission.CanAccess != null)
+            //    {
+            //        if (single_permission.CanAccess == true)
+            //        {
+            //            CanAccess = true;
+            //        }
+            //        if (single_permission.ReadWriteStatus == true)
+            //        {
+            //            CanReadWrite = true;
+            //        }
+            //    }
+            //}
         }
 
         // GET: TaxReports
@@ -43,28 +46,29 @@ namespace HoldingTaxWebApp.Controllers.Tax
         {
 
             ViewBag.ReportId = rptId;
-            if ((Session[CommonConstantHelper.LogInCredentialId] != null)
-                   && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
-                   && (Session[CommonConstantHelper.UserId] != null))
-            {
-                if (CanAccess)
-                {
-                    clsFinancialYear year = new clsFinancialYear();
-                    ViewBag.FinancialYearId = new SelectList(_FinancialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //       && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //       && (Session[CommonConstantHelper.UserId] != null))
+            //{
+            //    if (CanAccess)
+            //    {
+            clsFinancialYear year = new clsFinancialYear();
+            ViewBag.FinancialYearId = new SelectList(_FinancialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
 
-                    return View(year);
-                }
-                else
-                {
-                    TempData["PM"] = "Permission Denied.";
-                    return RedirectToAction("LogIn", "Account");
-                }
-            }
-            else
-            {
-                TempData["EM"] = "Session Expired.";
-                return RedirectToAction("LogIn", "Account");
-            }
+            return View(year);
+            //    }
+            //    else
+            //    {
+            //        TempData["PM"] = "Permission Denied.";
+            //        return RedirectToAction("LogIn", "Account");
+            //    }
+            //}
+            //else
+            //{
+            //    TempData["EM"] = "Session Expired.";
+            //    return RedirectToAction("LogIn", "Account");
+            //}
         }
 
         // GET: TaxReports/Details/5
@@ -141,65 +145,37 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
 
         #region For Report Added by Hasan
-        public ActionResult rptRecoverabletax(int? FinancialYearId)
+        public ActionResult rptRecoverabletax(int? FinancialYearId, int? AreaId)
         {
-            if(FinancialYearId == 0)
-            {
-                Session["FinancialYearId"] = null;
-            }
-            else
-            {
-                Session["FinancialYearId"] = FinancialYearId;
-            }
-            
+            Session["FinancialYearId"] = FinancialYearId == 0 ? null : FinancialYearId;
+            Session["AreaId_"] = AreaId == 0 ? null : AreaId;
+
             return View();
         }
-        public ActionResult rptPaidTax(int? FinancialYearId)
+        public ActionResult rptPaidTax(int? FinancialYearId, int? AreaId)
         {
-            if (FinancialYearId == 0)
-            {
-                Session["FinancialYearId"] = null;
-            }
-            else
-            {
-                Session["FinancialYearId"] = FinancialYearId;
-            }
+            Session["FinancialYearId"] = FinancialYearId == 0 ? null : FinancialYearId;
+            Session["AreaId_"] = AreaId == 0 ? null : AreaId;
+
             return View();
         }
-        public ActionResult rptUnPaidTax(int? FinancialYearId)
+        public ActionResult rptUnPaidTax(int? FinancialYearId, int? AreaId)
         {
-            if (FinancialYearId == 0)
-            {
-                Session["FinancialYearId"] = null;
-            }
-            else
-            {
-                Session["FinancialYearId"] = FinancialYearId;
-            }
+            Session["FinancialYearId"] = FinancialYearId == 0 ? null : FinancialYearId;
+            Session["AreaId_"] = AreaId == 0 ? null : AreaId;
             return View();
         }
-        public ActionResult rptTaxPlayers(int? FinancialYearId)
+        public ActionResult rptTaxPlayers(int? FinancialYearId, int? AreaId)
         {
-            if (FinancialYearId == 0)
-            {
-                Session["FinancialYearId"] = null;
-            }
-            else
-            {
-                Session["FinancialYearId"] = FinancialYearId;
-            }
+            Session["FinancialYearId"] = FinancialYearId == 0 ? null : FinancialYearId;
+            Session["AreaId_"] = AreaId == 0 ? null : AreaId;
+
             return View();
         }
-        public ActionResult rptNonTaxPlayers(int? FinancialYearId)
+        public ActionResult rptNonTaxPlayers(int? FinancialYearId, int? AreaId)
         {
-            if (FinancialYearId == 0)
-            {
-                Session["FinancialYearId"] = null;
-            }
-            else
-            {
-                Session["FinancialYearId"] = FinancialYearId;
-            }
+            Session["FinancialYearId"] = FinancialYearId == 0 ? null : FinancialYearId;
+            Session["AreaId_"] = AreaId == 0 ? null : AreaId;
             return View();
         }
         #endregion
