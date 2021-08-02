@@ -11,7 +11,7 @@ namespace HoldingTaxWebApp.Models.Constant
         public int? OwnTaxRateId { get; set; }
 
         [Display(Name = "মালিকানার ধরন")]
-        public int? Mill_Civil { get; set; }
+        public int Mill_Civil { get; set; }
 
         [Display(Name = "মালিকানার ধরন")]
         public string TypeName { get; set; }
