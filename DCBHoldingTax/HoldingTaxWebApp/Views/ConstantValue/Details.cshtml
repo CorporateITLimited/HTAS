@@ -1,0 +1,376 @@
+﻿@model HoldingTaxWebApp.Models.Constant.ConstantValue
+@using HoldingTaxWebApp.Helpers
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Sheets{
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
+    <style>
+        #chat li {
+            padding: 10px 30px;
+        }
+
+        #chat .message {
+            padding: 10px;
+            color: #fff;
+            line-height: 25px;
+            max-width: 90%;
+            display: inline-block;
+            text-align: left;
+            border-radius: 5px;
+        }
+
+        #chat .doc {
+            padding: 5px;
+            color: #fff;
+            /*line-height: 25px;*/
+            max-width: 90%;
+            display: inline-block;
+            text-align: left;
+            border-radius: 2px;
+        }
+
+        #chat .me {
+            text-align: right;
+        }
+
+        #chat .you .btn {
+            color: black;
+            border: 3px solid #EB9F28;
+        }
+
+        #chat .me .btn {
+            color: black;
+            border: 3px solid #2272b0;
+        }
+
+            #chat .me .btn:hover {
+                background-color: #315D7D;
+                color: white;
+                border: 3px solid #2272b0
+            }
+
+        #chat .you .btn:hover {
+            background-color: #9A681A;
+            color: white;
+            border: 3px solid #EB9F28;
+        }
+
+        #chat .you .message {
+            background-color: #EB9F28;
+        }
+
+        #chat .me .message {
+            background-color: #2272b0;
+        }
+
+        #chat .triangle {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 10px 10px 10px;
+        }
+
+        #chat .you .triangle {
+            border-color: transparent transparent #EB9F28 transparent;
+            margin-left: 15px;
+        }
+
+        #chat .me .triangle {
+            border-color: transparent transparent #2272b0 transparent;
+            margin-left: 1130px;
+        }
+
+
+        #chat h2 {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        #chat h3 {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        #chat h3 {
+            color: #bbb;
+        }
+    </style>
+}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">ধ্রুবক মান</h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted">বিশদ তথ্য </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-custom gutter-b example example-compact">
+                    @*<div class="card-header">
+                            <div class="row offset-1">
+                                <h3 class="card-title">
+                                    <b class="kt-font-brand">@Model.HolderName</b>  &nbsp; এর বার্তা
+                                </h3>
+
+                                <div class="card-toolbar">
+                                    <div class="example-tools justify-content-center">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    <div class="card-body">
+                        <div class="row offset-1">
+                            <legend> ধ্রুবক মান তথ্য</legend>
+                            <div class="col-lg-5">
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.RentMonthRef)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.RentMonthRef)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.RentTaxRateRef)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.RentTaxRateRef)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.SurchargeRef)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.SurchargeRef)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.WrongInfoChargeRef)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.WrongInfoChargeRef)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.RebateRef)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.RebateRef)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.DueChargeRef)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.DueChargeRef)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.CreateDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.CreateDate)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.LastUpdated)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.LastUpdated)
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-5">
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.RentMonth)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.RentMonth)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.RentTaxRate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.RentTaxRate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.Surcharge)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.Surcharge)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.WrongInfoCharge)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.WrongInfoCharge)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.Rebate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.Rebate)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.DueCharge)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.DueCharge)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.CreatedByUserName)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.CreatedByUserName)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.UpdatedByUserName)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.UpdatedByUserName)
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+
+
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <a href="~/ConstantValue/Edit" class="btn btn-outline-success btn-md">
+                                    <i class="fas fa-pen"></i>হালনাগাদের পেজে  যান
+                                </a>
+                                @*<a href="~/Issue/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+

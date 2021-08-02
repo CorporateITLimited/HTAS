@@ -1,0 +1,244 @@
+﻿@model HoldingTaxWebApp.Models.Constant.ConstantValue
+@using HoldingTaxWebApp.Helpers
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Sheets{
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
+}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">ধ্রুবক মান </h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted">ধ্রুবক মান হালনাগাদ করুন</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-custom gutter-b example example-compact">
+                    <div class="card-header">
+                        <h3 class="card-title">ধ্রুবক মান হালনাগাদ করুন</h3>
+                        <div class="card-toolbar">
+                            <div class="example-tools justify-content-center">
+                            </div>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("Edit", "ConstantValue", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_2", role = "form" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.constantValueId)
+
+                        <div class="card-body">
+                            <fieldset>
+
+                                <legend>প্লটের সাধারণ তথ্য</legend>
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.RentMonthRef, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.RentMonthRef, new { htmlAttributes = new { @class = "form-control", @name = "RentMonthRef", placeholder = "", @id = "RentMonthRef" } })
+                                        @Html.ValidationMessageFor(model => model.RentMonthRef, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    @Html.LabelFor(model => model.RentMonth, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.RentMonth, new { htmlAttributes = new { @class = "form-control", @name = "RentMonth", placeholder = "", @id = "RentMonth" } })
+                                        @Html.ValidationMessageFor(model => model.RentMonth, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.RentTaxRateRef, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.RentTaxRateRef, new { htmlAttributes = new { @class = "form-control", @name = "RentTaxRateRef", placeholder = "", @id = "RentTaxRateRef" } })
+                                        @Html.ValidationMessageFor(model => model.RentTaxRateRef, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    @Html.LabelFor(model => model.RentTaxRate, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.RentTaxRate, new { htmlAttributes = new { @class = "form-control", @name = "RentTaxRate", placeholder = "", @id = "RentTaxRate" } })
+                                        @Html.ValidationMessageFor(model => model.RentTaxRate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.SurchargeRef, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.SurchargeRef, new { htmlAttributes = new { @class = "form-control", @name = "SurchargeRef", placeholder = "", @id = "SurchargeRef" } })
+                                        @Html.ValidationMessageFor(model => model.SurchargeRef, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    @Html.LabelFor(model => model.Surcharge, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.Surcharge, new { htmlAttributes = new { @class = "form-control", @name = "Surcharge", placeholder = "", @id = "Surcharge" } })
+                                        @Html.ValidationMessageFor(model => model.Surcharge, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.WrongInfoChargeRef, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.WrongInfoChargeRef, new { htmlAttributes = new { @class = "form-control", @name = "WrongInfoChargeRef", placeholder = "", @id = "WrongInfoChargeRef" } })
+                                        @Html.ValidationMessageFor(model => model.WrongInfoChargeRef, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    @Html.LabelFor(model => model.WrongInfoCharge, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.WrongInfoCharge, new { htmlAttributes = new { @class = "form-control", @name = "WrongInfoCharge", placeholder = "", @id = "WrongInfoCharge" } })
+                                        @Html.ValidationMessageFor(model => model.WrongInfoCharge, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.RebateRef, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.RebateRef, new { htmlAttributes = new { @class = "form-control", @name = "RebateRef", placeholder = "", @id = "RebateRef" } })
+                                        @Html.ValidationMessageFor(model => model.RebateRef, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    @Html.LabelFor(model => model.Rebate, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.Rebate, new { htmlAttributes = new { @class = "form-control", @name = "Rebate", placeholder = "", @id = "Rebate" } })
+                                        @Html.ValidationMessageFor(model => model.Rebate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.DueChargeRef, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.DueChargeRef, new { htmlAttributes = new { @class = "form-control", @name = "DueChargeRef", placeholder = "", @id = "DueChargeRef" } })
+                                        @Html.ValidationMessageFor(model => model.DueChargeRef, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    @Html.LabelFor(model => model.DueCharge, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.DueCharge, new { htmlAttributes = new { @class = "form-control", @name = "DueCharge", placeholder = "", @id = "DueCharge" } })
+                                        @Html.ValidationMessageFor(model => model.DueCharge, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>হালনাগাদ করুন</button>
+                                <button type="button" onclick="window.location.href = '/ConstantValue/Details'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+
+    <script>
+
+        $('#AreaId').select2({
+            placeholder: "-- নির্বাচন করুন  --",
+            allowClear: true
+        });
+
+        jQuery(document).ready(function () {
+            //$("#EmpolyeeId").change(function () {
+            //    var empTxt = $("#EmpolyeeId option:selected").text().css("color", "black");
+            //    $("#UserFullName").val("");
+            //    $("#UserFullName").val(empTxt);
+            //});
+
+            $("#kt_form_2").validate({
+                rules: {
+                    RentMonth: {
+                        required: true
+                    },
+                    RentMonthRef: {
+                        required: true
+                    },
+                    RentTaxRate: {
+                        required: true
+                    },
+                    RentTaxRateRef: {
+                        required: true,
+                        number: true
+                    },
+                    Surcharge: {
+                        required: true
+                    },
+                    SurchargeRef: {
+                        required: true
+                    },
+                    WrongInfoCharge: {
+                        required: true
+                    },
+                    WrongInfoChargeRef: {
+                        required: true,
+                        number: true
+                    },
+                    Rebate: {
+                        required: true
+                    },
+                    RebateRef: {
+                        required: true
+                    },
+                    DueCharge: {
+                        required: true
+                    },
+                    DueChargeRef: {
+                        required: true,
+                        number: true
+                    }
+
+                },
+                messages: {
+                    RentMonth: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    RentMonthRef: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    RentTaxRate: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    RentTaxRateRef: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    Surcharge: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    SurchargeRef: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    WrongInfoCharge: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    WrongInfoChargeRef: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    Rebate: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    RebateRef: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    DueCharge: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    DueChargeRef: "ঘরটি অবশ্যই পূরণ করতে হবে",
+
+
+                },
+                invalidHandler: function (event, validator) {
+                    KTUtil.scrollTop();
+                }
+            });
+        });
+    </script>
+}
+
+
+
+
