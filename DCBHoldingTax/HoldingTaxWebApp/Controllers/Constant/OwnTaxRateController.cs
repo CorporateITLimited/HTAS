@@ -3,6 +3,7 @@ using HoldingTaxWebApp.Manager;
 using HoldingTaxWebApp.Manager.Constant;
 using HoldingTaxWebApp.Manager.Holding;
 using HoldingTaxWebApp.Manager.Users;
+using HoldingTaxWebApp.Models.Constant;
 using HoldingTaxWebApp.Models.Users;
 using HoldingTaxWebApp.ViewModels;
 using System;
@@ -13,19 +14,17 @@ using System.Web.Mvc;
 
 namespace HoldingTaxWebApp.Controllers.Constant
 {
-    public class HolderUserController : Controller
+    public class OwnTaxRateController : Controller
     {
         private readonly bool CanAccess = false;
         private readonly bool CanReadWrite = false;
-        private readonly HolderUserManager _holderUserManager;
-        private readonly HoldingManager _holdingManager;
         private readonly OwnTaxRateManager _ownTaxRateManager;
         private readonly CommonListManager _commonListManager;
 
-        public HolderUserController()
+        public OwnTaxRateController()
         {
-            _holderUserManager = new HolderUserManager();
-            _holdingManager = new HoldingManager();
+            _ownTaxRateManager = new OwnTaxRateManager();
+            _commonListManager = new CommonListManager();
             //if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             //{
             //    List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
@@ -55,7 +54,7 @@ namespace HoldingTaxWebApp.Controllers.Constant
             //    {
             try
             {
-                return View(_holderUserManager.GetAllHolderUserList());
+                return View(_ownTaxRateManager.GetList());
             }
             catch (Exception exception)
             {
@@ -90,12 +89,12 @@ namespace HoldingTaxWebApp.Controllers.Constant
                 if (id <= 0)
                     return HttpNotFound();
 
-                HolderUser holderUser = _holderUserManager.GetHolderUserById(id);
+                var rate = _ownTaxRateManager.GetById(id);
 
-                if (holderUser == null)
+                if (rate == null)
                     return HttpNotFound();
 
-                return View(holderUser);
+                return View(rate);
 
             }
             catch (Exception exception)
@@ -127,7 +126,7 @@ namespace HoldingTaxWebApp.Controllers.Constant
             //{
             //    if (CanAccess && CanReadWrite)
             //    {
-            ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderName");
+            ViewBag.Mill_Civil = new SelectList(_commonListManager.GetAllOwnerShipType(), "TypeId", "TypeName");
             ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text");
             return View();
             //    }
@@ -147,96 +146,67 @@ namespace HoldingTaxWebApp.Controllers.Constant
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(HolderUser user)
+        public ActionResult Create(OwnTaxRate rate)
         {
             //if (CanAccess && CanReadWrite)
             //{
             try
             {
 
-                if (user == null)
+                if (rate == null)
                     return HttpNotFound();
 
-                ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderName", user.HolderId);
-                ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text");
+                ViewBag.Mill_Civil = new SelectList(_commonListManager.GetAllOwnerShipType(), "TypeId", "TypeName", rate.Mill_Civil);
+                ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", rate.IsActive);
 
-                if (string.IsNullOrWhiteSpace(user.UserName))
+                if (rate.Mill_Civil <= 0)
                 {
-                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
-                    return View(user);
+                    ModelState.AddModelError("", "মালিকানার ধরন ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(rate);
                 }
 
-                if (string.IsNullOrWhiteSpace(user.HashPassword))
+                if (rate.AreaSF <= 0)
                 {
-                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
-                    return View(user);
+                    ModelState.AddModelError("", "ফ্লোরের আয়তন ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(rate);
                 }
 
-                if (!string.IsNullOrWhiteSpace(user.HashPassword))
+                if (rate.Amount <= 0)
                 {
-                    if (!user.HashPassword.Equals(user.ConfirmPassword))
-                    {
-                        ModelState.AddModelError("", "পাসওয়ার্ড এবং কনফার্ম পাসওয়ার্ড একই দিন");
-                        return View(user);
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
-                    return View(user);
+                    ModelState.AddModelError("", "প্রতিমাসের ভাড়া ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(rate);
                 }
 
-                if (user.HolderId == 0)
+                rate.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                rate.CreateDate = DateTime.Now;
+                rate.IsActive = true;
+                rate.IsDeleted = false;
+                rate.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                rate.LastUpdated = DateTime.Now;
+
+
+                string addRate = _ownTaxRateManager.Insert(rate);
+
+                if (addRate == CommonConstantHelper.Success)
                 {
-                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
-                    return View(user);
+                    TempData["SM"] = "সফলভাবে সাবমিট সম্পন্ন করা হয়েছে";
+                    return RedirectToAction("Index", "OwnTaxRate");
                 }
-
-                if (string.IsNullOrWhiteSpace(user.MobileNumber))
+                else if (addRate == CommonConstantHelper.Conflict)
                 {
-                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
-                    return View(user);
+                    ModelState.AddModelError("", "নির্বাচিত মালিকানার ধরণের ডাটা বিদ্যমান রয়েছে");
+                    return View(rate);
                 }
-
-                if (string.IsNullOrWhiteSpace(user.Email))
-                {
-                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
-                    return View(user);
-                }
-
-                user.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-                user.CreateDate = DateTime.Now;
-                user.IsActive = true;
-                user.IsDeleted = false;
-                user.IsMobileNumberConfirmed = false;
-                user.IsEmailConfirmed = false;
-                user.UserTypeId = 2;
-                user.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-                user.LastUpdated = DateTime.Now;
-
-                user.HashPassword = PasswordHelper.EncryptPass(user.HashPassword);
-
-                string addUser = _holderUserManager.HolderUserInsert(user);
-
-                if (addUser == CommonConstantHelper.Success)
-                {
-                    return RedirectToAction("Index", "HolderUser");
-                }
-                else if (addUser == CommonConstantHelper.Conflict)
-                {
-                    ModelState.AddModelError("", "ইউজারনেইম already exist.");
-                    return View(user);
-                }
-                else if (addUser == CommonConstantHelper.Error)
+                else if (addRate == CommonConstantHelper.Error)
                 {
                     ModelState.AddModelError("", "Error");
                     TempData["EM"] = "Error.";
-                    return View(user);
+                    return View(rate);
                 }
-                else if (addUser == CommonConstantHelper.Failed)
+                else if (addRate == CommonConstantHelper.Failed)
                 {
                     ModelState.AddModelError("", "Failed");
-                    return View(user);
+                    return View(rate);
                 }
                 else
                 {
@@ -272,15 +242,15 @@ namespace HoldingTaxWebApp.Controllers.Constant
                 if (id <= 0)
                     return HttpNotFound();
 
-                HolderUser holderUser = _holderUserManager.GetHolderUserById(id);
+                var rate = _ownTaxRateManager.GetById(id);
 
-                if (holderUser == null)
+                if (rate == null)
                     return HttpNotFound();
 
-                ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForUpdate(), "HolderId", "HolderName", holderUser.HolderId);
-                ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", holderUser.IsActive);
+                ViewBag.Mill_Civil = new SelectList(_commonListManager.GetAllOwnerShipType(), "TypeId", "TypeName", rate.Mill_Civil);
+                ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", rate.IsActive);
 
-                return View(holderUser);
+                return View(rate);
             }
             catch (Exception exception)
             {
@@ -303,95 +273,73 @@ namespace HoldingTaxWebApp.Controllers.Constant
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(HolderUser user)
+        public ActionResult Edit(OwnTaxRate rate)
         {
             //if (CanAccess && CanReadWrite)
             //{
             try
             {
 
-                if (user == null)
+                if (rate == null)
                     return HttpNotFound();
 
-                ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderName", user.HolderId);
-                ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", user.IsActive);
+                ViewBag.Mill_Civil = new SelectList(_commonListManager.GetAllOwnerShipType(), "TypeId", "TypeName", rate.Mill_Civil);
+                ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", rate.IsActive);
 
-                if (string.IsNullOrWhiteSpace(user.UserName))
+                if (rate.OwnTaxRateId <= 0)
                 {
-                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
-                    return View(user);
+                    ModelState.AddModelError("", "নিরাপত্তা ভঙ্গ");
+                    return View(rate);
                 }
 
-                if (string.IsNullOrWhiteSpace(user.HashPassword))
+                if (rate.Mill_Civil <= 0)
                 {
-                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
-                    return View(user);
+                    ModelState.AddModelError("", "মালিকানার ধরন ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(rate);
                 }
 
-                if (!string.IsNullOrWhiteSpace(user.HashPassword))
+                if (rate.AreaSF <= 0)
                 {
-                    if (!user.HashPassword.Equals(user.ConfirmPassword))
-                    {
-                        ModelState.AddModelError("", "পাসওয়ার্ড এবং কনফার্ম পাসওয়ার্ড একই দিন");
-                        return View(user);
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
-                    return View(user);
+                    ModelState.AddModelError("", "ফ্লোরের আয়তন ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(rate);
                 }
 
-                if (user.HolderId == 0)
+                if (rate.Amount <= 0)
                 {
-                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
-                    return View(user);
+                    ModelState.AddModelError("", "প্রতিমাসের ভাড়া ঘরটি অবশ্যই পূরণ করতে হবে");
+                    return View(rate);
                 }
 
-                if (string.IsNullOrWhiteSpace(user.MobileNumber))
+                rate.CreatedBy = null;
+                rate.CreateDate = null;
+                rate.IsDeleted = null;
+                rate.IsActive = true;
+                rate.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                rate.LastUpdated = DateTime.Now;
+
+
+                string addRate = _ownTaxRateManager.Update(rate);
+
+                if (addRate == CommonConstantHelper.Success)
                 {
-                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
-                    return View(user);
+                    TempData["SM"] = "সফলভাবে হালনাগাদ সম্পন্ন করা হয়েছে";
+                    return RedirectToAction("Index", "OwnTaxRate");
                 }
-
-                if (string.IsNullOrWhiteSpace(user.Email))
+                else if (addRate == CommonConstantHelper.Conflict)
                 {
-                    ModelState.AddModelError("", "ঘরটি অবশ্যই পূরণ করতে হবে");
-                    return View(user);
+                    ModelState.AddModelError("", "নির্বাচিত মালিকানার ধরণের ডাটা বিদ্যমান রয়েছে");
+                    return View(rate);
                 }
-
-                user.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-                user.CreateDate = DateTime.Now;
-                user.IsDeleted = null;
-                user.IsMobileNumberConfirmed = null;
-                user.IsEmailConfirmed = null;
-                user.UserTypeId = 2;
-                user.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
-                user.LastUpdated = DateTime.Now;
-
-                user.HashPassword = PasswordHelper.EncryptPass(user.HashPassword);
-
-                string addUser = _holderUserManager.HolderUserUpdate(user);
-
-                if (addUser == CommonConstantHelper.Success)
-                {
-                    return RedirectToAction("Index", "HolderUser");
-                }
-                else if (addUser == CommonConstantHelper.Conflict)
-                {
-                    ModelState.AddModelError("", "ইউজারনেইম already exist.");
-                    return View(user);
-                }
-                else if (addUser == CommonConstantHelper.Error)
+                else if (addRate == CommonConstantHelper.Error)
                 {
                     ModelState.AddModelError("", "Error");
                     TempData["EM"] = "Error.";
-                    return View(user);
+                    return View(rate);
                 }
-                else if (addUser == CommonConstantHelper.Failed)
+                else if (addRate == CommonConstantHelper.Failed)
                 {
                     ModelState.AddModelError("", "Failed");
-                    return View(user);
+                    return View(rate);
                 }
                 else
                 {
@@ -426,16 +374,6 @@ namespace HoldingTaxWebApp.Controllers.Constant
         ////    return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         ////}
 
-
-        public JsonResult GetAllDataByHolderId(int HolderId)
-        {
-            var data = _holdingManager.GetHolderById(HolderId);
-            return new JsonResult
-            {
-                Data = data,
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
-        }
 
         //
 

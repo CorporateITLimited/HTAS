@@ -4855,6 +4855,10 @@
     <Content Include="Views\RentTaxTate\Details.cshtml" />
     <Content Include="Views\RentTaxTate\Create.cshtml" />
     <Content Include="Views\RentTaxTate\Edit.cshtml" />
+    <Content Include="Views\OwnTaxRate\Index.cshtml" />
+    <Content Include="Views\OwnTaxRate\Details.cshtml" />
+    <Content Include="Views\OwnTaxRate\Create.cshtml" />
+    <Content Include="Views\OwnTaxRate\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
