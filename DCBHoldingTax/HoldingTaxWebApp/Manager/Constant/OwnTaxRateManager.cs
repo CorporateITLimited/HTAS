@@ -34,7 +34,7 @@ namespace HoldingTaxWebApp.Manager.Constant
 
             if (result == 202)
                 return CommonConstantHelper.Success;
-            else if (result == 409)
+            else if (result == 401)
                 return CommonConstantHelper.Conflict;
             else if (result == 500)
                 return CommonConstantHelper.Error;
@@ -48,7 +48,7 @@ namespace HoldingTaxWebApp.Manager.Constant
 
             if (result == 202)
                 return CommonConstantHelper.Success;
-            else if (result == 409)
+            else if (result == 401)
                 return CommonConstantHelper.Conflict;
             else if (result == 500)
                 return CommonConstantHelper.Error;
