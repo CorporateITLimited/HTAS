@@ -175,43 +175,48 @@
             $("#kt_form_2").validate({
                 rules: {
                     RentMonth: {
-                        required: true
+                        required: true,
+                        number: true
                     },
                     RentMonthRef: {
                         required: true
                     },
                     RentTaxRate: {
-                        required: true
-                    },
-                    RentTaxRateRef: {
                         required: true,
                         number: true
                     },
-                    Surcharge: {
+                    RentTaxRateRef: {
                         required: true
+
+                    },
+                    Surcharge: {
+                        required: true,
+                        number: true
                     },
                     SurchargeRef: {
                         required: true
                     },
                     WrongInfoCharge: {
-                        required: true
-                    },
-                    WrongInfoChargeRef: {
                         required: true,
                         number: true
                     },
-                    Rebate: {
+                    WrongInfoChargeRef: {
                         required: true
+                    },
+                    Rebate: {
+                        required: true,
+                        number: true
                     },
                     RebateRef: {
                         required: true
                     },
                     DueCharge: {
-                        required: true
-                    },
-                    DueChargeRef: {
                         required: true,
                         number: true
+                    },
+                    DueChargeRef: {
+                        required: true
+                        
                     }
 
                 },
