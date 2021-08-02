@@ -103,6 +103,11 @@ namespace HoldingTaxWebApp.Manager.Holding
         {
             return _holdingGateway.GetAllotmentNamjariDesignByPlotId(PlotId);
         }
+
+        public List<Holder> GetHolderIndexData(int? AreaId, int? PlotId)
+        {
+            return _holdingGateway.GetHolderIndexData(AreaId, PlotId);
+        }
         #endregion
     }
 }

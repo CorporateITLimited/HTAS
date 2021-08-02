@@ -41,6 +41,49 @@ namespace HoldingTaxWebApp.Controllers.Holding
             return View(_holdingManager.GetAllHolder());
         }
 
+        public ActionResult NewIndex()
+        {
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
+            ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+            return View();
+        }
+
+        public ActionResult PartialIndex(int? AreaId, int? PlotId)
+        {
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //      && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //      && (Session[CommonConstantHelper.UserId] != null))
+            //{
+            try
+            {
+                AreaId = AreaId > 0 ? AreaId : null;
+                PlotId = PlotId > 0 ? PlotId : null;
+
+                var data = _holdingManager.GetHolderIndexData(AreaId, PlotId);
+
+                if (data != null && data.Count > 0)
+                {
+                    return PartialView("~/Views/Holding/_PartialIndex.cshtml", data);
+                }
+                else
+                {
+                    return PartialView("~/Views/Home/_NoDataFound.cshtml");
+                }
+            }
+            catch (Exception exception)
+            {
+                TempData["EM"] = "error | " + exception.Message.ToString();
+                return PartialView("~/Views/Home/_NoDataFound.cshtml");
+                //return View();
+            }
+            //}
+            //else
+            //{
+            //    TempData["EM"] = "Session Expired.";
+            //    return RedirectToAction("LogIn", "Account");
+            //}
+        }
+
         public ActionResult Details(int id)
         {
             if (id <= 0)
@@ -1315,7 +1358,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                                 LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
                                                 IsSelfOwned = ui_item.SelfOwn == 1 ? true : false,
                                                 MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : null,
-                                                OwnerName =  holder.HolderName,//!string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
+                                                OwnerName = holder.HolderName,//!string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
                                                 OwnOrRent = ui_item.OwnOrRent,
                                                 SelfOwn = ui_item.SelfOwn,
                                                 IsCheckedByHolder = false
