@@ -4610,6 +4610,7 @@
     <Compile Include="Manager\Users\HolderUserManager.cs" />
     <Compile Include="Manager\Users\UserManager.cs" />
     <Compile Include="Models\CommonList.cs" />
+    <Compile Include="Models\Constant\OwnTaxRate.cs" />
     <Compile Include="Models\Constant\RentTaxRate.cs" />
     <Compile Include="Models\DBO\ConstructionStatus.cs" />
     <Compile Include="Models\DBO\clsFinancialYear.cs" />
@@ -4864,6 +4865,8 @@
     <Folder Include="Documents\Holders\Images\" />
     <Folder Include="Documents\Issues\" />
     <Folder Include="Documents\Plots\" />
+    <Folder Include="Gateway\Constant\" />
+    <Folder Include="Manager\Constant\" />
     <Folder Include="Models\Users\Plot\" />
   </ItemGroup>
   <ItemGroup>
