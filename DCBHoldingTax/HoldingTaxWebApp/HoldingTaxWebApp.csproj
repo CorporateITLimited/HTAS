@@ -4525,6 +4525,7 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Constant\ConstantValueController.cs" />
     <Compile Include="Controllers\Constant\OwnTaxRateController.cs" />
     <Compile Include="Controllers\DBO\DOHSAreaController.cs" />
     <Compile Include="Controllers\DBO\IssueController.cs" />
@@ -4555,6 +4556,7 @@
     <Compile Include="Gateway\AccountGateway.cs" />
     <Compile Include="Gateway\CommonListGateway.cs" />
     <Compile Include="Gateway\ConstantGateway.cs" />
+    <Compile Include="Gateway\Constant\ConstantValueGateway.cs" />
     <Compile Include="Gateway\Constant\OwnTaxRateGateway.cs" />
     <Compile Include="Gateway\DBO\FinancialYearGateway.cs" />
     <Compile Include="Gateway\DBO\ConstructionStatusGateway.cs" />
@@ -4591,6 +4593,7 @@
     <Compile Include="Manager\AccountManager.cs" />
     <Compile Include="Manager\CommonListManager.cs" />
     <Compile Include="Manager\ConstantManager.cs" />
+    <Compile Include="Manager\Constant\ConstantValueManager.cs" />
     <Compile Include="Manager\Constant\OwnTaxRateManager.cs" />
     <Compile Include="Manager\DBO\FinancialYearManager.cs" />
     <Compile Include="Manager\DBO\BuildingTypeManager.cs" />
@@ -4613,6 +4616,7 @@
     <Compile Include="Manager\Users\HolderUserManager.cs" />
     <Compile Include="Manager\Users\UserManager.cs" />
     <Compile Include="Models\CommonList.cs" />
+    <Compile Include="Models\Constant\ConstantValue.cs" />
     <Compile Include="Models\Constant\OwnTaxRate.cs" />
     <Compile Include="Models\Constant\RentTaxRate.cs" />
     <Compile Include="Models\DBO\ConstructionStatus.cs" />
@@ -4855,6 +4859,8 @@
     <Content Include="Views\RentTaxTate\Details.cshtml" />
     <Content Include="Views\RentTaxTate\Create.cshtml" />
     <Content Include="Views\RentTaxTate\Edit.cshtml" />
+    <Content Include="Views\ConstantValue\Details.cshtml" />
+    <Content Include="Views\ConstantValue\Edit.cshtml" />
     <Content Include="Views\OwnTaxRate\Index.cshtml" />
     <Content Include="Views\OwnTaxRate\Details.cshtml" />
     <Content Include="Views\OwnTaxRate\Create.cshtml" />
