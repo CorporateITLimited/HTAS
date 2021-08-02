@@ -4554,6 +4554,7 @@
     <Compile Include="Gateway\AccountGateway.cs" />
     <Compile Include="Gateway\CommonListGateway.cs" />
     <Compile Include="Gateway\ConstantGateway.cs" />
+    <Compile Include="Gateway\Constant\OwnTaxRateGateway.cs" />
     <Compile Include="Gateway\DBO\FinancialYearGateway.cs" />
     <Compile Include="Gateway\DBO\ConstructionStatusGateway.cs" />
     <Compile Include="Gateway\DBO\IssueGateway.cs" />
@@ -4589,6 +4590,7 @@
     <Compile Include="Manager\AccountManager.cs" />
     <Compile Include="Manager\CommonListManager.cs" />
     <Compile Include="Manager\ConstantManager.cs" />
+    <Compile Include="Manager\Constant\OwnTaxRateManager.cs" />
     <Compile Include="Manager\DBO\FinancialYearManager.cs" />
     <Compile Include="Manager\DBO\BuildingTypeManager.cs" />
     <Compile Include="Manager\DBO\ConstructionStatusManager.cs" />
@@ -4865,8 +4867,6 @@
     <Folder Include="Documents\Holders\Images\" />
     <Folder Include="Documents\Issues\" />
     <Folder Include="Documents\Plots\" />
-    <Folder Include="Gateway\Constant\" />
-    <Folder Include="Manager\Constant\" />
     <Folder Include="Models\Users\Plot\" />
   </ItemGroup>
   <ItemGroup>
