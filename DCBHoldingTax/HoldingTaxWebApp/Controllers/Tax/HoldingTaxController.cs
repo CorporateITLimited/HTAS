@@ -8,6 +8,8 @@ using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager.Tax;
 using HoldingTaxWebApp.Models.Tax;
 using HoldingTaxWebApp.Models.Holding;
+using HoldingTaxWebApp.Manager.DBO;
+using HoldingTaxWebApp.Manager.Plots;
 
 namespace HoldingTaxWebApp.Controllers.Tax
 {
@@ -15,16 +17,23 @@ namespace HoldingTaxWebApp.Controllers.Tax
     {
         private readonly HoldingTaxManager _holdingTaxManager;
         private readonly FinancialYearGateway _financialYearGateway;
+        private readonly FinancialYearManager _financialYearManager;
+        private readonly DOHSAreaManager _dOHSAreaManager;
+        private readonly PlotManager _plotManager;
 
         public HoldingTaxController()
         {
             _holdingTaxManager = new HoldingTaxManager();
             _financialYearGateway = new FinancialYearGateway();
+
+            _financialYearManager = new FinancialYearManager();
+            _dOHSAreaManager = new DOHSAreaManager();
+            _plotManager = new PlotManager();
         }
 
 
         // GET: HoldingTax
-        public ActionResult Index()
+        public ActionResult NewIndex()
         {
             try
             {
@@ -36,10 +45,6 @@ namespace HoldingTaxWebApp.Controllers.Tax
                     holdingTaxes = _holdingTaxManager.GetAllHoldingTaxForHolder(HolderId);
 
                 }
-                else if (Session[CommonConstantHelper.UserTypeId].ToString() == "1")
-                {
-                    holdingTaxes = _holdingTaxManager.GetAllHoldingTax();
-                }
                 else
                 {
                     return RedirectToAction("LogIn", "Account");
@@ -47,12 +52,64 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
                 return View(holdingTaxes.ToList());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}";
+                TempData["EM"] = "Session Expired" + ex.Message;
                 return RedirectToAction("LogIn", "Account");
             }
         }
+
+        public ActionResult Index()
+        {
+            ViewBag.FinancialYearId = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
+            ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+            return View();
+        }
+
+        public ActionResult PartialIndex(int? AreaId, int? FinancialYearId, int? PlotId)
+        {
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //      && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //      && (Session[CommonConstantHelper.UserId] != null))
+            //{
+            try
+            {
+                AreaId = AreaId > 0 ? AreaId : null;
+                FinancialYearId = FinancialYearId > 0 ? FinancialYearId : null;
+                PlotId = PlotId > 0 ? PlotId : null;
+
+                var data = _holdingTaxManager.GetAllHoldingTaxIndex(AreaId, FinancialYearId, PlotId);
+
+                if (data != null && data.Count > 0)
+                {
+                    var firstRow = data.Take(1).FirstOrDefault();
+                    ViewBag.TotalNetPayableAmount = firstRow.TotalNetPayableAmount;
+                    ViewBag.TotalPaidAmount = firstRow.TotalPaidAmount;
+                    ViewBag.TotalUnPaidAmount = firstRow.TotalUnPaidAmount;
+
+                    return PartialView("~/Views/HoldingTax/_PartialIndex.cshtml", data);
+                }
+                else
+                {
+                    return PartialView("~/Views/Home/_NoDataFound.cshtml");
+                }
+            }
+            catch (Exception exception)
+            {
+                TempData["EM"] = "error | " + exception.Message.ToString();
+                return PartialView("~/Views/Home/_NoDataFound.cshtml");
+                //return View();
+            }
+            //}
+            //else
+            //{
+            //    TempData["EM"] = "Session Expired.";
+            //    return RedirectToAction("LogIn", "Account");
+            //}
+        }
+
+
 
         // GET: HoldingTax/Details/5
         public ActionResult Details(int id)
@@ -148,7 +205,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
                 {
                     totalRebate = holdingTax.Rebate;
                 }
-                else 
+                else
                 {
                     if (holdingTax.PaymentDate != null)
                     {
@@ -225,7 +282,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
         public JsonResult GetPaidAmmChart()
         {
             List<ChartPaidAm> dataList = _holdingTaxManager.GetChartPaidAms();
-            var li = dataList.Select(s => new int[] {s.MonthDate, s.MonthlyPaidAmount }).ToList();
+            var li = dataList.Select(s => new int[] { s.MonthDate, s.MonthlyPaidAmount }).ToList();
             int[][] array = li.ToArray();
             //foreach (var item in dataList)
             //{

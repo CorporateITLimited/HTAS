@@ -22,7 +22,10 @@ namespace HoldingTaxWebApp.Manager.Tax
         {
             return _holdingTaxGateway.GetAllHoldingTax();
         }
-
+        public List<HoldingTax> GetAllHoldingTaxIndex(int? AreaId, int? FinancialYearId, int? PlotId)
+        {
+            return _holdingTaxGateway.GetAllHoldingTaxIndex(AreaId, FinancialYearId, PlotId);
+        }
         public List<HoldingTax> GetAllHoldingTaxForHolder(int HolderId)
         {
             return _holdingTaxGateway.GetAllHoldingTaxForHolder(HolderId);
@@ -30,7 +33,7 @@ namespace HoldingTaxWebApp.Manager.Tax
 
         public HoldingTax GetHoldingTaxById(int id)
         {
-            return  _holdingTaxGateway.GetHoldingTaxById(id);
+            return _holdingTaxGateway.GetHoldingTaxById(id);
         }
 
         public HoldingTax GetRebateAndWrongInfoByHoldingTaxId(int id)

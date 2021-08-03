@@ -1,15 +1,14 @@
-﻿@model IEnumerable<HoldingTaxWebApp.Models.Tax.HoldingTax>
+﻿@model HoldingTaxWebApp.ViewModels.QueryCommon
 @using HoldingTaxWebApp.Helpers
 
 @{
-    /**/
-
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
+
 
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -24,9 +23,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <div class="d-flex flex-column-fluid">
     <div class="container">
@@ -59,103 +55,54 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="mb-7">
-                    <div class="row align-items-center">
-                        <div class="col-lg-9 col-xl-8">
-                            <div class="row align-items-center">
-                                <div class="col-md-4 my-2 my-md-0">
-                                    <div class="input-icon">
-                                        <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
-                                        <span>
-                                            <i class="flaticon2-search-1 text-muted"></i>
-                                        </span>
+                <div class="card-body">
+                    <!--begin: Search Form-->
+                    <!--begin::Search Form-->
+                    <div class="mb-7">
+                        <div class="row align-items-center">
+                            <div class="col-lg-8 col-xl-8">
+                                <div class="row align-items-center">
+                                    <div class="col-md-12 my-2 my-md-0">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(model => model.FinancialYearId, "আর্থিক বছর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                            <div class="col-lg-4">
+                                                @Html.DropDownListFor(model => model.FinancialYearId, null, " নির্বাচন করুন ", new
+                                          {
+                                              @class = "form-control",
+                                          })
+                                            </div>
+
+                                            @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                            <div class="col-lg-4">
+                                                @Html.DropDownListFor(model => model.AreaId, null, " নির্বাচন করুন ", new
+                                          {
+                                              @class = "form-control",
+                                          })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+
+                                            @Html.LabelFor(model => model.PlotId, "প্লট নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                            <div class="col-lg-4">
+                                                @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
+                                          {
+                                              @class = "form-control",
+                                          })
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-
+                            </div>
+                            <div class="col-lg-2 col-xl-4 mt-5 mt-lg-0">
+                                <a href="#" id="search_button" class="btn btn-success px-6 font-weight-bold" style="margin-top: -8px;">Search</a>
+                                <a href="#" id="reset_button" class="btn btn-bg-warning px-6 font-weight-bold" style="margin-top: -8px;">Reset</a>
                             </div>
                         </div>
-
+                    </div>
+                    <div class="search-result" id="search-result">
                     </div>
                 </div>
-                <!--end::Search Form-->
-                <!--begin: Datatable-->
-                <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
-                    <thead>
-                        <tr>
-
-                            <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.AreaName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PlotNo)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TaxFromRent)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TaxFromOwnProperty)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TotalHoldingTax)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.NetTaxPayableAmount)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LastUpdated)
-                            </th>
-                            <th></th>
-
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FinancialYear)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AreaName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PlotNo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TaxFromRent)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TaxFromOwnProperty)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TotalHoldingTax)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NetTaxPayableAmount)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LastUpdated)
-                                </td>
-                                <td>
-                                    @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
-                                    {
-                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="Edit">
-                                            <b> <i class="fa fa-edit"></i>  </b>
-                                        </a>
-                                    }
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Details/@item.HoldingTaxId" title="Report View">
-                                        <b><i class="fa fa-chart-bar" aria-hidden="true"></i></b>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-
-                </table>
-                <!--end: Datatable-->
             </div>
         </div>
     </div>
@@ -165,19 +112,80 @@
 @section Scripts
 {
     <script>
-        jQuery(document).ready(function () {
-            $('#kt_datatable').KTDatatable({
-                search: {
-                    input: $('#kt_datatable_search_query'),
-                    key: 'generalSearch',
-                },
-                layout: {
-                    class: 'datatable-bordered',
-                }
+            jQuery(document).ready(function () {
+                $('#FinancialYearId').select2({
+                    placeholder: "--নির্বাচন করুন--",
+                    allowClear: true
+                });
+                $('#AreaId').select2({
+                    placeholder: "--নির্বাচন করুন--",
+                    allowClear: true
+                });
+                $('#PlotId').select2({
+                    placeholder: "--নির্বাচন করুন--",
+                    allowClear: true
+                });
+
+
+                $('#kt_datatable').KTDatatable({
+                    search: {
+                        input: $('#kt_datatable_search_query'),
+                        key: 'generalSearch',
+                    },
+                    layout: {
+                        class: 'datatable-bordered',
+                    }
+                });
+
+                $("#AreaId").change(function () {
+                    var areaId = $("#AreaId").val();
+
+                    var json = {
+                        AreaId: areaId
+                    };
+                    $.ajax({
+                        url: '@Url.Action("GetAllPlotByAreaId", "Holding")',
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(json),
+                        success: function (data) {
+                            if (data.length === 0) {
+                                Swal.fire(
+                                    'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'info'
+                                )
+                            }
+                            else {
+                                $("#PlotId").empty();
+                                $("#PlotId").append("<option value=''>--নির্বাচন করুন--</option>");
+                                $.each(data, function (index, row) {
+                                    $("#PlotId").append("<option value='" + row.PlotId + "'>" + row.PlotNo + "</option>");
+                                });
+                            }
+                        },
+                        error: function () {
+                            Swal.fire(
+                                'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'error'
+                            )
+                        }
+                    });
+                });
+
+                $("#search_button").click(function (e) {
+                    e.preventDefault();
+                    var yearId = parseInt($("#FinancialYearId").val()) || 0;
+                    var areaId = parseInt($("#AreaId").val()) || 0;
+                    var plotId = parseInt($("#PlotId").val()) || 0;
+
+                    $("#search-result").empty();
+                    $("#search-result").load("/HoldingTax/PartialIndex", { AreaId: areaId, FinancialYearId: yearId,  PlotId: plotId });
+                });
+
+                $("#reset_button").click(function () {
+                    location.reload();
+                });
+
             });
-        });
     </script>
+
+
 }
-
-
-
