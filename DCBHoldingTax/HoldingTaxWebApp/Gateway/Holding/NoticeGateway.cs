@@ -69,6 +69,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         NoticeTypeId = Convert.ToInt32(Data_Reader["NoticeTypeId"]),
                         EmployeeName = Convert.ToString(Data_Reader["EmployeeName"]),
                         DesignationName = Convert.ToString(Data_Reader["DesignationName"]),
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"])
                     };
                     if (model.NoticeTypeId == 1)
                         model.NoticeName = "গৃহকরের প্রাথমিক বিজ্ঞপ্তি দেখুন";
@@ -328,6 +329,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         NoticeTypeId = Convert.ToInt32(Data_Reader["NoticeTypeId"]),
                         EmployeeName = Convert.ToString(Data_Reader["EmployeeName"]),
                         DesignationName = Convert.ToString(Data_Reader["DesignationName"]),
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"])
                     };
                     if (model.NoticeTypeId == 1)
                         model.NoticeName = "গৃহকরের প্রাথমিক বিজ্ঞপ্তি দেখুন";
@@ -431,6 +433,99 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 if (Sql_Connection.State == ConnectionState.Open)
                     Sql_Connection.Close();
             }
+        }
+
+
+        public List<Notice> GetAllNoticeFiltering(int? FinancialYearId, int? NoticeTypeId, int? AreaId, int? PlotId)
+        {
+            try
+            {
+                Sql_Query = "[dbo].[spGetNoticeIndexData]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@FinancialYearId", SqlDbType.Int).Value = FinancialYearId;
+                Sql_Command.Parameters.Add("@NoticeTypeId", SqlDbType.Int).Value = NoticeTypeId;
+                Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = AreaId;
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = PlotId;
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<Notice> vm = new List<Notice>();
+
+                while (Data_Reader.Read())
+                {
+                    Notice model = new Notice
+                    {
+                        HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
+                        HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
+                        AreaName = Convert.ToString(Data_Reader["AreaName"]),
+                        CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
+                        CreatedByUsername = Data_Reader["CreatedByUsername"].ToString(),
+                        UpdatedByUsername = Data_Reader["UpdatedByUserName"].ToString(),
+                        LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null,
+                        IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null,
+                        IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
+                        CreatedBy = Data_Reader["CreatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
+                        LastUpdatedBy = Data_Reader["LastUpdatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null,
+                        AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
+                        FinancialYear = Convert.ToString(Data_Reader["FinancialYear"]),
+                        FinancialYearId = Convert.ToInt32(Data_Reader["FinancialYearId"]),
+                        IsNoticeSent = Data_Reader["IsNoticeSent"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsNoticeSent"]) : (bool?)null,
+                        NoticeId = Convert.ToInt64(Data_Reader["NoticeId"]),
+                        NoticeLinkName = Convert.ToString(Data_Reader["NoticeLinkName"]),
+                        NoticeName = "",
+                        NoticeSentDate = Data_Reader["NoticeSentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["NoticeSentDate"]) : (DateTime?)null,
+                        NoticeTypeId = Convert.ToInt32(Data_Reader["NoticeTypeId"]),
+                        EmployeeName = Convert.ToString(Data_Reader["EmployeeName"]),
+                        DesignationName = Convert.ToString(Data_Reader["DesignationName"]),
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"])
+                    };
+                    if (model.NoticeTypeId == 1)
+                        model.NoticeName = "গৃহকরের প্রাথমিক বিজ্ঞপ্তি দেখুন";
+                    else if (model.NoticeTypeId == 2)
+                        model.NoticeName = "রিবেটসহ গৃহকর প্রাপ্তির বিজ্ঞপ্তি দেখুন";
+                    else if (model.NoticeTypeId == 3)
+                        model.NoticeName = "গৃহকরের চূড়ান্ত বিজ্ঞপ্তি দেখুন";
+
+                    model.StringNoticeSentDate = $"{model.NoticeSentDate:dd/MM/yyyy HH:mm:ss tt}";
+
+                    vm.Add(model);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
         }
     }
 }

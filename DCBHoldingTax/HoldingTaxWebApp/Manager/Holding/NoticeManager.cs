@@ -38,5 +38,10 @@ namespace HoldingTaxWebApp.Manager.Holding
             else
                 return CommonConstantHelper.Failed;
         }
+
+        public List<Notice> GetAllNoticeFiltering(int? FinancialYearId, int? NoticeTypeId, int? AreaId, int? PlotId)
+        {
+            return _notice.GetAllNoticeFiltering(FinancialYearId, NoticeTypeId, AreaId, PlotId);
+        }
     }
 }

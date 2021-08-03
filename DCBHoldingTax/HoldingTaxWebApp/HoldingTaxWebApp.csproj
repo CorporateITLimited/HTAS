@@ -4659,6 +4659,7 @@
     <Compile Include="ViewModels\LogInVM.cs" />
     <Compile Include="ViewModels\Plots\OldPlotOwnerCombineVM.cs" />
     <Compile Include="ViewModels\Plots\PlotOwnerCombineVM.cs" />
+    <Compile Include="ViewModels\QueryCommon.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
     <Compile Include="ViewModels\UserPermission.cs" />
     <Compile Include="WebForms\Holding\HolderDetails.aspx.cs">
@@ -4868,6 +4869,8 @@
     <Content Include="Views\Holding\NewIndex.cshtml" />
     <Content Include="Views\Holding\_PartialIndex.cshtml" />
     <Content Include="Views\Home\_NoDataFound.cshtml" />
+    <Content Include="Views\Notice\_PartialIndex.cshtml" />
+    <Content Include="Views\Notice\NewIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,24 +1,21 @@
-﻿@model HoldingTaxWebApp.Models.Holding.Holder
+﻿
+@model HoldingTaxWebApp.ViewModels.QueryCommon
+@using HoldingTaxWebApp.Helpers
 @{
-    /**/
-
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
 
 
+
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকরদাতা</h5>
-                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-                    <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted">গৃহকরদাতাদের তালিকা মূল তালিকা</a>
-                    </li>
-                </ul>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকর সংক্রান্ত বিজ্ঞপ্তি </h5>
             </div>
         </div>
         <div class="d-flex align-items-center">
@@ -29,6 +26,7 @@
 
 <div class="d-flex flex-column-fluid">
     <div class="container">
+
         @if (TempData["SM"] != null)
         {
             <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
@@ -40,31 +38,24 @@
                 </div>
             </div>
         }
-
         <div class="card card-custom">
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
                 <div class="card-title">
                     <h3 class="card-label">
-                        গৃহকরদাতাদের তালিকা মূল তালিকা
+                        গৃহকর সংক্রান্ত বিজ্ঞপ্তি এর তালিকা
                     </h3>
                 </div>
                 <div class="card-toolbar">
                     <!--begin::Dropdown-->
                     <!--end::Dropdown-->
                     <!--begin::Button-->
-                    <a href="~/Holding/Create" class="btn btn-primary font-weight-bolder">
-                        <i class="fas fa-plus">
-                        </i>নতুন গৃহকরদাতা যুক্ত করুন
-                    </a>
-
-                    @*@if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin) ||
-                            (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleManagement))
-                        {
-                            <a href="~/User/Create" class="btn btn-brand btn-elevate btn-icon-sm">
-                                <i class="la la-plus"></i>
-                                Add User
-                            </a>
-                        }*@
+                    @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+                    {
+                        <a href="~/Notice/Create" class="btn btn-primary font-weight-bolder">
+                            <i class="fas fa-plus">
+                            </i>নতুন বিজ্ঞপ্তি পাঠান
+                        </a>
+                    }
 
                     <!--end::Button-->
                 </div>
@@ -77,6 +68,24 @@
                         <div class="col-lg-8 col-xl-8">
                             <div class="row align-items-center">
                                 <div class="col-md-12 my-2 my-md-0">
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.FinancialYearId, "আর্থিক বছর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                        <div class="col-lg-4">
+                                            @Html.DropDownListFor(model => model.FinancialYearId, null, " নির্বাচন করুন ", new
+                                      {
+                                          @class = "form-control",
+                                      })
+                                        </div>
+
+                                        @Html.LabelFor(model => model.NoticeTypeId, "বিজ্ঞপ্তির ধরণ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                        <div class="col-lg-4">
+                                            @Html.DropDownListFor(model => model.NoticeTypeId, null, " নির্বাচন করুন ", new
+                                      {
+                                          @class = "form-control",
+                                      })
+                                        </div>
+                                    </div>
+
                                     <div class="form-group row">
                                         @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                         <div class="col-lg-4">
@@ -103,9 +112,6 @@
                         </div>
                     </div>
                 </div>
-                <!--end::Search Form-->
-                <!--end: Search Form-->
-                <!--begin: Datatable-->
                 <div class="search-result" id="search-result">
                 </div>
             </div>
@@ -118,6 +124,14 @@
 {
     <script>
             jQuery(document).ready(function () {
+                $('#FinancialYearId').select2({
+                    placeholder: "--নির্বাচন করুন--",
+                    allowClear: true
+                });
+                $('#NoticeTypeId').select2({
+                    placeholder: "--নির্বাচন করুন--",
+                    allowClear: true
+                });
                 $('#AreaId').select2({
                     placeholder: "--নির্বাচন করুন--",
                     allowClear: true
@@ -174,11 +188,13 @@
 
                 $("#search_button").click(function (e) {
                     e.preventDefault();
+                    var yearId = parseInt($("#FinancialYearId").val()) || 0;
+                    var typeId = parseInt($("#NoticeTypeId").val()) || 0;
                     var areaId = parseInt($("#AreaId").val()) || 0;
                     var plotId = parseInt($("#PlotId").val()) || 0;
 
                     $("#search-result").empty();
-                    $("#search-result").load("/Holding/PartialIndex", { AreaId: areaId, PlotId: plotId });
+                    $("#search-result").load("/Notice/PartialIndex", { FinancialYearId: yearId, NoticeTypeId: typeId, AreaId: areaId, PlotId: plotId });
                 });
 
                 $("#reset_button").click(function () {
@@ -187,5 +203,6 @@
 
             });
     </script>
+
 
 }

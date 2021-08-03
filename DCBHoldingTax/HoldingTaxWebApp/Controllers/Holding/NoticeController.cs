@@ -1,6 +1,7 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager.DBO;
 using HoldingTaxWebApp.Manager.Holding;
+using HoldingTaxWebApp.Manager.Plots;
 using HoldingTaxWebApp.Manager.Users;
 using HoldingTaxWebApp.Models.Holding;
 using System;
@@ -17,6 +18,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
         private readonly FinancialYearManager _financialYearManager;
         private readonly DOHSAreaManager _dOHSAreaManager;
         private readonly EmployeeManager _employeeManager;
+        private readonly PlotManager _plotManager;
 
         public NoticeController()
         {
@@ -24,6 +26,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             _financialYearManager = new FinancialYearManager();
             _dOHSAreaManager = new DOHSAreaManager();
             _employeeManager = new EmployeeManager();
+            _plotManager = new PlotManager();
         }
 
         // GET: Notice
@@ -56,6 +59,53 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}" + msg;
                 return RedirectToAction("LogIn", "Account");
             }
+        }
+
+        public ActionResult NewIndex()
+        {
+            ViewBag.FinancialYearId = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
+            ViewBag.NoticeTypeId = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text");
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
+            ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+            return View();
+        }
+
+        public ActionResult PartialIndex(int? FinancialYearId, int? NoticeTypeId, int? AreaId, int? PlotId)
+        {
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //      && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //      && (Session[CommonConstantHelper.UserId] != null))
+            //{
+            try
+            {
+                FinancialYearId = FinancialYearId > 0 ? FinancialYearId : null;
+                NoticeTypeId = NoticeTypeId > 0 ? NoticeTypeId : null;
+                AreaId = AreaId > 0 ? AreaId : null;
+                PlotId = PlotId > 0 ? PlotId : null;
+
+                var data = _noticeManager.GetAllNoticeFiltering(FinancialYearId, NoticeTypeId, AreaId, PlotId);
+
+                if (data != null && data.Count > 0)
+                {
+                    return PartialView("~/Views/Notice/_PartialIndex.cshtml", data);
+                }
+                else
+                {
+                    return PartialView("~/Views/Home/_NoDataFound.cshtml");
+                }
+            }
+            catch (Exception exception)
+            {
+                TempData["EM"] = "error | " + exception.Message.ToString();
+                return PartialView("~/Views/Home/_NoDataFound.cshtml");
+                //return View();
+            }
+            //}
+            //else
+            //{
+            //    TempData["EM"] = "Session Expired.";
+            //    return RedirectToAction("LogIn", "Account");
+            //}
         }
 
         [HttpGet]
