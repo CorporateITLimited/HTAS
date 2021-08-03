@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HoldingTaxWebApp.ViewModels.Tax.InvoiceVM
+@{
     ViewBag.Title = "Invoice";
 }
 <!--begin::Subheader-->
@@ -68,17 +69,18 @@
                         <div class="d-flex justify-content-between pt-6">
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">তারিখ</span>
-                                <span class="opacity-70">Dec 12, 2017</span>
+                                <span class="opacity-70">@Model.StringCurrentDate</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">রশিদ নং</span>
-                                <span class="opacity-70">GS 000014</span>
+                                <span class="opacity-70">@Model.invoiceNo</span>
                             </div>
                             <div class="d-flex flex-column flex-root">
                                 <span class="font-weight-bolder mb-2">জনাব/জনাবা,</span>
                                 <span class="opacity-70">
-                                    Iris Watson, P.O. Box 283 8562 Fusce RD.
-                                    <br />Fredrick Nebraska 20620
+                                    @Model.HolderName,@Model.PlotNo,@Model.AreaName
+
+                                    <br />@Model.PresentAdd
                                 </span>
                             </div>
                         </div>
@@ -93,33 +95,33 @@
                               
                                 <tbody>
                                     <tr class="font-weight-boldest">
-                                        <td class="text-left" width="70%"> পর্যন্ত বকেয়া গৃহকর------------------------------------</td>
-                                        <td class="text-center"  width="20%">Amount</td>
+                                        <td class="text-left" width="70%">@Model.StringoldDate পর্যন্ত বকেয়া গৃহকর------------------------------------</td>
+                                        <td class="text-center"  width="20%">@Model.DuesPreviousYear</td>
                                         <td class="text-left" width="10%">টাকা</td>
                                     </tr>
                                     <tr class="font-weight-boldest">
-                                        <td class="text-left" width="70%">বকেয়ার অতিরিক্ত চার্জ ১০%------------------------------- (+)</td>
-                                        <td class="text-center" width="20%">Amount</td>
+                                        <td class="text-left" width="70%">বকেয়ার অতিরিক্ত চার্জ @Model.DuesChargeRate%------------------------------- (+)</td>
+                                        <td class="text-center" width="20%">@Model.DuesFineAmount</td>
                                         <td class="text-left" width="10%">টাকা</td>
                                     </tr>
                                     <tr class="font-weight-boldest">
-                                        <td class="text-left" width="70%"> {1StartingDate} হতে {2FEndDate} পর্যন্ত{3FinancialYear} আর্থিক সন--</td>
-                                        <td class="text-center" width="20%">Amount</td>
+                                        <td class="text-left" width="70%"> @Model.StringStartingDate হতে @Model.StringFEndDate পর্যন্ত @Model.FinancialYear আর্থিক সন--</td>
+                                        <td class="text-center" width="20%">@Model.TotalTaxWithSurchargeDue</td>
                                         <td class="text-left" width="10%">টাকা</td>
                                     </tr>
                                     <tr class="font-weight-boldest">
                                         <td class="text-right" width="70%">মোট</td>
-                                        <td class="text-center" width="20%">Amount</td>
+                                        <td class="text-center" width="20%">@Model.TotalNet</td>
                                         <td class="text-left" width="10%">টাকা</td>
                                     </tr>
                                     <tr class="font-weight-boldest">
-                                        <td class="text-left" width="70%">{1EndOfYear} তারিখের মধ্যে পরিশোধ করলে {2FinancialYear} আর্থিক সনের উপর {3RebateRate}% রিবেট (-)  </td>
-                                        <td class="text-center" width="20%">Amount</td>
+                                        <td class="text-left" width="70%">@Model.StringEndOfYear তারিখের মধ্যে পরিশোধ করলে @Model.FinancialYear আর্থিক সনের উপর @Model.RebateRate% রিবেট (-)  </td>
+                                        <td class="text-center" width="20%">@Model.rebateNew</td>
                                         <td class="text-left" width="10%">টাকা</td>
                                     </tr>
                                     <tr class="font-weight-boldest">
                                         <td class="text-right" width="70%">সর্বমোট</td>
-                                        <td class="text-center" width="20%">Amount</td>
+                                        <td class="text-center" width="20%">@Model.NetTaxPayableAmount</td>
                                         <td class="text-left" width="10%">টাকা</td>
                                     </tr>
                                  
@@ -157,12 +159,11 @@
                                     <tr class="font-weight-bolder">
                                         <td colspan="3">
                                             <p>
-                                                জনাব .................................হইতে প্রাপ্ত 
-                                                টাকা (কোথায়) ..................................
-                                                ...............................................
-                                                বাবদ ..........................................
-                                                ................................................
-                                                ...........টাকা................................
+                                                জনাব ...@Model.HolderName ...<br />
+                                                হইতে প্রাপ্ত  টাকা (কথায়) ..................................
+                                                .........................................................<br />
+                                                বাবদ ..@Model.FinancialYear আর্থিক সনের উপর গৃহকর বাবদ<br />
+                                                টাকা @Model.NetTaxPayableAmount
 
                                             </p>
 
