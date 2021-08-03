@@ -45,12 +45,14 @@ namespace HoldingTaxWebApp.WebForms.Tax
         {
             int? rptFinancialYearId = Session["FinacialYearID"] != null ? Convert.ToInt32(Session["FinacialYearID"]) : (int?)null;
             int? rptHolderId = Session["HolderID"] != null ? Convert.ToInt32(Session["HolderID"]) : (int?)null;
+            int? rptNoticeTypeId = Session["NoticeTypeID"] != null ? Convert.ToInt32(Session["NoticeTypeID"]) : (int?)null;
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("exec [Tax].[spletterThree] @FinancialYearId,@HolderId", con);
+            SqlCommand cmd = new SqlCommand("exec [Tax].[spletterThree2] @FinancialYearId,@HolderId,@NoticeTypeId", con);
             cmd.CommandType = CommandType.Text; // always text
             cmd.Parameters.AddWithValue("@FinancialYearId", SqlDbType.Int).Value = rptFinancialYearId ?? (object)DBNull.Value;
             cmd.Parameters.AddWithValue("@HolderId", SqlDbType.Int).Value = rptHolderId ?? (object)DBNull.Value;
+            cmd.Parameters.AddWithValue("@NoticeTypeId", SqlDbType.Int).Value = rptNoticeTypeId ?? (object)DBNull.Value;
             try
             {
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
