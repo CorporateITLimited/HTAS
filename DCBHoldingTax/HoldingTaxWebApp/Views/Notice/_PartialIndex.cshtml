@@ -1,0 +1,54 @@
+﻿
+@model IEnumerable<HoldingTaxWebApp.Models.Holding.Notice>
+
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-bordered table-hover table-sm" width="100">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
+                <th>@Html.DisplayNameFor(model => model.AreaName)</th>
+                <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
+                <th>@Html.DisplayNameFor(model => model.HolderName)</th>
+                <th>@Html.DisplayNameFor(model => model.AreaPlotFlatData)</th>
+                <th>@Html.DisplayNameFor(model => model.NoticeName)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FinancialYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AreaName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlotNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HolderName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AreaPlotFlatData)
+                    </td>
+                    <td>
+                        @if (!string.IsNullOrWhiteSpace(item.NoticeName))
+                        {
+                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.NoticeTypeId, @HID = @item.HolderId }))">
+                                @Html.DisplayFor(modelItem => item.NoticeName)
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1 class="text-capitalize text-center text-info"> No Data Found .....</h1>
+}
+

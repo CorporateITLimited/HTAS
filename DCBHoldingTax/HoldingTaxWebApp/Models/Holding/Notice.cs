@@ -22,6 +22,9 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "এলাকা  ")]
         public string AreaName { get; set; }
 
+        [Display(Name = "প্লট নম্বর")]
+        public string PlotNo { get; set; }
+
         [Display(Name = "হোল্ডারের নাম  ")]
         public int HolderId { get; set; }
 
