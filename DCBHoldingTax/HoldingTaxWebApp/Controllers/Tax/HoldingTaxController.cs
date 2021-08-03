@@ -172,7 +172,11 @@ namespace HoldingTaxWebApp.Controllers.Tax
             return View(holdingTax);
         }
 
+
+
         // POST: HoldingTax/Edit/5
+
+
         [HttpPost]
         public ActionResult Edit(HoldingTax holdingTax)
         {
@@ -264,6 +268,23 @@ namespace HoldingTaxWebApp.Controllers.Tax
                 return View(holdingTax);
             }
         }
+
+
+
+
+        public ActionResult Invoice(int id)
+        {
+
+
+
+            return View();
+        }
+
+
+
+
+
+
 
 
         public JsonResult GetRebateAndWrongInfoByHoldingTaxId(int id)
