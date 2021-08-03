@@ -8,6 +8,7 @@ using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager.Tax;
 using HoldingTaxWebApp.Models.Tax;
 using HoldingTaxWebApp.Models.Holding;
+using HoldingTaxWebApp.Manager.DBO;
 
 namespace HoldingTaxWebApp.Controllers.Tax
 {
@@ -15,17 +16,21 @@ namespace HoldingTaxWebApp.Controllers.Tax
     {
         private readonly HoldingTaxManager _holdingTaxManager;
         private readonly FinancialYearGateway _financialYearGateway;
+        private readonly DOHSAreaManager _dOHSAreaManager;
 
         public HoldingTaxController()
         {
             _holdingTaxManager = new HoldingTaxManager();
             _financialYearGateway = new FinancialYearGateway();
+            _dOHSAreaManager = new DOHSAreaManager();
+
         }
 
 
         // GET: HoldingTax
         public ActionResult Index()
         {
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
             try
             {
                 List<HoldingTax> holdingTaxes = new List<HoldingTax>();
