@@ -216,12 +216,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
 
 
-        public ActionResult Invoice(int id)
-        {
-            //Session["HoldingTaxId"] = id > 0 ? id : (object)null;
-            return View();
-        }
-
+       
 
         public JsonResult GetRebateAndWrongInfoByHoldingTaxId(int id)
         {
