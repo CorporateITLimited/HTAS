@@ -63,6 +63,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
             ViewBag.NoticeTypeId = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text");
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
             ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+
+            ViewBag.ListOfData = _noticeManager.GetAllNoticeFiltering(null, null, null, null);
+
             return View();
         }
 
@@ -83,6 +86,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 if (data != null && data.Count > 0)
                 {
+                    ViewBag.ListOfData = null;
                     return PartialView("~/Views/Notice/_PartialIndex.cshtml", data);
                 }
                 else

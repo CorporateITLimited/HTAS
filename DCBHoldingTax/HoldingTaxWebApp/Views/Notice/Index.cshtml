@@ -112,6 +112,50 @@
                         </div>
                     </div>
                 </div>
+                <div class="initial_result" id="initial_result">
+                    <table class="table table-bordered table-hover table-sm" width="100">
+                        <thead>
+                            <tr>
+                                <th>আর্থিক বছর </th>
+                                <th>এলাকা  </th>
+                                <th>প্লট নম্বর</th>
+                                <th>হোল্ডারের নাম  </th>
+                                <th>হোল্ডারের প্লট/ফ্ল্যাট/বাড়ী এর বিবরণ </th>
+                                <th>বিজ্ঞপ্তির নাম </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.ListOfData)
+                            {
+                                <tr>
+                                    <td>
+                                       @item.FinancialYear
+                                    </td>
+                                    <td>
+                                        @item.AreaName
+                                    </td>
+                                    <td>
+                                        @item.PlotNo
+                                    </td>
+                                    <td>
+                                        @item.HolderName
+                                    </td>
+                                    <td>
+                                        @item.AreaPlotFlatData
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrWhiteSpace(item.NoticeName))
+                                        {
+                                            <a href="@Html.Raw(@Url.Action("NoticeReport", "Notice", new { @FYID = @item.FinancialYearId, @NTID = @item.NoticeTypeId, @HID = @item.HolderId }))">
+                                                @item.NoticeName
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
                 <div class="search-result" id="search-result">
                 </div>
             </div>
@@ -141,6 +185,7 @@
                     allowClear: true
                 });
 
+                $("#initial_result").show();
 
                 $('#kt_datatable').KTDatatable({
                     search: {
@@ -193,6 +238,7 @@
                     var areaId = parseInt($("#AreaId").val()) || 0;
                     var plotId = parseInt($("#PlotId").val()) || 0;
 
+                    $("#initial_result").hide();
                     $("#search-result").empty();
                     $("#search-result").load("/Notice/PartialIndex", { FinancialYearId: yearId, NoticeTypeId: typeId, AreaId: areaId, PlotId: plotId });
                 });
