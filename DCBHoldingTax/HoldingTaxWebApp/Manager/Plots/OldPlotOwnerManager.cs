@@ -33,6 +33,23 @@ namespace HoldingTaxWebApp.Manager.Plots
         }
 
 
+        //get Plot for select 
+        public List<Plot> GetPlot()
+        {
+            return _OldPlotOwnerGateway.GetPlot();
+
+        }
+
+
+
+        //Get Data
+        public PlotOwner GetPlotOwnerData(int id)
+        {
+            return _OldPlotOwnerGateway.GetPlotOwnerData(id);
+
+        }
+
+
         //Create Plot Owner Details
         public int OldPlotOwnerInsert(OldPlotOwner model)
         {
@@ -68,9 +85,9 @@ namespace HoldingTaxWebApp.Manager.Plots
 
 
         //Create old Plot Owner Details
-        public string OldOthetPlotOwnerInsert(int id)
+        public string OldOthetPlotOwnerInsert(int id, int oldid)
         {
-            int result = _OldPlotOwnerGateway.OldOthetPlotOwnerInsert(id);
+            int result = _OldPlotOwnerGateway.OldOthetPlotOwnerInsert(id,oldid);
             if (result == 202)
                 return CommonConstantHelper.Success;
             else if (result == 401)

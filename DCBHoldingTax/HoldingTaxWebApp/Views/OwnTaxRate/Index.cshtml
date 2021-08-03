@@ -1,13 +1,9 @@
-﻿@model IEnumerable<HoldingTaxWebApp.Models.Constant.RentTaxRate>
+﻿@model IEnumerable<HoldingTaxWebApp.Models.Constant.OwnTaxRate>
 @using HoldingTaxWebApp.Helpers
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{
-    ViewBag.Title = "Index";
-}
-
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
 }
@@ -18,7 +14,7 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকরের হার</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">মালিকানা ধরণের  করের হার</h5>
                 @*<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item text-muted">
                             <a href="" class="text-muted">Crud</a>
@@ -34,7 +30,6 @@
 
 <div class="d-flex flex-column-fluid">
     <div class="container">
-
         @if (TempData["SM"] != null)
         {
             <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
@@ -51,18 +46,17 @@
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
                 <div class="card-title">
                     <h3 class="card-label">
-                        এলাকা ও ভবনের ধরণ অনুযায়ী গৃহকরের তালিকা
+                        মালিকানা ধরণের করের হার এর তালিকা
                     </h3>
                 </div>
                 <div class="card-toolbar">
                     <!--begin::Dropdown-->
                     <!--end::Dropdown-->
                     <!--begin::Button-->
-                    <a href="~/RentTaxTate/Create" class="btn btn-primary font-weight-bolder">
+                    <a href="~/OwnTaxRate/Create" class="btn btn-primary font-weight-bolder">
                         <i class="fas fa-plus">
-                        </i>নতুন গৃহকরের হার
+                        </i>নতুন করের হার যুক্ত করুন
                     </a>
-
                     <!--end::Button-->
                 </div>
             </div>
@@ -95,12 +89,13 @@
                     <thead>
                         <tr>
 
-                            <th>@Html.DisplayNameFor(model => model.AreaName)</th>
-                            <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
-                            <th>@Html.DisplayNameFor(model => model.PerSqfRent)</th>
-                            <th>@Html.DisplayNameFor(model => model.Remarks)</th>
+                            <th>@Html.DisplayNameFor(model => model.TypeName)</th>
+                            <th>@Html.DisplayNameFor(model => model.StrAreaSF)</th>
+                            <th>@Html.DisplayNameFor(model => model.StrAmount)</th>
+                            <th>@Html.DisplayNameFor(model => model.StrPerSqfRent)</th>
                             <th>@Html.DisplayNameFor(model => model.UpdatedByUsername)</th>
-                            <th>@Html.DisplayNameFor(model => model.LastUpdated)</th>
+                            <th>@Html.DisplayNameFor(model => model.StrLastUpdated)</th>
+
                             <th></th>
 
 
@@ -109,45 +104,34 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AreaName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.BuildingTypeName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PerSqfRent)
-                                </td>
-                                <td>
-
-                                    @Html.DisplayFor(modelItem => item.Remarks)
-
-                                </td>
-                                @*<td>
-                                        @Html.DisplayFor(modelItem => item.CreatedByName)
-                                    </td>*@
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.UpdatedByUsername)
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LastUpdated)
-                                </td>
-
-
-                                <td>
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/RentTaxTate/Edit/@item.RentTaxRateId" title="Edit">
-                                        <b> <i class="fa fa-edit"></i>  </b>
-                                    </a>
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/RentTaxTate/Details/@item.RentTaxRateId" title="Details View">
-                                        <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                    </a>
-                                </td>
-
-
-                            </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypeName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StrAreaSF)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StrAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StrPerSqfRent)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpdatedByUsername)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StrLastUpdated)
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/OwnTaxRate/Edit/@item.OwnTaxRateId" title="Edit">
+                                    <b> <i class="fa fa-edit"></i>  </b>
+                                </a>
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/OwnTaxRate/Details/@item.OwnTaxRateId" title="Details View">
+                                    <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                </a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
 
@@ -174,7 +158,4 @@
             });
         });
     </script>
-
-
 }
-

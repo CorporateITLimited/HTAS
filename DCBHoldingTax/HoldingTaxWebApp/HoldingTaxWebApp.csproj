@@ -2417,6 +2417,7 @@
       <DependentUpon>dsTax.xsd</DependentUpon>
     </Content>
     <Content Include="Scripts\printThis.js" />
+    <Content Include="Scripts\wizard-OldPlotOwnerCreate.js" />
     <Content Include="WebForms\Holding\HolderDetails.aspx" />
     <Content Include="WebForms\Tax\GetHoldingTax.aspx" />
     <Content Include="WebForms\Tax\leterThree.aspx" />
@@ -4524,12 +4525,15 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Constant\ConstantValueController.cs" />
+    <Compile Include="Controllers\Constant\OwnTaxRateController.cs" />
     <Compile Include="Controllers\DBO\DOHSAreaController.cs" />
     <Compile Include="Controllers\DBO\IssueController.cs" />
     <Compile Include="Controllers\Holding\HolderClientController.cs" />
     <Compile Include="Controllers\Holding\HoldingController.cs" />
     <Compile Include="Controllers\Holding\NoticeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Plots\OldPlotOwnerController.cs" />
     <Compile Include="Controllers\Plots\PlotController.cs" />
     <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
@@ -4552,6 +4556,8 @@
     <Compile Include="Gateway\AccountGateway.cs" />
     <Compile Include="Gateway\CommonListGateway.cs" />
     <Compile Include="Gateway\ConstantGateway.cs" />
+    <Compile Include="Gateway\Constant\ConstantValueGateway.cs" />
+    <Compile Include="Gateway\Constant\OwnTaxRateGateway.cs" />
     <Compile Include="Gateway\DBO\FinancialYearGateway.cs" />
     <Compile Include="Gateway\DBO\ConstructionStatusGateway.cs" />
     <Compile Include="Gateway\DBO\IssueGateway.cs" />
@@ -4587,6 +4593,8 @@
     <Compile Include="Manager\AccountManager.cs" />
     <Compile Include="Manager\CommonListManager.cs" />
     <Compile Include="Manager\ConstantManager.cs" />
+    <Compile Include="Manager\Constant\ConstantValueManager.cs" />
+    <Compile Include="Manager\Constant\OwnTaxRateManager.cs" />
     <Compile Include="Manager\DBO\FinancialYearManager.cs" />
     <Compile Include="Manager\DBO\BuildingTypeManager.cs" />
     <Compile Include="Manager\DBO\ConstructionStatusManager.cs" />
@@ -4608,6 +4616,8 @@
     <Compile Include="Manager\Users\HolderUserManager.cs" />
     <Compile Include="Manager\Users\UserManager.cs" />
     <Compile Include="Models\CommonList.cs" />
+    <Compile Include="Models\Constant\ConstantValue.cs" />
+    <Compile Include="Models\Constant\OwnTaxRate.cs" />
     <Compile Include="Models\Constant\RentTaxRate.cs" />
     <Compile Include="Models\DBO\ConstructionStatus.cs" />
     <Compile Include="Models\DBO\clsFinancialYear.cs" />
@@ -4649,6 +4659,7 @@
     <Compile Include="ViewModels\LogInVM.cs" />
     <Compile Include="ViewModels\Plots\OldPlotOwnerCombineVM.cs" />
     <Compile Include="ViewModels\Plots\PlotOwnerCombineVM.cs" />
+    <Compile Include="ViewModels\QueryCommon.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
     <Compile Include="ViewModels\UserPermission.cs" />
     <Compile Include="WebForms\Holding\HolderDetails.aspx.cs">
@@ -4843,6 +4854,23 @@
     <Content Include="Views\Holding\HolderReport.cshtml" />
     <Content Include="Views\Holding\rptHolderDetails2.cshtml" />
     <Content Include="Views\HolderClient\HolderProfile.cshtml" />
+    <Content Include="Views\OldPlotOwner\Index.cshtml" />
+    <Content Include="Views\OldPlotOwner\Details.cshtml" />
+    <Content Include="Views\OldPlotOwner\Create.cshtml" />
+    <Content Include="Views\RentTaxTate\Details.cshtml" />
+    <Content Include="Views\RentTaxTate\Create.cshtml" />
+    <Content Include="Views\RentTaxTate\Edit.cshtml" />
+    <Content Include="Views\ConstantValue\Details.cshtml" />
+    <Content Include="Views\ConstantValue\Edit.cshtml" />
+    <Content Include="Views\OwnTaxRate\Index.cshtml" />
+    <Content Include="Views\OwnTaxRate\Details.cshtml" />
+    <Content Include="Views\OwnTaxRate\Create.cshtml" />
+    <Content Include="Views\OwnTaxRate\Edit.cshtml" />
+    <Content Include="Views\Holding\NewIndex.cshtml" />
+    <Content Include="Views\Holding\_PartialIndex.cshtml" />
+    <Content Include="Views\Home\_NoDataFound.cshtml" />
+    <Content Include="Views\Notice\_PartialIndex.cshtml" />
+    <Content Include="Views\Notice\NewIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

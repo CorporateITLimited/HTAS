@@ -6,35 +6,43 @@ using System.Web;
 
 namespace HoldingTaxWebApp.Models.Constant
 {
-    public class RentTaxRate
+    public class OwnTaxRate
     {
-        public int? RentTaxRateId { get; set; }
-        [Display(Name = "এলাকা")]
-        public string AreaName { get; set; }
+        public int? OwnTaxRateId { get; set; }
 
-        [Display(Name = "এলাকা")]
-        public int? AreaId { get; set; }
+        [Display(Name = "মালিকানার ধরন")]
+        public int Mill_Civil { get; set; }
 
-        [Display(Name = "ভবনের ধরণ ")]
-        public string BuildingTypeName { get; set; }
+        [Display(Name = "মালিকানার ধরন")]
+        public string TypeName { get; set; }
 
-        [Display(Name = "ভবনের ধরণ ")]
-        public int? BuildingTypeId { get; set; }
+        [Display(Name = "ফ্লোরের আয়তন (বর্গফুট)")]
+        public decimal AreaSF { get; set; }
 
-        [Display(Name = "প্রতি বর্গফুটের ভাড়া")]
-        public decimal PerSqfRent { get; set; }
+        [Display(Name = "ফ্লোরের আয়তন (বর্গফুট)")]
+        public string StrAreaSF { get; set; }
 
-        [Display(Name = "প্রতি বর্গফুটের ভাড়া")]
+        [Display(Name = "প্রতিমাসের ভাড়া")]
+        public decimal Amount { get; set; }
+
+        [Display(Name = "প্রতিমাসের ভাড়া")]
+        public string StrAmount { get; set; }
+
+
+        [Display(Name = "প্রতি বর্গফুটের কর")]
+        public decimal? PerSqfTax { get; set; }
+
+        [Display(Name = "প্রতি বর্গফুটের কর")]
         public string StrPerSqfRent { get; set; }
 
         [Display(Name = "নোট ")]
         public string Remarks { get; set; }
 
 
-        [Display(Name = "সংযুক্তির তারিখ ")]
+        [Display(Name = "সংযুক্তির তারিখ")]
         public DateTime? CreateDate { get; set; }
 
-        [Display(Name = "সংযুক্তির তারিখ ")]
+        [Display(Name = "সংযুক্তির তারিখ")]
         public string StrCreateDate { get; set; }
 
         [Display(Name = "সংযুক্তকারী")]

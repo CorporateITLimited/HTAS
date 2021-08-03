@@ -85,10 +85,35 @@
                                     </div>
                                 </div>
 
+                                @*New*@
+                                @*<div class="col-md-4 my-2 my-md-0">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mr-3 mb-0 d-none d-md-block">Status:</label>
+                                        <select class="form-control" id="kt_datatable_search_status">
+                                            <option value="">All</option>
+                                            <option value="বনানী ডিওএইচএস">বনানী ডিওএইচএস</option>
+                                            <option value="মিরপুর ডিওএইচএস">মিরপুর ডিওএইচএস</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 my-2 my-md-0">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mr-3 mb-0 d-none d-md-block">Type:</label>
+                                        <select class="form-control" id="kt_datatable_search_type">
+                                            <option value="">All</option>
+                                            <option value="116">116</option>
+                                            <option value="4/G">4/G</option>
+                                            <option value="২২১">২২১</option>
+                                        </select>
+                                    </div>
+                                </div>*@
+                                @*New*@
 
                             </div>
                         </div>
-
+                        @*<div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
+                            <a href="#" class="btn btn-light-primary px-6 font-weight-bold">Search</a>
+                        </div>*@
                     </div>
                 </div>
                 <!--end::Search Form-->
@@ -169,6 +194,36 @@
                     class: 'datatable-bordered',
                 }
             });
+            //$('#kt_datatable_search_status').on('change', function () {
+            //    var valueForSearch = $("#kt_datatable_search_status").val();
+            //    search_table(valueForSearch);
+            //});
+
+            //$('#kt_datatable_search_type').on('change', function () {
+            //    var valueForSearch = $("#kt_datatable_search_type").val();
+            //    search_table(valueForSearch);
+            //});
+           
+            //function search_table(value) {
+            //    $('#kt_datatable tbody tr').each(function () {
+            //        var found = 'false';
+            //        $(this).each(function () {
+            //            if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+            //                found = 'true';
+            //            }
+            //        });
+            //        if (found == 'true') {
+            //            $(this).show();
+            //        }
+            //        else {
+            //            $(this).hide();
+            //        }
+            //    });
+            //}
+
+
+           
+
         });
     </script>
 

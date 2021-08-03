@@ -8,16 +8,15 @@ using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Models;
 using HoldingTaxWebApp.Models.Constant;
 
-namespace HoldingTaxWebApp.Gateway
+namespace HoldingTaxWebApp.Gateway.Constant
 {
-    public class ConstantGateway : DefaultGateway
+    public class OwnTaxRateGateway : DefaultGateway
     {
-        public List<RentTaxRate> GetAllRentTaxRates()
+        public List<OwnTaxRate> GetList()
         {
-
             try
             {
-                Sql_Query = "[dbo].[spRentTaxRate]";
+                Sql_Query = "[constant].[spOwnTaxRate]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -40,19 +39,20 @@ namespace HoldingTaxWebApp.Gateway
                 Sql_Connection.Open();
                 Data_Reader = Sql_Command.ExecuteReader();
 
-                List<RentTaxRate> RentTaxRateList = new List<RentTaxRate>();
+                List<OwnTaxRate> vmList = new List<OwnTaxRate>();
 
                 while (Data_Reader.Read())
                 {
-                    RentTaxRate rentTaxRate = new RentTaxRate
+                    OwnTaxRate model = new OwnTaxRate
                     {
-                        RentTaxRateId = Convert.ToInt32(Data_Reader["RentTaxRateId"]),
-                        AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
-                        BuildingTypeId = Convert.ToInt32(Data_Reader["BuildingTypeId"]),
-                        PerSqfRent = Convert.ToDecimal(Data_Reader["PerSqfRent"]),
+                        Amount = Convert.ToDecimal(Data_Reader["Amount"]),
+                        AreaSF = Convert.ToDecimal(Data_Reader["AreaSF"]),
+                        Mill_Civil = Convert.ToInt32(Data_Reader["Mill_Civil"]),
+                        OwnTaxRateId = Convert.ToInt32(Data_Reader["OwnTaxRateId"]),
+                        PerSqfTax = Data_Reader["PerSqfTax"] !=
+                                                    DBNull.Value ? Convert.ToDecimal(Data_Reader["PerSqfTax"]) : (decimal?)null,
+                        TypeName = Data_Reader["TypeName"].ToString(),
                         Remarks = Data_Reader["Remarks"].ToString(),
-                        AreaName = Data_Reader["AreaName"].ToString(),
-                        BuildingTypeName = Data_Reader["BuildingTypeName"].ToString(),
                         CreatedByUsername = Data_Reader["CreatedByUsername"].ToString(),
                         UpdatedByUsername = Data_Reader["UpdatedByUsername"].ToString(),
                         CreatedBy = Data_Reader["CreatedBy"] !=
@@ -68,17 +68,19 @@ namespace HoldingTaxWebApp.Gateway
                         IsDeleted = Data_Reader["IsDeleted"] !=
                                                     DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null
                     };
+                    model.StrAmount = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.Amount);
+                    model.StrAreaSF = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.AreaSF);
+                    model.StrPerSqfRent = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.PerSqfTax);
+                    model.StrCreateDate = $"{model.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
+                    model.StrLastUpdated = $"{model.LastUpdated:dd/MM/yyyy HH:mm:ss tt}";
 
-                    rentTaxRate.StrCreateDate = $"{rentTaxRate.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
-                    rentTaxRate.StrLastUpdated = $"{rentTaxRate.LastUpdated:dd/MM/yyyy HH:mm:ss tt}";
-
-                    RentTaxRateList.Add(rentTaxRate);
+                    vmList.Add(model);
                 }
 
                 Data_Reader.Close();
                 Sql_Connection.Close();
 
-                return RentTaxRateList;
+                return vmList;
             }
             catch (SqlException exception)
             {
@@ -101,11 +103,11 @@ namespace HoldingTaxWebApp.Gateway
 
         }
 
-        public RentTaxRate GetAllRentTaxRatesById(int id)
+        public OwnTaxRate GetById(int id)
         {
             try
             {
-                Sql_Query = "[dbo].[spRentTaxRate]";
+                Sql_Query = "[constant].[spOwnTaxRate]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -116,7 +118,7 @@ namespace HoldingTaxWebApp.Gateway
                 Sql_Command.Parameters.Clear();
 
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Details;
-                Sql_Command.Parameters.Add("@rentTaxRateId", SqlDbType.Int).Value = id;
+                Sql_Command.Parameters.Add("@OwnTaxRateId", SqlDbType.Int).Value = id;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -129,43 +131,43 @@ namespace HoldingTaxWebApp.Gateway
                 Sql_Connection.Open();
                 Data_Reader = Sql_Command.ExecuteReader();
 
-                RentTaxRate model = new RentTaxRate();
+                OwnTaxRate vmList = new OwnTaxRate();
 
                 while (Data_Reader.Read())
                 {
-                    model.RentTaxRateId = Convert.ToInt32(Data_Reader["RentTaxRateId"]);
-                    model.AreaId = Convert.ToInt32(Data_Reader["AreaId"]);
-                    model.BuildingTypeId = Convert.ToInt32(Data_Reader["BuildingTypeId"]);
-                    model.PerSqfRent = Convert.ToDecimal(Data_Reader["PerSqfRent"]);
-                    model.Remarks = Data_Reader["Remarks"].ToString();
-                    model.AreaName = Data_Reader["AreaName"].ToString();
-                    model.BuildingTypeName = Data_Reader["BuildingTypeName"].ToString();
-                    model.CreatedByUsername = Data_Reader["CreatedByUsername"].ToString();
-                    model.UpdatedByUsername = Data_Reader["UpdatedByUsername"].ToString();
-                    model.CreatedBy = Data_Reader["CreatedBy"] !=
-                                               DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null;
-                    model.CreateDate = Data_Reader["CreateDate"] != DBNull.Value ?
-                                               Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null;
-                    model.LastUpdatedBy = Data_Reader["LastUpdatedBy"] !=
-                                               DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null;
-                    model.LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ?
-                                               Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null;
-                    model.IsActive = Data_Reader["IsActive"] !=
-                                               DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null;
-                    model.IsDeleted = Data_Reader["IsDeleted"] !=
-                                               DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null;
+                    vmList.Amount = Convert.ToDecimal(Data_Reader["Amount"]);
+                    vmList.AreaSF = Convert.ToDecimal(Data_Reader["AreaSF"]);
+                    vmList.Mill_Civil = Convert.ToInt32(Data_Reader["Mill_Civil"]);
+                    vmList.OwnTaxRateId = Convert.ToInt32(Data_Reader["OwnTaxRateId"]);
+                    vmList.PerSqfTax = Data_Reader["PerSqfTax"] !=
+                                                DBNull.Value ? Convert.ToDecimal(Data_Reader["PerSqfTax"]) : (decimal?)null;
+                    vmList.TypeName = Data_Reader["TypeName"].ToString();
+                    vmList.Remarks = Data_Reader["Remarks"].ToString();
+                    vmList.CreatedByUsername = Data_Reader["CreatedByUsername"].ToString();
+                    vmList.UpdatedByUsername = Data_Reader["UpdatedByUsername"].ToString();
+                    vmList.CreatedBy = Data_Reader["CreatedBy"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null;
+                    vmList.CreateDate = Data_Reader["CreateDate"] != DBNull.Value ?
+                                                Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null;
+                    vmList.LastUpdatedBy = Data_Reader["LastUpdatedBy"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null;
+                    vmList.LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ?
+                                                Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null;
+                    vmList.IsActive = Data_Reader["IsActive"] !=
+                                                DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null;
+                    vmList.IsDeleted = Data_Reader["IsDeleted"] !=
+                                                DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null;
+                    vmList.StrAmount = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vmList.Amount);
+                    vmList.StrAreaSF = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vmList.AreaSF);
+                    vmList.StrPerSqfRent = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vmList.PerSqfTax);
+                    vmList.StrCreateDate = $"{vmList.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
+                    vmList.StrLastUpdated = $"{vmList.LastUpdated:dd/MM/yyyy HH:mm:ss tt}";
                 }
-
-
-                model.StrCreateDate = $"{model.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
-                model.StrLastUpdated = $"{model.LastUpdated:dd/MM/yyyy HH:mm:ss tt}";
-                model.PerSqfRent = Convert.ToDecimal(string.Format("{0:0.00}", model.PerSqfRent));
-                model.StrPerSqfRent = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.PerSqfRent);
 
                 Data_Reader.Close();
                 Sql_Connection.Close();
 
-                return model;
+                return vmList;
             }
             catch (SqlException exception)
             {
@@ -188,11 +190,12 @@ namespace HoldingTaxWebApp.Gateway
 
         }
 
-        public int RentTaxRatesInsert(RentTaxRate rate)
+
+        public int Insert(OwnTaxRate rate)
         {
             try
             {
-                Sql_Query = "[dbo].[spRentTaxRate]";
+                Sql_Query = "[constant].[spOwnTaxRate]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -202,11 +205,11 @@ namespace HoldingTaxWebApp.Gateway
 
                 Sql_Command.Parameters.Clear();
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Insert;
-                Sql_Command.Parameters.Add("@rentTaxRateId", SqlDbType.Int).Value = rate.RentTaxRateId;
-                Sql_Command.Parameters.Add("@areaId", SqlDbType.Int).Value = rate.AreaId;
-                Sql_Command.Parameters.Add("@buildingTypeId", SqlDbType.Int).Value = rate.BuildingTypeId;
-                Sql_Command.Parameters.Add("@perSqfRent", SqlDbType.Decimal).Value = rate.PerSqfRent;
-                Sql_Command.Parameters.Add("@remarks", SqlDbType.NVarChar).Value = rate.Remarks;
+                Sql_Command.Parameters.Add("@OwnTaxRateId", SqlDbType.Int).Value = rate.OwnTaxRateId;
+                Sql_Command.Parameters.Add("@Mill_Civil", SqlDbType.Int).Value = rate.Mill_Civil;
+                Sql_Command.Parameters.Add("@AreaSF", SqlDbType.Decimal).Value = rate.AreaSF;
+                Sql_Command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = rate.Amount;
+                Sql_Command.Parameters.Add("@Remarks", SqlDbType.NVarChar).Value = rate.Remarks;
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = rate.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = rate.IsDeleted;
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = rate.LastUpdatedBy;
@@ -250,11 +253,11 @@ namespace HoldingTaxWebApp.Gateway
             }
         }
 
-        public int RentTaxRatesUpdate(RentTaxRate rate)
+        public int Update(OwnTaxRate rate)
         {
             try
             {
-                Sql_Query = "[dbo].[spRentTaxRate]";
+                Sql_Query = "[constant].[spOwnTaxRate]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -264,11 +267,11 @@ namespace HoldingTaxWebApp.Gateway
 
                 Sql_Command.Parameters.Clear();
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Update;
-                Sql_Command.Parameters.Add("@rentTaxRateId", SqlDbType.Int).Value = rate.RentTaxRateId;
-                Sql_Command.Parameters.Add("@areaId", SqlDbType.Int).Value = rate.AreaId;
-                Sql_Command.Parameters.Add("@buildingTypeId", SqlDbType.Int).Value = rate.BuildingTypeId;
-                Sql_Command.Parameters.Add("@perSqfRent", SqlDbType.Decimal).Value = rate.PerSqfRent;
-                Sql_Command.Parameters.Add("@remarks", SqlDbType.NVarChar).Value = rate.Remarks;
+                Sql_Command.Parameters.Add("@OwnTaxRateId", SqlDbType.Int).Value = rate.OwnTaxRateId;
+                Sql_Command.Parameters.Add("@Mill_Civil", SqlDbType.Int).Value = rate.Mill_Civil;
+                Sql_Command.Parameters.Add("@AreaSF", SqlDbType.Decimal).Value = rate.AreaSF;
+                Sql_Command.Parameters.Add("@Amount", SqlDbType.Decimal).Value = rate.Amount;
+                Sql_Command.Parameters.Add("@Remarks", SqlDbType.NVarChar).Value = rate.Remarks;
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = rate.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = rate.IsDeleted;
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = rate.LastUpdatedBy;

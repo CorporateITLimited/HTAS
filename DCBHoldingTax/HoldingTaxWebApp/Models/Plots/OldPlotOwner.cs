@@ -10,8 +10,9 @@ namespace HoldingTaxWebApp.Models.Plots
     {
         public int OldPlotOwnerId { get; set; }
         public int PlotOwnerId { get; set; }
-
-
+        [Display(Name = "প্লট মালিকের নাম")]
+        public string PlotOwnerName { get; set; }
+        public int PlotId { get; set; }
         [Display(Name = "আইডি নম্বর")]
         public string PlotIdNumber { get; set; }
         [Display(Name = "প্লট মালিকের নাম")]

@@ -1,0 +1,208 @@
+﻿
+@model HoldingTaxWebApp.ViewModels.QueryCommon
+@using HoldingTaxWebApp.Helpers
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Sheets{
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
+}
+
+
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকর সংক্রান্ত বিজ্ঞপ্তি </h5>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+
+        @if (TempData["SM"] != null)
+        {
+            <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
+                <div class="alert-text font-weight-bolder" style="color: #0BB783;">@TempData["SM"]</div>
+                <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                    </button>
+                </div>
+            </div>
+        }
+        <div class="card card-custom">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        গৃহকর সংক্রান্ত বিজ্ঞপ্তি এর তালিকা
+                    </h3>
+                </div>
+                <div class="card-toolbar">
+                    <!--begin::Dropdown-->
+                    <!--end::Dropdown-->
+                    <!--begin::Button-->
+                    @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+                    {
+                        <a href="~/Notice/Create" class="btn btn-primary font-weight-bolder">
+                            <i class="fas fa-plus">
+                            </i>নতুন বিজ্ঞপ্তি পাঠান
+                        </a>
+                    }
+
+                    <!--end::Button-->
+                </div>
+            </div>
+            <div class="card-body">
+                <!--begin: Search Form-->
+                <!--begin::Search Form-->
+                <div class="mb-7">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8 col-xl-8">
+                            <div class="row align-items-center">
+                                <div class="col-md-12 my-2 my-md-0">
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.FinancialYearId, "আর্থিক বছর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                        <div class="col-lg-4">
+                                            @Html.DropDownListFor(model => model.FinancialYearId, null, " নির্বাচন করুন ", new
+                                      {
+                                          @class = "form-control",
+                                      })
+                                        </div>
+
+                                        @Html.LabelFor(model => model.NoticeTypeId, "বিজ্ঞপ্তির ধরণ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                        <div class="col-lg-4">
+                                            @Html.DropDownListFor(model => model.NoticeTypeId, null, " নির্বাচন করুন ", new
+                                      {
+                                          @class = "form-control",
+                                      })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                        <div class="col-lg-4">
+                                            @Html.DropDownListFor(model => model.AreaId, null, " নির্বাচন করুন ", new
+                                      {
+                                          @class = "form-control",
+                                      })
+                                        </div>
+
+                                        @Html.LabelFor(model => model.PlotId, "প্লট নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                        <div class="col-lg-4">
+                                            @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
+                                      {
+                                          @class = "form-control",
+                                      })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-xl-4 mt-5 mt-lg-0">
+                            <a href="#" id="search_button" class="btn btn-success px-6 font-weight-bold" style="margin-top: -8px;">Search</a>
+                            <a href="#" id="reset_button" class="btn btn-bg-warning px-6 font-weight-bold" style="margin-top: -8px;">Reset</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-result" id="search-result">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+            jQuery(document).ready(function () {
+                $('#FinancialYearId').select2({
+                    placeholder: "--নির্বাচন করুন--",
+                    allowClear: true
+                });
+                $('#NoticeTypeId').select2({
+                    placeholder: "--নির্বাচন করুন--",
+                    allowClear: true
+                });
+                $('#AreaId').select2({
+                    placeholder: "--নির্বাচন করুন--",
+                    allowClear: true
+                });
+                $('#PlotId').select2({
+                    placeholder: "--নির্বাচন করুন--",
+                    allowClear: true
+                });
+
+
+                $('#kt_datatable').KTDatatable({
+                    search: {
+                        input: $('#kt_datatable_search_query'),
+                        key: 'generalSearch',
+                    },
+                    layout: {
+                        class: 'datatable-bordered',
+                    }
+                });
+
+
+                $("#AreaId").change(function () {
+                    var areaId = $("#AreaId").val();
+
+                    var json = {
+                        AreaId: areaId
+                    };
+                    $.ajax({
+                        url: '@Url.Action("GetAllPlotByAreaId", "Holding")',
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(json),
+                        success: function (data) {
+                            if (data.length === 0) {
+                                Swal.fire(
+                                    'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'info'
+                                )
+                            }
+                            else {
+                                $("#PlotId").empty();
+                                $("#PlotId").append("<option value=''>--নির্বাচন করুন--</option>");
+                                $.each(data, function (index, row) {
+                                    $("#PlotId").append("<option value='" + row.PlotId + "'>" + row.PlotNo + "</option>");
+                                });
+                            }
+                        },
+                        error: function () {
+                            Swal.fire(
+                                'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'error'
+                            )
+                        }
+                    });
+                });
+
+                $("#search_button").click(function (e) {
+                    e.preventDefault();
+                    var yearId = parseInt($("#FinancialYearId").val()) || 0;
+                    var typeId = parseInt($("#NoticeTypeId").val()) || 0;
+                    var areaId = parseInt($("#AreaId").val()) || 0;
+                    var plotId = parseInt($("#PlotId").val()) || 0;
+
+                    $("#search-result").empty();
+                    $("#search-result").load("/Notice/PartialIndex", { FinancialYearId: yearId, NoticeTypeId: typeId, AreaId: areaId, PlotId: plotId });
+                });
+
+                $("#reset_button").click(function () {
+                    location.reload();
+                });
+
+            });
+    </script>
+
+
+}

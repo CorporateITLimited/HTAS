@@ -1,0 +1,66 @@
+﻿
+@model IEnumerable<HoldingTaxWebApp.Models.Holding.Holder>
+
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-bordered table-hover table-sm" width="100">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.AreaPlotFlatData)</th>
+                <th>@Html.DisplayNameFor(model => model.AreaName)</th>
+                <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
+                <th>@Html.DisplayNameFor(model => model.HolderName)</th>
+                <th>@Html.DisplayNameFor(model => model.OwnerTypeName)</th>
+                <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AreaPlotFlatData)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AreaName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlotNo)
+                    </td>
+                    <td class="role_name">
+                        @Html.DisplayFor(modelItem => item.HolderName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OwnerTypeName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BuildingTypeName)
+                    </td>
+
+                    <td>
+                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/Edit/@item.HolderId" title="হালনাগাদ পেজে যান">
+                            <b> <i class="fa fa-edit"></i>  </b>
+                        </a>
+                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/Details/@item.HolderId" title="বিস্তারিত তথ্য পেজে যান">
+                            <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                        </a>
+                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/rptHolderDetails/@item.HolderId" title="হোল্ডার রিপোর্ট">
+                            <b>
+                                <i class="fa fa-file-alt" aria-hidden="true"></i>
+                            </b>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1 class="text-capitalize text-center text-info"> No Data Found .....</h1>
+}
+
