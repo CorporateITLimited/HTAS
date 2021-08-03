@@ -6,6 +6,7 @@ using HoldingTaxWebApp.Gateway.Tax;
 using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.Models.Tax;
+using HoldingTaxWebApp.ViewModels.Tax;
 
 namespace HoldingTaxWebApp.Manager.Tax
 {
@@ -60,6 +61,13 @@ namespace HoldingTaxWebApp.Manager.Tax
         public List<ChartPaidAm> GetChartPaidAms()
         {
             return _holdingTaxGateway.GetForPaidAmmChart();
+        }
+
+
+        public InvoiceVM GetInvoiceId(int id)
+        {
+            return _holdingTaxGateway.GetInvoiceId(id);
+
         }
     }
 }

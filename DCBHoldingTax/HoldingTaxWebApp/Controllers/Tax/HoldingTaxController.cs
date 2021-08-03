@@ -10,6 +10,7 @@ using HoldingTaxWebApp.Models.Tax;
 using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.Manager.DBO;
 using HoldingTaxWebApp.Manager.Plots;
+using HoldingTaxWebApp.ViewModels.Tax;
 
 namespace HoldingTaxWebApp.Controllers.Tax
 {
@@ -274,10 +275,27 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
         public ActionResult Invoice(int id)
         {
+            InvoiceVM invoice = _holdingTaxManager.GetInvoiceId(id);
 
+            if (invoice == null)
+                return HttpNotFound();
 
+            invoice.StringCurrentDate = $"{invoice.CurrentDate:dd/MM/yyyy}";
+            invoice.StringEndOfYear = $"{invoice.EndOfYear:dd/MM/yyyy}";
+            invoice.StringStartingDate = $"{invoice.StartingDate:dd/MM/yyyy}";
+            invoice.StringFEndDate = $"{invoice.FEndDate:dd/MM/yyyy}";
+            invoice.StringoldDate = $"{invoice.oldDate:dd/MM/yyyy}";
+            
+            if(invoice.NetTaxPayableAmount == invoice.PaidAmount)
+            {
+                invoice.Ispaid = true;
+            }
+            else
+            {
+                invoice.Ispaid = false;
+            }
 
-            return View();
+            return View(invoice);
         }
 
 

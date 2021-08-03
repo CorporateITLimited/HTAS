@@ -4660,6 +4660,7 @@
     <Compile Include="ViewModels\Plots\OldPlotOwnerCombineVM.cs" />
     <Compile Include="ViewModels\Plots\PlotOwnerCombineVM.cs" />
     <Compile Include="ViewModels\QueryCommon.cs" />
+    <Compile Include="ViewModels\Tax\InvoiceVM.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
     <Compile Include="ViewModels\UserPermission.cs" />
     <Compile Include="WebForms\Holding\HolderDetails.aspx.cs">
