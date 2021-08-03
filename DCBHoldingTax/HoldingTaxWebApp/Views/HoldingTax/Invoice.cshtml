@@ -1,0 +1,208 @@
+﻿@{
+    ViewBag.Title = "Invoice";
+}
+<!--begin::Subheader-->
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <!--begin::Info-->
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--begin::Page Heading-->
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Invoice</h5>
+                <!--end::Page Title-->
+                <!--begin::Breadcrumb-->
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    @*<li class="breadcrumb-item text-muted">
+                        <a href="" class="text-muted"></a>
+                    </li>
+                    <li class="breadcrumb-item text-muted">
+                        <a href="" class="text-muted"></a>
+                    </li>*@
+                </ul>
+                <!--end::Breadcrumb-->
+            </div>
+            <!--end::Page Heading-->
+        </div>
+        <!--end::Info-->
+        <!--begin::Toolbar-->
+        <div class="d-flex align-items-center">
+            <!--begin::Actions-->
+            @*<a href="#" class="btn btn-light-primary font-weight-bolder btn-sm">Actions</a>*@
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+            <!--end::Actions-->
+            <!--begin::Dropdown-->
+           
+            <!--end::Dropdown-->
+        </div>
+        <!--end::Toolbar-->
+    </div>
+</div>
+<!--end::Subheader-->
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+        <!-- begin::Card-->
+        <div class="card card-custom overflow-hidden">
+            <div class="card-body p-0">
+                <!-- begin: Invoice-->
+                <!-- begin: Invoice header-->
+                <div class="row justify-content-center py-8 px-8 py-md-27 px-md-0">
+                    <div class="col-md-9">
+                        <div class="d-flex justify-content-between pb-10 pb-md-20 flex-column flex-md-row">
+                            <h1 class="display-4 font-weight-boldest mb-10">রশিদ</h1>
+                            <div class="d-flex flex-column align-items-md-end px-0">
+                                <!--begin::Logo-->
+                                <a href="#" class="mb-5">
+                                    <img src="assets/media/logos/logo-dark.png" alt="" />
+                                </a>
+                                <!--end::Logo-->
+                                <span class="d-flex flex-column align-items-md-end opacity-70">
+                                    <span>ক্যান্টনমেন্ট বোর্ড, ঢাকা ক্যান্টনমেন্ট</span>
+                                    <span>www.canttboard-dhaka.gov.bd</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="border-bottom w-100"></div>
+                        <div class="d-flex justify-content-between pt-6">
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">তারিখ</span>
+                                <span class="opacity-70">Dec 12, 2017</span>
+                            </div>
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">রশিদ নং</span>
+                                <span class="opacity-70">GS 000014</span>
+                            </div>
+                            <div class="d-flex flex-column flex-root">
+                                <span class="font-weight-bolder mb-2">জনাব/জনাবা,</span>
+                                <span class="opacity-70">
+                                    Iris Watson, P.O. Box 283 8562 Fusce RD.
+                                    <br />Fredrick Nebraska 20620
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end: Invoice header-->
+                <!-- begin: Invoice body-->
+                <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                    <div class="col-md-9">
+                        <div class="table-responsive">
+                            <table class="table">
+                              
+                                <tbody>
+                                    <tr class="font-weight-boldest">
+                                        <td class="text-left" width="70%"> পর্যন্ত বকেয়া গৃহকর------------------------------------</td>
+                                        <td class="text-center"  width="20%">Amount</td>
+                                        <td class="text-left" width="10%">টাকা</td>
+                                    </tr>
+                                    <tr class="font-weight-boldest">
+                                        <td class="text-left" width="70%">বকেয়ার অতিরিক্ত চার্জ ১০%------------------------------- (+)</td>
+                                        <td class="text-center" width="20%">Amount</td>
+                                        <td class="text-left" width="10%">টাকা</td>
+                                    </tr>
+                                    <tr class="font-weight-boldest">
+                                        <td class="text-left" width="70%"> {1StartingDate} হতে {2FEndDate} পর্যন্ত{3FinancialYear} আর্থিক সন--</td>
+                                        <td class="text-center" width="20%">Amount</td>
+                                        <td class="text-left" width="10%">টাকা</td>
+                                    </tr>
+                                    <tr class="font-weight-boldest">
+                                        <td class="text-right" width="70%">মোট</td>
+                                        <td class="text-center" width="20%">Amount</td>
+                                        <td class="text-left" width="10%">টাকা</td>
+                                    </tr>
+                                    <tr class="font-weight-boldest">
+                                        <td class="text-left" width="70%">{1EndOfYear} তারিখের মধ্যে পরিশোধ করলে {2FinancialYear} আর্থিক সনের উপর {3RebateRate}% রিবেট (-)  </td>
+                                        <td class="text-center" width="20%">Amount</td>
+                                        <td class="text-left" width="10%">টাকা</td>
+                                    </tr>
+                                    <tr class="font-weight-boldest">
+                                        <td class="text-right" width="70%">সর্বমোট</td>
+                                        <td class="text-center" width="20%">Amount</td>
+                                        <td class="text-left" width="10%">টাকা</td>
+                                    </tr>
+                                 
+                                  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- end: Invoice body-->
+                <!-- begin: Invoice footer-->
+                <div class="row justify-content-center bg-gray-100 py-8 px-8 py-md-10 px-md-0">
+                    <div class="col-md-9">
+                        <div class="table-responsive">
+                            <table class="table" border="0">
+                                <thead>
+                                    <tr class="font-weight-bolder">
+                                        <td width="30%">ফরম নং ক্যান্ট ৪-বি<br /> [ধারা ২৪ (১)]</td>
+                                        <td class="text-center" width="40%">রশিদ</td>
+                                        <td class="text-right" width="30%">তারিখ</td>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="font-weight-bolder">
+                                        <td colspan="3" class="text-center">অনুলিপি</td>
+                                    </tr>
+                                    <tr class="font-weight-bolder">
+                                        <td colspan="3" class="text-center">ক্যান্টনমেন্ট বোর্ড, ঢাকা ক্যান্টনমেন্ট</td>
+                                    </tr>
+                                    <tr class="font-weight-bolder">
+                                        <td colspan="2">ক্রমিক নং</td>
+                                        <td>বহি নং</td>
+                                    </tr>
+                                    <tr class="font-weight-bolder">
+                                        <td colspan="3">
+                                            <p>
+                                                জনাব .................................হইতে প্রাপ্ত 
+                                                টাকা (কোথায়) ..................................
+                                                ...............................................
+                                                বাবদ ..........................................
+                                                ................................................
+                                                ...........টাকা................................
+
+                                            </p>
+
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr class="font-weight-bolder">
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center">
+                                            <p>
+                                                ক্যান্টনমেন্ট এক্সিকিউটিভ অফিসার<br />
+                                                ঢাকা ক্যান্টনমেন্ট ।
+
+                                            </p>
+
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- end: Invoice footer-->
+                <!-- begin: Invoice action-->
+                <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                    <div class="col-md-9">
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-light-primary font-weight-bold" onclick="window.print();">Download Invoice</button>
+                            <button type="button" class="btn btn-primary font-weight-bold" onclick="window.print();">Print Invoice</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- end: Invoice action-->
+                <!-- end: Invoice-->
+            </div>
+        </div>
+        <!-- end::Card-->
+    </div>
+    <!--end::Container-->
+</div>
+<!--end::Entry-->
