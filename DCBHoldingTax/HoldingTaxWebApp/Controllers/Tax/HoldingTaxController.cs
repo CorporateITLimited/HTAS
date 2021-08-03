@@ -65,6 +65,16 @@ namespace HoldingTaxWebApp.Controllers.Tax
             ViewBag.FinancialYearId = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
             ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+
+            var data = _holdingTaxManager.GetAllHoldingTaxIndex(null, null, null);
+            var firstRow = data.Take(1).FirstOrDefault();
+
+            ViewBag.TotalNetPayableAmount_ = firstRow.TotalNetPayableAmount;
+            ViewBag.TotalPaidAmount_ = firstRow.TotalPaidAmount;
+            ViewBag.TotalUnPaidAmount_ = firstRow.TotalUnPaidAmount;
+
+            ViewBag.ListOfData = data;
+
             return View();
         }
 
@@ -84,6 +94,11 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
                 if (data != null && data.Count > 0)
                 {
+                    ViewBag.ListOfData = null;
+                    ViewBag.TotalNetPayableAmount_ = null;
+                    ViewBag.TotalPaidAmount_ = null;
+                    ViewBag.TotalUnPaidAmount_ = null;
+
                     var firstRow = data.Take(1).FirstOrDefault();
                     ViewBag.TotalNetPayableAmount = firstRow.TotalNetPayableAmount;
                     ViewBag.TotalPaidAmount = firstRow.TotalPaidAmount;
@@ -285,8 +300,8 @@ namespace HoldingTaxWebApp.Controllers.Tax
             invoice.StringStartingDate = $"{invoice.StartingDate:dd/MM/yyyy}";
             invoice.StringFEndDate = $"{invoice.FEndDate:dd/MM/yyyy}";
             invoice.StringoldDate = $"{invoice.oldDate:dd/MM/yyyy}";
-            
-            if(invoice.NetTaxPayableAmount == invoice.PaidAmount)
+
+            if (invoice.NetTaxPayableAmount == invoice.PaidAmount)
             {
                 invoice.Ispaid = true;
             }
