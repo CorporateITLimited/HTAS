@@ -1,6 +1,7 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.Models.Tax;
+using HoldingTaxWebApp.ViewModels.Tax;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -723,6 +724,101 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 Sql_Connection.Close();
 
                 return chartList;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
+
+
+        //Invoice
+
+
+        public InvoiceVM GetInvoiceId(int id)
+        {
+            try
+            {
+                Sql_Query = "[Tax].[spinvoice]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                //Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "details";
+                Sql_Command.Parameters.Add("@HoldingTaxId", SqlDbType.Int).Value = id;
+
+                //SqlParameter result = new SqlParameter
+                //{
+                //    ParameterName = "@result",
+                //    SqlDbType = SqlDbType.Int,
+                //    Direction = ParameterDirection.Output
+                //};
+                //Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                InvoiceVM vm = new InvoiceVM();
+
+                while (Data_Reader.Read())
+                {
+                    vm.HoldingTaxId = Convert.ToInt32(Data_Reader["HoldingTaxId"]);
+                    vm.Rebate = Data_Reader["Rebate"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["Rebate"]) : (decimal?)null;
+                    vm.CurrentDate = Data_Reader["CurrentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CurrentDate"]) : (DateTime?)null;
+                    vm.PaidAmount = Data_Reader["PaidAmount"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["PaidAmount"]) : (decimal?)null;
+                    vm.NetTaxPayableAmount = Data_Reader["NetTaxPayableAmount"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["NetTaxPayableAmount"]) : (decimal?)null;
+                    vm.DuesPreviousYear = Data_Reader["DuesPreviousYear"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["DuesPreviousYear"]) : (decimal?)null;
+                    vm.DuesFineAmount = Data_Reader["DuesFineAmount"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["DuesFineAmount"]) : (decimal?)null;
+                    vm.TotalTaxWithSurchargeDue = Data_Reader["TotalTaxWithSurchargeDue"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["TotalTaxWithSurchargeDue"]) : (decimal?)null;
+                    vm.rebateNew = Data_Reader["rebateNew"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["rebateNew"]) : (decimal?)null;
+                    vm.TotalNet = Data_Reader["TotalNet"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["TotalNet"]) : (decimal?)null;
+                    vm.FinancialYear = Data_Reader["FinancialYear"].ToString();
+                    vm.StartingDate = Data_Reader["StartingDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["StartingDate"]) : (DateTime?)null;
+                    vm.FEndDate = Data_Reader["FEndDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["FEndDate"]) : (DateTime?)null;
+                    vm.oldDate = Data_Reader["oldDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["oldDate"]) : (DateTime?)null;
+                    vm.EndOfYear = Data_Reader["EndOfYear"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["EndOfYear"]) : (DateTime?)null;
+                    vm.HolderName = Data_Reader["HolderName"].ToString();
+                    vm.PresentAdd = Data_Reader["PresentAdd"].ToString();
+                    vm.PlotNo = Data_Reader["PlotNo"].ToString();
+                    vm.RoadNo = Data_Reader["RoadNo"].ToString();
+                    vm.RoadName = Data_Reader["RoadName"].ToString();
+                    vm.AreaName = Data_Reader["AreaName"].ToString();
+                    vm.invoiceNo = Data_Reader["invoiceNo"].ToString();
+                    vm.EmployeeName = Data_Reader["EmployeeName"].ToString();
+                    vm.RebateRate = Data_Reader["RebateRate"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["RebateRate"]) : (decimal?)null;
+                    vm.DuesChargeRate = Data_Reader["DuesChargeRate"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["DuesChargeRate"]) : (decimal?)null;
+                    vm.Ispaid = Data_Reader["Ispaid"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["Ispaid"]) : (bool?)null;
+
+
+
+                    
+                };
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
             }
             catch (SqlException exception)
             {
