@@ -72,7 +72,32 @@
                                     </div>
                                 </div>
 
+                                @*--------------- new part for dropdown search ------------------------*@
+                                <div class="col-md-4 my-2 my-md-0">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mr-3 mb-0 d-none d-md-block">এলাকা:</label>
+                                        <select class="form-control" id="kt_datatable_search_area">
+                                            <option value="">  সব  </option>
+                                            @foreach (var item in ViewBag.AreaId)
+                                            {
+                                                <option value="@item.Text">@item.Text</option>
+                                            }
 
+                                        </select>
+                                    </div>
+                                </div>
+                                @*<div class="col-md-4 my-2 my-md-0">
+                                        <div class="d-flex align-items-center">
+                                            <label class="mr-3 mb-0 d-none d-md-block">Type:</label>
+                                            <select class="form-control" id="kt_datatable_search_type">
+                                                <option value="">All</option>
+                                                <option value="1">Online</option>
+                                                <option value="2">Retail</option>
+                                                <option value="3">Direct</option>
+                                            </select>
+                                        </div>
+                                    </div>*@
+                                @*--------------- End part for dropdown search ------------------------*@
                             </div>
                         </div>
 
@@ -80,7 +105,7 @@
                 </div>
                 <!--end::Search Form-->
                 <!--begin: Datatable-->
-                <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
+                <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable1">
                     <thead>
                         <tr>
 
@@ -118,7 +143,7 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.FinancialYear)
                                 </td>
-                                <td>
+                                <td class="AreaName">
                                     @Html.DisplayFor(modelItem => item.AreaName)
                                 </td>
                                 <td>
@@ -164,17 +189,59 @@
 
 @section Scripts
 {
+    <!--begin::Page Scripts(used by this page)-->
+    @*<script src="~/Theme/dist/assets/js/pages/crud/ktdatatable/base/html-table.js"></script>*@
+    <!--end::Page Scripts-->
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.fixedHeader.min.js"></script>
     <script>
         jQuery(document).ready(function () {
-            $('#kt_datatable').KTDatatable({
-                search: {
-                    input: $('#kt_datatable_search_query'),
-                    key: 'generalSearch',
-                },
-                layout: {
-                    class: 'datatable-bordered',
-                }
+            //var datatable = $('#kt_datatable').KTDatatable(options);
+            //var datatable = $('#kt_datatable').KTDatatable({
+            //    search: {
+            //        input: $('#kt_datatable_search_query'),
+            //        key: 'generalSearch',
+            //    },
+            //    layout: {
+            //        class: 'datatable-bordered',
+            //    }
+            //});
+            //$('#kt_datatable1').DataTable();
+
+            $('#kt_datatable1 thead tr').clone(true).appendTo('#kt_datatable1 thead');
+            $('#kt_datatable1 thead tr:eq(1) th').each(function (i) {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
             });
+
+            var table = $('#kt_datatable1').DataTable({
+                orderCellsTop: true,
+                fixedHeader: true
+            });
+
+
+            // added for search query
+            //$('#kt_datatable_search_area').on('change', function () {
+            //    debugger;
+            //    var value1 = $(this).val();
+            //    var columnName = datatable.columns("AreaName")
+            //    var columnName3 = datatable.getRecord(1).columns(1).getValue();
+            //    datatable.search($(this).val(), columnName1);
+            //    //var list = datatable.search($(this).val(), value1);
+            //    var value2 = datatable.getRecord(1).getColumn('AreaName').getValue();
+            //});
+
+
+            //$('#kt_datatable_search_area').selectpicker();
         });
     </script>
 }
