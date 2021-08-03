@@ -4871,6 +4871,9 @@
     <Content Include="Views\Home\_NoDataFound.cshtml" />
     <Content Include="Views\Notice\_PartialIndex.cshtml" />
     <Content Include="Views\Notice\NewIndex.cshtml" />
+    <Content Include="Views\HoldingTax\Invoice.cshtml" />
+    <Content Include="Views\HoldingTax\NewIndex.cshtml" />
+    <Content Include="Views\HoldingTax\_PartialIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

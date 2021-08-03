@@ -30,7 +30,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
         }
 
         // GET: Notice
-        public ActionResult Index()
+        public ActionResult NewIndex()
         {
             try
             {
@@ -42,10 +42,6 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     noticeList = _noticeManager.GetAllNoticeForHolder(HolderId);
 
                 }
-                else if (Session[CommonConstantHelper.UserTypeId].ToString() == "1")
-                {
-                    noticeList = _noticeManager.GetAllNotice();
-                }
                 else
                 {
                     return RedirectToAction("LogIn", "Account");
@@ -56,12 +52,12 @@ namespace HoldingTaxWebApp.Controllers.Holding
             catch (Exception ex)
             {
                 string msg = ex.Message.ToString();
-                TempData["EM"] = "Session Expired or Internal Error. {Primary User Secondary Index}" + msg;
+                TempData["EM"] = "Session Expired " + msg;
                 return RedirectToAction("LogIn", "Account");
             }
         }
 
-        public ActionResult NewIndex()
+        public ActionResult Index()
         {
             ViewBag.FinancialYearId = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
             ViewBag.NoticeTypeId = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text");

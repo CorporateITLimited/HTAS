@@ -33,17 +33,19 @@ namespace HoldingTaxWebApp.WebForms.Tax
             cryRpt.SetDatabaseLogon("sa", "#PimsOne$1m#", @"119.18.146.107", "DCB_HTAS");
 
             //done for two separate subreport ==================================================
-            int? rptValueAreaId = 1;
-            int? rptFinancialYearId = 2;
-            int? rptHolderId = 1;
+            int? rptValueAreaId = null;
+            int? rptFinancialYearId = Session["FinacialYearID"] != null ? Convert.ToInt32(Session["FinacialYearID"]) : (int?)null;
+            int? rptHolderId = Session["HolderID"] != null ? Convert.ToInt32(Session["HolderID"]) : (int?)null;
             int? rptHoldingTaxId = null;
+            int? rptNoticeTypeId = Session["NoticeTypeID"] != null ? Convert.ToInt32(Session["NoticeTypeID"]) : (int?)null;
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("exec [Tax].[spGetHoldingTaxDetails] @AreaId, @FinancialYearId, @HolderId, @HoldingTaxId", con);
+            SqlCommand cmd = new SqlCommand("exec [Tax].[spGetHoldingTaxDetails2] @AreaId, @FinancialYearId, @HolderId, @HoldingTaxId, @NoticeTypeId", con);
             cmd.CommandType = CommandType.Text; // always text
             cmd.Parameters.AddWithValue("@AreaId", SqlDbType.Int).Value = rptValueAreaId ?? (object)DBNull.Value;
             cmd.Parameters.AddWithValue("@FinancialYearId", SqlDbType.Int).Value = rptFinancialYearId ?? (object)DBNull.Value;
             cmd.Parameters.AddWithValue("@HolderId", SqlDbType.Int).Value = rptHolderId ?? (object)DBNull.Value;
             cmd.Parameters.AddWithValue("@HoldingTaxId", SqlDbType.Int).Value = rptHoldingTaxId ?? (object)DBNull.Value;
+            cmd.Parameters.AddWithValue("@NoticeTypeId", SqlDbType.Int).Value = rptNoticeTypeId ?? (object)DBNull.Value;
 
             dsTax list = new dsTax(); // same as dataset
             try

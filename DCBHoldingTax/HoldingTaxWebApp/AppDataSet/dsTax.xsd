@@ -207,6 +207,7 @@ on b.BuildingTypeId=r.BuildingTypeId</CommandText>
               <xs:element name="TotalTaxWithSurchargeDue" msprop:Generator_ColumnVarNameInTable="columnTotalTaxWithSurchargeDue" msprop:Generator_ColumnPropNameInRow="TotalTaxWithSurchargeDue" msprop:Generator_ColumnPropNameInTable="TotalTaxWithSurchargeDueColumn" msprop:Generator_UserColumnName="TotalTaxWithSurchargeDue" type="xs:decimal" minOccurs="0" />
               <xs:element name="rebateNew" msprop:Generator_ColumnVarNameInTable="columnrebateNew" msprop:Generator_ColumnPropNameInRow="rebateNew" msprop:Generator_ColumnPropNameInTable="rebateNewColumn" msprop:Generator_UserColumnName="rebateNew" type="xs:decimal" minOccurs="0" />
               <xs:element name="TotalNet" msprop:Generator_ColumnVarNameInTable="columnTotalNet" msprop:Generator_ColumnPropNameInRow="TotalNet" msprop:Generator_ColumnPropNameInTable="TotalNetColumn" msprop:Generator_UserColumnName="TotalNet" type="xs:decimal" minOccurs="0" />
+              <xs:element name="EmployeeName" msprop:Generator_ColumnVarNameInTable="columnEmployeeName" msprop:Generator_ColumnPropNameInRow="EmployeeName" msprop:Generator_ColumnPropNameInTable="EmployeeNameColumn" msprop:Generator_UserColumnName="EmployeeName" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -268,6 +269,7 @@ on b.BuildingTypeId=r.BuildingTypeId</CommandText>
               <xs:element name="StartingDate" msprop:Generator_ColumnVarNameInTable="columnStartingDate" msprop:Generator_ColumnPropNameInRow="StartingDate" msprop:Generator_ColumnPropNameInTable="StartingDateColumn" msprop:Generator_UserColumnName="StartingDate" type="xs:dateTime" minOccurs="0" />
               <xs:element name="EndDate" msprop:Generator_ColumnVarNameInTable="columnEndDate" msprop:Generator_ColumnPropNameInRow="EndDate" msprop:Generator_ColumnPropNameInTable="EndDateColumn" msprop:Generator_UserColumnName="EndDate" type="xs:dateTime" minOccurs="0" />
               <xs:element name="oldDate" msprop:Generator_ColumnVarNameInTable="columnoldDate" msprop:Generator_ColumnPropNameInRow="oldDate" msprop:Generator_ColumnPropNameInTable="oldDateColumn" msprop:Generator_UserColumnName="oldDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EmployeeName" msprop:Generator_ColumnVarNameInTable="columnEmployeeName" msprop:Generator_ColumnPropNameInRow="EmployeeName" msprop:Generator_ColumnPropNameInTable="EmployeeNameColumn" msprop:Generator_UserColumnName="EmployeeName" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
