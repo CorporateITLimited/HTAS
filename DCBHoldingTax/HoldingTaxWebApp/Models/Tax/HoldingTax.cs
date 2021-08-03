@@ -66,7 +66,7 @@ namespace HoldingTaxWebApp.Models.Tax
         [Display(Name = "প্লটের আইডি নম্বর")]
         public string PlotIdNumber { get; set; }
 
-        [Display(Name = "প্লটের আইডি নম্বর")]
+        [Display(Name = "প্লটের নম্বর")]
         public string PlotNo { get; set; }
 
         [Display(Name = "হোল্ডারের প্লট/ফ্ল্যাট/বাড়ী এর তথ্য")]
@@ -89,7 +89,7 @@ namespace HoldingTaxWebApp.Models.Tax
         public decimal? WrongInfoChargePercent { get; set; }
         public decimal? WrongInfoChargeValue { get; set; }
 
-        [Display(Name = "হোল্ডারের নাম ")]
+        [Display(Name = "গৃহকরদাতার নাম")]
         public string HolderName { get; set; }
         [Display(Name = "টাকা প্রদানের তারিখ")]
         public DateTime? PaymentDate { get; set; }
@@ -102,5 +102,15 @@ namespace HoldingTaxWebApp.Models.Tax
         [Display(Name = "নোট")]
         public string MonthDate { get; set; }
         public decimal? MonthlyPaidAmount { get; set; }
+
+
+        [Display(Name = "মোট নেট টাকার পরিমাণ")]
+        public decimal? TotalNetPayableAmount { get; set; }
+
+        [Display(Name = "মোট পরিশোধিত টাকার পরিমাণ")]
+        public decimal? TotalPaidAmount { get; set; }
+
+        [Display(Name = "মোট অপরিশোধিত টাকার পরিমাণ")]
+        public decimal? TotalUnPaidAmount { get; set; }
     }
 }

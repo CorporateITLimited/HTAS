@@ -1,0 +1,94 @@
+﻿
+@model IEnumerable<HoldingTaxWebApp.Models.Tax.HoldingTax>
+
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-bordered table-hover table-sm" width="100">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.HolderName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AreaName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlotNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AreaPlotFlatData)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FinancialYear)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NetTaxPayableAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaidAmount)
+                </th>
+                <th></th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HolderName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AreaName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlotNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AreaPlotFlatData)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FinancialYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NetTaxPayableAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaidAmount)
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="Edit">
+                            <b> <i class="fa fa-edit"></i>  </b>
+                        </a>
+                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Details/@item.HoldingTaxId" title="Report View">
+                            <b><i class="fa fa-chart-bar" aria-hidden="true"></i></b>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <table class="table table-bordered table-hover table-sm" width="100">
+        <thead>
+            <tr>
+                <th>
+                    <b>মোট নেট প্রদেয় করের পরিমাণ : &nbsp; @ViewBag.TotalNetPayableAmount</b>
+                </th>
+                <th>
+                    <b> মোট প্রদেয় করের পরিমাণ : &nbsp; @ViewBag.TotalPaidAmount</b>
+                </th>
+                <th>
+                    <b> মোট অপরিশোধিত করের পরিমাণ : &nbsp; @ViewBag.TotalUnPaidAmount </b>
+                </th>
+            </tr>
+        </thead>
+    </table>
+}
+else
+{
+    <h1 class="text-capitalize text-center text-info"> No Data Found .....</h1>
+}
+
