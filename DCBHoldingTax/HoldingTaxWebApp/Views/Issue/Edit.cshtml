@@ -175,39 +175,13 @@
                                 </div>*@
                             <div class="form-control border-0" style="height: 250px; padding-top:10px">
                                 <textarea class="border-0" id="MsgDetails" style="padding-top:10px; width:100%" rows="7"></textarea>
-
-
                             </div>
-                            <!--end::Message-->
-                            <!--begin::Attachments-->
-                            @*<div class="dropzone dropzone-multi px-8 py-4" id="kt_inbox_compose_attachments">
-                                    <div class="dropzone-items">
-                                        <div class="dropzone-item" style="display:none">
-                                            <div class="dropzone-file">
-                                                <div class="dropzone-filename" title="some_image_file_name.jpg">
-                                                    <span data-dz-name="">some_image_file_name.jpg</span>
-                                                    <strong>
-                                                        (
-                                                        <span data-dz-size="">340kb</span>)
-                                                    </strong>
-                                                </div>
-                                                <div class="dropzone-error" data-dz-errormessage=""></div>
-                                            </div>
-                                            <div class="dropzone-progress">
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-primary" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-dz-uploadprogress=""></div>
-                                                </div>
-                                            </div>
-                                            <div class="dropzone-toolbar">
-                                                <span class="dropzone-delete" data-dz-remove="">
-                                                    <i class="flaticon2-cross"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>*@
 
                             <input type="file" name="document_file_1" id="document_file_1" />
+                            <span class="form-text text-info">
+                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                            </span>
+                            <br />
                             <input type="file" name="document_file_2" id="document_file_2" />
                             <span class="form-text text-info">
                                 সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
@@ -270,12 +244,18 @@
                         <ul id="chat">
                             @foreach (var item in Model.IssueDetails)
                             {
-                                if (Session[CommonConstantHelper.UserTypeId].ToString() == item.MessageSenderType.ToString())
+                                if (item.MessageSenderType.ToString() == Session[CommonConstantHelper.UserTypeId].ToString())
                                 {
                                     <li class="me">
-                                        <h3>@item.MsgDate</h3>@*.Value.ToShortDateString()*@
-                                        <h2>এডমিন (@item.MessageSenderName)</h2>
-
+                                        <h3>@item.StrMsgDate</h3>@*.Value.ToShortDateString()*@
+                                        @if (Convert.ToInt32(item.MessageSenderType) == 1)
+                                        {
+                                            <h2>গৃহসেবা (@item.MessageSenderName)</h2>
+                                        }
+                                        else
+                                        {
+                                            <h2>গৃহকর দাতা (@item.MessageSenderName)</h2>
+                                        }
                                         <div class="triangle"></div>
                                         <div class="doc">
                                             @if (!string.IsNullOrWhiteSpace(item.Doc1))
@@ -295,8 +275,15 @@
                                 else
                                 {
                                     <li class="you">
-                                        <h3>@item.MsgDate</h3>
-                                        <h2>গৃহকর দাতা (@item.MessageSenderName)</h2>
+                                        <h3>@item.StrMsgDate</h3>
+                                        @if (Convert.ToInt32(item.MessageSenderType) == 1)
+                                        {
+                                            <h2>গৃহসেবা  (@item.MessageSenderName)</h2>
+                                        }
+                                        else
+                                        {
+                                            <h2>গৃহকর দাতা (@item.MessageSenderName)</h2>
+                                        }
                                         <div class="triangle"></div>
                                         <div class="message">
                                             @item.MsgDetails

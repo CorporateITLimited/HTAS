@@ -550,6 +550,7 @@ namespace HoldingTaxWebApp.Gateway.DBO
                         IsRead = Data_Reader["IsRead"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsRead"]) : (bool?)null,
                     };
 
+                    model.StrMsgDate = $"{model.MsgDate:dd/MM/yyyy hh:mm tt}";
                     vm.Add(model);
                 }
 
