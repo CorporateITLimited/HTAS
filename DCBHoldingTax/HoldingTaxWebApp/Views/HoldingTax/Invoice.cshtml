@@ -15,11 +15,11 @@
                 <!--begin::Breadcrumb-->
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     @*<li class="breadcrumb-item text-muted">
-                        <a href="" class="text-muted"></a>
-                    </li>
-                    <li class="breadcrumb-item text-muted">
-                        <a href="" class="text-muted"></a>
-                    </li>*@
+                            <a href="" class="text-muted"></a>
+                        </li>
+                        <li class="breadcrumb-item text-muted">
+                            <a href="" class="text-muted"></a>
+                        </li>*@
                 </ul>
                 <!--end::Breadcrumb-->
             </div>
@@ -33,7 +33,6 @@
             <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
             <!--end::Actions-->
             <!--begin::Dropdown-->
-           
             <!--end::Dropdown-->
         </div>
         <!--end::Toolbar-->
@@ -48,7 +47,8 @@
         <div class="card card-custom overflow-hidden">
             <div class="card-body p-0">
                 <!-- begin: Invoice-->
-                <div id="print_div">  <!-- Start: print-->
+                <div id="print_div">
+                    <!-- Start: print-->
                     <!-- begin: Invoice header-->
                     <div class="row justify-content-center py-8 px-8 py-md-27 px-md-0">
                         <div class="col-md-9">
@@ -57,7 +57,12 @@
                                 <div class="d-flex flex-column align-items-md-end px-0">
                                     <!--begin::Logo-->
                                     <a href="#" class="mb-5">
-                                        <img src="assets/media/logos/logo-dark.png" alt="" />
+                                        @if (Model.Ispaid == true)
+                                        {
+                                            <img src="~/Images/paid.png" />
+                                        }
+
+
                                     </a>
                                     <!--end::Logo-->
                                     <span class="d-flex flex-column align-items-md-end opacity-70">
@@ -139,6 +144,13 @@
                             <div class="table-responsive">
                                 <table class="" border="0" width="100%">
                                     <thead>
+                                        @if (Model.Ispaid == true)
+                                        {
+                                            <tr>
+                                                <td colspan="3">
+                                                    <img src="~/Images/paid.png" height="50" />
+                                                </td>
+                                            </tr>}
                                         <tr class="font-weight-bolder">
                                             <td width="30%">ফরম নং ক্যান্ট ৪-বি<br /> [ধারা ২৪ (১)]</td>
                                             <td class="text-center" width="40%">রশিদ</td>
