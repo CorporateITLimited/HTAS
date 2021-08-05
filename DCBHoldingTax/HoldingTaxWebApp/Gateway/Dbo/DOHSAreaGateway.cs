@@ -51,8 +51,10 @@ namespace HoldingTaxWebApp.Gateway.DBO
                         AreaName = Data_Reader["AreaName"].ToString(),
                         TotalArea = Data_Reader["TotalArea"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["TotalArea"]) : (Decimal?)null,
-                        CurrentPlotNumber = Convert.ToInt32(Data_Reader["CurrentPlotNumber"]),
-                        CurrentFlatNumber = Convert.ToInt32(Data_Reader["CurrentFlatNumber"]),
+                        CurrentPlotNumber = Data_Reader["CurrentPlotNumber"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["CurrentPlotNumber"]) : (int?)null,
+                        CurrentFlatNumber = Data_Reader["CurrentFlatNumber"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["CurrentFlatNumber"]) : (int?)null,
                         CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
                         CreatedBy = Data_Reader["CreatedBy"] !=
                                                 DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
@@ -131,8 +133,10 @@ namespace HoldingTaxWebApp.Gateway.DBO
                 {
                     dohsarea.AreaId = Convert.ToInt32(Data_Reader["AreaId"]);
                     dohsarea.AreaName = Data_Reader["AreaName"].ToString();
-                    dohsarea.CurrentPlotNumber = Convert.ToInt32(Data_Reader["CurrentPlotNumber"]);
-                    dohsarea.CurrentFlatNumber = Convert.ToInt32(Data_Reader["CurrentFlatNumber"]);
+                    dohsarea.CurrentPlotNumber = Data_Reader["CurrentPlotNumber"] !=
+                                               DBNull.Value ? Convert.ToInt32(Data_Reader["CurrentPlotNumber"]) : (int?)null;
+                    dohsarea.CurrentFlatNumber = Data_Reader["CurrentFlatNumber"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["CurrentFlatNumber"]) : (int?)null;
                     dohsarea.CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null;
                     dohsarea.CreatedBy = Data_Reader["CreatedBy"] !=
                                             DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null;

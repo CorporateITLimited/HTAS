@@ -4876,6 +4876,8 @@
     <Content Include="Views\HoldingTax\Invoice.cshtml" />
     <Content Include="Views\HoldingTax\NewIndex.cshtml" />
     <Content Include="Views\HoldingTax\_PartialIndex.cshtml" />
+    <Content Include="Views\DOHSArea\Create.cshtml" />
+    <Content Include="Views\DOHSArea\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
