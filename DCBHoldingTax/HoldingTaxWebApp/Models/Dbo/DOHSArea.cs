@@ -15,9 +15,9 @@ namespace HoldingTaxWebApp.Models.DBO
         [Display(Name = "মোট এলাকা")]
         public decimal? TotalArea { get; set; }
         [Display(Name = "বর্তমান প্লট সংখ্যা")]
-        public int CurrentPlotNumber { get; set; }
+        public int? CurrentPlotNumber { get; set; }
         [Display(Name = "বর্তমান ফ্ল্যাট সংখ্যা ")]
-        public int CurrentFlatNumber { get; set; }
+        public int? CurrentFlatNumber { get; set; }
 
         [Display(Name = "তারিখ তৈরি করুন")]
         public DateTime? CreateDate { get; set; }

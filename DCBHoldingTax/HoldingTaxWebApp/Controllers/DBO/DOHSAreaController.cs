@@ -101,12 +101,17 @@ namespace HoldingTaxWebApp.Controllers.DBO
                     return View(area);
                 }
 
+                if (area.TotalArea == null || area.TotalArea <= 0)
+                    area.TotalArea = 0;
+
                 area.IsActive = true;
                 area.IsDeleted = false;
                 area.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
                 area.CreateDate = DateTime.Now;
                 area.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
                 area.LastUpdated = DateTime.Now;
+                area.CurrentFlatNumber = 0;
+                area.CurrentPlotNumber = 0;
 
 
                 string addArea = _dOHSAreaManager.DOHSAreaInsert(area);
@@ -219,12 +224,16 @@ namespace HoldingTaxWebApp.Controllers.DBO
                     return View(area);
                 }
 
+                if (area.TotalArea == null || area.TotalArea <= 0)
+                    area.TotalArea = 0;
+
                 area.IsDeleted = null;
                 area.CreatedBy = null;
                 area.CreateDate = null;
                 area.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
                 area.LastUpdated = DateTime.Now;
-
+                area.CurrentPlotNumber = null;
+                area.CurrentFlatNumber = null;
 
                 string addArea = _dOHSAreaManager.DOHSAreaUpdate(area);
 

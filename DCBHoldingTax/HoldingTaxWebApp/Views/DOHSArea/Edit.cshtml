@@ -76,20 +76,20 @@
                                 </div>
 
 
-                                <div class="form-group row m-2">
+                                @*<div class="form-group row m-2">
                                     @Html.LabelFor(model => model.CurrentFlatNumber, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        @Html.EditorFor(model => model.CurrentFlatNumber, new { htmlAttributes = new { @class = "form-control", @name = "CurrentFlatNumber", placeholder = "Enter current flat number", @id = "CurrentFlatNumber" } })
+                                        @Html.EditorFor(model => model.CurrentFlatNumber, new { htmlAttributes = new { @class = "form-control", @name = "CurrentFlatNumber", placeholder = "Enter current flat number", @id = "CurrentFlatNumber", @readonly = "readonly" } })
                                         @Html.ValidationMessageFor(model => model.CurrentFlatNumber, "", new { @class = "text-danger" })
                                     </div>
 
 
                                     @Html.LabelFor(model => model.CurrentPlotNumber, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        @Html.EditorFor(model => model.CurrentPlotNumber, new { htmlAttributes = new { @class = "form-control", @name = "CurrentPlotNumber", @id = "CurrentPlotNumber", placeholder = "Enter current plot number" } })
+                                        @Html.EditorFor(model => model.CurrentPlotNumber, new { htmlAttributes = new { @class = "form-control", @name = "CurrentPlotNumber", @id = "CurrentPlotNumber", placeholder = "Enter current plot number", @readonly = "readonly" } })
                                         @Html.ValidationMessageFor(model => model.CurrentPlotNumber, "", new { @class = "text-danger" })
                                     </div>
-                                </div>
+                                </div>*@
 
                                 <div class="form-group row m-2">
                                     @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -130,25 +130,25 @@
                     },
                     TotalArea: {
                         number: true
-                    },
-                    CurrentFlatNumber: {
-                        digits: true
-                    },
-                    CurrentPlotNumber: {
-                        digits: true
                     }
+                    //CurrentFlatNumber: {
+                    //    digits: true
+                    //},
+                    //CurrentPlotNumber: {
+                    //    digits: true
+                    //}
                 },
                 messages: {
                     AreaName: "ঘরটি অবশ্যই পূরণ করতে হবে",
                     TotalArea: {
                         number: "এলাকার মোট আয়তন ইংরেজিতে দিন"
-                    },
-                    CurrentFlatNumber: {
-                        digits: "বর্তমান ফ্লাট ইংরেজিতে দশমিক ছাড়া পূর্ণ সংখ্যা দিন"
-                    },
-                    CurrentPlotNumber: {
-                        digits: "বর্তমান ফ্লাট ইংরেজিতে দশমিক ছাড়া পূর্ণ সংখ্যা দিন"
                     }
+                    //CurrentFlatNumber: {
+                    //    digits: "বর্তমান ফ্লাট ইংরেজিতে দশমিক ছাড়া পূর্ণ সংখ্যা দিন"
+                    //},
+                    //CurrentPlotNumber: {
+                    //    digits: "বর্তমান ফ্লাট ইংরেজিতে দশমিক ছাড়া পূর্ণ সংখ্যা দিন"
+                    //}
                 },
                 invalidHandler: function (event, validator) {
                     KTUtil.scrollTop();
