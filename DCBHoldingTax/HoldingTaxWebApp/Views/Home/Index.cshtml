@@ -150,7 +150,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <ul>
+                        <ul class="h4">
                             <li>
                                 @Html.ActionLink("সম্ভাব্য আদায়যোগ্য গৃহকর", "Index", "TaxReports", new { rptId = 1 }, null)
                             </li>
@@ -255,7 +255,7 @@
                                     '<td class="Subject" id="Subject">' + ep.Subject + '</td>' +
 
                                     '<td class="StatusName" id="StatusName" class="ab">' + ep.StatusName + '</td>' +
-                                    '<td class="StatusName" id="StatusName"> <a href="../Issue/Edit/' + ep.IssueId + '"class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"></a></td>' +
+                                    '<td class="" id=""> <a href="../Issue/Edit/' + ep.IssueId + '"class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"> <b> <i class="fa fa-edit"></i>  </b></a></td>' +
 
 
                                     '</tr>');
@@ -302,7 +302,7 @@
 
             //            $.plot($("#kt_flotcharts_2"), dataset, options);
             //        },
-                    
+
 
             //    error: function (error) {
             //    }

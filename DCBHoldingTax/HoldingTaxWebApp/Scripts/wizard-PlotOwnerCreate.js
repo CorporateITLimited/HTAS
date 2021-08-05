@@ -246,7 +246,7 @@ var KTWizard4 = function () {
                             }
                         }
                     },
-                    PlotId1: {
+                    PlotId: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
@@ -288,7 +288,7 @@ var KTWizard4 = function () {
                             }
                         }
                     },
-                    PlotOwnerName1: {
+                    PlotOwnerName: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
@@ -412,6 +412,20 @@ var KTWizard4 = function () {
         ));
 
         // Step 4
+        _validations.push(FormValidation.formValidation(
+            _formEl,
+            {
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    // Bootstrap Framework Integration
+                    bootstrap: new FormValidation.plugins.Bootstrap({
+                        //eleInvalidClass: '',
+                        eleValidClass: '',
+                    })
+                }
+            }
+        ));
+  // Step 5
         _validations.push(FormValidation.formValidation(
             _formEl,
             {

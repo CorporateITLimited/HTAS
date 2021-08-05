@@ -36,14 +36,21 @@
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled page-loading">
     <div class="d-flex flex-column flex-root">
         <div class="login login-3 wizard d-flex flex-column flex-lg-row flex-column-fluid">
+
             <div class="login-content flex-row-fluid d-flex flex-column p-10">
                 <div class="d-flex flex-row-fluid flex-center">
+                    <img src="~/Images/Cantonment-Dhaka4login.png" />
+                </div>
+                <div class="d-flex flex-row-fluid flex-center">
+                   
                     <div class="login-form">
+                       
                         @*<form class="form" id="kt_login" action="">*@
                         @using (Html.BeginForm("LogIn", "Account", null, FormMethod.Post, new { @class = "kt-form", @id = "kt_login", role = "form", novalidate = "novalidate" }))
                         {
                             <div class="pb-5 pb-lg-15">
-                                <h3 class="font-weight-bolder text-primary font-size-h2 font-size-h1-lg">লগইন করুন</h3>
+                                <h4 class="font-weight-bolder text-primary font-size-h2 font-size-h1-lg">লগইন করুন</h4>
+                               
                             </div>
 
                             @Html.AntiForgeryToken()
