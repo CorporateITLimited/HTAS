@@ -229,7 +229,6 @@ namespace HoldingTaxWebApp.Controllers.DBO
             issueVM.IssueDetails = issueDetailsList;
 
 
-
             ViewBag.StatusTypeId = new SelectList(_StatusTypeManager.GetAllStatusType(), "StatusTypeId", "StatusName", issue.StatusTypeId);
             return View(issueVM);
         }

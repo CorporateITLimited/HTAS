@@ -301,7 +301,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
             invoice.StringFEndDate = $"{invoice.FEndDate:dd/MM/yyyy}";
             invoice.StringoldDate = $"{invoice.oldDate:dd/MM/yyyy}";
 
-            if (invoice.NetTaxPayableAmount == invoice.PaidAmount)
+            if (invoice.NetTaxPayableAmount >= invoice.PaidAmount)
             {
                 invoice.Ispaid = true;
             }

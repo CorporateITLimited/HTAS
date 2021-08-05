@@ -11,6 +11,7 @@ namespace HoldingTaxWebApp.Models.DBO
         public int IssueId { get; set; }
         public string MsgDetails { get; set; }
         public DateTime? MsgDate { get; set; }
+        public string StrMsgDate { get; set; }
         public string StringMsgDate { get; set; }
         public string Doc1 { get; set; }
         public string Doc2 { get; set; }
