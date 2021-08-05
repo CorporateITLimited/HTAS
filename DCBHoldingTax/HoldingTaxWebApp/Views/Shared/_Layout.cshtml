@@ -89,65 +89,39 @@
                             <!--begin::Left-->
                             <div class="d-none d-lg-flex align-items-center mr-3">
                                 <!--begin::Logo-->
-                                @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
-                                {
+                                <div class="LogoEdited">
+                                    <a href="~/Home/Index">
+                                        <img src="~/Images/dcb_logo_.png" class="max-h-95px" />
+                                    </a>
 
-                                    <div class="LogoEdited">
-                                        <a href="~/Home/Index">
-                                            <img src="~/Images/dcb_logo_.png" class="max-h-100px" />
-                                        </a>
+                                </div>
 
-                                    </div>
-                                    <div class="BannerEdited">
-                                        <img src="~/Images/Cant-D4_white_logoless.png" alt="Banner" class="max-h-70px" />
-                                    </div>
+                                
 
-
-                                }
-                                else if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
-                                {
-
-                                    <div class="LogoEdited">
-                                        <a href="~/Home/Holder">
-                                            <img src="~/Images/dcb_logo_.png" class="max-h-100px" />
-                                        </a>
-
-                                    </div>
-                                    <div class="BannerEdited">
-                                        <img src="~/Images/Cant-D4_white_logoless.png" alt="Banner" class="max-h-70px" />
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="LogoEdited">
-                                        <a href="~/Home/Index">
-                                            <img src="~/Images/dcb_logo_.png" class="max-h-100px" />
-                                        </a>
-
-                                    </div>
-                                    <div class="BannerEdited">
-                                        <img src="~/Images/Cant-D4_white_logoless.png" alt="Banner" class="max-h-70px" />
-                                    </div>
-                                }
                                 <!--end::Logo-->
                                 <!--end::Left-->
 
                             </div>
-                            @*<div class="d-lg-flex align-items-center">
-                                        <h1 style="color:white;">
-                                            গৃহসেবা - অনলাইন গৃহকর ব্যবস্থাপনা উদ্যোগ, ঢাকা ক্যাণ্টনমেন্ট বোর্ড।
-                                        </h1>
-                                </div>*@
-                            <!--begin::Topbar-->
-                            <div class="topbar">
-                                <!--begin::User-->
-                                @Html.Partial("_AuthorizePartial")
-                                <!--end::User-->
+                            <div class="d-none d-lg-flex align-items-center mr-3">
+                                <div class="BannerEdited">
+                                    <img src="~/Images/Cant-D4_white_logoless.png" alt="Banner" class="max-h-70px embed-responsive" />
+                                </div>
                             </div>
-                            <!--end::Topbar-->
+                                @*<div class="d-lg-flex align-items-center">
+                    <h1 style="color:white;">
+                        গৃহসেবা - অনলাইন গৃহকর ব্যবস্থাপনা উদ্যোগ, ঢাকা ক্যাণ্টনমেন্ট বোর্ড।
+                    </h1>
+            </div>*@
+                                <!--begin::Topbar-->
+                                <div class="topbar">
+                                    <!--begin::User-->
+                                    @Html.Partial("_AuthorizePartial")
+                                    <!--end::User-->
+                                </div>
+                                <!--end::Topbar-->
+                            </div>
+                            <!--end::Container-->
                         </div>
-                        <!--end::Container-->
-                    </div>
                     <!--end::Top-->
                     <!--begin::Bottom-->
                     <div class="header-bottom">
