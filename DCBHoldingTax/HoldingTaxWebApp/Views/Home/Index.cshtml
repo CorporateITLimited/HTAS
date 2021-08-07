@@ -185,11 +185,14 @@
                     <!--begin::Header-->
                     <div class="card-header border-0 pt-5">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">ইস্যু/মতামত</span>
+                            <span class="card-label font-weight-bolder text-dark">মেসেজ বক্স</span>
                             <span class="text-muted mt-3 font-weight-bold font-size-sm"></span>
                         </h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
+                                <a href="~/Issue/Index" class="btn btn-primary font-weight-bolder">
+                                    সব মেসেজ
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -255,7 +258,7 @@
                                     '<td class="Subject" id="Subject">' + ep.Subject + '</td>' +
 
                                     '<td class="StatusName" id="StatusName" class="ab">' + ep.StatusName + '</td>' +
-                                    '<td class="" id=""> <a href="../Issue/Edit/' + ep.IssueId + '"class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"> <b> <i class="fa fa-edit"></i>  </b></a></td>' +
+                                    '<td class="" id=""> <a href="../Issue/Edit/' + ep.IssueId + '"class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" title="হালনাগাদ পেজে যান"> <b> <i class="fa fa-edit"></i>  </b></a></td>' +
 
 
                                     '</tr>');
