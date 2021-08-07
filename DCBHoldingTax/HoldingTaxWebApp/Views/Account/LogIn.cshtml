@@ -50,25 +50,15 @@
                         {
                             <div class="pb-5 pb-lg-15">
                                 <h4 class="font-weight-bolder text-primary font-size-h2 font-size-h1-lg">লগইন করুন</h4>
-                               
                             </div>
 
                             @Html.AntiForgeryToken()
 
                             <h5 style="color:red !important"> @Html.ValidationSummary(true, "", new { @class = "text-danger" })</h5>
-                            if (TempData["EM"] != null)
-                            {
-                                <h5 style="color:red !important">  @TempData["EM"]</h5>
-                            }
-                            if (TempData["SM"] != null)
-                            {
-                                <h5 style="color:green !important">  @TempData["SM"]</h5>
-                            }
                             if (TempData["PM"] != null)
                             {
                                 <h5 style="color:red !important">  @TempData["PM"]</h5>
                             }
-
 
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">ইউজারনেইম</label>
@@ -106,6 +96,10 @@
                     Password: {
                         required: true
                     }
+                },
+                messages: {
+                    UserName: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    Password: "ঘরটি অবশ্যই পূরণ করতে হবে",
                 },
                 invalidHandler: function (event, validator) {
                     KTUtil.scrollTop();
