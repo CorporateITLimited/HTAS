@@ -90,7 +90,7 @@
                             <th>@Html.DisplayNameFor(model => model.StringSolvedDate)</th>
 
                             @*<th>@Html.DisplayNameFor(model => model.Remarks)</th>*@
-                          
+
 
                             <th></th>
 
@@ -104,10 +104,29 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.HolderName)
                                 </td>
-                               
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.StatusName)
-                                    </td>
+
+                                <td>
+                                    @if (item.StatusTypeId == 1)
+                                    {
+                                        <span style="color:blue"> @Html.DisplayFor(modelItem => item.StatusName) </span>
+                                    }
+                                    else if (item.StatusTypeId == 2)
+                                    {
+                                        <span class="text-warning"> @Html.DisplayFor(modelItem => item.StatusName) </span>
+
+                                    }
+                                    else if (item.StatusTypeId == 3)
+                                    {
+                                        <span style="color:forestgreen"> @Html.DisplayFor(modelItem => item.StatusName) </span>
+
+                                    }
+                                    else if (item.StatusTypeId == 4)
+                                    {
+                                        <span style="color:red">> @Html.DisplayFor(modelItem => item.StatusName) </span>
+
+                                    }
+
+                                </td>
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Subject)
@@ -118,8 +137,8 @@
 
                                 </td>
                                 @*<td>
-                                    @Html.DisplayFor(modelItem => item.Remarks)
-                                </td>*@
+                                        @Html.DisplayFor(modelItem => item.Remarks)
+                                    </td>*@
 
 
                                 <td>
@@ -127,8 +146,8 @@
                                         <b> <i class="fa fa-edit"></i>  </b>
                                     </a>
                                     @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Details/@item.IssueId" title="Details View">
-                                        <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                    </a>*@
+                                            <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                        </a>*@
                                 </td>
 
 
