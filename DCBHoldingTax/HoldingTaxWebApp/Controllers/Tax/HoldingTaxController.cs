@@ -73,7 +73,15 @@ namespace HoldingTaxWebApp.Controllers.Tax
             ViewBag.TotalPaidAmount_ = firstRow.TotalPaidAmount;
             ViewBag.TotalUnPaidAmount_ = firstRow.TotalUnPaidAmount;
 
-            ViewBag.ListOfData = data;
+            if (Session[CommonConstantHelper.UserTypeId].ToString() == "2")
+            {
+                var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
+                ViewBag.ListOfData = _holdingTaxManager.GetAllHoldingTaxForHolder(HolderId);
+            }
+            else
+            {
+                ViewBag.ListOfData = data;
+            }
 
             return View();
         }

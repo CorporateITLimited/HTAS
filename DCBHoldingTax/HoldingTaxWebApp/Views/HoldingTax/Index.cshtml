@@ -58,48 +58,51 @@
                 <div class="card-body">
                     <!--begin: Search Form-->
                     <!--begin::Search Form-->
-                    <div class="mb-7">
-                        <div class="row align-items-center">
-                            <div class="col-lg-8 col-xl-8">
-                                <div class="row align-items-center">
-                                    <div class="col-md-12 my-2 my-md-0">
-                                        <div class="form-group row">
-                                            @Html.LabelFor(model => model.FinancialYearId, "আর্থিক বছর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                            <div class="col-lg-4">
-                                                @Html.DropDownListFor(model => model.FinancialYearId, null, " নির্বাচন করুন ", new
-                                          {
-                                              @class = "form-control",
-                                          })
+                    @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+                    {
+                        <div class="mb-7">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8 col-xl-8">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12 my-2 my-md-0">
+                                            <div class="form-group row">
+                                                @Html.LabelFor(model => model.FinancialYearId, "আর্থিক বছর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                <div class="col-lg-4">
+                                                    @Html.DropDownListFor(model => model.FinancialYearId, null, " নির্বাচন করুন ", new
+                                               {
+                                                   @class = "form-control",
+                                               })
+                                                </div>
+
+                                                @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                <div class="col-lg-4">
+                                                    @Html.DropDownListFor(model => model.AreaId, null, " নির্বাচন করুন ", new
+                                               {
+                                                   @class = "form-control",
+                                               })
+                                                </div>
                                             </div>
 
-                                            @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                            <div class="col-lg-4">
-                                                @Html.DropDownListFor(model => model.AreaId, null, " নির্বাচন করুন ", new
-                                          {
-                                              @class = "form-control",
-                                          })
-                                            </div>
-                                        </div>
+                                            <div class="form-group row">
 
-                                        <div class="form-group row">
-
-                                            @Html.LabelFor(model => model.PlotId, "প্লট নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                            <div class="col-lg-4">
-                                                @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
-                                          {
-                                              @class = "form-control",
-                                          })
+                                                @Html.LabelFor(model => model.PlotId, "প্লট নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                <div class="col-lg-4">
+                                                    @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
+                                               {
+                                                   @class = "form-control",
+                                               })
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-2 col-xl-4 mt-5 mt-lg-0">
-                                <a href="#" id="search_button" class="btn btn-success px-6 font-weight-bold" style="margin-top: -8px;">Search</a>
-                                <a href="#" id="reset_button" class="btn btn-bg-warning px-6 font-weight-bold" style="margin-top: -8px;">Reset</a>
+                                <div class="col-lg-2 col-xl-4 mt-5 mt-lg-0">
+                                    <a href="#" id="search_button" class="btn btn-success px-6 font-weight-bold" style="margin-top: -8px;">Search</a>
+                                    <a href="#" id="reset_button" class="btn btn-bg-warning px-6 font-weight-bold" style="margin-top: -8px;">Reset</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                     <div class="initial_result" id="initial_result">
                         <table class="table table-bordered table-hover table-sm" width="100">
                             <thead class="thead-dark">
@@ -156,9 +159,15 @@
                                             @item.PaidAmount
                                         </td>
                                         <td>
-                                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="হালনাগাদ পেজে যান">
-                                                <b> <i class="fa fa-edit"></i>  </b>
-                                            </a>
+                                            @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+                                            {
+                                                if (item.IsPaid == false)
+                                                {
+                                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="হালনাগাদ পেজে যান">
+                                                        <b> <i class="fa fa-edit"></i>  </b>
+                                                    </a>
+                                                }
+                                            }
                                             <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Invoice/@item.HoldingTaxId" title="ইনভয়েস দেখুন">
                                                 <b> <i class="fa fa-file-invoice"></i>  </b>
                                             </a>
@@ -171,21 +180,24 @@
                             </tbody>
                         </table>
                         <br />
-                        <table class="table table-bordered table-hover table-sm" width="100">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th class="font-size-h4-md">
-                                        <b>মোট নেট প্রদেয়/আদায়যোগ্য করের পরিমাণ : &nbsp; @ViewBag.TotalNetPayableAmount_</b>
-                                    </th>
-                                    <th class="font-size-h4-md">
-                                        <b> মোট পরিশোধিত করের পরিমাণ : &nbsp; @ViewBag.TotalPaidAmount_</b>
-                                    </th>
-                                    <th class="font-size-h4-md">
-                                        <b> মোট অপরিশোধিত করের পরিমাণ : &nbsp; @ViewBag.TotalUnPaidAmount_ </b>
-                                    </th>
-                                </tr>
-                            </thead>
-                        </table>
+                        @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+                        {
+                            <table class="table table-bordered table-hover table-sm" width="100">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th class="font-size-h4-md">
+                                            <b>মোট নেট প্রদেয়/আদায়যোগ্য করের পরিমাণ : &nbsp; @ViewBag.TotalNetPayableAmount_</b>
+                                        </th>
+                                        <th class="font-size-h4-md">
+                                            <b> মোট পরিশোধিত করের পরিমাণ : &nbsp; @ViewBag.TotalPaidAmount_</b>
+                                        </th>
+                                        <th class="font-size-h4-md">
+                                            <b> মোট অপরিশোধিত করের পরিমাণ : &nbsp; @ViewBag.TotalUnPaidAmount_ </b>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        }
                     </div>
                     <div class="search-result" id="search-result">
                     </div>

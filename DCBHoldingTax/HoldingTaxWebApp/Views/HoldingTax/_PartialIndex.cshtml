@@ -1,6 +1,6 @@
 ﻿
 @model IEnumerable<HoldingTaxWebApp.Models.Tax.HoldingTax>
-
+@using HoldingTaxWebApp.Helpers
 
 @if (Model != null && Model.Count() > 0)
 {
@@ -59,9 +59,15 @@
                         @Html.DisplayFor(modelItem => item.PaidAmount)
                     </td>
                     <td>
-                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="হালনাগাদ পেজে যান">
-                            <b> <i class="fa fa-edit"></i>  </b>
-                        </a>
+                        @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+                        {
+                            if (item.IsPaid == false)
+                            {
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="হালনাগাদ পেজে যান">
+                                    <b> <i class="fa fa-edit"></i>  </b>
+                                </a>
+                            }
+                        }
                         <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Invoice/@item.HoldingTaxId" title="ইনভয়েস দেখুন">
                             <b> <i class="fa fa-file-invoice"></i>  </b>
                         </a>
@@ -74,21 +80,24 @@
         </tbody>
     </table>
     <br />
-    <table class="table table-bordered table-hover table-sm" width="100">
-        <thead class="thead-dark">
-            <tr>
-                <th class="font-size-h4-md">
-                    <b>মোট নেট প্রদেয়/আদায়যোগ্য করের পরিমাণ  : &nbsp; @ViewBag.TotalNetPayableAmount</b>
-                </th>
-                <th class="font-size-h4-md">
-                    <b> মোট পরিশোধিত করের পরিমাণ : &nbsp; @ViewBag.TotalPaidAmount</b>
-                </th>
-                <th class="font-size-h4-md">
-                    <b> মোট অপরিশোধিত করের পরিমাণ : &nbsp; @ViewBag.TotalUnPaidAmount </b>
-                </th>
-            </tr>
-        </thead>
-    </table>
+    if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+    {
+        <table class="table table-bordered table-hover table-sm" width="100">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="font-size-h4-md">
+                        <b>মোট নেট প্রদেয়/আদায়যোগ্য করের পরিমাণ  : &nbsp; @ViewBag.TotalNetPayableAmount</b>
+                    </th>
+                    <th class="font-size-h4-md">
+                        <b> মোট পরিশোধিত করের পরিমাণ : &nbsp; @ViewBag.TotalPaidAmount</b>
+                    </th>
+                    <th class="font-size-h4-md">
+                        <b> মোট অপরিশোধিত করের পরিমাণ : &nbsp; @ViewBag.TotalUnPaidAmount </b>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    }
 }
 else
 {
