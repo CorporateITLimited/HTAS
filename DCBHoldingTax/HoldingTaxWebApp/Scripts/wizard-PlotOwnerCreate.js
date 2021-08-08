@@ -239,7 +239,7 @@ var KTWizard4 = function () {
             _formEl,
             {
                 fields: {
-                    LeaseType1: {
+                    OfficialStatusId: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
@@ -267,7 +267,7 @@ var KTWizard4 = function () {
                             }
                         }
                     },
-                      LeaseQuotaId1: {
+                      LeaseQuotaId: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
@@ -281,7 +281,7 @@ var KTWizard4 = function () {
                   
                   
                   
-                    PresentAdd1: {
+                    PresentAdd: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
