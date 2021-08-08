@@ -6,6 +6,11 @@
 }
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
+    <style>
+        .firstrow {
+            background-color: #D7F9EF;
+        }
+    </style>
 }
 
 
@@ -186,6 +191,8 @@
                 }
             });
         });
+
+        $('#kt_datatable tbody tr:first-child').addClass('firstrow');
     </script>
 
 

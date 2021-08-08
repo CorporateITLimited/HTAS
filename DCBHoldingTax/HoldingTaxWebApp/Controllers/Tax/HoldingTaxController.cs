@@ -77,11 +77,15 @@ namespace HoldingTaxWebApp.Controllers.Tax
             {
                 var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
                 ViewBag.ListOfData = _holdingTaxManager.GetAllHoldingTaxForHolder(HolderId);
+                ViewBag.IsHolder = "yes";
             }
             else
             {
                 ViewBag.ListOfData = data;
+                ViewBag.IsHolder = "no";
             }
+
+           
 
             return View();
         }

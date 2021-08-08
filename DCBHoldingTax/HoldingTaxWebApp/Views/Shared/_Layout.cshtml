@@ -90,10 +90,24 @@
                             <div class="d-none d-lg-flex align-items-center mr-3">
                                 <!--begin::Logo-->
                                 <div class="LogoEdited">
-                                    <a href="~/Home/Index">
-                                        <img src="~/Images/dcb_logo_.png" class="max-h-115px" />
-                                    </a>
-
+                                    @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+                                    {
+                                        <a href="~/Home/Index">
+                                            <img src="~/Images/dcb_logo_.png" class="max-h-115px" />
+                                        </a>
+                                    }
+                                    else if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
+                                    {
+                                        <a href="~/Home/Holder">
+                                            <img src="~/Images/dcb_logo_.png" class="max-h-115px" />
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#">
+                                            <img src="~/Images/dcb_logo_.png" class="max-h-115px" />
+                                        </a>
+                                    }
                                 </div>
 
                                 <!--end::Logo-->
@@ -105,21 +119,21 @@
                                     <img src="~/Images/Cant-D4_white_logoless.png" alt="Banner" class="max-h-70px embed-responsive" />
                                 </div>
                             </div>
-                                @*<div class="d-lg-flex align-items-center">
-                    <h1 style="color:white;">
-                        গৃহসেবা - অনলাইন গৃহকর ব্যবস্থাপনা উদ্যোগ, ঢাকা ক্যাণ্টনমেন্ট বোর্ড।
-                    </h1>
-            </div>*@
-                                <!--begin::Topbar-->
-                                <div class="topbar">
-                                    <!--begin::User-->
-                                    @Html.Partial("_AuthorizePartial")
-                                    <!--end::User-->
-                                </div>
-                                <!--end::Topbar-->
+                            @*<div class="d-lg-flex align-items-center">
+                                        <h1 style="color:white;">
+                                            গৃহসেবা - অনলাইন গৃহকর ব্যবস্থাপনা উদ্যোগ, ঢাকা ক্যাণ্টনমেন্ট বোর্ড।
+                                        </h1>
+                                </div>*@
+                            <!--begin::Topbar-->
+                            <div class="topbar">
+                                <!--begin::User-->
+                                @Html.Partial("_AuthorizePartial")
+                                <!--end::User-->
                             </div>
-                            <!--end::Container-->
+                            <!--end::Topbar-->
                         </div>
+                        <!--end::Container-->
+                    </div>
                     <!--end::Top-->
                     <!--begin::Bottom-->
                     <div class="header-bottom">
@@ -146,12 +160,13 @@
                     <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
                         <!--begin::Copyright-->
                         <div class="text-dark order-2 order-md-1">
-                            <span class="text-muted font-weight-bold mr-2">2021©</span>
-                            <a href="#" target="_blank" class="text-dark-75 text-hover-primary">CORPORATE IT LIMITED</a>
+                            <span class="text-muted font-weight-bold mr-2">2021 &nbsp;©</span>
+                            <a href="http://www.dcb.gov.bd/" target="_blank" class="text-dark-75 text-hover-primary">Dhaka Cantonment Board</a>
                         </div>
                         <!--end::Copyright-->
                         <!--begin::Nav-->
                         <div class="nav nav-dark order-1 order-md-2">
+                            <a href="http://citl.com.bd/" target="_blank" class="nav-link pr-3 pl-0">Developed & Maintained by CORPORATE IT LIMITED.</a>
                             @*<a href="http://keenthemes.com/metronic" target="_blank" class="nav-link pr-3 pl-0">About</a>
                                 <a href="http://keenthemes.com/metronic" target="_blank" class="nav-link px-3">Team</a>
                                 <a href="http://keenthemes.com/metronic" target="_blank" class="nav-link pl-3 pr-0">Contact</a>*@
