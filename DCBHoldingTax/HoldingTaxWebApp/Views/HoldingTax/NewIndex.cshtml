@@ -25,9 +25,6 @@
     </div>
 </div>
 
-
-
-
 <div class="d-flex flex-column-fluid">
     <div class="container">
         @if (TempData["SM"] != null)
@@ -41,143 +38,543 @@
                 </div>
             </div>
         }
+
         <div class="card card-custom">
-            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+            <div class="card-header">
                 <div class="card-title">
-                    <h3 class="card-label">
-                        গৃহকরের তালিকা
-                    </h3>
+                    <span class="card-icon">
+                        <i class="flaticon2-delivery-package text-primary"></i>
+                    </span>
+                    <h3 class="card-label">Advanced Search Form</h3>
                 </div>
-                <div class="card-toolbar">
-                    @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
-                    {
-                        <a href="~/HoldingTax/Create" class="btn btn-primary font-weight-bolder">
-                            <i class="fas fa-plus">
-                            </i>নতুন গৃহকর প্রস্তুতকরণ
-                        </a>
-                    }
-                </div>
+
             </div>
             <div class="card-body">
-                <div class="mb-7">
-                    <div class="row align-items-center">
-                        <div class="col-lg-9 col-xl-8">
-                            <div class="row align-items-center">
-                                <div class="col-md-4 my-2 my-md-0">
-                                    <div class="input-icon">
-                                        <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
-                                        <span>
-                                            <i class="flaticon2-search-1 text-muted"></i>
-                                        </span>
-                                    </div>
+                <!--begin: Search Form-->
+                <form class="mb-15">
+                    <div class="row mb-6">
+                        <div class="col-lg-3 mb-lg-0 mb-6">
+                            <label>RecordID:</label>
+                            <input type="text" class="form-control datatable-input" placeholder="E.g: 4590" data-col-index="0">
+                        </div>
+                        <div class="col-lg-3 mb-lg-0 mb-6">
+                            <label>OrderID:</label>
+                            <input type="text" class="form-control datatable-input" placeholder="E.g: 37000-300" data-col-index="1">
+                        </div>
+                        <div class="col-lg-3 mb-lg-0 mb-6">
+                            <label>Country:</label>
+                            <select class="form-control datatable-input" data-col-index="2">
+                                <option value="">Select</option>
+                                <option value="Brazil">Brazil</option>
+                                <option value="China">China</option>
+                                <option value="Dominican Republic">Dominican Republic</option>
+                                <option value="France">France</option>
+                                <option value="Philippines">Philippines</option>
+                                <option value="Portugal">Portugal</option>
+                                <option value="Ukraine">Ukraine</option>
+                                <option value="United States">United States</option>
+                                <option value="Vietnam">Vietnam</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 mb-lg-0 mb-6">
+                            <label>Agent:</label>
+                            <input type="text" class="form-control datatable-input" placeholder="Agent ID or name" data-col-index="4">
+                        </div>
+                    </div>
+                    <div class="row mb-8">
+                        <div class="col-lg-3 mb-lg-0 mb-6">
+                            <label>Ship Date:</label>
+                            <div class="input-daterange input-group" id="kt_datepicker">
+                                <input type="text" class="form-control datatable-input" name="start" placeholder="From" data-col-index="5">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="la la-ellipsis-h"></i>
+                                    </span>
                                 </div>
-
-
+                                <input type="text" class="form-control datatable-input" name="end" placeholder="To" data-col-index="5">
                             </div>
                         </div>
-
+                        <div class="col-lg-3 mb-lg-0 mb-6">
+                            <label>Status:</label>
+                            <select class="form-control datatable-input" data-col-index="6">
+                                <option value="">Select</option>
+                                <option value="1">Pending</option>
+                                <option value="2">Delivered</option>
+                                <option value="3">Canceled</option>
+                                <option value="5">Info</option>
+                                <option value="6">Danger</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 mb-lg-0 mb-6">
+                            <label>Type:</label>
+                            <select class="form-control datatable-input" data-col-index="7">
+                                <option value="">Select</option>
+                                <option value="1">Online</option>
+                                <option value="2">Retail</option>
+                                <option value="3">Direct</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <!--end::Search Form-->
+                    <div class="row mt-8">
+                        <div class="col-lg-12">
+                            <button class="btn btn-primary btn-primary--icon" id="kt_search">
+                                <span>
+                                    <i class="la la-search"></i>
+                                    <span>Search</span>
+                                </span>
+                            </button>&nbsp;&nbsp;
+                            <button class="btn btn-secondary btn-secondary--icon" id="kt_reset">
+                                <span>
+                                    <i class="la la-close"></i>
+                                    <span>Reset</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
                 <!--begin: Datatable-->
-                <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
-                    <thead>
-                        <tr>
-
-                            <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.AreaName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PlotNo)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TaxFromRent)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TaxFromOwnProperty)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TotalHoldingTax)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.NetTaxPayableAmount)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LastUpdated)
-                            </th>
-                            <th></th>
-
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.FinancialYear)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AreaName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PlotNo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TaxFromRent)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TaxFromOwnProperty)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TotalHoldingTax)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NetTaxPayableAmount)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LastUpdated)
-                                </td>
-                                <td>
-                                    @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
-                                    {
-                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="Edit">
-                                            <b> <i class="fa fa-edit"></i>  </b>
-                                        </a>
-                                    }
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Details/@item.HoldingTaxId" title="Report View">
-                                        <b><i class="fa fa-chart-bar" aria-hidden="true"></i></b>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-
-                </table>
+                <!--begin: Datatable-->
+                <div id="kt_datatable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-hover table-checkable dataTable dtr-inline" id="kt_datatable" role="grid" aria-describedby="kt_datatable_info" style="width: 1235px;">
+                                <thead>
+                                    <tr role="row"><th class="sorting sorting_asc" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 72px;" aria-sort="ascending" aria-label="Record ID: activate to sort column descending">Record ID</th><th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 69px;" aria-label="Order ID: activate to sort column ascending">Order ID</th><th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 127px;" aria-label="Country: activate to sort column ascending">Country</th><th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 166px;" aria-label="Ship City: activate to sort column ascending">Ship City</th><th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 121px;" aria-label="Company Agent: activate to sort column ascending">Company Agent</th><th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 72px;" aria-label="Ship Date: activate to sort column ascending">Ship Date</th><th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 67px;" aria-label="Status: activate to sort column ascending">Status</th><th class="sorting" tabindex="0" aria-controls="kt_datatable" rowspan="1" colspan="1" style="width: 45px;" aria-label="Type: activate to sort column ascending">Type</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 116px;" aria-label="Actions">Actions</th></tr>
+                                </thead>
+                                <tfoot>
+                                    <tr><th rowspan="1" colspan="1">Record ID</th><th rowspan="1" colspan="1">Order ID</th><th rowspan="1" colspan="1">Country</th><th rowspan="1" colspan="1">Ship City</th><th rowspan="1" colspan="1">Company Agent</th><th rowspan="1" colspan="1">Ship Date</th><th rowspan="1" colspan="1">Status</th><th rowspan="1" colspan="1">Type</th><th rowspan="1" colspan="1">Actions</th></tr>
+                                </tfoot>
+                                <tbody><tr class="odd"><td class="sorting_1 dtr-control">1</td><td>64616-103</td><td>Brazil</td><td>São Félix do Xingu</td><td>Hayes Boule</td><td>10/15/2017</td><td><span class="label label-lg font-weight-bold label-light-info label-inline">Info</span></td><td><span class="label label-danger label-dot mr-2"></span><span class="font-weight-bold text-danger">Online</span></td><td>							<div class="dropdown dropdown-inline">								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">	                                <i class="la la-cog"></i>	                            </a>							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">									<ul class="nav nav-hoverable flex-column">							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text">Edit Details</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">Update Status</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-print"></i><span class="nav-text">Print</span></a></li>									</ul>							  	</div>							</div>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">								<i class="la la-edit"></i>							</a>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">								<i class="la la-trash"></i>							</a>						</td></tr><tr class="even"><td class="sorting_1 dtr-control">2</td><td>54868-3377</td><td>Vietnam</td><td>Bình Minh</td><td>Humbert Bresnen</td><td>4/24/2016</td><td><span class="label label-lg font-weight-bold label-light-danger label-inline">Delivered</span></td><td><span class="label label-primary label-dot mr-2"></span><span class="font-weight-bold text-primary">Retail</span></td><td>							<div class="dropdown dropdown-inline">								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">	                                <i class="la la-cog"></i>	                            </a>							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">									<ul class="nav nav-hoverable flex-column">							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text">Edit Details</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">Update Status</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-print"></i><span class="nav-text">Print</span></a></li>									</ul>							  	</div>							</div>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">								<i class="la la-edit"></i>							</a>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">								<i class="la la-trash"></i>							</a>						</td></tr><tr class="odd"><td class="sorting_1 dtr-control">3</td><td>0998-0355</td><td>Philippines</td><td>Palagao Norte</td><td>Jareb Labro</td><td>7/11/2017</td><td><span class="label label-lg font-weight-bold label-light-danger label-inline">Danger</span></td><td><span class="label label-primary label-dot mr-2"></span><span class="font-weight-bold text-primary">Retail</span></td><td>							<div class="dropdown dropdown-inline">								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">	                                <i class="la la-cog"></i>	                            </a>							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">									<ul class="nav nav-hoverable flex-column">							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text">Edit Details</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">Update Status</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-print"></i><span class="nav-text">Print</span></a></li>									</ul>							  	</div>							</div>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">								<i class="la la-edit"></i>							</a>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">								<i class="la la-trash"></i>							</a>						</td></tr><tr class="even"><td class="sorting_1 dtr-control">4</td><td>55154-6876</td><td>China</td><td>Jiannan</td><td>Krishnah Tosspell</td><td>2/5/2016</td><td><span class="label label-lg font-weight-boldlabel-light-primary label-inline">Pending</span></td><td><span class="label label-danger label-dot mr-2"></span><span class="font-weight-bold text-danger">Online</span></td><td>							<div class="dropdown dropdown-inline">								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">	                                <i class="la la-cog"></i>	                            </a>							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">									<ul class="nav nav-hoverable flex-column">							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text">Edit Details</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">Update Status</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-print"></i><span class="nav-text">Print</span></a></li>									</ul>							  	</div>							</div>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">								<i class="la la-edit"></i>							</a>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">								<i class="la la-trash"></i>							</a>						</td></tr><tr class="odd"><td class="sorting_1 dtr-control">5</td><td>49349-069</td><td>United States</td><td>Shawnee Mission</td><td>Dale Kernan</td><td>7/23/2017</td><td><span class="label label-lg font-weight-bold label-light-info label-inline">Info</span></td><td><span class="label label-primary label-dot mr-2"></span><span class="font-weight-bold text-primary">Retail</span></td><td>							<div class="dropdown dropdown-inline">								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">	                                <i class="la la-cog"></i>	                            </a>							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">									<ul class="nav nav-hoverable flex-column">							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text">Edit Details</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">Update Status</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-print"></i><span class="nav-text">Print</span></a></li>									</ul>							  	</div>							</div>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">								<i class="la la-edit"></i>							</a>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">								<i class="la la-trash"></i>							</a>						</td></tr><tr class="even"><td class="sorting_1 dtr-control">6</td><td>53499-0393</td><td>Ukraine</td><td>Kozel’shchyna</td><td>Halley Bentham</td><td>2/21/2016</td><td><span class="label label-lg font-weight-boldlabel-light-primary label-inline">Pending</span></td><td><span class="label label-success label-dot mr-2"></span><span class="font-weight-bold text-success">Direct</span></td><td>							<div class="dropdown dropdown-inline">								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">	                                <i class="la la-cog"></i>	                            </a>							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">									<ul class="nav nav-hoverable flex-column">							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text">Edit Details</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">Update Status</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-print"></i><span class="nav-text">Print</span></a></li>									</ul>							  	</div>							</div>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">								<i class="la la-edit"></i>							</a>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">								<i class="la la-trash"></i>							</a>						</td></tr><tr class="odd"><td class="sorting_1 dtr-control">7</td><td>43074-105</td><td>Philippines</td><td>De la Paz</td><td>Burgess Penddreth</td><td>10/25/2016</td><td><span class="label label-lg font-weight-bold label-light-info label-inline">Info</span></td><td><span class="label label-primary label-dot mr-2"></span><span class="font-weight-bold text-primary">Retail</span></td><td>							<div class="dropdown dropdown-inline">								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">	                                <i class="la la-cog"></i>	                            </a>							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">									<ul class="nav nav-hoverable flex-column">							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text">Edit Details</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">Update Status</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-print"></i><span class="nav-text">Print</span></a></li>									</ul>							  	</div>							</div>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">								<i class="la la-edit"></i>							</a>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">								<i class="la la-trash"></i>							</a>						</td></tr><tr class="even"><td class="sorting_1 dtr-control">8</td><td>76328-333</td><td>Portugal</td><td>Sobreira</td><td>Cob Sedwick</td><td>2/18/2016</td><td><span class="label label-lg font-weight-bold label-light-primary label-inline">Canceled</span></td><td><span class="label label-primary label-dot mr-2"></span><span class="font-weight-bold text-primary">Retail</span></td><td>							<div class="dropdown dropdown-inline">								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">	                                <i class="la la-cog"></i>	                            </a>							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">									<ul class="nav nav-hoverable flex-column">							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text">Edit Details</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">Update Status</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-print"></i><span class="nav-text">Print</span></a></li>									</ul>							  	</div>							</div>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">								<i class="la la-edit"></i>							</a>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">								<i class="la la-trash"></i>							</a>						</td></tr><tr class="odd"><td class="sorting_1 dtr-control">9</td><td>21130-054</td><td>France</td><td>Roissy Charles-de-Gaulle</td><td>Tabby Callaghan</td><td>3/26/2016</td><td><span class="label label-lg font-weight-bold label-light-danger label-inline">Delivered</span></td><td><span class="label label-primary label-dot mr-2"></span><span class="font-weight-bold text-primary">Retail</span></td><td>							<div class="dropdown dropdown-inline">								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">	                                <i class="la la-cog"></i>	                            </a>							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">									<ul class="nav nav-hoverable flex-column">							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text">Edit Details</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">Update Status</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-print"></i><span class="nav-text">Print</span></a></li>									</ul>							  	</div>							</div>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">								<i class="la la-edit"></i>							</a>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">								<i class="la la-trash"></i>							</a>						</td></tr><tr class="even"><td class="sorting_1 dtr-control">10</td><td>68788-9890</td><td>Dominican Republic</td><td>Cristóbal</td><td>Broddy Jarry</td><td>8/10/2016</td><td><span class="label label-lg font-weight-boldlabel-light-primary label-inline">Pending</span></td><td><span class="label label-primary label-dot mr-2"></span><span class="font-weight-bold text-primary">Retail</span></td><td>							<div class="dropdown dropdown-inline">								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">	                                <i class="la la-cog"></i>	                            </a>							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">									<ul class="nav nav-hoverable flex-column">							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text">Edit Details</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">Update Status</span></a></li>							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-print"></i><span class="nav-text">Print</span></a></li>									</ul>							  	</div>							</div>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">								<i class="la la-edit"></i>							</a>							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">								<i class="la la-trash"></i>							</a>						</td></tr></tbody>
+                            </table><div id="kt_datatable_processing" class="dataTables_processing card" style="display: none;">Processing...</div>
+                        </div>
+                    </div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="kt_datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 350 entries</div></div><div class="col-sm-12 col-md-7 dataTables_pager"><div class="dataTables_length" id="kt_datatable_length"><label>Display <select name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm"><option value="5">5</option><option value="10">10</option><option value="25">25</option><option value="50">50</option></select></label></div><div class="dataTables_paginate paging_simple_numbers" id="kt_datatable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="kt_datatable_previous"><a href="#" aria-controls="kt_datatable" data-dt-idx="0" tabindex="0" class="page-link"><i class="ki ki-arrow-back"></i></a></li><li class="paginate_button page-item active"><a href="#" aria-controls="kt_datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="kt_datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="kt_datatable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="kt_datatable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="kt_datatable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item disabled" id="kt_datatable_ellipsis"><a href="#" aria-controls="kt_datatable" data-dt-idx="6" tabindex="0" class="page-link">…</a></li><li class="paginate_button page-item "><a href="#" aria-controls="kt_datatable" data-dt-idx="7" tabindex="0" class="page-link">35</a></li><li class="paginate_button page-item next" id="kt_datatable_next"><a href="#" aria-controls="kt_datatable" data-dt-idx="8" tabindex="0" class="page-link"><i class="ki ki-arrow-next"></i></a></li></ul></div></div></div>
+                </div>
                 <!--end: Datatable-->
             </div>
         </div>
+
     </div>
 </div>
 
 
-@section Scripts
-{
+
+@section scripts{
+
+    <script src="~/Theme/dist/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <script>
-        jQuery(document).ready(function () {
-            $('#kt_datatable').KTDatatable({
-                search: {
-                    input: $('#kt_datatable_search_query'),
-                    key: 'generalSearch',
-                },
-                layout: {
-                    class: 'datatable-bordered',
-                }
+        "use strict";
+        var KTDatatablesSearchOptionsAdvancedSearch = function () {
+
+            $.fn.dataTable.Api.register('column().title()', function () {
+                return $(this.header()).text().trim();
             });
+
+            var initTable1 = function () {
+                // begin first table
+                var table = $('#kt_datatable').DataTable({
+                    responsive: true,
+                    // Pagination settings
+                    dom: `<'row'<'col-sm-12'tr>>
+			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+                    // read more: https://datatables.net/examples/basic_init/dom.html
+
+                    lengthMenu: [5, 10, 25, 50],
+
+                    pageLength: 10,
+
+                    language: {
+                        'lengthMenu': 'Display _MENU_',
+                    },
+
+                    searchDelay: 500,
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: HOST_URL + '/api//datatables/demos/server.php',
+                        type: 'POST',
+                        data: {
+                            // parameters for custom backend script demo
+                            columnsDef: [
+                                'RecordID', 'OrderID', 'Country', 'ShipCity', 'CompanyAgent',
+                                'ShipDate', 'Status', 'Type', 'Actions',],
+                        },
+                    },
+                    columns: [
+                        { data: 'RecordID' },
+                        { data: 'OrderID' },
+                        { data: 'Country' },
+                        { data: 'ShipCity' },
+                        { data: 'CompanyAgent' },
+                        { data: 'ShipDate' },
+                        { data: 'Status' },
+                        { data: 'Type' },
+                        { data: 'Actions', responsivePriority: -1 },
+                    ],
+
+                    initComplete: function () {
+                        this.api().columns().every(function () {
+                            var column = this;
+
+                            switch (column.title()) {
+                                case 'Country':
+                                    column.data().unique().sort().each(function (d, j) {
+                                        $('.datatable-input[data-col-index="2"]').append('<option value="' + d + '">' + d + '</option>');
+                                    });
+                                    break;
+
+                                case 'Status':
+                                    var status = {
+                                        1: { 'title': 'Pending', 'class': 'label-light-primary' },
+                                        2: { 'title': 'Delivered', 'class': ' label-light-danger' },
+                                        3: { 'title': 'Canceled', 'class': ' label-light-primary' },
+                                        4: { 'title': 'Success', 'class': ' label-light-success' },
+                                        5: { 'title': 'Info', 'class': ' label-light-info' },
+                                        6: { 'title': 'Danger', 'class': ' label-light-danger' },
+                                        7: { 'title': 'Warning', 'class': ' label-light-warning' },
+                                    };
+                                    column.data().unique().sort().each(function (d, j) {
+                                        $('.datatable-input[data-col-index="6"]').append('<option value="' + d + '">' + status[d].title + '</option>');
+                                    });
+                                    break;
+
+                                case 'Type':
+                                    var status = {
+                                        1: { 'title': 'Online', 'state': 'danger' },
+                                        2: { 'title': 'Retail', 'state': 'primary' },
+                                        3: { 'title': 'Direct', 'state': 'success' },
+                                    };
+                                    column.data().unique().sort().each(function (d, j) {
+                                        $('.datatable-input[data-col-index="7"]').append('<option value="' + d + '">' + status[d].title + '</option>');
+                                    });
+                                    break;
+                            }
+                        });
+                    },
+
+                    columnDefs: [
+                        {
+                            targets: -1,
+                            title: 'Actions',
+                            orderable: false,
+                            render: function (data, type, full, meta) {
+                                return '\
+							<div class="dropdown dropdown-inline">\
+								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">\
+	                                <i class="la la-cog"></i>\
+	                            </a>\
+							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">\
+									<ul class="nav nav-hoverable flex-column">\
+							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text">Edit Details</span></a></li>\
+							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">Update Status</span></a></li>\
+							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-print"></i><span class="nav-text">Print</span></a></li>\
+									</ul>\
+							  	</div>\
+							</div>\
+							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">\
+								<i class="la la-edit"></i>\
+							</a>\
+							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete">\
+								<i class="la la-trash"></i>\
+							</a>\
+						';
+                            },
+                        },
+                        {
+                            targets: 6,
+                            render: function (data, type, full, meta) {
+                                var status = {
+                                    1: { 'title': 'Pending', 'class': 'label-light-primary' },
+                                    2: { 'title': 'Delivered', 'class': ' label-light-danger' },
+                                    3: { 'title': 'Canceled', 'class': ' label-light-primary' },
+                                    4: { 'title': 'Success', 'class': ' label-light-success' },
+                                    5: { 'title': 'Info', 'class': ' label-light-info' },
+                                    6: { 'title': 'Danger', 'class': ' label-light-danger' },
+                                    7: { 'title': 'Warning', 'class': ' label-light-warning' },
+                                };
+                                if (typeof status[data] === 'undefined') {
+                                    return data;
+                                }
+                                return '<span class="label label-lg font-weight-bold' + status[data].class + ' label-inline">' + status[data].title + '</span>';
+                            },
+                        },
+                        {
+                            targets: 7,
+                            render: function (data, type, full, meta) {
+                                var status = {
+                                    1: { 'title': 'Online', 'state': 'danger' },
+                                    2: { 'title': 'Retail', 'state': 'primary' },
+                                    3: { 'title': 'Direct', 'state': 'success' },
+                                };
+                                if (typeof status[data] === 'undefined') {
+                                    return data;
+                                }
+                                return '<span class="label label-' + status[data].state + ' label-dot mr-2"></span>' +
+                                    '<span class="font-weight-bold text-' + status[data].state + '">' + status[data].title + '</span>';
+                            },
+                        },
+                    ],
+                });
+
+                var filter = function () {
+                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                    table.column($(this).data('col-index')).search(val ? val : '', false, false).draw();
+                };
+
+                var asdasd = function (value, index) {
+                    var val = $.fn.dataTable.util.escapeRegex(value);
+                    table.column(index).search(val ? val : '', false, true);
+                };
+
+                $('#kt_search').on('click', function (e) {
+                    e.preventDefault();
+                    var params = {};
+                    $('.datatable-input').each(function () {
+                        var i = $(this).data('col-index');
+                        if (params[i]) {
+                            params[i] += '|' + $(this).val();
+                        }
+                        else {
+                            params[i] = $(this).val();
+                        }
+                    });
+                    $.each(params, function (i, val) {
+                        // apply search params to datatable
+                        table.column(i).search(val ? val : '', false, false);
+                    });
+                    table.table().draw();
+                });
+
+                $('#kt_reset').on('click', function (e) {
+                    e.preventDefault();
+                    $('.datatable-input').each(function () {
+                        $(this).val('');
+                        table.column($(this).data('col-index')).search('', false, false);
+                    });
+                    table.table().draw();
+                });
+
+                $('#kt_datepicker').datepicker({
+                    todayHighlight: true,
+                    templates: {
+                        leftArrow: '<i class="la la-angle-left"></i>',
+                        rightArrow: '<i class="la la-angle-right"></i>',
+                    },
+                });
+
+            };
+
+            return {
+
+                //main function to initiate the module
+                init: function () {
+                    initTable1();
+                },
+
+            };
+
+        }();
+
+        jQuery(document).ready(function () {
+            KTDatatablesSearchOptionsAdvancedSearch.init();
         });
+
+
     </script>
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="d-flex flex-column-fluid">
+        <div class="container">
+            @if (TempData["SM"] != null)
+            {
+                <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
+                    <div class="alert-text font-weight-bolder" style="color: #0BB783;">@TempData["SM"]</div>
+                    <div class="alert-close">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                        </button>
+                    </div>
+                </div>
+            }
+            <div class="card card-custom">
+                <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                    <div class="card-title">
+                        <h3 class="card-label">
+                            গৃহকরের তালিকা
+                        </h3>
+                    </div>
+                    <div class="card-toolbar">
+                        @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+                        {
+                            <a href="~/HoldingTax/Create" class="btn btn-primary font-weight-bolder">
+                                <i class="fas fa-plus">
+                                </i>নতুন গৃহকর প্রস্তুতকরণ
+                            </a>
+                        }
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-7">
+                        <div class="row align-items-center">
+                            <div class="col-lg-9 col-xl-8">
+                                <div class="row align-items-center">
+                                    <div class="col-md-4 my-2 my-md-0">
+                                        <div class="input-icon">
+                                            <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
+                                            <span>
+                                                <i class="flaticon2-search-1 text-muted"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--end::Search Form-->
+                    <!--begin: Datatable-->
+                    <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
+                        <thead>
+                            <tr>
+
+                                <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AreaName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PlotNo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TaxFromRent)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TaxFromOwnProperty)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TotalHoldingTax)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.NetTaxPayableAmount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LastUpdated)
+                                </th>
+                                <th></th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FinancialYear)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AreaName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PlotNo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TaxFromRent)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TaxFromOwnProperty)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalHoldingTax)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NetTaxPayableAmount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LastUpdated)
+                                    </td>
+                                    <td>
+                                        @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+                                        {
+                                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="Edit">
+                                                <b> <i class="fa fa-edit"></i>  </b>
+                                            </a>
+                                        }
+                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Details/@item.HoldingTaxId" title="Report View">
+                                            <b><i class="fa fa-chart-bar" aria-hidden="true"></i></b>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                    <!--end: Datatable-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @section Scripts
+    {
+        <script>
+            jQuery(document).ready(function () {
+                $('#kt_datatable').KTDatatable({
+                    search: {
+                        input: $('#kt_datatable_search_query'),
+                        key: 'generalSearch',
+                    },
+                    layout: {
+                        class: 'datatable-bordered',
+                    }
+                });
+            });
+        </script>
+    }*@
 
 
 
