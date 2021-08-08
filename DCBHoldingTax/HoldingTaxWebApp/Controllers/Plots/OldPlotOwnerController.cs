@@ -63,7 +63,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         PermanentAdd = item.PermanentAdd,
                         PhoneNumber = item.PhoneNumber,
                        
-                        //PlotIdNumber = item.PlotIdNumber,
+                        PlotIdNumber = item.PlotIdNumber,
                         PresentAdd = item.PresentAdd,
                         
                         //TotalArea = item.TotalArea,
@@ -72,7 +72,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     };
                     OldPlotOwnerListVM.Add(OldPlotOwnerVM);
                 }
-                return View(OldPlotOwnerListVM.ToList());
+                return View(OldPlotOwnerListVM);
             }
             catch (Exception exception)
             {
@@ -127,7 +127,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     PermanentAdd = OldPlotOwnerdetails.PermanentAdd,
                     PhoneNumber = OldPlotOwnerdetails.PhoneNumber,
 
-                    //PlotIdNumber = item.PlotIdNumber,
+                    PlotIdNumber = OldPlotOwnerdetails.PlotIdNumber,
                     PresentAdd = OldPlotOwnerdetails.PresentAdd,
 
                     //TotalArea = item.TotalArea,
@@ -237,7 +237,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         ////PlotOwner Portion
                         PhoneNumber = POVM.PhoneNumber,
                         Email = POVM.Email,
-                        IsAlive = POVM.IsAlive,
+                        IsAlive =true,
                         OfficialStatusId = POVM.OfficialStatusId,
                         PermanentAdd = POVM.PermanentAdd,
                         //PlotId = POVM.PlotId,

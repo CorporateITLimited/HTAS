@@ -62,8 +62,8 @@ namespace HoldingTaxWebApp.Gateway.Plots
                         OldPlotOwnerId = Convert.ToInt32(Data_Reader["OldPlotOwnerId"]),
                         PlotOwnerId = Convert.ToInt32(Data_Reader["PlotOwnerId"]),
                         //PlotId = Convert.ToInt32(Data_Reader["PlotId"]),
-                        //PlotIdNumber = Data_Reader["PlotIdNumber"].ToString(),
-                        OldPlotOwnerName = Data_Reader["PlotOwnerName"].ToString(),
+                        PlotIdNumber = Data_Reader["PlotIdNumber"].ToString(),
+                        OldPlotOwnerName = Data_Reader["OldPlotOwnerName"].ToString(),
                         IsAlive = Data_Reader["IsAlive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsAlive"]) : (bool?)null,
                         OfficialStatusId = Convert.ToInt32(Data_Reader["OfficialStatusId"]),
                         OffStatusName = Data_Reader["OffStatusName"].ToString(),
@@ -150,7 +150,7 @@ namespace HoldingTaxWebApp.Gateway.Plots
                     vm.OldPlotOwnerId = Convert.ToInt32(Data_Reader["OldPlotOwnerId"]);
                     vm.PlotOwnerId = Convert.ToInt32(Data_Reader["PlotOwnerId"]);
                     //vm.PlotId = Convert.ToInt32(Data_Reader["PlotId"]);
-                    //vm.PlotIdNumber = Data_Reader["PlotIdNumber"].ToString();
+                    vm.PlotIdNumber = Data_Reader["PlotIdNumber"].ToString();
                     vm.OldPlotOwnerName = Data_Reader["OldPlotOwnerName"].ToString();
                     vm.IsAlive = Data_Reader["IsAlive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsAlive"]) : (bool?)null;
                     vm.OfficialStatusId = Convert.ToInt32(Data_Reader["OfficialStatusId"]);
