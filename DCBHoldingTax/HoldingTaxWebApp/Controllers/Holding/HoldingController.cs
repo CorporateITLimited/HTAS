@@ -674,7 +674,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                             LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
                                             IsSelfOwned = ui_item.SelfOwn == 1 ? true : false,
                                             MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : null,
-                                            OwnerName = holder.HolderName, //!string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
+                                            OwnerName = ui_item.SelfOwn == 1 ? holder.HolderName : null,
+                                            //holder.HolderName, //!string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
                                             OwnOrRent = ui_item.OwnOrRent,
                                             SelfOwn = ui_item.SelfOwn,
                                             IsCheckedByHolder = false
@@ -710,7 +711,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                                 LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
                                                 IsSelfOwned = ui_item.SelfOwn == 1 ? true : false,
                                                 MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : null,
-                                                OwnerName = holder.HolderName, //!string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
+                                                OwnerName = ui_item.SelfOwn == 1 ? holder.HolderName : null,
+                                                //holder.HolderName, //!string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
                                                 OwnOrRent = ui_item.OwnOrRent,
                                                 SelfOwn = ui_item.SelfOwn,
                                                 IsCheckedByHolder = true
@@ -874,16 +876,16 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 //return new JsonResult { Data = new { status } };
 
                 //checking session first
-                //int uid = 0;
-                //if (Session[CommonConstantHelper.UserId] != null && Convert.ToInt32(Session[CommonConstantHelper.UserId]) > 0)
-                //{
-                //    uid = Convert.ToInt32(Session[CommonConstantHelper.UserId]);
-                //}
-                //else
-                //{
-                //    status = "সেশন এর মেয়াদ শেষ";
-                //    return new JsonResult { Data = new { status } };
-                //}
+                int uid = 0;
+                if (Session[CommonConstantHelper.UserId] != null && Convert.ToInt32(Session[CommonConstantHelper.UserId]) > 0)
+                {
+                    uid = Convert.ToInt32(Session[CommonConstantHelper.UserId]);
+                }
+                else
+                {
+                    status = "সেশন এর মেয়াদ শেষ";
+                    return new JsonResult { Data = new { status } };
+                }
 
                 //checking if data is null
                 if (hvm == null)
@@ -1358,7 +1360,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                                 LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
                                                 IsSelfOwned = ui_item.SelfOwn == 1 ? true : false,
                                                 MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : null,
-                                                OwnerName = holder.HolderName,//!string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
+                                                OwnerName = ui_item.SelfOwn == 1 ? holder.HolderName : null,
+                                                //holder.HolderName,//!string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
                                                 OwnOrRent = ui_item.OwnOrRent,
                                                 SelfOwn = ui_item.SelfOwn,
                                                 IsCheckedByHolder = false
@@ -1406,7 +1409,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                                     LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
                                                     IsSelfOwned = ui_item.SelfOwn == 1 ? true : false,
                                                     MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : null,
-                                                    OwnerName = holder.HolderName, //!string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
+                                                    OwnerName = ui_item.SelfOwn == 1 ? holder.HolderName : null,
+                                                    //holder.HolderName, //!string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
                                                     OwnOrRent = ui_item.OwnOrRent,
                                                     SelfOwn = ui_item.SelfOwn,
                                                     IsCheckedByHolder = true

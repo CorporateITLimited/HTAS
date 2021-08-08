@@ -54,7 +54,7 @@ namespace HoldingTaxWebApp.Controllers
                     return View(user);
                 }
 
-               user.Password = PasswordHelper.EncryptPass(user.Password);
+                user.Password = PasswordHelper.EncryptPass(user.Password);
 
                 user.LogInTime = DateTime.Now;
                 user.LogOutTime = null;
@@ -105,18 +105,20 @@ namespace HoldingTaxWebApp.Controllers
                 }
                 else if (logInCredentialVM.CommonEntity.Result == 401)
                 {
-                    TempData["EM"] = "warning | Invalid Username or Password.";
+                    ModelState.AddModelError("", "সতর্কতা | ভুল ইউজারনেইম বা পাসওয়ার্ড");
                     return View();
                 }
                 else /*if (logInCredentialVM.CommonEntity.Result == 500)*/
                 {
-                    TempData["EM"] = "warning | Bad Request.";
-                    return View(user);
+                    ModelState.AddModelError("", "সতর্কতা | সার্ভারের বা নেটওয়ার্কের ত্রুটি");
+                    return View();
                 }
             }
             catch (Exception exception)
             {
-                return Content("Error =>  " + exception.Message.ToString());
+                //return Content();
+                ModelState.AddModelError("", "Error =>  " + exception.Message.ToString());
+                return View(user);
             }
 
         }

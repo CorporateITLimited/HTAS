@@ -408,7 +408,8 @@
                                             <div class="pb-5" data-wizard-type="step-content">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
                                                     ফ্ল্যাটসমূহের বিবরণ &nbsp;
-                                                    <label class="show_plot"></label>
+                                                    <label id="for_owner" class="text text-danger">যদি গৃহকরদাতা নিজেই প্লট এর মালিক হোন তাহলে গৃহকরদাতাকে একটা একটা করে ঐ নির্দিষ্ট প্লট এর জন্য সকল ফ্ল্যাট সাবমিট করতে হবে </label>
+                                                    <label id="for_not_owner" class="text text-danger">যদি গৃহকরদাতা নিজেই প্লট এর মালিক না  হোন তাহলে গৃহকরদাতাকে ঐ নির্দিষ্ট প্লট এর নির্দিষ্ট  ফ্ল্যাট সমূহকে  টিক দিতে হবে</label>
                                                 </div>
                                                 <div class="row m-2">
                                                     <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
@@ -420,8 +421,10 @@
                                                                 <th>নিজ বসতি/ভাড়া </th>
                                                                 <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
                                                                 <th>সম্পত্তির ধরন</th>
-                                                                @*<th>মালিকানা </th>*@
-                                                                <th id="mess_for_flat"> <button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button></th>
+                                                                <th>
+                                                                    <button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button>
+                                                                    <span id="mess_for_flat">নিজস্ব মালিকানার ফ্ল্যাট হলে টিক দিন </span>
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="text-center"></tbody>
@@ -724,9 +727,10 @@
                 var isHolderOwner = $('#IsHolderAnOwner').val();
 
                 if (isHolderOwner === 'false') {
-
+                    $('#for_owner').hide();
+                    $('#for_not_owner').show();
                     $('#add_new_details').hide();
-
+                    $('#mess_for_flat').show();
                     var plotId = parseInt($('#PlotId option:selected').val()) || 0;
                     var flat_details_table = $('#flat_details tbody');
                     var json = {
@@ -751,10 +755,11 @@
                                     '@foreach (var item in ViewBag.OwnOrRent)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
                                     '<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" placeholder="0" /></td>' +
-                                    '<td width="15%;">' +
+                                    @*'<td width="15%;">' +
                                     '    <select class="form-control SelfOwned">' +
                                     '@foreach (var item in ViewBag.SelfOwned)
-                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +*@
+                                    '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
                                     '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
                             });
 
@@ -777,7 +782,9 @@
                         }
                     });
                 } else {
-                    //$("#mess_for_flat").text("");
+                    $('#for_owner').show();
+                    $('#for_not_owner').hide();
+                    $('#mess_for_flat').hide();
                     $('#flat_details tbody').empty();
                     $('#add_new_details').show();
                 }

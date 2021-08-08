@@ -14,7 +14,7 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">হোল্ডারদের বার্তা</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">মেসেজ বক্স</h5>
                 @*<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item text-muted">
                             <a href="" class="text-muted">Crud</a>
@@ -34,7 +34,7 @@
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
                 <div class="card-title">
                     <h3 class="card-label">
-                        বার্তা তালিকা
+                        মেসেজ বক্স
                     </h3>
                 </div>
                 <div class="card-toolbar">
@@ -90,7 +90,7 @@
                             <th>@Html.DisplayNameFor(model => model.StringSolvedDate)</th>
 
                             @*<th>@Html.DisplayNameFor(model => model.Remarks)</th>*@
-                          
+
 
                             <th></th>
 
@@ -104,10 +104,29 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.HolderName)
                                 </td>
-                               
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.StatusName)
-                                    </td>
+
+                                <td>
+                                    @if (item.StatusTypeId == 1)
+                                    {
+                                        <span style="color:blue"> @Html.DisplayFor(modelItem => item.StatusName) </span>
+                                    }
+                                    else if (item.StatusTypeId == 2)
+                                    {
+                                        <span class="text-warning"> @Html.DisplayFor(modelItem => item.StatusName) </span>
+
+                                    }
+                                    else if (item.StatusTypeId == 3)
+                                    {
+                                        <span style="color:forestgreen"> @Html.DisplayFor(modelItem => item.StatusName) </span>
+
+                                    }
+                                    else if (item.StatusTypeId == 4)
+                                    {
+                                        <span style="color:red"> @Html.DisplayFor(modelItem => item.StatusName) </span>
+
+                                    }
+
+                                </td>
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Subject)
@@ -118,17 +137,17 @@
 
                                 </td>
                                 @*<td>
-                                    @Html.DisplayFor(modelItem => item.Remarks)
-                                </td>*@
+                                        @Html.DisplayFor(modelItem => item.Remarks)
+                                    </td>*@
 
 
                                 <td>
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Edit/@item.IssueId" title="Edit">
+                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Edit/@item.IssueId" title="হালনাগাদ পেজে যান">
                                         <b> <i class="fa fa-edit"></i>  </b>
                                     </a>
                                     @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Details/@item.IssueId" title="Details View">
-                                        <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                    </a>*@
+                                            <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                        </a>*@
                                 </td>
 
 

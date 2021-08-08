@@ -5,7 +5,7 @@
 @if (Model != null && Model.Count() > 0)
 {
     <table class="table table-bordered table-hover table-sm" width="100">
-        <thead class="text-left">
+        <thead class="thead-dark">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.HolderName)
@@ -75,15 +75,15 @@
     </table>
     <br />
     <table class="table table-bordered table-hover table-sm" width="100">
-        <thead>
+        <thead class="thead-dark">
             <tr>
-                <th>
+                <th class="font-size-h4-md">
                     <b>মোট নেট প্রদেয় করের পরিমাণ : &nbsp; @ViewBag.TotalNetPayableAmount</b>
                 </th>
-                <th>
+                <th class="font-size-h4-md">
                     <b> মোট প্রদেয় করের পরিমাণ : &nbsp; @ViewBag.TotalPaidAmount</b>
                 </th>
-                <th>
+                <th class="font-size-h4-md">
                     <b> মোট অপরিশোধিত করের পরিমাণ : &nbsp; @ViewBag.TotalUnPaidAmount </b>
                 </th>
             </tr>
