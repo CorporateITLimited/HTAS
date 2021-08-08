@@ -42,6 +42,6 @@ namespace HoldingTaxWebApp.ViewModels.Tax
         public string EmployeeName { get; set; }
         public decimal? RebateRate { get; set; }
         public decimal? DuesChargeRate { get; set; }
-        public bool? Ispaid { get; set; }
+        public bool Ispaid { get; set; }
     }
 }

@@ -60,6 +60,10 @@
                                     {
                                         <img src="~/Images/paid.png" height="50"/>
                                     }
+                                    else
+                                    {
+                                        <img src="~/Images/Unpaid.jpg" height="50" />
+                                    }
                                 </div>
                                 <div class="h1 display-4 font-weight-boldest mb-10 flex-md-row">
                                     <span>ক্যান্টনমেন্ট বোর্ড, ঢাকা ক্যান্টনমেন্ট</span><br />
@@ -151,9 +155,15 @@
                             </div>
                         </div>
                     </div>
+                    <br />
+                    <br />
+                    <hr />
+                    <br />
+                    <br />
                     <!-- end: Invoice body-->
                     <!-- begin: Invoice footer-->
                     <div class="row justify-content-center bg-gray-100 py-8 px-8 py-md-10 px-md-0">
+                       
                         <div class="col-md-9">
                             <div class="table-responsive">
                                 <table class="" border="0" width="100%">
@@ -165,6 +175,20 @@
                                                     <img src="~/Images/paid.png" height="50" />
                                                 </td>
                                             </tr>}
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="3">
+                                                    <img src="~/Images/Unpaid.jpg" height="50" />
+                                                </td>
+                                            </tr>
+                                        }
+                                        <tr>
+                                            <td colspan="3">
+                                                <br />
+                                               <br />
+                                            </td>
+                                        </tr>
                                         <tr class="font-weight-bolder">
                                             <td width="30%">ফরম নং ক্যান্ট ৪-বি<br /> [ধারা ২৪ (১)]</td>
                                             <td class="text-center" width="40%">রশিদ</td>
