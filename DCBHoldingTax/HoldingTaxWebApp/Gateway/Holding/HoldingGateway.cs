@@ -544,6 +544,100 @@ namespace HoldingTaxWebApp.Gateway.Holding
 
         }
 
+        public List<HolderFlat> GetHoldersFlatByMainHolderId(int id)
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spHolderFlatMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "select_by_mainholderid";
+                Sql_Command.Parameters.Add("@MainHolderId", SqlDbType.Int).Value = id;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<HolderFlat> vm = new List<HolderFlat>();
+
+                while (Data_Reader.Read())
+                {
+                    HolderFlat model = new HolderFlat
+                    {
+                        HolderFlatId = Convert.ToInt32(Data_Reader["HolderFlatId"]),
+                        HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
+                        FlorNo = Data_Reader["FlorNo"] != DBNull.Value ? Convert.ToInt32(Data_Reader["FlorNo"]) : (int?)null,
+                        FlatNo = Convert.ToString(Data_Reader["FlatNo"]),
+                        FlatArea = Data_Reader["FlatArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["FlatArea"]) : (decimal?)null,
+                        OwnOrRent = Data_Reader["OwnOrRent"] != DBNull.Value ? Convert.ToInt32(Data_Reader["OwnOrRent"]) : (int?)null,
+                        OwnOrRentType = Convert.ToString(Data_Reader["OwnOrRentType"]),
+                        IsSelfOwned = Data_Reader["IsSelfOwned"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsSelfOwned"]) : (bool?)null,
+                        MonthlyRent = Data_Reader["MonthlyRent"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["MonthlyRent"]) : (decimal?)null,
+                        OwnerName = Convert.ToString(Data_Reader["OwnerName"]),
+                        SelfOwn = Data_Reader["SelfOwn"] != DBNull.Value ? Convert.ToInt32(Data_Reader["SelfOwn"]) : (int?)null,
+                        SelfOwnType = Convert.ToString(Data_Reader["SelfOwnType"]),
+                        CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
+                        // CreatedByUsername = Data_Reader["CreatedByUsername"].ToString(),
+                        //UpdatedByUsername = Data_Reader["UpdatedByUserName"].ToString(),
+                        LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null,
+                        IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null,
+                        IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
+                        CreatedBy = Data_Reader["CreatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
+                        LastUpdatedBy = Data_Reader["LastUpdatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null,
+                        FloorTypeName = Data_Reader["FloorTypeName"].ToString(),
+                        IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null
+                    };
+                    if (model.IsCheckedByHolder == true)
+                        model.SelfOwnType = "নিজস্ব মালিকানা";
+
+
+                    model.StrFlatArea = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.FlatArea);
+                    model.StrMonthlyRent = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.MonthlyRent);
+
+                    vm.Add(model);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
         public int HoldersFlatInsert(HolderFlat model)
         {
             try
@@ -560,6 +654,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
 
                 Sql_Command.Parameters.Add("@HolderFlatId", SqlDbType.Int).Value = model.HolderFlatId;
                 Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = model.HolderId;
+                Sql_Command.Parameters.Add("@MainHolderId", SqlDbType.Int).Value = model.MainHolderId;
                 Sql_Command.Parameters.Add("@FlorNo", SqlDbType.Int).Value = model.FlorNo;
                 Sql_Command.Parameters.Add("@FlatNo", SqlDbType.NVarChar).Value = model.FlatNo;
                 Sql_Command.Parameters.Add("@FlatArea", SqlDbType.Decimal).Value = model.FlatArea;
@@ -613,6 +708,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
             }
         }
 
+
         public int HoldersFlatUpdate(HolderFlat model)
         {
             try
@@ -625,10 +721,80 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     CommandType = CommandType.StoredProcedure
                 };
 
-                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Update;
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "update";
 
                 Sql_Command.Parameters.Add("@HolderFlatId", SqlDbType.Int).Value = model.HolderFlatId;
                 Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = model.HolderId;
+                Sql_Command.Parameters.Add("@MainHolderId", SqlDbType.Int).Value = model.MainHolderId;
+                Sql_Command.Parameters.Add("@FlorNo", SqlDbType.Int).Value = model.FlorNo;
+                Sql_Command.Parameters.Add("@FlatNo", SqlDbType.NVarChar).Value = model.FlatNo;
+                Sql_Command.Parameters.Add("@FlatArea", SqlDbType.Decimal).Value = model.FlatArea;
+                Sql_Command.Parameters.Add("@OwnOrRent", SqlDbType.Int).Value = model.OwnOrRent;
+                Sql_Command.Parameters.Add("@IsSelfOwned", SqlDbType.Bit).Value = model.IsSelfOwned;
+                Sql_Command.Parameters.Add("@OwnerName", SqlDbType.NVarChar).Value = model.OwnerName;
+                Sql_Command.Parameters.Add("@MonthlyRent", SqlDbType.Decimal).Value = model.MonthlyRent;
+                Sql_Command.Parameters.Add("@SelfOwn", SqlDbType.Int).Value = model.SelfOwn;
+                Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = model.CreateDate;
+                Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = model.CreatedBy;
+                Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = model.LastUpdated;
+                Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = model.LastUpdatedBy;
+                Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
+                Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
+                Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = model.IsCheckedByHolder;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+        public int HoldersFlatUpdateForMainHolder(HolderFlat model)
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spHolderFlatMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "insert_update";
+
+                Sql_Command.Parameters.Add("@HolderFlatId", SqlDbType.Int).Value = model.HolderFlatId;
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = model.HolderId;
+                Sql_Command.Parameters.Add("@MainHolderId", SqlDbType.Int).Value = model.MainHolderId;
                 Sql_Command.Parameters.Add("@FlorNo", SqlDbType.Int).Value = model.FlorNo;
                 Sql_Command.Parameters.Add("@FlatNo", SqlDbType.NVarChar).Value = model.FlatNo;
                 Sql_Command.Parameters.Add("@FlatArea", SqlDbType.Decimal).Value = model.FlatArea;
@@ -764,7 +930,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 {
                     HolderFlat model = new HolderFlat
                     {
-                        //HolderFlatId = Convert.ToInt32(Data_Reader["HolderFlatId"]),
+                        HolderFlatId = Convert.ToInt32(Data_Reader["HolderFlatId"]),
                         //HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         FlorNo = Data_Reader["FlorNo"] != DBNull.Value ? Convert.ToInt32(Data_Reader["FlorNo"]) : (int?)null,
                         FlatNo = Convert.ToString(Data_Reader["FlatNo"]),
@@ -838,7 +1004,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 {
                     HolderFlat model = new HolderFlat
                     {
-                        //HolderFlatId = Convert.ToInt32(Data_Reader["HolderFlatId"]),
+                        HolderFlatId = Convert.ToInt32(Data_Reader["HolderFlatId"]),
                         // HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         FlorNo = Data_Reader["FlorNo"] != DBNull.Value ? Convert.ToInt32(Data_Reader["FlorNo"]) : (int?)null,
                         FlatNo = Convert.ToString(Data_Reader["FlatNo"]),

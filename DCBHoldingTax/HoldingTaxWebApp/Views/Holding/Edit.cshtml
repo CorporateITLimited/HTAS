@@ -528,7 +528,7 @@
                                                                                     <option value="@item.SelfOwn">@item.SelfOwnType</option>
                                                                                     @foreach (var own_ in ViewBag.SelfOwned)
                                                                                     {
-                                                                                        if (item.OwnOrRent != own_.TypeId)
+                                                                                        if (item.SelfOwn != own_.TypeId)
                                                                                         {
                                                                                             <option value="@own_.TypeId">
                                                                                                 @own_.TypeName
@@ -538,7 +538,29 @@
                                                                                 </select>
                                                                             </td>
                                                                             @*<td width="13%;"><input type="text" class="form-control OwnerName" value="@item.OwnerName" /></td>*@
-                                                                            <td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td>
+
+                                                                            @if (item.SelfOwn == 1)
+                                                                            {
+                                                                            <td width="15%;">
+                                                                                মালিকানা :  নিজস্ব মালিকানা
+                                                                                @*<button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button>*@
+                                                                            </td>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                if (string.IsNullOrWhiteSpace(item.OwnerName))
+                                                                                {
+                                                                                <td width="15%;">
+                                                                                    ফ্ল্যাটের কোনো মালিকানা নেই
+                                                                                </td>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <td width="15%;">
+                                                                                        মালিকানা : @item.OwnerName
+                                                                                    </td>
+                                                                                }
+                                                                            }
                                                                         </tr>
                                                                     }
                                                                 }
@@ -1078,8 +1100,8 @@
                     '    <select class="form-control SelfOwned">' +
                     '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
-                    '<td width="13%;"><input type="text" class="form-control OwnerName" /></td>' +
-                    '<td width="5%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr>');
+                    //'<td width="13%;"><input type="text" class="form-control OwnerName" /></td>' +
+                    '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr>');
             });
 
             $('#flat_details tbody').on('click', '.remove', function (e) {
