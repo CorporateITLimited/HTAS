@@ -2,6 +2,19 @@
 @{
     ViewBag.Title = "Invoice";
 }
+@section sheets{
+    <style>
+        .canthead {
+            text-align:center;
+            justify-content:center !important;
+        }
+
+        
+    </style>
+
+}
+
+
 <!--begin::Subheader-->
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -54,56 +67,40 @@
                         <div class="col-md-1">
                             @if (Model.Ispaid == true)
                             {
-                                <img src="~/Images/paid.png" height="50" />
+                                <img src="~/Images/paid.png" height="120" />
                             }
                             else
                             {
-                                <img src="~/Images/Unpaid.jpg" height="50" />
+                                <img src="~/Images/Unpaid.png" height="120" />
                             }
                         </div>
                     </div>
                     <div class="row justify-content-center py-8 px-8 py-md-27 px-md-0">
                         @*<div class="col-md-1">
-                            @if (Model.Ispaid == true)
-                            {
-                                <img src="~/Images/paid.png" height="50" />
-                            }
-                            else
-                            {
-                                <img src="~/Images/Unpaid.jpg" height="50" />
-                            }
-                        </div>
-                        <div class="col-md-1"></div>*@
+                                @if (Model.Ispaid == true)
+                                {
+                                    <img src="~/Images/paid.png" height="50" />
+                                }
+                                else
+                                {
+                                    <img src="~/Images/Unpaid.png" height="50" />
+                                }
+                            </div>
+                            <div class="col-md-1"></div>*@
                         <div class="col-md-9">
-                            <div class="d-flex justify-content-between pb-10 pb-md-20 flex-column flex-md-row">
-                          
-                        
-                                <div class="display-4 font-weight-boldest mb-10 flex-md-row">
-                                   
-                                </div>
-                                <div class="h1 display-4 font-weight-boldest mb-10 flex-md-row">
+                            <div class="d-flex justify-content-between pb-10 pb-md-20 flex-column flex-md-row canthead">
+
+
+
+                                <div class="h1 display-4 font-weight-boldest flex-md-row canthead">
                                     <span>ক্যান্টনমেন্ট বোর্ড, ঢাকা ক্যান্টনমেন্ট</span><br />
                                     @*<span>www.canttboard-dhaka.gov.bd</span>*@
                                 </div>
-                                <div class="display-4 font-weight-boldest mb-10 flex-md-row">
-                                    রশিদ
-                                </div>
-                                @*<div class="d-flex flex-column align-items-md-end px-0">
-                                    <!--begin::Logo-->
-                                    <a href="#" class="mb-5">
-                                        @if (Model.Ispaid == true)
-                                        {
-                                            <img src="~/Images/paid.png" />
-                                        }
 
-
-                                    </a>
-                                    <!--end::Logo-->
-                                    <span class="d-flex flex-column align-items-md-end opacity-70">
-                                        <span>ক্যান্টনমেন্ট বোর্ড, ঢাকা ক্যান্টনমেন্ট</span>
-                                        <span>www.canttboard-dhaka.gov.bd</span>
-                                    </span>
-                                </div>*@
+                                
+                            </div>
+                            <div class="display-4 font-weight-bolder mb-10 flex-md-row-auto">
+                                রশিদ
                             </div>
                             <div class="border-bottom w-100"></div>
                             <div class="d-flex justify-content-between pt-6">
@@ -183,39 +180,39 @@
                         <div class="col-md-1">
                             @if (Model.Ispaid == true)
                             {
-                                <img src="~/Images/paid.png" height="50" />
+                                <img src="~/Images/paid.png" height="120" />
                             }
                             else
                             {
-                                <img src="~/Images/Unpaid.jpg" height="50" />
+                                <img src="~/Images/Unpaid.png" height="120" />
                             }
                         </div>
                     </div>
                     <div class="row justify-content-center bg-gray-100 py-8 px-8 py-md-10 px-md-0">
-                       
+
                         <div class="col-md-9">
                             <div class="table-responsive">
                                 <table class="" border="0" width="100%">
                                     <thead>
                                         @*@if (Model.Ispaid == true)
-                                        {
-                                            <tr>
-                                                <td colspan="3">
-                                                    <img src="~/Images/paid.png" height="50" />
-                                                </td>
-                                            </tr>}
-                                        else
-                                        {
-                                            <tr>
-                                                <td colspan="3">
-                                                    <img src="~/Images/Unpaid.jpg" height="50" />
-                                                </td>
-                                            </tr>
-                                        }*@
+                                            {
+                                                <tr>
+                                                    <td colspan="3">
+                                                        <img src="~/Images/paid.png" height="50" />
+                                                    </td>
+                                                </tr>}
+                                            else
+                                            {
+                                                <tr>
+                                                    <td colspan="3">
+                                                        <img src="~/Images/Unpaid.png" height="50" />
+                                                    </td>
+                                                </tr>
+                                            }*@
                                         <tr>
                                             <td colspan="3">
                                                 <br />
-                                               <br />
+                                                <br />
                                             </td>
                                         </tr>
                                         <tr class="font-weight-bolder">
@@ -234,7 +231,7 @@
                                         </tr>
                                         <tr class="font-weight-bolder">
                                             <td colspan="3">রশিদ নং : @Model.invoiceNo</td>
-                                           
+
                                         </tr>
                                         <tr class="font-weight-bolder">
                                             <td colspan="3">
@@ -242,7 +239,7 @@
                                                     জনাব @Model.HolderName <br />
                                                     হইতে @Model.FinancialYear আর্থিক সনের উপর গৃহকর বাবদ
                                                     প্রাপ্ত <br />টাকা (কথায়) .......................................................................টাকা
-                                                   <br />
+                                                    <br />
                                                     (@Model.NetTaxPayableAmount  টাকা)
 
                                                 </p>
@@ -299,14 +296,18 @@
             $("#print_this").on('click', function (e) {
                 e.preventDefault();
                 $("#print_div").printThis({
-                    header: $('#print_header')
+                    header: $('#print_header'),
+                    importCSS: true,
+                    importStyle: true
                 });
             });
 
-         $("#print_this2").on('click', function (e) {
+            $("#print_this2").on('click', function (e) {
                 e.preventDefault();
                 $("#print_div").printThis({
-                    header: $('#print_header')
+                    header: $('#print_header'),
+                    importCSS: true,
+                    importStyle: true
                 });
             });
         });
