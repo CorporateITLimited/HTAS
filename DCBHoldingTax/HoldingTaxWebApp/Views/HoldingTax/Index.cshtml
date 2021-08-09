@@ -217,83 +217,87 @@
 {
     <script>
         jQuery(document).ready(function () {
-          
+            var nxt = "@ViewBag.IsHolder";
+            if (nxt === "yes") {
                 $('#int_table tbody tr:first-child').addClass('firstrow');
+            } else {
+                $('#int_table tbody tr:first-child').removeClass('firstrow');
+            }
 
-                $('#FinancialYearId').select2({
-                            placeholder: "--নির্বাচন করুন--",
-                    allowClear: true
-                });
-                $('#AreaId').select2({
-                        placeholder: "--নির্বাচন করুন--",
-                    allowClear: true
-                });
-                $('#PlotId').select2({
-                        placeholder: "--নির্বাচন করুন--",
-                    allowClear: true
-                });
-
-                $("#initial_result").show();
-
-                $('#kt_datatable').KTDatatable({
-                        search: {
-                            input: $('#kt_datatable_search_query'),
-                        key: 'generalSearch',
-                    },
-                    layout: {
-                        class: 'datatable-bordered',
-                    }
+            $('#FinancialYearId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#AreaId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#PlotId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
             });
 
-                $("#AreaId").change(function () {
+            $("#initial_result").show();
+
+            $('#kt_datatable').KTDatatable({
+                search: {
+                    input: $('#kt_datatable_search_query'),
+                    key: 'generalSearch',
+                },
+                layout: {
+                    class: 'datatable-bordered',
+                }
+            });
+
+            $("#AreaId").change(function () {
                 var areaId = $("#AreaId").val();
 
                 var json = {
-                        AreaId: areaId
-                    };
-                    $.ajax({
-            url: '@Url.Action("GetAllPlotByAreaId", "Holding")',
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify(json),
-                        success: function (data) {
-                    if (data.length === 0) {
-                        Swal.fire(
-                            'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'info'
-                        )
-                                }
-                    else {
-                                $("#PlotId").empty();
-                                $("#PlotId").append("<option value=''>--নির্বাচন করুন--</option>");
-                                $.each(data, function (index, row) {
-                                    $("#PlotId").append("<option value='" + row.PlotId + "'>" + row.PlotNo + "</option>");
-                        });
-                    }
-                },
-                        error: function () {
-                    Swal.fire(
-                        'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'error'
-                    )
+                    AreaId: areaId
+                };
+                $.ajax({
+                    url: '@Url.Action("GetAllPlotByAreaId", "Holding")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        if (data.length === 0) {
+                            Swal.fire(
+                                'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'info'
+                            )
                         }
-            });
+                        else {
+                            $("#PlotId").empty();
+                            $("#PlotId").append("<option value=''>--নির্বাচন করুন--</option>");
+                            $.each(data, function (index, row) {
+                                $("#PlotId").append("<option value='" + row.PlotId + "'>" + row.PlotNo + "</option>");
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'error'
+                        )
+                    }
                 });
+            });
 
-                $("#search_button").click(function (e) {
+            $("#search_button").click(function (e) {
                 e.preventDefault();
                 var yearId = parseInt($("#FinancialYearId").val()) || 0;
                 var areaId = parseInt($("#AreaId").val()) || 0;
                 var plotId = parseInt($("#PlotId").val()) || 0;
 
-                    $("#initial_result").hide();
-                    $("#search-result").empty();
-                    $("#search-result").load("/HoldingTax/PartialIndex", { AreaId: areaId, FinancialYearId: yearId,  PlotId: plotId });
+                $("#initial_result").hide();
+                $("#search-result").empty();
+                $("#search-result").load("/HoldingTax/PartialIndex", { AreaId: areaId, FinancialYearId: yearId, PlotId: plotId });
             });
 
-                $("#reset_button").click(function () {
+            $("#reset_button").click(function () {
                 location.reload();
             });
 
-            });
+        });
     </script>
 
 
