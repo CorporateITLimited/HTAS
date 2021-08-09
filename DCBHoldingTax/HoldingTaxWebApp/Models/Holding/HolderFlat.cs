@@ -14,6 +14,8 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "হোল্ডার আইডি")]
         public int? HolderId { get; set; }
 
+        public int? MainHolderId { get; set; }
+
         [Display(Name = "ফ্লোর নং")]
         public int? FlorNo { get; set; }
 

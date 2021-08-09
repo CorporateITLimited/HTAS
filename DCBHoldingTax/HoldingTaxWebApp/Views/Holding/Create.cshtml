@@ -746,6 +746,7 @@
                             //$("#mess_for_flat").text("নিজের ফ্ল্যাট হলে টিক দিন");
                             $(data).each(function (index, pid) {
                                 flat_details_table.append('<tr>' +
+                                    '<input type="hidden" id="HolderFlatId" value=' + pid.HolderFlatId + ' class="HolderFlatId" />' +
                                     '<input type="hidden" id="FlorNo" value=' + pid.FlorNo + ' class="FlorNo" />' +
                                     '<td width="10%;">' + pid.FloorTypeName + '</td>' +
                                     '<td width="13%;" class="FlatNo">' + pid.FlatNo + '</td>' +

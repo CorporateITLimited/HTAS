@@ -494,7 +494,19 @@
                                                 <td>@item.OwnOrRentType</td>
                                                 <td>@item.StrMonthlyRent </td>
                                                 <td>@item.SelfOwnType </td>
-                                                <td>@item.OwnerName</td>
+                                                @if (string.IsNullOrWhiteSpace(item.OwnerName))
+                                                {
+                                                    <td>
+                                                        ফ্ল্যাটের কোনো মালিকানা নেই
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.OwnerName
+                                                    </td>
+                                                }
+
                                             </tr>
                                         }
                                     </tbody>
