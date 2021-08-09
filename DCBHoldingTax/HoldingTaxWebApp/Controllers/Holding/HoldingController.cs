@@ -1434,6 +1434,42 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                                     status = "success";
                                                 }
                                             }
+                                            else
+                                            {
+                                                HolderFlat details = new HolderFlat()
+                                                {
+                                                    CreateDate = null,
+                                                    CreatedBy = null,
+                                                    FlatArea = null,
+                                                    FlatNo = null,
+                                                    FlorNo = null,
+                                                    HolderFlatId = ui_item.HolderFlatId,
+                                                    HolderId = null,
+                                                    IsActive = null,
+                                                    IsDeleted = null,
+                                                    LastUpdated = null,
+                                                    LastUpdatedBy = null,
+                                                    IsSelfOwned = false,
+                                                    MonthlyRent = 0,
+                                                    OwnerName = null,
+                                                    OwnOrRent = 1,
+                                                    SelfOwn = 2,
+                                                    IsCheckedByHolder = false,
+                                                    MainHolderId = null
+                                                };
+
+                                                string returnString = _holdingManager.HoldersFlatUpdateForMainHolder(details);
+                                                if (returnString != CommonConstantHelper.Success)
+                                                {
+                                                    status = "Operation failed in child table";
+                                                    return new JsonResult { Data = new { status } };
+                                                }
+                                                else
+                                                {
+                                                    status = "success";
+                                                }
+
+                                            }
                                         }
                                     }
                                     else
