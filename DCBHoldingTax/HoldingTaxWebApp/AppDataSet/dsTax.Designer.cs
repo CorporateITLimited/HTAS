@@ -1028,6 +1028,12 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             private global::System.Data.DataColumn columnEmployeeName;
             
+            private global::System.Data.DataColumn columnTotalTaxWithSurchargeWronginfo;
+            
+            private global::System.Data.DataColumn columnTotalwithRebate;
+            
+            private global::System.Data.DataColumn columnTotalTaxFy;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtHoldingTaxDataTable() {
@@ -1607,6 +1613,30 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalTaxWithSurchargeWronginfoColumn {
+                get {
+                    return this.columnTotalTaxWithSurchargeWronginfo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalwithRebateColumn {
+                get {
+                    return this.columnTotalwithRebate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalTaxFyColumn {
+                get {
+                    return this.columnTotalTaxFy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1707,7 +1737,10 @@ namespace HoldingTaxWebApp.AppDataSet {
                         decimal TotalTaxWithSurchargeDue, 
                         decimal rebateNew, 
                         decimal TotalNet, 
-                        string EmployeeName) {
+                        string EmployeeName, 
+                        decimal TotalTaxWithSurchargeWronginfo, 
+                        decimal TotalwithRebate, 
+                        decimal TotalTaxFy) {
                 dtHoldingTaxRow rowdtHoldingTaxRow = ((dtHoldingTaxRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1777,7 +1810,10 @@ namespace HoldingTaxWebApp.AppDataSet {
                         TotalTaxWithSurchargeDue,
                         rebateNew,
                         TotalNet,
-                        EmployeeName};
+                        EmployeeName,
+                        TotalTaxWithSurchargeWronginfo,
+                        TotalwithRebate,
+                        TotalTaxFy};
                 rowdtHoldingTaxRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtHoldingTaxRow);
                 return rowdtHoldingTaxRow;
@@ -1868,6 +1904,9 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnrebateNew = base.Columns["rebateNew"];
                 this.columnTotalNet = base.Columns["TotalNet"];
                 this.columnEmployeeName = base.Columns["EmployeeName"];
+                this.columnTotalTaxWithSurchargeWronginfo = base.Columns["TotalTaxWithSurchargeWronginfo"];
+                this.columnTotalwithRebate = base.Columns["TotalwithRebate"];
+                this.columnTotalTaxFy = base.Columns["TotalTaxFy"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2009,6 +2048,12 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnTotalNet);
                 this.columnEmployeeName = new global::System.Data.DataColumn("EmployeeName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmployeeName);
+                this.columnTotalTaxWithSurchargeWronginfo = new global::System.Data.DataColumn("TotalTaxWithSurchargeWronginfo", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalTaxWithSurchargeWronginfo);
+                this.columnTotalwithRebate = new global::System.Data.DataColumn("TotalwithRebate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalwithRebate);
+                this.columnTotalTaxFy = new global::System.Data.DataColumn("TotalTaxFy", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalTaxFy);
                 this.columnHoldingTaxId.AutoIncrement = true;
                 this.columnHoldingTaxId.AutoIncrementSeed = -1;
                 this.columnHoldingTaxId.AutoIncrementStep = -1;
@@ -6379,6 +6424,55 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TotalTaxWithSurchargeWronginfo {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.TotalTaxWithSurchargeWronginfoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalTaxWithSurchargeWronginfo\' in table \'dtHoldingTax\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.TotalTaxWithSurchargeWronginfoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TotalwithRebate {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.TotalwithRebateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalwithRebate\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.TotalwithRebateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TotalTaxFy {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.TotalTaxFyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalTaxFy\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.TotalTaxFyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTotalRentNull() {
                 return this.IsNull(this.tabledtHoldingTax.TotalRentColumn);
             }
@@ -7155,6 +7249,42 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetEmployeeNameNull() {
                 this[this.tabledtHoldingTax.EmployeeNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotalTaxWithSurchargeWronginfoNull() {
+                return this.IsNull(this.tabledtHoldingTax.TotalTaxWithSurchargeWronginfoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotalTaxWithSurchargeWronginfoNull() {
+                this[this.tabledtHoldingTax.TotalTaxWithSurchargeWronginfoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotalwithRebateNull() {
+                return this.IsNull(this.tabledtHoldingTax.TotalwithRebateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotalwithRebateNull() {
+                this[this.tabledtHoldingTax.TotalwithRebateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotalTaxFyNull() {
+                return this.IsNull(this.tabledtHoldingTax.TotalTaxFyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotalTaxFyNull() {
+                this[this.tabledtHoldingTax.TotalTaxFyColumn] = global::System.Convert.DBNull;
             }
         }
         

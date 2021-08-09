@@ -2389,6 +2389,7 @@
     <Content Include="Images\Logo_DCB.jpg" />
     <Content Include="Images\paid.png" />
     <Content Include="Images\Unpaid_1.jpg" />
+    <Content Include="Images\Unpaid.jpg" />
     <Content Include="Images\Unpaid.png" />
     <Content Include="libman.json" />
     <Content Include="Scripts\bootstrap.bundle.js" />

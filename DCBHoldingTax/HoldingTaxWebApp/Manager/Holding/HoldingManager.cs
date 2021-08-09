@@ -47,6 +47,11 @@ namespace HoldingTaxWebApp.Manager.Holding
             return _holdingGateway.GetHoldersFlatByHolderId(id);
         }
 
+        public List<HolderFlat> GetHoldersFlatByMainHolderId(int id)
+        {
+            return _holdingGateway.GetHoldersFlatByMainHolderId(id);
+        }
+
         public string HoldersFlatInsert(HolderFlat model)
         {
             int result = _holdingGateway.HoldersFlatInsert(model);
@@ -62,6 +67,18 @@ namespace HoldingTaxWebApp.Manager.Holding
         public string HoldersFlatUpdate(HolderFlat model)
         {
             int result = _holdingGateway.HoldersFlatUpdate(model);
+
+            if (result == 202)
+                return CommonConstantHelper.Success;
+            else if (result == 500)
+                return CommonConstantHelper.Error;
+            else
+                return CommonConstantHelper.Failed;
+        }
+
+        public string HoldersFlatUpdateForMainHolder(HolderFlat model)
+        {
+            int result = _holdingGateway.HoldersFlatUpdateForMainHolder(model);
 
             if (result == 202)
                 return CommonConstantHelper.Success;

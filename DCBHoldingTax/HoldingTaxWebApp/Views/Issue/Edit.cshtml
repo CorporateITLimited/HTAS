@@ -141,7 +141,7 @@
                             {
                                 <div class="font-weight-bold m-0">
 
-                                    @Html.DropDownListFor(model => model.StatusTypeId, null, "-- Select Designation --", new
+                                    @Html.DropDownListFor(model => model.StatusTypeId, null, "-- নির্বাচন করুন --", new
                                {
                                    @class = "form-control",
                                    @name = "StatusTypeId",
@@ -176,16 +176,17 @@
                             <div class="form-control border-0" style="height: 250px; padding-top:10px">
                                 <textarea class="border-0" id="MsgDetails" style="padding-top:10px; width:100%" rows="7"></textarea>
                             </div>
-
-                            <input type="file" name="document_file_1" id="document_file_1" />
-                            <span class="form-text text-info">
-                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
-                            </span>
-                            <br />
-                            <input type="file" name="document_file_2" id="document_file_2" />
-                            <span class="form-text text-info">
-                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
-                            </span>
+                            <div class="ml-5">
+                                <input type="file" name="document_file_1" id="document_file_1" class="btn btn-bg-info btn-info"/>
+                                <span class="form-text text-info">
+                                    সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                </span>
+                                <br />
+                                <input type="file" name="document_file_2" id="document_file_2" class="btn btn-bg-info btn-info"/>
+                                <span class="form-text text-info">
+                                    সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                </span>
+                            </div>
                             <!--end::Attachments-->
                         </div>
                         <!--end::Body-->

@@ -215,6 +215,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                                                 Convert.ToDecimal(Data_Reader["TotalNetPayableAmount"]) : (Decimal?)null,
                         TotalPaidAmount = Data_Reader["TotalPaidAmount"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["TotalPaidAmount"]) : (Decimal?)null,
+                        IsPaid = Data_Reader["IsPaid"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsPaid"]) : (bool?)null,
                     };
 
                     holdingtax.TotalUnPaidAmount = holdingtax.TotalNetPayableAmount - holdingtax.TotalPaidAmount;
@@ -808,7 +809,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                     vm.EmployeeName = Data_Reader["EmployeeName"].ToString();
                     vm.RebateRate = Data_Reader["RebateRate"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["RebateRate"]) : (decimal?)null;
                     vm.DuesChargeRate = Data_Reader["DuesChargeRate"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["DuesChargeRate"]) : (decimal?)null;
-                    vm.Ispaid = Data_Reader["Ispaid"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["Ispaid"]) : (bool?)null;
+                    vm.Ispaid =  Convert.ToBoolean(Data_Reader["IsPaid"]);
 
 
 

@@ -74,7 +74,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     if (model.NoticeTypeId == 1)
                         model.NoticeName = "গৃহকরের প্রাথমিক বিজ্ঞপ্তি দেখুন";
                     else if (model.NoticeTypeId == 2)
-                        model.NoticeName = "রিবেটসহ গৃহকর প্রাপ্তির বিজ্ঞপ্তি দেখুন";
+                        model.NoticeName = "রিবেটসহ গৃহকর প্রদানের বিজ্ঞপ্তি দেখুন";
                     else if (model.NoticeTypeId == 3)
                         model.NoticeName = "গৃহকরের চূড়ান্ত বিজ্ঞপ্তি দেখুন";
 
@@ -334,7 +334,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     if (model.NoticeTypeId == 1)
                         model.NoticeName = "গৃহকরের প্রাথমিক বিজ্ঞপ্তি দেখুন";
                     else if (model.NoticeTypeId == 2)
-                        model.NoticeName = "রিবেটসহ গৃহকর প্রাপ্তির বিজ্ঞপ্তি দেখুন";
+                        model.NoticeName = "রিবেটসহ গৃহকর প্রদানের বিজ্ঞপ্তি দেখুন";
                     else if (model.NoticeTypeId == 3)
                         model.NoticeName = "গৃহকরের চূড়ান্ত বিজ্ঞপ্তি দেখুন";
 
@@ -493,7 +493,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     if (model.NoticeTypeId == 1)
                         model.NoticeName = "গৃহকরের প্রাথমিক বিজ্ঞপ্তি দেখুন";
                     else if (model.NoticeTypeId == 2)
-                        model.NoticeName = "রিবেটসহ গৃহকর প্রাপ্তির বিজ্ঞপ্তি দেখুন";
+                        model.NoticeName = "রিবেটসহ গৃহকর প্রদানের বিজ্ঞপ্তি দেখুন";
                     else if (model.NoticeTypeId == 3)
                         model.NoticeName = "গৃহকরের চূড়ান্ত বিজ্ঞপ্তি দেখুন";
 

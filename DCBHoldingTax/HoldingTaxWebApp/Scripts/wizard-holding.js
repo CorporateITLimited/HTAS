@@ -92,6 +92,7 @@ var KTWizard4 = function () {
                         });
                     } else {
                         $('#flat_details tbody tr').each(function (index, ele) {
+                            var holderFlatId = parseInt($('.HolderFlatId', this).val()) || 0;
                             var florNo = parseInt($('.FlorNo', this).val()) || 0;
                             var flatNo = $('.FlatNo', this).html();
                             var flatArea = parseFloat($('.FlatArea', this).html()) || 0;
@@ -102,7 +103,7 @@ var KTWizard4 = function () {
                             var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
 
                             var detailsData = {
-                                HolderFlatId: 0,
+                                HolderFlatId: holderFlatId,
                                 FlorNo: florNo,
                                 FlatNo: flatNo,
                                 FlatArea: flatArea,

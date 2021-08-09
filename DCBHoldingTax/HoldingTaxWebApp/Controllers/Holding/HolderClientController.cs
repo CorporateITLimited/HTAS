@@ -50,7 +50,11 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 if (holder == null)
                     return HttpNotFound();
 
-                List<HolderFlat> listOfHolders = _holdingManager.GetHoldersFlatByHolderId(id);
+                List<HolderFlat> listOfHolders = new List<HolderFlat>();
+                if (holder.IsHolderAnOwner == true)
+                    listOfHolders = _holdingManager.GetHoldersFlatByHolderId(id);
+                else
+                    listOfHolders = _holdingManager.GetHoldersFlatByMainHolderId(id);
                 //if (listOfHolders == null || listOfHolders.Count() <= 0)
                 //    return HttpNotFound();
 

@@ -73,7 +73,19 @@ namespace HoldingTaxWebApp.Controllers.Tax
             ViewBag.TotalPaidAmount_ = firstRow.TotalPaidAmount;
             ViewBag.TotalUnPaidAmount_ = firstRow.TotalUnPaidAmount;
 
-            ViewBag.ListOfData = data;
+            if (Session[CommonConstantHelper.UserTypeId].ToString() == "2")
+            {
+                var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
+                ViewBag.ListOfData = _holdingTaxManager.GetAllHoldingTaxForHolder(HolderId);
+                ViewBag.IsHolder = "yes";
+            }
+            else
+            {
+                ViewBag.ListOfData = data;
+                ViewBag.IsHolder = "no";
+            }
+
+           
 
             return View();
         }
@@ -301,14 +313,14 @@ namespace HoldingTaxWebApp.Controllers.Tax
             invoice.StringFEndDate = $"{invoice.FEndDate:dd/MM/yyyy}";
             invoice.StringoldDate = $"{invoice.oldDate:dd/MM/yyyy}";
 
-            if (invoice.NetTaxPayableAmount >= invoice.PaidAmount)
-            {
-                invoice.Ispaid = true;
-            }
-            else
-            {
-                invoice.Ispaid = false;
-            }
+            //if (invoice.NetTaxPayableAmount >= invoice.PaidAmount)
+            //{
+            //    invoice.Ispaid = true;
+            //}
+            //else
+            //{
+            //    invoice.Ispaid = false;
+            //}
 
             return View(invoice);
         }
