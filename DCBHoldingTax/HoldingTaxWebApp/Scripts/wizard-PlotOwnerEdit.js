@@ -132,7 +132,7 @@ var KTWizard4 = function () {
                           
                             PlotId: parseInt($('#PlotId option:selected').val()) || 0,
                             PlotOwnerName: $('#PlotOwnerName').val().trim(),
-                            IsAlive: $('#IsAlive').val().trim(),
+                            IsAlive: parseInt($('#IsAlive option:selected').val()) || 0,//$('#IsAlive').val().trim(),
                             OfficialStatusId: parseInt($('#OfficialStatusId option:selected').val()) || 0,
                             PresentAdd: $('#PresentAdd').val().trim(),
                             PermanentAdd: $('#PermanentAdd').val().trim(),
@@ -192,7 +192,7 @@ var KTWizard4 = function () {
                            
                           
                         };
-
+      debugger;
 
                         $.ajax({
                             type: 'POST',

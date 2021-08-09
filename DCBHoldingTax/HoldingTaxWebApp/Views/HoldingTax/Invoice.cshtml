@@ -50,20 +50,36 @@
                 <div id="print_div">
                     <!-- Start: print-->
                     <!-- begin: Invoice header-->
+                    <div class="row col-md-12">
+                        <div class="col-md-1">
+                            @if (Model.Ispaid == true)
+                            {
+                                <img src="~/Images/paid.png" height="50" />
+                            }
+                            else
+                            {
+                                <img src="~/Images/Unpaid.jpg" height="50" />
+                            }
+                        </div>
+                    </div>
                     <div class="row justify-content-center py-8 px-8 py-md-27 px-md-0">
+                        @*<div class="col-md-1">
+                            @if (Model.Ispaid == true)
+                            {
+                                <img src="~/Images/paid.png" height="50" />
+                            }
+                            else
+                            {
+                                <img src="~/Images/Unpaid.jpg" height="50" />
+                            }
+                        </div>
+                        <div class="col-md-1"></div>*@
                         <div class="col-md-9">
                             <div class="d-flex justify-content-between pb-10 pb-md-20 flex-column flex-md-row">
                           
                         
                                 <div class="display-4 font-weight-boldest mb-10 flex-md-row">
-                                    @if (Model.Ispaid == true)
-                                    {
-                                        <img src="~/Images/paid.png" height="50"/>
-                                    }
-                                    else
-                                    {
-                                        <img src="~/Images/Unpaid.jpg" height="50" />
-                                    }
+                                   
                                 </div>
                                 <div class="h1 display-4 font-weight-boldest mb-10 flex-md-row">
                                     <span>ক্যান্টনমেন্ট বোর্ড, ঢাকা ক্যান্টনমেন্ট</span><br />
@@ -109,6 +125,7 @@
                                 </div>
                             </div>
                         </div>
+                        @*<div class="col-md-1"></div>*@
                     </div>
                     <!-- end: Invoice header-->
                     <!-- begin: Invoice body-->
@@ -162,13 +179,25 @@
                     <br />
                     <!-- end: Invoice body-->
                     <!-- begin: Invoice footer-->
+                    <div class="row col-md-12 bg-gray-100">
+                        <div class="col-md-1">
+                            @if (Model.Ispaid == true)
+                            {
+                                <img src="~/Images/paid.png" height="50" />
+                            }
+                            else
+                            {
+                                <img src="~/Images/Unpaid.jpg" height="50" />
+                            }
+                        </div>
+                    </div>
                     <div class="row justify-content-center bg-gray-100 py-8 px-8 py-md-10 px-md-0">
                        
                         <div class="col-md-9">
                             <div class="table-responsive">
                                 <table class="" border="0" width="100%">
                                     <thead>
-                                        @if (Model.Ispaid == true)
+                                        @*@if (Model.Ispaid == true)
                                         {
                                             <tr>
                                                 <td colspan="3">
@@ -182,7 +211,7 @@
                                                     <img src="~/Images/Unpaid.jpg" height="50" />
                                                 </td>
                                             </tr>
-                                        }
+                                        }*@
                                         <tr>
                                             <td colspan="3">
                                                 <br />
