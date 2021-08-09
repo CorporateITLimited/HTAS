@@ -226,12 +226,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 notice.HolderId = 0;
                 notice.IsActive = true;
                 notice.IsDeleted = false;
-                notice.IsNoticeSent = true;
+                notice.IsNoticeSent = false
+;
                 notice.LastUpdated = DateTime.Now;
                 notice.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
                 notice.NoticeId = 0;
                 notice.NoticeLinkName = "";
-                notice.NoticeSentDate = DateTime.Now;
+                notice.NoticeSentDate = null;
 
 
                 IsNoticeSentUi = true;
@@ -278,6 +279,23 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 return View();
             }
 
+        }
+
+        public JsonResult GetDataForSentNotices(int NoticeTypeId, int FinancialYearId)
+        {
+            var data = _noticeManager.GetAllNotice();
+            var newData = data.Where(d => d.NoticeTypeId == NoticeTypeId && d.FinancialYearId == FinancialYearId).ToList();
+
+            string areaNameList = "";
+            foreach (var item in newData)
+            {
+                areaNameList += Convert.ToString(item.AreaName) + ",";
+            }
+
+            if (areaNameList != "")
+                areaNameList = areaNameList.TrimEnd().Substring(0, areaNameList.Length - 1);
+
+            return new JsonResult { Data = data ?? null };
         }
 
         public ActionResult NoticeReport(int FYID, int NTID, int HID)

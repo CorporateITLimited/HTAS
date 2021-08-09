@@ -75,7 +75,7 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "মালিকানার সূত্র")]
         public int OwnershipSourceId { get; set; }
 
-        [Display(Name = "উৎসের নাম")]
+        [Display(Name = "মালিকানার সূত্র")]
         public string SourceName { get; set; }
 
         [Display(Name = "মালিকানার ধরন")]
@@ -243,7 +243,7 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "অনুমোদন নম্বর")]
         public string LastApprovalLetterNo { get; set; }
 
-        [Display(Name = "গৃহকরদাতা নিজেই কি মালিক?")]
+        [Display(Name = "গৃহকরদাতা নিজেই কি প্লটের মালিক?")]
         public bool? IsHolderAnOwner { get; set; }
     }
 }
