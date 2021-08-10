@@ -91,6 +91,7 @@
                             <div class="text-center">
                                 <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>বিজ্ঞপ্তি প্রস্তুত করুন</button>
                                 <button type="button" onclick="window.location.href = '/Notice/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
+                                <button class="btn btn-outline-dark btn-md" id="reset_button">পেজ রিলোড করুন </button>
                             </div>
                         </div>
                     }
@@ -107,9 +108,9 @@
                                     @ViewBag.DateTimeStr
                                 </div>
                                 @*<div class="text-primary" style="font-size: 18px;">
-                        বিজ্ঞপ্তি পাঠানোর সময় এলাকা নির্বাচন করলে ঐ নির্দিষ্ট এলাকার গৃহকরদাতাদের কাছে বিজ্ঞপ্তি যাবে,
-                        এলাকা নির্বাচন না করলে সব এলাকার গৃহকরদাতাদের কাছে বিজ্ঞপ্তি যাবে।
-                    </div>*@
+                                        বিজ্ঞপ্তি পাঠানোর সময় এলাকা নির্বাচন করলে ঐ নির্দিষ্ট এলাকার গৃহকরদাতাদের কাছে বিজ্ঞপ্তি যাবে,
+                                        এলাকা নির্বাচন না করলে সব এলাকার গৃহকরদাতাদের কাছে বিজ্ঞপ্তি যাবে।
+                                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -161,6 +162,7 @@
                             <div class="text-center">
                                 <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-envelope-open-text"></i>বিজ্ঞপ্তি পাঠান</button>
                                 <button type="button" onclick="window.location.href = '/Notice/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
+                                <button class="btn btn-outline-dark btn-md" id="reset_button_2">পেজ রিলোড করুন </button>
                             </div>
                         </div>
                     }
@@ -254,6 +256,15 @@
                 invalidHandler: function (event, validator) {
                     KTUtil.scrollTop();
                 }
+            });
+            $("#reset_button").click(function (e) {
+                e.preventDefault();
+                window.location.href = '/Notice/Create';
+            });
+
+            $("#reset_button_2").click(function (e) {
+                e.preventDefault();
+                window.location.href = '/Notice/Create';
             });
         });
     </script>
