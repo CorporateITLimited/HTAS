@@ -237,7 +237,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         ////PlotOwner Portion
                         PhoneNumber = POVM.PhoneNumber,
                         Email = POVM.Email,
-                        IsAlive =true,
+                        IsAlive = POVM.IsAlive,
                         OfficialStatusId = POVM.OfficialStatusId,
                         PermanentAdd = POVM.PermanentAdd,
                         //PlotId = POVM.PlotId,

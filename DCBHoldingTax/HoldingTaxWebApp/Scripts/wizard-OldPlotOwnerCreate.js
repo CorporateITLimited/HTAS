@@ -100,7 +100,7 @@ var KTWizard4 = function () {
                             OldPlotOwnerId: 0,
                             PlotOwnerId: parseInt($('#PlotOwnerId').val()),
                             OldPlotOwnerName: $('#OldPlotOwnerName').val().trim(),
-                            IsAlive: $('#IsAlive').val().trim(),
+                            IsAlive: parseInt($('#IsAlive option:selected').val()) || 0,//$('#IsAlive').val().trim(),
                             OfficialStatusId: parseInt($('#OfficialStatusId option:selected').val()) || 0,
                             PresentAdd: $('#PresentAdd').val().trim(),
                             PermanentAdd: $('#PermanentAdd').val().trim(),
