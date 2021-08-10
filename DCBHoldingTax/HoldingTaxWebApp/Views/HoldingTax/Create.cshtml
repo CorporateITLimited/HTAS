@@ -14,13 +14,13 @@
                 <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকর</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted">Create</a>
+                        <a href="#" class="text-muted">নতুন বছরের গৃহকর তৈরী</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="d-flex align-items-center">
-            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>Back</a>
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
         </div>
     </div>
 </div>
@@ -28,10 +28,11 @@
 <div class="d-flex flex-column-fluid">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
                 <div class="card card-custom" id="kt_card_1">
                     <div class="card-header">
-                        <h3 class="card-title">নতুন বছরের গৃহকর তৈরী  </h3>
+                        <h3 class="card-title">নতুন বছরের গৃহকর তৈরী করুন  </h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
@@ -51,7 +52,7 @@
                             </div>
 
                         </div>
-                        
+
                     </div>
                     <div class="card-footer">
                         <div class="text-center">
@@ -59,33 +60,34 @@
                             <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
                         </div>
                         <div>
-                            <span  id="details_error"></span>
+                            <span id="details_error"></span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="card card-custom" id="kt_card_1">
-                    <div class="card-header">
-                        <h3 class="card-title">  গৃহকর মূল্যায়ন চূড়ান্তকরণ</h3>
-                        <div class="card-toolbar">
-                            <div class="example-tools justify-content-center">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        ...
-                    </div>
-                    <div class="card-footer">
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>Save</button>
-                            <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
+            <div class="col-lg-2"></div>
+            @*<div class="col-lg-6">
+            <div class="card card-custom" id="kt_card_1">
+                <div class="card-header">
+                    <h3 class="card-title">  গৃহকর মূল্যায়ন চূড়ান্তকরণ</h3>
+                    <div class="card-toolbar">
+                        <div class="example-tools justify-content-center">
                         </div>
                     </div>
                 </div>
+                <div class="card-body">
+                    ...
+                </div>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>Save</button>
+                        <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
+                    </div>
+                </div>
             </div>
-            
-            
+        </div>*@
+
+
 
         </div>
     </div>
@@ -93,22 +95,6 @@
 
 @section Scripts {
 
-    <script>
-        autosize($('#Description'));
-        jQuery(document).ready(function () {
-            $("#kt_form_3").validate({
-                rules: {
-                    DesignationName: {
-                        required: true
-                    }
-                },
-
-                invalidHandler: function (event, validator) {
-                    KTUtil.scrollTop();
-                }
-            });
-        });
-    </script>
     <script>
         $('#FinancialYearId').select2({
             placeholder: "--নির্বাচন করুন--",
@@ -119,11 +105,11 @@
         $("#btnSubmit").click(function (e) {
             debugger;
             var fy = $('#FinancialYearId').val();
-            var FinancialYearId= fy 
+            var FinancialYearId = fy
             $.ajax({
                 type: 'GET',
                 url: '/HoldingTax/GenerateTax',
-                data: "FinancialYearId=" + fy ,
+                data: "FinancialYearId=" + fy,
                 contentType: 'application/json',
                 success: function (status) {
 
@@ -170,6 +156,6 @@
                 }
             });
         })
-        
+
     </script>
 }

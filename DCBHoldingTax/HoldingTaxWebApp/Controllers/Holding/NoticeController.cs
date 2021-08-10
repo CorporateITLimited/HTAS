@@ -114,8 +114,10 @@ namespace HoldingTaxWebApp.Controllers.Holding
             try
             {
                 ViewBag.FinancialYearId = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
+                ViewBag.FinancialYearId_Two = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
                 ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
                 ViewBag.NoticeTypeId = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text");
+                ViewBag.NoticeTypeId_Two = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text");
                 ViewBag.EmpolyeeId = new SelectList(_employeeManager.GetAllEmployeeListForSelect(), "EmpolyeeId", "EmployeeName");
                 var currDate = DateTime.Now;
                 ViewBag.DateTimeStr = "আজকের তারিখ : " + BanglaConvertionHelper.StringEnglish2StringBanglaDate(currDate.ToString("dd/MM/yyyy"));
@@ -137,11 +139,15 @@ namespace HoldingTaxWebApp.Controllers.Holding
             {
                 if (notice == null)
                     return HttpNotFound();
-
+                
                 ViewBag.FinancialYearId = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear", notice.FinancialYearId);
-                ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", notice.AreaId);
+                ViewBag.FinancialYearId_Two = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear", notice.FinancialYearId_Two);
                 ViewBag.NoticeTypeId = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text", notice.NoticeTypeId);
+                ViewBag.NoticeTypeId_Two = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text", notice.NoticeTypeId_Two);
+
+                ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", notice.AreaId);
                 ViewBag.EmpolyeeId = new SelectList(_employeeManager.GetAllEmployeeListForSelect(), "EmpolyeeId", "EmployeeName", notice.EmpolyeeId);
+               
 
                 var currDate = DateTime.Now;
                 ViewBag.DateTimeStr = "আজকের তারিখ : " + BanglaConvertionHelper.StringEnglish2StringBanglaDate(currDate.ToString("dd/MM/yyyy"));
@@ -154,7 +160,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 if (notice.NoticeTypeId <= 0)
                 {
-                    ModelState.AddModelError("", "নোটিশ নম্বর নির্বাচন করুন");
+                    ModelState.AddModelError("", "বিজ্ঞপ্তির ধরণ নির্বাচন করুন");
                     return View(notice);
                 }
 
@@ -163,6 +169,87 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     ModelState.AddModelError("", "কর্মকর্তার নাম নির্বাচন করুন");
                     return View(notice);
                 }
+
+                notice.CreateDate = DateTime.Now;
+                notice.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                notice.HolderId = 0;
+                notice.IsActive = true;
+                notice.IsDeleted = false;
+                notice.IsNoticeSent = false
+;
+                notice.LastUpdated = DateTime.Now;
+                notice.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                notice.NoticeId = 0;
+                notice.NoticeLinkName = "";
+                notice.NoticeSentDate = null;
+                notice.AreaId = 0;
+
+                string sendNotice = _noticeManager.PrepareNotice(notice);
+
+                if (sendNotice == CommonConstantHelper.Success)
+                {
+                    TempData["SM"] = "সফলভাবে বিজ্ঞপ্তি প্রস্তুত করা হয়েছে";
+                    return RedirectToAction("CreateReport", "Notice", new { notice.FinancialYearId, notice.NoticeTypeId, notice.AreaId });
+                    // return RedirectToAction("Index", "Notice");
+                }
+                else if (sendNotice == CommonConstantHelper.Conflict)
+                {
+                    ModelState.AddModelError("", "ইতিমধ্যে বিজ্ঞপ্তিটি প্রস্তুত করা হয়েছে");
+                    return View(notice);
+                }
+                else if (sendNotice == CommonConstantHelper.Error)
+                {
+                    ModelState.AddModelError("", "Error");
+                    return View(notice);
+                }
+                else if (sendNotice == CommonConstantHelper.Failed)
+                {
+                    ModelState.AddModelError("", "Failed");
+                    return View(notice);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Error Not Recognized");
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message.ToString());
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult NoticeSendUpdate(Notice notice)
+        {
+            try
+            {
+                if (notice == null)
+                    return HttpNotFound();
+
+                ViewBag.FinancialYearId = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear", notice.FinancialYearId);
+                ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", notice.AreaId);
+                ViewBag.NoticeTypeId = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text", notice.NoticeTypeId);
+                ViewBag.EmpolyeeId = new SelectList(_employeeManager.GetAllEmployeeListForSelect(), "EmpolyeeId", "EmployeeName", notice.EmpolyeeId);
+                ViewBag.FinancialYearId_Two = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear", notice.FinancialYearId_Two);
+                ViewBag.NoticeTypeId_Two = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text", notice.NoticeTypeId_Two);
+
+                var currDate = DateTime.Now;
+                ViewBag.DateTimeStr = "আজকের তারিখ : " + BanglaConvertionHelper.StringEnglish2StringBanglaDate(currDate.ToString("dd/MM/yyyy"));
+
+                if (notice.FinancialYearId_Two <= 0)
+                {
+                    ModelState.AddModelError("", "আর্থিক বছর নির্বাচন করুন");
+                    return View("Create", notice);
+                }
+
+                if (notice.NoticeTypeId_Two <= 0)
+                {
+                    ModelState.AddModelError("", "বিজ্ঞপ্তির ধরণ নির্বাচন করুন");
+                    return View("Create", notice);
+                }
+                
 
                 bool IsNoticeSentUi = false;
 
@@ -221,26 +308,24 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
 
 
-                notice.CreateDate = DateTime.Now;
-                notice.CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                notice.CreateDate = null;
+                notice.CreatedBy = null;
                 notice.HolderId = 0;
-                notice.IsActive = true;
-                notice.IsDeleted = false;
-                notice.IsNoticeSent = false
-;
+                notice.IsActive = null;
+                notice.IsDeleted = null;
+                notice.IsNoticeSent = true;
                 notice.LastUpdated = DateTime.Now;
                 notice.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
                 notice.NoticeId = 0;
-                notice.NoticeLinkName = "";
-                notice.NoticeSentDate = null;
-
+                notice.NoticeLinkName = null;
+                notice.NoticeSentDate = DateTime.Now;
 
                 IsNoticeSentUi = true;
 
                 if (!IsNoticeSentUi)
                 {
                     ModelState.AddModelError("", "বিজ্ঞপ্তি পাঠানোর সময় এখনো হয়নি বা সময়সীমা অতিবাহিত হয়েছে");
-                    return View(notice);
+                    return View("Create", notice);
                 }
                 else
                 {
@@ -253,32 +338,40 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     }
                     else if (sendNotice == CommonConstantHelper.Conflict)
                     {
-                        ModelState.AddModelError("", "ইতিমধ্যে বিজ্ঞপ্তিটি পাঠানো হয়েছে");
-                        return View(notice);
+                        ModelState.AddModelError("", "এখনো বিজ্ঞপ্তিটি প্রস্তুত করা হয়নি");
+                        return View("Create", notice);
                     }
                     else if (sendNotice == CommonConstantHelper.Error)
                     {
                         ModelState.AddModelError("", "Error");
-                        return View(notice);
+                        return View("Create", notice);
                     }
                     else if (sendNotice == CommonConstantHelper.Failed)
                     {
                         ModelState.AddModelError("", "Failed");
-                        return View(notice);
+                        return View("Create", notice);
                     }
                     else
                     {
                         ModelState.AddModelError("", "Error Not Recognized");
-                        return View();
+                        return View("Create");
                     }
                 }
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message.ToString());
-                return View();
+                return View("Create");
             }
+        }
 
+        public ActionResult CreateReport(int FinancialYearId, int NoticeTypeId, int AreaId)
+        {
+            Session["FinancialYearId"] = FinancialYearId > 0 ? FinancialYearId : (object)null;
+            Session["NoticeTypeId"] = NoticeTypeId > 0 ? NoticeTypeId : (object)null;
+            Session["AreaId"] = AreaId > 0 ? AreaId : (object)null;
+            Session["Type"] = "new";
+            return View();
         }
 
         public JsonResult GetDataForSentNotices(int NoticeTypeId, int FinancialYearId)
@@ -303,6 +396,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             Session["FinacialYearID"] = FYID > 0 ? FYID : (object)null;
             Session["NoticeTypeID"] = NTID > 0 ? NTID : (object)null;
             Session["HolderID"] = HID > 0 ? HID : (object)null;
+            Session["Type"] = null;
             return View();
         }
     }
