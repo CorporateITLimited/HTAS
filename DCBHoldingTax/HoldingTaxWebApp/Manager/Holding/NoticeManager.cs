@@ -25,6 +25,19 @@ namespace HoldingTaxWebApp.Manager.Holding
             return _notice.GetAllNoticeForHolder(id);
         }
 
+        public string PrepareNotice(Notice model)
+        {
+            int result = _notice.PrepareNotice(model);
+
+            if (result == 202)
+                return CommonConstantHelper.Success;
+            else if (result == 401)
+                return CommonConstantHelper.Conflict;
+            else if (result == 500)
+                return CommonConstantHelper.Error;
+            else
+                return CommonConstantHelper.Failed;
+        }
         public string SendNotice(Notice model)
         {
             int result = _notice.SendNotice(model);

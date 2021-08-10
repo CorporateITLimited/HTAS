@@ -113,6 +113,7 @@ namespace HoldingTaxWebApp.Models.Tax
         [Display(Name = "মোট অপরিশোধিত টাকার পরিমাণ")]
         public decimal? TotalUnPaidAmount { get; set; }
 
+        [Display(Name = "পেমেন্ট স্টেটাস")]
         public bool? IsPaid { get; set; }
     }
 }

@@ -14,6 +14,9 @@ namespace HoldingTaxWebApp.Models.Holding
         public int FinancialYearId { get; set; }
 
         [Display(Name = "আর্থিক বছর ")]
+        public int FinancialYearId_Two { get; set; }
+
+        [Display(Name = "আর্থিক বছর ")]
         public string FinancialYear { get; set; }
 
         [Display(Name = "এলাকা  ")]
@@ -36,6 +39,9 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "বিজ্ঞপ্তির ধরণ")]
         public int NoticeTypeId { get; set; }
+
+        [Display(Name = "বিজ্ঞপ্তির ধরণ")]
+        public int NoticeTypeId_Two { get; set; }
 
         [Display(Name = "বিজ্ঞপ্তির নাম ")]
         public string NoticeName { get; set; }

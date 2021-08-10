@@ -15,7 +15,7 @@
                 <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকর সংক্রান্ত বিজ্ঞপ্তি </h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted">গৃহকর সংক্রান্ত নতুন বিজ্ঞপ্তি পাঠান</a>
+                        <a href="#" class="text-muted">গৃহকর সংক্রান্ত নতুন বিজ্ঞপ্তি প্রস্তুত করা এবং গৃহকরদাতাদের পাঠানো  </a>
                     </li>
                 </ul>
             </div>
@@ -30,68 +30,52 @@
 <div class="d-flex flex-column-fluid">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
-                        <h3 class="card-title">গৃহকর সংক্রান্ত নতুন বিজ্ঞপ্তি পাঠান</h3>
+                        <h3 class="card-title">গৃহকর সংক্রান্ত নতুন বিজ্ঞপ্তি প্রস্তুত করুন  </h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                                 <div class="text-primary" style="font-size: 18px;">
-                                    বিজ্ঞপ্তি পাঠানোর পূর্বে বিজ্ঞপ্তি তৈরী করুন।
-                                    বিজ্ঞপ্তি পাঠানোর সময় বিজ্ঞপ্তির ধরণ এবং  আর্থিক বছর অবশ্যই নির্বাচন করুন। এলাকা নির্বাচন করলে ঐ নির্দিষ্ট এলাকার গৃহকরদাতাদের কাছে বিজ্ঞপ্তি যাবে,
-                                    এলাকা নির্বাচন না করলে সব এলাকার গৃহকরদাতাদের কাছে বিজ্ঞপ্তি যাবে।
+                                    @ViewBag.DateTimeStr
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br />
                     @using (Html.BeginForm("Create", "Notice", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_2", role = "form" }))
                     {
+                        <br />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.AntiForgeryToken()
 
                         <div class="card-body">
                             <fieldset>
                                 <div class="form-group row m-2">
-
-                                    @Html.LabelFor(model => model.NoticeTypeId, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                    <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.NoticeTypeId, htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                                    <div class="col-lg-9 text-lg-left">
                                         @Html.DropDownListFor(model => model.NoticeTypeId, null, "-- নির্বাচন করুন  --", new
                                    {
                                        @class = "form-control",
                                        @name = "NoticeTypeId",
                                        @id = "NoticeTypeId"
                                    })
-                                        @Html.ValidationMessageFor(model => model.NoticeTypeId, "", new { @class = "text-danger" })
                                     </div>
-                                    <label class="col-lg-4 col-form-label text-lg-left">@ViewBag.DateTimeStr</label>
                                 </div>
 
                                 <div class="form-group row m-2">
-                                    @Html.LabelFor(model => model.FinancialYearId, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                    <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.FinancialYearId, htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                                    <div class="col-lg-9">
                                         @Html.DropDownListFor(model => model.FinancialYearId, null, "-- নির্বাচন করুন  --", new
                                    {
                                        @class = "form-control",
                                        @name = "FinancialYearId",
                                        @id = "FinancialYearId"
                                    })
-                                        @Html.ValidationMessageFor(model => model.FinancialYearId, "", new { @class = "text-danger" })
-                                    </div>
-
-                                    @Html.LabelFor(model => model.AreaId, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                    <div class="col-lg-4">
-                                        @Html.DropDownListFor(model => model.AreaId, null, "-- নির্বাচন করুন  --", new
-                                   {
-                                       @class = "form-control",
-                                       @name = "AreaId",
-                                       @id = "AreaId"
-                                   })
                                     </div>
                                 </div>
                                 <div class="form-group row m-2">
-                                    @Html.LabelFor(model => model.EmpolyeeId, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                    <div class="col-lg-4">
+                                    @Html.LabelFor(model => model.EmpolyeeId, htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                                    <div class="col-lg-9">
                                         @Html.DropDownListFor(model => model.EmpolyeeId, null, "-- নির্বাচন করুন  --", new
                                    {
                                        @class = "form-control",
@@ -105,8 +89,77 @@
                         </div>
                         <div class="card-footer">
                             <div class="text-center">
-                                <button type="button" class="btn btn-outline-primary btn-md" id="send_notification"><i class="fas fa-envelope-open-text"></i>বিজ্ঞপ্তি পাঠান</button>
-                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>বিজ্ঞপ্তি তৈরী করুন</button>
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>বিজ্ঞপ্তি প্রস্তুত করুন</button>
+                                <button type="button" onclick="window.location.href = '/Notice/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card-custom gutter-b example example-compact">
+                    <div class="card-header">
+                        <h3 class="card-title">গৃহকর সংক্রান্ত নতুন বিজ্ঞপ্তি পাঠান </h3>
+                        <div class="card-toolbar">
+                            <div class="example-tools justify-content-center">
+                                <div class="text-primary" style="font-size: 18px;">
+                                    @ViewBag.DateTimeStr
+                                </div>
+                                @*<div class="text-primary" style="font-size: 18px;">
+                        বিজ্ঞপ্তি পাঠানোর সময় এলাকা নির্বাচন করলে ঐ নির্দিষ্ট এলাকার গৃহকরদাতাদের কাছে বিজ্ঞপ্তি যাবে,
+                        এলাকা নির্বাচন না করলে সব এলাকার গৃহকরদাতাদের কাছে বিজ্ঞপ্তি যাবে।
+                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("NoticeSendUpdate", "Notice", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_3", role = "form" }))
+                    {
+                        <br />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+
+                        <div class="card-body">
+                            <fieldset>
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.NoticeTypeId_Two, htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                                    <div class="col-lg-9 text-lg-left">
+                                        @Html.DropDownListFor(model => model.NoticeTypeId_Two, null, "-- নির্বাচন করুন  --", new
+                                   {
+                                       @class = "form-control",
+                                       @name = "NoticeTypeId_Two",
+                                       @id = "NoticeTypeId_Two"
+                                   })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.FinancialYearId_Two, htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                                    <div class="col-lg-9">
+                                        @Html.DropDownListFor(model => model.FinancialYearId_Two, null, "-- নির্বাচন করুন  --", new
+                                   {
+                                       @class = "form-control",
+                                       @name = "FinancialYearId_Two",
+                                       @id = "FinancialYearId_Two"
+                                   })
+                                    </div>
+                                </div>
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.AreaId, htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                                    <div class="col-lg-9">
+                                        @Html.DropDownListFor(model => model.AreaId, null, "-- নির্বাচন করুন  --", new
+                                   {
+                                       @class = "form-control",
+                                       @name = "AreaId",
+                                       @id = "AreaId"
+                                   })
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-envelope-open-text"></i>বিজ্ঞপ্তি পাঠান</button>
                                 <button type="button" onclick="window.location.href = '/Notice/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
                             </div>
                         </div>
@@ -131,6 +184,16 @@
         });
 
         $('#NoticeTypeId').select2({
+            placeholder: "-- নির্বাচন করুন  --",
+            allowClear: true
+        });
+
+        $('#FinancialYearId_Two').select2({
+            placeholder: "-- নির্বাচন করুন  --",
+            allowClear: true
+        });
+
+        $('#NoticeTypeId_Two').select2({
             placeholder: "-- নির্বাচন করুন  --",
             allowClear: true
         });
@@ -169,6 +232,24 @@
                     NoticeTypeId: "বিজ্ঞপ্তির ধরণ নির্বাচন করুন",
                     FinancialYearId: "আর্থিক বছর নির্বাচন করুন",
                     EmpolyeeId: "কর্মকর্তার নাম নির্বাচন করুন"
+                },
+                invalidHandler: function (event, validator) {
+                    KTUtil.scrollTop();
+                }
+            });
+
+            $("#kt_form_3").validate({
+                rules: {
+                    FinancialYearId_Two: {
+                        required: true
+                    },
+                    NoticeTypeId_Two: {
+                        required: true
+                    }
+                },
+                messages: {
+                    NoticeTypeId_Two: "বিজ্ঞপ্তির ধরণ নির্বাচন করুন",
+                    FinancialYearId_Two: "আর্থিক বছর নির্বাচন করুন"
                 },
                 invalidHandler: function (event, validator) {
                     KTUtil.scrollTop();

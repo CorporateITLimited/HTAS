@@ -11,6 +11,14 @@
         .firstrow {
             background-color: #D7F9EF;
         }
+
+        .is_paid {
+            background-color: #0BB783;
+        }
+
+        .un_paid {
+            background-color: #F64E60;
+        }
     </style>
 }
 
@@ -109,7 +117,7 @@
                         </div>
                     }
                     <div class="initial_result" id="initial_result">
-                        <table class="table table-bordered table-hover table-sm" width="100" id="int_table">
+                        <table class="table table-bordered table-sm table-hover" width="100" id="int_table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>
@@ -119,11 +127,12 @@
                                         এলাকা
                                     </th>
                                     <th>
-                                        প্লটের নম্বর
-                                    </th>
-                                    <th>
+                                        @*প্লটের নম্বর*@
                                         হোল্ডারের প্লট/ফ্ল্যাট/বাড়ী এর তথ্য
                                     </th>
+                                    @*<th>
+                                           হোল্ডারের প্লট/ফ্ল্যাট/বাড়ী এর তথ্য
+                                        </th>*@
                                     <th>
                                         আর্থিক বছর
                                     </th>
@@ -132,6 +141,9 @@
                                     </th>
                                     <th>
                                         পরিশোধিত টাকার পরিমান
+                                    </th>
+                                    <th>
+                                        পেমেন্ট স্টেটাস
                                     </th>
                                     <th></th>
 
@@ -149,11 +161,12 @@
                                             @item.AreaName
                                         </td>
                                         <td>
-                                            @item.PlotNo
-                                        </td>
-                                        <td>
+                                            @*@item.PlotNo*@
                                             @item.AreaPlotFlatData
                                         </td>
+                                        @*<td>
+                                                @item.AreaPlotFlatData
+                                            </td>*@
                                         <td>
                                             @item.FinancialYear
                                         </td>
@@ -162,6 +175,16 @@
                                         </td>
                                         <td>
                                             @item.PaidAmount
+                                        </td>
+                                        <td>
+                                            @if (item.IsPaid == true)
+                                            {
+                                                <span style="color: green; font-size: 16px;">কর পরিশোধিত    </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="color: red; font-size: 16px;">কর অপরিশোধিত    </span>
+                                            }
                                         </td>
                                         <td>
                                             @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))

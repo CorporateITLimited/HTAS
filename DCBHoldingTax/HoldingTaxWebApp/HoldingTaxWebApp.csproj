@@ -19,7 +19,8 @@
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -4882,6 +4883,7 @@
     <Content Include="Views\HoldingTax\_PartialIndex.cshtml" />
     <Content Include="Views\DOHSArea\Create.cshtml" />
     <Content Include="Views\DOHSArea\Edit.cshtml" />
+    <Content Include="Views\Notice\CreateReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

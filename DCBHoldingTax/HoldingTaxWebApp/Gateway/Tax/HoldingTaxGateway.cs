@@ -339,7 +339,8 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
                         HolderName = Convert.ToString(Data_Reader["HolderName"]),
                         PaymentDate = Data_Reader["PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["PaymentDate"]) : (DateTime?)null,
-                        Remarks = Convert.ToString(Data_Reader["Remarks"])
+                        Remarks = Convert.ToString(Data_Reader["Remarks"]),
+                        IsPaid = Data_Reader["IsPaid"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsPaid"]) : (bool?)null,
                     };
 
                     holdingtaxList.Add(holdingtax);
