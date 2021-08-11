@@ -28,12 +28,12 @@ namespace HoldingTaxWebApp.WebForms.Tax
 
         private void cryreportshow()
         {
-            cryRpt = new ReportDocument();
-            cryRpt.Load(Server.MapPath("~/AppReports/Tax/rptletterOne.rpt"));
-            cryRpt.SetDatabaseLogon("sa", "#PimsOne$1m#", @"119.18.146.107", "DCB_HTAS");
-
             if (Session["Type"] != null && Session["Type"].ToString() == "new")
             {
+                cryRpt = new ReportDocument();
+                cryRpt.Load(Server.MapPath("~/AppReports/Tax/rptletterOne.rpt"));
+                cryRpt.SetDatabaseLogon("sa", "#PimsOne$1m#", @"119.18.146.107", "DCB_HTAS");
+
                 int? rptValueAreaId = Session["AreaId"] != null ? Convert.ToInt32(Session["AreaId"]) : (int?)null;
                 int? rptFinancialYearId = Session["FinancialYearId"] != null ? Convert.ToInt32(Session["FinancialYearId"]) : (int?)null;
                 int? rptNoticeTypeId = Session["NoticeTypeId"] != null ? Convert.ToInt32(Session["NoticeTypeId"]) : (int?)null;
@@ -85,6 +85,9 @@ namespace HoldingTaxWebApp.WebForms.Tax
             }
             else
             {
+                cryRpt = new ReportDocument();
+                cryRpt.Load(Server.MapPath("~/AppReports/Tax/rptletterOne.rpt"));
+                cryRpt.SetDatabaseLogon("sa", "#PimsOne$1m#", @"119.18.146.107", "DCB_HTAS");
 
                 //done for two separate subreport ==================================================
                 int? rptValueAreaId = null;

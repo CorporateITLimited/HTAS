@@ -30,14 +30,14 @@
     <div class="container">
         @if (TempData["SM"] != null)
         {
-        <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
-            <div class="alert-text font-weight-bolder" style="color: #0BB783;">@TempData["SM"]</div>
-            <div class="alert-close">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true"><i class="ki ki-close"></i></span>
-                </button>
+            <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
+                <div class="alert-text text-center font-weight-bolder" style="color: #24AEEF; font-size: 17px;"> @TempData["SM"]</div>
+                <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                    </button>
+                </div>
             </div>
-        </div>
         }
         <div class="card card-custom">
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
@@ -121,25 +121,25 @@
                                 </td>
                                 <td>
                                     @*@if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin) ||
-                                    (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleManagement))
-                                                              {
-                                                                  <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Employee/Edit/@item.EmpolyeeId" title="Edit">
-                                                                      <b>
+                                        (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleManagement))
+                                                                  {
+                                                                      <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Employee/Edit/@item.EmpolyeeId" title="Edit">
+                                                                          <b>
 
-                                                                          <i class="fa fa-edit"></i>
+                                                                              <i class="fa fa-edit"></i>
 
-                                                                      </b>
-                                                                  </a>
-                                                                  <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Employee/Details/@item.EmpolyeeId" title="Details View">
-                                                                      <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                                                  </a>
-                                                              }
-                                                              else
-                                                              {
-                                                                  <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Employee/Details/@item.EmpolyeeId" title="Details View">
-                                                                      <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                                                  </a>
-                                                              }*@
+                                                                          </b>
+                                                                      </a>
+                                                                      <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Employee/Details/@item.EmpolyeeId" title="Details View">
+                                                                          <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                                                      </a>
+                                                                  }
+                                                                  else
+                                                                  {
+                                                                      <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Employee/Details/@item.EmpolyeeId" title="Details View">
+                                                                          <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                                                      </a>
+                                                                  }*@
 
 
                                     <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Employee/Edit/@item.EmpolyeeId" title="Edit">
