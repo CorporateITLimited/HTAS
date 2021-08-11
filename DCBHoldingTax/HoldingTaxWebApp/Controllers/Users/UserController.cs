@@ -275,12 +275,12 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (addUser == CommonConstantHelper.Success)
                     {
-                        TempData["SM"] = "Successfully added new user.";
+                        TempData["SM"] = "সফলভাবে নতুন ব্যবহারকারী  সংযুক্ত করা হয়েছে ";
                         return RedirectToAction("Index", "User");
                     }
                     else if (addUser == CommonConstantHelper.Conflict)
                     {
-                        ModelState.AddModelError("", "Username already exist.");
+                        ModelState.AddModelError("", "ভিন্ন ইউজারনেইম দিন");
                         return View(user);
                     }
                     else if (addUser == CommonConstantHelper.Error)
@@ -463,13 +463,12 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (updateUser == CommonConstantHelper.Success)
                     {
-                        TempData["SM"] = "Successfully updated user.";
+                        TempData["SM"] = "সফলভাবে ব্যবহারকারীর তথ্য হালনাগাদ করা হয়েছে ";
                         return RedirectToAction("Index", "User");
                     }
                     else if (updateUser == CommonConstantHelper.Conflict)
                     {
-                        ModelState.AddModelError("", "Username already exist.");
-                        TempData["EM"] = "User name required.";
+                        ModelState.AddModelError("", "ভিন্ন ইউজারনেইম দিন");
                         return View();
                     }
                     else if (updateUser == CommonConstantHelper.Error)

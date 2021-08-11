@@ -178,7 +178,7 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (role.RoleName == null)
                     {
-                        ModelState.AddModelError("", "Role is required.");
+                        ModelState.AddModelError("", "রোলের নাম অবশ্যই পূরণ করতে হবে");
                         return View(role);
                     }
 
@@ -194,12 +194,12 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (addRole == CommonConstantHelper.Success)
                     {
-                        TempData["SM"] = "Successfully added new role.";
+                        TempData["SM"] = "সফলভাবে নতুন রোল সংযুক্ত করা হয়েছে ";
                         return RedirectToAction("Index", "Role");
                     }
                     else if (addRole == CommonConstantHelper.Conflict)
                     {
-                        ModelState.AddModelError("", "Role already exist.");
+                        ModelState.AddModelError("", "রোল ডেটাবেজে বিদ্যমান রয়েছে ");
                         return View(role);
                     }
                     else if (addRole == CommonConstantHelper.Error)
@@ -302,7 +302,7 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (role.RoleName == null)
                     {
-                        ModelState.AddModelError("", "Role is required.");
+                        ModelState.AddModelError("", "রোলের নাম অবশ্যই পূরণ করতে হবে");
                         return View(role);
                     }
 
@@ -314,12 +314,12 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (updateRole == CommonConstantHelper.Success)
                     {
-                        TempData["SM"] = "Successfully updated Role.";
+                        TempData["SM"] = "সফলভাবে রোল এর  তথ্য হালনাগাদ করা হয়েছে";
                         return RedirectToAction("Index", "Role");
                     }
                     else if (updateRole == CommonConstantHelper.Conflict)
                     {
-                        ModelState.AddModelError("", "Role already exist.");
+                        ModelState.AddModelError("", "রোল ডেটাবেজে বিদ্যমান রয়েছে ");
                         return View();
                     }
                     else if (updateRole == CommonConstantHelper.Error)

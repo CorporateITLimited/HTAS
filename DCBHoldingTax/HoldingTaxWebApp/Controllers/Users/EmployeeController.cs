@@ -189,19 +189,25 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (string.IsNullOrEmpty(employee.EmployeeName))
                     {
-                        ModelState.AddModelError("", "Employee Name is required.");
+                        ModelState.AddModelError("", "কর্মকর্তা বা কর্মচারীর নাম অবশ্যই পূরণ করতে হবে");
                         return View(employee);
                     }
 
                     if (string.IsNullOrEmpty(employee.NID))
                     {
-                        ModelState.AddModelError("", "NID is required.");
+                        ModelState.AddModelError("", "এনআইডি নম্বর অবশ্যই পূরণ করতে হবে");
                         return View(employee);
                     }
 
                     if (employee.DesignationId == 0)
                     {
-                        ModelState.AddModelError("", "Designation is required.");
+                        ModelState.AddModelError("", "পদবি অবশ্যই পূরণ করতে হবে");
+                        return View(employee);
+                    }
+
+                    if (employee.Sex == null)
+                    {
+                        ModelState.AddModelError("", "লিঙ্গ নির্বাচন করুন");
                         return View(employee);
                     }
 
@@ -220,18 +226,17 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (addEmployee == CommonConstantHelper.Success)
                     {
-                        TempData["SM"] = "Successfully added new Employee.";
+                        TempData["SM"] = "সফলভাবে নতুন কর্মকর্তা বা কর্মচারী সংযুক্ত করা হয়েছে";
                         return RedirectToAction("Index", "Employee");
                     }
                     else if (addEmployee == CommonConstantHelper.Conflict)
                     {
-                        ModelState.AddModelError("", "Employee already exist.");
+                        ModelState.AddModelError("", "কর্মকর্তা বা কর্মচারী ডেটাবেজে বিদ্যমান রয়েছে");
                         return View(employee);
                     }
                     else if (addEmployee == CommonConstantHelper.Error)
                     {
                         ModelState.AddModelError("", "Error");
-                        TempData["EM"] = "Error.";
                         return View();
                     }
                     else if (addEmployee == CommonConstantHelper.Failed)
@@ -342,22 +347,27 @@ namespace HoldingTaxWebApp.Controllers.Users
                         return View(employee);
                     }
 
-                    if (employee.EmployeeName == null)
+                    if (string.IsNullOrEmpty(employee.EmployeeName))
                     {
-                        ModelState.AddModelError("", "Employee Name is required.");
+                        ModelState.AddModelError("", "কর্মকর্তা বা কর্মচারীর নাম অবশ্যই পূরণ করতে হবে");
                         return View(employee);
                     }
 
-                    if (employee.NID == null)
+                    if (string.IsNullOrEmpty(employee.NID))
                     {
-                        ModelState.AddModelError("", "NID is required.");
+                        ModelState.AddModelError("", "এনআইডি নম্বর অবশ্যই পূরণ করতে হবে");
                         return View(employee);
                     }
 
+                    if (employee.DesignationId == 0)
+                    {
+                        ModelState.AddModelError("", "পদবি অবশ্যই পূরণ করতে হবে");
+                        return View(employee);
+                    }
 
                     if (employee.Sex == null)
                     {
-                        ModelState.AddModelError("", "Gender is required.");
+                        ModelState.AddModelError("", "লিঙ্গ নির্বাচন করুন");
                         return View(employee);
                     }
                     if (employee.StringDOB != null)
@@ -374,12 +384,12 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (updateEmployee == CommonConstantHelper.Success)
                     {
-                        TempData["SM"] = "Successfully updated Employee.";
+                        TempData["SM"] = "সফলভাবে কর্মকর্তা বা কর্মচারীর তথ্য হালনাগাদ করা হয়েছে";
                         return RedirectToAction("Index", "Employee");
                     }
                     else if (updateEmployee == CommonConstantHelper.Conflict)
                     {
-                        ModelState.AddModelError("", "Employee already exist.");
+                        ModelState.AddModelError("", "কর্মকর্তা বা কর্মচারী ডেটাবেজে বিদ্যমান রয়েছে");
                         return View(employee);
                     }
                     else if (updateEmployee == CommonConstantHelper.Error)

@@ -139,7 +139,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             {
                 if (notice == null)
                     return HttpNotFound();
-                
+
                 ViewBag.FinancialYearId = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear", notice.FinancialYearId);
                 ViewBag.FinancialYearId_Two = new SelectList(_financialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear", notice.FinancialYearId_Two);
                 ViewBag.NoticeTypeId = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text", notice.NoticeTypeId);
@@ -147,7 +147,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", notice.AreaId);
                 ViewBag.EmpolyeeId = new SelectList(_employeeManager.GetAllEmployeeListForSelect(), "EmpolyeeId", "EmployeeName", notice.EmpolyeeId);
-               
+
 
                 var currDate = DateTime.Now;
                 ViewBag.DateTimeStr = "আজকের তারিখ : " + BanglaConvertionHelper.StringEnglish2StringBanglaDate(currDate.ToString("dd/MM/yyyy"));
@@ -189,8 +189,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 if (sendNotice == CommonConstantHelper.Success)
                 {
                     TempData["SM"] = "সফলভাবে বিজ্ঞপ্তি প্রস্তুত করা হয়েছে";
-                    return RedirectToAction("CreateReport", "Notice", new { notice.FinancialYearId, notice.NoticeTypeId, notice.AreaId });
-                    // return RedirectToAction("Index", "Notice");
+                    //return RedirectToAction("CreateReport", "Notice", new { notice.FinancialYearId, notice.NoticeTypeId, notice.AreaId });
+                    return RedirectToAction("Index", "Notice");
                 }
                 else if (sendNotice == CommonConstantHelper.Conflict)
                 {
@@ -249,7 +249,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     ModelState.AddModelError("", "বিজ্ঞপ্তির ধরণ নির্বাচন করুন");
                     return View("Create", notice);
                 }
-                
+
 
                 bool IsNoticeSentUi = false;
 

@@ -168,7 +168,7 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (Designation.DesignationName == null)
                     {
-                        ModelState.AddModelError("", "Designation is required.");
+                        ModelState.AddModelError("", "পদবির নাম অবশ্যই পূরণ করতে হবে");
                         return View(Designation);
                     }
 
@@ -181,12 +181,12 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (addDesignation == CommonConstantHelper.Success)
                     {
-                        TempData["SM"] = "Successfully added new Designation.";
+                        TempData["SM"] = "সফলভাবে নতুন পদবি সংযুক্ত করা হয়েছে";
                         return RedirectToAction("Index", "Designation");
                     }
                     else if (addDesignation == CommonConstantHelper.Conflict)
                     {
-                        ModelState.AddModelError("", "Designation already exist.");
+                        ModelState.AddModelError("", "পদবিটি ডেটাবেজে বিদ্যমান রয়েছে");
                         return View(Designation);
                     }
                     else if (addDesignation == CommonConstantHelper.Error)
@@ -287,8 +287,7 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (Designation.DesignationName == null)
                     {
-                        ModelState.AddModelError("", "Designation is required.");
-                        TempData["EM"] = "User name required.";
+                        ModelState.AddModelError("", "পদবির নাম অবশ্যই পূরণ করতে হবে");
                         return View(Designation);
                     }
 
@@ -299,13 +298,12 @@ namespace HoldingTaxWebApp.Controllers.Users
 
                     if (updateDesignation == CommonConstantHelper.Success)
                     {
-                        TempData["SM"] = "Successfully updated Designation.";
+                        TempData["SM"] = "সফলভাবে পদবি হালনাগাদ করা হয়েছে ";
                         return RedirectToAction("Index", "Designation");
                     }
                     else if (updateDesignation == CommonConstantHelper.Conflict)
                     {
-                        ModelState.AddModelError("", "Designation already exist.");
-                        TempData["EM"] = "User name required.";
+                        ModelState.AddModelError("", "পদবিটি ডেটাবেজে বিদ্যমান রয়েছে");
                         return View();
                     }
                     else if (updateDesignation == CommonConstantHelper.Error)
