@@ -64,6 +64,23 @@ namespace HoldingTaxWebApp.Manager.Holding
                 return CommonConstantHelper.Failed;
         }
 
+        public int HoldersFlatTransfer(HolderFlat model)
+        {
+            return _holdingGateway.HoldersFlatTransfer(model);
+        }
+
+        public string HoldersFlatInActive(HolderFlat model)
+        {
+            int result = _holdingGateway.HoldersFlatInActive(model);
+
+            if (result == 202)
+                return CommonConstantHelper.Success;
+            else if (result == 500)
+                return CommonConstantHelper.Error;
+            else
+                return CommonConstantHelper.Failed;
+        }
+
         public string HoldersFlatUpdate(HolderFlat model)
         {
             int result = _holdingGateway.HoldersFlatUpdate(model);
@@ -105,7 +122,10 @@ namespace HoldingTaxWebApp.Manager.Holding
         {
             return _holdingGateway.GetAllFlatByPlotIdForEdit(PlotId, HolderId);
         }
-
+        public List<HolderFlat> GetAllFlatByAreaAndPlotId(int AreaId, int PlotId)
+        {
+            return _holdingGateway.GetAllFlatByAreaAndPlotId(AreaId, PlotId);
+        }
         public decimal GetPerSqrFeetPrice(int areaId, int buildingTypeId)
         {
             return _holdingGateway.GetPerSqrFeetPrice(areaId, buildingTypeId);
