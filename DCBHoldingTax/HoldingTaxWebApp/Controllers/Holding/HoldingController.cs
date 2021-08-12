@@ -1993,6 +1993,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                 {
                                     if (ui_item.IsCheckedByHolder == true)
                                     {
+                                        // step 1 insert in falt table 
                                         HolderFlat details = new HolderFlat()
                                         {
                                             CreateDate = DateTime.Now,
@@ -2014,8 +2015,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                             IsCheckedByHolder = true,
                                             MainHolderId = ui_item.SelfOwn == 1 ? (int?)holderId : null,
                                         };
-
                                         int transferCountId = _holdingManager.HoldersFlatTransfer(details);
+
+                                        // step 2 incavtive old falt data
                                         var incativeDetails = new HolderFlat();
                                         if (transferCountId > 0)
                                         {
@@ -2030,7 +2032,6 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                             status = "Operation failed in child table";
                                             return new JsonResult { Data = new { status } };
                                         }
-
                                         string incativeReturn = _holdingManager.HoldersFlatInActive(incativeDetails);
                                         if (incativeReturn != CommonConstantHelper.Success)
                                         {
@@ -2038,6 +2039,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                             return new JsonResult { Data = new { status } };
                                         }
 
+                                        // step 3 inserting history table 
                                         HolderFlatHistory flatHistory = new HolderFlatHistory()
                                         {
                                             AreaId = hvm.AreaId,
