@@ -41,7 +41,10 @@ namespace HoldingTaxWebApp.Manager.Holding
         #endregion
 
         #region holder flat
-
+        public HolderFlat GetHoldersFlatByHolderFlatId(int id)
+        {
+            return _holdingGateway.GetHoldersFlatByHolderFlatId(id);
+        }
         public List<HolderFlat> GetHoldersFlatByHolderId(int id)
         {
             return _holdingGateway.GetHoldersFlatByHolderId(id);

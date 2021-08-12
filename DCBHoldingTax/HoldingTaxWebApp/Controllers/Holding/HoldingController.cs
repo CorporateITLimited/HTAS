@@ -24,6 +24,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
         private readonly OwnershipSourceManager _ownershipSourceManager;
         private readonly DOHSAreaManager _dOHSAreaManager;
         private readonly BuildingTypeManager _buildingTypeManager;
+        private readonly HolderFlatHistoryManager _flatHistoryManager;
 
         public HoldingController()
         {
@@ -33,6 +34,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             _ownershipSourceManager = new OwnershipSourceManager();
             _dOHSAreaManager = new DOHSAreaManager();
             _buildingTypeManager = new BuildingTypeManager();
+            _flatHistoryManager = new HolderFlatHistoryManager();
         }
 
         // GET: Holding
@@ -2014,29 +2016,51 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                         };
 
                                         int transferCountId = _holdingManager.HoldersFlatTransfer(details);
-
-
-
-                                        var incativeDetails = new HolderFlat
+                                        var incativeDetails = new HolderFlat();
+                                        if (transferCountId > 0)
                                         {
-                                            HolderFlatId = ui_item.HolderFlatId,
-                                            LastUpdated = DateTime.Now,
-                                            LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                                            IsActive = false,
-                                            IsDeleted = true
+                                            incativeDetails.HolderFlatId = ui_item.HolderFlatId;
+                                            incativeDetails.LastUpdated = DateTime.Now;
+                                            incativeDetails.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                                            incativeDetails.IsActive = false;
+                                            incativeDetails.IsDeleted = true;
+                                        }
+                                        else
+                                        {
+                                            status = "Operation failed in child table";
+                                            return new JsonResult { Data = new { status } };
+                                        }
+
+                                        string incativeReturn = _holdingManager.HoldersFlatInActive(incativeDetails);
+                                        if (incativeReturn != CommonConstantHelper.Success)
+                                        {
+                                            status = "Operation failed in child table";
+                                            return new JsonResult { Data = new { status } };
+                                        }
+
+                                        HolderFlatHistory flatHistory = new HolderFlatHistory()
+                                        {
+                                            AreaId = hvm.AreaId,
+                                            PlotId = hvm.PlotId,
+                                            OldHolderFlatId = ui_item.HolderFlatId,
+                                            NewHolderFlatId = transferCountId,
+                                            OldHolderId = _holdingManager.GetHoldersFlatByHolderFlatId(ui_item.HolderFlatId).HolderId,
+                                            NewHolderId = holderId,
+                                            ReferenceNo = hvm.TransferRefNo,
+                                            ReferenceDate = hvm.TransferRefDate,
+                                            TransactionDate = DateTime.Now,
+                                            TransactionBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId])
                                         };
 
-                                        string resultReturn = _holdingManager.HoldersFlatInActive(incativeDetails);
+                                        string insertResult = _flatHistoryManager.InsertHolderFlatHistory(flatHistory);
 
-                                        // if (transferCountId != CommonConstantHelper.Success)
-                                        //{
-                                        //    status = "Operation failed in child table";
-                                        //    return new JsonResult { Data = new { status } };
-                                        //}
-                                        //else
-                                        //{
+                                        if (insertResult != CommonConstantHelper.Success)
+                                        {
+                                            status = "Operation failed in child table";
+                                            return new JsonResult { Data = new { status } };
+                                        }
+
                                         status = "success";
-                                        //}
                                     }
                                 }
                             }
