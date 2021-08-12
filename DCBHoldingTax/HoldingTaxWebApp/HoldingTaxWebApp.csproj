@@ -4536,6 +4536,7 @@
     <Compile Include="Controllers\DBO\DOHSAreaController.cs" />
     <Compile Include="Controllers\DBO\IssueController.cs" />
     <Compile Include="Controllers\Holding\HolderClientController.cs" />
+    <Compile Include="Controllers\Holding\HolderFlatHistoryController.cs" />
     <Compile Include="Controllers\Holding\HoldingController.cs" />
     <Compile Include="Controllers\Holding\NoticeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -4574,6 +4575,7 @@
     <Compile Include="Gateway\DBO\OwnershipSourceGateway.cs" />
     <Compile Include="Gateway\DBO\StatusTypeGateway.cs" />
     <Compile Include="Gateway\DefaultGateway.cs" />
+    <Compile Include="Gateway\Holding\HolderFlatHistoryGateway.cs" />
     <Compile Include="Gateway\Holding\HoldingGateway.cs" />
     <Compile Include="Gateway\Holding\NoticeGateway.cs" />
     <Compile Include="Gateway\Plots\OldPlotOwnerGateway.cs" />
@@ -4610,6 +4612,7 @@
     <Compile Include="Manager\DBO\OfficialStatusManager.cs" />
     <Compile Include="Manager\DBO\OwnershipSourceManager.cs" />
     <Compile Include="Manager\DBO\StatusTypeManager.cs" />
+    <Compile Include="Manager\Holding\HolderFlatHistoryManager.cs" />
     <Compile Include="Manager\Holding\HoldingManager.cs" />
     <Compile Include="Manager\Holding\NoticeManager.cs" />
     <Compile Include="Manager\Plots\OldPlotOwnerManager.cs" />
@@ -4638,6 +4641,7 @@
     <Compile Include="Models\Holding\ChartPaidAm.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
     <Compile Include="Models\Holding\HolderFlat.cs" />
+    <Compile Include="Models\Holding\HolderFlatHistory.cs" />
     <Compile Include="Models\Holding\Notice.cs" />
     <Compile Include="Models\Plots\ConstructionProgress.cs" />
     <Compile Include="Models\Plots\DesignApproval.cs" />
@@ -4884,6 +4888,8 @@
     <Content Include="Views\DOHSArea\Create.cshtml" />
     <Content Include="Views\DOHSArea\Edit.cshtml" />
     <Content Include="Views\Notice\CreateReport.cshtml" />
+    <Content Include="Views\HolderFlatHistory\Index.cshtml" />
+    <Content Include="Views\HolderFlatHistory\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
