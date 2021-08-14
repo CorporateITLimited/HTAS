@@ -7,6 +7,14 @@
 }
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
+
+    <style>
+        .canthead {
+            text-align: center;
+            justify-content: center !important;
+        }
+    </style>
+
 }
 
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
@@ -51,7 +59,7 @@
                             <div class="col-lg-5">
 
                                 <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
+                                    <label class="col-6 col-form-label">
                                         @Html.DisplayNameFor(model => model.AreaName)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
@@ -63,7 +71,7 @@
                                 </div>
 
                                 <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
+                                    <label class="col-6 col-form-label">
                                         @Html.DisplayNameFor(model => model.PlotNo)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
@@ -77,7 +85,7 @@
 
 
                                 <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
+                                    <label class="col-6 col-form-label">
                                         @Html.DisplayNameFor(model => model.NewFlatNo)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
@@ -89,7 +97,7 @@
                                 </div>
 
                                 <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
+                                    <label class="col-6 col-form-label">
                                         @Html.DisplayNameFor(model => model.ReferenceNo)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
@@ -183,7 +191,9 @@
             $("#print_this").on('click', function (e) {
                 e.preventDefault();
                 $("#print_div").printThis({
-                    header: $('#print_header')
+                    header: $('#print_header'),
+                    importCSS: true,
+                    importStyle: true
                 });
             });
         });
