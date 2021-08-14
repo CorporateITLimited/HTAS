@@ -713,7 +713,7 @@
 
             // plot name show in every heading
             $('#PlotId').change(function () {
-                var plotName = $('#PlotId option:selected').text();
+              //  var plotName = $('#PlotId option:selected').text();
                 $(".show_plot").text("");
                 // $(".show_plot").text("( প্লট/বাড়ী/ফ্ল্যাট নম্বর : " + plotName + " )");
 
@@ -731,25 +731,6 @@
                     success: function (data) {
                         $("#road_number").val(data.RoadNo);
                         $("#road_name").val(data.RoadName);
-                    },
-                    error: function (e) {
-                        console.log(e);
-                    }
-                });
-
-                $.ajax({
-                    url: '/Holding/GetAllotmentNamjariDesignByPlotId',
-                    type: "POST",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(json),
-                    success: function (data) {
-                        $("#PlotOwnerName").val(data.PlotOwnerName);
-                        $("#LeasePeriod").val(data.LeasePeriod);
-                        $("#StringLeaseExpiryDate").val(data.StringLeaseExpiryDate);
-                        $("#FirstApprovalLetterNo").val(data.FirstApprovalLetterNo);
-                        $("#LastApprovalLetterNo").val(data.LastApprovalLetterNo);
-                        $("#StringFirstApprovalDate").val(data.StringFirstApprovalDate);
-                        $("#StringLastApprovalDate").val(data.StringLastApprovalDate);
                     },
                     error: function (e) {
                         console.log(e);
@@ -787,6 +768,25 @@
                     }
                 });
 
+
+                $.ajax({
+                    url: '/Holding/GetAllotmentNamjariDesignByPlotId',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        $("#PlotOwnerName").val(data.PlotOwnerName);
+                        $("#LeasePeriod").val(data.LeasePeriod);
+                        $("#StringLeaseExpiryDate").val(data.StringLeaseExpiryDate);
+                        $("#FirstApprovalLetterNo").val(data.FirstApprovalLetterNo);
+                        $("#LastApprovalLetterNo").val(data.LastApprovalLetterNo);
+                        $("#StringFirstApprovalDate").val(data.StringFirstApprovalDate);
+                        $("#StringLastApprovalDate").val(data.StringLastApprovalDate);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
 
                 @*var flat_details_table = $('#flat_details tbody');
                 var areaId = $("#AreaId").val();
