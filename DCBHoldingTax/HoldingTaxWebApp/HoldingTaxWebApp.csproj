@@ -4531,6 +4531,7 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\Constant\ConstantValueController.cs" />
     <Compile Include="Controllers\Constant\OwnTaxRateController.cs" />
     <Compile Include="Controllers\DBO\DOHSAreaController.cs" />
@@ -4659,6 +4660,7 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="PaymentGateway\SSLCommerz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DBO\IssueCombineVM.cs" />
     <Compile Include="ViewModels\HolderVM.cs" />
@@ -4884,6 +4886,10 @@
     <Content Include="Views\DOHSArea\Create.cshtml" />
     <Content Include="Views\DOHSArea\Edit.cshtml" />
     <Content Include="Views\Notice\CreateReport.cshtml" />
+    <Content Include="Views\Cart\ProductList.cshtml" />
+    <Content Include="Views\Cart\CheckoutCancel.cshtml" />
+    <Content Include="Views\Cart\CheckoutConfirmation.cshtml" />
+    <Content Include="Views\Cart\CheckoutFail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
