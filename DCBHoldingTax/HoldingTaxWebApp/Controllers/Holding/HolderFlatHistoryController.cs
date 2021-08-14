@@ -12,11 +12,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
     {
 
         private readonly HolderFlatHistoryManager _HolderFlatHistoryManager;
+        private readonly HoldingManager _HoldingManager;
 
 
         public HolderFlatHistoryController()
         {
             _HolderFlatHistoryManager = new HolderFlatHistoryManager();
+            _HoldingManager = new HoldingManager();
         }
 
         // GET: HolderFlatHistory
@@ -47,6 +49,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                         PlotNo = item.PlotNo,
                         ReferenceDate = item.ReferenceDate,
                         StringReferenceDate = $"{item.ReferenceDate:dd/MM/yyyy}",
+                        StringTransactionDate = $"{item.TransactionDate:dd/MM/yyyy}",
                         ReferenceNo = item.ReferenceNo,
                         TransactionBy = item.TransactionBy,
                         TransactionByUserName = item.TransactionByUserName,
@@ -115,6 +118,36 @@ namespace HoldingTaxWebApp.Controllers.Holding
             }
         }
 
+
+        //// GET: HolderFlatHistory/NewHolderDetails
+        //public ActionResult PartialHolderDetails(int id)
+        //{
+        //    try
+        //    {
+        //        //id = id > 0 ? id : null;
+               
+
+        //        var data = _HoldingManager.GetHolderById(id);
+
+        //        if (data != null)
+        //        {
+        //            return PartialView("~/Views/HolderFlatHistory/_PartialHolderDetails.cshtml", data);
+        //        }
+        //        else
+        //        {
+        //            return PartialView("~/Views/Home/_NoDataFound.cshtml");
+        //        }
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        TempData["EM"] = "error | " + exception.Message.ToString();
+        //        return PartialView("~/Views/Home/_NoDataFound.cshtml");
+        //        //return View();
+        //    }
+        //}
+
+
+
         // GET: HolderFlatHistory/Create
         public ActionResult Create()
         {
@@ -180,5 +213,23 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 return View();
             }
         }
+
+
+
+
+        public JsonResult GetData(int HolderId)
+        {
+            var data = _HoldingManager.GetHolderById(HolderId);
+            return new JsonResult
+            {
+                Data = data,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+
+
+
+
     }
 }

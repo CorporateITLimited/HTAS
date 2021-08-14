@@ -7,6 +7,14 @@
 }
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
+
+    <style>
+        .canthead {
+            text-align: center;
+            justify-content: center !important;
+        }
+    </style>
+
 }
 
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
@@ -109,7 +117,7 @@
                             <div class="col-lg-5">
 
                                 <div class="form-group form-group-xs row">
-                                    <label class="col-6 col-form-label">
+                                    <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.OldHolderName)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
@@ -118,10 +126,13 @@
                                             @Html.DisplayFor(model => model.OldHolderName)
                                         </span>
                                     </div>
+                                    <div class="col-1">
+                                        <button href="#" class="btn btn-info font-weight-bold" data-toggle="modal" data-target="#kt_datatable_modal_2" id="oldHolder">বিস্তারিত</button>
+                                    </div>
                                 </div>
 
                                 <div class="form-group form-group-xs row">
-                                    <label class="col-6 col-form-label">
+                                    <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.NewHolderName)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
@@ -130,9 +141,12 @@
                                             @Html.DisplayFor(model => model.NewHolderName)
                                         </span>
                                     </div>
+                                    <div class="col-1">
+                                        <button href="#" class="btn btn-info font-weight-bold" data-toggle="modal" data-target="#kt_datatable_modal_3" id="newHolder">বিস্তারিত</button>
+                                    </div>
                                 </div>
                                 <div class="form-group form-group-xs row">
-                                    <label class="col-6 col-form-label">
+                                    <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.StringReferenceDate)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
@@ -143,7 +157,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group form-group-xs row">
-                                    <label class="col-6 col-form-label">
+                                    <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.TransactionByUserName)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
@@ -159,6 +173,423 @@
                             </div>
                         </div>
 
+                        <!--begin::Modal-->
+                        <div id="kt_datatable_modal_2" class="modal fade" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content" style="min-height: 590px;" >
+                                    <div class="modal-header py-5">
+                                        <h5 class="modal-title">
+                                            পুরাতন প্লট/ফ্ল্যাট/বাড়ী মালিকের বিস্তারিত তথ্য
+                                            <span class="d-block text-muted font-size-sm"></span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" id="print_OldHolder">
+                                        @*@Html.Partial("_PartialOldHolderDetails")*@
+                                        <div class="row offset-1">
+                                            <legend> ব্যাক্তিগত তথ্য</legend>
+
+                                            <div class="col-lg-5">
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        ফ্ল্যাট/বাড়ী মালিকের নাম
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="HolderName">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        এনআইডি নম্বর
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="NID">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        লিঙ্গ
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="GenderType">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        পিতার নাম
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="Father">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        মাতার নাম
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="Mother">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        বৈবাহিক অবস্থা
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="MaritialStatusType">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        স্বামী/স্ত্রীর নাম
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="Spouse">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                            </div>
+
+                                            <div class="col-lg-5">
+
+
+
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        ই-মেইল
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="Email">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        ল্যান্ডলাইন নাম্বার
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="Contact1">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        মোবাইল নাম্বার
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="Contact2">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        বর্তমান ঠিকানা
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="PresentAdd">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        স্থায়ী ঠিকানা
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="PermanentAdd">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        পত্র যোগাযোগের ঠিকানা
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="ContactAdd">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+
+                                            </div>
+                                        </div>
+
+                                        <!--end: Datatable-->
+                                    </div>
+
+                                    @*<div>
+                                        <button id="print_Old" class="btn btn-light-primary btn-md"><i class="fas fa-list"></i>প্রিন্ট করুন</button>
+                                    </div>*@
+
+
+                                </div>
+
+
+                            
+
+                            </div>
+                        </div>
+                        <!--end::Modal-->
+                        <!--begin::Modal 2-->
+                        <div id="kt_datatable_modal_3" class="modal fade" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content" style="min-height: 590px;">
+                                    <div class="modal-header py-5">
+                                        <h5 class="modal-title">
+                                            বর্তমান প্লট/ফ্ল্যাট/বাড়ী মালিকের বিস্তারিত তথ্য
+                                            <span class="d-block text-muted font-size-sm"></span>
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @*@Html.Partial("_PartialOldHolderDetails")*@
+                                        <div class="row offset-1">
+                                            <legend> ব্যাক্তিগত তথ্য</legend>
+
+                                            <div class="col-lg-5">
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        ফ্ল্যাট/বাড়ী মালিকের নাম
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nHolderName">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        এনআইডি নম্বর
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nNID">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        লিঙ্গ
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nGenderType">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        পিতার নাম
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nFather">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        মাতার নাম
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nMother">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        বৈবাহিক অবস্থা
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nMaritialStatusType">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        স্বামী/স্ত্রীর নাম
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nSpouse">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                            </div>
+
+                                            <div class="col-lg-5">
+
+
+
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        ই-মেইল
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nEmail">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        ল্যান্ডলাইন নাম্বার
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nContact1">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        মোবাইল নাম্বার
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nContact2">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        বর্তমান ঠিকানা
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nPresentAdd">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        স্থায়ী ঠিকানা
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nPermanentAdd">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group form-group-xs row">
+                                                    <label class="col-5 col-form-label">
+                                                        পত্র যোগাযোগের ঠিকানা
+                                                    </label>
+                                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                                    <div class="col-6">
+                                                        <span class="form-control-plaintext kt-font-bolder" id="nContactAdd">
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                        <!--end: Datatable-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Modal 2-->
+
+
                     </div>
 
                     <div class="card-footer">
@@ -171,6 +602,10 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
             </div>
         </div>
     </div>
@@ -180,12 +615,113 @@
     <script src="~/Scripts/printThis.js"></script>
     <script>
         jQuery(document).ready(function () {
+
             $("#print_this").on('click', function (e) {
                 e.preventDefault();
                 $("#print_div").printThis({
-                    header: $('#print_header')
+                    header: $('#print_header'),
+                    importCSS: true,
+                    importStyle: true
                 });
             });
+
+            $("#oldHolder").on('click', function () {
+
+                var id = @Model.OldHolderId;
+                var json = {
+                     HolderId: id
+                };
+        //debugger;
+                   $.ajax({
+                    url: '@Url.Action("GetData", "HolderFlatHistory")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                       success: function (data) {
+
+                           $("#HolderName").text(data.HolderName);
+                           $("#GenderType").text(data.GenderType);
+                           $("#NID").text(data.NID);
+                           $("#MaritialStatusType").text(data.MaritialStatusType);
+                           $("#Father").text(data.Father);
+                           $("#Mother").text(data.Mother);
+                           $("#Spouse").text(data.Spouse);
+                           $("#Contact1").text(data.Contact1);
+                           $("#Contact2").text(data.Contact2);
+                           $("#Email").text(data.Email);
+                           $("#PresentAdd").text(data.PresentAdd);
+                           $("#PermanentAdd").text(data.PermanentAdd);
+                           $("#ContactAdd").text(data.ContactAdd);
+                         
+                       
+                    },
+                    error: function () {
+                        alert('error count');
+                    }
+                });
+
+
+            });
+
+
+              $("#newHolder").on('click', function () {
+
+                var id = @Model.NewHolderId;
+                var json = {
+                     HolderId: id
+                };
+        //debugger;
+                   $.ajax({
+                    url: '@Url.Action("GetData", "HolderFlatHistory")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                       success: function (data) {
+
+                           $("#nHolderName").text(data.HolderName);
+                           $("#nGenderType").text(data.GenderType);
+                           $("#nNID").text(data.NID);
+                           $("#nMaritialStatusType").text(data.MaritialStatusType);
+                           $("#nFather").text(data.Father);
+                           $("#nMother").text(data.Mother);
+                           $("#nSpouse").text(data.Spouse);
+                           $("#nContact1").text(data.Contact1);
+                           $("#nContact2").text(data.Contact2);
+                           $("#nEmail").text(data.Email);
+                           $("#nPresentAdd").text(data.PresentAdd);
+                           $("#nPermanentAdd").text(data.PermanentAdd);
+                           $("#nContactAdd").text(data.ContactAdd);
+                         
+                       
+                    },
+                    error: function () {
+                        alert('error count');
+                    }
+                });
+
+
+
+
+
+
+
+
+            });
+
+
+
+
+            //$("#print_Old").on('click', function (e) {
+            //    e.preventDefault();
+            //    $("#print_OldHolder").printThis({
+            //        //header: $('#print_header'),
+            //        importCSS: true,
+            //        importStyle: true
+            //    });
+            //});
+
+
+
         });
     </script>
 }

@@ -25,7 +25,8 @@ namespace HoldingTaxWebApp.Models.Holding
         public string StringReferenceDate { get; set; }
         [Display(Name = "হালনাগাদের সময়")]
         public DateTime? TransactionDate { get; set; }
-        //public string StringTransactionDate { get; set; }
+        [Display(Name = "হালনাগাদের সময়")]
+        public string StringTransactionDate { get; set; }
         public int? TransactionBy { get; set; }
 
 
@@ -47,7 +48,7 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "বর্তমান প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম")]
         public string NewHolderName { get; set; }
 
-        [Display(Name = "হালনাগাদকরি")]
+        [Display(Name = "হালনাগাদকারী")]
 
         public string TransactionByUserName { get; set; }
 
