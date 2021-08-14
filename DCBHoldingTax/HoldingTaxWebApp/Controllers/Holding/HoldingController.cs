@@ -2046,7 +2046,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                             PlotId = hvm.PlotId,
                                             OldHolderFlatId = ui_item.HolderFlatId,
                                             NewHolderFlatId = transferCountId,
-                                            OldHolderId = _holdingManager.GetHoldersFlatByHolderFlatId(ui_item.HolderFlatId).MainHolderId,
+                                            OldHolderId = hvm.HolderId, //_holdingManager.GetHoldersFlatByHolderFlatId(ui_item.HolderFlatId).MainHolderId,
                                             NewHolderId = holderId,
                                             ReferenceNo = hvm.TransferRefNo,
                                             ReferenceDate = hvm.TransferRefDate,
@@ -2092,6 +2092,14 @@ namespace HoldingTaxWebApp.Controllers.Holding
             //}
 
         }
+
+
+        public JsonResult GetHolderByAreaIdAndPlotId(int AreaId, int PlotId)
+        {
+            var data = _holdingManager.GetHolderByAreaIdAndPlotId(AreaId, PlotId);
+            return new JsonResult { Data = data ?? null };
+        }
+
 
         public ActionResult DownloadFile(string filePath)
         {
@@ -2150,6 +2158,19 @@ namespace HoldingTaxWebApp.Controllers.Holding
             var data = _holdingManager.GetAllFlatByAreaAndPlotId(AreaId, PlotId);
             return new JsonResult { Data = data ?? null };
         }
+
+        public JsonResult GetAllFlatByHolderId(int HolderId)
+        {
+            var data = _holdingManager.GetAllFlatByHolderId(HolderId);
+            return new JsonResult { Data = data ?? null };
+        }
+
+        public JsonResult GetHolderDetailsByHolderId(int HolderId)
+        {
+            var data = _holdingManager.GetHolderById(HolderId);
+            return new JsonResult { Data = data ?? null };
+        }
+
         public JsonResult GetImage(HttpPostedFileBase fileBase)
         {
             if (fileBase != null)

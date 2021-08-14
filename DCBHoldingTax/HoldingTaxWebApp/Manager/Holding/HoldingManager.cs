@@ -28,6 +28,11 @@ namespace HoldingTaxWebApp.Manager.Holding
             return _holdingGateway.GetHolderById(id);
         }
 
+        public List<Holder> GetHolderByAreaIdAndPlotId(int AreaId, int PlotId)
+        {
+            return _holdingGateway.GetHolderByAreaIdAndPlotId(AreaId, PlotId);
+        }
+
         public int InsertHolder(Holder model)
         {
             return _holdingGateway.InsertHolder(model);
@@ -128,6 +133,10 @@ namespace HoldingTaxWebApp.Manager.Holding
         public List<HolderFlat> GetAllFlatByAreaAndPlotId(int AreaId, int PlotId)
         {
             return _holdingGateway.GetAllFlatByAreaAndPlotId(AreaId, PlotId);
+        }
+        public List<HolderFlat> GetAllFlatByHolderId(int HolderId)
+        {
+            return _holdingGateway.GetAllFlatByHolderId(HolderId);
         }
         public decimal GetPerSqrFeetPrice(int areaId, int buildingTypeId)
         {

@@ -104,7 +104,7 @@ var KTWizard4 = function () {
                     }
                     else {
                         var data = {
-                            HolderId: 0,
+                            HolderId: parseInt($('#HolderId option:selected').val()) || 0,
                             AreaId: parseInt($('#AreaId option:selected').val()) || 0,
                             PlotId: parseInt($('#PlotId option:selected').val()) || 0,
                             HolderName: $('#HolderName').val().trim(),
@@ -221,6 +221,13 @@ var KTWizard4 = function () {
                         }
                     },
                     PlotId: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
+                    HolderId: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
