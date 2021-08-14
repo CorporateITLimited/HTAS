@@ -41,7 +41,10 @@ namespace HoldingTaxWebApp.Manager.Holding
         #endregion
 
         #region holder flat
-
+        public HolderFlat GetHoldersFlatByHolderFlatId(int id)
+        {
+            return _holdingGateway.GetHoldersFlatByHolderFlatId(id);
+        }
         public List<HolderFlat> GetHoldersFlatByHolderId(int id)
         {
             return _holdingGateway.GetHoldersFlatByHolderId(id);
@@ -55,6 +58,23 @@ namespace HoldingTaxWebApp.Manager.Holding
         public string HoldersFlatInsert(HolderFlat model)
         {
             int result = _holdingGateway.HoldersFlatInsert(model);
+
+            if (result == 202)
+                return CommonConstantHelper.Success;
+            else if (result == 500)
+                return CommonConstantHelper.Error;
+            else
+                return CommonConstantHelper.Failed;
+        }
+
+        public int HoldersFlatTransfer(HolderFlat model)
+        {
+            return _holdingGateway.HoldersFlatTransfer(model);
+        }
+
+        public string HoldersFlatInActive(HolderFlat model)
+        {
+            int result = _holdingGateway.HoldersFlatInActive(model);
 
             if (result == 202)
                 return CommonConstantHelper.Success;
@@ -105,7 +125,10 @@ namespace HoldingTaxWebApp.Manager.Holding
         {
             return _holdingGateway.GetAllFlatByPlotIdForEdit(PlotId, HolderId);
         }
-
+        public List<HolderFlat> GetAllFlatByAreaAndPlotId(int AreaId, int PlotId)
+        {
+            return _holdingGateway.GetAllFlatByAreaAndPlotId(AreaId, PlotId);
+        }
         public decimal GetPerSqrFeetPrice(int areaId, int buildingTypeId)
         {
             return _holdingGateway.GetPerSqrFeetPrice(areaId, buildingTypeId);

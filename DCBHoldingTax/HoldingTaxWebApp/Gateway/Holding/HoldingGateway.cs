@@ -453,6 +453,89 @@ namespace HoldingTaxWebApp.Gateway.Holding
 
         #region holder flat
 
+        public HolderFlat GetHoldersFlatByHolderFlatId(int id)
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spHolderFlatMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Details;
+                Sql_Command.Parameters.Add("@HolderFlatId", SqlDbType.Int).Value = id;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                HolderFlat vm = new HolderFlat();
+
+                while (Data_Reader.Read())
+                {
+                    vm.HolderFlatId = Convert.ToInt32(Data_Reader["HolderFlatId"]);
+                    vm.HolderId = Convert.ToInt32(Data_Reader["HolderId"]);
+                    vm.FlorNo = Data_Reader["FlorNo"] != DBNull.Value ? Convert.ToInt32(Data_Reader["FlorNo"]) : (int?)null;
+                    vm.FlatNo = Convert.ToString(Data_Reader["FlatNo"]);
+                    vm.FlatArea = Data_Reader["FlatArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["FlatArea"]) : (decimal?)null;
+                    vm.OwnOrRent = Data_Reader["OwnOrRent"] != DBNull.Value ? Convert.ToInt32(Data_Reader["OwnOrRent"]) : (int?)null;
+                    vm.OwnOrRentType = Convert.ToString(Data_Reader["OwnOrRentType"]);
+                    vm.IsSelfOwned = Data_Reader["IsSelfOwned"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsSelfOwned"]) : (bool?)null;
+                    vm.MonthlyRent = Data_Reader["MonthlyRent"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["MonthlyRent"]) : (decimal?)null;
+                    vm.OwnerName = Convert.ToString(Data_Reader["OwnerName"]);
+                    vm.SelfOwn = Data_Reader["SelfOwn"] != DBNull.Value ? Convert.ToInt32(Data_Reader["SelfOwn"]) : (int?)null;
+                    vm.SelfOwnType = Convert.ToString(Data_Reader["SelfOwnType"]);
+                    vm.CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null;
+                    vm.LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null;
+                    vm.IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null;
+                    vm.IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null;
+                    vm.CreatedBy = Data_Reader["CreatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null;
+                    vm.LastUpdatedBy = Data_Reader["LastUpdatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null;
+                    vm.FloorTypeName = Data_Reader["FloorTypeName"].ToString();
+                    vm.IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null;
+                    vm.StrFlatArea = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.FlatArea);
+                    vm.StrMonthlyRent = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.MonthlyRent);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
         public List<HolderFlat> GetHoldersFlatByHolderId(int id)
         {
             try
@@ -708,6 +791,145 @@ namespace HoldingTaxWebApp.Gateway.Holding
             }
         }
 
+        public int HoldersFlatTransfer(HolderFlat model)
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spHolderFlatMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "insert_transfer";
+
+                Sql_Command.Parameters.Add("@HolderFlatId", SqlDbType.Int).Value = model.HolderFlatId;
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = model.HolderId;
+                Sql_Command.Parameters.Add("@MainHolderId", SqlDbType.Int).Value = model.MainHolderId;
+                Sql_Command.Parameters.Add("@FlorNo", SqlDbType.Int).Value = model.FlorNo;
+                Sql_Command.Parameters.Add("@FlatNo", SqlDbType.NVarChar).Value = model.FlatNo;
+                Sql_Command.Parameters.Add("@FlatArea", SqlDbType.Decimal).Value = model.FlatArea;
+                Sql_Command.Parameters.Add("@OwnOrRent", SqlDbType.Int).Value = model.OwnOrRent;
+                Sql_Command.Parameters.Add("@IsSelfOwned", SqlDbType.Bit).Value = model.IsSelfOwned;
+                Sql_Command.Parameters.Add("@OwnerName", SqlDbType.NVarChar).Value = model.OwnerName;
+                Sql_Command.Parameters.Add("@MonthlyRent", SqlDbType.Decimal).Value = model.MonthlyRent;
+                Sql_Command.Parameters.Add("@SelfOwn", SqlDbType.Int).Value = model.SelfOwn;
+                Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = model.CreateDate;
+                Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = model.CreatedBy;
+                Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = model.LastUpdated;
+                Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = model.LastUpdatedBy;
+                Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
+                Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
+                Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = model.IsCheckedByHolder;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
+        public int HoldersFlatInActive(HolderFlat model)
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spHolderFlatMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "inactive";
+
+                Sql_Command.Parameters.Add("@HolderFlatId", SqlDbType.Int).Value = model.HolderFlatId;
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = null;
+                Sql_Command.Parameters.Add("@MainHolderId", SqlDbType.Int).Value = null;
+                Sql_Command.Parameters.Add("@FlorNo", SqlDbType.Int).Value = null;
+                Sql_Command.Parameters.Add("@FlatNo", SqlDbType.NVarChar).Value = null;
+                Sql_Command.Parameters.Add("@FlatArea", SqlDbType.Decimal).Value = null;
+                Sql_Command.Parameters.Add("@OwnOrRent", SqlDbType.Int).Value = null;
+                Sql_Command.Parameters.Add("@IsSelfOwned", SqlDbType.Bit).Value = null;
+                Sql_Command.Parameters.Add("@OwnerName", SqlDbType.NVarChar).Value = null;
+                Sql_Command.Parameters.Add("@MonthlyRent", SqlDbType.Decimal).Value = null;
+                Sql_Command.Parameters.Add("@SelfOwn", SqlDbType.Int).Value = null;
+                Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = null;
+                Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = null;
+                Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = model.LastUpdated;
+                Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = model.LastUpdatedBy;
+                Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
+                Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
+                Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = null;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
 
         public int HoldersFlatUpdate(HolderFlat model)
         {
@@ -778,6 +1000,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     Sql_Connection.Close();
             }
         }
+
         public int HoldersFlatUpdateForMainHolder(HolderFlat model)
         {
             try
@@ -847,6 +1070,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     Sql_Connection.Close();
             }
         }
+
+
 
         public int DeleteHoldersFlatDataByHolderId(int HolderId)
         {
@@ -1052,7 +1277,78 @@ namespace HoldingTaxWebApp.Gateway.Holding
 
         }
 
+        public List<HolderFlat> GetAllFlatByAreaAndPlotId(int AreaId, int PlotId)
+        {
+            try
+            {
+                Sql_Query = "[dbo].[spGetAllFlatByAreaIdAndPlotId]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
 
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = PlotId;
+                Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = AreaId;
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<HolderFlat> vm = new List<HolderFlat>();
+
+                while (Data_Reader.Read())
+                {
+                    HolderFlat model = new HolderFlat
+                    {
+                        HolderFlatId = Convert.ToInt32(Data_Reader["HolderFlatId"]),
+                        FlorNo = Data_Reader["FlorNo"] != DBNull.Value ? Convert.ToInt32(Data_Reader["FlorNo"]) : (int?)null,
+                        FlatNo = Convert.ToString(Data_Reader["FlatNo"]),
+                        FlatArea = Data_Reader["FlatArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["FlatArea"]) : (decimal?)null,
+                        OwnOrRent = Data_Reader["OwnOrRent"] != DBNull.Value ? Convert.ToInt32(Data_Reader["OwnOrRent"]) : (int?)null,
+                        OwnOrRentType = Convert.ToString(Data_Reader["OwnOrRentType"]),
+                        IsSelfOwned = Data_Reader["IsSelfOwned"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsSelfOwned"]) : (bool?)null,
+                        MonthlyRent = Data_Reader["MonthlyRent"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["MonthlyRent"]) : (decimal?)null,
+                        OwnerName = Convert.ToString(Data_Reader["OwnerName"]),
+                        SelfOwn = Data_Reader["SelfOwn"] != DBNull.Value ? Convert.ToInt32(Data_Reader["SelfOwn"]) : (int?)null,
+                        SelfOwnType = Convert.ToString(Data_Reader["SelfOwnType"]),
+                        FloorTypeName = Data_Reader["FloorTypeName"].ToString(),
+                        IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null
+                    };
+
+                    model.StrFlatArea = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.FlatArea);
+                    model.StrMonthlyRent = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.MonthlyRent);
+
+                    vm.Add(model);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
 
         public decimal GetPerSqrFeetPrice(int areaId, int buildingTypeId)
         {
