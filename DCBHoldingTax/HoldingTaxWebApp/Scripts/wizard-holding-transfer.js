@@ -64,29 +64,30 @@ var KTWizard4 = function () {
                     //_formEl.submit(); // Submit form
                     var isAllValid = true;
                     var list = [];
+                    $('#flat_details tbody tr').each(function (index, ele) {
+                        var holderFlatId = parseInt($('.HolderFlatId', this).val()) || 0;
+                        var florNo = parseInt($('.FlorNo', this).val()) || 0;
+                        var flatNo = $('.FlatNo', this).html();
+                        var flatArea = parseFloat($('.FlatArea', this).html()) || 0;
+                        var ownOrRent = parseInt($('.OwnOrRent option:selected', this).val()) || 0;
+                        var monthlyRent = parseFloat($('.MonthlyRent', this).val()) || 0;
+                        var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
+                        var ownerName = '';//$('.OwnerName', this).val().trim();
+                        var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
 
-                    var holderFlatId = parseInt($('.HolderFlatId', this).val()) || 0;
-                    var florNo = parseInt($('.FlorNo', this).val()) || 0;
-                    var flatNo = $('.FlatNo', this).html();
-                    var flatArea = parseFloat($('.FlatArea', this).html()) || 0;
-                    var ownOrRent = parseInt($('.OwnOrRent option:selected', this).val()) || 0;
-                    var monthlyRent = parseFloat($('.MonthlyRent', this).val()) || 0;
-                    var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
-                    var ownerName = '';//$('.OwnerName', this).val().trim();
-                    var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
-
-                    var detailsData = {
-                        HolderFlatId: holderFlatId,
-                        FlorNo: florNo,
-                        FlatNo: flatNo,
-                        FlatArea: flatArea,
-                        OwnOrRent: ownOrRent,
-                        SelfOwn: selfOwned,
-                        MonthlyRent: monthlyRent,
-                        OwnerName: ownerName,
-                        IsCheckedByHolder: isCheckedByHolder
-                    }
-                    list.push(detailsData);
+                        var detailsData = {
+                            HolderFlatId: holderFlatId,
+                            FlorNo: florNo,
+                            FlatNo: flatNo,
+                            FlatArea: flatArea,
+                            OwnOrRent: ownOrRent,
+                            SelfOwn: selfOwned,
+                            MonthlyRent: monthlyRent,
+                            OwnerName: ownerName,
+                            IsCheckedByHolder: isCheckedByHolder
+                        }
+                        list.push(detailsData);
+                    });
 
                     if (!isAllValid) {
                         Swal.fire({
@@ -140,7 +141,7 @@ var KTWizard4 = function () {
 
                         $.ajax({
                             type: 'POST',
-                            url: '/Holding/AddData',
+                            url: '/Holding/FlatTransferAddData',
                             data: JSON.stringify(data),
                             contentType: 'application/json',
                             success: function (d) {
