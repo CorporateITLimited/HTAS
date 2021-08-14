@@ -54,7 +54,7 @@ namespace HoldingTaxWebApp.PaymentGateway
                 {
                     if (GetGateWayList)
                     {
-                        // We will work on it!
+                        //return resp.status;
                     }
                     else
                     {
@@ -68,7 +68,7 @@ namespace HoldingTaxWebApp.PaymentGateway
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message.ToString());
+                return e.Message.ToString();
             }
 
             return response;
