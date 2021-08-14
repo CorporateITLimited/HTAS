@@ -2046,7 +2046,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                             PlotId = hvm.PlotId,
                                             OldHolderFlatId = ui_item.HolderFlatId,
                                             NewHolderFlatId = transferCountId,
-                                            OldHolderId = _holdingManager.GetHoldersFlatByHolderFlatId(ui_item.HolderFlatId).HolderId,
+                                            OldHolderId = _holdingManager.GetHoldersFlatByHolderFlatId(ui_item.HolderFlatId).MainHolderId,
                                             NewHolderId = holderId,
                                             ReferenceNo = hvm.TransferRefNo,
                                             ReferenceDate = hvm.TransferRefDate,

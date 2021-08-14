@@ -508,6 +508,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     vm.IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null;
                     vm.StrFlatArea = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.FlatArea);
                     vm.StrMonthlyRent = BanglaConvertionHelper.DecimalValueEnglish2Bangla(vm.MonthlyRent);
+                    vm.MainHolderId = Data_Reader["MainHolderId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["MainHolderId"]) : (int?)null;
                 }
 
                 Data_Reader.Close();
