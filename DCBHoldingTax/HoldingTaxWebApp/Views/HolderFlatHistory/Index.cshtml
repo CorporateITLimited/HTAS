@@ -84,6 +84,7 @@
                             <th>@Html.DisplayNameFor(model => model.OldHolderName)</th>
                             <th>@Html.DisplayNameFor(model => model.NewHolderName)</th>
                             <th>@Html.DisplayNameFor(model => model.ReferenceNo)</th>
+                            <th>@Html.DisplayNameFor(model => model.StringTransactionDate)</th>
 
 
                             <th></th>
@@ -94,44 +95,47 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AreaName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PlotNo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NewFlatNo)
-                                </td>
-                                <td>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AreaName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PlotNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NewFlatNo)
+                            </td>
+                            <td>
 
-                                    @Html.DisplayFor(modelItem => item.OldHolderName)
+                                @Html.DisplayFor(modelItem => item.OldHolderName)
 
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NewHolderName)
-                                </td>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NewHolderName)
+                            </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ReferenceNo)
-                                </td>
-
-
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReferenceNo)
+                            </td>
 
 
-
-                                <td>
-                                    @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/OldPlotOwner/Edit/@item.OldPlotOwnerId" title="Edit">
-                                            <b> <i class="fa fa-edit"></i>  </b>
-                                        </a>*@
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HolderFlatHistory/Details/@item.FlatHistoryId" title="বিস্তারিত তথ্য পেজে যান">
-                                        <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                    </a>
-                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StringTransactionDate)
+                            </td>
 
 
-                            </tr>
+
+                            <td>
+                                @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/OldPlotOwner/Edit/@item.OldPlotOwnerId" title="Edit">
+                <b> <i class="fa fa-edit"></i>  </b>
+            </a>*@
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HolderFlatHistory/Details/@item.FlatHistoryId" title="বিস্তারিত তথ্য পেজে যান">
+                                    <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                </a>
+                            </td>
+
+
+                        </tr>
                         }
                     </tbody>
 
