@@ -41,7 +41,7 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "ফ্ল্যাট নং")]
         public string NewFlatNo { get; set; }
 
-        [Display(Name = "পুরাতন র্প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম")]
+        [Display(Name = "পুরাতন প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম")]
         public string OldHolderName { get; set; }
 
         [Display(Name = "বর্তমান প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম")]

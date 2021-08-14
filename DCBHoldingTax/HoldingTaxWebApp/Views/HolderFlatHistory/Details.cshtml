@@ -13,7 +13,7 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">পুরাতন জমি মালিকানার বিবরন</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">পুরাতন ফ্ল্যাট মালিকানার বিবরন</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
                         <a href="#" class="text-muted">বিশদ তথ্য </a>
@@ -36,7 +36,7 @@
                     <div class="card-header" id="print_header">
                         <div class="row offset-1">
                             <h3 class="card-title">
-                                <b class="kt-font-brand">@Model.OldPlotOwnerName</b>  &nbsp; এর বিশদ তথ্য
+                                <b class="kt-font-brand">@Model.NewFlatNo</b>  &nbsp; এর বিশদ তথ্য
                             </h3>
 
                             <div class="card-toolbar">
@@ -47,65 +47,55 @@
                     </div>
                     <div class="card-body" id="print_div">
                         <div class="row offset-1">
-                            <legend>পুরাতন জমি মালিকানা ও হস্তান্তর তথ্য</legend>
+                            <legend>পুরাতন ফ্ল্যাট মালিকানা ও হস্তান্তর তথ্য</legend>
                             <div class="col-lg-5">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.OldPlotOwnerName)
+                                        @Html.DisplayNameFor(model => model.AreaName)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                     <div class="col-5">
                                         <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.OldPlotOwnerName)
+                                            @Html.DisplayFor(model => model.AreaName)
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.PlotIdNumber)
+                                        @Html.DisplayNameFor(model => model.PlotNo)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                     <div class="col-5">
                                         <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.PlotIdNumber)
+                                            @Html.DisplayFor(model => model.PlotNo)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.NewFlatNo)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.NewFlatNo)
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="form-group form-group-xs row">
-
                                     <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.IsAlive)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
-                                        @if (Model.IsAlive == true)
-                                        {
-                                            <span class="form-control-plaintext kt-font-bolder">
-                                                জীবিত
-                                            </span>
-                                        }
-                                        else
-                                        {
-                                            <span class="form-control-plaintext kt-font-bolder">
-                                                মৃত
-                                            </span>
-
-                                        }
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.OffStatusName)
+                                        @Html.DisplayNameFor(model => model.ReferenceNo)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                     <div class="col-5">
                                         <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.OffStatusName)
+                                            @Html.DisplayFor(model => model.ReferenceNo)
                                         </span>
                                     </div>
                                 </div>
@@ -119,92 +109,55 @@
                             <div class="col-lg-5">
 
                                 <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.PresentAdd)
+                                    <label class="col-6 col-form-label">
+                                        @Html.DisplayNameFor(model => model.OldHolderName)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                     <div class="col-5">
                                         <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.PresentAdd)
+                                            @Html.DisplayFor(model => model.OldHolderName)
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.PermanentAdd)
+                                    <label class="col-6 col-form-label">
+                                        @Html.DisplayNameFor(model => model.NewHolderName)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                     <div class="col-5">
                                         <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.PermanentAdd)
+                                            @Html.DisplayFor(model => model.NewHolderName)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-6 col-form-label">
+                                        @Html.DisplayNameFor(model => model.StringReferenceDate)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.StringReferenceDate)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-6 col-form-label">
+                                        @Html.DisplayNameFor(model => model.TransactionByUserName)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.TransactionByUserName)
                                         </span>
                                     </div>
                                 </div>
 
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.PhoneNumber)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.PhoneNumber)
-                                        </span>
-                                    </div>
-                                </div>
 
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.Email)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.Email)
-                                        </span>
-                                    </div>
-                                </div>
 
                             </div>
                         </div>
-
-                        <div class="separator separator-dashed my-10"></div>
-                        <div class="row offset-1">
-                            <div class="col-lg-11">
-                                <legend>যৌথ মালিকানার ক্ষেত্রে অন্যান্য মালিকের বিবরণ</legend>
-                                <br />
-                                <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
-                                    <thead class="thead-light text-center">
-                                        <tr>
-                                            <th>সিরিয়াল নাম্বার</th>
-                                            <th>প্লট মালিকের নাম</th>
-                                            <th>ঠিকানা</th>
-                                            <th>মন্তব্য</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-center">
-                                        @{ int i = 1;
-                                            foreach (var item in Model.OldOthetPlotOwner)
-                                            {
-                                                <tr>
-                                                    <td>@i</td>
-                                                    <td>@item.OldOthetOwneeName</td>
-                                                    <td>@item.Address</td>
-                                                    <td>@item.Remarks</td>
-
-                                                </tr>
-                                                i = i + 1;
-                                            }
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-
-
 
                     </div>
 
@@ -213,7 +166,7 @@
                             @*<a href="~/OldPlotOwner/Edit/@Model.OldPlotOwnerId" class="btn btn-outline-success btn-md">
                                     <i class="fas fa-pen"></i>হালনাগাদের পেজে  যান
                                 </a>*@
-                            <a href="~/OldPlotOwner/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>
+                            <a href="~/HolderFlatHistory/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>
                             <button id="print_this" class="btn btn-light-primary btn-md"><i class="fas fa-list"></i>প্রিন্ট করুন</button>
                         </div>
                     </div>

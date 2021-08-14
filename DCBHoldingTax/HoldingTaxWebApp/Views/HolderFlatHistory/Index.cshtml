@@ -78,12 +78,12 @@
                     <thead>
                         <tr>
 
-                            <th>@Html.DisplayNameFor(model => model.OldPlotOwnerName)</th>
-                            <th>@Html.DisplayNameFor(model => model.PlotIdNumber)</th>
-                            <th>@Html.DisplayNameFor(model => model.OffStatusName)</th>
-                            <th>@Html.DisplayNameFor(model => model.PermanentAdd)</th>
-                            <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
-                            <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.AreaName)</th>
+                            <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
+                            <th>@Html.DisplayNameFor(model => model.NewFlatNo)</th>
+                            <th>@Html.DisplayNameFor(model => model.OldHolderName)</th>
+                            <th>@Html.DisplayNameFor(model => model.NewHolderName)</th>
+                            <th>@Html.DisplayNameFor(model => model.ReferenceNo)</th>
 
 
                             <th></th>
@@ -96,25 +96,25 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.OldPlotOwnerName)
+                                    @Html.DisplayFor(modelItem => item.AreaName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.PlotIdNumber)
+                                    @Html.DisplayFor(modelItem => item.PlotNo)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.OffStatusName)
+                                    @Html.DisplayFor(modelItem => item.NewFlatNo)
                                 </td>
                                 <td>
 
-                                    @Html.DisplayFor(modelItem => item.PermanentAdd)
+                                    @Html.DisplayFor(modelItem => item.OldHolderName)
 
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                    @Html.DisplayFor(modelItem => item.NewHolderName)
                                 </td>
 
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Email)
+                                    @Html.DisplayFor(modelItem => item.ReferenceNo)
                                 </td>
 
 
@@ -125,7 +125,7 @@
                                     @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/OldPlotOwner/Edit/@item.OldPlotOwnerId" title="Edit">
                                             <b> <i class="fa fa-edit"></i>  </b>
                                         </a>*@
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/OldPlotOwner/Details/@item.OldPlotOwnerId" title="বিস্তারিত তথ্য পেজে যান">
+                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HolderFlatHistory/Details/@item.FlatHistoryId" title="বিস্তারিত তথ্য পেজে যান">
                                         <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
                                     </a>
                                 </td>
