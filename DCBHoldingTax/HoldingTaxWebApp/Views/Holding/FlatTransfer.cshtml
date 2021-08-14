@@ -171,6 +171,12 @@
                                                         <input type="text" class="form-control border-0" id="road_name" name="road_name" readonly />
                                                     </div>
                                                 </div>
+                                                <div class="form-group row m-2">
+                                                    <label for="HolderId" class="col-lg-2 col-form-label text-lg-right">বর্তমান ফ্ল্যাট/বাড়ী মালিকের নাম</label>
+                                                    <div class="col-lg-4">
+                                                        <select id="HolderId" name="HolderId" width="100%" class="tender_supplier form-control"></select>
+                                                    </div>
+                                                </div>
                                                 <div class="separator separator-dashed my-10"></div>
 
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
@@ -194,7 +200,7 @@
                                                 <div class="separator separator-dashed my-10"></div>
 
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
-                                                    ব্যাক্তিগত তথ্য &nbsp;
+                                                    নতুন মালিকের ব্যাক্তিগত তথ্য &nbsp;
                                                     <label class="show_plot"></label>
                                                 </div>
                                                 <div class="form-group row m-2">
@@ -588,10 +594,13 @@
                 placeholder: "--নির্বাচন করুন--",
                 allowClear: true
             });
-            $('#IsHolderAnOwner').select2({
+
+
+            $('#HolderId').select2({
                 placeholder: "--নির্বাচন করুন--",
                 allowClear: true
             });
+
             //$('#Gender').select2({
             //    placeholder: "--নির্বাচন করুন--",
             //    allowClear: true
@@ -747,7 +756,39 @@
                     }
                 });
 
-                var flat_details_table = $('#flat_details tbody');
+                var areaId = $("#AreaId").val();
+                var json_2 = {
+                    AreaId: areaId,
+                    PlotId: plotid
+                };
+                $.ajax({
+                    url: '@Url.Action("GetHolderByAreaIdAndPlotId", "Holding")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json_2),
+                    success: function (data) {
+                        if (data.length === 0) {
+                            Swal.fire(
+                                'পাওয়া যায়নি!', 'প্লটের জন্য কোনো হোল্ডার পাওয়া যাইনি', 'info'
+                            )
+                        }
+                        else {
+                            $("#HolderId").empty();
+                            $("#HolderId").append("<option value=''>--নির্বাচন করুন--</option>");
+                            $.each(data, function (index, row) {
+                                $("#HolderId").append("<option value='" + row.HolderId + "'>" + row.HolderName + "</option>");
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'পাওয়া যায়নি!', 'প্লটের জন্য কোনো হোল্ডার পাওয়া যাইনি', 'error'
+                        )
+                    }
+                });
+
+
+                @*var flat_details_table = $('#flat_details tbody');
                 var areaId = $("#AreaId").val();
                 var json_1 = {
                     AreaId: areaId,
@@ -779,8 +820,69 @@
                     error: function (e) {
                         console.log(e);
                     }
-                });
+                });*@
             });
+
+
+            $('#HolderId').change(function () {
+                var flat_details_table = $('#flat_details tbody');
+                var holderId = $("#HolderId").val();
+                var json = {
+                    HolderId: holderId
+                };
+                $.ajax({
+                    url: '/Holding/GetAllFlatByHolderId',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        flat_details_table.empty();
+                        $(data).each(function (index, pid) {
+                            flat_details_table.append('<tr>' +
+                                '<input type="hidden" id="HolderFlatId" value=' + pid.HolderFlatId + ' class="HolderFlatId" />' +
+                                '<input type="hidden" id="FlorNo" value=' + pid.FlorNo + ' class="FlorNo" />' +
+                                '<td width="10%;">' + pid.FloorTypeName + '</td>' +
+                                '<td width="13%;" class="FlatNo">' + pid.FlatNo + '</td>' +
+                                '<td width="14%;" class="FlatArea">' + pid.FlatArea + '</td>' +
+                                '<td width="12%;">' +
+                                ' <select class="form-control OwnOrRent">' +
+                                '@foreach (var item in ViewBag.OwnOrRent)
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                                '<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" placeholder="0" /></td>' +
+                                '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
+                        });
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+
+                $.ajax({
+                    url: '/Holding/GetHolderDetailsByHolderId',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        $("#AmountOfLand").val(data.AmountOfLand);
+                        $("#TotalFloor").val(data.TotalFloor);
+                        $("#EachFloorArea").val(data.EachFloorArea);
+                        $("#TotalFlat").val(data.TotalFlat);
+                        $("#HoldersFlatNumber").val(data.HoldersFlatNumber);
+                        $("#AllocationLetterNo").val(data.AllocationLetterNo);
+                        $("#StringAllocationDate").val(data.StringAllocationDate);
+                        $("#NamjariLetterNo").val(data.NamjariLetterNo);
+                        $("#StringNamjariDate").val(data.StringNamjariDate);
+                        $("#StringRecordCorrectionDate").val(data.StringRecordCorrectionDate);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+
+
+            });
+
 
             $("#flat_details tbody").on('change', '.IsCheckedByHolder', function () {
                 var currentRow = $(this).closest("tr");

@@ -258,6 +258,73 @@ namespace HoldingTaxWebApp.Gateway.Holding
 
         }
 
+        public List<Holder> GetHolderByAreaIdAndPlotId(int AreaId, int PlotId)
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spHolderMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "select_by_area_plot";
+                Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = AreaId;
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = PlotId;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<Holder> vm = new List<Holder>();
+
+                while (Data_Reader.Read())
+                {
+                    Holder model = new Holder
+                    {
+                        HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
+                        HolderName = Convert.ToString(Data_Reader["HolderName"])
+                    };
+                    vm.Add(model);
+                };
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
         public int InsertHolder(Holder model)
         {
             try
@@ -1294,6 +1361,78 @@ namespace HoldingTaxWebApp.Gateway.Holding
 
                 Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = PlotId;
                 Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = AreaId;
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<HolderFlat> vm = new List<HolderFlat>();
+
+                while (Data_Reader.Read())
+                {
+                    HolderFlat model = new HolderFlat
+                    {
+                        HolderFlatId = Convert.ToInt32(Data_Reader["HolderFlatId"]),
+                        FlorNo = Data_Reader["FlorNo"] != DBNull.Value ? Convert.ToInt32(Data_Reader["FlorNo"]) : (int?)null,
+                        FlatNo = Convert.ToString(Data_Reader["FlatNo"]),
+                        FlatArea = Data_Reader["FlatArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["FlatArea"]) : (decimal?)null,
+                        OwnOrRent = Data_Reader["OwnOrRent"] != DBNull.Value ? Convert.ToInt32(Data_Reader["OwnOrRent"]) : (int?)null,
+                        OwnOrRentType = Convert.ToString(Data_Reader["OwnOrRentType"]),
+                        IsSelfOwned = Data_Reader["IsSelfOwned"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsSelfOwned"]) : (bool?)null,
+                        MonthlyRent = Data_Reader["MonthlyRent"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["MonthlyRent"]) : (decimal?)null,
+                        OwnerName = Convert.ToString(Data_Reader["OwnerName"]),
+                        SelfOwn = Data_Reader["SelfOwn"] != DBNull.Value ? Convert.ToInt32(Data_Reader["SelfOwn"]) : (int?)null,
+                        SelfOwnType = Convert.ToString(Data_Reader["SelfOwnType"]),
+                        FloorTypeName = Data_Reader["FloorTypeName"].ToString(),
+                        IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null
+                    };
+
+                    model.StrFlatArea = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.FlatArea);
+                    model.StrMonthlyRent = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.MonthlyRent);
+
+                    vm.Add(model);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
+        public List<HolderFlat> GetAllFlatByHolderId(int HolderId)
+        {
+            try
+            {
+                Sql_Query = "[dbo].[spGetAllTransferFlatByHolderId]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = HolderId;
 
                 Sql_Connection.Open();
                 Data_Reader = Sql_Command.ExecuteReader();
