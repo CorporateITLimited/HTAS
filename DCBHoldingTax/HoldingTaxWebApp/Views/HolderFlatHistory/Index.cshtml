@@ -1,8 +1,6 @@
-﻿@model IEnumerable<HoldingTaxWebApp.Models.Users.HolderUser>
-@using HoldingTaxWebApp.Helpers
+﻿@model IEnumerable<HoldingTaxWebApp.Models.Holding.HolderFlatHistory>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
@@ -14,7 +12,7 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">সফটওয়্যার ব্যবহারকারী (হোল্ডার)</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">পুরাতন ফ্ল্যাট মালিকানার বিবরন</h5>
                 @*<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                         <li class="breadcrumb-item text-muted">
                             <a href="" class="text-muted">Crud</a>
@@ -30,33 +28,24 @@
 
 <div class="d-flex flex-column-fluid">
     <div class="container">
-        @if (TempData["SM"] != null)
-        {
-            <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
-                <div class="alert-text text-center font-weight-bolder" style="color: #24AEEF; font-size: 17px;"> @TempData["SM"]</div>
-                <div class="alert-close">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
-                    </button>
-                </div>
-            </div>
-        }
-
         <div class="card card-custom">
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
                 <div class="card-title">
                     <h3 class="card-label">
-                        সফটওয়্যার ব্যবহারকারী হোল্ডারদের তালিকা
+                        পুরাতন ফ্ল্যাট মালিকদের তালিকা
                     </h3>
                 </div>
                 <div class="card-toolbar">
                     <!--begin::Dropdown-->
                     <!--end::Dropdown-->
                     <!--begin::Button-->
-                    <a href="~/HolderUser/Create" class="btn btn-primary font-weight-bolder">
-                        <i class="fas fa-plus">
-                        </i>নতুন ব্যবহারকারী (হোল্ডার)
-                    </a>
+                    @*<a href="~/OldPlotOwner/Create" class="btn btn-primary font-weight-bolder">
+                            <i class="fas fa-plus">
+                            </i>জমি হস্তান্তর
+                        </a>*@
+
+
+
                     <!--end::Button-->
                 </div>
             </div>
@@ -89,10 +78,13 @@
                     <thead>
                         <tr>
 
-                            <th>@Html.DisplayNameFor(model => model.UserName)</th>
-                            <th>@Html.DisplayNameFor(model => model.HolderName)</th>
-                            <th>@Html.DisplayNameFor(model => model.Email)</th>
-                            <th>@Html.DisplayNameFor(model => model.MobileNumber)</th>
+                            <th>@Html.DisplayNameFor(model => model.AreaName)</th>
+                            <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
+                            <th>@Html.DisplayNameFor(model => model.NewFlatNo)</th>
+                            <th>@Html.DisplayNameFor(model => model.OldHolderName)</th>
+                            <th>@Html.DisplayNameFor(model => model.NewHolderName)</th>
+                            <th>@Html.DisplayNameFor(model => model.ReferenceNo)</th>
+
 
                             <th></th>
 
@@ -104,26 +96,41 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.UserName)
+                                    @Html.DisplayFor(modelItem => item.AreaName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.HolderName)
+                                    @Html.DisplayFor(modelItem => item.PlotNo)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Email)
+                                    @Html.DisplayFor(modelItem => item.NewFlatNo)
+                                </td>
+                                <td>
+
+                                    @Html.DisplayFor(modelItem => item.OldHolderName)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NewHolderName)
                                 </td>
 
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.MobileNumber)
+                                    @Html.DisplayFor(modelItem => item.ReferenceNo)
                                 </td>
+
+
+
+
+
                                 <td>
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HolderUser/Edit/@item.HolderUserId" title="Edit">
-                                        <b> <i class="fa fa-edit"></i>  </b>
-                                    </a>
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HolderUser/Details/@item.HolderUserId" title="Details View">
+                                    @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/OldPlotOwner/Edit/@item.OldPlotOwnerId" title="Edit">
+                                            <b> <i class="fa fa-edit"></i>  </b>
+                                        </a>*@
+                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HolderFlatHistory/Details/@item.FlatHistoryId" title="বিস্তারিত তথ্য পেজে যান">
                                         <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
                                     </a>
                                 </td>
+
+
                             </tr>
                         }
                     </tbody>
@@ -151,4 +158,6 @@
             });
         });
     </script>
+
+
 }

@@ -1,0 +1,968 @@
+﻿@model HoldingTaxWebApp.ViewModels.FlatTransferVM
+@{
+    ViewBag.Title = "Create";
+}
+
+@section Sheets{
+    <link href="~/Content/wizard-holding.css" rel="stylesheet" type="text/css" />
+    <script src="~/Theme/dist/assets/js/pages/crud/file-upload/dropzonejs.js"></script>
+    <style>
+        /*add for more steps */
+        .wizard.wizard-4 .wizard-nav .wizard-steps .wizard-step {
+            -ms-flex: 0 0 calc(25% - 0.25rem);
+            flex: 0 0 calc(25% - 0.25rem);
+            width: calc(25% - 0.25rem);
+            justify-content: flex-start;
+        }
+
+            .wizard.wizard-4 .wizard-nav .wizard-steps .wizard-step .wizard-wrapper {
+                padding: 1.5rem 1rem;
+                flex-wrap: nowrap;
+                align-items: stretch;
+            }
+
+        .wizard-label {
+            padding: 5px;
+            flex-wrap: nowrap;
+            align-items: stretch;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .line {
+            display: inline-block;
+        }
+
+        span.error {
+            display: block;
+            visibility: hidden;
+            color: red;
+            font-size: 90%;
+        }
+
+        tr.error {
+            background-color: rgba(255,0,0,0.35);
+        }
+    </style>
+}
+
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">ফ্ল্যাট হস্তান্তর</h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted">ফ্ল্যাট হস্তান্তর করুন</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+        <div class="card card-custom card-transparent">
+            <div class="card-body p-0">
+                <!--begin: Wizard-->
+                <div class="wizard wizard-4" id="kt_wizard" data-wizard-state="step-first" data-wizard-clickable="true">
+                    <!--begin: Wizard Nav-->
+                    <div class="wizard-nav">
+                        <div class="wizard-steps">
+                            <!--begin::Wizard Step 1 Nav-->
+                            <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
+                                <div class="wizard-wrapper">
+                                    <div class="wizard-number">১</div>
+                                    <div class="wizard-label">
+                                        <div class="wizard-title">ব্যাক্তিগত তথ্য </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Wizard Step 1 Nav-->
+                            <!--begin::Wizard Step 2 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-wrapper">
+                                    <div class="wizard-number">২</div>
+                                    <div class="wizard-label">
+                                        <div class="wizard-title">জমি ও ভবন সংক্রান্ত তথ্য</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Wizard Step 2 Nav-->
+                            <!--begin::Wizard Step 3 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-wrapper">
+                                    <div class="wizard-number">৩</div>
+                                    <div class="wizard-label">
+                                        <div class="wizard-title">ফ্ল্যাটসমূহের বিববরণ </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Wizard Step 3 Nav-->
+                            <!--begin::Wizard Step 4 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-wrapper">
+                                    <div class="wizard-number">৪</div>
+                                    <div class="wizard-label">
+                                        <div class="wizard-title">বরাদ্দ/নামজারী ও নকশা তথ্য</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Wizard Step 4 Nav-->
+                        </div>
+                        <!--end: Wizard Nav-->
+                        <!--begin: Wizard Body-->
+                        <div class="card card-custom card-shadowless rounded-top-0">
+                            <div class="card-body p-0">
+                                <div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+                                    <div class="col-xl-12 col-md-12 col-sm-12">
+                                        <span id="details_error" style="color:red;"></span>
+                                        <!--begin: Wizard Form-->
+                                        <form class="form mt-0 mt-lg-10" id="kt_form" enctype="multipart/form-data" method="post" action="/Holding/AddData">
+                                            <!--begin: Wizard Step 1-->
+                                            <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
+                                                    এলাকার তথ্য &nbsp;
+                                                    <label class="show_plot"></label>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.DropDownListFor(model => model.AreaId, null, " নির্বাচন করুন ", new
+                                                  {
+                                                      @class = "form-control",
+                                                  })
+                                                    </div>
+
+
+                                                    <label class="col-lg-2 col-form-label text-lg-right" for="road_number">রোড নম্বর </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control border-0" id="road_number" name="road_number" readonly />
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    <label for="PlotId" class="col-lg-2 col-form-label text-lg-right">প্লট/বাড়ী নম্বর</label>
+                                                    <div class="col-lg-4">
+                                                        <select id="PlotId" name="PlotId" width="100%" class="tender_supplier form-control"></select>
+                                                    </div>
+                                                    @*@Html.LabelFor(model => model.PlotId, "প্লট/বাড়ী/ফ্ল্যাট নম্বর ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                        <div class="col-lg-4">
+                                                            @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
+                                                        {
+                                                            @class = "form-control",
+                                                        })
+                                                        </div>*@
+
+                                                    <label class="col-lg-2 col-form-label text-lg-right" for="road_name">রোডের নাম</label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control border-0" id="road_name" name="road_name" readonly />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row m-2">
+                                                    <label for="HolderId" class="col-lg-2 col-form-label text-lg-right">বর্তমান ফ্ল্যাট/বাড়ী মালিকের নাম</label>
+                                                    <div class="col-lg-4">
+                                                        <select id="HolderId" name="HolderId" width="100%" class="tender_supplier form-control"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="separator separator-dashed my-10"></div>
+
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
+                                                    ফ্ল্যাট হস্তান্তর তথ্য  &nbsp;
+                                                    <label class="show_plot"></label>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.TransferRefNo, "ফ্ল্যাট হস্তান্তরের রেফারেন্স", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.TextAreaFor(model => model.TransferRefNo, new { @class = "form-control", placeholder = "" })
+                                                    </div>
+
+
+                                                    @Html.LabelFor(model => model.StrTransferRefDate, "ফ্ল্যাট হস্তান্তরের তারিখ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.StrTransferRefDate, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "true" } })
+                                                    </div>
+
+                                                </div>
+                                                <div class="separator separator-dashed my-10"></div>
+
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
+                                                    নতুন মালিকের ব্যাক্তিগত তথ্য &nbsp;
+                                                    <label class="show_plot"></label>
+                                                </div>
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.HolderName, "ফ্ল্যাট/বাড়ী মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.HolderName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+
+                                                    @Html.LabelFor(model => model.MaritialStatus, "বৈবাহিক অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.DropDownListFor(model => model.MaritialStatus, null, " নির্বাচন করুন ", new
+                                                   {
+                                                       @class = "form-control",
+                                                   })
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.NID, "এনআইডি নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.NID, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+
+                                                    @Html.LabelFor(model => model.Spouse, "স্বামী/স্ত্রীর নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Spouse, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.Gender, "লিঙ্গ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.DropDownListFor(model => model.Gender, null, " নির্বাচন করুন ", new
+                                                   {
+                                                       @class = "form-control",
+                                                   })
+                                                    </div>
+
+
+                                                    @Html.LabelFor(model => model.Email, "ই-মেইল", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.Father, "পিতার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Father, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.Contact2, "মোবাইল নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Contact2, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.Mother, "মাতার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Mother, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.Contact1, "ল্যান্ডলাইন নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Contact1, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+
+                                                    @Html.LabelFor(model => model.PresentAdd, "বর্তমান ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.TextAreaFor(model => model.PresentAdd, new { @class = "form-control", placeholder = "" })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.PermanentAdd, "স্থায়ী ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.TextAreaFor(model => model.PermanentAdd, new { @class = "form-control", placeholder = "" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.ContactAdd, "পত্র যোগাযোগের ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.TextAreaFor(model => model.ContactAdd, new { @class = "form-control", placeholder = "" })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.PreviousDueTax, "আগের অর্থ বছর পর্যন্ত বকেয়া গৃহকর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.PreviousDueTax, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.ImageLocation, "পাসপোর্ট সাইজের ছবি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @*<input type="file" name="image_file" id="image_file" class="form-control" />
+                                                            <span class="form-text text-info">
+                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                            </span>
+                                                            <br />
+                                                            <img id="imgpreview" src="#" style="border:1px solid black;" />*@
+                                                        <div class="image-input image-input-outline" id="kt_image_1">
+                                                            <div class="image-input-wrapper" style="background-image: url(/Theme/dist/assets/media/users/default.jpg)"></div>
+                                                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="ছবি পরিবর্তন করুন">
+                                                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                                                <input type="file" name="image_file" id="image_file" accept=".png, .x-png, .jpg, .jpeg, .pjpeg, .gif" />
+                                                                <input type="hidden" name="profile_avatar_remove" />
+                                                            </label>
+                                                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="ছবি বাতিল করুন">
+                                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                            </span>
+                                                        </div>
+                                                        <span class="form-text text-info">
+                                                            সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                        </span>
+                                                    </div>
+
+                                                    @*@Html.LabelFor(model => model.IsHolderAnOwner, "গৃহকরদাতা নিজেই কি প্লটের মালিক?", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                         <div class="col-lg-4">
+                                                             @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
+                                                        {
+                                                            @class = "form-control",
+                                                        })
+                                                         </div>*@
+                                                </div>
+
+                                            </div>
+                                            <!--end: Wizard Step 1-->
+                                            <!--begin: Wizard Step 2-->
+                                            <div class="pb-5" data-wizard-type="step-content">
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
+                                                    জমি ও ভবন সংক্রান্ত তথ্য &nbsp;
+                                                    <label class="show_plot"></label>
+                                                </div>
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.OwnershipSourceId, "মালিকানার সূত্র", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.DropDownListFor(model => model.OwnershipSourceId, null, " নির্বাচন করুন ", new
+                                                    {
+                                                        @class = "form-control",
+                                                    })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.OwnerType, "মালিকানার ধরন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.DropDownListFor(model => model.OwnerType, null, " নির্বাচন করুন ", new
+                                                 {
+                                                     @class = "form-control",
+                                                 })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2" style="display: none;" id="war_proves">
+                                                    @*@Html.LabelFor(model => model.Document1, "মুক্তিযোদ্ধার প্রমাণাদি ১", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                        <div class="col-lg-6">
+                                                        <div class="dropzone dropzone-default" id="kt_dropzone_222">
+                                                            <div class="dropzone-msg dz-message needsclick">
+                                                                <h3 class="dropzone-msg-title">Drop files here or click to upload.</h3>
+                                                                <span class="dropzone-msg-desc">
+                                                                    This is just a demo dropzone. Selected files are
+                                                                    <strong>not</strong>actually uploaded.
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                                                            </div>*@
+                                                    <div class="col-lg-6"></div>
+
+                                                    @Html.LabelFor(model => model.Document2, "মুক্তিযোদ্ধার প্রমাণাদি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <input type="file" name="document_file_1" id="document_file_1" />
+                                                        <span class="form-text text-info">
+                                                            সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                        </span>
+                                                        <br />
+                                                        <input type="file" name="document_file_2" id="document_file_2" />
+                                                        <span class="form-text text-info">
+                                                            সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.BuildingTypeId, "ভবনের ধরন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.DropDownListFor(model => model.BuildingTypeId, null, " নির্বাচন করুন ", new
+                                                  {
+                                                      @class = "form-control",
+                                                  })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.AmountOfLand, "জমির পরিমাণ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-3">
+                                                        @Html.EditorFor(model => model.AmountOfLand, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                    <label class="col-form-label text-lg-left">বর্গফুট</label>
+                                                </div>
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.TotalFloor, "মোট তলার সংখ্যা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.TotalFloor, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.EachFloorArea, "প্রতিতলার আয়তন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-3">
+                                                        @Html.EditorFor(model => model.EachFloorArea, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                    <label class="col-form-label text-lg-left">বর্গফুট</label>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.TotalFlat, "মোট ফ্ল্যাট সংখ্যা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.TotalFlat, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.HoldersFlatNumber, "নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.HoldersFlatNumber, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end: Wizard Step 2-->
+                                            <!--begin: Wizard Step 3-->
+                                            <div class="pb-5" data-wizard-type="step-content">
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
+                                                    ফ্ল্যাটসমূহের বিবরণ &nbsp;
+                                                    <label id="for_not_owner" class="text text-danger">হস্তান্তরযোগ্য ফ্ল্যাট সমূহ ঠিক দিন </label>
+                                                </div>
+                                                <div class="row m-2">
+                                                    <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
+                                                        <thead class="thead-light text-center">
+                                                            <tr>
+                                                                <th>তলা</th>
+                                                                <th>ফ্ল্যাট নম্বর </th>
+                                                                <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
+                                                                <th>নিজ বসতি/ভাড়া </th>
+                                                                <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
+                                                                <th>সম্পত্তির ধরন</th>
+                                                                <th>
+                                                                    <span id="mess_for_flat">হস্তান্তরযোগ্য ফ্ল্যাট এ টিক দিন </span>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="text-center"></tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                            <!--end: Wizard Step 3-->
+                                            <!--begin: Wizard Step 4-->
+                                            <div class="pb-5" data-wizard-type="step-content">
+                                                <!--begin::Section-->
+                                                <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
+                                                    বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য&nbsp;
+                                                    <label class="show_plot"></label>
+                                                </div>
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.PlotOwnerName, "বরাদ্দ গ্রহীতার নাম :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-10">
+                                                        <input type="text" class="form-control border-0" id="PlotOwnerName" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.AllocationLetterNo, "বরাদ্দ পত্র নম্বর :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.AllocationLetterNo, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.StringAllocationDate, "তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.StringAllocationDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.LeasePeriod, "ইজারার মেয়াদ (বছর):", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control border-0" id="LeasePeriod" value="" readonly="readonly" />
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.LeaseExpiryDate, "মেয়াদোত্তীর্ণের তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control border-0" id="StringLeaseExpiryDate" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.NamjariLetterNo, "নামজারী আদেশের পত্র নং :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.NamjariLetterNo, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.StringNamjariDate, "তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.StringNamjariDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.StringRecordCorrectionDate, "রেকর্ড সংশোধনের তারিখ : ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.StringRecordCorrectionDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+
+                                                    @Html.LabelFor(model => model.StringFirstApprovalDate, "প্রথম নকশা অনুমোদনের তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control border-0" id="StringFirstApprovalDate" value="" readonly="readonly" />
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.FirstApprovalLetterNo, "অনুমোদন নম্বর :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control border-0" id="FirstApprovalLetterNo" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.StringLastApprovalDate, "সর্বশেষ সংশোধিত নকশা অনুমোদনের তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control border-0" id="StringLastApprovalDate" value="" readonly="readonly" />
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.LastApprovalLetterNo, "অনুমোদন নম্বর :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control border-0" id="LastApprovalLetterNo" value="" readonly="readonly" />
+                                                    </div>
+                                                </div>
+
+                                                <!--end::Section-->
+                                            </div>
+                                            <!--end: Wizard Step 4-->
+                                            <!--begin: Wizard Actions-->
+                                            <div class="d-flex justify-content-between border-top mt-5 pt-10">
+                                                <div class="mr-2">
+                                                    <button type="button" class="btn btn-light-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-prev">
+                                                        <i class="fas fa-arrow-left"></i> &nbsp;  পূর্ববর্তী ধাপ
+                                                    </button>
+                                                </div>
+                                                <div>
+                                                    <button type="button" class="btn btn-success font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-submit">সাবমিট করুন</button>
+                                                    <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next">পরবর্তী ধাপ &nbsp; <i class="fas fa-arrow-right"></i></button>
+                                                </div>
+                                            </div>
+                                            <!--end: Wizard Actions-->
+                                        </form>
+                                        <!--end: Wizard Form-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end: Wizard Bpdy-->
+                    </div>
+                    <!--end: Wizard-->
+                </div>
+            </div>
+        </div>
+        <!--end::Container-->
+    </div>
+</div>
+
+@section Scripts {
+    @*save and validation funtionality implemented in this js*@
+    <script src="~/Scripts/wizard-holding-transfer.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            var invalidChars = ["-", "e", "+", "E"];
+            $(".your_class").on("keydown", function (e) {
+                if (invalidChars.includes(e.key)) {
+                    e.preventDefault();
+                }
+            });
+            var avatar1 = new KTImageInput('kt_image_1');
+            var ratePerSquareFeet = 1;
+
+            $('#AreaId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#PlotId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+
+
+            $('#HolderId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+
+            //$('#Gender').select2({
+            //    placeholder: "--নির্বাচন করুন--",
+            //    allowClear: true
+            //});
+            //$('#MaritialStatus').select2({
+            //    placeholder: "--নির্বাচন করুন--",
+            //    allowClear: true
+            //});
+            //$('#OwnershipSourceId').select2({
+            //    placeholder: "--নির্বাচন করুন--",
+            //    allowClear: true
+            //});
+            //$('#OwnerType').select2({
+            //    placeholder: "--নির্বাচন করুন--",
+            //    allowClear: true
+            //});
+            //$('#BuildingTypeId').select2({
+            //    placeholder: "--নির্বাচন করুন--",
+            //    allowClear: true
+            //});
+
+            autosize($('#TransferRefNo'));
+            autosize($('#PresentAdd'));
+            autosize($('#PermanentAdd'));
+            autosize($('#ContactAdd'));
+
+
+            $('#StringAllocationDate').datepicker({
+                rtl: KTUtil.isRTL(),
+                todayBtn: "linked",
+                clearBtn: true,
+                todayHighlight: true,
+                format: "dd/mm/yyyy",
+                autoclose: true
+            });
+            $('#StringNamjariDate').datepicker({
+                rtl: KTUtil.isRTL(),
+                todayBtn: "linked",
+                clearBtn: true,
+                todayHighlight: true,
+                format: "dd/mm/yyyy",
+                autoclose: true
+            });
+            $('#StringRecordCorrectionDate').datepicker({
+                rtl: KTUtil.isRTL(),
+                todayBtn: "linked",
+                clearBtn: true,
+                todayHighlight: true,
+                format: "dd/mm/yyyy",
+                autoclose: true
+            });
+            $('#StrTransferRefDate').datepicker({
+                rtl: KTUtil.isRTL(),
+                todayBtn: "linked",
+                clearBtn: true,
+                todayHighlight: true,
+                format: "dd/mm/yyyy",
+                autoclose: true
+            });
+
+            function readUrl(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("img#imgpreview")
+                            .attr("src", e.target.result)
+                            .width(200)
+                            .height(200);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#image_file").change(function () {
+                readUrl(this);
+            });
+
+
+            $("#AreaId").change(function () {
+                var areaId = $("#AreaId").val();
+
+                var json = {
+                    AreaId: areaId
+                };
+                $.ajax({
+                    url: '@Url.Action("GetAllPlotByAreaId", "Holding")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        if (data.length === 0) {
+                            Swal.fire(
+                                'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'info'
+                            )
+                        }
+                        else {
+                            $("#PlotId").empty();
+                            $("#PlotId").append("<option value=''>--নির্বাচন করুন--</option>");
+                            $.each(data, function (index, row) {
+                                $("#PlotId").append("<option value='" + row.PlotId + "'>" + row.PlotNo + "</option>");
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'error'
+                        )
+                    }
+                });
+            });
+
+            // plot name show in every heading
+            $('#PlotId').change(function () {
+                var plotName = $('#PlotId option:selected').text();
+                $(".show_plot").text("");
+                // $(".show_plot").text("( প্লট/বাড়ী/ফ্ল্যাট নম্বর : " + plotName + " )");
+
+                $("#road_number").val("");
+                $("#road_name").val("");
+                var plotid = parseInt($('#PlotId option:selected').val());
+                var json = {
+                    PlotId: plotid,
+                };
+                $.ajax({
+                    url: '/Holding/GetPlotDetails',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        $("#road_number").val(data.RoadNo);
+                        $("#road_name").val(data.RoadName);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+
+                $.ajax({
+                    url: '/Holding/GetAllotmentNamjariDesignByPlotId',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        $("#PlotOwnerName").val(data.PlotOwnerName);
+                        $("#LeasePeriod").val(data.LeasePeriod);
+                        $("#StringLeaseExpiryDate").val(data.StringLeaseExpiryDate);
+                        $("#FirstApprovalLetterNo").val(data.FirstApprovalLetterNo);
+                        $("#LastApprovalLetterNo").val(data.LastApprovalLetterNo);
+                        $("#StringFirstApprovalDate").val(data.StringFirstApprovalDate);
+                        $("#StringLastApprovalDate").val(data.StringLastApprovalDate);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+
+                var areaId = $("#AreaId").val();
+                var json_2 = {
+                    AreaId: areaId,
+                    PlotId: plotid
+                };
+                $.ajax({
+                    url: '@Url.Action("GetHolderByAreaIdAndPlotId", "Holding")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json_2),
+                    success: function (data) {
+                        if (data.length === 0) {
+                            Swal.fire(
+                                'পাওয়া যায়নি!', 'প্লটের জন্য কোনো হোল্ডার পাওয়া যাইনি', 'info'
+                            )
+                        }
+                        else {
+                            $("#HolderId").empty();
+                            $("#HolderId").append("<option value=''>--নির্বাচন করুন--</option>");
+                            $.each(data, function (index, row) {
+                                $("#HolderId").append("<option value='" + row.HolderId + "'>" + row.HolderName + "</option>");
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'পাওয়া যায়নি!', 'প্লটের জন্য কোনো হোল্ডার পাওয়া যাইনি', 'error'
+                        )
+                    }
+                });
+
+
+                @*var flat_details_table = $('#flat_details tbody');
+                var areaId = $("#AreaId").val();
+                var json_1 = {
+                    AreaId: areaId,
+                    PlotId: plotid
+                };
+                $.ajax({
+                    url: '/Holding/GetAllFlatByAreaAndPlotId',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json_1),
+                    success: function (data) {
+                        flat_details_table.empty();
+                        $(data).each(function (index, pid) {
+                            flat_details_table.append('<tr>' +
+                                '<input type="hidden" id="HolderFlatId" value=' + pid.HolderFlatId + ' class="HolderFlatId" />' +
+                                '<input type="hidden" id="FlorNo" value=' + pid.FlorNo + ' class="FlorNo" />' +
+                                '<td width="10%;">' + pid.FloorTypeName + '</td>' +
+                                '<td width="13%;" class="FlatNo">' + pid.FlatNo + '</td>' +
+                                '<td width="14%;" class="FlatArea">' + pid.FlatArea + '</td>' +
+                                '<td width="12%;">' +
+                                ' <select class="form-control OwnOrRent">' +
+                                '@foreach (var item in ViewBag.OwnOrRent)
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                                '<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" placeholder="0" /></td>' +
+                                '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
+                        });
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });*@
+            });
+
+
+            $('#HolderId').change(function () {
+                var flat_details_table = $('#flat_details tbody');
+                var holderId = $("#HolderId").val();
+                var json = {
+                    HolderId: holderId
+                };
+                $.ajax({
+                    url: '/Holding/GetAllFlatByHolderId',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        flat_details_table.empty();
+                        $(data).each(function (index, pid) {
+                            flat_details_table.append('<tr>' +
+                                '<input type="hidden" id="HolderFlatId" value=' + pid.HolderFlatId + ' class="HolderFlatId" />' +
+                                '<input type="hidden" id="FlorNo" value=' + pid.FlorNo + ' class="FlorNo" />' +
+                                '<td width="10%;">' + pid.FloorTypeName + '</td>' +
+                                '<td width="13%;" class="FlatNo">' + pid.FlatNo + '</td>' +
+                                '<td width="14%;" class="FlatArea">' + pid.FlatArea + '</td>' +
+                                '<td width="12%;">' +
+                                ' <select class="form-control OwnOrRent">' +
+                                '@foreach (var item in ViewBag.OwnOrRent)
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                                '<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" placeholder="0" /></td>' +
+                                '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
+                        });
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+
+                $.ajax({
+                    url: '/Holding/GetHolderDetailsByHolderId',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        $("#AmountOfLand").val(data.AmountOfLand);
+                        $("#TotalFloor").val(data.TotalFloor);
+                        $("#EachFloorArea").val(data.EachFloorArea);
+                        $("#TotalFlat").val(data.TotalFlat);
+                        $("#HoldersFlatNumber").val(data.HoldersFlatNumber);
+                        $("#AllocationLetterNo").val(data.AllocationLetterNo);
+                        $("#StringAllocationDate").val(data.StringAllocationDate);
+                        $("#NamjariLetterNo").val(data.NamjariLetterNo);
+                        $("#StringNamjariDate").val(data.StringNamjariDate);
+                        $("#StringRecordCorrectionDate").val(data.StringRecordCorrectionDate);
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+
+
+            });
+
+
+            $("#flat_details tbody").on('change', '.IsCheckedByHolder', function () {
+                var currentRow = $(this).closest("tr");
+                if (currentRow.find('.IsCheckedByHolder').is(":checked")) {
+                    currentRow.find('.IsCheckedByHolder').val("true");
+                    currentRow.find('.IsCheckedByHolder').prop('checked', true);
+                } else {
+                    currentRow.find('.IsCheckedByHolder').val("false");
+                    currentRow.find('.IsCheckedByHolder').prop('checked', false);
+                }
+            });
+
+
+            // file upload
+            $("#image_file").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#image_file").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Holding/GetImage',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $("#document_file_1").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#document_file_1").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Holding/GetDocFile1',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $("#document_file_2").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#document_file_2").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Holding/GetDocFile2',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            $('#OwnerType').change(function () {
+                var val = parseInt($('#OwnerType option:selected').val()) || 0;
+                if (val === 3) {
+                    $("#war_proves").show();
+                } else {
+                    $("#war_proves").hide();
+                }
+            });
+
+        });
+    </script>
+}
+
+
