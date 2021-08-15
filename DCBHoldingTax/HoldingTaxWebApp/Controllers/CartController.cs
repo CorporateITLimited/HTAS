@@ -1,10 +1,12 @@
-﻿using HoldingTaxWebApp.PaymentGateway;
+﻿using HoldingTaxWebApp.Helpers;
+using HoldingTaxWebApp.PaymentGateway;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web;
 
 namespace HoldingTaxWebApp.Controllers
 {
@@ -21,14 +23,15 @@ namespace HoldingTaxWebApp.Controllers
         {
             var productName = "HoldingTax for 2020/2021 of Mr.Anis";
             var price = 36800;
+            var TransactionID = Guid.NewGuid();//PasswordHelper.TransactionID(25);
 
-            var baseUrl = Request.Url.Scheme + "://" + Request.Url.Host;
+            var baseUrl = Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port;
 
             // CREATING LIST OF POST DATA
             NameValueCollection PostData = new NameValueCollection();
 
             PostData.Add("total_amount", $"{price}");
-            PostData.Add("tran_id", "TESTASPNET1234");
+            PostData.Add("tran_id", $"{TransactionID}");
             PostData.Add("success_url", baseUrl + "/Cart/CheckoutConfirmation");
             PostData.Add("fail_url", baseUrl + "/Cart/CheckoutFail");
             PostData.Add("cancel_url", baseUrl + "/Cart/CheckoutCancel");
@@ -66,6 +69,9 @@ namespace HoldingTaxWebApp.Controllers
             var storePassword = "citl61129439348f4@ssl";
             var isSandboxMood = true;
 
+
+
+
             SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, isSandboxMood);
 
             string response = sslcz.InitiateTransaction(PostData);
@@ -75,19 +81,19 @@ namespace HoldingTaxWebApp.Controllers
 
         public ActionResult CheckoutConfirmation()
         {
-            if (!(!String.IsNullOrEmpty(Request.Form["status"]) && Request.Form["status"] == "VALID"))
+            if (!(!string.IsNullOrEmpty(Request.Form["status"]) && Request.Form["status"] == "VALID"))
             {
                 ViewBag.SuccessInfo = "There some error while processing your payment. Please try again.";
                 return View();
             }
-
             string TrxID = Request.Form["tran_id"];
             // AMOUNT and Currency FROM DB FOR THIS TRANSACTION
-            string amount = "85000";
+            string amount = "36800";
             string currency = "BDT";
 
-            var storeId = "rejgsggsgsgsgsgeabc28c1c8";
-            var storePassword = "rfgsgejagsggsgsgsgsg8c1c8@ssl";
+            var storeId = "citl61129439348f4";
+            var storePassword = "citl61129439348f4@ssl";
+            string EncodedValID = HttpUtility.UrlEncode(Request.Form["val_id"]);
 
             SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, true);
             var resonse = sslcz.OrderValidate(TrxID, amount, currency, Request); /// request changes 

@@ -63,7 +63,7 @@ namespace HoldingTaxWebApp.PaymentGateway
                 }
                 else
                 {
-                    throw new Exception("Unable to get data from SSLCommerz. Please contact your manager!");
+                    return "Unable to get data from SSLCommerz. Please contact your manager!";
                 }
             }
             catch (Exception e)
@@ -73,7 +73,7 @@ namespace HoldingTaxWebApp.PaymentGateway
 
             return response;
         }
-        public bool OrderValidate(string MerchantTrxID, string MerchantTrxAmount, string MerchantTrxCurrency, HttpRequest req)
+        public bool OrderValidate(string MerchantTrxID, string MerchantTrxAmount, string MerchantTrxCurrency, HttpRequestBase req)
         {
             bool hash_verified = this.ipn_hash_verify(req);
             if (hash_verified)
@@ -146,10 +146,11 @@ namespace HoldingTaxWebApp.PaymentGateway
             }
         }
 
-        internal object OrderValidate(string trxID, string amount, string currency, HttpRequestBase request)
-        {
-            throw new NotImplementedException();
-        }
+
+        //internal object OrderValidate(string trxID, string amount, string currency, HttpRequestBase request)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         protected void SetSSLCzTestMode(bool mode)
         {
@@ -183,7 +184,7 @@ namespace HoldingTaxWebApp.PaymentGateway
         /// <param name="req"></param>
         /// <param name="pass"></param>
         /// <returns>Boolean - True or False</returns>
-        public Boolean ipn_hash_verify(HttpRequest req)
+        public bool ipn_hash_verify(HttpRequestBase req)
         {
 
             // Check For verify_sign and verify_key parameters
