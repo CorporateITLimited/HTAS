@@ -7,11 +7,25 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web;
+using HoldingTaxWebApp.Manager.DBO;
+using HoldingTaxWebApp.Manager.Tax;
+using HoldingTaxWebApp.Manager.Holding;
 
 namespace HoldingTaxWebApp.Controllers
 {
     public class CartController : Controller
     {
+        private readonly FinancialYearManager _yearManager;
+        private readonly HoldingTaxManager _holdingTaxManager;
+        private readonly HoldingManager _holdingManager;
+
+        public CartController()
+        {
+            _yearManager = new FinancialYearManager();
+            _holdingTaxManager = new HoldingTaxManager();
+            _holdingManager = new HoldingManager();
+        }
+
         // GET: Cart
         public ActionResult ProductList()
         {
@@ -19,64 +33,82 @@ namespace HoldingTaxWebApp.Controllers
         }
 
 
-        public ActionResult Checkout()
+        public ActionResult Checkout(int? HoldingTaxId, string FinancialYear)
         {
-            var productName = "HoldingTax for 2020/2021 of Mr.Anis";
-            var price = 36800;
-            var TransactionID = Guid.NewGuid();//PasswordHelper.TransactionID(25);
+            if (HoldingTaxId != null && HoldingTaxId > 0)
+            {
 
-            var baseUrl = Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port;
+                var holdingTaxData = _holdingTaxManager.GetHoldingTaxById(HoldingTaxId ?? default(int));
+                var holderData = _holdingManager.GetHolderById(holdingTaxData.HolderId);
 
-            // CREATING LIST OF POST DATA
-            NameValueCollection PostData = new NameValueCollection();
+                var TransactionID = Guid.NewGuid().ToString().Replace("-", "");
 
-            PostData.Add("total_amount", $"{price}");
-            PostData.Add("tran_id", $"{TransactionID}");
-            PostData.Add("success_url", baseUrl + "/Cart/CheckoutConfirmation");
-            PostData.Add("fail_url", baseUrl + "/Cart/CheckoutFail");
-            PostData.Add("cancel_url", baseUrl + "/Cart/CheckoutCancel");
 
-            PostData.Add("version", "3.00");
-            PostData.Add("cus_name", "ABC XY");
-            PostData.Add("cus_email", "abc.xyz@mail.co");
-            PostData.Add("cus_add1", "Address Line On");
-            PostData.Add("cus_add2", "Address Line Tw");
-            PostData.Add("cus_city", "City Nam");
-            PostData.Add("cus_state", "State Nam");
-            PostData.Add("cus_postcode", "Post Cod");
-            PostData.Add("cus_country", "Countr");
-            PostData.Add("cus_phone", "0111111111");
-            PostData.Add("cus_fax", "0171111111");
-            PostData.Add("ship_name", "ABC XY");
-            PostData.Add("ship_add1", "Address Line On");
-            PostData.Add("ship_add2", "Address Line Tw");
-            PostData.Add("ship_city", "City Nam");
-            PostData.Add("ship_state", "State Nam");
-            PostData.Add("ship_postcode", "Post Cod");
-            PostData.Add("ship_country", "Countr");
-            PostData.Add("value_a", "ref00");
-            PostData.Add("value_b", "ref00");
-            PostData.Add("value_c", "ref00");
-            PostData.Add("value_d", "ref00");
-            PostData.Add("shipping_method", "NO");
-            PostData.Add("num_of_item", "1");
-            PostData.Add("product_name", $"{productName}");
-            PostData.Add("product_profile", "general");
-            PostData.Add("product_category", "Demo");
+                var productName = "Holding Tax of Mr./Mrs." + holderData.HolderName + " for Financial Year " + FinancialYear;
+                var price = holdingTaxData.NetTaxPayableAmount;
 
-            //we can get from email notificaton
-            var storeId = "citl61129439348f4";
-            var storePassword = "citl61129439348f4@ssl";
-            var isSandboxMood = true;
+                var pp = Request.Url.Port;
+                var baseUrl = Request.Url.Port > 0
+                    ? Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port
+                    : Request.Url.Scheme + "://" + Request.Url.Host;
+
+                // create object here
 
 
 
+                // CREATING LIST OF POST DATA
+                NameValueCollection PostData = new NameValueCollection();
 
-            SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, isSandboxMood);
+                PostData.Add("total_amount", $"{price}");
+                PostData.Add("tran_id", $"{TransactionID}");
+                PostData.Add("success_url", baseUrl + "/Cart/CheckoutConfirmation");
+                PostData.Add("fail_url", baseUrl + "/Cart/CheckoutFail");
+                PostData.Add("cancel_url", baseUrl + "/Cart/CheckoutCancel");
 
-            string response = sslcz.InitiateTransaction(PostData);
+                PostData.Add("version", "3.00");
+                PostData.Add("cus_name", "ABC XY");
+                PostData.Add("cus_email", "abc.xyz@mail.co");
+                PostData.Add("cus_add1", "Address Line On");
+                PostData.Add("cus_add2", "Address Line Tw");
+                PostData.Add("cus_city", "City Nam");
+                PostData.Add("cus_state", "State Nam");
+                PostData.Add("cus_postcode", "Post Cod");
+                PostData.Add("cus_country", "Countr");
+                PostData.Add("cus_phone", "0111111111");
+                PostData.Add("cus_fax", "0171111111");
+                PostData.Add("ship_name", "ABC XY");
+                PostData.Add("ship_add1", "Address Line On");
+                PostData.Add("ship_add2", "Address Line Tw");
+                PostData.Add("ship_city", "City Nam");
+                PostData.Add("ship_state", "State Nam");
+                PostData.Add("ship_postcode", "Post Cod");
+                PostData.Add("ship_country", "Countr");
+                PostData.Add("value_a", "ref00");
+                PostData.Add("value_b", "ref00");
+                PostData.Add("value_c", "ref00");
+                PostData.Add("value_d", "ref00");
+                PostData.Add("shipping_method", "NO");
+                PostData.Add("num_of_item", "1");
+                PostData.Add("product_name", $"{productName}");
+                PostData.Add("product_profile", "general");
+                PostData.Add("product_category", "Demo");
 
-            return Redirect(response);
+                //we can get from email notificaton
+                var storeId = "citl61129439348f4";
+                var storePassword = "citl61129439348f4@ssl";
+                var isSandboxMood = true;
+
+                SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, isSandboxMood);
+
+                string response = sslcz.InitiateTransaction(PostData);
+
+                return Redirect(response);
+            }
+            else
+            {
+                TempData["SM"] = "bad http request";
+                return RedirectToAction("Index", "HoldingTax");
+            }
         }
 
         public ActionResult CheckoutConfirmation()
