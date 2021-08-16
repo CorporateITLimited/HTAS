@@ -2443,6 +2443,7 @@
       <DependentUpon>dsTax.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\DCB_Published.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

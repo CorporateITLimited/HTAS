@@ -41,14 +41,14 @@
     <div class="container">
         @if (TempData["SM"] != null)
         {
-        <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
-            <div class="alert-text text-center font-weight-bolder" style="color: #24AEEF; font-size: 17px;"> @TempData["SM"]</div>
-            <div class="alert-close">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true"><i class="ki ki-close"></i></span>
-                </button>
+            <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
+                <div class="alert-text text-center font-weight-bolder" style="color: #24AEEF; font-size: 17px;"> @TempData["SM"]</div>
+                <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                    </button>
+                </div>
             </div>
-        </div>
         }
         <div class="card card-custom">
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
@@ -191,6 +191,18 @@
                                                 {
                                                     <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="হালনাগাদ পেজে যান">
                                                         <b> <i class="fa fa-edit"></i>  </b>
+                                                    </a>
+                                                }
+                                            }
+                                            @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
+                                            {
+                                                if (item.IsPaid == false)
+                                                {
+                                                    @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" title="পেমেন্ট করুন" href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @FinancialYearId = @item.FinancialYearId, @HoldingTaxId = @item.HoldingTaxId, @HolderId = @item.HolderId, @NetTaxPayableAmount = @item.NetTaxPayableAmount }))">
+                                                            <b> <i class="fa fa-money-check"></i></b>
+                                                        </a>*@
+                                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" title="পেমেন্ট করুন" href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @HoldingTaxId = @item.HoldingTaxId, @FinancialYear =  @item.FinancialYear }))">
+                                                        <b> <i class="fa fa-money-check"></i></b>
                                                     </a>
                                                 }
                                             }
