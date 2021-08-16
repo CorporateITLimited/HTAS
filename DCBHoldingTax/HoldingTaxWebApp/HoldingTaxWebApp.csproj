@@ -2426,6 +2426,8 @@
     <Content Include="Scripts\wizard-holding-transfer.js" />
     <Content Include="Scripts\wizard-OldPlotOwnerCreate.js" />
     <Content Include="WebForms\Holding\HolderDetails.aspx" />
+    <Content Include="WebForms\Holding\HolderList.aspx" />
+    <Content Include="WebForms\Plots\PlotList.aspx" />
     <Content Include="WebForms\Tax\GetHoldingTax.aspx" />
     <Content Include="WebForms\Tax\leterThree.aspx" />
     <Content Include="WebForms\Tax\letterOne.aspx" />
@@ -4459,6 +4461,18 @@
       <DependentUpon>rptHolderDetails.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AppReports\Holding\rptHolderList.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptHolderList.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\Plots\rptPlotList.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptPlotList.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AppReports\Tax\rptletterOne.cs">
       <DependentUpon>rptletterOne.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -4685,6 +4699,20 @@
     <Compile Include="WebForms\Holding\HolderDetails.aspx.designer.cs">
       <DependentUpon>HolderDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\Holding\HolderList.aspx.cs">
+      <DependentUpon>HolderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Holding\HolderList.aspx.designer.cs">
+      <DependentUpon>HolderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Plots\PlotList.aspx.cs">
+      <DependentUpon>PlotList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Plots\PlotList.aspx.designer.cs">
+      <DependentUpon>PlotList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Tax\GetHoldingTax.aspx.cs">
       <DependentUpon>GetHoldingTax.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4900,6 +4928,8 @@
     <Content Include="Views\Cart\CheckoutCancel.cshtml" />
     <Content Include="Views\Cart\CheckoutConfirmation.cshtml" />
     <Content Include="Views\Cart\CheckoutFail.cshtml" />
+    <Content Include="Views\Plot\PlotReport.cshtml" />
+    <Content Include="Views\Plot\rptPlotReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4926,6 +4956,14 @@
     <EmbeddedResource Include="AppReports\Holding\rptHolderDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptHolderDetails.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Holding\rptHolderList.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptHolderList.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Plots\rptPlotList.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptPlotList.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Tax\rptletterOne.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

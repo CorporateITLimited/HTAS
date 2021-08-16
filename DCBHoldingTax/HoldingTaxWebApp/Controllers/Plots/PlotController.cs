@@ -214,5 +214,25 @@ namespace HoldingTaxWebApp.Controllers.Plots
             }
         }
 
+
+
+
+        #region PlotReport
+        public ActionResult PlotReport()
+        {
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
+            return View();
+        }
+
+
+
+        public ActionResult rptPlotReport(int id)
+        {
+            Session["AreaId_"] = id;
+            return View();
+        }
+
+        #endregion
+
     }
 }
