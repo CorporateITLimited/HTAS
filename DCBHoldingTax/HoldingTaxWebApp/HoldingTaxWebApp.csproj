@@ -4584,6 +4584,7 @@
     <Compile Include="Gateway\Plots\OldPlotOwnerGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
+    <Compile Include="Gateway\Tax\TransactionGateway.cs" />
     <Compile Include="Gateway\Tax\HoldingTaxGateway.cs" />
     <Compile Include="Gateway\Tax\OwnFlatTaxGateway.cs" />
     <Compile Include="Gateway\Tax\RentedFlatTaxGateway.cs" />
@@ -4621,6 +4622,7 @@
     <Compile Include="Manager\Plots\OldPlotOwnerManager.cs" />
     <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
+    <Compile Include="Manager\Tax\TranscationManager.cs" />
     <Compile Include="Manager\Tax\HoldingTaxManager.cs" />
     <Compile Include="Manager\Users\DesignationManager.cs" />
     <Compile Include="Manager\Users\EmployeeManager.cs" />
@@ -4658,6 +4660,7 @@
     <Compile Include="Models\Tax\OwnFlatTax.cs" />
     <Compile Include="Models\Tax\OwnTaxRate.cs" />
     <Compile Include="Models\Tax\RentedFlatTax.cs" />
+    <Compile Include="Models\Tax\TransactionPayment.cs" />
     <Compile Include="Models\Users\HolderUser.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />

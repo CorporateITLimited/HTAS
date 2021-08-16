@@ -53,6 +53,19 @@ namespace HoldingTaxWebApp.Manager.Tax
             else
                 return CommonConstantHelper.Failed;
         }
+
+        public string UpdateTaxForClient(HoldingTax tax)
+        {
+            int result = _holdingTaxGateway.UpdateTaxForClient(tax);
+
+            if (result == 202)
+                return CommonConstantHelper.Success;
+            else if (result == 500)
+                return CommonConstantHelper.Error;
+            else
+                return CommonConstantHelper.Failed;
+        }
+
         public int GenerateTax(int FinYearId)
         {
             return _holdingTaxGateway.GenerateTax(FinYearId);
