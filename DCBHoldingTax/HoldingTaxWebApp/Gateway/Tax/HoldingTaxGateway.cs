@@ -637,6 +637,8 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 Sql_Command.Parameters.Add("@Rebate", SqlDbType.Decimal).Value = tax.Rebate;
                 Sql_Command.Parameters.Add("@PaidAmount", SqlDbType.Decimal).Value = tax.PaidAmount;
                 Sql_Command.Parameters.Add("@NetTaxPayableAmount", SqlDbType.Decimal).Value = tax.NetTaxPayableAmount;
+                Sql_Command.Parameters.Add("@HoldingTaxId", SqlDbType.Int).Value = tax.HoldingTaxId;
+                Sql_Command.Parameters.Add("@PaymentDate", SqlDbType.DateTime).Value = tax.PaymentDate;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -864,11 +866,11 @@ namespace HoldingTaxWebApp.Gateway.Tax
                     vm.EmployeeName = Data_Reader["EmployeeName"].ToString();
                     vm.RebateRate = Data_Reader["RebateRate"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["RebateRate"]) : (decimal?)null;
                     vm.DuesChargeRate = Data_Reader["DuesChargeRate"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["DuesChargeRate"]) : (decimal?)null;
-                    vm.Ispaid =  Convert.ToBoolean(Data_Reader["IsPaid"]);
+                    vm.Ispaid = Convert.ToBoolean(Data_Reader["IsPaid"]);
 
 
 
-                    
+
                 };
 
                 Data_Reader.Close();

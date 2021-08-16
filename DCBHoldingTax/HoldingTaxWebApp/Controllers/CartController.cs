@@ -45,9 +45,9 @@ namespace HoldingTaxWebApp.Controllers
                 string spaceLessYear = FinancialYear.Replace(" ", "");
                 string YearFirstPart = spaceLessYear.Substring(2, 2);
                 string YearSecondPart = spaceLessYear.Substring(7, 2);
-                var TransactionCode = YearFirstPart + YearSecondPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(4);
+                var TransactionCode = YearFirstPart + YearSecondPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(4) + PasswordHelper.TransactionID(3);
                 if (_transcationManager.IsTransactionCodeExist(TransactionCode))
-                    TransactionCode = YearFirstPart + YearFirstPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(4);
+                    TransactionCode = YearFirstPart + YearFirstPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(4) + PasswordHelper.TransactionID(3);
 
 
                 var productName = "Holding Tax of Mr./Mrs. " + holderData.HolderName + " for Financial Year " + spaceLessYear;
@@ -60,7 +60,7 @@ namespace HoldingTaxWebApp.Controllers
 
                 decimal? totalRebate = 0;
                 decimal? netTotalTax = 0;
-                netTotalTax = holdingTaxData.NetTaxPayableAmount;
+                netTotalTax = relatableData.SubTotalHoldingTax;
                 if (DateTime.Now > newstartDate && DateTime.Now < newendDate)
                 {
                     totalRebate = relatableData.RebateValue;
@@ -155,39 +155,32 @@ namespace HoldingTaxWebApp.Controllers
                 ViewBag.SuccessInfo = "There some error while processing your payment. Please try again.";
                 return View();
             }
-            string TrxID = Request.Form["tran_id"];
-            // AMOUNT and Currency FROM DB FOR THIS TRANSACTION
-
-            var data = _transcationManager.GetTranscationByTransactionCode(TrxID);
-
-            string amount = data.TransactionAmount.ToString();// Convert.ToString(Session["_price_"]);
-            string currency = data.TransactionCurrency.ToString();
-            long transactionId = data.TransactionId;
-
+            string trnxCode = Request.Form["tran_id"];
+            var trnxData = _transcationManager.GetTranscationByTransactionCode(trnxCode);
             var storeId = "citl61129439348f4";
             var storePassword = "citl61129439348f4@ssl";
-            string EncodedValID = HttpUtility.UrlEncode(Request.Form["val_id"]);
+            string requestValID = HttpUtility.UrlEncode(Request.Form["val_id"]);
 
             SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, true);
-            var resonse = sslcz.OrderValidate(TrxID, amount, currency, Request); /// request changes 
+            var resonse = sslcz.OrderValidate(trnxCode, trnxData.TransactionAmount.ToString(), trnxData.TransactionCurrency.ToString(), Request); /// request changes 
 
             TransactionPayment transactionPayment = new TransactionPayment()
             {
                 HoldingTaxId = 0,
                 IPAddressDetails = null,
                 IsSuccessfulTransaction = true,
-                LastUpdated = null,//DateTime.Now,
+                LastUpdated = DateTime.Now,
                 LastUpdatedBy = null, //Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
                 ProductName = null,
-                RequestValidationID = EncodedValID,
+                RequestValidationID = requestValID,
                 TransactionAmount = null,
                 TransactionCode = null,
                 TransactionCurrency = null,
                 TransactionDate = null,
-                TransactionId = transactionId
+                TransactionId = trnxData.TransactionId
             };
+            var relatableData = _holdingTaxManager.GetRebateAndWrongInfoByHoldingTaxId(trnxData.HoldingTaxId ?? default(int));
 
-            var relatableData = _holdingTaxManager.GetRebateAndWrongInfoByHoldingTaxId(data.HoldingTaxId ?? default(int));
             DateTime startDate = new DateTime(DateTime.Now.Year, 6, 30);
             DateTime newstartDate = startDate.Add(new TimeSpan(23, 59, 59));
             DateTime endDate = new DateTime(DateTime.Now.Year, 12, 31);
@@ -195,7 +188,7 @@ namespace HoldingTaxWebApp.Controllers
 
             decimal? totalRebate = 0;
             decimal? netTotalTax = 0;
-            netTotalTax = relatableData.NetTaxPayableAmount;
+            netTotalTax = relatableData.SubTotalHoldingTax;
             if (DateTime.Now > newstartDate && DateTime.Now < newendDate)
             {
                 totalRebate = relatableData.RebateValue;
@@ -205,9 +198,10 @@ namespace HoldingTaxWebApp.Controllers
             HoldingTax tax = new HoldingTax
             {
                 Rebate = totalRebate,//holdingTax.RebateInfo == "Yes" ? holdingTax.Rebate : 0,
-                PaidAmount = data.TransactionAmount,
+                PaidAmount = trnxData.TransactionAmount,
                 NetTaxPayableAmount = netTotalTax,
-                HoldingTaxId = data.HoldingTaxId ?? default(int)
+                HoldingTaxId = trnxData.HoldingTaxId ?? default(int),
+                PaymentDate = DateTime.Now
             };
 
             string updateString = _holdingTaxManager.UpdateTaxForClient(tax);
@@ -217,7 +211,7 @@ namespace HoldingTaxWebApp.Controllers
             var successInfo = $"Validation Response: {resonse}";
             ViewBag.SuccessInfo = successInfo;
 
-            Session["_holdingTaxId"] = data.HoldingTaxId;
+            Session["_holdingTaxId"] = trnxData.HoldingTaxId;
 
             return View();
 
@@ -231,6 +225,7 @@ namespace HoldingTaxWebApp.Controllers
 
         public ActionResult CheckoutCancel()
         {
+            TempData["SM"] = "আপনার পেমেন্ট বাতিল করা হয়েছে";
             ViewBag.CancelInfo = "Your payment has been cancel";
             return View();
         }
