@@ -64,15 +64,14 @@
                                         @Html.ValidationMessageFor(model => model.AreaName, "", new { @class = "text-danger" })
                                     </div>
 
-
-                                    @Html.LabelFor(model => model.TotalArea, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                    <div class="col-lg-3">
-                                        @Html.EditorFor(model => model.TotalArea, new { htmlAttributes = new { @class = "form-control", @name = "TotalArea", @id = "TotalArea", placeholder = "Enter total area" } })
-                                        @Html.ValidationMessageFor(model => model.TotalArea, "", new { @class = "text-danger" })
+                                    @Html.LabelFor(model => model.AreaType, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.DropDownListFor(model => model.AreaType, null, new
+                                  {
+                                      @class = "form-control"
+                                  })
                                     </div>
-                                    <div class="col-lg-1">
-                                        <input readonly class="form-control text-lg-left border-0" value="বর্গফুট" />
-                                    </div>
+                                   
                                 </div>
 
 
@@ -92,6 +91,15 @@
                                 </div>*@
 
                                 <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.TotalArea, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.TotalArea, new { htmlAttributes = new { @class = "form-control", @name = "TotalArea", @id = "TotalArea", placeholder = "Enter total area" } })
+                                        @Html.ValidationMessageFor(model => model.TotalArea, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <input readonly class="form-control text-lg-left border-0" value="বর্গফুট" />
+                                    </div>
+
                                     @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
                                         @Html.DropDownListFor(model => model.IsActive, null, new
@@ -128,27 +136,19 @@
                     AreaName: {
                         required: true
                     },
+                    AreaType: {
+                        required: true
+                    },
                     TotalArea: {
                         number: true
                     }
-                    //CurrentFlatNumber: {
-                    //    digits: true
-                    //},
-                    //CurrentPlotNumber: {
-                    //    digits: true
-                    //}
                 },
                 messages: {
                     AreaName: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    AreaType: "ঘরটি অবশ্যই পূরণ করতে হবে",
                     TotalArea: {
                         number: "এলাকার মোট আয়তন ইংরেজিতে দিন"
                     }
-                    //CurrentFlatNumber: {
-                    //    digits: "বর্তমান ফ্লাট ইংরেজিতে দশমিক ছাড়া পূর্ণ সংখ্যা দিন"
-                    //},
-                    //CurrentPlotNumber: {
-                    //    digits: "বর্তমান ফ্লাট ইংরেজিতে দশমিক ছাড়া পূর্ণ সংখ্যা দিন"
-                    //}
                 },
                 invalidHandler: function (event, validator) {
                     KTUtil.scrollTop();

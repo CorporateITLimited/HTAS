@@ -59,6 +59,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
             //{
             try
             {
+                ViewBag.AreaType = new SelectList(StaticDataHelper.GetAreaTypeForDropdown(), "Value", "Text");
                 ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text");
                 return View();
             }
@@ -92,12 +93,18 @@ namespace HoldingTaxWebApp.Controllers.DBO
             {
                 if (area == null)
                     return HttpNotFound();
-
+                ViewBag.AreaType = new SelectList(StaticDataHelper.GetAreaTypeForDropdown(), "Value", "Text", area.AreaType);
                 ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", area.IsActive);
 
                 if (string.IsNullOrWhiteSpace(area.AreaName))
                 {
                     ModelState.AddModelError("", "এলাকার নাম অবশ্যই পূরণ করতে হবে");
+                    return View(area);
+                }
+
+                if (area.AreaType == null || area.AreaType <= 0)
+                {
+                    ModelState.AddModelError("", "এলাকার ধরণ অবশ্যই পূরণ করতে হবে");
                     return View(area);
                 }
 
@@ -175,7 +182,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
 
                 if (area == null)
                     return HttpNotFound();
-
+                ViewBag.AreaType = new SelectList(StaticDataHelper.GetAreaTypeForDropdown(), "Value", "Text", area.AreaType);
                 ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", area.IsActive);
 
                 return View(area);
@@ -215,12 +222,18 @@ namespace HoldingTaxWebApp.Controllers.DBO
                     ModelState.AddModelError("", "আইডি পাওয়া যায় নি");
                     return View(area);
                 }
-
+                ViewBag.AreaType = new SelectList(StaticDataHelper.GetAreaTypeForDropdown(), "Value", "Text", area.AreaType);
                 ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", area.IsActive);
 
                 if (string.IsNullOrWhiteSpace(area.AreaName))
                 {
                     ModelState.AddModelError("", "এলাকার নাম অবশ্যই পূরণ করতে হবে");
+                    return View(area);
+                }
+
+                if (area.AreaType == null || area.AreaType <= 0)
+                {
+                    ModelState.AddModelError("", "এলাকার ধরণ অবশ্যই পূরণ করতে হবে");
                     return View(area);
                 }
 
