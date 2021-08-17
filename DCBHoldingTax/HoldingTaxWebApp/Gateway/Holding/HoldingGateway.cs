@@ -99,7 +99,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         NamjariDate = Data_Reader["NamjariDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["NamjariDate"]) : (DateTime?)null,
                         RecordCorrectionDate = Data_Reader["RecordCorrectionDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["RecordCorrectionDate"]) : (DateTime?)null,
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
-                        IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null
+                        IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null,
+                        HolderNo = Convert.ToString(Data_Reader["HolderNo"])
                     };
 
                     vm.Add(model);
@@ -218,6 +219,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     vm.RecordCorrectionDate = Data_Reader["RecordCorrectionDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["RecordCorrectionDate"]) : (DateTime?)null;
                     vm.AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]);
                     vm.IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null;
+                    vm.HolderNo = Convert.ToString(Data_Reader["HolderNo"]);
                 };
 
                 vm.StringCreateDate = $"{vm.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -1762,7 +1764,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         NamjariDate = Data_Reader["NamjariDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["NamjariDate"]) : (DateTime?)null,
                         RecordCorrectionDate = Data_Reader["RecordCorrectionDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["RecordCorrectionDate"]) : (DateTime?)null,
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
-                        IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null
+                        IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null,
+                        HolderNo = Convert.ToString(Data_Reader["HolderNo"])
                     };
 
                     vm.Add(model);

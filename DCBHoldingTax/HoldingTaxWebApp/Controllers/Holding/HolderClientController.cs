@@ -136,7 +136,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     LeasePeriod = holderVMOtherData.LeasePeriod,
                     StrLeasePeriod = BanglaConvertionHelper.IntegerValueEnglish2Bangla(holderVMOtherData.LeasePeriod),
                     StringLeaseExpiryDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holderVMOtherData.StringLeaseExpiryDate),
-                    PlotOwnerName = holderVMOtherData.PlotOwnerName
+                    PlotOwnerName = holderVMOtherData.PlotOwnerName,
+                    HolderNo = holder.HolderNo
                 };
 
 

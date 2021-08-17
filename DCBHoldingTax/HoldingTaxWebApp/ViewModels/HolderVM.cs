@@ -247,6 +247,9 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "গৃহকরদাতা নিজেই কি প্লটের মালিক?")]
         public bool? IsHolderAnOwner { get; set; }
 
+        [Display(Name = "গৃহকরদাতার আইডি নম্বর")]
+        public string HolderNo { get; set; }
+
         // no need to convert in bangla
         public List<HolderFlat> HolderFlatList { get; set; }
         public List<HolderFlat> HolderFlatListForEdit { get; set; }
