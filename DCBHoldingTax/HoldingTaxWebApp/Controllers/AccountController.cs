@@ -66,6 +66,8 @@ namespace HoldingTaxWebApp.Controllers
                 user.UserLogDetails = Request.Browser.IsMobileDevice ?
                                         $"mobile {ipAddress}" : $"desktop {ipAddress}";
 
+                Session["_ipDetails"] = user.UserLogDetails;
+
                 UserLogInCredentialVM logInCredentialVM = _accountManager.LogIn(user);
 
                 if (logInCredentialVM.CommonEntity.Result == 202)

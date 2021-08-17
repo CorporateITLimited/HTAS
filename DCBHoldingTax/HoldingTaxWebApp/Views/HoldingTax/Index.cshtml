@@ -194,18 +194,18 @@
                                                     </a>
                                                 }
                                             }
-                                            @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
+                                            @*@if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
                                             {
                                                 if (item.IsPaid == false)
                                                 {
                                                     @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" title="পেমেন্ট করুন" href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @FinancialYearId = @item.FinancialYearId, @HoldingTaxId = @item.HoldingTaxId, @HolderId = @item.HolderId, @NetTaxPayableAmount = @item.NetTaxPayableAmount }))">
                                                             <b> <i class="fa fa-money-check"></i></b>
-                                                        </a>*@
+                                                        </a>
                                                     <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" title="পেমেন্ট করুন" href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @HoldingTaxId = @item.HoldingTaxId, @FinancialYear =  @item.FinancialYear }))">
                                                         <b> <i class="fa fa-money-check"></i></b>
                                                     </a>
                                                 }
-                                            }
+                                            }*@
                                             <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Invoice/@item.HoldingTaxId" title="ইনভয়েস দেখুন">
                                                 <b> <i class="fa fa-file-invoice"></i>  </b>
                                             </a>
