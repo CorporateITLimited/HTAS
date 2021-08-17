@@ -280,6 +280,15 @@
                                     </a>
                                 }
                             }
+                            @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+                            {
+                                if (Model.Ispaid == false)
+                                {
+                                    <a class="btn btn-light-success font-weight-bold" href="~/HoldingTax/Edit/@Model.HoldingTaxId">
+                                        <b> <i class="far fa-credit-card"></i></b>কাউন্টার পেমেন্ট করুন
+                                    </a>
+                                }
+                            }
                             @*<button type="button" class="btn btn-light-primary font-weight-bold" onclick="window.print();">Download Invoice</button>*@
                             <button type="button" class="btn btn-light-primary font-weight-bold" id="print_this2">Download Invoice</button>
                             @*<button type="button" class="btn btn-primary font-weight-bold" onclick="window.print();">Print Invoice</button>*@

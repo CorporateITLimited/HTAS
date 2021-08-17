@@ -64,7 +64,9 @@ namespace HoldingTaxWebApp.Gateway.DBO
                         IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null,
                         IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
                         CreatedByUsername = Convert.ToString(Data_Reader["CreatedByUsername"]),
-                        UpdatedByUsername = Convert.ToString(Data_Reader["UpdatedByUsername"])
+                        UpdatedByUsername = Convert.ToString(Data_Reader["UpdatedByUsername"]),
+                        AreaType = Data_Reader["AreaType"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["AreaType"]) : (int?)null,
                     };
 
                     dohsarea.StrCreateDate = $"{dohsarea.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -149,6 +151,8 @@ namespace HoldingTaxWebApp.Gateway.DBO
                                                Convert.ToDecimal(Data_Reader["TotalArea"]) : (decimal?)null;
                     dohsarea.CreatedByUsername = Convert.ToString(Data_Reader["CreatedByUsername"]);
                     dohsarea.UpdatedByUsername = Convert.ToString(Data_Reader["UpdatedByUsername"]);
+                    dohsarea.AreaType = Data_Reader["AreaType"] !=
+                                               DBNull.Value ? Convert.ToInt32(Data_Reader["AreaType"]) : (int?)null;
                 };
 
                 dohsarea.StrCreateDate = $"{dohsarea.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -208,6 +212,7 @@ namespace HoldingTaxWebApp.Gateway.DBO
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = DOHS.IsDeleted;
                 Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = DOHS.LastUpdated;
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = DOHS.LastUpdatedBy;
+                Sql_Command.Parameters.Add("@AreaType", SqlDbType.Int).Value = DOHS.AreaType;
 
 
                 SqlParameter result = new SqlParameter
@@ -275,6 +280,7 @@ namespace HoldingTaxWebApp.Gateway.DBO
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = DOHS.IsDeleted;
                 Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = DOHS.LastUpdated;
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = DOHS.LastUpdatedBy;
+                Sql_Command.Parameters.Add("@AreaType", SqlDbType.Int).Value = DOHS.AreaType;
 
                 SqlParameter result = new SqlParameter
                 {
