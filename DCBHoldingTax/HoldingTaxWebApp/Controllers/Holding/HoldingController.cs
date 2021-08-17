@@ -2246,5 +2246,33 @@ namespace HoldingTaxWebApp.Controllers.Holding
         }
         #endregion
 
+
+
+        #region Holder Report List Area Wise
+        public ActionResult HolderListReport()
+        {
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
+            ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+            return View();
+        }
+       
+
+        public ActionResult rptHolderList(int? aid , int? pid)
+        {
+           
+            Session["AreaId_"] = aid;
+            Session["PlotId_"] = pid;
+            if(aid == 0)
+            {
+                Session["AreaId_"] = null;
+            }
+            if (pid == 0)
+            {
+                Session["PlotId_"] = null;
+            }
+            return View();
+        }
+        #endregion
+
     }
 }

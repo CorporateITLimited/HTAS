@@ -226,9 +226,13 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
 
 
-        public ActionResult rptPlotReport(int id)
+        public ActionResult rptPlotReport(int? id)
         {
             Session["AreaId_"] = id;
+            if(id == 0)
+            {
+                Session["AreaId_"] = null;
+            }
             return View();
         }
 

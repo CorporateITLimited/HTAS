@@ -36,7 +36,7 @@ namespace HoldingTaxWebApp.WebForms.Holding
             dsTax tenderdata = Getdata(); // datasetname
             cryRpt.SetDataSource(tenderdata);
 
-            CrystalReportViewer1.Zoom(80);
+            CrystalReportViewer1.Zoom(100);
             CrystalReportViewer1.ToolPanelView = ToolPanelViewType.None;
             CrystalReportViewer1.HasExportButton = false;
         }
