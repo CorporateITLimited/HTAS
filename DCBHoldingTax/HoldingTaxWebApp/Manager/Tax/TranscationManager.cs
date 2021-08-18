@@ -49,7 +49,7 @@ namespace HoldingTaxWebApp.Manager.Tax
             int result = _transactionGateway.UpdateTranscation(trnx);
 
             if (result == 202)
-                return "আপনার পেমেন্ট সফলভাবে সম্পন্ন হয়েছে";
+                return CommonConstantHelper.Success;
             else if (result == 500)
                 return CommonConstantHelper.Error;
             else

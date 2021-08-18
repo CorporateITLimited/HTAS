@@ -7,6 +7,13 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Script.Serialization;
+using HoldingTaxWebApp.Helpers;
+using HoldingTaxWebApp.PaymentGateway;
+using System.Web.Mvc;
+using HoldingTaxWebApp.Manager.DBO;
+using HoldingTaxWebApp.Manager.Tax;
+using HoldingTaxWebApp.Manager.Holding;
+using HoldingTaxWebApp.Models.Tax;
 
 namespace HoldingTaxWebApp.PaymentGateway
 {
@@ -25,9 +32,11 @@ namespace HoldingTaxWebApp.PaymentGateway
         protected string Validation_URL = "validator/api/validationserverAPI.php";
         protected string Checking_URL = "validator/api/merchantTransIDvalidationAPI.php";
 
+        private readonly TranscationManager _transcationManager;
 
         public SSLCommerz(string Store_ID, string Store_Pass, bool Store_Test_Mode = false)
         {
+            _transcationManager = new TranscationManager();
             System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)0x00000C00;
 
             if (Store_ID != "" && Store_Pass != "")
@@ -58,7 +67,39 @@ namespace HoldingTaxWebApp.PaymentGateway
                     }
                     else
                     {
-                        // save in data base here
+                        if(HttpContext.Current.Session["_TransactionId_"] != null)
+                        {
+                            var trxid = Convert.ToInt64(HttpContext.Current.Session["_TransactionId_"].ToString());
+
+                            //resp.status = !string.IsNullOrEmpty(resp.status) ? resp.status.ToString() : null;
+
+                            TransactionPayment transactionPayment = new TransactionPayment()
+                            {
+                                HoldingTaxId = 0,
+                                IPAddressDetails = null,
+                                LastUpdated = DateTime.Now,
+                                LastUpdatedBy = null, //Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                ProductName = null,
+                                TransactionAmount = null,
+                                TransactionCode = null,
+                                TransactionCurrency = null,
+                                TransactionDate = null,
+                                TransactionId = trxid,
+                                ApiDirectPaymentURL = null,
+                                ApiDirectPaymentURLBank = null,
+                                ApiDirectPaymentURLCard = null,
+                                ApiFailedReason = resp.failedreason.ToString(),
+                                ApiGatewayPageURL = resp.GatewayPageURL.ToString(),
+                                ApiRedirectGatewayURL = resp.redirectGatewayURL.ToString(),
+                                ApiRedirectGatewayURLFailed = resp.redirectGatewayURLFailed.ToString(),
+                                ApiSessionKey = resp.sessionkey.ToString(),
+                                ApiStatus = resp.status.ToString()
+                            };
+
+                            HttpContext.Current.Session["_OtTransactionId_"] = transactionPayment;
+
+                            _transcationManager.UpdateTranscation(transactionPayment);
+                        }
 
                         return resp.GatewayPageURL.ToString();
                     }
