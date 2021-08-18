@@ -1077,38 +1077,15 @@ on b.BuildingTypeId=r.BuildingTypeId</CommandText>
               <xs:element name="OtherFlorArea" msprop:Generator_ColumnVarNameInTable="columnOtherFlorArea" msprop:Generator_ColumnPropNameInRow="OtherFlorArea" msprop:Generator_ColumnPropNameInTable="OtherFlorAreaColumn" msprop:Generator_UserColumnName="OtherFlorArea" type="xs:decimal" minOccurs="0" />
               <xs:element name="ApprovalNo" msprop:Generator_ColumnVarNameInTable="columnApprovalNo" msprop:Generator_ColumnPropNameInRow="ApprovalNo" msprop:Generator_ColumnPropNameInTable="ApprovalNoColumn" msprop:Generator_UserColumnName="ApprovalNo" type="xs:int" minOccurs="0" />
               <xs:element name="AreaName" msprop:Generator_ColumnVarNameInTable="columnAreaName" msprop:Generator_ColumnPropNameInRow="AreaName" msprop:Generator_ColumnPropNameInTable="AreaNameColumn" msprop:Generator_UserColumnName="AreaName" type="xs:string" minOccurs="0" />
+              <xs:element name="PlotNo" msprop:Generator_ColumnVarNameInTable="columnPlotNo" msprop:Generator_ColumnPropNameInRow="PlotNo" msprop:Generator_ColumnPropNameInTable="PlotNoColumn" msprop:Generator_UserColumnName="PlotNo" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint11">
-      <xs:selector xpath=".//mstns:dtLetterThree" />
-      <xs:field xpath="mstns:HoldingTaxId" />
-    </xs:unique>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:dtAreaRentRate" />
       <xs:field xpath="mstns:RentTaxRateId" />
-    </xs:unique>
-    <xs:unique name="dtRecoverableTax_Constraint11" msdata:ConstraintName="Constraint11">
-      <xs:selector xpath=".//mstns:dtRecoverableTax" />
-      <xs:field xpath="mstns:HoldingTaxId" />
-    </xs:unique>
-    <xs:unique name="dtPlotList_Constraint11" msdata:ConstraintName="Constraint11">
-      <xs:selector xpath=".//mstns:dtPlotList" />
-      <xs:field xpath="mstns:PlotId" />
-    </xs:unique>
-    <xs:unique name="dtHolderList_Constraint11" msdata:ConstraintName="Constraint11">
-      <xs:selector xpath=".//mstns:dtHolderList" />
-      <xs:field xpath="mstns:HolderId" />
-    </xs:unique>
-    <xs:unique name="dtPlotOwnerList_Constraint11" msdata:ConstraintName="Constraint11">
-      <xs:selector xpath=".//mstns:dtPlotOwnerList" />
-      <xs:field xpath="mstns:PlotOwnerId" />
-    </xs:unique>
-    <xs:unique name="dtPlotOwnerDetails_Constraint11" msdata:ConstraintName="Constraint11">
-      <xs:selector xpath=".//mstns:dtPlotOwnerDetails" />
-      <xs:field xpath="mstns:PlotOwnerId" />
     </xs:unique>
   </xs:element>
 </xs:schema>

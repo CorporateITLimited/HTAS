@@ -2761,14 +2761,11 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnoldDate);
                 this.columnEmployeeName = new global::System.Data.DataColumn("EmployeeName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmployeeName);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint11", new global::System.Data.DataColumn[] {
-                                this.columnHoldingTaxId}, false));
                 this.columnHoldingTaxId.AutoIncrement = true;
                 this.columnHoldingTaxId.AutoIncrementSeed = -1;
                 this.columnHoldingTaxId.AutoIncrementStep = -1;
                 this.columnHoldingTaxId.AllowDBNull = false;
                 this.columnHoldingTaxId.ReadOnly = true;
-                this.columnHoldingTaxId.Unique = true;
                 this.columnHolderId.AllowDBNull = false;
                 this.columnFinancialYearId.AllowDBNull = false;
                 this.columnFinancialYear.MaxLength = 2147483647;
@@ -3781,14 +3778,11 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnTotalTaxWithWrongInfo);
                 this.columnPaymentDate = new global::System.Data.DataColumn("PaymentDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPaymentDate);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint11", new global::System.Data.DataColumn[] {
-                                this.columnHoldingTaxId}, false));
                 this.columnHoldingTaxId.AutoIncrement = true;
                 this.columnHoldingTaxId.AutoIncrementSeed = -1;
                 this.columnHoldingTaxId.AutoIncrementStep = -1;
                 this.columnHoldingTaxId.AllowDBNull = false;
                 this.columnHoldingTaxId.ReadOnly = true;
-                this.columnHoldingTaxId.Unique = true;
                 this.columnHolderId.AllowDBNull = false;
                 this.columnFinancialYearId.AllowDBNull = false;
                 this.columnTotalTax.ReadOnly = true;
@@ -5472,14 +5466,11 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnCurrentPlotNumber);
                 this.columnPlotOwnerName = new global::System.Data.DataColumn("PlotOwnerName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPlotOwnerName);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint11", new global::System.Data.DataColumn[] {
-                                this.columnPlotId}, false));
                 this.columnPlotId.AutoIncrement = true;
                 this.columnPlotId.AutoIncrementSeed = -1;
                 this.columnPlotId.AutoIncrementStep = -1;
                 this.columnPlotId.AllowDBNull = false;
                 this.columnPlotId.ReadOnly = true;
-                this.columnPlotId.Unique = true;
                 this.columnPlotIdNumber.MaxLength = 2147483647;
                 this.columnAreaId.AllowDBNull = false;
                 this.columnRoadNo.MaxLength = 100;
@@ -5901,14 +5892,11 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnSourceName);
                 this.columnTypeName = new global::System.Data.DataColumn("TypeName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTypeName);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint11", new global::System.Data.DataColumn[] {
-                                this.columnHolderId}, false));
                 this.columnHolderId.AutoIncrement = true;
                 this.columnHolderId.AutoIncrementSeed = -1;
                 this.columnHolderId.AutoIncrementStep = -1;
                 this.columnHolderId.AllowDBNull = false;
                 this.columnHolderId.ReadOnly = true;
-                this.columnHolderId.Unique = true;
                 this.columnHolderName.MaxLength = 2147483647;
                 this.columnAreaId.AllowDBNull = false;
                 this.columnPlotId.AllowDBNull = false;
@@ -6322,14 +6310,11 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnAreaName);
                 this.columnOtherOwner = new global::System.Data.DataColumn("OtherOwner", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOtherOwner);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint11", new global::System.Data.DataColumn[] {
-                                this.columnPlotOwnerId}, false));
                 this.columnPlotOwnerId.AutoIncrement = true;
                 this.columnPlotOwnerId.AutoIncrementSeed = -1;
                 this.columnPlotOwnerId.AutoIncrementStep = -1;
                 this.columnPlotOwnerId.AllowDBNull = false;
                 this.columnPlotOwnerId.ReadOnly = true;
-                this.columnPlotOwnerId.Unique = true;
                 this.columnPlotId.AllowDBNull = false;
                 this.columnPlotOwnerName.AllowDBNull = false;
                 this.columnPlotOwnerName.MaxLength = 2147483647;
@@ -6589,6 +6574,8 @@ namespace HoldingTaxWebApp.AppDataSet {
             private global::System.Data.DataColumn columnApprovalNo;
             
             private global::System.Data.DataColumn columnAreaName;
+            
+            private global::System.Data.DataColumn columnPlotNo;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -7089,6 +7076,14 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotNoColumn {
+                get {
+                    return this.columnPlotNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7181,7 +7176,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                         decimal GroundFlorArea, 
                         decimal OtherFlorArea, 
                         int ApprovalNo, 
-                        string AreaName) {
+                        string AreaName, 
+                        string PlotNo) {
                 dtPlotOwnerDetailsRow rowdtPlotOwnerDetailsRow = ((dtPlotOwnerDetailsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -7241,7 +7237,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                         GroundFlorArea,
                         OtherFlorArea,
                         ApprovalNo,
-                        AreaName};
+                        AreaName,
+                        PlotNo};
                 rowdtPlotOwnerDetailsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtPlotOwnerDetailsRow);
                 return rowdtPlotOwnerDetailsRow;
@@ -7322,6 +7319,7 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnOtherFlorArea = base.Columns["OtherFlorArea"];
                 this.columnApprovalNo = base.Columns["ApprovalNo"];
                 this.columnAreaName = base.Columns["AreaName"];
+                this.columnPlotNo = base.Columns["PlotNo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7443,14 +7441,13 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnApprovalNo);
                 this.columnAreaName = new global::System.Data.DataColumn("AreaName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAreaName);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint11", new global::System.Data.DataColumn[] {
-                                this.columnPlotOwnerId}, false));
+                this.columnPlotNo = new global::System.Data.DataColumn("PlotNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotNo);
                 this.columnPlotOwnerId.AutoIncrement = true;
                 this.columnPlotOwnerId.AutoIncrementSeed = -1;
                 this.columnPlotOwnerId.AutoIncrementStep = -1;
                 this.columnPlotOwnerId.AllowDBNull = false;
                 this.columnPlotOwnerId.ReadOnly = true;
-                this.columnPlotOwnerId.Unique = true;
                 this.columnPlotId.AllowDBNull = false;
                 this.columnPlotOwnerName.AllowDBNull = false;
                 this.columnPlotOwnerName.MaxLength = 2147483647;
@@ -14907,6 +14904,22 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PlotNo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.PlotNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PlotNo\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.PlotNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsIsAliveNull() {
                 return this.IsNull(this.tabledtPlotOwnerDetails.IsAliveColumn);
             }
@@ -15527,6 +15540,18 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetAreaNameNull() {
                 this[this.tabledtPlotOwnerDetails.AreaNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPlotNoNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.PlotNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPlotNoNull() {
+                this[this.tabledtPlotOwnerDetails.PlotNoColumn] = global::System.Convert.DBNull;
             }
         }
         
