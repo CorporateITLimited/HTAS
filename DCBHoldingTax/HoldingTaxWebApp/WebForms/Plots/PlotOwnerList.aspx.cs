@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 
 namespace HoldingTaxWebApp.WebForms.Plots
 {
-    public partial class PlotList : System.Web.UI.Page
+    public partial class PlotOwnerList : System.Web.UI.Page
     {
         private ReportDocument cryRpt;
 
@@ -28,7 +28,7 @@ namespace HoldingTaxWebApp.WebForms.Plots
         private void cryreportshow()
         {
             cryRpt = new ReportDocument();
-            cryRpt.Load(Server.MapPath("~/AppReports/Plots/rptPlotList.rpt"));
+            cryRpt.Load(Server.MapPath("~/AppReports/Plots/rptPlotOwnerList.rpt"));
             cryRpt.SetDatabaseLogon("sa", "#PimsOne$1m#", @"119.18.146.107", "DCB_HTAS");
 
             CrystalReportViewer1.ReportSource = cryRpt;
@@ -43,12 +43,12 @@ namespace HoldingTaxWebApp.WebForms.Plots
         private dsTax Getdata()    /*-----Return type is Dataset--------*/
         {
             //int? rptFinancialYearId = 1;
-          
+
             int? rptAreaId = Session["AreaId_"] != null ? Convert.ToInt32(Session["AreaId_"]) : (int?)null;
 
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("exec [rpt].[spPlotList]  @AreaId", con);
+            SqlCommand cmd = new SqlCommand("exec [rpt].[spPlotOwnerList]  @AreaId", con);
             cmd.CommandType = CommandType.Text; // always text
 
 
@@ -58,7 +58,7 @@ namespace HoldingTaxWebApp.WebForms.Plots
             {
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 dsTax list = new dsTax(); // same as dataset
-                sda.Fill(list, "dtPlotList");
+                sda.Fill(list, "dtPlotOwnerList");
                 //for (int i = 0; i < list.dtListOfQuotedItems.Count(); i++)
                 //{
                 //    list.dtListOfQuotedItems.Rows[i][13] = "List of offered Lowest Quoted Items";

@@ -21,6 +21,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
         private readonly OfficialStatusManager _OfficialStatusManager;
         private readonly ConstructionStatusManager _ConstructionStatusManager;
 
+        private readonly DOHSAreaManager _dOHSAreaManager;
         public PlotOwnerController()
         {
             _PlotOwnerManager = new PlotOwnerManager();
@@ -29,6 +30,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
             _LeaseQuotaManager = new LeaseQuotaManager();
             _OfficialStatusManager = new OfficialStatusManager();
             _ConstructionStatusManager = new ConstructionStatusManager();
+            _dOHSAreaManager = new DOHSAreaManager();
         }
 
         // GET: PlotOwner
@@ -1396,6 +1398,30 @@ namespace HoldingTaxWebApp.Controllers.Plots
             }
         }
         #endregion
+
+
+
+        #region Plot Owner list Report
+        public ActionResult PlotOwnerReport()
+        {
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
+            return View();
+        }
+
+
+
+        public ActionResult rptPlotOwnerList(int? id)
+        {
+            Session["AreaId_"] = id;
+            if (id == 0)
+            {
+                Session["AreaId_"] = null;
+            }
+            return View();
+        }
+
+        #endregion
+
 
 
     }

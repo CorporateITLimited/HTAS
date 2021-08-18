@@ -2428,6 +2428,7 @@
     <Content Include="WebForms\Holding\HolderDetails.aspx" />
     <Content Include="WebForms\Holding\HolderList.aspx" />
     <Content Include="WebForms\Plots\PlotList.aspx" />
+    <Content Include="WebForms\Plots\PlotOwnerList.aspx" />
     <Content Include="WebForms\Tax\GetHoldingTax.aspx" />
     <Content Include="WebForms\Tax\leterThree.aspx" />
     <Content Include="WebForms\Tax\letterOne.aspx" />
@@ -4467,10 +4468,22 @@
       <DependentUpon>rptHolderList.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AppReports\Plots\rptPlotOwnerDetails.cs">
+      <DependentUpon>rptPlotOwnerDetails.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="AppReports\Plots\rptPlotList.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptPlotList.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\Plots\rptPlotOwnerList.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptPlotOwnerList.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="AppReports\Tax\rptletterOne.cs">
@@ -4716,6 +4729,13 @@
     <Compile Include="WebForms\Plots\PlotList.aspx.designer.cs">
       <DependentUpon>PlotList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\Plots\PlotOwnerList.aspx.cs">
+      <DependentUpon>PlotOwnerList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Plots\PlotOwnerList.aspx.designer.cs">
+      <DependentUpon>PlotOwnerList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Tax\GetHoldingTax.aspx.cs">
       <DependentUpon>GetHoldingTax.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4933,6 +4953,10 @@
     <Content Include="Views\Cart\CheckoutFail.cshtml" />
     <Content Include="Views\Plot\PlotReport.cshtml" />
     <Content Include="Views\Plot\rptPlotReport.cshtml" />
+    <Content Include="Views\Holding\HolderListReport.cshtml" />
+    <Content Include="Views\Holding\rptHolderList.cshtml" />
+    <Content Include="Views\PlotOwner\PlotOwnerReport.cshtml" />
+    <Content Include="Views\PlotOwner\rptPlotOwnerList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4964,9 +4988,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptHolderList.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Plots\rptPlotOwnerDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptPlotOwnerDetails.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Plots\rptPlotList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptPlotList.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Plots\rptPlotOwnerList.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptPlotOwnerList.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Tax\rptletterOne.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

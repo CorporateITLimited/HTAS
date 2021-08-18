@@ -12,7 +12,7 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">হোল্ডার সংক্রান্ত সকল রিপোর্ট</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">করদাতার বিস্তারিত তথ্য রিপোর্ট</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
                         <a href="#" class="text-muted"></a>
@@ -39,7 +39,7 @@
                     <div class="card-body row">
                         <div class="col-md-5">
                             <div class="form-group row">
-                                @Html.LabelFor(model => model.HolderId, "হোল্ডার", htmlAttributes: new { @class = "col-lg-4 col-form-label text-lg-right" })
+                                @Html.LabelFor(model => model.HolderId, "করদাতার নাম", htmlAttributes: new { @class = "col-lg-4 col-form-label text-lg-right" })
                                 <div class="col-lg-8">
                                     @Html.DropDownListFor(model => model.HolderId, null, "-- নির্বাচন করুন --", new
                                {
@@ -53,22 +53,7 @@
                             </div>
                         </div>
 
-                        @*<div class="col-md-6">
-                            <div class="form-group row">
-                                <label class="col-lg-4 col-form-label text-lg-right" for="ReportType">রিপোর্টের ধরণ</label>
-                                <div class="col-lg-8">
-                                    <select id="ReportType" class="form-control">
-                                        <option value="0">-- নির্বাচন করুন --</option>
-                                        <option value="1">সম্ভাব্য আদায়যোগ্য গৃহ কর</option>
-                                        <option value="2">আদায়কৃত গৃহ কর</option>
-                                        <option value="3">অনাদায় কৃত গৃহ কর</option>
-                                        <option value="4">গৃহ কর প্রদানকারী হোল্ডারদের তালিকা</option>
-                                        <option value="5">গৃহ কর প্রদান না করা হোল্ডারদের তালিকা</option>
-                                    </select>
-                                </div>
-
-                            </div>
-                        </div>*@
+                       
 
 
                     </div>

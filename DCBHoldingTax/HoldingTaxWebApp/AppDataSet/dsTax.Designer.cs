@@ -40,6 +40,10 @@ namespace HoldingTaxWebApp.AppDataSet {
         
         private dtHolderListDataTable tabledtHolderList;
         
+        private dtPlotOwnerListDataTable tabledtPlotOwnerList;
+        
+        private dtPlotOwnerDetailsDataTable tabledtPlotOwnerDetails;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -91,6 +95,12 @@ namespace HoldingTaxWebApp.AppDataSet {
                 }
                 if ((ds.Tables["dtHolderList"] != null)) {
                     base.Tables.Add(new dtHolderListDataTable(ds.Tables["dtHolderList"]));
+                }
+                if ((ds.Tables["dtPlotOwnerList"] != null)) {
+                    base.Tables.Add(new dtPlotOwnerListDataTable(ds.Tables["dtPlotOwnerList"]));
+                }
+                if ((ds.Tables["dtPlotOwnerDetails"] != null)) {
+                    base.Tables.Add(new dtPlotOwnerDetailsDataTable(ds.Tables["dtPlotOwnerDetails"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -192,6 +202,26 @@ namespace HoldingTaxWebApp.AppDataSet {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public dtPlotOwnerListDataTable dtPlotOwnerList {
+            get {
+                return this.tabledtPlotOwnerList;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public dtPlotOwnerDetailsDataTable dtPlotOwnerDetails {
+            get {
+                return this.tabledtPlotOwnerDetails;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -281,6 +311,12 @@ namespace HoldingTaxWebApp.AppDataSet {
                 if ((ds.Tables["dtHolderList"] != null)) {
                     base.Tables.Add(new dtHolderListDataTable(ds.Tables["dtHolderList"]));
                 }
+                if ((ds.Tables["dtPlotOwnerList"] != null)) {
+                    base.Tables.Add(new dtPlotOwnerListDataTable(ds.Tables["dtPlotOwnerList"]));
+                }
+                if ((ds.Tables["dtPlotOwnerDetails"] != null)) {
+                    base.Tables.Add(new dtPlotOwnerDetailsDataTable(ds.Tables["dtPlotOwnerDetails"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -362,6 +398,18 @@ namespace HoldingTaxWebApp.AppDataSet {
                     this.tabledtHolderList.InitVars();
                 }
             }
+            this.tabledtPlotOwnerList = ((dtPlotOwnerListDataTable)(base.Tables["dtPlotOwnerList"]));
+            if ((initTable == true)) {
+                if ((this.tabledtPlotOwnerList != null)) {
+                    this.tabledtPlotOwnerList.InitVars();
+                }
+            }
+            this.tabledtPlotOwnerDetails = ((dtPlotOwnerDetailsDataTable)(base.Tables["dtPlotOwnerDetails"]));
+            if ((initTable == true)) {
+                if ((this.tabledtPlotOwnerDetails != null)) {
+                    this.tabledtPlotOwnerDetails.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -388,6 +436,10 @@ namespace HoldingTaxWebApp.AppDataSet {
             base.Tables.Add(this.tabledtPlotList);
             this.tabledtHolderList = new dtHolderListDataTable();
             base.Tables.Add(this.tabledtHolderList);
+            this.tabledtPlotOwnerList = new dtPlotOwnerListDataTable();
+            base.Tables.Add(this.tabledtPlotOwnerList);
+            this.tabledtPlotOwnerDetails = new dtPlotOwnerDetailsDataTable();
+            base.Tables.Add(this.tabledtPlotOwnerDetails);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -435,6 +487,18 @@ namespace HoldingTaxWebApp.AppDataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializedtHolderList() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializedtPlotOwnerList() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializedtPlotOwnerDetails() {
             return false;
         }
         
@@ -516,6 +580,12 @@ namespace HoldingTaxWebApp.AppDataSet {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void dtHolderListRowChangeEventHandler(object sender, dtHolderListRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void dtPlotOwnerListRowChangeEventHandler(object sender, dtPlotOwnerListRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void dtPlotOwnerDetailsRowChangeEventHandler(object sender, dtPlotOwnerDetailsRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -5937,6 +6007,1564 @@ namespace HoldingTaxWebApp.AppDataSet {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "dtHolderListDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class dtPlotOwnerListDataTable : global::System.Data.TypedTableBase<dtPlotOwnerListRow> {
+            
+            private global::System.Data.DataColumn columnPlotOwnerId;
+            
+            private global::System.Data.DataColumn columnPlotId;
+            
+            private global::System.Data.DataColumn columnPlotOwnerName;
+            
+            private global::System.Data.DataColumn columnOfficialStatusId;
+            
+            private global::System.Data.DataColumn columnPresentAdd;
+            
+            private global::System.Data.DataColumn columnPhoneNumber;
+            
+            private global::System.Data.DataColumn columnLeaveDate;
+            
+            private global::System.Data.DataColumn columnLeasePeriod;
+            
+            private global::System.Data.DataColumn columnOffStatusName;
+            
+            private global::System.Data.DataColumn columnPlotNo;
+            
+            private global::System.Data.DataColumn columnAreaName;
+            
+            private global::System.Data.DataColumn columnOtherOwner;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtPlotOwnerListDataTable() {
+                this.TableName = "dtPlotOwnerList";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal dtPlotOwnerListDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected dtPlotOwnerListDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotOwnerIdColumn {
+                get {
+                    return this.columnPlotOwnerId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotIdColumn {
+                get {
+                    return this.columnPlotId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotOwnerNameColumn {
+                get {
+                    return this.columnPlotOwnerName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OfficialStatusIdColumn {
+                get {
+                    return this.columnOfficialStatusId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PresentAddColumn {
+                get {
+                    return this.columnPresentAdd;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PhoneNumberColumn {
+                get {
+                    return this.columnPhoneNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LeaveDateColumn {
+                get {
+                    return this.columnLeaveDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LeasePeriodColumn {
+                get {
+                    return this.columnLeasePeriod;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OffStatusNameColumn {
+                get {
+                    return this.columnOffStatusName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotNoColumn {
+                get {
+                    return this.columnPlotNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AreaNameColumn {
+                get {
+                    return this.columnAreaName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OtherOwnerColumn {
+                get {
+                    return this.columnOtherOwner;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtPlotOwnerListRow this[int index] {
+                get {
+                    return ((dtPlotOwnerListRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event dtPlotOwnerListRowChangeEventHandler dtPlotOwnerListRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event dtPlotOwnerListRowChangeEventHandler dtPlotOwnerListRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event dtPlotOwnerListRowChangeEventHandler dtPlotOwnerListRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event dtPlotOwnerListRowChangeEventHandler dtPlotOwnerListRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AdddtPlotOwnerListRow(dtPlotOwnerListRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtPlotOwnerListRow AdddtPlotOwnerListRow(int PlotId, string PlotOwnerName, int OfficialStatusId, string PresentAdd, string PhoneNumber, System.DateTime LeaveDate, int LeasePeriod, string OffStatusName, string PlotNo, string AreaName, string OtherOwner) {
+                dtPlotOwnerListRow rowdtPlotOwnerListRow = ((dtPlotOwnerListRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        PlotId,
+                        PlotOwnerName,
+                        OfficialStatusId,
+                        PresentAdd,
+                        PhoneNumber,
+                        LeaveDate,
+                        LeasePeriod,
+                        OffStatusName,
+                        PlotNo,
+                        AreaName,
+                        OtherOwner};
+                rowdtPlotOwnerListRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowdtPlotOwnerListRow);
+                return rowdtPlotOwnerListRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                dtPlotOwnerListDataTable cln = ((dtPlotOwnerListDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new dtPlotOwnerListDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnPlotOwnerId = base.Columns["PlotOwnerId"];
+                this.columnPlotId = base.Columns["PlotId"];
+                this.columnPlotOwnerName = base.Columns["PlotOwnerName"];
+                this.columnOfficialStatusId = base.Columns["OfficialStatusId"];
+                this.columnPresentAdd = base.Columns["PresentAdd"];
+                this.columnPhoneNumber = base.Columns["PhoneNumber"];
+                this.columnLeaveDate = base.Columns["LeaveDate"];
+                this.columnLeasePeriod = base.Columns["LeasePeriod"];
+                this.columnOffStatusName = base.Columns["OffStatusName"];
+                this.columnPlotNo = base.Columns["PlotNo"];
+                this.columnAreaName = base.Columns["AreaName"];
+                this.columnOtherOwner = base.Columns["OtherOwner"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnPlotOwnerId = new global::System.Data.DataColumn("PlotOwnerId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotOwnerId);
+                this.columnPlotId = new global::System.Data.DataColumn("PlotId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotId);
+                this.columnPlotOwnerName = new global::System.Data.DataColumn("PlotOwnerName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotOwnerName);
+                this.columnOfficialStatusId = new global::System.Data.DataColumn("OfficialStatusId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOfficialStatusId);
+                this.columnPresentAdd = new global::System.Data.DataColumn("PresentAdd", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPresentAdd);
+                this.columnPhoneNumber = new global::System.Data.DataColumn("PhoneNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPhoneNumber);
+                this.columnLeaveDate = new global::System.Data.DataColumn("LeaveDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeaveDate);
+                this.columnLeasePeriod = new global::System.Data.DataColumn("LeasePeriod", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeasePeriod);
+                this.columnOffStatusName = new global::System.Data.DataColumn("OffStatusName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOffStatusName);
+                this.columnPlotNo = new global::System.Data.DataColumn("PlotNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotNo);
+                this.columnAreaName = new global::System.Data.DataColumn("AreaName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAreaName);
+                this.columnOtherOwner = new global::System.Data.DataColumn("OtherOwner", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOtherOwner);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint11", new global::System.Data.DataColumn[] {
+                                this.columnPlotOwnerId}, false));
+                this.columnPlotOwnerId.AutoIncrement = true;
+                this.columnPlotOwnerId.AutoIncrementSeed = -1;
+                this.columnPlotOwnerId.AutoIncrementStep = -1;
+                this.columnPlotOwnerId.AllowDBNull = false;
+                this.columnPlotOwnerId.ReadOnly = true;
+                this.columnPlotOwnerId.Unique = true;
+                this.columnPlotId.AllowDBNull = false;
+                this.columnPlotOwnerName.AllowDBNull = false;
+                this.columnPlotOwnerName.MaxLength = 2147483647;
+                this.columnOfficialStatusId.AllowDBNull = false;
+                this.columnPresentAdd.MaxLength = 2147483647;
+                this.columnPhoneNumber.MaxLength = 2147483647;
+                this.columnOffStatusName.MaxLength = 2147483647;
+                this.columnPlotNo.MaxLength = 100;
+                this.columnAreaName.MaxLength = 2147483647;
+                this.columnOtherOwner.ReadOnly = true;
+                this.columnOtherOwner.MaxLength = 2147483647;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtPlotOwnerListRow NewdtPlotOwnerListRow() {
+                return ((dtPlotOwnerListRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new dtPlotOwnerListRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(dtPlotOwnerListRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.dtPlotOwnerListRowChanged != null)) {
+                    this.dtPlotOwnerListRowChanged(this, new dtPlotOwnerListRowChangeEvent(((dtPlotOwnerListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.dtPlotOwnerListRowChanging != null)) {
+                    this.dtPlotOwnerListRowChanging(this, new dtPlotOwnerListRowChangeEvent(((dtPlotOwnerListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.dtPlotOwnerListRowDeleted != null)) {
+                    this.dtPlotOwnerListRowDeleted(this, new dtPlotOwnerListRowChangeEvent(((dtPlotOwnerListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.dtPlotOwnerListRowDeleting != null)) {
+                    this.dtPlotOwnerListRowDeleting(this, new dtPlotOwnerListRowChangeEvent(((dtPlotOwnerListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemovedtPlotOwnerListRow(dtPlotOwnerListRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsTax ds = new dsTax();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "dtPlotOwnerListDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class dtPlotOwnerDetailsDataTable : global::System.Data.TypedTableBase<dtPlotOwnerDetailsRow> {
+            
+            private global::System.Data.DataColumn columnPlotOwnerId;
+            
+            private global::System.Data.DataColumn columnPlotId;
+            
+            private global::System.Data.DataColumn columnPlotOwnerName;
+            
+            private global::System.Data.DataColumn columnIsAlive;
+            
+            private global::System.Data.DataColumn columnOfficialStatusId;
+            
+            private global::System.Data.DataColumn columnPresentAdd;
+            
+            private global::System.Data.DataColumn columnPermanentAdd;
+            
+            private global::System.Data.DataColumn columnPhoneNumber;
+            
+            private global::System.Data.DataColumn columnEmail;
+            
+            private global::System.Data.DataColumn columnLeaveDate;
+            
+            private global::System.Data.DataColumn columnLeaseAuthority;
+            
+            private global::System.Data.DataColumn columnLeaseType;
+            
+            private global::System.Data.DataColumn columnLeasePeriod;
+            
+            private global::System.Data.DataColumn columnLeaseQuotaId;
+            
+            private global::System.Data.DataColumn columnHandOverOffice;
+            
+            private global::System.Data.DataColumn columnHandOverLetterNo;
+            
+            private global::System.Data.DataColumn columnLandDevelopChange;
+            
+            private global::System.Data.DataColumn columnConsStatusId;
+            
+            private global::System.Data.DataColumn columnTotalArea;
+            
+            private global::System.Data.DataColumn columnOffStatusName;
+            
+            private global::System.Data.DataColumn columnLeaseQuotaName;
+            
+            private global::System.Data.DataColumn columnConsStatusName;
+            
+            private global::System.Data.DataColumn columnOwnerDeclaration;
+            
+            private global::System.Data.DataColumn columnRealBuilder;
+            
+            private global::System.Data.DataColumn columnDevelopDeposit;
+            
+            private global::System.Data.DataColumn columnFloorNumber;
+            
+            private global::System.Data.DataColumn columnCompletionDate;
+            
+            private global::System.Data.DataColumn columnGroundFCDate;
+            
+            private global::System.Data.DataColumn columnFirstFCDate;
+            
+            private global::System.Data.DataColumn columnSccFCDate;
+            
+            private global::System.Data.DataColumn columnThirdFCDate;
+            
+            private global::System.Data.DataColumn columnForthFCDate;
+            
+            private global::System.Data.DataColumn columnFivthFCDate;
+            
+            private global::System.Data.DataColumn columnSixFCDate;
+            
+            private global::System.Data.DataColumn columnOtherFCDate;
+            
+            private global::System.Data.DataColumn columnOwnerPortion;
+            
+            private global::System.Data.DataColumn columnDeveloperPortion;
+            
+            private global::System.Data.DataColumn columnBuyerPortion;
+            
+            private global::System.Data.DataColumn columnSubmittedPortion;
+            
+            private global::System.Data.DataColumn columnTotalUnauthArea;
+            
+            private global::System.Data.DataColumn columnFineFreeArea;
+            
+            private global::System.Data.DataColumn columnWithFineUnauth;
+            
+            private global::System.Data.DataColumn columnRemovedUnauthArea;
+            
+            private global::System.Data.DataColumn columnNonRemovedUnauth;
+            
+            private global::System.Data.DataColumn columnFineRate;
+            
+            private global::System.Data.DataColumn columnFineAmount;
+            
+            private global::System.Data.DataColumn columnOthetOwneeName;
+            
+            private global::System.Data.DataColumn columnAddress;
+            
+            private global::System.Data.DataColumn columnRemarks;
+            
+            private global::System.Data.DataColumn columnMEO_NCCDate;
+            
+            private global::System.Data.DataColumn columnReference;
+            
+            private global::System.Data.DataColumn columnApprovalDate;
+            
+            private global::System.Data.DataColumn columnApprovalLetterNo;
+            
+            private global::System.Data.DataColumn columnFlorNumber;
+            
+            private global::System.Data.DataColumn columnGroundFlorArea;
+            
+            private global::System.Data.DataColumn columnOtherFlorArea;
+            
+            private global::System.Data.DataColumn columnApprovalNo;
+            
+            private global::System.Data.DataColumn columnAreaName;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtPlotOwnerDetailsDataTable() {
+                this.TableName = "dtPlotOwnerDetails";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal dtPlotOwnerDetailsDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected dtPlotOwnerDetailsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotOwnerIdColumn {
+                get {
+                    return this.columnPlotOwnerId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotIdColumn {
+                get {
+                    return this.columnPlotId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotOwnerNameColumn {
+                get {
+                    return this.columnPlotOwnerName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IsAliveColumn {
+                get {
+                    return this.columnIsAlive;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OfficialStatusIdColumn {
+                get {
+                    return this.columnOfficialStatusId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PresentAddColumn {
+                get {
+                    return this.columnPresentAdd;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PermanentAddColumn {
+                get {
+                    return this.columnPermanentAdd;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PhoneNumberColumn {
+                get {
+                    return this.columnPhoneNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn EmailColumn {
+                get {
+                    return this.columnEmail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LeaveDateColumn {
+                get {
+                    return this.columnLeaveDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LeaseAuthorityColumn {
+                get {
+                    return this.columnLeaseAuthority;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LeaseTypeColumn {
+                get {
+                    return this.columnLeaseType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LeasePeriodColumn {
+                get {
+                    return this.columnLeasePeriod;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LeaseQuotaIdColumn {
+                get {
+                    return this.columnLeaseQuotaId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn HandOverOfficeColumn {
+                get {
+                    return this.columnHandOverOffice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn HandOverLetterNoColumn {
+                get {
+                    return this.columnHandOverLetterNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LandDevelopChangeColumn {
+                get {
+                    return this.columnLandDevelopChange;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ConsStatusIdColumn {
+                get {
+                    return this.columnConsStatusId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalAreaColumn {
+                get {
+                    return this.columnTotalArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OffStatusNameColumn {
+                get {
+                    return this.columnOffStatusName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LeaseQuotaNameColumn {
+                get {
+                    return this.columnLeaseQuotaName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ConsStatusNameColumn {
+                get {
+                    return this.columnConsStatusName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OwnerDeclarationColumn {
+                get {
+                    return this.columnOwnerDeclaration;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RealBuilderColumn {
+                get {
+                    return this.columnRealBuilder;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DevelopDepositColumn {
+                get {
+                    return this.columnDevelopDeposit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FloorNumberColumn {
+                get {
+                    return this.columnFloorNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CompletionDateColumn {
+                get {
+                    return this.columnCompletionDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn GroundFCDateColumn {
+                get {
+                    return this.columnGroundFCDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FirstFCDateColumn {
+                get {
+                    return this.columnFirstFCDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SccFCDateColumn {
+                get {
+                    return this.columnSccFCDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ThirdFCDateColumn {
+                get {
+                    return this.columnThirdFCDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ForthFCDateColumn {
+                get {
+                    return this.columnForthFCDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FivthFCDateColumn {
+                get {
+                    return this.columnFivthFCDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SixFCDateColumn {
+                get {
+                    return this.columnSixFCDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OtherFCDateColumn {
+                get {
+                    return this.columnOtherFCDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OwnerPortionColumn {
+                get {
+                    return this.columnOwnerPortion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DeveloperPortionColumn {
+                get {
+                    return this.columnDeveloperPortion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn BuyerPortionColumn {
+                get {
+                    return this.columnBuyerPortion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SubmittedPortionColumn {
+                get {
+                    return this.columnSubmittedPortion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalUnauthAreaColumn {
+                get {
+                    return this.columnTotalUnauthArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FineFreeAreaColumn {
+                get {
+                    return this.columnFineFreeArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn WithFineUnauthColumn {
+                get {
+                    return this.columnWithFineUnauth;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RemovedUnauthAreaColumn {
+                get {
+                    return this.columnRemovedUnauthArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NonRemovedUnauthColumn {
+                get {
+                    return this.columnNonRemovedUnauth;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FineRateColumn {
+                get {
+                    return this.columnFineRate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FineAmountColumn {
+                get {
+                    return this.columnFineAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OthetOwneeNameColumn {
+                get {
+                    return this.columnOthetOwneeName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AddressColumn {
+                get {
+                    return this.columnAddress;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RemarksColumn {
+                get {
+                    return this.columnRemarks;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn MEO_NCCDateColumn {
+                get {
+                    return this.columnMEO_NCCDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ReferenceColumn {
+                get {
+                    return this.columnReference;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ApprovalDateColumn {
+                get {
+                    return this.columnApprovalDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ApprovalLetterNoColumn {
+                get {
+                    return this.columnApprovalLetterNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FlorNumberColumn {
+                get {
+                    return this.columnFlorNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn GroundFlorAreaColumn {
+                get {
+                    return this.columnGroundFlorArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OtherFlorAreaColumn {
+                get {
+                    return this.columnOtherFlorArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ApprovalNoColumn {
+                get {
+                    return this.columnApprovalNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AreaNameColumn {
+                get {
+                    return this.columnAreaName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtPlotOwnerDetailsRow this[int index] {
+                get {
+                    return ((dtPlotOwnerDetailsRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event dtPlotOwnerDetailsRowChangeEventHandler dtPlotOwnerDetailsRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event dtPlotOwnerDetailsRowChangeEventHandler dtPlotOwnerDetailsRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event dtPlotOwnerDetailsRowChangeEventHandler dtPlotOwnerDetailsRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event dtPlotOwnerDetailsRowChangeEventHandler dtPlotOwnerDetailsRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AdddtPlotOwnerDetailsRow(dtPlotOwnerDetailsRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtPlotOwnerDetailsRow AdddtPlotOwnerDetailsRow(
+                        int PlotId, 
+                        string PlotOwnerName, 
+                        bool IsAlive, 
+                        int OfficialStatusId, 
+                        string PresentAdd, 
+                        string PermanentAdd, 
+                        string PhoneNumber, 
+                        string Email, 
+                        System.DateTime LeaveDate, 
+                        string LeaseAuthority, 
+                        string LeaseType, 
+                        int LeasePeriod, 
+                        int LeaseQuotaId, 
+                        string HandOverOffice, 
+                        string HandOverLetterNo, 
+                        decimal LandDevelopChange, 
+                        int ConsStatusId, 
+                        decimal TotalArea, 
+                        string OffStatusName, 
+                        string LeaseQuotaName, 
+                        string ConsStatusName, 
+                        string OwnerDeclaration, 
+                        string RealBuilder, 
+                        decimal DevelopDeposit, 
+                        int FloorNumber, 
+                        System.DateTime CompletionDate, 
+                        System.DateTime GroundFCDate, 
+                        System.DateTime FirstFCDate, 
+                        System.DateTime SccFCDate, 
+                        System.DateTime ThirdFCDate, 
+                        System.DateTime ForthFCDate, 
+                        System.DateTime FivthFCDate, 
+                        System.DateTime SixFCDate, 
+                        System.DateTime OtherFCDate, 
+                        string OwnerPortion, 
+                        string DeveloperPortion, 
+                        string BuyerPortion, 
+                        string SubmittedPortion, 
+                        decimal TotalUnauthArea, 
+                        decimal FineFreeArea, 
+                        decimal WithFineUnauth, 
+                        decimal RemovedUnauthArea, 
+                        decimal NonRemovedUnauth, 
+                        decimal FineRate, 
+                        decimal FineAmount, 
+                        string OthetOwneeName, 
+                        string Address, 
+                        string Remarks, 
+                        System.DateTime MEO_NCCDate, 
+                        string Reference, 
+                        System.DateTime ApprovalDate, 
+                        string ApprovalLetterNo, 
+                        int FlorNumber, 
+                        decimal GroundFlorArea, 
+                        decimal OtherFlorArea, 
+                        int ApprovalNo, 
+                        string AreaName) {
+                dtPlotOwnerDetailsRow rowdtPlotOwnerDetailsRow = ((dtPlotOwnerDetailsRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        PlotId,
+                        PlotOwnerName,
+                        IsAlive,
+                        OfficialStatusId,
+                        PresentAdd,
+                        PermanentAdd,
+                        PhoneNumber,
+                        Email,
+                        LeaveDate,
+                        LeaseAuthority,
+                        LeaseType,
+                        LeasePeriod,
+                        LeaseQuotaId,
+                        HandOverOffice,
+                        HandOverLetterNo,
+                        LandDevelopChange,
+                        ConsStatusId,
+                        TotalArea,
+                        OffStatusName,
+                        LeaseQuotaName,
+                        ConsStatusName,
+                        OwnerDeclaration,
+                        RealBuilder,
+                        DevelopDeposit,
+                        FloorNumber,
+                        CompletionDate,
+                        GroundFCDate,
+                        FirstFCDate,
+                        SccFCDate,
+                        ThirdFCDate,
+                        ForthFCDate,
+                        FivthFCDate,
+                        SixFCDate,
+                        OtherFCDate,
+                        OwnerPortion,
+                        DeveloperPortion,
+                        BuyerPortion,
+                        SubmittedPortion,
+                        TotalUnauthArea,
+                        FineFreeArea,
+                        WithFineUnauth,
+                        RemovedUnauthArea,
+                        NonRemovedUnauth,
+                        FineRate,
+                        FineAmount,
+                        OthetOwneeName,
+                        Address,
+                        Remarks,
+                        MEO_NCCDate,
+                        Reference,
+                        ApprovalDate,
+                        ApprovalLetterNo,
+                        FlorNumber,
+                        GroundFlorArea,
+                        OtherFlorArea,
+                        ApprovalNo,
+                        AreaName};
+                rowdtPlotOwnerDetailsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowdtPlotOwnerDetailsRow);
+                return rowdtPlotOwnerDetailsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                dtPlotOwnerDetailsDataTable cln = ((dtPlotOwnerDetailsDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new dtPlotOwnerDetailsDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnPlotOwnerId = base.Columns["PlotOwnerId"];
+                this.columnPlotId = base.Columns["PlotId"];
+                this.columnPlotOwnerName = base.Columns["PlotOwnerName"];
+                this.columnIsAlive = base.Columns["IsAlive"];
+                this.columnOfficialStatusId = base.Columns["OfficialStatusId"];
+                this.columnPresentAdd = base.Columns["PresentAdd"];
+                this.columnPermanentAdd = base.Columns["PermanentAdd"];
+                this.columnPhoneNumber = base.Columns["PhoneNumber"];
+                this.columnEmail = base.Columns["Email"];
+                this.columnLeaveDate = base.Columns["LeaveDate"];
+                this.columnLeaseAuthority = base.Columns["LeaseAuthority"];
+                this.columnLeaseType = base.Columns["LeaseType"];
+                this.columnLeasePeriod = base.Columns["LeasePeriod"];
+                this.columnLeaseQuotaId = base.Columns["LeaseQuotaId"];
+                this.columnHandOverOffice = base.Columns["HandOverOffice"];
+                this.columnHandOverLetterNo = base.Columns["HandOverLetterNo"];
+                this.columnLandDevelopChange = base.Columns["LandDevelopChange"];
+                this.columnConsStatusId = base.Columns["ConsStatusId"];
+                this.columnTotalArea = base.Columns["TotalArea"];
+                this.columnOffStatusName = base.Columns["OffStatusName"];
+                this.columnLeaseQuotaName = base.Columns["LeaseQuotaName"];
+                this.columnConsStatusName = base.Columns["ConsStatusName"];
+                this.columnOwnerDeclaration = base.Columns["OwnerDeclaration"];
+                this.columnRealBuilder = base.Columns["RealBuilder"];
+                this.columnDevelopDeposit = base.Columns["DevelopDeposit"];
+                this.columnFloorNumber = base.Columns["FloorNumber"];
+                this.columnCompletionDate = base.Columns["CompletionDate"];
+                this.columnGroundFCDate = base.Columns["GroundFCDate"];
+                this.columnFirstFCDate = base.Columns["FirstFCDate"];
+                this.columnSccFCDate = base.Columns["SccFCDate"];
+                this.columnThirdFCDate = base.Columns["ThirdFCDate"];
+                this.columnForthFCDate = base.Columns["ForthFCDate"];
+                this.columnFivthFCDate = base.Columns["FivthFCDate"];
+                this.columnSixFCDate = base.Columns["SixFCDate"];
+                this.columnOtherFCDate = base.Columns["OtherFCDate"];
+                this.columnOwnerPortion = base.Columns["OwnerPortion"];
+                this.columnDeveloperPortion = base.Columns["DeveloperPortion"];
+                this.columnBuyerPortion = base.Columns["BuyerPortion"];
+                this.columnSubmittedPortion = base.Columns["SubmittedPortion"];
+                this.columnTotalUnauthArea = base.Columns["TotalUnauthArea"];
+                this.columnFineFreeArea = base.Columns["FineFreeArea"];
+                this.columnWithFineUnauth = base.Columns["WithFineUnauth"];
+                this.columnRemovedUnauthArea = base.Columns["RemovedUnauthArea"];
+                this.columnNonRemovedUnauth = base.Columns["NonRemovedUnauth"];
+                this.columnFineRate = base.Columns["FineRate"];
+                this.columnFineAmount = base.Columns["FineAmount"];
+                this.columnOthetOwneeName = base.Columns["OthetOwneeName"];
+                this.columnAddress = base.Columns["Address"];
+                this.columnRemarks = base.Columns["Remarks"];
+                this.columnMEO_NCCDate = base.Columns["MEO_NCCDate"];
+                this.columnReference = base.Columns["Reference"];
+                this.columnApprovalDate = base.Columns["ApprovalDate"];
+                this.columnApprovalLetterNo = base.Columns["ApprovalLetterNo"];
+                this.columnFlorNumber = base.Columns["FlorNumber"];
+                this.columnGroundFlorArea = base.Columns["GroundFlorArea"];
+                this.columnOtherFlorArea = base.Columns["OtherFlorArea"];
+                this.columnApprovalNo = base.Columns["ApprovalNo"];
+                this.columnAreaName = base.Columns["AreaName"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnPlotOwnerId = new global::System.Data.DataColumn("PlotOwnerId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotOwnerId);
+                this.columnPlotId = new global::System.Data.DataColumn("PlotId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotId);
+                this.columnPlotOwnerName = new global::System.Data.DataColumn("PlotOwnerName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotOwnerName);
+                this.columnIsAlive = new global::System.Data.DataColumn("IsAlive", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsAlive);
+                this.columnOfficialStatusId = new global::System.Data.DataColumn("OfficialStatusId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOfficialStatusId);
+                this.columnPresentAdd = new global::System.Data.DataColumn("PresentAdd", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPresentAdd);
+                this.columnPermanentAdd = new global::System.Data.DataColumn("PermanentAdd", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPermanentAdd);
+                this.columnPhoneNumber = new global::System.Data.DataColumn("PhoneNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPhoneNumber);
+                this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmail);
+                this.columnLeaveDate = new global::System.Data.DataColumn("LeaveDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeaveDate);
+                this.columnLeaseAuthority = new global::System.Data.DataColumn("LeaseAuthority", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeaseAuthority);
+                this.columnLeaseType = new global::System.Data.DataColumn("LeaseType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeaseType);
+                this.columnLeasePeriod = new global::System.Data.DataColumn("LeasePeriod", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeasePeriod);
+                this.columnLeaseQuotaId = new global::System.Data.DataColumn("LeaseQuotaId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeaseQuotaId);
+                this.columnHandOverOffice = new global::System.Data.DataColumn("HandOverOffice", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHandOverOffice);
+                this.columnHandOverLetterNo = new global::System.Data.DataColumn("HandOverLetterNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHandOverLetterNo);
+                this.columnLandDevelopChange = new global::System.Data.DataColumn("LandDevelopChange", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLandDevelopChange);
+                this.columnConsStatusId = new global::System.Data.DataColumn("ConsStatusId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnConsStatusId);
+                this.columnTotalArea = new global::System.Data.DataColumn("TotalArea", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalArea);
+                this.columnOffStatusName = new global::System.Data.DataColumn("OffStatusName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOffStatusName);
+                this.columnLeaseQuotaName = new global::System.Data.DataColumn("LeaseQuotaName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLeaseQuotaName);
+                this.columnConsStatusName = new global::System.Data.DataColumn("ConsStatusName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnConsStatusName);
+                this.columnOwnerDeclaration = new global::System.Data.DataColumn("OwnerDeclaration", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOwnerDeclaration);
+                this.columnRealBuilder = new global::System.Data.DataColumn("RealBuilder", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRealBuilder);
+                this.columnDevelopDeposit = new global::System.Data.DataColumn("DevelopDeposit", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDevelopDeposit);
+                this.columnFloorNumber = new global::System.Data.DataColumn("FloorNumber", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFloorNumber);
+                this.columnCompletionDate = new global::System.Data.DataColumn("CompletionDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCompletionDate);
+                this.columnGroundFCDate = new global::System.Data.DataColumn("GroundFCDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroundFCDate);
+                this.columnFirstFCDate = new global::System.Data.DataColumn("FirstFCDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFirstFCDate);
+                this.columnSccFCDate = new global::System.Data.DataColumn("SccFCDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSccFCDate);
+                this.columnThirdFCDate = new global::System.Data.DataColumn("ThirdFCDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnThirdFCDate);
+                this.columnForthFCDate = new global::System.Data.DataColumn("ForthFCDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnForthFCDate);
+                this.columnFivthFCDate = new global::System.Data.DataColumn("FivthFCDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFivthFCDate);
+                this.columnSixFCDate = new global::System.Data.DataColumn("SixFCDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSixFCDate);
+                this.columnOtherFCDate = new global::System.Data.DataColumn("OtherFCDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOtherFCDate);
+                this.columnOwnerPortion = new global::System.Data.DataColumn("OwnerPortion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOwnerPortion);
+                this.columnDeveloperPortion = new global::System.Data.DataColumn("DeveloperPortion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDeveloperPortion);
+                this.columnBuyerPortion = new global::System.Data.DataColumn("BuyerPortion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBuyerPortion);
+                this.columnSubmittedPortion = new global::System.Data.DataColumn("SubmittedPortion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSubmittedPortion);
+                this.columnTotalUnauthArea = new global::System.Data.DataColumn("TotalUnauthArea", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalUnauthArea);
+                this.columnFineFreeArea = new global::System.Data.DataColumn("FineFreeArea", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFineFreeArea);
+                this.columnWithFineUnauth = new global::System.Data.DataColumn("WithFineUnauth", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWithFineUnauth);
+                this.columnRemovedUnauthArea = new global::System.Data.DataColumn("RemovedUnauthArea", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRemovedUnauthArea);
+                this.columnNonRemovedUnauth = new global::System.Data.DataColumn("NonRemovedUnauth", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNonRemovedUnauth);
+                this.columnFineRate = new global::System.Data.DataColumn("FineRate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFineRate);
+                this.columnFineAmount = new global::System.Data.DataColumn("FineAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFineAmount);
+                this.columnOthetOwneeName = new global::System.Data.DataColumn("OthetOwneeName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOthetOwneeName);
+                this.columnAddress = new global::System.Data.DataColumn("Address", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAddress);
+                this.columnRemarks = new global::System.Data.DataColumn("Remarks", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRemarks);
+                this.columnMEO_NCCDate = new global::System.Data.DataColumn("MEO_NCCDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMEO_NCCDate);
+                this.columnReference = new global::System.Data.DataColumn("Reference", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReference);
+                this.columnApprovalDate = new global::System.Data.DataColumn("ApprovalDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApprovalDate);
+                this.columnApprovalLetterNo = new global::System.Data.DataColumn("ApprovalLetterNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApprovalLetterNo);
+                this.columnFlorNumber = new global::System.Data.DataColumn("FlorNumber", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFlorNumber);
+                this.columnGroundFlorArea = new global::System.Data.DataColumn("GroundFlorArea", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroundFlorArea);
+                this.columnOtherFlorArea = new global::System.Data.DataColumn("OtherFlorArea", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOtherFlorArea);
+                this.columnApprovalNo = new global::System.Data.DataColumn("ApprovalNo", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApprovalNo);
+                this.columnAreaName = new global::System.Data.DataColumn("AreaName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAreaName);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint11", new global::System.Data.DataColumn[] {
+                                this.columnPlotOwnerId}, false));
+                this.columnPlotOwnerId.AutoIncrement = true;
+                this.columnPlotOwnerId.AutoIncrementSeed = -1;
+                this.columnPlotOwnerId.AutoIncrementStep = -1;
+                this.columnPlotOwnerId.AllowDBNull = false;
+                this.columnPlotOwnerId.ReadOnly = true;
+                this.columnPlotOwnerId.Unique = true;
+                this.columnPlotId.AllowDBNull = false;
+                this.columnPlotOwnerName.AllowDBNull = false;
+                this.columnPlotOwnerName.MaxLength = 2147483647;
+                this.columnOfficialStatusId.AllowDBNull = false;
+                this.columnPresentAdd.MaxLength = 2147483647;
+                this.columnPermanentAdd.MaxLength = 2147483647;
+                this.columnPhoneNumber.MaxLength = 2147483647;
+                this.columnEmail.MaxLength = 2147483647;
+                this.columnLeaseAuthority.MaxLength = 2147483647;
+                this.columnLeaseType.MaxLength = 2147483647;
+                this.columnLeaseQuotaId.AllowDBNull = false;
+                this.columnHandOverOffice.MaxLength = 2147483647;
+                this.columnHandOverLetterNo.MaxLength = 2147483647;
+                this.columnConsStatusId.AllowDBNull = false;
+                this.columnOffStatusName.MaxLength = 2147483647;
+                this.columnLeaseQuotaName.MaxLength = 2147483647;
+                this.columnConsStatusName.MaxLength = 2147483647;
+                this.columnOwnerDeclaration.MaxLength = 2147483647;
+                this.columnRealBuilder.MaxLength = 2147483647;
+                this.columnOwnerPortion.MaxLength = 2147483647;
+                this.columnDeveloperPortion.MaxLength = 2147483647;
+                this.columnBuyerPortion.MaxLength = 2147483647;
+                this.columnSubmittedPortion.MaxLength = 2147483647;
+                this.columnOthetOwneeName.MaxLength = 2147483647;
+                this.columnAddress.MaxLength = 100;
+                this.columnRemarks.MaxLength = 100;
+                this.columnReference.MaxLength = 2147483647;
+                this.columnApprovalLetterNo.MaxLength = 2147483647;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtPlotOwnerDetailsRow NewdtPlotOwnerDetailsRow() {
+                return ((dtPlotOwnerDetailsRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new dtPlotOwnerDetailsRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(dtPlotOwnerDetailsRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.dtPlotOwnerDetailsRowChanged != null)) {
+                    this.dtPlotOwnerDetailsRowChanged(this, new dtPlotOwnerDetailsRowChangeEvent(((dtPlotOwnerDetailsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.dtPlotOwnerDetailsRowChanging != null)) {
+                    this.dtPlotOwnerDetailsRowChanging(this, new dtPlotOwnerDetailsRowChangeEvent(((dtPlotOwnerDetailsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.dtPlotOwnerDetailsRowDeleted != null)) {
+                    this.dtPlotOwnerDetailsRowDeleted(this, new dtPlotOwnerDetailsRowChangeEvent(((dtPlotOwnerDetailsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.dtPlotOwnerDetailsRowDeleting != null)) {
+                    this.dtPlotOwnerDetailsRowDeleting(this, new dtPlotOwnerDetailsRowChangeEvent(((dtPlotOwnerDetailsRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemovedtPlotOwnerDetailsRow(dtPlotOwnerDetailsRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsTax ds = new dsTax();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "dtPlotOwnerDetailsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -12081,6 +13709,1828 @@ namespace HoldingTaxWebApp.AppDataSet {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class dtPlotOwnerListRow : global::System.Data.DataRow {
+            
+            private dtPlotOwnerListDataTable tabledtPlotOwnerList;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal dtPlotOwnerListRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabledtPlotOwnerList = ((dtPlotOwnerListDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int PlotOwnerId {
+                get {
+                    return ((int)(this[this.tabledtPlotOwnerList.PlotOwnerIdColumn]));
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.PlotOwnerIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int PlotId {
+                get {
+                    return ((int)(this[this.tabledtPlotOwnerList.PlotIdColumn]));
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.PlotIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PlotOwnerName {
+                get {
+                    return ((string)(this[this.tabledtPlotOwnerList.PlotOwnerNameColumn]));
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.PlotOwnerNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int OfficialStatusId {
+                get {
+                    return ((int)(this[this.tabledtPlotOwnerList.OfficialStatusIdColumn]));
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.OfficialStatusIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PresentAdd {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerList.PresentAddColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PresentAdd\' in table \'dtPlotOwnerList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.PresentAddColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PhoneNumber {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerList.PhoneNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PhoneNumber\' in table \'dtPlotOwnerList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.PhoneNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime LeaveDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerList.LeaveDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeaveDate\' in table \'dtPlotOwnerList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.LeaveDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int LeasePeriod {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtPlotOwnerList.LeasePeriodColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeasePeriod\' in table \'dtPlotOwnerList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.LeasePeriodColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OffStatusName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerList.OffStatusNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OffStatusName\' in table \'dtPlotOwnerList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.OffStatusNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PlotNo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerList.PlotNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PlotNo\' in table \'dtPlotOwnerList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.PlotNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string AreaName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerList.AreaNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AreaName\' in table \'dtPlotOwnerList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.AreaNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OtherOwner {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerList.OtherOwnerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OtherOwner\' in table \'dtPlotOwnerList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.OtherOwnerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPresentAddNull() {
+                return this.IsNull(this.tabledtPlotOwnerList.PresentAddColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPresentAddNull() {
+                this[this.tabledtPlotOwnerList.PresentAddColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPhoneNumberNull() {
+                return this.IsNull(this.tabledtPlotOwnerList.PhoneNumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPhoneNumberNull() {
+                this[this.tabledtPlotOwnerList.PhoneNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLeaveDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerList.LeaveDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLeaveDateNull() {
+                this[this.tabledtPlotOwnerList.LeaveDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLeasePeriodNull() {
+                return this.IsNull(this.tabledtPlotOwnerList.LeasePeriodColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLeasePeriodNull() {
+                this[this.tabledtPlotOwnerList.LeasePeriodColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOffStatusNameNull() {
+                return this.IsNull(this.tabledtPlotOwnerList.OffStatusNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOffStatusNameNull() {
+                this[this.tabledtPlotOwnerList.OffStatusNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPlotNoNull() {
+                return this.IsNull(this.tabledtPlotOwnerList.PlotNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPlotNoNull() {
+                this[this.tabledtPlotOwnerList.PlotNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAreaNameNull() {
+                return this.IsNull(this.tabledtPlotOwnerList.AreaNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAreaNameNull() {
+                this[this.tabledtPlotOwnerList.AreaNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOtherOwnerNull() {
+                return this.IsNull(this.tabledtPlotOwnerList.OtherOwnerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOtherOwnerNull() {
+                this[this.tabledtPlotOwnerList.OtherOwnerColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class dtPlotOwnerDetailsRow : global::System.Data.DataRow {
+            
+            private dtPlotOwnerDetailsDataTable tabledtPlotOwnerDetails;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal dtPlotOwnerDetailsRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabledtPlotOwnerDetails = ((dtPlotOwnerDetailsDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int PlotOwnerId {
+                get {
+                    return ((int)(this[this.tabledtPlotOwnerDetails.PlotOwnerIdColumn]));
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.PlotOwnerIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int PlotId {
+                get {
+                    return ((int)(this[this.tabledtPlotOwnerDetails.PlotIdColumn]));
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.PlotIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PlotOwnerName {
+                get {
+                    return ((string)(this[this.tabledtPlotOwnerDetails.PlotOwnerNameColumn]));
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.PlotOwnerNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAlive {
+                get {
+                    try {
+                        return ((bool)(this[this.tabledtPlotOwnerDetails.IsAliveColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IsAlive\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.IsAliveColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int OfficialStatusId {
+                get {
+                    return ((int)(this[this.tabledtPlotOwnerDetails.OfficialStatusIdColumn]));
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.OfficialStatusIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PresentAdd {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.PresentAddColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PresentAdd\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.PresentAddColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PermanentAdd {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.PermanentAddColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PermanentAdd\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.PermanentAddColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PhoneNumber {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.PhoneNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PhoneNumber\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.PhoneNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Email {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.EmailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Email\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.EmailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime LeaveDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerDetails.LeaveDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeaveDate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.LeaveDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string LeaseAuthority {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.LeaseAuthorityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeaseAuthority\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.LeaseAuthorityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string LeaseType {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.LeaseTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeaseType\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.LeaseTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int LeasePeriod {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtPlotOwnerDetails.LeasePeriodColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeasePeriod\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.LeasePeriodColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int LeaseQuotaId {
+                get {
+                    return ((int)(this[this.tabledtPlotOwnerDetails.LeaseQuotaIdColumn]));
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.LeaseQuotaIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string HandOverOffice {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.HandOverOfficeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HandOverOffice\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.HandOverOfficeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string HandOverLetterNo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.HandOverLetterNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HandOverLetterNo\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.HandOverLetterNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal LandDevelopChange {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtPlotOwnerDetails.LandDevelopChangeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LandDevelopChange\' in table \'dtPlotOwnerDetails\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.LandDevelopChangeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int ConsStatusId {
+                get {
+                    return ((int)(this[this.tabledtPlotOwnerDetails.ConsStatusIdColumn]));
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.ConsStatusIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalArea {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtPlotOwnerDetails.TotalAreaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalArea\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.TotalAreaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OffStatusName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.OffStatusNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OffStatusName\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.OffStatusNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string LeaseQuotaName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.LeaseQuotaNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LeaseQuotaName\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.LeaseQuotaNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ConsStatusName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.ConsStatusNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ConsStatusName\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.ConsStatusNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OwnerDeclaration {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.OwnerDeclarationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OwnerDeclaration\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.OwnerDeclarationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RealBuilder {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.RealBuilderColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RealBuilder\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.RealBuilderColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal DevelopDeposit {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtPlotOwnerDetails.DevelopDepositColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DevelopDeposit\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.DevelopDepositColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int FloorNumber {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtPlotOwnerDetails.FloorNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FloorNumber\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.FloorNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime CompletionDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerDetails.CompletionDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CompletionDate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.CompletionDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime GroundFCDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerDetails.GroundFCDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GroundFCDate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.GroundFCDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime FirstFCDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerDetails.FirstFCDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FirstFCDate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.FirstFCDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime SccFCDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerDetails.SccFCDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SccFCDate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.SccFCDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime ThirdFCDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerDetails.ThirdFCDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ThirdFCDate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.ThirdFCDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime ForthFCDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerDetails.ForthFCDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ForthFCDate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.ForthFCDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime FivthFCDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerDetails.FivthFCDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FivthFCDate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.FivthFCDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime SixFCDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerDetails.SixFCDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SixFCDate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.SixFCDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime OtherFCDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerDetails.OtherFCDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OtherFCDate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.OtherFCDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OwnerPortion {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.OwnerPortionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OwnerPortion\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.OwnerPortionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DeveloperPortion {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.DeveloperPortionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DeveloperPortion\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.DeveloperPortionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string BuyerPortion {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.BuyerPortionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BuyerPortion\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.BuyerPortionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string SubmittedPortion {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.SubmittedPortionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SubmittedPortion\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.SubmittedPortionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalUnauthArea {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtPlotOwnerDetails.TotalUnauthAreaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalUnauthArea\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.TotalUnauthAreaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal FineFreeArea {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtPlotOwnerDetails.FineFreeAreaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FineFreeArea\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.FineFreeAreaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal WithFineUnauth {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtPlotOwnerDetails.WithFineUnauthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'WithFineUnauth\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.WithFineUnauthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal RemovedUnauthArea {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtPlotOwnerDetails.RemovedUnauthAreaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RemovedUnauthArea\' in table \'dtPlotOwnerDetails\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.RemovedUnauthAreaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal NonRemovedUnauth {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtPlotOwnerDetails.NonRemovedUnauthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NonRemovedUnauth\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.NonRemovedUnauthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal FineRate {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtPlotOwnerDetails.FineRateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FineRate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.FineRateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal FineAmount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtPlotOwnerDetails.FineAmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FineAmount\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.FineAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OthetOwneeName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.OthetOwneeNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OthetOwneeName\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.OthetOwneeNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Address {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.AddressColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Address\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.AddressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Remarks {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.RemarksColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Remarks\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.RemarksColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime MEO_NCCDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerDetails.MEO_NCCDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MEO_NCCDate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.MEO_NCCDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Reference {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.ReferenceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Reference\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.ReferenceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime ApprovalDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPlotOwnerDetails.ApprovalDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ApprovalDate\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.ApprovalDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ApprovalLetterNo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.ApprovalLetterNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ApprovalLetterNo\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.ApprovalLetterNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int FlorNumber {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtPlotOwnerDetails.FlorNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FlorNumber\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.FlorNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal GroundFlorArea {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtPlotOwnerDetails.GroundFlorAreaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GroundFlorArea\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.GroundFlorAreaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal OtherFlorArea {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtPlotOwnerDetails.OtherFlorAreaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OtherFlorArea\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.OtherFlorAreaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int ApprovalNo {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtPlotOwnerDetails.ApprovalNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ApprovalNo\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.ApprovalNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string AreaName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.AreaNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AreaName\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.AreaNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsIsAliveNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.IsAliveColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetIsAliveNull() {
+                this[this.tabledtPlotOwnerDetails.IsAliveColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPresentAddNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.PresentAddColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPresentAddNull() {
+                this[this.tabledtPlotOwnerDetails.PresentAddColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPermanentAddNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.PermanentAddColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPermanentAddNull() {
+                this[this.tabledtPlotOwnerDetails.PermanentAddColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPhoneNumberNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.PhoneNumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPhoneNumberNull() {
+                this[this.tabledtPlotOwnerDetails.PhoneNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEmailNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.EmailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEmailNull() {
+                this[this.tabledtPlotOwnerDetails.EmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLeaveDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.LeaveDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLeaveDateNull() {
+                this[this.tabledtPlotOwnerDetails.LeaveDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLeaseAuthorityNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.LeaseAuthorityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLeaseAuthorityNull() {
+                this[this.tabledtPlotOwnerDetails.LeaseAuthorityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLeaseTypeNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.LeaseTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLeaseTypeNull() {
+                this[this.tabledtPlotOwnerDetails.LeaseTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLeasePeriodNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.LeasePeriodColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLeasePeriodNull() {
+                this[this.tabledtPlotOwnerDetails.LeasePeriodColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsHandOverOfficeNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.HandOverOfficeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetHandOverOfficeNull() {
+                this[this.tabledtPlotOwnerDetails.HandOverOfficeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsHandOverLetterNoNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.HandOverLetterNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetHandOverLetterNoNull() {
+                this[this.tabledtPlotOwnerDetails.HandOverLetterNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLandDevelopChangeNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.LandDevelopChangeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLandDevelopChangeNull() {
+                this[this.tabledtPlotOwnerDetails.LandDevelopChangeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalAreaNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.TotalAreaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalAreaNull() {
+                this[this.tabledtPlotOwnerDetails.TotalAreaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOffStatusNameNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.OffStatusNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOffStatusNameNull() {
+                this[this.tabledtPlotOwnerDetails.OffStatusNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLeaseQuotaNameNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.LeaseQuotaNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLeaseQuotaNameNull() {
+                this[this.tabledtPlotOwnerDetails.LeaseQuotaNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsConsStatusNameNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.ConsStatusNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetConsStatusNameNull() {
+                this[this.tabledtPlotOwnerDetails.ConsStatusNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOwnerDeclarationNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.OwnerDeclarationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOwnerDeclarationNull() {
+                this[this.tabledtPlotOwnerDetails.OwnerDeclarationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRealBuilderNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.RealBuilderColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRealBuilderNull() {
+                this[this.tabledtPlotOwnerDetails.RealBuilderColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDevelopDepositNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.DevelopDepositColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDevelopDepositNull() {
+                this[this.tabledtPlotOwnerDetails.DevelopDepositColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFloorNumberNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.FloorNumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFloorNumberNull() {
+                this[this.tabledtPlotOwnerDetails.FloorNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCompletionDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.CompletionDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCompletionDateNull() {
+                this[this.tabledtPlotOwnerDetails.CompletionDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsGroundFCDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.GroundFCDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetGroundFCDateNull() {
+                this[this.tabledtPlotOwnerDetails.GroundFCDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFirstFCDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.FirstFCDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFirstFCDateNull() {
+                this[this.tabledtPlotOwnerDetails.FirstFCDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSccFCDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.SccFCDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSccFCDateNull() {
+                this[this.tabledtPlotOwnerDetails.SccFCDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsThirdFCDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.ThirdFCDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetThirdFCDateNull() {
+                this[this.tabledtPlotOwnerDetails.ThirdFCDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsForthFCDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.ForthFCDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetForthFCDateNull() {
+                this[this.tabledtPlotOwnerDetails.ForthFCDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFivthFCDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.FivthFCDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFivthFCDateNull() {
+                this[this.tabledtPlotOwnerDetails.FivthFCDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSixFCDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.SixFCDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSixFCDateNull() {
+                this[this.tabledtPlotOwnerDetails.SixFCDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOtherFCDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.OtherFCDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOtherFCDateNull() {
+                this[this.tabledtPlotOwnerDetails.OtherFCDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOwnerPortionNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.OwnerPortionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOwnerPortionNull() {
+                this[this.tabledtPlotOwnerDetails.OwnerPortionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDeveloperPortionNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.DeveloperPortionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDeveloperPortionNull() {
+                this[this.tabledtPlotOwnerDetails.DeveloperPortionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsBuyerPortionNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.BuyerPortionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetBuyerPortionNull() {
+                this[this.tabledtPlotOwnerDetails.BuyerPortionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSubmittedPortionNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.SubmittedPortionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSubmittedPortionNull() {
+                this[this.tabledtPlotOwnerDetails.SubmittedPortionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalUnauthAreaNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.TotalUnauthAreaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalUnauthAreaNull() {
+                this[this.tabledtPlotOwnerDetails.TotalUnauthAreaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFineFreeAreaNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.FineFreeAreaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFineFreeAreaNull() {
+                this[this.tabledtPlotOwnerDetails.FineFreeAreaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsWithFineUnauthNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.WithFineUnauthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetWithFineUnauthNull() {
+                this[this.tabledtPlotOwnerDetails.WithFineUnauthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRemovedUnauthAreaNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.RemovedUnauthAreaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRemovedUnauthAreaNull() {
+                this[this.tabledtPlotOwnerDetails.RemovedUnauthAreaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNonRemovedUnauthNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.NonRemovedUnauthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNonRemovedUnauthNull() {
+                this[this.tabledtPlotOwnerDetails.NonRemovedUnauthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFineRateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.FineRateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFineRateNull() {
+                this[this.tabledtPlotOwnerDetails.FineRateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFineAmountNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.FineAmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFineAmountNull() {
+                this[this.tabledtPlotOwnerDetails.FineAmountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOthetOwneeNameNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.OthetOwneeNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOthetOwneeNameNull() {
+                this[this.tabledtPlotOwnerDetails.OthetOwneeNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAddressNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.AddressColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAddressNull() {
+                this[this.tabledtPlotOwnerDetails.AddressColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRemarksNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.RemarksColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRemarksNull() {
+                this[this.tabledtPlotOwnerDetails.RemarksColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsMEO_NCCDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.MEO_NCCDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetMEO_NCCDateNull() {
+                this[this.tabledtPlotOwnerDetails.MEO_NCCDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsReferenceNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.ReferenceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetReferenceNull() {
+                this[this.tabledtPlotOwnerDetails.ReferenceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsApprovalDateNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.ApprovalDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetApprovalDateNull() {
+                this[this.tabledtPlotOwnerDetails.ApprovalDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsApprovalLetterNoNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.ApprovalLetterNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetApprovalLetterNoNull() {
+                this[this.tabledtPlotOwnerDetails.ApprovalLetterNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFlorNumberNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.FlorNumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFlorNumberNull() {
+                this[this.tabledtPlotOwnerDetails.FlorNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsGroundFlorAreaNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.GroundFlorAreaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetGroundFlorAreaNull() {
+                this[this.tabledtPlotOwnerDetails.GroundFlorAreaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOtherFlorAreaNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.OtherFlorAreaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOtherFlorAreaNull() {
+                this[this.tabledtPlotOwnerDetails.OtherFlorAreaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsApprovalNoNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.ApprovalNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetApprovalNoNull() {
+                this[this.tabledtPlotOwnerDetails.ApprovalNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAreaNameNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.AreaNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAreaNameNull() {
+                this[this.tabledtPlotOwnerDetails.AreaNameColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -12338,6 +15788,74 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtHolderListRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class dtPlotOwnerListRowChangeEvent : global::System.EventArgs {
+            
+            private dtPlotOwnerListRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtPlotOwnerListRowChangeEvent(dtPlotOwnerListRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtPlotOwnerListRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class dtPlotOwnerDetailsRowChangeEvent : global::System.EventArgs {
+            
+            private dtPlotOwnerDetailsRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtPlotOwnerDetailsRowChangeEvent(dtPlotOwnerDetailsRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtPlotOwnerDetailsRow Row {
                 get {
                     return this.eventRow;
                 }
