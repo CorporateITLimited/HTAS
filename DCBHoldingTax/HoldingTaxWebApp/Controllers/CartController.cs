@@ -45,7 +45,7 @@ namespace HoldingTaxWebApp.Controllers
                 string spaceLessYear = FinancialYear.Replace(" ", "");
                 string YearFirstPart = spaceLessYear.Substring(2, 2);
                 string YearSecondPart = spaceLessYear.Substring(7, 2);
-                var TransactionCode = YearFirstPart + YearSecondPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(4) + PasswordHelper.TransactionID(3);
+                var TransactionCode = YearFirstPart + YearSecondPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(7);
                 if (_transcationManager.IsTransactionCodeExist(TransactionCode))
                     TransactionCode = YearFirstPart + YearFirstPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(4) + PasswordHelper.TransactionID(3);
 
@@ -78,68 +78,83 @@ namespace HoldingTaxWebApp.Controllers
                 {
                     HoldingTaxId = HoldingTaxId,
                     IPAddressDetails = Session["_ipDetails"].ToString(),
-                    IsSuccessfulTransaction = false,
                     LastUpdated = DateTime.Now,
                     LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
                     ProductName = productName,
-                    RequestValidationID = null,
                     TransactionAmount = price,
                     TransactionCode = TransactionCode,
                     TransactionCurrency = "BDT",
                     TransactionDate = DateTime.Now,
-                    TransactionId = 0
+                    TransactionId = 0,
+                    ApiDirectPaymentURL = null,
+                    ApiDirectPaymentURLBank = null,
+                    ApiDirectPaymentURLCard = null,
+                    ApiFailedReason = null,
+                    ApiGatewayPageURL = null,
+                    ApiRedirectGatewayURL = null,
+                    ApiRedirectGatewayURLFailed = null,
+                    ApiSessionKey = null,
+                    ApiStatus = null
                 };
-
                 int count = _transcationManager.InsertTranscation(transactionPayment);
+                if (count > 0)
+                {
+                    Session["_TransactionId_"] = count;
 
 
-                // CREATING LIST OF POST DATA
-                NameValueCollection PostData = new NameValueCollection();
+                    // CREATING LIST OF POST DATA
+                    NameValueCollection PostData = new NameValueCollection();
 
-                PostData.Add("total_amount", $"{price}");
-                PostData.Add("tran_id", $"{TransactionCode}");
-                PostData.Add("success_url", baseUrl + "/Cart/CheckoutConfirmation");
-                PostData.Add("fail_url", baseUrl + "/Cart/CheckoutFail");
-                PostData.Add("cancel_url", baseUrl + "/Cart/CheckoutCancel");
+                    PostData.Add("total_amount", $"{price}");
+                    PostData.Add("tran_id", $"{TransactionCode}");
+                    PostData.Add("success_url", baseUrl + "/Cart/CheckoutConfirmation");
+                    PostData.Add("fail_url", baseUrl + "/Cart/CheckoutFail");
+                    PostData.Add("cancel_url", baseUrl + "/Cart/CheckoutCancel");
 
-                PostData.Add("version", "3.00");
-                PostData.Add("cus_name", "ABC XY");
-                PostData.Add("cus_email", "abc.xyz@mail.co");
-                PostData.Add("cus_add1", "Address Line On");
-                PostData.Add("cus_add2", "Address Line Tw");
-                PostData.Add("cus_city", "City Nam");
-                PostData.Add("cus_state", "State Nam");
-                PostData.Add("cus_postcode", "Post Cod");
-                PostData.Add("cus_country", "Countr");
-                PostData.Add("cus_phone", "0111111111");
-                PostData.Add("cus_fax", "0171111111");
-                PostData.Add("ship_name", "ABC XY");
-                PostData.Add("ship_add1", "Address Line On");
-                PostData.Add("ship_add2", "Address Line Tw");
-                PostData.Add("ship_city", "City Nam");
-                PostData.Add("ship_state", "State Nam");
-                PostData.Add("ship_postcode", "Post Cod");
-                PostData.Add("ship_country", "Countr");
-                PostData.Add("value_a", "ref00");
-                PostData.Add("value_b", "ref00");
-                PostData.Add("value_c", "ref00");
-                PostData.Add("value_d", "ref00");
-                PostData.Add("shipping_method", "NO");
-                PostData.Add("num_of_item", "1");
-                PostData.Add("product_name", $"{productName}");
-                PostData.Add("product_profile", "general");
-                PostData.Add("product_category", "Demo");
+                    PostData.Add("version", "3.00");
+                    PostData.Add("cus_name", "ABC XY");
+                    PostData.Add("cus_email", "abc.xyz@mail.co");
+                    PostData.Add("cus_add1", "Address Line On");
+                    PostData.Add("cus_add2", "Address Line Tw");
+                    PostData.Add("cus_city", "City Nam");
+                    PostData.Add("cus_state", "State Nam");
+                    PostData.Add("cus_postcode", "Post Cod");
+                    PostData.Add("cus_country", "Countr");
+                    PostData.Add("cus_phone", "0111111111");
+                    PostData.Add("cus_fax", "0171111111");
+                    PostData.Add("ship_name", "ABC XY");
+                    PostData.Add("ship_add1", "Address Line On");
+                    PostData.Add("ship_add2", "Address Line Tw");
+                    PostData.Add("ship_city", "City Nam");
+                    PostData.Add("ship_state", "State Nam");
+                    PostData.Add("ship_postcode", "Post Cod");
+                    PostData.Add("ship_country", "Countr");
+                    PostData.Add("value_a", "ref00");
+                    PostData.Add("value_b", "ref00");
+                    PostData.Add("value_c", "ref00");
+                    PostData.Add("value_d", "ref00");
+                    PostData.Add("shipping_method", "NO");
+                    PostData.Add("num_of_item", "1");
+                    PostData.Add("product_name", $"{productName}");
+                    PostData.Add("product_profile", "general");
+                    PostData.Add("product_category", "Demo");
 
-                //we can get from email notificaton
-                var storeId = "citl61129439348f4";
-                var storePassword = "citl61129439348f4@ssl";
-                var isSandboxMood = true;
+                    //we can get from email notificaton
+                    var storeId = "citl61129439348f4";
+                    var storePassword = "citl61129439348f4@ssl";
+                    var isSandboxMood = true;
 
-                SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, isSandboxMood);
+                    SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, isSandboxMood);
 
-                string response = sslcz.InitiateTransaction(PostData);
+                    string response = sslcz.InitiateTransaction(PostData);
 
-                return Redirect(response);
+                    return Redirect(response);
+                }
+                else
+                {
+                    TempData["SM"] = "db error";
+                    return RedirectToAction("Index", "HoldingTax");
+                }
             }
             else
             {
@@ -164,21 +179,19 @@ namespace HoldingTaxWebApp.Controllers
             SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, true);
             var resonse = sslcz.OrderValidate(trnxCode, trnxData.TransactionAmount.ToString(), trnxData.TransactionCurrency.ToString(), Request); /// request changes 
 
-            TransactionPayment transactionPayment = new TransactionPayment()
-            {
-                HoldingTaxId = 0,
-                IPAddressDetails = null,
-                IsSuccessfulTransaction = true,
-                LastUpdated = DateTime.Now,
-                LastUpdatedBy = null, //Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                ProductName = null,
-                RequestValidationID = requestValID,
-                TransactionAmount = null,
-                TransactionCode = null,
-                TransactionCurrency = null,
-                TransactionDate = null,
-                TransactionId = trnxData.TransactionId
-            };
+            //TransactionPayment transactionPayment = new TransactionPayment()
+            //{
+            //    HoldingTaxId = 0,
+            //    IPAddressDetails = null,
+            //    LastUpdated = DateTime.Now,
+            //    LastUpdatedBy = null, //Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+            //    ProductName = null,
+            //    TransactionAmount = null,
+            //    TransactionCode = null,
+            //    TransactionCurrency = null,
+            //    TransactionDate = null,
+            //    TransactionId = trnxData.TransactionId
+            //};
             var relatableData = _holdingTaxManager.GetRebateAndWrongInfoByHoldingTaxId(trnxData.HoldingTaxId ?? default(int));
 
             DateTime startDate = new DateTime(DateTime.Now.Year, 6, 30);
@@ -206,7 +219,7 @@ namespace HoldingTaxWebApp.Controllers
 
             string updateString = _holdingTaxManager.UpdateTaxForClient(tax);
 
-            TempData["SM"] = _transcationManager.UpdateTranscation(transactionPayment);
+            TempData["SM"] = "আপনার পেমেন্ট সফলভাবে সম্পন্ন হয়েছে";
 
             var successInfo = $"Validation Response: {resonse}";
             ViewBag.SuccessInfo = successInfo;
@@ -225,9 +238,49 @@ namespace HoldingTaxWebApp.Controllers
 
         public ActionResult CheckoutCancel()
         {
-            TempData["SM"] = "আপনার পেমেন্ট বাতিল করা হয়েছে";
-            ViewBag.CancelInfo = "Your payment has been cancel";
-            return View();
+            string trnxCode = Request.Form["tran_id"];
+            var trnxData = _transcationManager.GetTranscationByTransactionCode(trnxCode);
+            var trnxStatus = Request.Form["status"];
+
+            if (Session["_OtTransactionId_"] != null)
+            {
+                var t = "";
+            }
+
+            TransactionPayment transactionPayment = new TransactionPayment()
+            {
+                HoldingTaxId = 0,
+                IPAddressDetails = null,
+                LastUpdated = DateTime.Now,
+                LastUpdatedBy = null, //Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                ProductName = null,
+                TransactionAmount = null,
+                TransactionCode = null,
+                TransactionCurrency = null,
+                TransactionDate = null,
+                TransactionId = trnxData.TransactionId,
+                ApiDirectPaymentURL = null,
+                ApiDirectPaymentURLBank = null,
+                ApiDirectPaymentURLCard = null,
+                ApiFailedReason = null,
+                ApiGatewayPageURL = null,
+                ApiRedirectGatewayURL = null,
+                ApiRedirectGatewayURLFailed = null,
+                ApiSessionKey = null,
+                ApiStatus = trnxStatus
+            };
+
+            string status = _transcationManager.UpdateTranscation(transactionPayment);
+            if (status != CommonConstantHelper.Success)
+            {
+                return View();
+            }
+            else
+            {
+                TempData["SM"] = "আপনার পেমেন্ট বাতিল করা হয়েছে";
+                ViewBag.CancelInfo = "Your payment has been cancel";
+                return View();
+            }
         }
     }
 }
