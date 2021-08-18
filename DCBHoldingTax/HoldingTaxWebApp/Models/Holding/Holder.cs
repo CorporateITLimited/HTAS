@@ -245,5 +245,8 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "গৃহকরদাতা নিজেই কি প্লটের মালিক?")]
         public bool? IsHolderAnOwner { get; set; }
+
+        [Display(Name = "গৃহকরদাতার আইডি নম্বর")]
+        public string HolderNo { get; set; }
     }
 }
