@@ -18,14 +18,14 @@ namespace HoldingTaxWebApp.Controllers
         private readonly FinancialYearManager _yearManager;
         private readonly HoldingTaxManager _holdingTaxManager;
         private readonly HoldingManager _holdingManager;
-        private readonly TranscationManager _transcationManager;
+        private readonly InitialTranscationManager _initialTrnxManager;
 
         public CartController()
         {
             _yearManager = new FinancialYearManager();
             _holdingTaxManager = new HoldingTaxManager();
             _holdingManager = new HoldingManager();
-            _transcationManager = new TranscationManager();
+            _initialTrnxManager = new InitialTranscationManager();
         }
 
         // GET: Cart
@@ -46,7 +46,7 @@ namespace HoldingTaxWebApp.Controllers
                 string YearFirstPart = spaceLessYear.Substring(2, 2);
                 string YearSecondPart = spaceLessYear.Substring(7, 2);
                 var TransactionCode = YearFirstPart + YearSecondPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(7);
-                if (_transcationManager.IsTransactionCodeExist(TransactionCode))
+                if (_initialTrnxManager.IsTransactionCodeExist(TransactionCode))
                     TransactionCode = YearFirstPart + YearFirstPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(4) + PasswordHelper.TransactionID(3);
 
 
@@ -96,7 +96,7 @@ namespace HoldingTaxWebApp.Controllers
                     ApiSessionKey = null,
                     ApiStatus = null
                 };
-                int count = _transcationManager.InsertTranscation(transactionPayment);
+                int count = _initialTrnxManager.InsertTranscation(transactionPayment);
                 if (count > 0)
                 {
                     Session["_TransactionId_"] = count;
@@ -171,7 +171,7 @@ namespace HoldingTaxWebApp.Controllers
                 return View();
             }
             string trnxCode = Request.Form["tran_id"];
-            var trnxData = _transcationManager.GetTranscationByTransactionCode(trnxCode);
+            var trnxData = _initialTrnxManager.GetTranscationByTransactionCode(trnxCode);
             var storeId = "citl61129439348f4";
             var storePassword = "citl61129439348f4@ssl";
             string requestValID = HttpUtility.UrlEncode(Request.Form["val_id"]);
@@ -239,7 +239,7 @@ namespace HoldingTaxWebApp.Controllers
         public ActionResult CheckoutCancel()
         {
             string trnxCode = Request.Form["tran_id"];
-            var trnxData = _transcationManager.GetTranscationByTransactionCode(trnxCode);
+            var trnxData = _initialTrnxManager.GetTranscationByTransactionCode(trnxCode);
             var trnxStatus = Request.Form["status"];
 
             if (Session["_OtTransactionId_"] != null)
@@ -270,7 +270,7 @@ namespace HoldingTaxWebApp.Controllers
                 ApiStatus = trnxStatus
             };
 
-            string status = _transcationManager.UpdateTranscation(transactionPayment);
+            string status = _initialTrnxManager.UpdateTranscation(transactionPayment);
             if (status != CommonConstantHelper.Success)
             {
                 return View();

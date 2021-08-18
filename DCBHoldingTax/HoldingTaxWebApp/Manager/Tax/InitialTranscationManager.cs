@@ -10,13 +10,13 @@ using HoldingTaxWebApp.ViewModels.Tax;
 
 namespace HoldingTaxWebApp.Manager.Tax
 {
-    public class TranscationManager
+    public class InitialTranscationManager
     {
 
-        private readonly TransactionGateway _transactionGateway;
-        public TranscationManager()
+        private readonly InitialTransactionGateway _transactionGateway;
+        public InitialTranscationManager()
         {
-            _transactionGateway = new TransactionGateway();
+            _transactionGateway = new InitialTransactionGateway();
         }
 
         public List<TransactionPayment> GetAllTranscation()

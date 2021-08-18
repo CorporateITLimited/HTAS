@@ -32,11 +32,11 @@ namespace HoldingTaxWebApp.PaymentGateway
         protected string Validation_URL = "validator/api/validationserverAPI.php";
         protected string Checking_URL = "validator/api/merchantTransIDvalidationAPI.php";
 
-        private readonly TranscationManager _transcationManager;
+        private readonly InitialTranscationManager _initialtrnxManager;
 
         public SSLCommerz(string Store_ID, string Store_Pass, bool Store_Test_Mode = false)
         {
-            _transcationManager = new TranscationManager();
+            _initialtrnxManager = new InitialTranscationManager();
             System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)0x00000C00;
 
             if (Store_ID != "" && Store_Pass != "")
@@ -98,7 +98,7 @@ namespace HoldingTaxWebApp.PaymentGateway
 
                             HttpContext.Current.Session["_OtTransactionId_"] = transactionPayment;
 
-                            _transcationManager.UpdateTranscation(transactionPayment);
+                            _initialtrnxManager.UpdateTranscation(transactionPayment);
                         }
 
                         return resp.GatewayPageURL.ToString();

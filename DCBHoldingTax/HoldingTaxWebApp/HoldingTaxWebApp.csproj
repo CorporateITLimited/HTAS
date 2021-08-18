@@ -4625,7 +4625,7 @@
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
     <Compile Include="Gateway\Tax\PrimaryTransactionGateway.cs" />
-    <Compile Include="Gateway\Tax\TransactionGateway.cs" />
+    <Compile Include="Gateway\Tax\InitialTransactionGateway.cs" />
     <Compile Include="Gateway\Tax\HoldingTaxGateway.cs" />
     <Compile Include="Gateway\Tax\OwnFlatTaxGateway.cs" />
     <Compile Include="Gateway\Tax\RentedFlatTaxGateway.cs" />
@@ -4664,7 +4664,7 @@
     <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
     <Compile Include="Manager\Tax\PrimaryTransactionManager.cs" />
-    <Compile Include="Manager\Tax\TranscationManager.cs" />
+    <Compile Include="Manager\Tax\InitialTranscationManager.cs" />
     <Compile Include="Manager\Tax\HoldingTaxManager.cs" />
     <Compile Include="Manager\Users\DesignationManager.cs" />
     <Compile Include="Manager\Users\EmployeeManager.cs" />

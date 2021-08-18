@@ -11,13 +11,13 @@ using System.Web;
 
 namespace HoldingTaxWebApp.Gateway.Tax
 {
-    public class TransactionGateway : DefaultGateway
+    public class InitialTransactionGateway : DefaultGateway
     {
         public List<TransactionPayment> GetAllTranscation()
         {
             try
             {
-                Sql_Query = "[Tax].[spTransaction]";
+                Sql_Query = "[Tax].[spInitialTransactionMaster]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -107,7 +107,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
         {
             try
             {
-                Sql_Query = "[Tax].[spTransaction]";
+                Sql_Query = "[Tax].[spInitialTransactionMaster]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -193,7 +193,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
         {
             try
             {
-                Sql_Query = "[Tax].[spTransaction]";
+                Sql_Query = "[Tax].[spInitialTransactionMaster]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -279,7 +279,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
         {
             try
             {
-                Sql_Query = "[Tax].[spTransaction]";
+                Sql_Query = "[Tax].[spInitialTransactionMaster]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -350,7 +350,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
         {
             try
             {
-                Sql_Query = "SELECT [TransactionCode] FROM [Tax].[tTransaction] WHERE [TransactionCode]=@TransactionCode";
+                Sql_Query = "SELECT [TransactionCode] FROM [Tax].[tInitialTransaction] WHERE [TransactionCode]=@TransactionCode";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -392,7 +392,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
         {
             try
             {
-                Sql_Query = "[Tax].[spTransaction]";
+                Sql_Query = "[Tax].[spInitialTransactionMaster]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
