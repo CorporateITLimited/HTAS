@@ -73,7 +73,7 @@ namespace HoldingTaxWebApp.PaymentGateway
 
                             //resp.status = !string.IsNullOrEmpty(resp.status) ? resp.status.ToString() : null;
 
-                            TransactionPayment transactionPayment = new TransactionPayment()
+                            InitialTransaction transactionPayment = new InitialTransaction()
                             {
                                 HoldingTaxId = 0,
                                 IPAddressDetails = null,
@@ -95,8 +95,6 @@ namespace HoldingTaxWebApp.PaymentGateway
                                 ApiSessionKey = resp.sessionkey.ToString(),
                                 ApiStatus = resp.status.ToString()
                             };
-
-                            HttpContext.Current.Session["_OtTransactionId_"] = transactionPayment;
 
                             _initialtrnxManager.UpdateTranscation(transactionPayment);
                         }

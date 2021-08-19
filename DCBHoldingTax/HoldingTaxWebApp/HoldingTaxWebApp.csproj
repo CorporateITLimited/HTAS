@@ -4703,7 +4703,7 @@
     <Compile Include="Models\Tax\OwnTaxRate.cs" />
     <Compile Include="Models\Tax\PrimaryTransaction.cs" />
     <Compile Include="Models\Tax\RentedFlatTax.cs" />
-    <Compile Include="Models\Tax\TransactionPayment.cs" />
+    <Compile Include="Models\Tax\InitialTransaction.cs" />
     <Compile Include="Models\Users\HolderUser.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
