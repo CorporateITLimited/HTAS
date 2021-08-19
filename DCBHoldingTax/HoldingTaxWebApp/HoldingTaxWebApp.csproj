@@ -4588,6 +4588,7 @@
     <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
     <Compile Include="Controllers\Tax\HoldingTaxController.cs" />
+    <Compile Include="Controllers\Tax\PrimaryTransactionController.cs" />
     <Compile Include="Controllers\Tax\TaxReportsController.cs" />
     <Compile Include="Controllers\Users\DesignationController.cs" />
     <Compile Include="Controllers\Users\EmployeeController.cs" />
@@ -4982,6 +4983,8 @@
     <Content Include="Views\PlotOwner\rptPlotOwnerList.cshtml" />
     <Content Include="Views\PlotOwner\PlotOwnerDetailsReport.cshtml" />
     <Content Include="Views\PlotOwner\rptPlotOwnerDetails.cshtml" />
+    <Content Include="Views\PrimaryTransaction\Index.cshtml" />
+    <Content Include="Views\PrimaryTransaction\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

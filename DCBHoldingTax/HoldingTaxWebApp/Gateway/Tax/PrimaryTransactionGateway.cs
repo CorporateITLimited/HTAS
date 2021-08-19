@@ -85,8 +85,10 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         RiskTitle = Data_Reader["RiskTitle"].ToString(),
                         CreateDate = Data_Reader["CreateDate"] != DBNull.Value ?
                                                     Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
+                        HolderName = Data_Reader["HolderName"].ToString(),
+                        FinancialYear = Data_Reader["FinancialYear"].ToString(),
 
-                   
+
                     };
 
                     PrimaryTransaction.StringTranDate = $"{PrimaryTransaction.TranDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -193,6 +195,8 @@ namespace HoldingTaxWebApp.Gateway.Tax
                     PrimaryTransaction.RiskTitle = Data_Reader["RiskTitle"].ToString();
                     PrimaryTransaction.CreateDate = Data_Reader["CreateDate"] != DBNull.Value ?
                                                 Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null;
+                    PrimaryTransaction.HolderName = Data_Reader["HolderName"].ToString();
+                    PrimaryTransaction.FinancialYear = Data_Reader["FinancialYear"].ToString();
                    
                    
                 }
