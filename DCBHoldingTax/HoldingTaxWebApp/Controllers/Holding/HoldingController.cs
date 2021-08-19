@@ -853,7 +853,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 LeasePeriod = holderVMOtherData.LeasePeriod,
                 StringLeaseExpiryDate = holderVMOtherData.StringLeaseExpiryDate,
                 PlotOwnerName = holderVMOtherData.PlotOwnerName,
-                IsHolderAnOwner = holder.IsHolderAnOwner
+                IsHolderAnOwner = holder.IsHolderAnOwner,
+                HolderNo = holder.HolderNo,
             };
 
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", hvm.AreaId);
