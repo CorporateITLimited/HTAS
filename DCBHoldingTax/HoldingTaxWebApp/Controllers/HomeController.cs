@@ -1,5 +1,8 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager;
+using HoldingTaxWebApp.Manager.Holding;
+using HoldingTaxWebApp.Manager.Tax;
+using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,10 +14,14 @@ namespace COMSApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly NoticeManager _noticeManager;
+        private readonly HoldingTaxManager _holdingTaxManager;
         private readonly bool CanAccess = false;
         private readonly bool CanReadWrite = false;
         public HomeController()
         {
+            _noticeManager = new NoticeManager();
+            _holdingTaxManager = new HoldingTaxManager();
             //if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             //{
             //    List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
@@ -72,7 +79,6 @@ namespace COMSApp.Controllers
             //}
         }
 
-
         public ActionResult Reports()
         {
             try
@@ -96,6 +102,23 @@ namespace COMSApp.Controllers
             {
                 return View();
             }
+        }
+
+
+
+
+        public JsonResult GetHolderNotice()
+        {
+            var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
+            var data = _noticeManager.GetAllNoticeForHolder(HolderId).OrderByDescending(s => s.NoticeId).Take(1).ToList();
+            return new JsonResult { Data = data ?? null };
+        }
+
+        public JsonResult GetHolderTax()
+        {
+            var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
+            var data = _holdingTaxManager.GetAllHoldingTaxForHolder(HolderId).OrderByDescending(s => s.HoldingTaxId).Take(1).ToList();
+            return new JsonResult { Data = data ?? null };
         }
 
         public ActionResult Test()

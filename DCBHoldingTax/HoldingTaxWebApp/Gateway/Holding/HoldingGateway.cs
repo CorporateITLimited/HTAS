@@ -387,6 +387,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@NamjariDate", SqlDbType.DateTime).Value = model.NamjariDate;
                 Sql_Command.Parameters.Add("@RecordCorrectionDate", SqlDbType.DateTime).Value = model.RecordCorrectionDate;
 
+                Sql_Command.Parameters.Add("@HolderNo", SqlDbType.NVarChar).Value = null;
+
                 SqlParameter result = new SqlParameter
                 {
                     ParameterName = "@result",
@@ -422,6 +424,48 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 if (Sql_Connection.State == ConnectionState.Open)
                     Sql_Connection.Close();
             }
+        }
+
+        public bool IsHolderNoExist(string HolderNo, int HolderId)
+        {
+            try
+            {
+                Sql_Query = "SELECT [HolderNo] FROM [DCB_HTAS].[Holding].[tHolder] WHERE HolderNo LIKE '%'+@HolderNo+'%' AND HolderId <> @HolderId";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.Text
+                };
+                Sql_Command.Parameters.Clear();
+                Sql_Command.Parameters.Add("@HolderNo", SqlDbType.NVarChar).Value = HolderNo;
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = HolderId;
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+                bool isExist = Data_Reader.HasRows;
+                Data_Reader.Close();
+                Sql_Connection.Close();
+                return isExist;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
         }
 
         public int UpdateHolder(Holder model)
@@ -482,6 +526,9 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@AllocationDate", SqlDbType.DateTime).Value = model.AllocationDate;
                 Sql_Command.Parameters.Add("@NamjariDate", SqlDbType.DateTime).Value = model.NamjariDate;
                 Sql_Command.Parameters.Add("@RecordCorrectionDate", SqlDbType.DateTime).Value = model.RecordCorrectionDate;
+
+                Sql_Command.Parameters.Add("@HolderNo", SqlDbType.NVarChar).Value = model.HolderNo;
+
                 SqlParameter result = new SqlParameter
                 {
                     ParameterName = "@result",

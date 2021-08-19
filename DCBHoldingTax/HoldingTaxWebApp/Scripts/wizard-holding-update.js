@@ -171,7 +171,8 @@ var KTWizard4 = function () {
                             IsHolderAnOwner: $("#IsHolderAnOwner").val(),
                             oldImg: $('#ImageLocation').val().trim(),
                             oldDoc1: $('#Document1').val().trim(),
-                            oldDoc2: $('#Document2').val().trim()
+                            oldDoc2: $('#Document2').val().trim(),
+                            HolderNo: $('#HolderNo').val().trim()
                         };
 
 
@@ -249,6 +250,13 @@ var KTWizard4 = function () {
             _formEl,
             {
                 fields: {
+                    HolderNo: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
+                            }
+                        }
+                    },
                     AreaId: {
                         validators: {
                             notEmpty: {
