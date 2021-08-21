@@ -73,7 +73,18 @@
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                     <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.Status)
+                                            @if (Model.Status == "VALID")
+                                            {
+                                                <span style="color: darkgreen;">@Model.Status</span>
+                                            }
+                                            else if (Model.Status == "VALIDATED")
+                                            {
+                                                <span class="text text-warning">@Model.Status</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text text-danger">@Model.Status</span>
+                                            }
                                         </span>
                                     </div>
                                 </div>
@@ -128,6 +139,27 @@
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.VendorCharge)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.VendorCharge)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                
+
+                                
+
+
+                            </div>
+
+
+                            <div class="col-lg-5 ml-10">
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.CardType)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
@@ -149,18 +181,17 @@
                                         </span>
                                     </div>
                                 </div>
-
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.Currency)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.Currency)
-                                        </span>
-                                    </div>
-                                </div>
+                                @*<div class="form-group form-group-xs row">
+            <label class="col-5 col-form-label">
+                @Html.DisplayNameFor(model => model.Currency)
+            </label>
+            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+            <div class="col-6">
+                <span class="form-control-plaintext kt-font-bolder">
+                    @Html.DisplayFor(model => model.Currency)
+                </span>
+            </div>
+        </div>*@
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.BankTranId)
@@ -195,12 +226,6 @@
                                     </div>
                                 </div>
 
-
-                            </div>
-
-
-                            <div class="col-lg-5 ml-10">
-                               
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.CardIssuerCountry)
@@ -223,130 +248,130 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.CurrencyType)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.CurrencyType)
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.CurrencyAmount)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.CurrencyAmount)
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.EmiInstalment)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.EmiInstalment)
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.EmiAmount)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.EmiAmount)
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.DiscountAmount)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.DiscountAmount)
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.DiscountPercentage)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.DiscountPercentage)
-                                        </span>
-                                    </div>
-                                </div>
+                                @*<div class="form-group form-group-xs row">
+            <label class="col-5 col-form-label">
+                @Html.DisplayNameFor(model => model.CurrencyType)
+            </label>
+            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+            <div class="col-6">
+                <span class="form-control-plaintext kt-font-bolder">
+                    @Html.DisplayFor(model => model.CurrencyType)
+                </span>
+            </div>
+        </div>
+        <div class="form-group form-group-xs row">
+            <label class="col-5 col-form-label">
+                @Html.DisplayNameFor(model => model.CurrencyAmount)
+            </label>
+            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+            <div class="col-6">
+                <span class="form-control-plaintext kt-font-bolder">
+                    @Html.DisplayFor(model => model.CurrencyAmount)
+                </span>
+            </div>
+        </div>*@
+                                @*<div class="form-group form-group-xs row">
+            <label class="col-5 col-form-label">
+                @Html.DisplayNameFor(model => model.EmiInstalment)
+            </label>
+            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+            <div class="col-6">
+                <span class="form-control-plaintext kt-font-bolder">
+                    @Html.DisplayFor(model => model.EmiInstalment)
+                </span>
+            </div>
+        </div>
+        <div class="form-group form-group-xs row">
+            <label class="col-5 col-form-label">
+                @Html.DisplayNameFor(model => model.EmiAmount)
+            </label>
+            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+            <div class="col-6">
+                <span class="form-control-plaintext kt-font-bolder">
+                    @Html.DisplayFor(model => model.EmiAmount)
+                </span>
+            </div>
+        </div>
+        <div class="form-group form-group-xs row">
+            <label class="col-5 col-form-label">
+                @Html.DisplayNameFor(model => model.DiscountAmount)
+            </label>
+            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+            <div class="col-6">
+                <span class="form-control-plaintext kt-font-bolder">
+                    @Html.DisplayFor(model => model.DiscountAmount)
+                </span>
+            </div>
+        </div>
+        <div class="form-group form-group-xs row">
+            <label class="col-5 col-form-label">
+                @Html.DisplayNameFor(model => model.DiscountPercentage)
+            </label>
+            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+            <div class="col-6">
+                <span class="form-control-plaintext kt-font-bolder">
+                    @Html.DisplayFor(model => model.DiscountPercentage)
+                </span>
+            </div>
+        </div>
 
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.DiscountRemarks)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.DiscountRemarks)
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.RiskLevel)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.RiskLevel)
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.SecondaryStatus)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.SecondaryStatus)
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.RiskTitle)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.RiskTitle)
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group form-group-xs row">
-                                    <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.CreateDate)
-                                    </label>
-                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-6">
-                                        <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.CreateDate)
-                                        </span>
-                                    </div>
-                                </div>
-                               
-                              
+        <div class="form-group form-group-xs row">
+            <label class="col-5 col-form-label">
+                @Html.DisplayNameFor(model => model.DiscountRemarks)
+            </label>
+            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+            <div class="col-6">
+                <span class="form-control-plaintext kt-font-bolder">
+                    @Html.DisplayFor(model => model.DiscountRemarks)
+                </span>
+            </div>
+        </div>
+        <div class="form-group form-group-xs row">
+            <label class="col-5 col-form-label">
+                @Html.DisplayNameFor(model => model.RiskLevel)
+            </label>
+            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+            <div class="col-6">
+                <span class="form-control-plaintext kt-font-bolder">
+                    @Html.DisplayFor(model => model.RiskLevel)
+                </span>
+            </div>
+        </div>
+        <div class="form-group form-group-xs row">
+            <label class="col-5 col-form-label">
+                @Html.DisplayNameFor(model => model.SecondaryStatus)
+            </label>
+            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+            <div class="col-6">
+                <span class="form-control-plaintext kt-font-bolder">
+                    @Html.DisplayFor(model => model.SecondaryStatus)
+                </span>
+            </div>
+        </div>
+        <div class="form-group form-group-xs row">
+            <label class="col-5 col-form-label">
+                @Html.DisplayNameFor(model => model.RiskTitle)
+            </label>
+            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+            <div class="col-6">
+                <span class="form-control-plaintext kt-font-bolder">
+                    @Html.DisplayFor(model => model.RiskTitle)
+                </span>
+            </div>
+        </div>*@
+                                @*<div class="form-group form-group-xs row">
+            <label class="col-5 col-form-label">
+                @Html.DisplayNameFor(model => model.StringCreateDate)
+            </label>
+            <span class="col-1 col-form-label kt-font-bolder"> : </span>
+            <div class="col-6">
+                <span class="form-control-plaintext kt-font-bolder">
+                    @Html.DisplayFor(model => model.StringCreateDate)
+                </span>
+            </div>
+        </div>*@
+
+
 
 
 

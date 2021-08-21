@@ -87,7 +87,7 @@
                             <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
                             <th>@Html.DisplayNameFor(model => model.StringTranDate)</th>
                             <th>@Html.DisplayNameFor(model => model.TranId)</th>
-                            <th>@Html.DisplayNameFor(model => model.CardType)</th>
+                            <th>@Html.DisplayNameFor(model => model.Status)</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -111,7 +111,18 @@
                                 @Html.DisplayFor(modelItem => item.TranId)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.CardType)
+                                @if (item.Status == "VALID")
+                                {
+                                    <span style="color: darkgreen;" >@item.Status</span>
+                                }
+                                else if (item.Status == "VALIDATED")
+                                {
+                                    <span class="text text-warning">@item.Status</span>
+                                }
+                                else
+                                {
+                                    <span class="text text-danger">@item.Status</span>
+                                }
                             </td>
                             <td>
                                 @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Plot/Edit/@item.PlotId" title="হালনাগাদ পেজে যান">

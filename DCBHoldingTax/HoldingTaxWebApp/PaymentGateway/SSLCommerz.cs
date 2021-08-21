@@ -37,13 +37,13 @@ namespace HoldingTaxWebApp.PaymentGateway
         public SSLCommerz(string Store_ID, string Store_Pass, bool Store_Test_Mode = false)
         {
             _initialtrnxManager = new InitialTranscationManager();
-            System.Net.ServicePointManager.SecurityProtocol = (SecurityProtocolType)0x00000C00;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)0x00000C00;
 
             if (Store_ID != "" && Store_Pass != "")
             {
                 this.Store_ID = Store_ID;
                 this.Store_Pass = Store_Pass;
-                this.SetSSLCzTestMode(Store_Test_Mode);
+                SetSSLCzTestMode(Store_Test_Mode);
             }
             else
             {
@@ -53,9 +53,9 @@ namespace HoldingTaxWebApp.PaymentGateway
 
         public string InitiateTransaction(NameValueCollection PostData, bool GetGateWayList = false)
         {
-            PostData.Add("store_id", this.Store_ID);
-            PostData.Add("store_passwd", this.Store_Pass);
-            string response = this.SendPost(PostData);
+            PostData.Add("store_id", Store_ID);
+            PostData.Add("store_passwd", Store_Pass);
+            string response = SendPost(PostData);
             try
             {
                 SSLCommerzInitResponse resp = new JavaScriptSerializer().Deserialize<SSLCommerzInitResponse>(response);
@@ -67,7 +67,7 @@ namespace HoldingTaxWebApp.PaymentGateway
                     }
                     else
                     {
-                        if(HttpContext.Current.Session["_TransactionId_"] != null)
+                        if (HttpContext.Current.Session["_TransactionId_"] != null)
                         {
                             var trxid = Convert.ToInt64(HttpContext.Current.Session["_TransactionId_"].ToString());
 
@@ -119,14 +119,13 @@ namespace HoldingTaxWebApp.PaymentGateway
             bool hash_verified = this.ipn_hash_verify(req);
             if (hash_verified)
             {
-
                 string json = string.Empty;
 
-                string EncodedValID = System.Web.HttpUtility.UrlEncode(req.Form["val_id"]);
-                string EncodedStoreID = System.Web.HttpUtility.UrlEncode(this.Store_ID);
-                string EncodedStorePassword = System.Web.HttpUtility.UrlEncode(this.Store_Pass);
+                string EncodedValID = HttpUtility.UrlEncode(req.Form["val_id"]);
+                string EncodedStoreID = HttpUtility.UrlEncode(this.Store_ID);
+                string EncodedStorePassword = HttpUtility.UrlEncode(this.Store_Pass);
 
-                string validate_url = this.SSLCz_URL + this.Validation_URL + "?val_id=" + EncodedValID + "&store_id=" + EncodedStoreID + "&store_passwd=" + EncodedStorePassword + "&v=1&format=json";
+                string validate_url = SSLCz_URL + Validation_URL + "?val_id=" + EncodedValID + "&store_id=" + EncodedStoreID + "&store_passwd=" + EncodedStorePassword + "&v=1&format=json";
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(validate_url);
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -187,11 +186,52 @@ namespace HoldingTaxWebApp.PaymentGateway
             }
         }
 
+        public bool RefundInitiate(string bank_tran_id, decimal refund_amount, string refund_remarks, string refe_id)
+        {
+            string json = string.Empty;
 
-        //internal object OrderValidate(string trxID, string amount, string currency, HttpRequestBase request)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            string EncodedStoreID = HttpUtility.UrlEncode(Store_ID);
+            string EncodedStorePassword = HttpUtility.UrlEncode(Store_Pass);
+            string EncodedBankTranId = HttpUtility.UrlEncode(bank_tran_id);
+            string EncodedRefundRemarks = HttpUtility.UrlEncode(refund_remarks);
+            string EncodedReferId = HttpUtility.UrlEncode(refe_id);
+
+            string _url = SSLCz_URL + Checking_URL + "?bank_tran_id=" + EncodedBankTranId + "&refund_amount=" + refund_amount + "&refund_remarks=" + EncodedRefundRemarks + "&refe_id=" + EncodedReferId + "&store_id=" + EncodedStoreID + "&store_passwd=" + EncodedStorePassword + "&v=1&format=json";
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(_url);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream resStream = response.GetResponseStream();
+            using (StreamReader reader = new StreamReader(resStream))
+            {
+                json = reader.ReadToEnd();
+            }
+            if (json != "")
+            {
+                SSLCommerzValidatorResponse resp = new JavaScriptSerializer().Deserialize<SSLCommerzValidatorResponse>(json);
+
+                if (resp.APIConnect == "DONE" && resp.status == "success")
+                {
+                    //string APIConnect = !string.IsNullOrEmpty(Request.Form["APIConnect"]) ? Request.Form["APIConnect"].ToString() : null;
+                    //string bank_tran_id = !string.IsNullOrEmpty(Request.Form["bank_tran_id"]) ? Request.Form["bank_tran_id"].ToString() : null;
+                    //string trans_id = !string.IsNullOrEmpty(Request.Form["trans_id"]) ? Request.Form["trans_id"].ToString() : null;
+                    //string refund_ref_id = !string.IsNullOrEmpty(Request.Form["refund_ref_id"]) ? Request.Form["refund_ref_id"].ToString() : null;
+                    //string status = !string.IsNullOrEmpty(Request.Form["status"]) ? Request.Form["status"].ToString() : null;
+                    //string errorReason = !string.IsNullOrEmpty(Request.Form["errorReason"]) ? Request.Form["errorReason"].ToString() : null;
+                    return true;
+                }
+                else
+                {
+                    error = "This transaction is either expired or fails";
+                    return false;
+                }
+            }
+            else
+            {
+                error = "Unable to get Transaction JSON status";
+                return false;
+            }
+        }
+
 
         protected void SetSSLCzTestMode(bool mode)
         {
@@ -206,10 +246,11 @@ namespace HoldingTaxWebApp.PaymentGateway
 
         protected string SendPost(NameValueCollection PostData)
         {
-            Console.WriteLine(this.SSLCz_URL + this.Submit_URL);
-            string response = SSLCommerz.Post(this.SSLCz_URL + this.Submit_URL, PostData);
+            Console.WriteLine(SSLCz_URL + Submit_URL);
+            string response = Post(SSLCz_URL + Submit_URL, PostData);
             return response;
         }
+
         public static string Post(string uri, NameValueCollection PostData)
         {
             byte[] response = null;
@@ -219,6 +260,7 @@ namespace HoldingTaxWebApp.PaymentGateway
             }
             return System.Text.Encoding.UTF8.GetString(response);
         }
+
         /// <summary>
         /// SSLCommerz IPN Hash Verify method
         /// </summary>
@@ -374,6 +416,10 @@ namespace HoldingTaxWebApp.PaymentGateway
             public string product_name { get; set; }
             public string product_profile { get; set; }
             public string product_category { get; set; }
+
+            public string trans_id { get; set; }
+            public string refund_ref_id { get; set; }
+            public string errorReason { get; set; }
         }
     }
 }

@@ -62,10 +62,11 @@ namespace HoldingTaxWebApp.Controllers.Tax
                        SecondaryStatus  = item.SecondaryStatus,
                        RiskTitle  = item.RiskTitle,
                        CreateDate = item.CreateDate,
-                       StringCreateDate = $"{item.CreateDate:dd/MM/yyyy}",
-                       StringTranDate = $"{item.TranDate:dd/MM/yyyy}",
+                       StringCreateDate = item.StringCreateDate,
+                       StringTranDate = item.StringTranDate,
                        HolderName = item.HolderName,
-                       FinancialYear = item.FinancialYear
+                       FinancialYear = item.FinancialYear,
+                       VendorCharge = item.VendorCharge
 
                     };
                     PrimaryTransactionListVM.Add(PrimaryTransactionVM);
@@ -120,11 +121,11 @@ namespace HoldingTaxWebApp.Controllers.Tax
                     SecondaryStatus = item.SecondaryStatus,
                     RiskTitle = item.RiskTitle,
                     CreateDate = item.CreateDate,
-                    StringCreateDate = $"{item.CreateDate:dd/MM/yyyy}",
-                    StringTranDate = $"{item.TranDate:dd/MM/yyyy}",
+                    StringCreateDate = item.StringCreateDate,
+                    StringTranDate = item.StringTranDate,
                     HolderName = item.HolderName,
-                    FinancialYear = item.FinancialYear
-
+                    FinancialYear = item.FinancialYear,
+                    VendorCharge = item.VendorCharge
                 };
 
 

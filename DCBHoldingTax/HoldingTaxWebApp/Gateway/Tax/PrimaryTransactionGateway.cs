@@ -87,12 +87,13 @@ namespace HoldingTaxWebApp.Gateway.Tax
                                                     Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
                         HolderName = Data_Reader["HolderName"].ToString(),
                         FinancialYear = Data_Reader["FinancialYear"].ToString(),
-
+                        VendorCharge = Data_Reader["VendorCharge"] != DBNull.Value ?
+                                                    Convert.ToDecimal(Data_Reader["VendorCharge"]) : (Decimal?)null,
 
                     };
 
-                    PrimaryTransaction.StringTranDate = $"{PrimaryTransaction.TranDate:dd/MM/yyyy HH:mm:ss tt}";
-                    PrimaryTransaction.StringCreateDate = $"{PrimaryTransaction.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
+                    PrimaryTransaction.StringTranDate = $"{PrimaryTransaction.TranDate:dd/MM/yyyy hh:mm:ss tt}";
+                    PrimaryTransaction.StringCreateDate = $"{PrimaryTransaction.CreateDate:dd/MM/yyyy hh:mm:ss tt}";
 
                     PrimaryTransactionList.Add(PrimaryTransaction);
                 }
@@ -197,12 +198,13 @@ namespace HoldingTaxWebApp.Gateway.Tax
                                                 Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null;
                     PrimaryTransaction.HolderName = Data_Reader["HolderName"].ToString();
                     PrimaryTransaction.FinancialYear = Data_Reader["FinancialYear"].ToString();
-                   
-                   
+                    PrimaryTransaction.VendorCharge = Data_Reader["VendorCharge"] != DBNull.Value ?
+                                                     Convert.ToDecimal(Data_Reader["VendorCharge"]) : (Decimal?)null;
+
                 }
 
-                PrimaryTransaction.StringTranDate = $"{PrimaryTransaction.TranDate:dd/MM/yyyy HH:mm:ss tt}";
-                PrimaryTransaction.StringCreateDate = $"{PrimaryTransaction.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
+                PrimaryTransaction.StringTranDate = $"{PrimaryTransaction.TranDate:dd/MM/yyyy hh:mm:ss tt}";
+                PrimaryTransaction.StringCreateDate = $"{PrimaryTransaction.CreateDate:dd/MM/yyyy hh:mm:ss tt}";
 
                 Data_Reader.Close();
                 Sql_Connection.Close();

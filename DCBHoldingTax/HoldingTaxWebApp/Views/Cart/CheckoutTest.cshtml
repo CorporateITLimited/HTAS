@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "CheckoutConfirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                @*<h5 class="text-dark font-weight-bold my-1 mr-5">প্লট </h5>*@
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        @if (TempData["SM"] != null)
+        {
+            <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
+                <div class="alert-text text-center font-weight-bolder" style="color:green; font-size: 17px;"> @TempData["SM"]</div>
+                <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                    </button>
+                </div>
+            </div>
+        }
+        <div class="card card-custom">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        @ViewBag.SuccessInfo
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

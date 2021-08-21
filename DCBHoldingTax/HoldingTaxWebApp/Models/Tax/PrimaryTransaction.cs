@@ -24,7 +24,7 @@ namespace HoldingTaxWebApp.Models.Tax
         [Display(Name = "টাকার পরিমাণ")]
 
         public decimal? Amount { get; set; }
-        [Display(Name = "সঞ্চয়ের পরিমাণ")]
+        [Display(Name = "জমাকৃত টাকার পরিমাণ")]
 
         public decimal? StoreAmount { get; set; }
         [Display(Name = "কার্ড এর ধরন")]
@@ -93,11 +93,14 @@ namespace HoldingTaxWebApp.Models.Tax
         [Display(Name = "লেনদেনের তারিখ")]
 
         public string StringCreateDate { get; set; }
-        [Display(Name = "করদাতা")]
+        [Display(Name = "গৃহকরদাতা")]
 
         public string HolderName { get; set; }
         [Display(Name = "আর্থিক সন")]
 
         public string FinancialYear { get; set; }
+
+        [Display(Name = "ভেন্ডর চার্জ")]
+        public decimal? VendorCharge { get; set; }
     }
 }

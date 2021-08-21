@@ -188,17 +188,17 @@ namespace HoldingTaxWebApp.Controllers
 
                 var logCreId_Usertpye = !string.IsNullOrEmpty(Request.Form["value_b"]) ? Request.Form["value_b"].ToString() : null;
                 var username_holderid = !string.IsNullOrEmpty(Request.Form["value_c"]) ? Request.Form["value_c"].ToString() : null;
-                if (logCreId_Usertpye != null)
-                {
-                    Session[CommonConstantHelper.LogInCredentialId] = Convert.ToInt32(logCreId_Usertpye.Substring(0, logCreId_Usertpye.IndexOf('/')));
-                    Session[CommonConstantHelper.UserTypeId] = Convert.ToInt32(logCreId_Usertpye.Substring(logCreId_Usertpye.IndexOf('/') + 1));
-                }
+                //if (logCreId_Usertpye != null)
+                //{
+                //    Session[CommonConstantHelper.LogInCredentialId] = Convert.ToInt32(logCreId_Usertpye.Substring(0, logCreId_Usertpye.IndexOf('/')));
+                //    Session[CommonConstantHelper.UserTypeId] = Convert.ToInt32(logCreId_Usertpye.Substring(logCreId_Usertpye.IndexOf('/') + 1));
+                //}
 
-                if (username_holderid != null)
-                {
-                    Session[CommonConstantHelper.UserName] = Convert.ToString(username_holderid.Substring(0, username_holderid.IndexOf('/')));
-                    Session[CommonConstantHelper.HolderId] = Convert.ToInt32(username_holderid.Substring(username_holderid.IndexOf('/') + 1));
-                }
+                //if (username_holderid != null)
+                //{
+                //    Session[CommonConstantHelper.UserName] = Convert.ToString(username_holderid.Substring(0, username_holderid.IndexOf('/')));
+                //    Session[CommonConstantHelper.HolderId] = Convert.ToInt32(username_holderid.Substring(username_holderid.IndexOf('/') + 1));
+                //}
 
                 PrimaryTransaction primaryTransaction = new PrimaryTransaction();
                 primaryTransaction.Status = !string.IsNullOrEmpty(Request.Form["status"]) ? Request.Form["status"].ToString() : null;
@@ -321,8 +321,42 @@ namespace HoldingTaxWebApp.Controllers
 
         public ActionResult CheckoutFail()
         {
-            ViewBag.FailInfo = "There some error while processing your payment. Please try again.";
-            return View();
+            string trnxCode = Request.Form["tran_id"];
+            var trnxData = _initialTrnxManager.GetTranscationByTransactionCode(trnxCode);
+            var trnxStatus = Request.Form["status"];
+            InitialTransaction transactionPayment = new InitialTransaction()
+            {
+                HoldingTaxId = 0,
+                IPAddressDetails = null,
+                LastUpdated = DateTime.Now,
+                LastUpdatedBy = null, //Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                ProductName = null,
+                TransactionAmount = null,
+                TransactionCode = null,
+                TransactionCurrency = null,
+                TransactionDate = null,
+                TransactionId = trnxData.TransactionId,
+                ApiDirectPaymentURL = null,
+                ApiDirectPaymentURLBank = null,
+                ApiDirectPaymentURLCard = null,
+                ApiFailedReason = null,
+                ApiGatewayPageURL = null,
+                ApiRedirectGatewayURL = null,
+                ApiRedirectGatewayURLFailed = null,
+                ApiSessionKey = null,
+                ApiStatus = trnxStatus
+            };
+
+            string status = _initialTrnxManager.UpdateTranscation(transactionPayment);
+            if (status != CommonConstantHelper.Success)
+            {
+                return View();
+            }
+            else
+            {
+                ViewBag.FailInfo = "There some error while processing your payment. Please try again.";
+                return View();
+            }
         }
 
         public ActionResult CheckoutCancel()
@@ -363,6 +397,42 @@ namespace HoldingTaxWebApp.Controllers
             {
                 TempData["SM"] = "আপনার পেমেন্ট বাতিল করা হয়েছে";
                 ViewBag.CancelInfo = "Your payment has been cancel";
+                return View();
+            }
+        }
+
+        public ActionResult CheckoutTest()
+        {
+            try
+            {
+                //if (!(!string.IsNullOrEmpty(Request.Form["status"]) && Request.Form["status"] == "success"))
+                //{
+                //    ViewBag.SuccessInfo = "There some error while processing your payment. Please try again.";
+                //    return View();
+                //}
+                string bankTrnxId = "210819104248mxlki7iQUe83mXn";
+                decimal refundAmount = 100;
+                string refundRemarks = "On an test refund";
+                string referId = "#" + PasswordHelper.TransactionID(10);
+                var storeId = "citl61129439348f4";
+                var storePassword = "citl61129439348f4@ssl";
+
+                SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, true);
+                var resonse = sslcz.RefundInitiate(bankTrnxId, refundAmount, refundRemarks, referId); /// request changes
+
+                string APIConnect = !string.IsNullOrEmpty(Request.Form["APIConnect"]) ? Request.Form["APIConnect"].ToString() : null;
+                string bank_tran_id = !string.IsNullOrEmpty(Request.Form["bank_tran_id"]) ? Request.Form["bank_tran_id"].ToString() : null;
+                string trans_id = !string.IsNullOrEmpty(Request.Form["trans_id"]) ? Request.Form["trans_id"].ToString() : null;
+                string refund_ref_id = !string.IsNullOrEmpty(Request.Form["refund_ref_id"]) ? Request.Form["refund_ref_id"].ToString() : null;
+                string status = !string.IsNullOrEmpty(Request.Form["status"]) ? Request.Form["status"].ToString() : null;
+                string errorReason = !string.IsNullOrEmpty(Request.Form["errorReason"]) ? Request.Form["errorReason"].ToString() : null;
+
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["SM"] = ex.Message.ToString();
                 return View();
             }
         }
