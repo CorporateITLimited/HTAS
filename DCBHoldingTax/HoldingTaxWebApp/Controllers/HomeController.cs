@@ -639,6 +639,50 @@ namespace COMSApp.Controllers
             //}
         }
 
+        #region Login History Report
 
+        public ActionResult LoginHistory()
+        {
+            return View();
+        }
+
+
+
+        public ActionResult rptLoginHistory(string userName, int? userType, string fromDate, string toDate)
+        {
+            Session["userName"] = userName;
+            Session["userType"] = userType;
+            if (userType == 0)
+            {
+                Session["userType"] = null;
+            }
+            if (userName == null || userName == "")
+            {
+                Session["userName"] = null;
+            }
+            
+
+           
+            if (fromDate == null || fromDate == "")
+            {
+                Session["fromDate"] = null;
+            }
+            else
+            {
+                Session["fromDate"] = DateTime.ParseExact(fromDate, "dd/MM/yyyy", null);
+            }
+            if (toDate == null || toDate == "")
+            {
+                Session["toDate"] = null;
+            }
+            else
+            {
+                Session["toDate"] = DateTime.ParseExact(toDate, "dd/MM/yyyy", null);
+            }
+
+     
+            return View();
+        }
+        #endregion
     }
 }
