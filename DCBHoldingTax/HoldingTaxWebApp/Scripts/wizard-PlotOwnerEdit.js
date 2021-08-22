@@ -111,7 +111,7 @@ var KTWizard4 = function () {
                         DesignApprovallist.push(DesignApproval);
                     });
                  
-
+                    debugger;
                     if (!isAllValid) {
                         Swal.fire({
                             text: "দয়া করে সকল প্রয়োজনীয় তথ্য দিন!",

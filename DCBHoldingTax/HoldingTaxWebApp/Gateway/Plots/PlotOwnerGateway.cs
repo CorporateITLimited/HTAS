@@ -1045,7 +1045,7 @@ namespace HoldingTaxWebApp.Gateway.Plots
                 Sql_Command.Parameters.Add("@ApprovalLetterNo", SqlDbType.NVarChar).Value = model.ApprovalLetterNo;
                 Sql_Command.Parameters.Add("@FlorNumber", SqlDbType.Int).Value = model.FlorNumber;
                 Sql_Command.Parameters.Add("@GroundFlorArea", SqlDbType.Decimal).Value = model.GroundFlorArea;
-                Sql_Command.Parameters.Add("@OtherFlorArea", SqlDbType.Int).Value = model.OtherFlorArea;
+                Sql_Command.Parameters.Add("@OtherFlorArea", SqlDbType.Decimal).Value = model.OtherFlorArea;
                 Sql_Command.Parameters.Add("@ApprovalNo", SqlDbType.Int).Value = model.ApprovalNo;
 
 

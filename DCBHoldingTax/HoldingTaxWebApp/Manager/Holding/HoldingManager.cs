@@ -38,6 +38,10 @@ namespace HoldingTaxWebApp.Manager.Holding
             return _holdingGateway.InsertHolder(model);
         }
 
+        public bool IsHolderNoExist(string HolderNo, int HolderId)
+        {
+            return _holdingGateway.IsHolderNoExist(HolderNo, HolderId);
+        }
         public int UpdateHolder(Holder model)
         {
             return _holdingGateway.UpdateHolder(model);

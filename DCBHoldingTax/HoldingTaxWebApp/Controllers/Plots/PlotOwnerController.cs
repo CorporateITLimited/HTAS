@@ -136,6 +136,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         GroundFlorArea = item.GroundFlorArea,
                         MEO_NCCDate = item.MEO_NCCDate,
                         Reference = item.Reference,
+                        OtherFlorArea = item.OtherFlorArea
                     };
                     DesignApprovalVM.Add(Approval);
                 }
@@ -304,6 +305,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         GroundFlorArea = item.GroundFlorArea,
                         MEO_NCCDate = item.MEO_NCCDate,
                         Reference = item.Reference,
+                        OtherFlorArea = item.OtherFlorArea
 
                     };
                     DesignApprovalVM.Add(Approval);
@@ -1422,6 +1424,27 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
         #endregion
 
+
+        #region Plot Owner Details Report
+        public ActionResult PlotOwnerDetailsReport()
+        {
+            ViewBag.PlotId = new SelectList(_PlotManager.GetAllPlot(), "PlotId", "PlotNo");
+            return View();
+        }
+
+
+
+        public ActionResult rptPlotOwnerDetails(int id)
+        {
+            Session["PlotId_"] = id;
+            if (id == 0)
+            {
+                Session["PlotId_"] = null;
+            }
+            return View();
+        }
+
+        #endregion
 
 
     }

@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HoldingTaxWebApp</RootNamespace>
     <AssemblyName>HoldingTaxWebApp</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -25,6 +25,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>4.2</TypeScriptToolsVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,14 +56,13 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -82,13 +82,13 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Web.Infrastructure">
@@ -2425,9 +2425,11 @@
     <Content Include="Scripts\printThis.js" />
     <Content Include="Scripts\wizard-holding-transfer.js" />
     <Content Include="Scripts\wizard-OldPlotOwnerCreate.js" />
+    <Content Include="WebForms\Administrative\LoginHistory.aspx" />
     <Content Include="WebForms\Holding\HolderDetails.aspx" />
     <Content Include="WebForms\Holding\HolderList.aspx" />
     <Content Include="WebForms\Plots\PlotList.aspx" />
+    <Content Include="WebForms\Plots\PlotOwnerDetails.aspx" />
     <Content Include="WebForms\Plots\PlotOwnerList.aspx" />
     <Content Include="WebForms\Tax\GetHoldingTax.aspx" />
     <Content Include="WebForms\Tax\leterThree.aspx" />
@@ -4453,7 +4455,9 @@
     <Content Include="Theme\dist\layout\subheader\toolbar.html" />
     <Content Include="Theme\dist\layout\themes\aside-light.html" />
     <Content Include="Theme\dist\layout\themes\header-dark.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppReports\Holding\rptHolderDetails.cs">
@@ -4467,6 +4471,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>rptHolderList.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\Administrative\rptLoginHistory.cs">
+      <DependentUpon>rptLoginHistory.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="AppReports\Plots\rptPlotOwnerDetails.cs">
       <DependentUpon>rptPlotOwnerDetails.rpt</DependentUpon>
@@ -4484,6 +4494,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptPlotOwnerList.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\Plots\subDesignApproval.cs">
+      <DependentUpon>subDesignApproval.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="AppReports\Plots\subOtherOwner.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>subOtherOwner.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="AppReports\Tax\rptletterOne.cs">
@@ -4575,6 +4597,7 @@
     <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
     <Compile Include="Controllers\Tax\HoldingTaxController.cs" />
+    <Compile Include="Controllers\Tax\PrimaryTransactionController.cs" />
     <Compile Include="Controllers\Tax\TaxReportsController.cs" />
     <Compile Include="Controllers\Users\DesignationController.cs" />
     <Compile Include="Controllers\Users\EmployeeController.cs" />
@@ -4611,7 +4634,8 @@
     <Compile Include="Gateway\Plots\OldPlotOwnerGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
-    <Compile Include="Gateway\Tax\TransactionGateway.cs" />
+    <Compile Include="Gateway\Tax\PrimaryTransactionGateway.cs" />
+    <Compile Include="Gateway\Tax\InitialTransactionGateway.cs" />
     <Compile Include="Gateway\Tax\HoldingTaxGateway.cs" />
     <Compile Include="Gateway\Tax\OwnFlatTaxGateway.cs" />
     <Compile Include="Gateway\Tax\RentedFlatTaxGateway.cs" />
@@ -4649,7 +4673,8 @@
     <Compile Include="Manager\Plots\OldPlotOwnerManager.cs" />
     <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
-    <Compile Include="Manager\Tax\TranscationManager.cs" />
+    <Compile Include="Manager\Tax\PrimaryTransactionManager.cs" />
+    <Compile Include="Manager\Tax\InitialTranscationManager.cs" />
     <Compile Include="Manager\Tax\HoldingTaxManager.cs" />
     <Compile Include="Manager\Users\DesignationManager.cs" />
     <Compile Include="Manager\Users\EmployeeManager.cs" />
@@ -4686,8 +4711,9 @@
     <Compile Include="Models\Tax\HoldingTax.cs" />
     <Compile Include="Models\Tax\OwnFlatTax.cs" />
     <Compile Include="Models\Tax\OwnTaxRate.cs" />
+    <Compile Include="Models\Tax\PrimaryTransaction.cs" />
     <Compile Include="Models\Tax\RentedFlatTax.cs" />
-    <Compile Include="Models\Tax\TransactionPayment.cs" />
+    <Compile Include="Models\Tax\InitialTransaction.cs" />
     <Compile Include="Models\Users\HolderUser.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
@@ -4708,6 +4734,13 @@
     <Compile Include="ViewModels\Tax\InvoiceVM.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
     <Compile Include="ViewModels\UserPermission.cs" />
+    <Compile Include="WebForms\Administrative\LoginHistory.aspx.cs">
+      <DependentUpon>LoginHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Administrative\LoginHistory.aspx.designer.cs">
+      <DependentUpon>LoginHistory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Holding\HolderDetails.aspx.cs">
       <DependentUpon>HolderDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4728,6 +4761,13 @@
     </Compile>
     <Compile Include="WebForms\Plots\PlotList.aspx.designer.cs">
       <DependentUpon>PlotList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Plots\PlotOwnerDetails.aspx.cs">
+      <DependentUpon>PlotOwnerDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Plots\PlotOwnerDetails.aspx.designer.cs">
+      <DependentUpon>PlotOwnerDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Plots\PlotOwnerList.aspx.cs">
       <DependentUpon>PlotOwnerList.aspx</DependentUpon>
@@ -4957,6 +4997,13 @@
     <Content Include="Views\Holding\rptHolderList.cshtml" />
     <Content Include="Views\PlotOwner\PlotOwnerReport.cshtml" />
     <Content Include="Views\PlotOwner\rptPlotOwnerList.cshtml" />
+    <Content Include="Views\PlotOwner\PlotOwnerDetailsReport.cshtml" />
+    <Content Include="Views\PlotOwner\rptPlotOwnerDetails.cshtml" />
+    <Content Include="Views\PrimaryTransaction\Index.cshtml" />
+    <Content Include="Views\PrimaryTransaction\Details.cshtml" />
+    <Content Include="Views\Cart\CheckoutTest.cshtml" />
+    <Content Include="Views\Home\LoginHistory.cshtml" />
+    <Content Include="Views\Home\rptLoginHistory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4988,6 +5035,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptHolderList.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Administrative\rptLoginHistory.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptLoginHistory.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Plots\rptPlotOwnerDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptPlotOwnerDetails.cs</LastGenOutput>
@@ -4999,6 +5050,14 @@
     <EmbeddedResource Include="AppReports\Plots\rptPlotOwnerList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptPlotOwnerList.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Plots\subDesignApproval.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>subDesignApproval.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Plots\subOtherOwner.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>subOtherOwner.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Tax\rptletterOne.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -11,13 +11,13 @@ using System.Web;
 
 namespace HoldingTaxWebApp.Gateway.Tax
 {
-    public class TransactionGateway : DefaultGateway
+    public class InitialTransactionGateway : DefaultGateway
     {
-        public List<TransactionPayment> GetAllTranscation()
+        public List<InitialTransaction> GetAllTranscation()
         {
             try
             {
-                Sql_Query = "[Tax].[spTransaction]";
+                Sql_Query = "[Tax].[spInitialTransactionMaster]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -41,11 +41,11 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 Sql_Connection.Open();
                 Data_Reader = Sql_Command.ExecuteReader();
 
-                List<TransactionPayment> vm = new List<TransactionPayment>();
+                List<InitialTransaction> vm = new List<InitialTransaction>();
 
                 while (Data_Reader.Read())
                 {
-                    TransactionPayment model = new TransactionPayment()
+                    InitialTransaction model = new InitialTransaction()
                     {
                         HoldingTaxId = Convert.ToInt32(Data_Reader["HoldingTaxId"]),
                         //  FinancialYear = Convert.ToString(Data_Reader["FinancialYear"]),
@@ -103,11 +103,11 @@ namespace HoldingTaxWebApp.Gateway.Tax
 
         }
 
-        public TransactionPayment GetTranscationById(int id)
+        public InitialTransaction GetTranscationById(long id)
         {
             try
             {
-                Sql_Query = "[Tax].[spTransaction]";
+                Sql_Query = "[Tax].[spInitialTransactionMaster]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -132,7 +132,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 Sql_Connection.Open();
                 Data_Reader = Sql_Command.ExecuteReader();
 
-                TransactionPayment vm = new TransactionPayment();
+                InitialTransaction vm = new InitialTransaction();
 
                 while (Data_Reader.Read())
                 {
@@ -189,11 +189,11 @@ namespace HoldingTaxWebApp.Gateway.Tax
 
         }
 
-        public TransactionPayment GetTranscationByTransactionCode(string TransactionCode)
+        public InitialTransaction GetTranscationByTransactionCode(string TransactionCode)
         {
             try
             {
-                Sql_Query = "[Tax].[spTransaction]";
+                Sql_Query = "[Tax].[spInitialTransactionMaster]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -218,7 +218,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 Sql_Connection.Open();
                 Data_Reader = Sql_Command.ExecuteReader();
 
-                TransactionPayment vm = new TransactionPayment();
+                InitialTransaction vm = new InitialTransaction();
 
                 while (Data_Reader.Read())
                 {
@@ -275,11 +275,11 @@ namespace HoldingTaxWebApp.Gateway.Tax
 
         }
 
-        public int InsertTranscation(TransactionPayment trnx)
+        public int InsertTranscation(InitialTransaction trnx)
         {
             try
             {
-                Sql_Query = "[Tax].[spTransaction]";
+                Sql_Query = "[Tax].[spInitialTransactionMaster]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -350,7 +350,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
         {
             try
             {
-                Sql_Query = "SELECT [TransactionCode] FROM [Tax].[tTransaction] WHERE [TransactionCode]=@TransactionCode";
+                Sql_Query = "SELECT [TransactionCode] FROM [Tax].[tInitialTransaction] WHERE [TransactionCode]=@TransactionCode AND [ApiStatus]='SUCCESS'";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -388,11 +388,11 @@ namespace HoldingTaxWebApp.Gateway.Tax
         }
 
 
-        public int UpdateTranscation(TransactionPayment trnx)
+        public int UpdateTranscation(InitialTransaction trnx)
         {
             try
             {
-                Sql_Query = "[Tax].[spTransaction]";
+                Sql_Query = "[Tax].[spInitialTransactionMaster]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,

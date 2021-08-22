@@ -197,6 +197,11 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     ModelState.AddModelError("", "ইতিমধ্যে বিজ্ঞপ্তিটি প্রস্তুত করা হয়েছে");
                     return View(notice);
                 }
+                else if (sendNotice == "404")
+                {
+                    ModelState.AddModelError("", "নির্বাচিত বছরের জন্য এখনো গৃহকৰ প্রস্তুত করা হয়নি");
+                    return View(notice);
+                }
                 else if (sendNotice == CommonConstantHelper.Error)
                 {
                     ModelState.AddModelError("", "Error");

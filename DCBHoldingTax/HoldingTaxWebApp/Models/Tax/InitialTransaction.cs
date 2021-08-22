@@ -5,7 +5,7 @@ using System.Web;
 
 namespace HoldingTaxWebApp.Models.Tax
 {
-    public class TransactionPayment
+    public class InitialTransaction
     {
         public long TransactionId { get; set; }
         public string TransactionCode { get; set; }

@@ -10,31 +10,31 @@ using HoldingTaxWebApp.ViewModels.Tax;
 
 namespace HoldingTaxWebApp.Manager.Tax
 {
-    public class TranscationManager
+    public class InitialTranscationManager
     {
 
-        private readonly TransactionGateway _transactionGateway;
-        public TranscationManager()
+        private readonly InitialTransactionGateway _transactionGateway;
+        public InitialTranscationManager()
         {
-            _transactionGateway = new TransactionGateway();
+            _transactionGateway = new InitialTransactionGateway();
         }
 
-        public List<TransactionPayment> GetAllTranscation()
+        public List<InitialTransaction> GetAllTranscation()
         {
             return _transactionGateway.GetAllTranscation();
         }
 
-        public TransactionPayment GetTranscationById(int id)
+        public InitialTransaction GetTranscationById(long id)
         {
             return _transactionGateway.GetTranscationById(id);
         }
 
-        public TransactionPayment GetTranscationByTransactionCode(string TransactionCode)
+        public InitialTransaction GetTranscationByTransactionCode(string TransactionCode)
         {
             return _transactionGateway.GetTranscationByTransactionCode(TransactionCode);
         }
 
-        public int InsertTranscation(TransactionPayment trnx)
+        public int InsertTranscation(InitialTransaction trnx)
         {
             return _transactionGateway.InsertTranscation(trnx);
         }
@@ -44,7 +44,7 @@ namespace HoldingTaxWebApp.Manager.Tax
             return _transactionGateway.IsTransactionCodeExist(TransactionCode);
         }
 
-        public string UpdateTranscation(TransactionPayment trnx)
+        public string UpdateTranscation(InitialTransaction trnx)
         {
             int result = _transactionGateway.UpdateTranscation(trnx);
 

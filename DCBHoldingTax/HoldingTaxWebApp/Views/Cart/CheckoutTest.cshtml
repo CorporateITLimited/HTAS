@@ -43,13 +43,5 @@
     </div>
 </div>
 
-@section Scripts{
-    <script>
-        jQuery(document).ready(function () {
-            if ( @Convert.ToInt32(Session["_holdingTaxId"]) > 0) {
-                setTimeout(function () { window.location.href = "/HoldingTax/Invoice/@Convert.ToInt32(Session["_holdingTaxId"])"; }, 2000);
-            }
-        });
-    </script>
-}
+
 

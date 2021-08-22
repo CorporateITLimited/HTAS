@@ -853,7 +853,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 LeasePeriod = holderVMOtherData.LeasePeriod,
                 StringLeaseExpiryDate = holderVMOtherData.StringLeaseExpiryDate,
                 PlotOwnerName = holderVMOtherData.PlotOwnerName,
-                IsHolderAnOwner = holder.IsHolderAnOwner
+                IsHolderAnOwner = holder.IsHolderAnOwner,
+                HolderNo = holder.HolderNo,
             };
 
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", hvm.AreaId);
@@ -908,6 +909,11 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
+                if (string.IsNullOrEmpty(hvm.HolderNo))
+                {
+                    status = "গৃহকরদাতার আইডি নম্বরটি পাওয়া যাই নি";
+                    return new JsonResult { Data = new { status } };
+                }
 
                 if (hvm.HolderFlatList.Count == 0 || hvm.HolderFlatList == null || !hvm.HolderFlatList.Any())
                 {
@@ -1513,6 +1519,17 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
         }
 
+        public JsonResult GetUniqueHolderNo(string HolderNo, int HolderId)
+        {
+            if (string.IsNullOrEmpty(HolderNo.Trim()))
+            {
+                return new JsonResult { Data = false };
+            }
+            else
+            {
+                return new JsonResult { Data = _holdingManager.IsHolderNoExist(HolderNo.Trim(), HolderId) };
+            }
+        }
 
 
         [HttpGet]
@@ -2256,14 +2273,14 @@ namespace HoldingTaxWebApp.Controllers.Holding
             ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
             return View();
         }
-       
 
-        public ActionResult rptHolderList(int? aid , int? pid)
+
+        public ActionResult rptHolderList(int? aid, int? pid)
         {
-           
+
             Session["AreaId_"] = aid;
             Session["PlotId_"] = pid;
-            if(aid == 0)
+            if (aid == 0)
             {
                 Session["AreaId_"] = null;
             }
