@@ -53,8 +53,7 @@
                                 <h4 class="font-weight-bolder text-primary font-size-h2 font-size-h1-lg">লগইন করুন</h4>
                             </div>
 
-                            @Html.AntiForgeryToken()
-
+                            @Html.AntiForgeryToken();
                             <h5 style="color:red !important"> @Html.ValidationSummary(true, "", new { @class = "text-danger" })</h5>
                             if (TempData["PM"] != null)
                             {
