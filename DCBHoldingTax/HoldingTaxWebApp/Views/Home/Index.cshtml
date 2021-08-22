@@ -156,33 +156,48 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <ul class="h5">
-                            <li>
-                                @Html.ActionLink("সম্ভাব্য আদায়যোগ্য গৃহকর", "Index", "TaxReports", new { rptId = 1 }, null)
+                        <ul class="navi navi-border navi-hover navi-active">
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "1" })">
+                                    <span class="navi-icon"><i class="flaticon2-analytics"></i></span>
+                                    <span class="navi-text">সম্ভাব্য আদায়যোগ্য গৃহকর</span>
+                                </a>
                             </li>
-                            <li>
-                                @Html.ActionLink("আদায়কৃত গৃহকর", "Index", "TaxReports", new { rptId = 2 }, null)
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "2" })">
+                                    <span class="navi-icon"><i class="flaticon2-analytics"></i></span>
+                                    <span class="navi-text">আদায়কৃত গৃহকর</span>
+                                </a>
                             </li>
-                            <li>
-                                @Html.ActionLink("অনাদায় কৃত গৃহকর", "Index", "TaxReports", new { rptId = 3 }, null)
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "3" })">
+                                    <span class="navi-icon"><i class="flaticon2-analytics"></i></span>
+                                    <span class="navi-text">অনাদায় কৃত গৃহকর</span>
+                                </a>
                             </li>
-                            <li>
-                                @Html.ActionLink("গৃহকর প্রদানকারী করদাতাদের তালিকা", "Index", "TaxReports", new { rptId = 4 }, null)
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "4" })">
+                                    <span class="navi-icon"><i class="flaticon2-analytics"></i></span>
+                                    <span class="navi-text">গৃহকর প্রদানকারী করদাতাদের তালিকা</span>
+                                </a>
                             </li>
-                            <li>
-                                @Html.ActionLink("গৃহকর প্রদান না করা করদাতাদের তালিকা", "Index", "TaxReports", new { rptId = 5 }, null)
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "5" })">
+                                    <span class="navi-icon"><i class="flaticon2-analytics"></i></span>
+                                    <span class="navi-text">গৃহকর প্রদান না করা করদাতাদের তালিকা</span>
+                                </a>
                             </li>
                         </ul>
-
                     </div>
-                    <div class="card-footer">
+
+                    @*<div class="card-footer">
                         <div class="text-center">
 
                         </div>
                         <div>
                             <span id="details_error"></span>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="col-lg-8">
@@ -234,6 +249,7 @@
                 </div>
                 <!--end::Advance Table Widget 2-->
             </div>
+
         </div>
 
     </div>
