@@ -4587,7 +4587,6 @@
     <Compile Include="Controllers\Constant\OwnTaxRateController.cs" />
     <Compile Include="Controllers\DBO\DOHSAreaController.cs" />
     <Compile Include="Controllers\DBO\IssueController.cs" />
-    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\Holding\HolderClientController.cs" />
     <Compile Include="Controllers\Holding\HolderFlatHistoryController.cs" />
     <Compile Include="Controllers\Holding\HoldingController.cs" />
@@ -5005,7 +5004,6 @@
     <Content Include="Views\Cart\CheckoutTest.cshtml" />
     <Content Include="Views\Home\LoginHistory.cshtml" />
     <Content Include="Views\Home\rptLoginHistory.cshtml" />
-    <Content Include="Views\Error\NotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
