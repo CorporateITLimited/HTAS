@@ -211,12 +211,12 @@ namespace HoldingTaxWebApp.PaymentGateway
 
                 if (resp.APIConnect == "DONE" && resp.status == "success")
                 {
-                    //string APIConnect = !string.IsNullOrEmpty(Request.Form["APIConnect"]) ? Request.Form["APIConnect"].ToString() : null;
-                    //string bank_tran_id = !string.IsNullOrEmpty(Request.Form["bank_tran_id"]) ? Request.Form["bank_tran_id"].ToString() : null;
-                    //string trans_id = !string.IsNullOrEmpty(Request.Form["trans_id"]) ? Request.Form["trans_id"].ToString() : null;
-                    //string refund_ref_id = !string.IsNullOrEmpty(Request.Form["refund_ref_id"]) ? Request.Form["refund_ref_id"].ToString() : null;
-                    //string status = !string.IsNullOrEmpty(Request.Form["status"]) ? Request.Form["status"].ToString() : null;
-                    //string errorReason = !string.IsNullOrEmpty(Request.Form["errorReason"]) ? Request.Form["errorReason"].ToString() : null;
+                    string APIConnect = resp.APIConnect;
+                    string bank_tran_id_ = resp.bank_tran_id;
+                    string trans_id = resp.trans_id;
+                    string refund_ref_id = resp.refund_ref_id;
+                    string status = resp.status;
+                    string errorReason = resp.errorReason;
                     return true;
                 }
                 else
