@@ -136,3 +136,14 @@ dd {
     margin-bottom: 1em;
     /*margin-left: 1em;*/
 }
+
+
+
+.divflex {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 41.6666666667%;
+    flex: 0 0 41.6666666667%;
+    max-width: 41.6666666667%;
+}
+
+    

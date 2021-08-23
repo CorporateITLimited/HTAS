@@ -46,7 +46,7 @@
                     <div class="card-body" id="print_div">
                         <div class="row offset-1">
                             <legend> এলাকার তথ্য </legend>
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.AreaName)
@@ -71,7 +71,7 @@
                                 </div>
 
                             </div>
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.RoadNo)
@@ -101,7 +101,7 @@
                         <div class="row offset-1">
                             <legend> ব্যাক্তিগত তথ্য</legend>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.HolderName)
@@ -188,7 +188,7 @@
 
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -337,7 +337,7 @@
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
                             <legend>   জমি ও ভবন সংক্রান্ত তথ্য</legend>
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.SourceName)
@@ -388,7 +388,7 @@
 
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
                                 @if (Model.OwnerType == 3)
                                 {
@@ -526,7 +526,7 @@
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
                             <legend>    বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য</legend>
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.PlotOwnerName)
@@ -613,7 +613,7 @@
 
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
 
                                 <div class="form-group form-group-xs row">
@@ -725,7 +725,8 @@
             $("#print_this").on('click', function (e) {
                 e.preventDefault();
                 $("#print_div").printThis({
-                    header: $('#print_header')
+                    header: $('#print_header'),
+                    importStyle: true
                 });
             });
         });

@@ -8,13 +8,6 @@
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
 
-    <style>
-        .canthead {
-            text-align: center;
-            justify-content: center !important;
-        }
-    </style>
-
 }
 
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
@@ -56,7 +49,7 @@
                     <div class="card-body" id="print_div">
                         <div class="row offset-1">
                             <legend>পুরাতন ফ্ল্যাট মালিকানা ও হস্তান্তর তথ্য</legend>
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -114,7 +107,7 @@
 
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -176,8 +169,8 @@
                         <!--begin::Modal-->
                         <div id="kt_datatable_modal_2" class="modal fade" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-xl">
-                                <div class="modal-content" style="min-height: 590px;" >
-                                    <div class="modal-header py-5">
+                                <div class="modal-content" style="min-height: 590px;">
+                                    <div class="modal-header py-5" id="print_Oldheader">
                                         <h5 class="modal-title">
                                             পুরাতন প্লট/ফ্ল্যাট/বাড়ী মালিকের বিস্তারিত তথ্য
                                             <span class="d-block text-muted font-size-sm"></span>
@@ -186,12 +179,12 @@
                                             <i aria-hidden="true" class="ki ki-close"></i>
                                         </button>
                                     </div>
-                                    <div class="modal-body" id="print_OldHolder">
+                                    <div class="modal-body">
                                         @*@Html.Partial("_PartialOldHolderDetails")*@
-                                        <div class="row offset-1">
+                                        <div class="row offset-1" id="print_OldHolder">
                                             <legend> ব্যাক্তিগত তথ্য</legend>
 
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-5 divflex">
 
                                                 <div class="form-group form-group-xs row">
                                                     <label class="col-5 col-form-label">
@@ -284,7 +277,7 @@
 
                                             </div>
 
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-5 divflex">
 
 
 
@@ -369,19 +362,19 @@
 
                                             </div>
                                         </div>
-
+                                        <div align="center">
+                                            <button id="print_Old" class="btn btn-light-primary btn-md"><i class="fas fa-list"></i>প্রিন্ট করুন</button>
+                                        </div>
                                         <!--end: Datatable-->
                                     </div>
 
-                                    @*<div>
-                                        <button id="print_Old" class="btn btn-light-primary btn-md"><i class="fas fa-list"></i>প্রিন্ট করুন</button>
-                                    </div>*@
+                                   
 
 
                                 </div>
 
 
-                            
+
 
                             </div>
                         </div>
@@ -390,7 +383,7 @@
                         <div id="kt_datatable_modal_3" class="modal fade" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-xl">
                                 <div class="modal-content" style="min-height: 590px;">
-                                    <div class="modal-header py-5">
+                                    <div class="modal-header py-5" id="print_Newheader">
                                         <h5 class="modal-title">
                                             বর্তমান প্লট/ফ্ল্যাট/বাড়ী মালিকের বিস্তারিত তথ্য
                                             <span class="d-block text-muted font-size-sm"></span>
@@ -401,10 +394,10 @@
                                     </div>
                                     <div class="modal-body">
                                         @*@Html.Partial("_PartialOldHolderDetails")*@
-                                        <div class="row offset-1">
+                                        <div class="row offset-1" id="print_NewHolder">
                                             <legend> ব্যাক্তিগত তথ্য</legend>
 
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-5 divflex">
 
                                                 <div class="form-group form-group-xs row">
                                                     <label class="col-5 col-form-label">
@@ -497,7 +490,7 @@
 
                                             </div>
 
-                                            <div class="col-lg-5">
+                                            <div class="col-lg-5 divflex">
 
 
 
@@ -581,6 +574,11 @@
 
 
                                             </div>
+
+
+                                        </div>
+                                        <div align="center">
+                                            <button id="print_New" class="btn btn-light-primary btn-md"><i class="fas fa-list"></i>প্রিন্ট করুন</button>
                                         </div>
                                         <!--end: Datatable-->
                                     </div>
@@ -652,8 +650,8 @@
                            $("#PresentAdd").text(data.PresentAdd);
                            $("#PermanentAdd").text(data.PermanentAdd);
                            $("#ContactAdd").text(data.ContactAdd);
-                         
-                       
+
+
                     },
                     error: function () {
                         alert('error count');
@@ -691,8 +689,8 @@
                            $("#nPresentAdd").text(data.PresentAdd);
                            $("#nPermanentAdd").text(data.PermanentAdd);
                            $("#nContactAdd").text(data.ContactAdd);
-                         
-                       
+
+
                     },
                     error: function () {
                         alert('error count');
@@ -711,17 +709,24 @@
 
 
 
-            //$("#print_Old").on('click', function (e) {
-            //    e.preventDefault();
-            //    $("#print_OldHolder").printThis({
-            //        //header: $('#print_header'),
-            //        importCSS: true,
-            //        importStyle: true
-            //    });
-            //});
+            $("#print_Old").on('click', function (e) {
+                e.preventDefault();
+                $("#print_OldHolder").printThis({
+                    header: $('#print_Oldheader'),
+                    
+                    importStyle: true
+                });
+            });
+            $("#print_New").on('click', function (e) {
+                e.preventDefault();
+                $("#print_NewHolder").printThis({
+                    header: $('#print_Newheader'),
 
+                    importStyle: true
+                });
+            });
 
-
+            
         });
     </script>
 }

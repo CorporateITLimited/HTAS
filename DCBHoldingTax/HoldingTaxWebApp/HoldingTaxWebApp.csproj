@@ -2425,6 +2425,7 @@
     <Content Include="Scripts\printThis.js" />
     <Content Include="Scripts\wizard-holding-transfer.js" />
     <Content Include="Scripts\wizard-OldPlotOwnerCreate.js" />
+    <Content Include="WebForms\Administrative\EmployeeList.aspx" />
     <Content Include="WebForms\Administrative\LoginHistory.aspx" />
     <Content Include="WebForms\Holding\HolderDetails.aspx" />
     <Content Include="WebForms\Holding\HolderList.aspx" />
@@ -4460,6 +4461,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppReports\Administrative\rptEmployeeList.cs">
+      <DependentUpon>rptEmployeeList.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="AppReports\Holding\rptHolderDetails.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4735,6 +4742,13 @@
     <Compile Include="ViewModels\Tax\InvoiceVM.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
     <Compile Include="ViewModels\UserPermission.cs" />
+    <Compile Include="WebForms\Administrative\EmployeeList.aspx.cs">
+      <DependentUpon>EmployeeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Administrative\EmployeeList.aspx.designer.cs">
+      <DependentUpon>EmployeeList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Administrative\LoginHistory.aspx.cs">
       <DependentUpon>LoginHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5006,6 +5020,8 @@
     <Content Include="Views\Home\LoginHistory.cshtml" />
     <Content Include="Views\Home\rptLoginHistory.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Home\EmployeeList.cshtml" />
+    <Content Include="Views\Home\rptEmployeeList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -5029,6 +5045,10 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AppReports\Administrative\rptEmployeeList.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptEmployeeList.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Holding\rptHolderDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptHolderDetails.cs</LastGenOutput>

@@ -2,6 +2,7 @@
 using HoldingTaxWebApp.Manager;
 using HoldingTaxWebApp.Manager.Holding;
 using HoldingTaxWebApp.Manager.Tax;
+using HoldingTaxWebApp.Manager.Users;
 using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.ViewModels;
 using System;
@@ -16,12 +17,14 @@ namespace COMSApp.Controllers
     {
         private readonly NoticeManager _noticeManager;
         private readonly HoldingTaxManager _holdingTaxManager;
+        private readonly DesignationManager _DesignationManager;
         private readonly bool CanAccess = false;
         private readonly bool CanReadWrite = false;
         public HomeController()
         {
             _noticeManager = new NoticeManager();
             _holdingTaxManager = new HoldingTaxManager();
+            _DesignationManager = new DesignationManager();
             //if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             //{
             //    List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
@@ -645,9 +648,6 @@ namespace COMSApp.Controllers
         {
             return View();
         }
-
-
-
         public ActionResult rptLoginHistory(string userName, int? userType, string fromDate, string toDate)
         {
             Session["userName"] = userName;
@@ -684,5 +684,30 @@ namespace COMSApp.Controllers
             return View();
         }
         #endregion
+
+        #region Employee list Report
+
+        public ActionResult EmployeeList()
+        {
+            ViewBag.DesignationId = new SelectList(_DesignationManager.GetAllDesignation(), "DesignationId", "DesignationName");
+            return View();
+        }
+        public ActionResult rptEmployeeList(int? id, string name)
+        {
+            Session["DesignationId"] = id;
+            Session["EmployeeName"] = name;
+            if (id == 0)
+            {
+                Session["DesignationId"] = null;
+            }
+            if (name == null || name == "")
+            {
+                Session["EmployeeName"] = null;
+            }
+
+            return View();
+        }
+        #endregion
+
     }
 }
