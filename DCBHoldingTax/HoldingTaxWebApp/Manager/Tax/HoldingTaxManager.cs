@@ -71,6 +71,10 @@ namespace HoldingTaxWebApp.Manager.Tax
             return _holdingTaxGateway.GenerateTax(FinYearId);
         }
 
+        public int FinalizeHoldingTax(int FinancialYearId)
+        {
+            return _holdingTaxGateway.FinalizeHoldingTax(FinancialYearId);
+        }
         public List<ChartPaidAm> GetChartPaidAms()
         {
             return _holdingTaxGateway.GetForPaidAmmChart();

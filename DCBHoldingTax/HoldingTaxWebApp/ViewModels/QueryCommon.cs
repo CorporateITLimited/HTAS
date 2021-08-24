@@ -11,6 +11,9 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "আর্থিক বছর")]
         public int? FinancialYearId { get; set; }
 
+        [Display(Name = "আর্থিক বছর")]
+        public int? FinancialYearId_Two { get; set; }
+
         [Display(Name = "বিজ্ঞপ্তির ধরণ")]
         public int? NoticeTypeId { get; set; }
 

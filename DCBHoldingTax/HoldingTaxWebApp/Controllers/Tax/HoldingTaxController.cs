@@ -150,6 +150,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
         public ActionResult Create()
         {
             ViewBag.FinancialYearId = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
+            ViewBag.FinancialYearId_Two = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
             return View();
         }
 
@@ -340,6 +341,13 @@ namespace HoldingTaxWebApp.Controllers.Tax
         public JsonResult GenerateTax(int FinancialYearId)
         {
             int status = _holdingTaxManager.GenerateTax(FinancialYearId);
+
+            return Json(status, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult FinalizeHoldingTax(int FinancialYearId)
+        {
+            int status = _holdingTaxManager.FinalizeHoldingTax(FinancialYearId);
 
             return Json(status, JsonRequestBehavior.AllowGet);
         }

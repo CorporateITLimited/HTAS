@@ -46,7 +46,7 @@ namespace HoldingTaxWebApp.Models.DBO
         [Display(Name = "হালনাগাদকরণ করেছেন")]
         public string UpdatedByUsername { get; set; }
 
-        [Display(Name = "এলাকার ধরণ")]
+        [Display(Name = "গৃহকর নির্ধারণের প্রক্রিয়া")]
         public int? AreaType { get; set; }
 
     }

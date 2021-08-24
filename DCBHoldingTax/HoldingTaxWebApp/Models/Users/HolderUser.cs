@@ -45,7 +45,7 @@ namespace HoldingTaxWebApp.Models.Users
         public string UpdatedByUserName { get; set; }
         [Display(Name = "ব্যবহারকারীর নাম")]
         public string UserName { get; set; }
-        [Display(Name = "হ্যাশ পাসওয়ার্ড")]
+        [Display(Name = "পাসওয়ার্ড")]
         public string HashPassword { get; set; }
         [Display(Name = "পাসওয়ার্ড নিশ্চিত করুন")]
         public string ConfirmPassword { get; set; }

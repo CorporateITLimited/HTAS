@@ -481,45 +481,88 @@
                             <div class="col-lg-11">
                                 <legend>   ফ্ল্যাটসমূহের বিবরণ</legend>
                                 <br />
-                                <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
-                                    <thead class="thead-light text-center">
-                                        <tr>
-                                            <th>তলা</th>
-                                            <th>ফ্ল্যাট নম্বর </th>
-                                            <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
-                                            <th>নিজ বসতি/ভাড়া </th>
-                                            <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
-                                            <th>সম্পত্তির ধরন</th>
-                                            <th>মালিকানা </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-center">
-                                        @foreach (var item in Model.HolderFlatList)
-                                        {
+                                @if (Model.Area_type_id == 1)
+                                {
+                                    <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
+                                        <thead class="thead-light text-center">
                                             <tr>
-                                                <td>@item.FloorTypeName</td>
-                                                <td>@item.FlatNo</td>
-                                                <td>@item.StrFlatArea</td>
-                                                <td>@item.OwnOrRentType</td>
-                                                <td>@item.StrMonthlyRent </td>
-                                                <td>@item.SelfOwnType </td>
-                                                @if (string.IsNullOrWhiteSpace(item.OwnerName))
-                                                {
-                                                    <td>
-                                                        ফ্ল্যাটের কোনো মালিকানা নেই
-                                                    </td>
-                                                }
-                                                else
-                                                {
-                                                    <td>
-                                                        @item.OwnerName
-                                                    </td>
-                                                }
-
+                                                <th>তলা</th>
+                                                <th>ফ্ল্যাট নম্বর </th>
+                                                <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
+                                                <th>নিজ বসতি/ভাড়া </th>
+                                                <th>সম্পত্তির ধরন</th>
+                                                <th>মালিকানা </th>
                                             </tr>
-                                        }
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            @foreach (var item in Model.HolderFlatList)
+                                            {
+                                                <tr>
+                                                    <td>@item.FloorTypeName</td>
+                                                    <td>@item.FlatNo</td>
+                                                    <td>@item.StrFlatArea</td>
+                                                    <td>@item.OwnOrRentType</td>
+                                                    <td>@item.SelfOwnType </td>
+                                                    @if (string.IsNullOrWhiteSpace(item.OwnerName))
+                                                    {
+                                                        <td>
+                                                            ফ্ল্যাটের কোনো মালিকানা নেই
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.OwnerName
+                                                        </td>
+                                                    }
+
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                                else
+                                {
+                                    <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
+                                        <thead class="thead-light text-center">
+                                            <tr>
+                                                <th>তলা</th>
+                                                <th>ফ্ল্যাট নম্বর </th>
+                                                <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
+                                                <th>নিজ বসতি/ভাড়া </th>
+                                                <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
+                                                <th>সম্পত্তির ধরন</th>
+                                                <th>মালিকানা </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            @foreach (var item in Model.HolderFlatList)
+                                            {
+                                                <tr>
+                                                    <td>@item.FloorTypeName</td>
+                                                    <td>@item.FlatNo</td>
+                                                    <td>@item.StrFlatArea</td>
+                                                    <td>@item.OwnOrRentType</td>
+                                                    <td>@item.StrMonthlyRent </td>
+                                                    <td>@item.SelfOwnType </td>
+                                                    @if (string.IsNullOrWhiteSpace(item.OwnerName))
+                                                    {
+                                                        <td>
+                                                            ফ্ল্যাটের কোনো মালিকানা নেই
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.OwnerName
+                                                        </td>
+                                                    }
+
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
                             </div>
                         </div>
 

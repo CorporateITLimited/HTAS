@@ -183,7 +183,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 StringLeaseExpiryDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holderVMOtherData.StringLeaseExpiryDate),
                 PlotOwnerName = holderVMOtherData.PlotOwnerName,
                 IsHolderAnOwner = holder.IsHolderAnOwner,
-                HolderNo = holder.HolderNo
+                HolderNo = holder.HolderNo,
+                Area_type_id = _dOHSAreaManager.GetDOHSAreaId(holder.AreaId).AreaType
             };
 
 
@@ -244,6 +245,19 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 {
                     status = "কমপক্ষে একটি ফ্ল্যাটের বিবরণ সাবমিট করুন";
                     return new JsonResult { Data = new { status } };
+                }
+                var area_type_id = _dOHSAreaManager.GetDOHSAreaId(hvm.AreaId).AreaType;
+
+                if (area_type_id > 0 && area_type_id == 2)
+                {
+                    foreach (HolderFlat item in hvm.HolderFlatList)
+                    {
+                        if (item.MonthlyRent == 0)
+                        {
+                            status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
+                            return new JsonResult { Data = new { status } };
+                        }
+                    }
                 }
 
 
@@ -855,6 +869,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 PlotOwnerName = holderVMOtherData.PlotOwnerName,
                 IsHolderAnOwner = holder.IsHolderAnOwner,
                 HolderNo = holder.HolderNo,
+                Area_type_id = _dOHSAreaManager.GetDOHSAreaId(holder.AreaId).AreaType
             };
 
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", hvm.AreaId);
@@ -920,6 +935,21 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     status = "কমপক্ষে একটি ফ্ল্যাটের বিবরণ সাবমিট করুন";
                     return new JsonResult { Data = new { status } };
                 }
+
+                var area_type_id = _dOHSAreaManager.GetDOHSAreaId(hvm.AreaId).AreaType;
+
+                if (area_type_id > 0 && area_type_id == 2)
+                {
+                    foreach (HolderFlat item in hvm.HolderFlatList)
+                    {
+                        if (item.MonthlyRent == 0)
+                        {
+                            status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
+                            return new JsonResult { Data = new { status } };
+                        }
+                    }
+                }
+
 
                 ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", hvm.AreaId);
                 ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo", hvm.PlotId);
@@ -1584,6 +1614,19 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
+                var area_type_id = _dOHSAreaManager.GetDOHSAreaId(hvm.AreaId).AreaType;
+
+                if (area_type_id > 0 && area_type_id == 2)
+                {
+                    foreach (HolderFlat item in hvm.HolderFlatList)
+                    {
+                        if (item.MonthlyRent == 0)
+                        {
+                            status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
+                            return new JsonResult { Data = new { status } };
+                        } 
+                    }
+                }
 
                 ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", hvm.AreaId);
                 ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo", hvm.PlotId);
@@ -2154,6 +2197,11 @@ namespace HoldingTaxWebApp.Controllers.Holding
             var data = _plotManager.GetPlotByAreaId(AreaId);
 
             return new JsonResult { Data = data ?? null };
+        }
+
+        public JsonResult GetAreaType(int AreaId)
+        {
+            return new JsonResult { Data = _dOHSAreaManager.GetDOHSAreaId(AreaId).AreaType };
         }
 
         public JsonResult GetAllotmentNamjariDesignByPlotId(int PlotId)

@@ -39,8 +39,8 @@ namespace HoldingTaxWebApp.Helpers
         public static IEnumerable<SelectListItem> GetAreaTypeForDropdown()
         {
             List<SelectListItem> selectListItems = new List<SelectListItem>() {
-                new SelectListItem(){ Text="ডিওএইচএস", Value="1" },
-                new SelectListItem(){ Text="অন্যান্য", Value="2" }
+                new SelectListItem(){ Text="ডিওএইচএস অনুযায়ী", Value="1" },
+                new SelectListItem(){ Text="অন্যান্য ", Value="2" }
             };
             return selectListItems;
         }

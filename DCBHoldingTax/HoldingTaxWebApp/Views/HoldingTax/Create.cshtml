@@ -1,4 +1,4 @@
-﻿@model HoldingTaxWebApp.Models.Tax.HoldingTax
+﻿@model HoldingTaxWebApp.ViewModels.QueryCommon
 
 @{
     ViewBag.Title = "Create";
@@ -28,8 +28,7 @@
 <div class="d-flex flex-column-fluid">
     <div class="container">
         <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
+            <div class="col-lg-6">
                 <div class="card card-custom" id="kt_card_1">
                     <div class="card-header">
                         <h3 class="card-title">নতুন বছরের গৃহকর তৈরী করুন  </h3>
@@ -65,30 +64,38 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2"></div>
-            @*<div class="col-lg-6">
-            <div class="card card-custom" id="kt_card_1">
-                <div class="card-header">
-                    <h3 class="card-title">  গৃহকর মূল্যায়ন চূড়ান্তকরণ</h3>
-                    <div class="card-toolbar">
-                        <div class="example-tools justify-content-center">
+            <div class="col-lg-6">
+                <div class="card card-custom" id="kt_card_1">
+                    <div class="card-header">
+                        <h3 class="card-title">গৃহকর মূল্যায়ন চূড়ান্তকরণ</h3>
+                        <div class="card-toolbar">
+                            <div class="example-tools justify-content-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.FinancialYearId_Two, "আর্থিক বছর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                            <div class="col-lg-8">
+                                @Html.DropDownListFor(model => model.FinancialYearId_Two, null, "-- নির্বাচন করুন --", new
+                           {
+                               @class = "form-control",
+                               @name = "FinancialYearId_Two",
+                               @id = "FinancialYearId_Two"
+                           })
+                                @Html.ValidationMessageFor(model => model.FinancialYearId_Two, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-center">
+                            <button type="button" id="btnFinalize" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>গৃহকর চূড়ান্ত করুন </button>
+                            <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</button>
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    ...
-                </div>
-                <div class="card-footer">
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>Save</button>
-                        <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>Back to List</button>
-                    </div>
-                </div>
             </div>
-        </div>*@
-
-
-
         </div>
     </div>
 </div>
@@ -156,6 +163,92 @@
                 }
             });
         })
+
+    </script>
+
+    @*added by faisal*@
+    <script>
+        jQuery(document).ready(function () {
+            $('#FinancialYearId_Two').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+
+            $("#btnFinalize").click(function (e) {
+                e.preventDefault();
+                var fy = $('#FinancialYearId_Two').val();
+                var isAllValid = true;
+                if (fy === "0" || fy === '') { isAllValid = false; }
+
+                if (!isAllValid) {
+                    Swal.fire('ত্রুটি!', 'আর্থিক বছর নির্বাচন করুন', 'info');
+                }
+                else {
+                    Swal.fire({
+                        title: 'আপনি কি নির্বাচিত আর্থিক বছরের জন্য গৃহকর মূল্যায়ন চূড়ান্তকরণ করতে চান? ',
+                        text: 'নির্বাচিত আর্থিক বছরের জন্য গৃহকর একবার চূড়ান্ত হয়ে গেলে পরবর্তীতে হালনাগাদ সম্ভব নয়',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'সাবমিট করুন',
+                        cancelButtonText: 'বাতিল করুন'
+                    }).then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                type: 'GET',
+                                url: '/HoldingTax/FinalizeHoldingTax',
+                                data: "FinancialYearId=" + fy,
+                                contentType: 'application/json',
+                                success: function (status) {
+
+                                    if (status === 202) {
+                                        Swal.fire({
+                                            text: "সফলভাবে সংযুক্ত করা হয়েছে",
+                                            icon: "success",
+                                            buttonsStyling: false,
+                                            confirmButtonText: "সফলভাবে সম্পন্ন",
+                                            customClass: {
+                                                confirmButton: "btn font-weight-bold btn-success",
+                                            }
+                                        });
+                                        setTimeout(function () { window.location.href = "/HoldingTax/Index"; }, 2000);
+                                    }
+                                    else if (status === 300) {
+                                        Swal.fire({
+                                            text: "  Already Exists  ",
+                                            icon: "error",
+                                            buttonsStyling: false,
+                                            //confirmButtonText: " Canceled ",
+                                            customClass: {
+                                                confirmButton: "btn font-weight-bold btn-danger",
+                                            }
+                                        });
+                                        $('#details_error').text(d.status);
+                                        //KTUtil.scrollTop();
+                                    }
+                                    else {
+                                        Swal.fire({
+                                            text: "Unknown Error ",
+                                            icon: "error",
+                                            buttonsStyling: false,
+                                            //confirmButtonText: "  ERROR  ",
+                                            customClass: {
+                                                confirmButton: "btn font-weight-bold btn-danger",
+                                            }
+                                        });
+                                        $('#details_error').text(d.status);
+                                    }
+                                },
+                                error: function (error) {
+                                    console.log(error);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        });
 
     </script>
 }

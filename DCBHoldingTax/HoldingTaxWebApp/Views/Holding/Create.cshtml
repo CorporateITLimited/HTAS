@@ -135,7 +135,7 @@
                                                     এলাকার তথ্য &nbsp;
                                                     <label class="show_plot"></label>
                                                 </div>
-
+                                                <input type="hidden" id="area_type_id" />
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
@@ -419,7 +419,7 @@
                                                                 <th>ফ্ল্যাট নম্বর </th>
                                                                 <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
                                                                 <th>নিজ বসতি/ভাড়া </th>
-                                                                <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
+                                                                <th id="rent_by_area">মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
                                                                 <th>সম্পত্তির ধরন</th>
                                                                 <th>
                                                                     <button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button>
@@ -560,6 +560,7 @@
             });
             var avatar1 = new KTImageInput('kt_image_1');
             var ratePerSquareFeet = 1;
+            var areaType = 1;
 
             $('#AreaId').select2({
                 placeholder: "--নির্বাচন করুন--",
@@ -673,6 +674,28 @@
                         )
                     }
                 });
+
+                $.ajax({
+                    url: '@Url.Action("GetAreaType", "Holding")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        areaType = parseInt(data);
+                        $("#area_type_id").val(areaType);
+                        if (areaType === 1) {
+                            $("#rent_by_area").hide();
+                        } else {
+                            $("#rent_by_area").show();
+                        }
+                        console.log(data)
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+
+
             });
 
             // plot name show in every heading
@@ -743,40 +766,77 @@
                         data: JSON.stringify(json),
                         success: function (data) {
                             flat_details_table.empty();
-                            //$("#mess_for_flat").text("নিজের ফ্ল্যাট হলে টিক দিন");
-                            $(data).each(function (index, pid) {
-                                flat_details_table.append('<tr>' +
-                                    '<input type="hidden" id="HolderFlatId" value=' + pid.HolderFlatId + ' class="HolderFlatId" />' +
-                                    '<input type="hidden" id="FlorNo" value=' + pid.FlorNo + ' class="FlorNo" />' +
-                                    '<td width="10%;">' + pid.FloorTypeName + '</td>' +
-                                    '<td width="13%;" class="FlatNo">' + pid.FlatNo + '</td>' +
-                                    '<td width="14%;" class="FlatArea">' + pid.FlatArea + '</td>' +
-                                    '<td width="12%;">' +
-                                    ' <select class="form-control OwnOrRent">' +
-                                    '@foreach (var item in ViewBag.OwnOrRent)
+                            if (areaType === 2) {
+                                //$("#mess_for_flat").text("নিজের ফ্ল্যাট হলে টিক দিন");
+                                $(data).each(function (index, pid) {
+                                    flat_details_table.append('<tr>' +
+                                        '<input type="hidden" id="HolderFlatId" value=' + pid.HolderFlatId + ' class="HolderFlatId" />' +
+                                        '<input type="hidden" id="FlorNo" value=' + pid.FlorNo + ' class="FlorNo" />' +
+                                        '<td width="10%;">' + pid.FloorTypeName + '</td>' +
+                                        '<td width="13%;" class="FlatNo">' + pid.FlatNo + '</td>' +
+                                        '<td width="14%;" class="FlatArea">' + pid.FlatArea + '</td>' +
+                                        '<td width="12%;">' +
+                                        ' <select class="form-control OwnOrRent">' +
+                                        '@foreach (var item in ViewBag.OwnOrRent)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
-                                    '<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" placeholder="0" /></td>' +
+                                        '<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" placeholder="0" required /></td>' +
                                     @*'<td width="15%;">' +
                                     '    <select class="form-control SelfOwned">' +
                                     '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +*@
-                                    '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
-                                    '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
-                            });
+                                        '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                        '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
+                                });
 
-                            $("#flat_details tbody tr").each(function () {
-                                var currentRow = $(this).closest("tr");
-                                var access_val = currentRow.find('.IsCheckedByHolder').val();
+                                $("#flat_details tbody tr").each(function () {
+                                    var currentRow = $(this).closest("tr");
+                                    var access_val = currentRow.find('.IsCheckedByHolder').val();
 
-                                if (access_val === "true") {
-                                    currentRow.find('.IsCheckedByHolder').prop('checked', true);
-                                    currentRow.find('.IsCheckedByHolder').val("true");
-                                } else {
-                                    currentRow.find('.IsCheckedByHolder').prop('checked', false);
-                                    currentRow.find('.IsCheckedByHolder').val("false");
-                                }
+                                    if (access_val === "true") {
+                                        currentRow.find('.IsCheckedByHolder').prop('checked', true);
+                                        currentRow.find('.IsCheckedByHolder').val("true");
+                                    } else {
+                                        currentRow.find('.IsCheckedByHolder').prop('checked', false);
+                                        currentRow.find('.IsCheckedByHolder').val("false");
+                                    }
 
-                            });
+                                });
+                            }
+                            else {
+                                $(data).each(function (index, pid) {
+                                    flat_details_table.append('<tr>' +
+                                        '<input type="hidden" id="HolderFlatId" value=' + pid.HolderFlatId + ' class="HolderFlatId" />' +
+                                        '<input type="hidden" id="FlorNo" value=' + pid.FlorNo + ' class="FlorNo" />' +
+                                        '<input type="hidden" id="MonthlyRent" value="0" class="MonthlyRent" />' +
+                                        '<td width="10%;">' + pid.FloorTypeName + '</td>' +
+                                        '<td width="13%;" class="FlatNo">' + pid.FlatNo + '</td>' +
+                                        '<td width="14%;" class="FlatArea">' + pid.FlatArea + '</td>' +
+                                        '<td width="12%;">' +
+                                        ' <select class="form-control OwnOrRent">' +
+                                        '@foreach (var item in ViewBag.OwnOrRent)
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                                    @*'<td width="15%;">' +
+                                    '    <select class="form-control SelfOwned">' +
+                                    '@foreach (var item in ViewBag.SelfOwned)
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +*@
+                                        '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                        '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
+                                });
+
+                                $("#flat_details tbody tr").each(function () {
+                                    var currentRow = $(this).closest("tr");
+                                    var access_val = currentRow.find('.IsCheckedByHolder').val();
+
+                                    if (access_val === "true") {
+                                        currentRow.find('.IsCheckedByHolder').prop('checked', true);
+                                        currentRow.find('.IsCheckedByHolder').val("true");
+                                    } else {
+                                        currentRow.find('.IsCheckedByHolder').prop('checked', false);
+                                        currentRow.find('.IsCheckedByHolder').val("false");
+                                    }
+
+                                });
+                            }
                         },
                         error: function (e) {
                             console.log(e);
@@ -898,23 +958,42 @@
             $("#add_new_details").on('click', function (e) {
                 e.preventDefault();
                 var flat_details_table = $('#flat_details tbody');
-                flat_details_table.append('<tr> <td width="10%;">' +
-                    '<select class="form-control FlorNo"> ' +
-                    '@foreach (var item in ViewBag.FlorNo)
+                if (areaType === 2) {
+                    flat_details_table.append('<tr> <td width="10%;">' +
+                        '<select class="form-control FlorNo"> ' +
+                        '@foreach (var item in ViewBag.FlorNo)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
-                    '<td width="13%;"><input type="text" class="form-control FlatNo" /></td>' +
-                    '<td width="14%;"><input type="number" class="form-control FlatArea your_class" placeholder="0" /></td>' +
-                    '<td width="12%;">' +
-                    ' <select class="form-control OwnOrRent">' +
-                    '@foreach (var item in ViewBag.OwnOrRent)
+                        '<td width="13%;"><input type="text" class="form-control FlatNo" /></td>' +
+                        '<td width="14%;"><input type="number" class="form-control FlatArea your_class" placeholder="0" /></td>' +
+                        '<td width="12%;">' +
+                        ' <select class="form-control OwnOrRent">' +
+                        '@foreach (var item in ViewBag.OwnOrRent)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
-                    '<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" placeholder="0" /></td>' +
-                    '<td width="15%;">' +
-                    '    <select class="form-control SelfOwned">' +
-                    '@foreach (var item in ViewBag.SelfOwned)
+                        '<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" placeholder="0" /></td>' +
+                        '<td width="15%;">' +
+                        '    <select class="form-control SelfOwned">' +
+                        '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
-                    '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr>');
-
+                        '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr>');
+                } else {
+                    flat_details_table.append('<tr>' +
+                        '<input type="hidden" id="MonthlyRent" value="0" class= "MonthlyRent" />' +
+                        '<td width = "10%;" > ' +
+                        '<select class="form-control FlorNo"> ' +
+                        '@foreach (var item in ViewBag.FlorNo)
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                        '<td width="13%;"><input type="text" class="form-control FlatNo" /></td>' +
+                        '<td width="14%;"><input type="number" class="form-control FlatArea your_class" placeholder="0" /></td>' +
+                        '<td width="12%;">' +
+                        ' <select class="form-control OwnOrRent">' +
+                        '@foreach (var item in ViewBag.OwnOrRent)
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                        '<td width="15%;">' +
+                        '    <select class="form-control SelfOwned">' +
+                        '@foreach (var item in ViewBag.SelfOwned)
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                        '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr>');
+                }
 
                  @*flat_details_table.append('<tr> <td width="10%;">' +
                         '<select class="form-control FlorNo"> ' +

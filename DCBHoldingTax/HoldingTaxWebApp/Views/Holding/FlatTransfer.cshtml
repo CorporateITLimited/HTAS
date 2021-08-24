@@ -435,7 +435,7 @@
                                             <div class="pb-5" data-wizard-type="step-content">
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
                                                     ফ্ল্যাটসমূহের বিবরণ &nbsp;
-                                                    <label id="for_not_owner" class="text text-danger">হস্তান্তরযোগ্য ফ্ল্যাট সমূহ ঠিক দিন </label>
+                                                    <label id="for_not_owner" class="text text-danger">হস্তান্তরযোগ্য ফ্ল্যাট সমূহ টিক দিন </label>
                                                 </div>
                                                 <div class="row m-2">
                                                     <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
@@ -445,7 +445,7 @@
                                                                 <th>ফ্ল্যাট নম্বর </th>
                                                                 <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
                                                                 <th>নিজ বসতি/ভাড়া </th>
-                                                                <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
+                                                                <th id="rent_by_area">মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
                                                                 <th>সম্পত্তির ধরন</th>
                                                                 <th>
                                                                     <span id="mess_for_flat">হস্তান্তরযোগ্য ফ্ল্যাট এ টিক দিন </span>
@@ -585,6 +585,7 @@
             });
             var avatar1 = new KTImageInput('kt_image_1');
             var ratePerSquareFeet = 1;
+            var areaType = 1;
 
             $('#AreaId').select2({
                 placeholder: "--নির্বাচন করুন--",
@@ -709,11 +710,32 @@
                         )
                     }
                 });
+
+                $.ajax({
+                    url: '@Url.Action("GetAreaType", "Holding")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        areaType = parseInt(data);
+                        $("#area_type_id").val(areaType);
+                        if (areaType === 1) {
+                            $("#rent_by_area").hide();
+                        } else {
+                            $("#rent_by_area").show();
+                        }
+                        console.log(data)
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+
             });
 
             // plot name show in every heading
             $('#PlotId').change(function () {
-              //  var plotName = $('#PlotId option:selected').text();
+                //  var plotName = $('#PlotId option:selected').text();
                 $(".show_plot").text("");
                 // $(".show_plot").text("( প্লট/বাড়ী/ফ্ল্যাট নম্বর : " + plotName + " )");
 
@@ -837,21 +859,41 @@
                     data: JSON.stringify(json),
                     success: function (data) {
                         flat_details_table.empty();
-                        $(data).each(function (index, pid) {
-                            flat_details_table.append('<tr>' +
-                                '<input type="hidden" id="HolderFlatId" value=' + pid.HolderFlatId + ' class="HolderFlatId" />' +
-                                '<input type="hidden" id="FlorNo" value=' + pid.FlorNo + ' class="FlorNo" />' +
-                                '<td width="10%;">' + pid.FloorTypeName + '</td>' +
-                                '<td width="13%;" class="FlatNo">' + pid.FlatNo + '</td>' +
-                                '<td width="14%;" class="FlatArea">' + pid.FlatArea + '</td>' +
-                                '<td width="12%;">' +
-                                ' <select class="form-control OwnOrRent">' +
-                                '@foreach (var item in ViewBag.OwnOrRent)
+                        if (areaType === 2) {
+                            $(data).each(function (index, pid) {
+                                flat_details_table.append('<tr>' +
+                                    '<input type="hidden" id="HolderFlatId" value=' + pid.HolderFlatId + ' class="HolderFlatId" />' +
+                                    '<input type="hidden" id="FlorNo" value=' + pid.FlorNo + ' class="FlorNo" />' +
+                                    '<td width="10%;">' + pid.FloorTypeName + '</td>' +
+                                    '<td width="13%;" class="FlatNo">' + pid.FlatNo + '</td>' +
+                                    '<td width="14%;" class="FlatArea">' + pid.FlatArea + '</td>' +
+                                    '<td width="12%;">' +
+                                    ' <select class="form-control OwnOrRent">' +
+                                    '@foreach (var item in ViewBag.OwnOrRent)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
-                                '<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" placeholder="0" /></td>' +
-                                '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
-                                '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
-                        });
+                                    '<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" placeholder="0" required /></td>' +
+                                    '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                    '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
+                            });
+                        }
+                        else {
+                            $(data).each(function (index, pid) {
+                                flat_details_table.append('<tr>' +
+                                    '<input type="hidden" id="HolderFlatId" value=' + pid.HolderFlatId + ' class="HolderFlatId" />' +
+                                    '<input type="hidden" id="FlorNo" value=' + pid.FlorNo + ' class="FlorNo" />' +
+                                    '<input type="hidden" id="MonthlyRent" value="0" class="MonthlyRent" />' +
+                                    '<td width="10%;">' + pid.FloorTypeName + '</td>' +
+                                    '<td width="13%;" class="FlatNo">' + pid.FlatNo + '</td>' +
+                                    '<td width="14%;" class="FlatArea">' + pid.FlatArea + '</td>' +
+                                    '<td width="12%;">' +
+                                    ' <select class="form-control OwnOrRent">' +
+                                    '@foreach (var item in ViewBag.OwnOrRent)
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                                    '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                    '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
+                            });
+                        }
+
                     },
                     error: function (e) {
                         console.log(e);
