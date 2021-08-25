@@ -731,11 +731,11 @@ namespace HoldingTaxWebApp.Gateway.Tax
             }
         }
 
-        public int FinalizeHoldingTax(int FinancialYearId)
+        public int FinalizeHoldingTax(int FinancialYearId, int LastUpdatedBy, DateTime LastUpdated)
         {
             try
             {
-                Sql_Query = "";
+                Sql_Query = "[Tax].[spFinalizeHoldingTax]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,
@@ -745,7 +745,9 @@ namespace HoldingTaxWebApp.Gateway.Tax
 
                 Sql_Command.Parameters.Clear();
 
-                Sql_Command.Parameters.Add("@FinancialyearId", SqlDbType.NVarChar).Value = FinancialYearId;
+                Sql_Command.Parameters.Add("@FinancialyearId", SqlDbType.Int).Value = FinancialYearId;
+                Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = LastUpdatedBy;
+                Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = LastUpdated;
 
                 SqlParameter result = new SqlParameter
                 {

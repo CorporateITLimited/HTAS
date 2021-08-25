@@ -1,0 +1,298 @@
+﻿@model HoldingTaxWebApp.ViewModels.QueryCommon
+
+@{
+    ViewBag.Title = "Regenerate Tax";
+}
+@section Sheets{
+    <link href="~/Content/formdesign.css" rel="stylesheet" />
+}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">নির্দিষ্ট সংখ্যক গৃহকরদাতাদের জন্য পুনরায় গৃহকর হালনাগাদকরণ</h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted">গৃহকর হালনাগাদকরণ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="card card-custom" id="kt_card_1">
+                    <div class="card-header">
+                        <h3 class="card-title">পুনরায় গৃহকর হালনাগাদ করুন</h3>
+                        <span style="color: forestgreen; font-size: 18px;">প্লটভিত্তিক গৃহকরের তথ্য হালনাগাদ করুন</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.FinancialYearId, "আর্থিক বছর", htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.FinancialYearId, null, "-- নির্বাচন করুন --", new
+                           {
+                               @class = "form-control",
+                               @name = "FinancialYearId",
+                               @id = "FinancialYearId"
+                           })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.AreaId, null, "-- নির্বাচন করুন --", new
+                           {
+                               @class = "form-control",
+                               @name = "AreaId",
+                               @id = "AreaId"
+                           })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.PlotId, "প্লট নম্বর", htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.PlotId, null, "-- নির্বাচন করুন --", new
+                           {
+                               @class = "form-control",
+                               @name = "PlotId",
+                               @id = "PlotId"
+                           })
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-center">
+                            <button type="button" id="btnSearch" class="btn btn-outline-primary btn-md"><i class="fas fa-search"></i>গৃহকরদাতাদের তালিকা দেখুন</button>
+                            <button class="btn btn-outline-dark btn-sm" id="reset_button"><i class="fas fa-trash-restore"></i>রিসেট করুন </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="card card-custom" id="kt_card_1">
+                    <div class="card-header">
+                        <h3 class="card-title">গৃহকরদাতাদের তালিকা</h3>
+                        <span style="color: forestgreen; font-size: 18px;">যেসব গৃহকরদাতাদের গৃহকরের তথ্য হালনাগাদ করবেন তাদেরকে টিক দিন </span>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover table-sm" width="100" id="holder_details">
+                            <thead class="thead-light text-center">
+                                <tr>
+                                    <th>গৃহকরদাতার নাম</th>
+                                    <th>গৃহকরদাতার আইডি নম্বর</th>
+                                    <th>নেট কর প্রদেয় পরিমাণ</th>
+                                    <th>টিক দিন</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-center">
+                            <button type="submit" id="btnSubmit" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i>গৃহকর হালনাগাদকরণ করুন</button>
+                            <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</button>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        jQuery(document).ready(function () {
+            $('#FinancialYearId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#AreaId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+            $('#PlotId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
+
+            $("#AreaId").change(function () {
+                var areaId = $("#AreaId").val();
+                var json = {
+                    AreaId: areaId
+                };
+                $.ajax({
+                    url: '@Url.Action("GetAllPlotByAreaId", "HoldingTax")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        if (data.length === 0) {
+                            Swal.fire(
+                                'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'info'
+                            )
+                        }
+                        else {
+                            $("#PlotId").empty();
+                            $("#PlotId").append("<option value=''>--নির্বাচন করুন--</option>");
+                            $.each(data, function (index, row) {
+                                $("#PlotId").append("<option value='" + row.PlotId + "'>" + row.PlotNo + "</option>");
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'error'
+                        )
+                    }
+                });
+            });
+
+            $("#btnSearch").click(function (e) {
+                e.preventDefault();
+                var holder_details_table = $('#holder_details tbody');
+
+                var financialYearId = parseInt($("#FinancialYearId").val()) || 0;
+                var areaId = parseInt($("#AreaId").val()) || 0;
+                var plotId = parseInt($("#PlotId").val()) || 0;
+
+                var json = {
+                    FinancialYearId: financialYearId,
+                    AreaId: areaId,
+                    PlotId: plotId
+                };
+
+                holder_details_table.empty();
+
+                $.ajax({
+                    url: '@Url.Action("GetUserPermissionData", "UserPermission")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        if (data.length === 0) {
+                            Swal.fire(
+                                'তথ্য পাওয়া যায়নি!', 'কোনো গৃহকরদাতা পাওয়া যায়নি', 'info'
+                            )
+                        }
+                        else {
+                            $(data).each(function (index, upd) {
+                                holder_details_table.append('<tr>' +
+                                    '<input type="hidden" value=' + upd.PermissionId + ' class="per_permission_id" />' +
+                                    '<input type="hidden" value=' + upd.ControllerId + ' class="per_controller_id" />' +
+                                    '<td class="per_description">' + upd.Description + '</td>' +
+                                    '<td> <input type="checkbox" class="per_can_access" value=' + upd.CanAccess + ' /> </td>' +
+                                    '<td> <input type="checkbox" class="per_read_write_status" value=' + upd.ReadWriteStatus + ' /> </td>' +
+                                    '</tr>');
+                            });
+                        }
+                    },
+                    error: function (error) {
+                        Swal.fire(
+                            'কোনো গৃহকরদাতা পাওয়া যায়নি', ' ' + error.Message, 'error'
+                        )
+                    }
+                });
+            });
+
+
+
+            $("#reset_button").click(function (e) {
+                e.preventDefault();
+                window.location.href = '/HoldingTax/RegenerateTax';
+            });
+
+
+
+
+            $("#btnSubmit").click(function (e) {
+                e.preventDefault();
+                var fy = $('#FinancialYearId_Two').val();
+                var isAllValid = true;
+                if (fy === "0" || fy === '') { isAllValid = false; }
+
+                if (!isAllValid) {
+                    Swal.fire('ত্রুটি!', 'আর্থিক বছর নির্বাচন করুন', 'info');
+                }
+                else {
+                    Swal.fire({
+                        title: 'আপনি কি নির্বাচিত আর্থিক বছরের জন্য গৃহকর চূড়ান্তকরণ করতে চান? ',
+                        text: 'নির্বাচিত আর্থিক বছরের জন্য গৃহকর একবার চূড়ান্ত হয়ে গেলে পরবর্তীতে হালনাগাদ সম্ভব নয়',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'সাবমিট করুন',
+                        cancelButtonText: 'বাতিল করুন'
+                    }).then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                type: 'GET',
+                                url: '/HoldingTax/FinalizeHoldingTax',
+                                data: "FinancialYearId=" + fy,
+                                contentType: 'application/json',
+                                success: function (status) {
+
+                                    if (status === 202) {
+                                        Swal.fire({
+                                            text: "সফলভাবে গৃহকর মূল্যায়ন চূড়ান্তকরণ করা হয়েছে",
+                                            icon: "success",
+                                            buttonsStyling: false,
+                                            confirmButtonText: "সফলভাবে সম্পন্ন",
+                                            customClass: {
+                                                confirmButton: "btn font-weight-bold btn-success",
+                                            }
+                                        });
+                                        setTimeout(function () { window.location.href = "/HoldingTax/Index"; }, 2000);
+                                    }
+                                    else if (status === 409) {
+                                        Swal.fire({
+                                            text: " নির্বাচিত আর্থিক বছরের জন্য এখনো কোনো গৃহকর প্রস্তুত কর হয়নি",
+                                            icon: "error",
+                                            buttonsStyling: false,
+                                            confirmButtonText: "বাতিল করা হয়েছে",
+                                            customClass: {
+                                                confirmButton: "btn font-weight-bold btn-danger",
+                                            }
+                                        });
+                                        KTUtil.scrollTop();
+                                    }
+                                    else {
+                                        Swal.fire({
+                                            text: status,
+                                            icon: "error",
+                                            buttonsStyling: false,
+                                            confirmButtonText: " বাতিল করা হয়েছে ",
+                                            customClass: {
+                                                confirmButton: "btn font-weight-bold btn-danger",
+                                            }
+                                        });
+                                    }
+                                },
+                                error: function (error) {
+                                    console.log(error);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+}

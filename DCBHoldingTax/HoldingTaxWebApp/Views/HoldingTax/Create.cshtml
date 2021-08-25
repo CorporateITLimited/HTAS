@@ -14,7 +14,7 @@
                 <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকর</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted">নতুন বছরের গৃহকর তৈরী</a>
+                        <a href="#" class="text-muted">নতুন বছরের গৃহকর তৈরী এবং চূড়ান্তকরণ</a>
                     </li>
                 </ul>
             </div>
@@ -67,7 +67,7 @@
             <div class="col-lg-6">
                 <div class="card card-custom" id="kt_card_1">
                     <div class="card-header">
-                        <h3 class="card-title">গৃহকর মূল্যায়ন চূড়ান্তকরণ</h3>
+                        <h3 class="card-title">প্রস্তুতকৃত গৃহকর চূড়ান্তকরণ</h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
@@ -185,7 +185,7 @@
                 }
                 else {
                     Swal.fire({
-                        title: 'আপনি কি নির্বাচিত আর্থিক বছরের জন্য গৃহকর মূল্যায়ন চূড়ান্তকরণ করতে চান? ',
+                        title: 'আপনি কি নির্বাচিত আর্থিক বছরের জন্য গৃহকর চূড়ান্তকরণ করতে চান? ',
                         text: 'নির্বাচিত আর্থিক বছরের জন্য গৃহকর একবার চূড়ান্ত হয়ে গেলে পরবর্তীতে হালনাগাদ সম্ভব নয়',
                         icon: 'warning',
                         showCancelButton: true,
@@ -204,7 +204,7 @@
 
                                     if (status === 202) {
                                         Swal.fire({
-                                            text: "সফলভাবে সংযুক্ত করা হয়েছে",
+                                            text: "সফলভাবে গৃহকর মূল্যায়ন চূড়ান্তকরণ করা হয়েছে",
                                             icon: "success",
                                             buttonsStyling: false,
                                             confirmButtonText: "সফলভাবে সম্পন্ন",
@@ -214,30 +214,28 @@
                                         });
                                         setTimeout(function () { window.location.href = "/HoldingTax/Index"; }, 2000);
                                     }
-                                    else if (status === 300) {
+                                    else if (status === 409) {
                                         Swal.fire({
-                                            text: "  Already Exists  ",
+                                            text: " নির্বাচিত আর্থিক বছরের জন্য এখনো কোনো গৃহকর প্রস্তুত কর হয়নি",
                                             icon: "error",
                                             buttonsStyling: false,
-                                            //confirmButtonText: " Canceled ",
+                                            confirmButtonText: "বাতিল করা হয়েছে",
                                             customClass: {
                                                 confirmButton: "btn font-weight-bold btn-danger",
                                             }
                                         });
-                                        $('#details_error').text(d.status);
-                                        //KTUtil.scrollTop();
+                                        KTUtil.scrollTop();
                                     }
                                     else {
                                         Swal.fire({
-                                            text: "Unknown Error ",
+                                            text: status,
                                             icon: "error",
                                             buttonsStyling: false,
-                                            //confirmButtonText: "  ERROR  ",
+                                            confirmButtonText: " বাতিল করা হয়েছে ",
                                             customClass: {
                                                 confirmButton: "btn font-weight-bold btn-danger",
                                             }
                                         });
-                                        $('#details_error').text(d.status);
                                     }
                                 },
                                 error: function (error) {

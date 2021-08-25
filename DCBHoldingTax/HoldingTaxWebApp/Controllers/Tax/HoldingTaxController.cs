@@ -85,7 +85,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
                 ViewBag.IsHolder = "no";
             }
 
-           
+
 
             return View();
         }
@@ -152,24 +152,6 @@ namespace HoldingTaxWebApp.Controllers.Tax
             ViewBag.FinancialYearId = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
             ViewBag.FinancialYearId_Two = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
             return View();
-        }
-
-        // POST: HoldingTax/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            ViewBag.FinancialYearId = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYearName");
-
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: HoldingTax/Edit/5
@@ -326,8 +308,20 @@ namespace HoldingTaxWebApp.Controllers.Tax
             return View(invoice);
         }
 
+        public ActionResult RegenerateTax()
+        {
+            ViewBag.FinancialYearId = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
+            ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+            return View();
+        }
 
+        public JsonResult GetAllPlotByAreaId(int AreaId)
+        {
+            var data = _plotManager.GetPlotByAreaId(AreaId);
 
+            return new JsonResult { Data = data ?? null };
+        }
 
 
 
@@ -347,8 +341,8 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
         public JsonResult FinalizeHoldingTax(int FinancialYearId)
         {
-            int status = _holdingTaxManager.FinalizeHoldingTax(FinancialYearId);
-
+            var logCreId = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+            int status = _holdingTaxManager.FinalizeHoldingTax(FinancialYearId, logCreId, DateTime.Now);
             return Json(status, JsonRequestBehavior.AllowGet);
         }
 

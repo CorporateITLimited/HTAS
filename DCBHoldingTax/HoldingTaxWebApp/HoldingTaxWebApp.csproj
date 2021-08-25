@@ -5022,6 +5022,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Home\EmployeeList.cshtml" />
     <Content Include="Views\Home\rptEmployeeList.cshtml" />
+    <Content Include="Views\HoldingTax\RegenerateTax.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -71,9 +71,9 @@ namespace HoldingTaxWebApp.Manager.Tax
             return _holdingTaxGateway.GenerateTax(FinYearId);
         }
 
-        public int FinalizeHoldingTax(int FinancialYearId)
+        public int FinalizeHoldingTax(int FinancialYearId, int LastUpdatedBy, DateTime LastUpdated)
         {
-            return _holdingTaxGateway.FinalizeHoldingTax(FinancialYearId);
+            return _holdingTaxGateway.FinalizeHoldingTax(FinancialYearId, LastUpdatedBy, LastUpdated);
         }
         public List<ChartPaidAm> GetChartPaidAms()
         {
