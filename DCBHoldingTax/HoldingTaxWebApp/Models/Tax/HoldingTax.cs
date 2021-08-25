@@ -115,5 +115,11 @@ namespace HoldingTaxWebApp.Models.Tax
 
         [Display(Name = "পেমেন্ট স্টেটাস")]
         public bool? IsPaid { get; set; }
+
+        [Display(Name = "গৃহকরদাতার আইডি নম্বর")]
+        public string HolderNo { get; set; }
+
+        public decimal? DuesPreviousYear { get; set; }
+        public decimal? DuesFineAmount { get; set; }
     }
 }

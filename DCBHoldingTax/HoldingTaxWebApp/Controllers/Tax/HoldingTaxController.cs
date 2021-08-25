@@ -11,6 +11,7 @@ using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.Manager.DBO;
 using HoldingTaxWebApp.Manager.Plots;
 using HoldingTaxWebApp.ViewModels.Tax;
+using HoldingTaxWebApp.ViewModels;
 
 namespace HoldingTaxWebApp.Controllers.Tax
 {
@@ -316,6 +317,66 @@ namespace HoldingTaxWebApp.Controllers.Tax
             return View();
         }
 
+        [HttpPost]
+        public JsonResult RegenerateTaxUpdate(List<QueryCommon> Items)
+        {
+            string status = "প্রাথমিক ত্রুটি";
+            try
+            {
+                if (Session[CommonConstantHelper.UserId] != null && Convert.ToInt32(Session[CommonConstantHelper.UserId]) > 0)
+                {
+                    if (Items != null && Items.Count > 0)
+                    {
+                        foreach (var item in Items)
+                        {
+                            if (item.HoldingTaxIdStatus == true)
+                            {
+                                QueryCommon query = new QueryCommon()
+                                {
+                                    FinancialYearId = item.FinancialYearId,
+                                    HoldingTaxId = item.HoldingTaxId,
+                                    HoldingTaxIdStatus = true,
+                                    CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                    CreateDate = DateTime.Now,
+                                    LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                    LastUpdated = DateTime.Now
+                                };
+
+                                string returnString = _holdingTaxManager.ReGenerateTax(query);
+                                if (returnString != CommonConstantHelper.Success)
+                                {
+                                    status = "তথ্য হালনাগাদ সফল হয়নি";
+                                    return new JsonResult { Data = new { status } };
+                                }
+                                else
+                                {
+                                    status = "success";
+                                }
+                            }
+                        }
+                    }
+                    return new JsonResult { Data = new { status } };
+                }
+                else
+                {
+                    status = "সেশনের মেয়াদ শেষ";
+                    return new JsonResult
+                    {
+                        Data = new
+                        {
+                            status
+                        }
+                    };
+                }
+            }
+            catch (Exception exception)
+            {
+                status = exception.Message.ToString();
+                return new JsonResult { Data = new { status } };
+            }
+        }
+
+
         public JsonResult GetAllPlotByAreaId(int AreaId)
         {
             var data = _plotManager.GetPlotByAreaId(AreaId);
@@ -323,6 +384,17 @@ namespace HoldingTaxWebApp.Controllers.Tax
             return new JsonResult { Data = data ?? null };
         }
 
+        public JsonResult GetHolderForRegenerateTAX(int FinancialYearId, int AreaId, int PlotId)
+        {
+            QueryCommon query = new QueryCommon
+            {
+                FinancialYearId = FinancialYearId > 0 ? FinancialYearId : (int?)null,
+                AreaId = AreaId > 0 ? AreaId : (int?)null,
+                PlotId = PlotId > 0 ? PlotId : (int?)null
+            };
+            var data = _holdingTaxManager.GetHolderForRegenerateTAX(query);
+            return Json(data ?? null, JsonRequestBehavior.AllowGet);
+        }
 
 
 

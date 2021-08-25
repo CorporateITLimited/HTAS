@@ -1,6 +1,7 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.Models.Tax;
+using HoldingTaxWebApp.ViewModels;
 using HoldingTaxWebApp.ViewModels.Tax;
 using System;
 using System.Collections.Generic;
@@ -341,6 +342,86 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         PaymentDate = Data_Reader["PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["PaymentDate"]) : (DateTime?)null,
                         Remarks = Convert.ToString(Data_Reader["Remarks"]),
                         IsPaid = Data_Reader["IsPaid"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsPaid"]) : (bool?)null,
+                    };
+
+                    holdingtaxList.Add(holdingtax);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return holdingtaxList;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
+
+        public List<HoldingTax> GetHolderForRegenerateTAX(QueryCommon query)
+        {
+            try
+            {
+                Sql_Query = "[Tax].[spGetHolderForRegenerateTAX]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                // added to get holderid from session ===============================
+
+
+                Sql_Command.Parameters.Add("@FinancialYearId", SqlDbType.Int).Value = query.FinancialYearId;
+                Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = query.AreaId;
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = query.PlotId;
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<HoldingTax> holdingtaxList = new List<HoldingTax>();
+
+                while (Data_Reader.Read())
+                {
+                    HoldingTax holdingtax = new HoldingTax()
+                    {
+                        HoldingTaxId = Convert.ToInt32(Data_Reader["HoldingTaxId"]),
+                        TotalHoldingTax = Data_Reader["TotalHoldingTax"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["TotalHoldingTax"]) : (decimal?)null,
+                        Surcharge = Data_Reader["Surcharge"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["Surcharge"]) : (decimal?)null,
+                        Rebate = Data_Reader["Rebate"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["Rebate"]) : (decimal?)null,
+                        WrongInfoCharge = Data_Reader["WrongInfoCharge"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["WrongInfoCharge"]) : (decimal?)null,
+                        NetTaxPayableAmount = Data_Reader["NetTaxPayableAmount"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["NetTaxPayableAmount"]) : (decimal?)null,
+                        HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        HolderNo = Convert.ToString(Data_Reader["HolderNo"]),
+                        DuesFineAmount = Data_Reader["DuesFineAmount"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["DuesFineAmount"]) : (decimal?)null,
+                        DuesPreviousYear = Data_Reader["DuesPreviousYear"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["DuesPreviousYear"]) : (decimal?)null,
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -730,6 +811,62 @@ namespace HoldingTaxWebApp.Gateway.Tax
                     Sql_Connection.Close();
             }
         }
+
+        public int ReGenerateTax(QueryCommon query)
+        {
+            try
+            {
+                Sql_Query = "";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@FinancialyearId", SqlDbType.Int).Value = query.FinancialYearId;
+                Sql_Command.Parameters.Add("@HoldingTaxId", SqlDbType.Int).Value = query.HoldingTaxId;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+                Sql_Command.ExecuteNonQuery();
+                //int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
 
         public int FinalizeHoldingTax(int FinancialYearId, int LastUpdatedBy, DateTime LastUpdated)
         {

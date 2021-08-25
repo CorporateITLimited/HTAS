@@ -6,6 +6,7 @@ using HoldingTaxWebApp.Gateway.Tax;
 using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.Models.Tax;
+using HoldingTaxWebApp.ViewModels;
 using HoldingTaxWebApp.ViewModels.Tax;
 
 namespace HoldingTaxWebApp.Manager.Tax
@@ -30,6 +31,11 @@ namespace HoldingTaxWebApp.Manager.Tax
         public List<HoldingTax> GetAllHoldingTaxForHolder(int HolderId)
         {
             return _holdingTaxGateway.GetAllHoldingTaxForHolder(HolderId);
+        }
+
+        public List<HoldingTax> GetHolderForRegenerateTAX(QueryCommon query)
+        {
+            return _holdingTaxGateway.GetHolderForRegenerateTAX(query);
         }
 
         public HoldingTax GetHoldingTaxById(int id)
@@ -71,7 +77,19 @@ namespace HoldingTaxWebApp.Manager.Tax
             return _holdingTaxGateway.GenerateTax(FinYearId);
         }
 
-        public int FinalizeHoldingTax(int FinancialYearId, int LastUpdatedBy, DateTime LastUpdated)
+        public string ReGenerateTax(QueryCommon query)
+        {
+            int result = _holdingTaxGateway.ReGenerateTax(query);
+
+            if (result == 202)
+                return CommonConstantHelper.Success;
+            else if (result == 500)
+                return CommonConstantHelper.Error;
+            else
+                return CommonConstantHelper.Failed;
+        }
+
+            public int FinalizeHoldingTax(int FinancialYearId, int LastUpdatedBy, DateTime LastUpdated)
         {
             return _holdingTaxGateway.FinalizeHoldingTax(FinancialYearId, LastUpdatedBy, LastUpdated);
         }

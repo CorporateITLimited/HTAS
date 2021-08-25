@@ -23,5 +23,15 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "প্লট নম্বর")]
         public int? PlotId { get; set; }
 
+        public int? HoldingTaxId { get; set; }
+        public bool HoldingTaxIdStatus { get; set; }
+
+        public DateTime? CreateDate { get; set; }
+        public int? CreatedBy { get; set; }
+        public DateTime? LastUpdated { get; set; }
+        public int? LastUpdatedBy { get; set; }
+        public bool? IsActive { get; set; }
+        public bool? IsDeleted { get; set; }
+
     }
 }
