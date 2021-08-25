@@ -32,6 +32,7 @@ namespace HoldingTaxWebApp.ViewModels
         public int? LastUpdatedBy { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
+        public int? HolderId { get; set; }
 
     }
 }

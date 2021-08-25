@@ -333,6 +333,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
                             {
                                 QueryCommon query = new QueryCommon()
                                 {
+                                    HolderId = item.HolderId,
                                     FinancialYearId = item.FinancialYearId,
                                     HoldingTaxId = item.HoldingTaxId,
                                     HoldingTaxIdStatus = true,

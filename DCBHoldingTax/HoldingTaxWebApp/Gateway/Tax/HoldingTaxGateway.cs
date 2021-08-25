@@ -405,6 +405,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 {
                     HoldingTax holdingtax = new HoldingTax()
                     {
+                        HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         HoldingTaxId = Convert.ToInt32(Data_Reader["HoldingTaxId"]),
                         TotalHoldingTax = Data_Reader["TotalHoldingTax"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["TotalHoldingTax"]) : (decimal?)null,
@@ -828,6 +829,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
 
                 Sql_Command.Parameters.Add("@FinancialyearId", SqlDbType.Int).Value = query.FinancialYearId;
                 Sql_Command.Parameters.Add("@HoldingTaxId", SqlDbType.Int).Value = query.HoldingTaxId;
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = query.HolderId;
 
                 SqlParameter result = new SqlParameter
                 {

@@ -194,6 +194,7 @@
                             $(data).each(function (index, upd) {
                                 holder_details_table.append('<tr>' +
                                     '<input type="hidden" value=' + upd.HoldingTaxId + ' class="HoldingTaxId" id="HoldingTaxId" />' +
+                                    '<input type="hidden" value=' + upd.HolderId + ' class="HolderId" id="HolderId" />' +
                                     '<td class="text-center">' + upd.HolderName + '</td>' +
                                     '<td class="text-center">' + upd.HolderNo + '</td>' +
                                     '<td class="text-center">' + upd.NetTaxPayableAmount + '</td>' +
@@ -244,9 +245,11 @@
                         var list = [];
                         $('#holder_details tbody tr').each(function (index, ele) {
                             var financialYearId = parseInt($('#FinancialYearId option:selected').val()) || 0;
+                            var holderId = parseInt($('.HolderId', this).val()) || 0;
                             var holdingTaxId = parseInt($('.HoldingTaxId', this).val()) || 0;
                             var holdingTaxIdStatus = $('.holding_tax_id_status', this).val();
                             var status_list = {
+                                HolderId: holderId,
                                 FinancialYearId: financialYearId,
                                 HoldingTaxId: holdingTaxId,
                                 HoldingTaxIdStatus: holdingTaxIdStatus
