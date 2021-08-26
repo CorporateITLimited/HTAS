@@ -817,7 +817,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
         {
             try
             {
-                Sql_Query = "";
+                Sql_Query = "[Tax].[spReGenerateTax]";
                 Sql_Command = new SqlCommand
                 {
                     CommandText = Sql_Query,

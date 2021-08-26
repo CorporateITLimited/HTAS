@@ -91,9 +91,9 @@
                         <table class="table table-bordered table-hover table-sm" width="100" id="holder_details">
                             <thead class="thead-light text-center">
                                 <tr>
-                                    <th>গৃহকরদাতার নাম</th>
-                                    <th>গৃহকরদাতার আইডি নম্বর</th>
-                                    <th>নেট কর প্রদেয় পরিমাণ</th>
+                                    <th>নাম</th>
+                                    <th>আইডি নম্বর</th>
+                                    <th>নেট করের পরিমাণ</th>
                                     <th>টিক দিন</th>
                                 </tr>
                             </thead>
@@ -171,6 +171,20 @@
                 var areaId = parseInt($("#AreaId").val()) || 0;
                 var plotId = parseInt($("#PlotId").val()) || 0;
 
+                if (financialYearId === 0)
+                {
+                    Swal.fire({
+                        title: "আর্থিক বছর নির্বাচন করুন!",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "আর্থিক বছর নির্বাচন করুন",
+                        customClass: {
+                            confirmButton: "btn font-weight-bold btn-danger",
+                        }
+                    });
+                    return;
+                }
+
                 var json = {
                     FinancialYearId: financialYearId,
                     AreaId: areaId,
@@ -186,9 +200,16 @@
                     data: JSON.stringify(json),
                     success: function (data) {
                         if (data.length === 0) {
-                            Swal.fire(
-                                'তথ্য পাওয়া যায়নি!', 'কোনো গৃহকরদাতা পাওয়া যায়নি', 'info'
-                            )
+                            Swal.fire({
+                                title: "তথ্য পাওয়া যায়নি!",
+                                text: "কোনো গৃহকরদাতার তথ্য পাওয়া যায়নি",
+                                icon: "info",
+                                buttonsStyling: false,
+                                confirmButtonText: "সঠিক তথ্য প্রদান করুন",
+                                customClass: {
+                                    confirmButton: "btn font-weight-bold btn-danger",
+                                }
+                            });
                         }
                         else {
                             $(data).each(function (index, upd) {

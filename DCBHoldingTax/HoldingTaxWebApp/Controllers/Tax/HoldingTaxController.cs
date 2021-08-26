@@ -325,49 +325,46 @@ namespace HoldingTaxWebApp.Controllers.Tax
             {
                 if (Session[CommonConstantHelper.UserId] != null && Convert.ToInt32(Session[CommonConstantHelper.UserId]) > 0)
                 {
-                    if (Items != null && Items.Count > 0)
+                    var trueItems = Items.Where(i => i.HoldingTaxIdStatus == true).ToList();
+                    if (trueItems != null && trueItems.Count > 0)
                     {
-                        foreach (var item in Items)
+                        foreach (var item in trueItems)
                         {
-                            if (item.HoldingTaxIdStatus == true)
+                            QueryCommon query = new QueryCommon()
                             {
-                                QueryCommon query = new QueryCommon()
-                                {
-                                    HolderId = item.HolderId,
-                                    FinancialYearId = item.FinancialYearId,
-                                    HoldingTaxId = item.HoldingTaxId,
-                                    HoldingTaxIdStatus = true,
-                                    CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                                    CreateDate = DateTime.Now,
-                                    LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                                    LastUpdated = DateTime.Now
-                                };
+                                HolderId = item.HolderId,
+                                FinancialYearId = item.FinancialYearId,
+                                HoldingTaxId = item.HoldingTaxId,
+                                HoldingTaxIdStatus = true,
+                                CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                CreateDate = DateTime.Now,
+                                LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                LastUpdated = DateTime.Now
+                            };
 
-                                string returnString = _holdingTaxManager.ReGenerateTax(query);
-                                if (returnString != CommonConstantHelper.Success)
-                                {
-                                    status = "তথ্য হালনাগাদ সফল হয়নি";
-                                    return new JsonResult { Data = new { status } };
-                                }
-                                else
-                                {
-                                    status = "success";
-                                }
+                            string returnString = _holdingTaxManager.ReGenerateTax(query);
+                            if (returnString != CommonConstantHelper.Success)
+                            {
+                                status = "তথ্য হালনাগাদ সফল হয়নি";
+                                return new JsonResult { Data = new { status } };
+                            }
+                            else
+                            {
+                                status = "success";
                             }
                         }
+                        return new JsonResult { Data = new { status } };
                     }
-                    return new JsonResult { Data = new { status } };
+                    else
+                    {
+                        status = "কোনো তথ্য পাওয়া যায়নি বা টিক দেয়া হয়নি";
+                        return new JsonResult { Data = new { status } };
+                    }
                 }
                 else
                 {
                     status = "সেশনের মেয়াদ শেষ";
-                    return new JsonResult
-                    {
-                        Data = new
-                        {
-                            status
-                        }
-                    };
+                    return new JsonResult { Data = new { status } };
                 }
             }
             catch (Exception exception)
