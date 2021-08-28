@@ -246,16 +246,36 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     status = "কমপক্ষে একটি ফ্ল্যাটের বিবরণ সাবমিট করুন";
                     return new JsonResult { Data = new { status } };
                 }
-                var area_type_id = _dOHSAreaManager.GetDOHSAreaId(hvm.AreaId).AreaType;
 
-                if (area_type_id > 0 && area_type_id == 2)
+                if (hvm.IsHolderAnOwner == false)
                 {
-                    foreach (HolderFlat item in hvm.HolderFlatList)
+                    var area_type_id = _dOHSAreaManager.GetDOHSAreaId(hvm.AreaId).AreaType;
+                    if (area_type_id > 0 && area_type_id == 2)
                     {
-                        if (item.MonthlyRent == 0)
+                        var trueItems = hvm.HolderFlatList.Where(i => i.IsCheckedByHolder == true).ToList();
+
+                        foreach (HolderFlat item in trueItems)
                         {
-                            status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
-                            return new JsonResult { Data = new { status } };
+                            if (item.MonthlyRent == 0)
+                            {
+                                status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    var area_type_id = _dOHSAreaManager.GetDOHSAreaId(hvm.AreaId).AreaType;
+                    if (area_type_id > 0 && area_type_id == 2)
+                    {
+                        foreach (HolderFlat item in hvm.HolderFlatList)
+                        {
+                            if (item.MonthlyRent == 0)
+                            {
+                                status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
                         }
                     }
                 }
@@ -935,17 +955,35 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     status = "কমপক্ষে একটি ফ্ল্যাটের বিবরণ সাবমিট করুন";
                     return new JsonResult { Data = new { status } };
                 }
-
-                var area_type_id = _dOHSAreaManager.GetDOHSAreaId(hvm.AreaId).AreaType;
-
-                if (area_type_id > 0 && area_type_id == 2)
+                if (hvm.IsHolderAnOwner == false)
                 {
-                    foreach (HolderFlat item in hvm.HolderFlatList)
+                    var area_type_id = _dOHSAreaManager.GetDOHSAreaId(hvm.AreaId).AreaType;
+                    if (area_type_id > 0 && area_type_id == 2)
                     {
-                        if (item.MonthlyRent == 0)
+                        var trueItems = hvm.HolderFlatList.Where(i => i.IsCheckedByHolder == true).ToList();
+
+                        foreach (HolderFlat item in trueItems)
                         {
-                            status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
-                            return new JsonResult { Data = new { status } };
+                            if (item.MonthlyRent == 0)
+                            {
+                                status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    var area_type_id = _dOHSAreaManager.GetDOHSAreaId(hvm.AreaId).AreaType;
+                    if (area_type_id > 0 && area_type_id == 2)
+                    {
+                        foreach (HolderFlat item in hvm.HolderFlatList)
+                        {
+                            if (item.MonthlyRent == 0)
+                            {
+                                status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
                         }
                     }
                 }
@@ -1614,17 +1652,36 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     return new JsonResult { Data = new { status } };
                 }
 
-                var area_type_id = _dOHSAreaManager.GetDOHSAreaId(hvm.AreaId).AreaType;
-
-                if (area_type_id > 0 && area_type_id == 2)
+                if (hvm.IsHolderAnOwner == false)
                 {
-                    foreach (HolderFlat item in hvm.HolderFlatList)
+                    var area_type_id = _dOHSAreaManager.GetDOHSAreaId(hvm.AreaId).AreaType;
+                    if (area_type_id > 0 && area_type_id == 2)
                     {
-                        if (item.MonthlyRent == 0)
+                        var trueItems = hvm.HolderFlatList.Where(i => i.IsCheckedByHolder == true).ToList();
+
+                        foreach (HolderFlat item in trueItems)
                         {
-                            status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
-                            return new JsonResult { Data = new { status } };
-                        } 
+                            if (item.MonthlyRent == 0)
+                            {
+                                status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    var area_type_id = _dOHSAreaManager.GetDOHSAreaId(hvm.AreaId).AreaType;
+                    if (area_type_id > 0 && area_type_id == 2)
+                    {
+                        foreach (HolderFlat item in hvm.HolderFlatList)
+                        {
+                            if (item.MonthlyRent == 0)
+                            {
+                                status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
+                                return new JsonResult { Data = new { status } };
+                            }
+                        }
                     }
                 }
 
