@@ -121,5 +121,9 @@ namespace HoldingTaxWebApp.Models.Tax
 
         public decimal? DuesPreviousYear { get; set; }
         public decimal? DuesFineAmount { get; set; }
+        public decimal? TotalTaxOfThisYear { get; set; }
+
+        public decimal? TotalHoldingTaxWithRebate { get; set; }
+        public decimal? TotalHoldingTaxWithRebateAndSurcharge { get; set; }
     }
 }

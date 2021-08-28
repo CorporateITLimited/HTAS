@@ -541,7 +541,13 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
                         HolderName = Convert.ToString(Data_Reader["HolderName"]),
                         PaymentDate = Data_Reader["PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["PaymentDate"]) : (DateTime?)null,
-                        Remarks = Convert.ToString(Data_Reader["Remarks"])
+                        Remarks = Convert.ToString(Data_Reader["Remarks"]),
+                        TotalTaxOfThisYear = Data_Reader["TotalTaxOfThisYear"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["TotalTaxOfThisYear"]) : (Decimal?)null,
+                        DuesFineAmount = Data_Reader["DuesFineAmount"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["DuesFineAmount"]) : (Decimal?)null,
+                        DuesPreviousYear = Data_Reader["DuesPreviousYear"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["DuesPreviousYear"]) : (Decimal?)null,
                     };
 
                     holdingtax.StringPaymentDate = $"{holdingtax.PaymentDate:dd/MM/yyyy}";
@@ -601,17 +607,20 @@ namespace HoldingTaxWebApp.Gateway.Tax
 
                 while (Data_Reader.Read())
                 {
-
-                    holdingtax.SubTotalHoldingTax = Data_Reader["SubTotalHoldingTax"] != DBNull.Value ?
-                                            Convert.ToDecimal(Data_Reader["SubTotalHoldingTax"]) : (Decimal?)null;
+                    holdingtax.TotalHoldingTax = Data_Reader["TotalHoldingTax"] != DBNull.Value ?
+                                            Convert.ToDecimal(Data_Reader["TotalHoldingTax"]) : (decimal?)null;
+                    holdingtax.TotalTaxOfThisYear = Data_Reader["TotalTaxOfThisYear"] != DBNull.Value ?
+                                           Convert.ToDecimal(Data_Reader["TotalTaxOfThisYear"]) : (decimal?)null;
+                    holdingtax.NetTaxPayableAmount = Data_Reader["NetTaxPayableAmount"] != DBNull.Value ?
+                                           Convert.ToDecimal(Data_Reader["NetTaxPayableAmount"]) : (decimal?)null;
                     holdingtax.RebatePercent = Data_Reader["RebatePercent"] != DBNull.Value ?
-                                             Convert.ToDecimal(Data_Reader["RebatePercent"]) : (Decimal?)null;
+                                             Convert.ToDecimal(Data_Reader["RebatePercent"]) : (decimal?)null;
                     holdingtax.RebateValue = Data_Reader["RebateValue"] != DBNull.Value ?
-                                             Convert.ToDecimal(Data_Reader["RebateValue"]) : (Decimal?)null;
+                                             Convert.ToDecimal(Data_Reader["RebateValue"]) : (decimal?)null;
                     holdingtax.WrongInfoChargePercent = Data_Reader["WrongInfoChargePercent"] != DBNull.Value ?
-                                             Convert.ToDecimal(Data_Reader["WrongInfoChargePercent"]) : (Decimal?)null;
+                                             Convert.ToDecimal(Data_Reader["WrongInfoChargePercent"]) : (decimal?)null;
                     holdingtax.WrongInfoChargeValue = Data_Reader["WrongInfoChargeValue"] != DBNull.Value ?
-                                            Convert.ToDecimal(Data_Reader["WrongInfoChargeValue"]) : (Decimal?)null;
+                                            Convert.ToDecimal(Data_Reader["WrongInfoChargeValue"]) : (decimal?)null;
                 }
 
                 Data_Reader.Close();
@@ -665,6 +674,8 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = tax.LastUpdated;
                 Sql_Command.Parameters.Add("@PaymentDate", SqlDbType.DateTime).Value = tax.PaymentDate;
                 Sql_Command.Parameters.Add("@Remarks", SqlDbType.NVarChar).Value = tax.Remarks;
+                Sql_Command.Parameters.Add("@TotalHoldingTax", SqlDbType.Decimal).Value = tax.TotalHoldingTax;
+                Sql_Command.Parameters.Add("@TotalTaxOfThisYear", SqlDbType.Decimal).Value = tax.TotalTaxOfThisYear;
 
                 SqlParameter result = new SqlParameter
                 {
