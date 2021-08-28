@@ -10,6 +10,7 @@ using HoldingTaxWebApp.Manager.DBO;
 using HoldingTaxWebApp.Manager.Tax;
 using HoldingTaxWebApp.Manager.Holding;
 using HoldingTaxWebApp.Models.Tax;
+using HoldingTaxWebApp.Manager.Constant;
 
 namespace HoldingTaxWebApp.Controllers
 {
@@ -20,6 +21,7 @@ namespace HoldingTaxWebApp.Controllers
         private readonly HoldingManager _holdingManager;
         private readonly InitialTranscationManager _initialTrnxManager;
         private readonly PrimaryTransactionManager _primaryTrnxManager;
+        private readonly ConstantValueManager _constantValueManager;
 
         public CartController()
         {
@@ -28,6 +30,7 @@ namespace HoldingTaxWebApp.Controllers
             _holdingManager = new HoldingManager();
             _initialTrnxManager = new InitialTranscationManager();
             _primaryTrnxManager = new PrimaryTransactionManager();
+            _constantValueManager = new ConstantValueManager();
         }
 
         // GET: Cart
