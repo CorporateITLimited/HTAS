@@ -68,7 +68,8 @@ namespace HoldingTaxWebApp.Gateway.Constant
                         SurchargeRef = Data_Reader["SurchargeRef"].ToString(),
                         WrongInfoCharge = Convert.ToDecimal(Data_Reader["WrongInfoCharge"]),
                         WrongInfoChargeRef = Data_Reader["WrongInfoChargeRef"].ToString(),
-
+                        OwnFlatDiscount = Data_Reader["OwnFlatDiscount"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["OwnFlatDiscount"]) : (Decimal?)null,
+                        OwnFlatDiscountRef = Data_Reader["OwnFlatDiscountRef"].ToString(),
                     };
 
                     vm.Add(model);
@@ -155,7 +156,9 @@ namespace HoldingTaxWebApp.Gateway.Constant
                     vm.SurchargeRef = Data_Reader["SurchargeRef"].ToString();
                     vm.WrongInfoCharge = Convert.ToDecimal(Data_Reader["WrongInfoCharge"]);
                     vm.WrongInfoChargeRef = Data_Reader["WrongInfoChargeRef"].ToString();
-
+                    vm.OwnFlatDiscount = Data_Reader["OwnFlatDiscount"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["OwnFlatDiscount"]) : (Decimal?)null;
+                    vm.OwnFlatDiscountRef = Data_Reader["OwnFlatDiscountRef"].ToString();
+                    
                 };
 
                 Data_Reader.Close();
@@ -216,6 +219,9 @@ namespace HoldingTaxWebApp.Gateway.Constant
                 Sql_Command.Parameters.Add("@RebateRef", SqlDbType.NVarChar).Value = model.RebateRef;
                 Sql_Command.Parameters.Add("@DueCharge", SqlDbType.Decimal).Value = model.DueCharge;
                 Sql_Command.Parameters.Add("@DueChargeRef", SqlDbType.NVarChar).Value = model.DueChargeRef;
+                Sql_Command.Parameters.Add("@OwnFlatDiscount", SqlDbType.Decimal).Value = model.OwnFlatDiscount;
+                Sql_Command.Parameters.Add("@OwnFlatDiscountRef", SqlDbType.NVarChar).Value = model.OwnFlatDiscountRef;
+
 
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = model.CreateDate;
                 Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = model.CreatedBy;
@@ -293,6 +299,9 @@ namespace HoldingTaxWebApp.Gateway.Constant
                 Sql_Command.Parameters.Add("@RebateRef", SqlDbType.NVarChar).Value = model.RebateRef;
                 Sql_Command.Parameters.Add("@DueCharge", SqlDbType.Decimal).Value = model.DueCharge;
                 Sql_Command.Parameters.Add("@DueChargeRef", SqlDbType.NVarChar).Value = model.DueChargeRef;
+                Sql_Command.Parameters.Add("@OwnFlatDiscount", SqlDbType.Decimal).Value = model.OwnFlatDiscount;
+                Sql_Command.Parameters.Add("@OwnFlatDiscountRef", SqlDbType.NVarChar).Value = model.OwnFlatDiscountRef;
+
 
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = model.CreateDate;
                 Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = model.CreatedBy;

@@ -49,7 +49,8 @@ namespace HoldingTaxWebApp.Controllers.Constant
                             SurchargeRef = item.SurchargeRef,
                             WrongInfoCharge = item.WrongInfoCharge,
                             WrongInfoChargeRef = item.WrongInfoChargeRef,
-
+                            OwnFlatDiscount = item.OwnFlatDiscount,
+                            OwnFlatDiscountRef = item.OwnFlatDiscountRef,
 
                             IsActive = item.IsActive,
                             IsDeleted = item.IsDeleted,
@@ -105,7 +106,8 @@ namespace HoldingTaxWebApp.Controllers.Constant
                     SurchargeRef = item.SurchargeRef,
                     WrongInfoCharge = item.WrongInfoCharge,
                     WrongInfoChargeRef = item.WrongInfoChargeRef,
-
+                    OwnFlatDiscount = item.OwnFlatDiscount,
+                    OwnFlatDiscountRef = item.OwnFlatDiscountRef,
 
                     IsActive = item.IsActive,
                     IsDeleted = item.IsDeleted,
@@ -178,7 +180,8 @@ namespace HoldingTaxWebApp.Controllers.Constant
                     SurchargeRef = item.SurchargeRef,
                     WrongInfoCharge = item.WrongInfoCharge,
                     WrongInfoChargeRef = item.WrongInfoChargeRef,
-
+                    OwnFlatDiscount = item.OwnFlatDiscount,
+                    OwnFlatDiscountRef = item.OwnFlatDiscountRef,
 
                     IsActive = item.IsActive,
                     IsDeleted = item.IsDeleted,
