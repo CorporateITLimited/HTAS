@@ -68,11 +68,19 @@ namespace HoldingTaxWebApp.Controllers.Tax
             ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
 
             var data = _holdingTaxManager.GetAllHoldingTaxIndex(null, null, null);
-            var firstRow = data.Take(1).FirstOrDefault();
-
-            ViewBag.TotalNetPayableAmount_ = firstRow.TotalNetPayableAmount;
-            ViewBag.TotalPaidAmount_ = firstRow.TotalPaidAmount;
-            ViewBag.TotalUnPaidAmount_ = firstRow.TotalUnPaidAmount;
+            if (data != null && data.Count > 0)
+            {
+                var firstRow = data.Take(1).FirstOrDefault();
+                ViewBag.TotalNetPayableAmount_ = firstRow.TotalNetPayableAmount ?? 0;
+                ViewBag.TotalPaidAmount_ = firstRow.TotalPaidAmount ?? 0;
+                ViewBag.TotalUnPaidAmount_ = firstRow.TotalUnPaidAmount ?? 0;
+            }
+            else
+            {
+                ViewBag.TotalNetPayableAmount_ = null;
+                ViewBag.TotalPaidAmount_ = null;
+                ViewBag.TotalUnPaidAmount_ = null;
+            }
 
             if (Session[CommonConstantHelper.UserTypeId].ToString() == "2")
             {
@@ -113,9 +121,9 @@ namespace HoldingTaxWebApp.Controllers.Tax
                     ViewBag.TotalUnPaidAmount_ = null;
 
                     var firstRow = data.Take(1).FirstOrDefault();
-                    ViewBag.TotalNetPayableAmount = firstRow.TotalNetPayableAmount;
-                    ViewBag.TotalPaidAmount = firstRow.TotalPaidAmount;
-                    ViewBag.TotalUnPaidAmount = firstRow.TotalUnPaidAmount;
+                    ViewBag.TotalNetPayableAmount = firstRow.TotalNetPayableAmount ?? 0;
+                    ViewBag.TotalPaidAmount = firstRow.TotalPaidAmount ?? 0;
+                    ViewBag.TotalUnPaidAmount = firstRow.TotalUnPaidAmount ?? 0;
 
                     return PartialView("~/Views/HoldingTax/_PartialIndex.cshtml", data);
                 }
@@ -152,6 +160,9 @@ namespace HoldingTaxWebApp.Controllers.Tax
         {
             ViewBag.FinancialYearId = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
             ViewBag.FinancialYearId_Two = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
+            ViewBag.FinancialYearId_Three = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
+            ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
             return View();
         }
 
