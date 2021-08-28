@@ -69,7 +69,7 @@ namespace HoldingTaxWebApp.Models.Tax
         [Display(Name = "প্লটের নম্বর")]
         public string PlotNo { get; set; }
 
-        [Display(Name = "হোল্ডারের প্লট/ফ্ল্যাট/বাড়ী এর তথ্য")]
+        [Display(Name = "গৃহকরদাতার ফ্ল্যাট/বাড়ী এর তথ্য")]
         public string AreaPlotFlatData { get; set; }
 
         [Display(Name = "ছাড়")]

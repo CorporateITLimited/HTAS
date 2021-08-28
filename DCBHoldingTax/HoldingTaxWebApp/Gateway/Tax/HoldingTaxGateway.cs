@@ -548,6 +548,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                                                 Convert.ToDecimal(Data_Reader["DuesFineAmount"]) : (Decimal?)null,
                         DuesPreviousYear = Data_Reader["DuesPreviousYear"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["DuesPreviousYear"]) : (Decimal?)null,
+                        HolderNo = Convert.ToString(Data_Reader["HolderNo"])
                     };
 
                     holdingtax.StringPaymentDate = $"{holdingtax.PaymentDate:dd/MM/yyyy}";
