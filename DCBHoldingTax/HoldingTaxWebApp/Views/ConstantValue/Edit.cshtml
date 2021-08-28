@@ -49,7 +49,7 @@
                         <div class="card-body">
                             <fieldset>
 
-                                <legend>প্লটের সাধারণ তথ্য</legend>
+                                @*<legend>প্লটের সাধারণ তথ্য</legend>*@
 
                                 <div class="form-group row m-2">
                                     @Html.LabelFor(model => model.RentMonthRef, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -121,7 +121,7 @@
                                         @Html.ValidationMessageFor(model => model.Rebate, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group row m-2">
                                     @Html.LabelFor(model => model.DueChargeRef, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
@@ -134,6 +134,21 @@
                                     <div class="col-lg-4">
                                         @Html.EditorFor(model => model.DueCharge, new { htmlAttributes = new { @class = "form-control", @name = "DueCharge", placeholder = "", @id = "DueCharge" } })
                                         @Html.ValidationMessageFor(model => model.DueCharge, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.OwnFlatDiscountRef, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.OwnFlatDiscountRef, new { htmlAttributes = new { @class = "form-control", @name = "OwnFlatDiscountRef", placeholder = "", @id = "OwnFlatDiscountRef" } })
+                                        @Html.ValidationMessageFor(model => model.OwnFlatDiscountRef, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    @Html.LabelFor(model => model.OwnFlatDiscount, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.OwnFlatDiscount, new { htmlAttributes = new { @class = "form-control", @name = "OwnFlatDiscount", placeholder = "", @id = "OwnFlatDiscount" } })
+                                        @Html.ValidationMessageFor(model => model.OwnFlatDiscount, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 
@@ -217,6 +232,14 @@
                     DueChargeRef: {
                         required: true
                         
+                    },
+                    OwnFlatDiscount: {
+                        required: true,
+                        number: true
+                    },
+                    OwnFlatDiscountRef: {
+                        required: true
+
                     }
 
                 },
@@ -233,7 +256,8 @@
                     RebateRef: "ঘরটি অবশ্যই পূরণ করতে হবে",
                     DueCharge: "ঘরটি অবশ্যই পূরণ করতে হবে",
                     DueChargeRef: "ঘরটি অবশ্যই পূরণ করতে হবে",
-
+                    OwnFlatDiscount: "ঘরটি অবশ্যই পূরণ করতে হবে",
+                    OwnFlatDiscountRef: "ঘরটি অবশ্যই পূরণ করতে হবে",
 
                 },
                 invalidHandler: function (event, validator) {
