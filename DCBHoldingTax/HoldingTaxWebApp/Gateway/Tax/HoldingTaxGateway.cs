@@ -1074,8 +1074,8 @@ namespace HoldingTaxWebApp.Gateway.Tax
                     vm.RebateRate = Data_Reader["RebateRate"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["RebateRate"]) : (decimal?)null;
                     vm.DuesChargeRate = Data_Reader["DuesChargeRate"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["DuesChargeRate"]) : (decimal?)null;
                     vm.Ispaid = Convert.ToBoolean(Data_Reader["IsPaid"]);
-
-
+                    vm.WrongInfoCharge = Data_Reader["WrongInfoCharge"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["WrongInfoCharge"]) : (decimal?)null;
+                    vm.WrongInfoChargeRate = Data_Reader["WrongInfoChargeRate"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["WrongInfoChargeRate"]) : (decimal?)null;
 
 
                 };
