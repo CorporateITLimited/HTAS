@@ -88,8 +88,7 @@
                                 </div>
 
                             </div>
-
-                            <fieldset style="border: 1px solid forestgreen;">
+                            <fieldset style="border: 2px solid forestgreen">
                                 <br />
                                 <div class="form-group row">
                                     <label class="col-lg-2 col-form-label text-lg-right">রিবেট/ছাড়: <span id="RebatePercent"> &nbsp; @Model.RebatePercent (%)</span></label>
@@ -202,44 +201,25 @@
 
                                 </div>
 
+
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label text-lg-right">@Model.FinancialYear.Replace(" ", "") অর্থ বছরের গৃহকর </label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.TotalHoldingTax, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                         @*<span class="form-text text-muted">Please enter your contact number</span>*@
                                     </div>
-
-                                    <label class="col-lg-3 col-form-label text-lg-right">@Model.FinancialYear.Replace(" ", "") অর্থ বছরের রিবেট নিয়ে গৃহকর </label>
-                                    <div class="col-lg-3">
-                                        @Html.EditorFor(model => model.TotalHoldingTaxWithRebate, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
-                                        @*<span class="form-text text-muted">Please enter your contact number</span>*@
-                                    </div>
-
-                                </div>
-
-                                <div class="form-group row">
                                     <label class="col-lg-3 col-form-label text-lg-right">@Model.FinancialYear.Replace(" ", "") অর্থ বছরের সারচার্জ সহ গৃহকর</label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.TotalTaxOfThisYear, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
                                         @*<span class="form-text text-muted">Please enter your full name</span>*@
                                     </div>
 
-                                    <label class="col-lg-3 col-form-label text-lg-right"> @Model.FinancialYear.Replace(" ", "") অর্থ বছরের রিবেট নিয়ে সারচার্জ সহ গৃহকর </label>
-                                    <div class="col-lg-3">
-                                        @Html.EditorFor(model => model.TotalHoldingTaxWithRebateAndSurcharge, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
-                                        @*<span class="form-text text-muted">Please enter your contact number</span>*@
-                                    </div>
                                 </div>
-
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label text-lg-right"> জরিমানাসহ গৃহকরের বকেয়া</label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.DuesPreviousYear, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
-                                        @*<span class="form-text text-muted">Please enter your contact number</span>*@
                                     </div>
-                                </div>
-
-                                <div class="form-group row">
                                     <label class="col-lg-3 col-form-label text-lg-right">নেট কর প্রদেয় পরিমান (বকেয়া গৃহকর সহ)</label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.NetTaxPayableAmount, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
@@ -247,31 +227,31 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label text-lg-right">টাকা প্রদানের তারিখ</label>
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.StringPaymentDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                        @*<span class="form-text text-muted">Please enter your contact number</span>*@
+                                    </div>
+
+                                    <label class="col-lg-3 col-form-label text-lg-right">পরিশোধিত টাকার পরিমান</label>
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
+                                        @*<span class="form-text text-muted">Please enter your full name</span>*@
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label text-lg-right">নোট</label>
+                                    <div class="col-lg-4">
+                                        @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", placeholder = "" })
+                                    </div>
+                                </div>
                             </fieldset>
                             <br />
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label text-lg-right">পরিশোধিত টাকার পরিমান</label>
-                                <div class="col-lg-3">
-                                    @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
-                                    @*<span class="form-text text-muted">Please enter your full name</span>*@
-                                </div>
-
-                                <label class="col-lg-3 col-form-label text-lg-right">টাকা প্রদানের তারিখ</label>
-                                <div class="col-lg-3">
-                                    @Html.EditorFor(model => model.StringPaymentDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                    @*<span class="form-text text-muted">Please enter your contact number</span>*@
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label text-lg-right">নোট</label>
-                                <div class="col-lg-4">
-                                    @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", placeholder = "" })
-                                </div>
-                            </div>
-
 
                         </div>
                         <div class="card-footer">
@@ -339,67 +319,85 @@
             $('input[type=radio][name=RebateInfo]').change(function () {
                 if (this.value === 'Yes') {
                     //$("#RebatePercent").text("");
-                    var totalTaxOfThisYearRebate = $("#TotalHoldingTaxWithRebateAndSurcharge").val();
-                    var duesPreviousYear = $("#DuesPreviousYear").val();
-                    //var subTotal = $("#NetTaxPayableAmount").val();
-                    //var minusValue = $("#Rebate").val();
-                    var exactValue = parseFloat(totalTaxOfThisYearRebate) + parseFloat(duesPreviousYear);
-                    $("#NetTaxPayableAmount").val(exactValue.toFixed(2));
+                    @*var totalHoldingTax = parseFloat($("#TotalHoldingTax").val()) || 0;
+                    var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+                    var duesPreviousYear = parseFloat($("#DuesPreviousYear").val()) || 0;
+                    var wrongInfoCharge = parseFloat($("#WrongInfoCharge").val()) || 0;
+                    var exactValue = (parseFloat(totalHoldingTax) * parseFloat(@Model.RebatePercent)) / 100;
+                    $("#Rebate").val(exactValue.toFixed(2));
                     $("#Rebate").css("border", "2px solid green");
                     $("#is_rebate_validate").val("1");
+                    var newNetExactValue = (parseFloat(netPayAmount) + parseFloat(duesPreviousYear) + parseFloat(wrongInfoCharge)) - exactValue.toFixed(2);
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));*@
+
+                    var totalHoldingTax = parseFloat($("#TotalHoldingTax").val()) || 0;
+                    var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+                    var exactValue = (parseFloat(totalHoldingTax) * parseFloat(@Model.RebatePercent)) / 100;
+                    $("#Rebate").val(exactValue.toFixed(2));
+                    $("#Rebate").css("border", "2px solid green");
+                    $("#is_rebate_validate").val("1");
+                    var newNetExactValue = parseFloat(netPayAmount) - exactValue.toFixed(2);
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));
                 }
                 else if (this.value === 'No') {
-                    var totalTaxOfThisYear = $("#TotalTaxOfThisYear").val();
-                    var duesPreviousYear = $("#DuesPreviousYear").val();
-                    //var subTotal = $("#NetTaxPayableAmount").val();
-                    //var minusValue = $("#Rebate").val();
-                    var exactValue = parseFloat(totalTaxOfThisYear) + parseFloat(duesPreviousYear);
-                    $("#NetTaxPayableAmount").val(exactValue.toFixed(2));
+                    //var totalHoldingTax = parseFloat($("#TotalHoldingTax").val()) || 0;
+                    //var netPayAmount = parseFloat($("#TotalTaxOfThisYear").val()) || 0;
+                    //var duesPreviousYear = parseFloat($("#DuesPreviousYear").val()) || 0;
+                    //var wrongInfoCharge = parseFloat($("#WrongInfoCharge").val()) || 0;
+                    //$("#Rebate").val("");
+                    //$("#Rebate").css("border", "2px solid red");
+                    //$("#is_rebate_validate").val("0");
+                    //var newNetExactValue = (parseFloat(netPayAmount) + parseFloat(duesPreviousYear) + parseFloat(wrongInfoCharge));
+                    //$("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));
+
+                    var totalHoldingTax = parseFloat($("#TotalHoldingTax").val()) || 0;
+                    var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+                    var exactValue = (parseFloat(totalHoldingTax) * parseFloat(@Model.RebatePercent)) / 100;
+                    $("#Rebate").val("");
                     $("#Rebate").css("border", "2px solid red");
                     $("#is_rebate_validate").val("0");
+                    var newNetExactValue = parseFloat(netPayAmount) + parseFloat(exactValue.toFixed(2));
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));
                 }
             });
 
             $('input[type=radio][name=WrongInfo]').change(function () {
                 if (this.value === 'Yes') {
-                    var isRebated = parseInt($("#is_rebate_validate").val());
-                    $("#WrongInfoCharge").val("");
-                    if (isRebated === 1) {
-                        var totalTaxOfThisYearRebate = $("#TotalHoldingTaxWithRebate").val();
-                        var aMM = $("#TotalHoldingTaxWithRebateAndSurcharge").val();
-                        var duesPreviousYear = $("#DuesPreviousYear").val();
-                        var wrongInfocharge = (parseFloat(totalTaxOfThisYearRebate) * parseFloat(@Model.WrongInfoChargePercent)) / 100;
-                        var exactValue = parseFloat(aMM) + parseFloat(duesPreviousYear) + parseFloat(wrongInfocharge);
-                        $("#WrongInfoCharge").val(wrongInfocharge.toFixed(2));
-                        $("#NetTaxPayableAmount").val(exactValue.toFixed(2));
-                        $("#WrongInfoCharge").css("border", "2px solid green");
-                    } else {
-                        var totalTaxOfThisYearRebate = $("#TotalHoldingTax").val();
-                        var aMM = $("#TotalTaxOfThisYear").val();
-                        var duesPreviousYear = $("#DuesPreviousYear").val();
-                        var wrongInfocharge = (parseFloat(totalTaxOfThisYearRebate) * parseFloat(@Model.WrongInfoChargePercent)) / 100;
-                        var exactValue = parseFloat(aMM) + parseFloat(duesPreviousYear) + parseFloat(wrongInfocharge);
-                        $("#WrongInfoCharge").val(wrongInfocharge.toFixed(2));
-                        $("#NetTaxPayableAmount").val(exactValue.toFixed(2));
-                        $("#WrongInfoCharge").css("border", "2px solid green");
-                    }
+                    @*var totalTaxOfThisYear = parseFloat($("#TotalTaxOfThisYear").val()) || 0;
+                    var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+                    var duesPreviousYear = parseFloat($("#DuesPreviousYear").val()) || 0;
+                    var rebate = parseFloat($("#Rebate").val()) || 0;
+                    var wrongInfocharge = (parseFloat(totalTaxOfThisYear) * parseFloat(@Model.WrongInfoChargePercent)) / 100;
+                    $("#WrongInfoCharge").val(wrongInfocharge.toFixed(2));
+                    var newNetExactValue = (parseFloat(netPayAmount) + parseFloat(duesPreviousYear) + parseFloat(wrongInfocharge)) - parseFloat(rebate);
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));*@
+
+                    var totalTaxOfThisYear = parseFloat($("#TotalTaxOfThisYear").val()) || 0;
+                    var wrongInfocharge = (parseFloat(totalTaxOfThisYear) * parseFloat(@Model.WrongInfoChargePercent)) / 100;
+                    $("#WrongInfoCharge").val(wrongInfocharge.toFixed(2));
+                    var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+                    var newNetExactValue = (parseFloat(netPayAmount) + parseFloat(wrongInfocharge));
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));
+                    $("#WrongInfoCharge").css("border", "2px solid green");
                 }
                 else if (this.value === 'No') {
-                    var isRebated = parseInt($("#is_rebate_validate").val());
-                    if (isRebated === 1) {
-                        var netAmm = $("#NetTaxPayableAmount").val();
-                        var wrongInfocharge = $("#WrongInfoCharge").val();
-                        var exactValue = parseFloat(netAmm) - parseFloat(wrongInfocharge);
-                        $("#NetTaxPayableAmount").val(exactValue.toFixed(2));
-                        $("#WrongInfoCharge").css("border", "2px solid red");
-                    } else {
-                        var netAmm = $("#NetTaxPayableAmount").val();
-                        var wrongInfocharge = $("#WrongInfoCharge").val();
-                        var exactValue = parseFloat(netAmm) - parseFloat(wrongInfocharge);
-                        $("#NetTaxPayableAmount").val(exactValue.toFixed(2));
-                        $("#WrongInfoCharge").css("border", "2px solid red");
-                    }
+                    @*var totalTaxOfThisYear = parseFloat($("#TotalTaxOfThisYear").val()) || 0;
+                    var netPayAmount = parseFloat($("#TotalTaxOfThisYear").val()) || 0;
+                    var duesPreviousYear = parseFloat($("#DuesPreviousYear").val()) || 0;
+                    var rebate = parseFloat($("#Rebate").val()) || 0;
+                    var wrongInfocharge = (parseFloat(totalTaxOfThisYear) * parseFloat(@Model.WrongInfoChargePercent)) / 100;
                     $("#WrongInfoCharge").val("");
+                    var newNetExactValue = (parseFloat(netPayAmount) + parseFloat(duesPreviousYear)) - parseFloat(rebate);
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));
+                    $("#WrongInfoCharge").css("border", "2px solid red");*@
+
+                     var totalTaxOfThisYear = parseFloat($("#TotalTaxOfThisYear").val()) || 0;
+                    var wrongInfocharge = (parseFloat(totalTaxOfThisYear) * parseFloat(@Model.WrongInfoChargePercent)) / 100;
+                    $("#WrongInfoCharge").val("");
+                    var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+                    var newNetExactValue = (parseFloat(netPayAmount) - parseFloat(wrongInfocharge));
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));
+                    $("#WrongInfoCharge").css("border", "2px solid red");
                 }
             });
 
