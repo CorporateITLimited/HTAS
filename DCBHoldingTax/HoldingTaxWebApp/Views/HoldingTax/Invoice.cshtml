@@ -142,7 +142,7 @@
                                             <td class="text-left" width="10%">টাকা</td>
                                         </tr>
                                         <tr class="font-weight-boldest">
-                                            <td class="text-left" width="70%"> @Model.StringStartingDate হতে @Model.StringFEndDate পর্যন্ত @Model.FinancialYear আর্থিক সন--</td>
+                                            <td class="text-left" width="70%"> @Model.StringStartingDate হতে @Model.StringFEndDate পর্যন্ত @Model.FinancialYear আর্থিক সন(সারচার্জ সহ)--</td>
                                             <td class="text-right" width="20%">@Model.TotalNet</td>
                                             <td class="text-left" width="10%">টাকা</td>
                                         </tr>
@@ -154,6 +154,11 @@
                                         <tr class="font-weight-boldest">
                                             <td class="text-left" width="70%">@Model.StringEndOfYear তারিখের মধ্যে পরিশোধ করলে @Model.FinancialYear আর্থিক সনের উপর @Model.RebateRate% রিবেট (-)  </td>
                                             <td class="text-right" width="20%">@Model.rebateNew</td>
+                                            <td class="text-left" width="10%">টাকা</td>
+                                        </tr>
+                                        <tr class="font-weight-boldest">
+                                            <td class="text-left" width="70%">রেকর্ড সংশোধন ফি @Model.WrongInfoChargeRate%(প্রযোজ্য ক্ষেত্রে)</td>
+                                            <td class="text-right" width="20%">@Model.WrongInfoCharge</td>
                                             <td class="text-left" width="10%">টাকা</td>
                                         </tr>
                                         <tr class="font-weight-boldest">

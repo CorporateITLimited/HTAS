@@ -67,11 +67,11 @@ namespace HoldingTaxWebApp.Models.Constant
         public string DueChargeRef { get; set; }
 
 
-        [Display(Name = "নিজ বসতির ক্ষেত্রে ছাড়(শতাংশ)")]
+        [Display(Name = "ডিওএইচএস ব্যাতিত অন্যান্য এলাকার মালিকদের জন্য প্রযোজ্য ছাড়ের হার(শতাংশ)")]
 
         public decimal? OwnFlatDiscount { get; set; }
 
-        [Display(Name = "নিজ বসতির ক্ষেত্রে ছাড় রেফারেন্স")]
+        [Display(Name = "ডিওএইচএস ব্যাতিত অন্যান্য এলাকার মালিকদের জন্য প্রযোজ্য ছাড়ের হার")]
         public string OwnFlatDiscountRef { get; set; }
     }
 }
