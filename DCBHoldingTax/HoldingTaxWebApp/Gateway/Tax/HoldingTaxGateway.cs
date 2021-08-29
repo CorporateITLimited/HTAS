@@ -677,6 +677,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 Sql_Command.Parameters.Add("@Remarks", SqlDbType.NVarChar).Value = tax.Remarks;
                 Sql_Command.Parameters.Add("@TotalHoldingTax", SqlDbType.Decimal).Value = tax.TotalHoldingTax;
                 Sql_Command.Parameters.Add("@TotalTaxOfThisYear", SqlDbType.Decimal).Value = tax.TotalTaxOfThisYear;
+                Sql_Command.Parameters.Add("@Surcharge", SqlDbType.Decimal).Value = tax.Surcharge;
 
                 SqlParameter result = new SqlParameter
                 {

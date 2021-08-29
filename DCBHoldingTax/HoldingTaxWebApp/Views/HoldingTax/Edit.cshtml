@@ -215,8 +215,6 @@
                                         @*<span class="form-text text-muted">Please enter your contact number</span>*@
                                     </div>
 
-
-
                                 </div>
 
                                 <div class="form-group row">
@@ -239,26 +237,29 @@
                                         @Html.EditorFor(model => model.DuesPreviousYear, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                         @*<span class="form-text text-muted">Please enter your contact number</span>*@
                                     </div>
+                                </div>
 
-                                    <label class="col-lg-3 col-form-label text-lg-right">নেট কর প্রদেয় পরিমান (বকেয়াসহ)</label>
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label text-lg-right">নেট কর প্রদেয় পরিমান (বকেয়া গৃহকর সহ)</label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.NetTaxPayableAmount, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                         @*<span class="form-text text-muted">Please enter your contact number</span>*@
                                     </div>
                                 </div>
+
                             </fieldset>
                             <br />
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label text-lg-right">টাকা প্রদানের তারিখ</label>
-                                <div class="col-lg-3">
-                                    @Html.EditorFor(model => model.StringPaymentDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                    @*<span class="form-text text-muted">Please enter your contact number</span>*@
-                                </div>
-
                                 <label class="col-lg-3 col-form-label text-lg-right">পরিশোধিত টাকার পরিমান</label>
                                 <div class="col-lg-3">
                                     @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
                                     @*<span class="form-text text-muted">Please enter your full name</span>*@
+                                </div>
+
+                                <label class="col-lg-3 col-form-label text-lg-right">টাকা প্রদানের তারিখ</label>
+                                <div class="col-lg-3">
+                                    @Html.EditorFor(model => model.StringPaymentDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                    @*<span class="form-text text-muted">Please enter your contact number</span>*@
                                 </div>
 
                             </div>
@@ -266,7 +267,7 @@
 
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label text-lg-right">নোট</label>
-                                <div class="col-lg-5">
+                                <div class="col-lg-4">
                                     @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", placeholder = "" })
                                 </div>
                             </div>

@@ -236,6 +236,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
                 decimal? netTotalTax = 0;  //NetTaxPayableAmount
                 decimal? wrongInfoCharge = 0; //WrongInfoCharge
                 decimal? totalPreviousYearAmountAndFine = 0;
+                decimal? surcharge = 0;
                 DateTime startDate = new DateTime(DateTime.Now.Year, 6, 30);
                 DateTime newstartDate = startDate.Add(new TimeSpan(23, 59, 59));
 
@@ -255,7 +256,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
                     totalHoldingTaxtWithSurcharge = holdingTax.TotalHoldingTaxWithRebateAndSurcharge != null && holdingTax.TotalHoldingTaxWithRebateAndSurcharge > 0
                                         ? holdingTax.TotalHoldingTaxWithRebateAndSurcharge
                                         : relatableData.TotalTaxOfThisYear;
-
+                    surcharge = totalHoldingTaxtWithSurcharge - totalHoldingTax;
 
                 }
                 else
@@ -266,6 +267,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
                     totalHoldingTaxtWithSurcharge = holdingTax.TotalTaxOfThisYear != null && holdingTax.TotalTaxOfThisYear > 0
                                         ? holdingTax.TotalTaxOfThisYear
                                         : relatableData.TotalTaxOfThisYear;
+                    surcharge = totalHoldingTaxtWithSurcharge - totalHoldingTax;
                     totalRebate = 0;
                     //if (holdingTax.PaymentDate != null)
                     //{
@@ -302,7 +304,8 @@ namespace HoldingTaxWebApp.Controllers.Tax
                     Remarks = !string.IsNullOrWhiteSpace(holdingTax.Remarks) ? holdingTax.Remarks : null,
                     PaymentDate = holdingTax.PaymentDate,
                     TotalHoldingTax = totalHoldingTax,
-                    TotalTaxOfThisYear = totalHoldingTaxtWithSurcharge
+                    TotalTaxOfThisYear = totalHoldingTaxtWithSurcharge,
+                    Surcharge = surcharge
                 };
 
 

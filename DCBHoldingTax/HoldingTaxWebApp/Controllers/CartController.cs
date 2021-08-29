@@ -73,7 +73,8 @@ namespace HoldingTaxWebApp.Controllers
                 decimal? netTotalTax = 0;  //NetTaxPayableAmount
                 decimal? wrongInfoCharge = 0; //WrongInfoCharge
                 decimal? totalPreviousYearAmountAndFine = 0;
-               
+                decimal? surcharge = 0;
+
 
                 if (DateTime.Now > newstartDate && DateTime.Now < newendDate)
                 {
@@ -81,6 +82,7 @@ namespace HoldingTaxWebApp.Controllers
                     totalRebate = relatableData.RebateValue;
                     newTotalHoldingTaxAfterRebate = totalHoldingTax - totalRebate;
                     totalHoldingTaxtWithSurcharge = newTotalHoldingTaxAfterRebate + (newTotalHoldingTaxAfterRebate * constantSurcharge);
+                    surcharge = totalHoldingTaxtWithSurcharge - newTotalHoldingTaxAfterRebate;
                     wrongInfoCharge = holdingTax.WrongInfoCharge ?? 0;
                     totalPreviousYearAmountAndFine = (holdingTax.DuesPreviousYear ?? 0) + (holdingTax.DuesFineAmount ?? 0);
                     netTotalTax = totalHoldingTaxtWithSurcharge + wrongInfoCharge + totalPreviousYearAmountAndFine;
@@ -91,6 +93,7 @@ namespace HoldingTaxWebApp.Controllers
                     totalRebate = 0;
                     newTotalHoldingTaxAfterRebate = totalHoldingTax - totalRebate;
                     totalHoldingTaxtWithSurcharge = relatableData.TotalTaxOfThisYear;
+                    surcharge = totalHoldingTaxtWithSurcharge - newTotalHoldingTaxAfterRebate;
                     wrongInfoCharge = holdingTax.WrongInfoCharge ?? 0;
                     totalPreviousYearAmountAndFine = (holdingTax.DuesPreviousYear ?? 0) + (holdingTax.DuesFineAmount ?? 0);
                     netTotalTax = totalHoldingTaxtWithSurcharge + wrongInfoCharge + totalPreviousYearAmountAndFine;
@@ -272,28 +275,59 @@ namespace HoldingTaxWebApp.Controllers
 
 
                 var relatableData = _holdingTaxManager.GetRebateAndWrongInfoByHoldingTaxId(Convert.ToInt32(Request.Form["value_a"]));
+                HoldingTax holdingTax = _holdingTaxManager.GetHoldingTaxById(Convert.ToInt32(Request.Form["value_a"]));
+                var constantSurcharge = _constantValueManager.GetConstantValueById().Surcharge / 100;
 
                 DateTime startDate = new DateTime(DateTime.Now.Year, 6, 30);
                 DateTime newstartDate = startDate.Add(new TimeSpan(23, 59, 59));
                 DateTime endDate = new DateTime(DateTime.Now.Year, 12, 31);
                 DateTime newendDate = endDate.Add(new TimeSpan(23, 59, 59));
 
-                decimal? totalRebate = 0;
-                decimal? netTotalTax = 0;
-                netTotalTax = relatableData.SubTotalHoldingTax;
+                decimal? totalHoldingTax = 0;
+                decimal? totalRebate = 0;  // Rebate
+                decimal? newTotalHoldingTaxAfterRebate = 0; //TotalHoldingTax
+                decimal? totalHoldingTaxtWithSurcharge = 0; // TotalTaxOfThisYear
+                decimal? netTotalTax = 0;  //NetTaxPayableAmount
+                decimal? wrongInfoCharge = 0; //WrongInfoCharge
+                decimal? totalPreviousYearAmountAndFine = 0;
+                decimal? surcharge = 0;
+
+
                 if (DateTime.Now > newstartDate && DateTime.Now < newendDate)
                 {
+                    totalHoldingTax = relatableData.TotalHoldingTax;
                     totalRebate = relatableData.RebateValue;
-                    netTotalTax = netTotalTax - totalRebate;
+                    newTotalHoldingTaxAfterRebate = totalHoldingTax - totalRebate;
+                    totalHoldingTaxtWithSurcharge = newTotalHoldingTaxAfterRebate + (newTotalHoldingTaxAfterRebate * constantSurcharge);
+                    surcharge = totalHoldingTaxtWithSurcharge - newTotalHoldingTaxAfterRebate;
+                    wrongInfoCharge = holdingTax.WrongInfoCharge ?? 0;
+                    totalPreviousYearAmountAndFine = (holdingTax.DuesPreviousYear ?? 0) + (holdingTax.DuesFineAmount ?? 0);
+                    netTotalTax = totalHoldingTaxtWithSurcharge + wrongInfoCharge + totalPreviousYearAmountAndFine;
                 }
+                else
+                {
+                    totalHoldingTax = relatableData.TotalHoldingTax;
+                    totalRebate = 0;
+                    newTotalHoldingTaxAfterRebate = totalHoldingTax - totalRebate;
+                    totalHoldingTaxtWithSurcharge = relatableData.TotalTaxOfThisYear;
+                    surcharge = totalHoldingTaxtWithSurcharge - newTotalHoldingTaxAfterRebate;
+                    wrongInfoCharge = holdingTax.WrongInfoCharge ?? 0;
+                    totalPreviousYearAmountAndFine = (holdingTax.DuesPreviousYear ?? 0) + (holdingTax.DuesFineAmount ?? 0);
+                    netTotalTax = totalHoldingTaxtWithSurcharge + wrongInfoCharge + totalPreviousYearAmountAndFine;
+                }
+
 
                 HoldingTax tax = new HoldingTax
                 {
-                    Rebate = totalRebate,//holdingTax.RebateInfo == "Yes" ? holdingTax.Rebate : 0,
+                    Rebate = totalRebate,
+                    WrongInfoCharge = wrongInfoCharge, 
                     PaidAmount = trnxData.TransactionAmount,
+                    HoldingTaxId = holdingTax.HoldingTaxId,
                     NetTaxPayableAmount = netTotalTax,
-                    HoldingTaxId = trnxData.HoldingTaxId ?? default(int),
-                    PaymentDate = DateTime.Now
+                    PaymentDate = holdingTax.PaymentDate,
+                    TotalHoldingTax = totalHoldingTax,
+                    TotalTaxOfThisYear = totalHoldingTaxtWithSurcharge,
+                    Surcharge = surcharge
                 };
 
                 string updateString = _holdingTaxManager.UpdateTaxForClient(tax);
