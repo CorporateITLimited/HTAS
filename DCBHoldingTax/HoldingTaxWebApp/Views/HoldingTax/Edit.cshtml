@@ -129,35 +129,6 @@
                                             @Html.EditorFor(model => model.Rebate, new { htmlAttributes = new { @class = "form-control border_color_red", placeholder = "", @readonly = "readonly" } })
                                         }
                                     </div>
-
-                                    <label class="col-lg-2 col-form-label text-lg-right">চুড়ান্ত করুন</label>
-                                    <div class="col-lg-2">
-                                        <div class="">
-                                            @if (Model.isFinalized == true)
-                                            {
-                                                <label class="radio radio-solid">
-                                                    @Html.RadioButtonFor(model => model.FinalizeInfo, "Yes", new { @checked = "true" })
-                                                    <span></span>চুড়ান্ত
-                                                </label>
-                                                <label class="radio radio-solid">
-                                                    @Html.RadioButtonFor(model => model.FinalizeInfo, "No")
-                                                    <span></span>চুড়ান্ত নয়
-                                                </label>
-                                            }
-                                            else
-                                            {
-                                                <label class="radio radio-solid">
-                                                    @Html.RadioButtonFor(model => model.FinalizeInfo, "Yes")
-                                                    <span></span>চুড়ান্ত
-                                                </label>
-                                                <label class="radio radio-solid">
-                                                    @Html.RadioButtonFor(model => model.FinalizeInfo, "No", new { @checked = "true" })
-                                                    <span></span>চুড়ান্ত নয়
-                                                </label>
-                                            }
-                                        </div>
-                                    </div>
-
                                 </div>
 
                                 <div class="form-group row">
@@ -203,53 +174,93 @@
 
 
                                 <div class="form-group row">
+                                    <div class="col-md-1"></div>
                                     <label class="col-lg-3 col-form-label text-lg-right">@Model.FinancialYear.Replace(" ", "") অর্থ বছরের গৃহকর </label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.TotalHoldingTax, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
-                                        @*<span class="form-text text-muted">Please enter your contact number</span>*@
                                     </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-1"></div>
                                     <label class="col-lg-3 col-form-label text-lg-right">@Model.FinancialYear.Replace(" ", "") অর্থ বছরের সারচার্জ সহ গৃহকর</label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.TotalTaxOfThisYear, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
-                                        @*<span class="form-text text-muted">Please enter your full name</span>*@
                                     </div>
-
                                 </div>
+
                                 <div class="form-group row">
+                                    <div class="col-md-1"></div>
                                     <label class="col-lg-3 col-form-label text-lg-right"> জরিমানাসহ গৃহকরের বকেয়া</label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.DuesPreviousYear, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                     </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-1"></div>
                                     <label class="col-lg-3 col-form-label text-lg-right">নেট কর প্রদেয় পরিমান (বকেয়া গৃহকর সহ)</label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.NetTaxPayableAmount, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
-                                        @*<span class="form-text text-muted">Please enter your contact number</span>*@
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label text-lg-right">টাকা প্রদানের তারিখ</label>
-                                    <div class="col-lg-3">
-                                        @Html.EditorFor(model => model.StringPaymentDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                        @*<span class="form-text text-muted">Please enter your contact number</span>*@
-                                    </div>
-
+                                    <div class="col-md-1"></div>
                                     <label class="col-lg-3 col-form-label text-lg-right">পরিশোধিত টাকার পরিমান</label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
-                                        @*<span class="form-text text-muted">Please enter your full name</span>*@
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
+                                    <div class="col-md-1"></div>
+                                    <label class="col-lg-3 col-form-label text-lg-right">টাকা প্রদানের তারিখ</label>
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.StringPaymentDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                    </div>
 
                                 </div>
 
+
                                 <div class="form-group row">
+                                    <div class="col-md-1"></div>
                                     <label class="col-lg-3 col-form-label text-lg-right">নোট</label>
                                     <div class="col-lg-4">
                                         @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", placeholder = "" })
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-1"></div>
+                                    <label class="col-lg-3 col-form-label text-lg-right">চুড়ান্ত করুন</label>
+                                    <div class="col-lg-2">
+                                        <div class="">
+                                            @if (Model.isFinalized == true)
+                                            {
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.FinalizeInfo, "Yes", new { @checked = "true" })
+                                                    <span></span>চুড়ান্ত
+                                                </label>
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.FinalizeInfo, "No")
+                                                    <span></span>চুড়ান্ত নয়
+                                                </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.FinalizeInfo, "Yes")
+                                                    <span></span>চুড়ান্ত
+                                                </label>
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.FinalizeInfo, "No", new { @checked = "true" })
+                                                    <span></span>চুড়ান্ত নয়
+                                                </label>
+                                            }
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </fieldset>
                             <br />
 
