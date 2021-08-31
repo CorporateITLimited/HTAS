@@ -31,7 +31,7 @@
             <div class="col-lg-12">
                 <div class="card card-custom" id="kt_card_1">
                     <div class="card-header">
-                        <h3 class="card-title">নতুন বছরের গৃহকর তৈরী করুন (প্রথম ধাপ) </h3>
+                        <h3 class="card-title"> <b>প্রথম ধাপ : </b> &nbsp;&nbsp;&nbsp; নতুন বছরের গৃহকর তৈরী করুন  </h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
@@ -54,8 +54,8 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-center">
-                            <button type="submit" id="btnSubmit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>গৃহকর তৈরী করুন</button>
-                            <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</button>
+                            <button type="submit" id="btnSubmit" class="btn btn-outline-success btn-sm"><i class="fas fa-check"></i>গৃহকর তৈরী করুন</button>
+                            <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-sm"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</button>
                         </div>
                         <div>
                             <span id="details_error"></span>
@@ -69,14 +69,14 @@
 
                 <div class="card card-custom" id="kt_card_1">
                     <div class="card-header">
-                        <h3 class="card-title">গৃহকরদাতাদের জন্য গৃহকরের তথ্য পুনঃ প্রস্তুতকরণ (দ্বিতীয় ধাপ) </h3>
-                        <h3 class="card-title" style="color: forestgreen; font-size: 18px;">গৃহকরদাতাদের গৃহকরের তথ্য অনুসন্ধান করুন </h3>
-                        @*<span >গৃহকরদাতাদের গৃহকরের তথ্য অনুসন্ধান করুন</span>*@
+                        <h3 class="card-title">
+                            <b>দ্বিতীয় ধাপ :  </b> &nbsp;&nbsp;  গৃহকরদাতাদের জন্য গৃহকরের তথ্য পুনঃ প্রস্তুতকরণ &nbsp;&nbsp;
+                        </h3>
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
-                            @Html.LabelFor(model => model.FinancialYearId_Three, "আর্থিক বছর", htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
-                            <div class="col-lg-9">
+                            @Html.LabelFor(model => model.FinancialYearId_Three, "আর্থিক বছর", htmlAttributes: new { @class = "col-lg-1 col-form-label text-lg-right" })
+                            <div class="col-lg-2">
                                 @Html.DropDownListFor(model => model.FinancialYearId_Three, null, "-- নির্বাচন করুন --", new
                            {
                                @class = "form-control",
@@ -84,10 +84,9 @@
                                @id = "FinancialYearId_Three"
                            })
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
-                            <div class="col-lg-9">
+
+                            @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-1 col-form-label text-lg-right" })
+                            <div class="col-lg-2">
                                 @Html.DropDownListFor(model => model.AreaId, null, "-- নির্বাচন করুন --", new
                            {
                                @class = "form-control",
@@ -95,11 +94,9 @@
                                @id = "AreaId"
                            })
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            @Html.LabelFor(model => model.PlotId, "প্লট নম্বর", htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
-                            <div class="col-lg-9">
+                            @Html.LabelFor(model => model.PlotId, "প্লট নম্বর", htmlAttributes: new { @class = "col-lg-1 col-form-label text-lg-right" })
+                            <div class="col-lg-2">
                                 @Html.DropDownListFor(model => model.PlotId, null, "-- নির্বাচন করুন --", new
                            {
                                @class = "form-control",
@@ -108,57 +105,16 @@
                            })
                             </div>
 
-                        </div>
-
-                    </div>
-                    <div class="card-footer">
-                        <div class="text-center">
-                            <button type="button" id="btnSearch" class="btn btn-outline-primary btn-sm"><i class="fas fa-search"></i>গৃহকরদাতাদের তালিকা দেখুন</button>
-                            <button class="btn btn-outline-dark btn-sm" id="reset_button"><i class="fas fa-trash-restore"></i>রিসেট করুন </button>
-                        </div>
-
-                        <br />
-
-                        <div class="card card-custom" id="kt_card_1">
-                            <div class="card-header">
-                                <h3 class="card-title">গৃহকরদাতাদের তালিকা</h3>
-                                <span style="color: forestgreen; font-size: 18px;">যেসব গৃহকরদাতাদের গৃহকরের তথ্য পুনঃ প্রস্তুত করবেন তাদেরকে টিক দিন </span>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-bordered table-hover table-sm" width="100" id="holder_details">
-                                    <thead class="thead-light text-center">
-                                        <tr>
-                                            <th>নাম</th>
-                                            <th>আইডি নম্বর</th>
-                                            <th>নেট করের পরিমাণ</th>
-                                            <th>টিক দিন</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                            <div class="card-footer">
+                            <div class="col-lg-3">
                                 <div class="text-center">
-                                    <button type="submit" id="btnSubmitRegenerate" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i>গৃহকর হালনাগাদ করুন</button>
-                                    <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-sm"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</button>
-                                </div>
-                                <div>
+                                    <button type="button" id="btnSearch" class="btn btn-outline-primary btn-sm"><i class="fas fa-search"></i>অনুসন্ধান</button>
+                                    <button class="btn btn-outline-dark btn-sm" id="reset_button"><i class="fas fa-trash-restore"></i>রিসেট</button>
                                 </div>
                             </div>
+
                         </div>
-                    </div>
-                </div>
-
-               
-            </div>
-
-            @*<div class="col-lg-7">
-                <div class="card card-custom" id="kt_card_1">
-                    <div class="card-header">
-                        <h3 class="card-title">গৃহকরদাতাদের তালিকা</h3>
-                        <span style="color: forestgreen; font-size: 18px;">যেসব গৃহকরদাতাদের গৃহকরের তথ্য পুনঃ প্রস্তুত করবেন তাদেরকে টিক দিন </span>
-                    </div>
-                    <div class="card-body">
+                        <br />
+                        <h5 class="card-title"><span style="color: forestgreen; text-decoration:underline;"> যেসব গৃহকরদাতাদের গৃহকরের তথ্য পুনঃ প্রস্তুত করবেন তাদেরকে টিক দিন </span> </h5>
                         <table class="table table-bordered table-hover table-sm" width="100" id="holder_details">
                             <thead class="thead-light text-center">
                                 <tr>
@@ -176,18 +132,16 @@
                             <button type="submit" id="btnSubmitRegenerate" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i>গৃহকর হালনাগাদ করুন</button>
                             <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-sm"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</button>
                         </div>
-                        <div>
-                        </div>
                     </div>
                 </div>
-            </div>*@
+            </div>
         </div>
 
         <div class="row mt-0 mt-lg-3">
             <div class="col-lg-12">
                 <div class="card card-custom" id="kt_card_1">
                     <div class="card-header">
-                        <h3 class="card-title">প্রস্তুতকৃত গৃহকর চূড়ান্তকরণ (শেষ ধাপ)</h3>
+                        <h3 class="card-title"> <b>শেষ ধাপ :  </b> &nbsp;&nbsp; প্রস্তুতকৃত গৃহকর চূড়ান্তকরণ</h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
@@ -210,8 +164,8 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-center">
-                            <button type="button" id="btnFinalize" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>গৃহকর চূড়ান্ত করুন </button>
-                            <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</button>
+                            <button type="button" id="btnFinalize" class="btn btn-outline-success btn-sm"><i class="fas fa-check"></i>গৃহকর চূড়ান্ত করুন </button>
+                            <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-sm"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</button>
                         </div>
                     </div>
                 </div>
