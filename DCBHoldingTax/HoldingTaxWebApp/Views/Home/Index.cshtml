@@ -223,19 +223,19 @@
                         <div class="tab-content mt-5" id="myTabTables11">
                             <!--begin::Tap pane-->
                             <div class="table-responsive">
-                                <table class="table table-borderless table-vertical-center thead-light" id="tblIssue">
+                                <table class="table  table-vertical-center thead-light" id="tblIssue">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th class="p-0 min-w-200px ">হোল্ডারের নাম </th>
-                                            <th class="p-0 min-w-250px">বিষয়</th>
-                                            <th class="p-0 min-w-200px">ইস্যুটির বর্তমান অবস্থা</th>
-                                            <th class="p-0 min-w-100px"></th>
+                                            <th class="p-2">হোল্ডারের নাম </th>
+                                            <th class="p-2">বিষয়</th>
+                                            <th class="p-2">ইস্যুটির বর্তমান অবস্থা</th>
+                                            <th class="p-2"></th>
 
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
                                 </table>
-                            </div>
+
 
 
 
@@ -264,6 +264,9 @@
     <script>
         jQuery(document).ready(function () {
             var issueTable = $('#tblIssue tbody');
+            $('#tblIssue').after("<div id='spin'><div class='spinner spinner-primary spinner-lg spinner-center p-5'></div></div>");
+            
+
             $.ajax(
                 {
                     type: 'POST',
@@ -280,8 +283,7 @@
                                     '<td class="HolderName" id="HolderName">' + ep.HolderName + '</td>' +
                                     '<td class="Subject" id="Subject">' + ep.Subject + '</td>' +
                                     '<td class="StatusName" id="StatusName" > </td>' +
-                                    '<td class="" id=""> <a href="../Issue/Edit/' + ep.IssueId + '"class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" title="হালনাগাদ পেজে যান"> <b> <i class="fa fa-edit"></i>  </b></a></td>' +
-                                    '</tr>');
+                                    '<td class="" id=""> <a href="../Issue/Edit/' + ep.IssueId + '"class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" title="হালনাগাদ পেজে যান"><b><i class="fa fa-edit"></i></b></a></td>'+'</tr>');
                             });
 
 
@@ -305,7 +307,7 @@
                                     currentRow.find('.StatusName').append('<span> ' + status_name_val + ' </span>');
                                 }
                             });
-
+                            $('#spin').remove()
                         },
                     error:
                         function (data) {
