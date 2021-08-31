@@ -20,5 +20,10 @@ namespace HoldingTaxWebApp.Manager.DBO
         {
             return _gateway.GetAllFinancialYear();
         }
+
+        public List<clsFinancialYear> GetAllFinancialYearForRegenerateTax()
+        {
+            return _gateway.GetAllFinancialYearForRegenerateTax();
+        }
     }
 }

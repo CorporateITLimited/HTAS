@@ -163,7 +163,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
         {
             ViewBag.FinancialYearId = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
             ViewBag.FinancialYearId_Two = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
-            ViewBag.FinancialYearId_Three = new SelectList(_financialYearGateway.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
+            ViewBag.FinancialYearId_Three = new SelectList(_financialYearGateway.GetAllFinancialYearForRegenerateTax(), "FinancialYearId", "FinancialYear");
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
             ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
             return View();
