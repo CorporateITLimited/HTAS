@@ -51,7 +51,7 @@ namespace HoldingTaxWebApp.WebForms.Tax
             int? rptHoldingTaxId = Session["HoldingTaxId"] != null ? Convert.ToInt32(Session["HoldingTaxId"]) : (int?)null;
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("exec [Tax].[spGetHoldingTaxDetails] @AreaId, @FinancialYearId, @HolderId, @HoldingTaxId", con);
+            SqlCommand cmd = new SqlCommand("exec [Tax].[spGetHoldingTaxDetailsReport] @AreaId, @FinancialYearId, @HolderId, @HoldingTaxId", con);
             cmd.CommandType = CommandType.Text; // always text
             cmd.Parameters.AddWithValue("@AreaId", SqlDbType.Int).Value = rptValueAreaId ?? (object)DBNull.Value; 
             cmd.Parameters.AddWithValue("@FinancialYearId", SqlDbType.Int).Value = rptFinancialYearId ?? (object)DBNull.Value;
