@@ -1250,6 +1250,8 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             private global::System.Data.DataColumn columnTotalOwnTax;
             
+            private global::System.Data.DataColumn columnOwnFlatDiscount;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtHoldingTaxDataTable() {
@@ -1877,6 +1879,14 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OwnFlatDiscountColumn {
+                get {
+                    return this.columnOwnFlatDiscount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1983,7 +1993,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                         decimal TotalTaxFy, 
                         decimal TotalRentTax, 
                         decimal OwnMonthlyRent, 
-                        decimal TotalOwnTax) {
+                        decimal TotalOwnTax, 
+                        decimal OwnFlatDiscount) {
                 dtHoldingTaxRow rowdtHoldingTaxRow = ((dtHoldingTaxRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2059,7 +2070,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                         TotalTaxFy,
                         TotalRentTax,
                         OwnMonthlyRent,
-                        TotalOwnTax};
+                        TotalOwnTax,
+                        OwnFlatDiscount};
                 rowdtHoldingTaxRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtHoldingTaxRow);
                 return rowdtHoldingTaxRow;
@@ -2156,6 +2168,7 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnTotalRentTax = base.Columns["TotalRentTax"];
                 this.columnOwnMonthlyRent = base.Columns["OwnMonthlyRent"];
                 this.columnTotalOwnTax = base.Columns["TotalOwnTax"];
+                this.columnOwnFlatDiscount = base.Columns["OwnFlatDiscount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2309,6 +2322,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnOwnMonthlyRent);
                 this.columnTotalOwnTax = new global::System.Data.DataColumn("TotalOwnTax", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalOwnTax);
+                this.columnOwnFlatDiscount = new global::System.Data.DataColumn("OwnFlatDiscount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOwnFlatDiscount);
                 this.columnHoldingTaxId.AutoIncrement = true;
                 this.columnHoldingTaxId.AutoIncrementSeed = -1;
                 this.columnHoldingTaxId.AutoIncrementStep = -1;
@@ -9920,6 +9935,22 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal OwnFlatDiscount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.OwnFlatDiscountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OwnFlatDiscount\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.OwnFlatDiscountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsTotalRentNull() {
                 return this.IsNull(this.tabledtHoldingTax.TotalRentColumn);
             }
@@ -10768,6 +10799,18 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetTotalOwnTaxNull() {
                 this[this.tabledtHoldingTax.TotalOwnTaxColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOwnFlatDiscountNull() {
+                return this.IsNull(this.tabledtHoldingTax.OwnFlatDiscountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOwnFlatDiscountNull() {
+                this[this.tabledtHoldingTax.OwnFlatDiscountColumn] = global::System.Convert.DBNull;
             }
         }
         
