@@ -97,7 +97,7 @@
                                 <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
                                 <th>@Html.DisplayNameFor(model => model.AreaName)</th>
                                 <th>@Html.DisplayNameFor(model => model.HolderName)</th>
-                                <th>@Html.DisplayNameFor(model => model.AreaPlotFlatData)</th>
+                                <th>@Html.DisplayNameFor(model => model.HolderNo)</th>
                                 <th>@Html.DisplayNameFor(model => model.NoticeName)</th>
                             </tr>
                         </thead>
@@ -115,7 +115,7 @@
                                         @Html.DisplayFor(modelItem => item.HolderName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.AreaPlotFlatData)
+                                        @Html.DisplayFor(modelItem => item.HolderNo)
                                     </td>
                                     <td>
                                         @if (!string.IsNullOrWhiteSpace(item.NoticeName))
@@ -139,7 +139,7 @@
 
                                 <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
                                 <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
-                                <th>@Html.DisplayNameFor(model => model.AreaPlotFlatData)</th>
+                                <th>@Html.DisplayNameFor(model => model.HolderNo)</th>
                                 <th>@Html.DisplayNameFor(model => model.NoticeName)</th>
                             </tr>
                         </thead>
@@ -154,7 +154,7 @@
                                         @Html.DisplayFor(modelItem => item.PlotNo)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.AreaPlotFlatData)
+                                        @Html.DisplayFor(modelItem => item.HolderNo)
                                     </td>
                                     <td>
                                         @if (!string.IsNullOrWhiteSpace(item.NoticeName))

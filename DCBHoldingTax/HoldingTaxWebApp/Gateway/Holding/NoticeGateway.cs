@@ -329,7 +329,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         NoticeTypeId = Convert.ToInt32(Data_Reader["NoticeTypeId"]),
                         EmployeeName = Convert.ToString(Data_Reader["EmployeeName"]),
                         DesignationName = Convert.ToString(Data_Reader["DesignationName"]),
-                        PlotNo = Convert.ToString(Data_Reader["PlotNo"])
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
+                        HolderNo = Convert.ToString(Data_Reader["HolderNo"])
                     };
                     if (model.NoticeTypeId == 1)
                         model.NoticeName = "গৃহকরের প্রাথমিক বিজ্ঞপ্তি দেখুন";
@@ -554,7 +555,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         NoticeTypeId = Convert.ToInt32(Data_Reader["NoticeTypeId"]),
                         EmployeeName = Convert.ToString(Data_Reader["EmployeeName"]),
                         DesignationName = Convert.ToString(Data_Reader["DesignationName"]),
-                        PlotNo = Convert.ToString(Data_Reader["PlotNo"])
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
+                        HolderNo = Convert.ToString(Data_Reader["HolderNo"])
                     };
                     if (model.NoticeTypeId == 1)
                         model.NoticeName = "গৃহকরের প্রাথমিক বিজ্ঞপ্তি দেখুন";
