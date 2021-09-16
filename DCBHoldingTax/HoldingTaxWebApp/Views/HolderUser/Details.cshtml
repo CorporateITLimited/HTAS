@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-custom gutter-b example example-compact">
-                    <div class="card-header">
+                    <div class="card-header" id="print_header">
                         <div class="row offset-1">
                             <h3 class="card-title">
                                 <b class="kt-font-brand">@Model.HolderName</b>  &nbsp; এর বিশদ তথ্য
@@ -44,9 +44,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="print_div">
                         <div class="row offset-1">
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-4 col-form-label">
                                         @Html.DisplayNameFor(model => model.HolderName)
@@ -117,7 +117,7 @@
                             </div>
 
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-4 col-form-label">
                                         @Html.DisplayNameFor(model => model.CreatedByUserName)
@@ -180,6 +180,7 @@
                                 <i class="fas fa-pen"></i>হালনাগাদের পেজে  যান
                             </a>
                             <a href="~/HolderUser/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>
+                            <button id="print_this" class="btn btn-light-primary btn-md"><i class="fas fa-list"></i>প্রিন্ট করুন</button>
                         </div>
                     </div>
                 </div>
@@ -191,3 +192,18 @@
 
 
 
+@section Scripts {
+    <script src="~/Scripts/printThis.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $("#print_this").on('click', function (e) {
+                e.preventDefault();
+                $("#print_div").printThis({
+                    header: $('#print_header'),
+
+                    importStyle: true
+                });
+            });
+        });
+    </script>
+}

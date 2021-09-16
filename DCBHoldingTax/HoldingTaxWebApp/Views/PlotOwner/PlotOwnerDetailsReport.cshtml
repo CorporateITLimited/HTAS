@@ -1,0 +1,139 @@
+﻿@model HoldingTaxWebApp.Models.Plots.Plot
+@{
+    ViewBag.Title = "PlotOwnerReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Sheets{
+    <link href="~/Content/formdesign.css" rel="stylesheet" />
+}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">প্লট মালিকের বিস্তারিত তথ্য রিপোর্ট</h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card card-custom" id="kt_card_1">
+                    <div class="card-header">
+                        <h3 class="card-title">রিপোর্ট</h3>
+                        <div class="card-toolbar">
+
+                        </div>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-md-5">
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.PlotId, "প্লটের নাম", htmlAttributes: new { @class = "col-lg-4 col-form-label text-lg-right" })
+                                <div class="col-lg-8">
+                                    @Html.DropDownListFor(model => model.PlotId, null, "-- নির্বাচন করুন --", new
+                               {
+                                   @class = "form-control",
+                                   @name = "PlotId",
+                                   @id = "PlotId"
+                               })
+                                    @Html.ValidationMessageFor(model => model.PlotId, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-lg-5"></div>
+                            <div class="col-lg-7">
+                                <button type="button" class="btn btn-outline-success btn-md" id="report_button"><i class="fas fa-check"></i>রিপোর্ট</button>
+                                <button class="btn btn-outline-dark btn-md" id="reset_button">রিসেট</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-md-12">
+                            <div class="search-result">
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+        $('#PlotId').select2({
+            placeholder: "--নির্বাচন করুন--",
+            allowClear: true
+        });
+
+
+
+
+
+         jQuery(document).ready(function () {
+             debugger;
+
+
+            $("#report_button").click(function () {
+                var PlotId = parseInt($("#PlotId").val()) || 0;
+
+                $(".search-result").load("/PlotOwner/rptPlotOwnerDetails", { id: PlotId });
+                //if (PlotId > 0) {
+                //    $(".search-result").load("/Plot/rptPlotReport", { id: PlotId });
+                //}
+                //else {
+                //    Swal.fire('Error!', 'দয়াকরে এলাকা নির্বাচন করুন |', 'error')
+                //}
+
+            });
+
+
+
+
+
+
+
+
+
+
+          $("#reset_button").click(function () {
+                location.reload();
+            });
+
+        });
+
+
+
+
+
+    </script>
+
+}
+
+

@@ -1,15 +1,14 @@
 ﻿@model HoldingTaxWebApp.ViewModels.Tax.InvoiceVM
+@using HoldingTaxWebApp.Helpers
 @{
     ViewBag.Title = "Invoice";
 }
 @section sheets{
     <style>
         .canthead {
-            text-align:center;
-            justify-content:center !important;
+            text-align: center;
+            justify-content: center !important;
         }
-
-        
     </style>
 
 }
@@ -97,7 +96,7 @@
                                     @*<span>www.canttboard-dhaka.gov.bd</span>*@
                                 </div>
 
-                                
+
                             </div>
                             <div class="display-4 font-weight-bolder mb-10 flex-md-row-auto">
                                 রশিদ
@@ -143,18 +142,23 @@
                                             <td class="text-left" width="10%">টাকা</td>
                                         </tr>
                                         <tr class="font-weight-boldest">
-                                            <td class="text-left" width="70%"> @Model.StringStartingDate হতে @Model.StringFEndDate পর্যন্ত @Model.FinancialYear আর্থিক সন--</td>
-                                            <td class="text-right" width="20%">@Model.TotalTaxWithSurchargeDue</td>
+                                            <td class="text-left" width="70%"> @Model.StringStartingDate হতে @Model.StringFEndDate পর্যন্ত @Model.FinancialYear আর্থিক সন(সারচার্জ সহ)--</td>
+                                            <td class="text-right" width="20%">@Model.TotalNet</td>
                                             <td class="text-left" width="10%">টাকা</td>
                                         </tr>
                                         <tr class="font-weight-boldest">
                                             <td class="text-right" width="70%">মোট</td>
-                                            <td class="text-right" width="20%">@Model.TotalNet</td>
+                                            <td class="text-right" width="20%">@Model.TotalTaxWithSurchargeDue</td>
                                             <td class="text-left" width="10%">টাকা</td>
                                         </tr>
                                         <tr class="font-weight-boldest">
                                             <td class="text-left" width="70%">@Model.StringEndOfYear তারিখের মধ্যে পরিশোধ করলে @Model.FinancialYear আর্থিক সনের উপর @Model.RebateRate% রিবেট (-)  </td>
                                             <td class="text-right" width="20%">@Model.rebateNew</td>
+                                            <td class="text-left" width="10%">টাকা</td>
+                                        </tr>
+                                        <tr class="font-weight-boldest">
+                                            <td class="text-left" width="70%">রেকর্ড সংশোধন ফি @Model.WrongInfoChargeRate%(প্রযোজ্য ক্ষেত্রে)</td>
+                                            <td class="text-right" width="20%">@Model.WrongInfoCharge</td>
                                             <td class="text-left" width="10%">টাকা</td>
                                         </tr>
                                         <tr class="font-weight-boldest">
@@ -236,10 +240,9 @@
                                         <tr class="font-weight-bolder">
                                             <td colspan="3">
                                                 <p>
-                                                    জনাব @Model.HolderName <br />
-                                                    হইতে @Model.FinancialYear আর্থিক সনের উপর গৃহকর বাবদ
-                                                    প্রাপ্ত <br />টাকা (কথায়) .......................................................................টাকা
-                                                    <br />
+                                                    জনাব : @Model.HolderName <br />
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;হইতে @Model.FinancialYear আর্থিক সনের উপর গৃহকর বাবদ প্রাপ্ত টাকা (কথায়) ............................................................টাকা
+                                                    
                                                     (@Model.NetTaxPayableAmount  টাকা)
 
                                                 </p>
@@ -272,6 +275,24 @@
                 <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
                     <div class="col-md-9">
                         <div class="d-flex justify-content-between">
+                            @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
+                            {
+                                if (Model.Ispaid == false)
+                                {
+                                    <a class="btn btn-light-success font-weight-bold" href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @HoldingTaxId = @Model.HoldingTaxId, @FinancialYear =  @Model.FinancialYear.Replace(" ","") }))">
+                                        <b> <i class="far fa-credit-card"></i></b>পেমেন্ট করুন
+                                    </a>
+                                }
+                            }
+                            @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
+                            {
+                                if (Model.Ispaid == false)
+                                {
+                                    <a class="btn btn-light-success font-weight-bold" href="~/HoldingTax/Edit/@Model.HoldingTaxId">
+                                        <b> <i class="far fa-credit-card"></i></b>কাউন্টার পেমেন্ট করুন
+                                    </a>
+                                }
+                            }
                             @*<button type="button" class="btn btn-light-primary font-weight-bold" onclick="window.print();">Download Invoice</button>*@
                             <button type="button" class="btn btn-light-primary font-weight-bold" id="print_this2">Download Invoice</button>
                             @*<button type="button" class="btn btn-primary font-weight-bold" onclick="window.print();">Print Invoice</button>*@

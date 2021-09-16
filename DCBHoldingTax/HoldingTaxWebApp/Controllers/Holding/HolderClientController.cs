@@ -17,11 +17,13 @@ namespace HoldingTaxWebApp.Controllers.Holding
         private readonly bool CanReadWrite = false;
         private readonly FinancialYearManager _financialYearManager;
         private readonly HoldingManager _holdingManager;
+        private readonly DOHSAreaManager _dOHSAreaManager;
 
         public HolderClientController()
         {
             _financialYearManager = new FinancialYearManager();
             _holdingManager = new HoldingManager();
+            _dOHSAreaManager = new DOHSAreaManager();
         }
 
         // GET: HolderClient
@@ -136,7 +138,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     LeasePeriod = holderVMOtherData.LeasePeriod,
                     StrLeasePeriod = BanglaConvertionHelper.IntegerValueEnglish2Bangla(holderVMOtherData.LeasePeriod),
                     StringLeaseExpiryDate = BanglaConvertionHelper.StringEnglish2StringBanglaDate(holderVMOtherData.StringLeaseExpiryDate),
-                    PlotOwnerName = holderVMOtherData.PlotOwnerName
+                    PlotOwnerName = holderVMOtherData.PlotOwnerName,
+                    HolderNo = holder.HolderNo,
+                    Area_type_id = _dOHSAreaManager.GetDOHSAreaId(holder.AreaId).AreaType
                 };
 
 

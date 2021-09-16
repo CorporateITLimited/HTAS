@@ -22,7 +22,7 @@ namespace HoldingTaxWebApp.ViewModels
 
 
         [Display(Name = "প্লট/বাড়ী নম্বর")]
-        
+
         public int PlotId { get; set; }
 
         [Display(Name = "প্লট/বাড়ী নম্বর")]
@@ -247,7 +247,13 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "গৃহকরদাতা নিজেই কি প্লটের মালিক?")]
         public bool? IsHolderAnOwner { get; set; }
 
+        [Display(Name = "গৃহকরদাতার আইডি নম্বর")]
+        public string HolderNo { get; set; }
+
         // no need to convert in bangla
+
+        public int? Area_type_id { get; set; }
+
         public List<HolderFlat> HolderFlatList { get; set; }
         public List<HolderFlat> HolderFlatListForEdit { get; set; }
 

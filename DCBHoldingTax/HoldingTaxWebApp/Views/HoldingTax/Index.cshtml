@@ -41,14 +41,14 @@
     <div class="container">
         @if (TempData["SM"] != null)
         {
-        <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
-            <div class="alert-text text-center font-weight-bolder" style="color: #24AEEF; font-size: 17px;"> @TempData["SM"]</div>
-            <div class="alert-close">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true"><i class="ki ki-close"></i></span>
-                </button>
+            <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
+                <div class="alert-text text-center font-weight-bolder" style="color: #24AEEF; font-size: 17px;"> @TempData["SM"]</div>
+                <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                    </button>
+                </div>
             </div>
-        </div>
         }
         <div class="card card-custom">
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
@@ -62,7 +62,7 @@
                     {
                         <a href="~/HoldingTax/Create" class="btn btn-primary font-weight-bolder">
                             <i class="fas fa-plus">
-                            </i>নতুন গৃহকর প্রস্তুতকরণ
+                            </i> গৃহকর প্রস্তুতকরণ/পুনঃ প্রস্তুতকরণ/চূড়ান্তকরণ
                         </a>
                     }
                 </div>
@@ -110,8 +110,10 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-xl-4 mt-5 mt-lg-0">
-                                    <a href="#" id="search_button" class="btn btn-success px-6 font-weight-bold" style="margin-top: -8px;">Search</a>
-                                    <a href="#" id="reset_button" class="btn btn-bg-warning px-6 font-weight-bold" style="margin-top: -8px;">Reset</a>
+                                    <a href="#" id="search_button" class="btn btn-success px-6 font-weight-bold" style="margin-top: -8px;">অনুসন্ধান করুন</a>
+                                    <a href="#" id="reset_button" class="btn btn-bg-warning px-6 font-weight-bold" style="margin-top: -8px;">
+                                        রিসেট
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +132,7 @@
                                         প্লটের নম্বর
                                     </th>
                                     <th>
-                                        হোল্ডারের প্লট/ফ্ল্যাট/বাড়ী এর তথ্য
+                                        গৃহকরদাতার আইডি নম্বর
                                     </th>
                                     <th>
                                         আর্থিক বছর
@@ -163,7 +165,7 @@
                                             @item.PlotNo
                                         </td>
                                         <td>
-                                            @item.AreaPlotFlatData
+                                            @item.HolderNo
                                         </td>
                                         <td>
                                             @item.FinancialYear
@@ -189,11 +191,23 @@
                                             {
                                                 if (item.IsPaid == false)
                                                 {
-                                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="হালনাগাদ পেজে যান">
+                                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="কাউন্টার পেমেন্ট করুন">
                                                         <b> <i class="fa fa-edit"></i>  </b>
                                                     </a>
                                                 }
                                             }
+                                            @*@if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
+                                                {
+                                                    if (item.IsPaid == false)
+                                                    {
+                                                        @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" title="পেমেন্ট করুন" href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @FinancialYearId = @item.FinancialYearId, @HoldingTaxId = @item.HoldingTaxId, @HolderId = @item.HolderId, @NetTaxPayableAmount = @item.NetTaxPayableAmount }))">
+                                                                <b> <i class="fa fa-money-check"></i></b>
+                                                            </a>
+                                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" title="পেমেন্ট করুন" href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @HoldingTaxId = @item.HoldingTaxId, @FinancialYear =  @item.FinancialYear }))">
+                                                            <b> <i class="fa fa-money-check"></i></b>
+                                                        </a>
+                                                    }
+                                                }*@
                                             <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Invoice/@item.HoldingTaxId" title="ইনভয়েস দেখুন">
                                                 <b> <i class="fa fa-file-invoice"></i>  </b>
                                             </a>

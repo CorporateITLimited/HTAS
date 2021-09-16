@@ -1,12 +1,20 @@
 ﻿@model HoldingTaxWebApp.ViewModels.Plots.PlotOwnerCombineVM
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Details";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
+    <style>
+        .divflex {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 41.6666666667%;
+            flex: 0 0 41.6666666667%;
+            max-width: 41.6666666667%;
+        }
+    </style>
 }
 
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
@@ -48,7 +56,7 @@
                     <div class="card-body" id="print_div">
                         <div class="row offset-1">
                             <legend> জমি মালিকানা ও হস্তান্তর তথ্য</legend>
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -258,7 +266,7 @@
 
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -385,40 +393,40 @@
                             </div>
                         </div>
                         @*@if (Model.LeaseType == "যৌথ")
-                        {*@
-                            <div class="separator separator-dashed my-10"></div>
-                            <div class="row offset-1">
-                                <div class="col-lg-11">
-                                    <legend>যৌথ মালিকানার ক্ষেত্রে অন্যান্য মালিকের বিবরণ</legend>
-                                    <br />
-                                    <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
-                                        <thead class="thead-light text-center">
-                                            <tr>
-                                                <th>সিরিয়াল নাম্বার</th>
-                                                <th>প্লট মালিকের নাম</th>
-                                                <th>ঠিকানা</th>
-                                                <th>মন্তব্য</th>
+                            {*@
+                        <div class="separator separator-dashed my-10"></div>
+                        <div class="row offset-1">
+                            <div class="col-lg-11">
+                                <legend>যৌথ মালিকানার ক্ষেত্রে অন্যান্য মালিকের বিবরণ</legend>
+                                <br />
+                                <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
+                                    <thead class="thead-light text-center">
+                                        <tr>
+                                            <th>সিরিয়াল নাম্বার</th>
+                                            <th>প্লট মালিকের নাম</th>
+                                            <th>ঠিকানা</th>
+                                            <th>মন্তব্য</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody class="text-center">
-                                            @{ int i = 1;
-                                                foreach (var item in Model.OthetPlotOwner)
-                                                {
-                                                    <tr>
-                                                        <td>@i</td>
-                                                        <td>@item.OthetOwneeName</td>
-                                                        <td>@item.Address</td>
-                                                        <td>@item.Remarks</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        @{ int i = 1;
+                                            foreach (var item in Model.OthetPlotOwner)
+                                            {
+                                                <tr>
+                                                    <td>@i</td>
+                                                    <td>@item.OthetOwneeName</td>
+                                                    <td>@item.Address</td>
+                                                    <td>@item.Remarks</td>
 
-                                                    </tr>
-                                                    i = i + 1;
-                                                }
+                                                </tr>
+                                                i = i + 1;
                                             }
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
+                        </div>
                         @*}*@
 
 
@@ -474,7 +482,7 @@
                         <div class="row offset-1">
                             <legend>   নির্মান অগ্রগতি ও ফ্ল্যাট মালিকানার তথ্য</legend>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.OwnerDeclaration)
@@ -572,7 +580,7 @@
 
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
 
                                 <div class="form-group form-group-xs row">
@@ -694,7 +702,7 @@
                             <div class="separator separator-dashed my-10"></div>
                             <div class="row offset-1">
                                 <legend>   অননুমোদিত নির্মান তথ্য</legend>
-                                <div class="col-lg-5">
+                                <div class="col-lg-5 divflex">
                                     <div class="form-group form-group-xs row">
                                         <label class="col-5 col-form-label">
                                             @Html.DisplayNameFor(model => model.TotalUnauthArea)
@@ -745,7 +753,7 @@
 
                                 </div>
 
-                                <div class="col-lg-5">
+                                <div class="col-lg-5 divflex">
 
                                     <div class="form-group form-group-xs row">
                                         <label class="col-5 col-form-label">
@@ -810,7 +818,8 @@
             $("#print_this").on('click', function (e) {
                 e.preventDefault();
                 $("#print_div").printThis({
-                    header: $('#print_header')
+                    header: $('#print_header'),
+                    importStyle: true
                 });
             });
         });

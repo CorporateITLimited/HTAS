@@ -61,172 +61,208 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(m => m.HoldingTaxId)
-
+                        <input type="hidden" value="@ViewBag.IsRebate" id="is_rebate_validate" />
                         <div class="card-body">
 
                             <div class="form-group row">
-                                @Html.LabelFor(model => model.HolderName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                <div class="col-lg-4">
+                                @Html.LabelFor(model => model.HolderName, htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                                <div class="col-lg-3">
                                     @Html.EditorFor(model => model.HolderName, new { htmlAttributes = new { @class = "form-control border-0", placeholder = "", @readonly = "readonly" } })
                                 </div>
 
-                                @Html.LabelFor(model => model.FinancialYear, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                <div class="col-lg-4">
+                                @Html.LabelFor(model => model.FinancialYear, htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                                <div class="col-lg-3">
                                     @Html.EditorFor(model => model.FinancialYear, new { htmlAttributes = new { @class = "form-control border-0", placeholder = "", @readonly = "readonly" } })
                                 </div>
-
-
                             </div>
-
                             <div class="form-group row">
 
-                                @Html.LabelFor(model => model.AreaPlotFlatData, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                <div class="col-lg-10">
+                                @Html.LabelFor(model => model.HolderNo, htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                                <div class="col-lg-3">
+                                    @Html.EditorFor(model => model.HolderNo, new { htmlAttributes = new { @class = "form-control border-0", placeholder = "", @readonly = "readonly" } })
+                                </div>
+
+                                @Html.LabelFor(model => model.AreaPlotFlatData, htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                                <div class="col-lg-3">
                                     @Html.EditorFor(model => model.AreaPlotFlatData, new { htmlAttributes = new { @class = "form-control border-0", placeholder = "", @readonly = "readonly" } })
                                 </div>
 
                             </div>
-
-
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label text-lg-right">রিবেট/ছাড়: <span id="RebatePercent"> &nbsp; @Model.RebatePercent (%)</span></label>
-                                <div class="col-lg-2">
-                                    <div class="">
+                            <fieldset style="border: 2px solid forestgreen">
+                                <br />
+                                <div class="form-group row">
+                                    <label class="col-lg-2 col-form-label text-lg-right">রিবেট/ছাড়: <span id="RebatePercent"> &nbsp; @Model.RebatePercent (%)</span></label>
+                                    <div class="col-lg-2">
+                                        <div class="">
+                                            @if (Model.Rebate > 0)
+                                            {
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.RebateInfo, "Yes", new { @checked = "true" })
+                                                    <span></span>প্রযোজ্য
+                                                </label>
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.RebateInfo, "No")
+                                                    <span></span>প্রযোজ্য নয়
+                                                </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.RebateInfo, "Yes")
+                                                    <span></span>প্রযোজ্য
+                                                </label>
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.RebateInfo, "No", new { @checked = "true" })
+                                                    <span></span>প্রযোজ্য নয়
+                                                </label>
+                                            }
+                                        </div>
+                                        @*<span class="form-text text-muted">Please select user group</span>*@
+                                    </div>
+                                    <div class="col-lg-3">
                                         @if (Model.Rebate > 0)
                                         {
-                                            <label class="radio radio-solid">
-                                                @Html.RadioButtonFor(model => model.RebateInfo, "Yes", new { @checked = "true" })
-                                                <span></span>প্রযোজ্য
-                                            </label>
-                                            <label class="radio radio-solid">
-                                                @Html.RadioButtonFor(model => model.RebateInfo, "No")
-                                                <span></span>প্রযোজ্য নয়
-                                            </label>
+                                            @Html.EditorFor(model => model.Rebate, new { htmlAttributes = new { @class = "form-control border_color_green", placeholder = "", @readonly = "readonly" } })
                                         }
                                         else
                                         {
-                                            <label class="radio radio-solid">
-                                                @Html.RadioButtonFor(model => model.RebateInfo, "Yes")
-                                                <span></span>প্রযোজ্য
-                                            </label>
-                                            <label class="radio radio-solid">
-                                                @Html.RadioButtonFor(model => model.RebateInfo, "No", new { @checked = "true" })
-                                                <span></span>প্রযোজ্য নয়
-                                            </label>
-                                        }
-                                    </div>
-                                    @*<span class="form-text text-muted">Please select user group</span>*@
-                                </div>
-                                <div class="col-lg-3">
-                                    @if (Model.Rebate > 0)
-                                    {
-                                        @Html.EditorFor(model => model.Rebate, new { htmlAttributes = new { @class = "form-control border_color_green", placeholder = "", @readonly = "readonly" } })
-                                    }
-                                    else
-                                    {
-                                        @Html.EditorFor(model => model.Rebate, new { htmlAttributes = new { @class = "form-control border_color_red", placeholder = "", @readonly = "readonly" } })
-                                    }
-                                </div>
-
-                                <label class="col-lg-2 col-form-label text-lg-right">চুড়ান্ত করুন</label>
-                                <div class="col-lg-2">
-                                    <div class="">
-                                        @if (Model.isFinalized == true)
-                                        {
-                                            <label class="radio radio-solid">
-                                                @Html.RadioButtonFor(model => model.FinalizeInfo, "Yes", new { @checked = "true" })
-                                                <span></span>চুড়ান্ত
-                                            </label>
-                                            <label class="radio radio-solid">
-                                                @Html.RadioButtonFor(model => model.FinalizeInfo, "No")
-                                                <span></span>চুড়ান্ত নয়
-                                            </label>
-                                        }
-                                        else
-                                        {
-                                            <label class="radio radio-solid">
-                                                @Html.RadioButtonFor(model => model.FinalizeInfo, "Yes")
-                                                <span></span>চুড়ান্ত
-                                            </label>
-                                            <label class="radio radio-solid">
-                                                @Html.RadioButtonFor(model => model.FinalizeInfo, "No", new { @checked = "true" })
-                                                <span></span>চুড়ান্ত নয়
-                                            </label>
+                                            @Html.EditorFor(model => model.Rebate, new { htmlAttributes = new { @class = "form-control border_color_red", placeholder = "", @readonly = "readonly" } })
                                         }
                                     </div>
                                 </div>
 
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label text-lg-right">ভুল তথ্য চার্জ: <span id="WrongInfoChargePercent">&nbsp;@Model.WrongInfoChargePercent  (%)</span></label>
-                                <div class="col-lg-2">
-                                    <div class="">
+                                <div class="form-group row">
+                                    <label class="col-lg-2 col-form-label text-lg-right">ভুল তথ্য চার্জ: <span id="WrongInfoChargePercent">&nbsp;@Model.WrongInfoChargePercent  (%)</span></label>
+                                    <div class="col-lg-2">
+                                        <div class="">
+                                            @if (Model.WrongInfoCharge > 0)
+                                            {
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.WrongInfo, "Yes", new { @checked = "true" })
+                                                    <span></span>প্রযোজ্য
+                                                </label>
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.WrongInfo, "No")
+                                                    <span></span>প্রযোজ্য নয়
+                                                </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.WrongInfo, "Yes")
+                                                    <span></span>প্রযোজ্য
+                                                </label>
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.WrongInfo, "No", new { @checked = "true" })
+                                                    <span></span>প্রযোজ্য নয়
+                                                </label>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
                                         @if (Model.WrongInfoCharge > 0)
                                         {
-                                            <label class="radio radio-solid">
-                                                @Html.RadioButtonFor(model => model.WrongInfo, "Yes", new { @checked = "true" })
-                                                <span></span>প্রযোজ্য
-                                            </label>
-                                            <label class="radio radio-solid">
-                                                @Html.RadioButtonFor(model => model.WrongInfo, "No")
-                                                <span></span>প্রযোজ্য নয়
-                                            </label>
+                                            @Html.EditorFor(model => model.WrongInfoCharge, new { htmlAttributes = new { @class = "form-control border_color_green", placeholder = "", @readonly = "readonly" } })
                                         }
                                         else
                                         {
-                                            <label class="radio radio-solid">
-                                                @Html.RadioButtonFor(model => model.WrongInfo, "Yes")
-                                                <span></span>প্রযোজ্য
-                                            </label>
-                                            <label class="radio radio-solid">
-                                                @Html.RadioButtonFor(model => model.WrongInfo, "No", new { @checked = "true" })
-                                                <span></span>প্রযোজ্য নয়
-                                            </label>
+                                            @Html.EditorFor(model => model.WrongInfoCharge, new { htmlAttributes = new { @class = "form-control border_color_red", placeholder = "", @readonly = "readonly" } })
                                         }
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    @if (Model.WrongInfoCharge > 0)
-                                    {
-                                        @Html.EditorFor(model => model.WrongInfoCharge, new { htmlAttributes = new { @class = "form-control border_color_green", placeholder = "", @readonly = "readonly" } })
-                                    }
-                                    else
-                                    {
-                                        @Html.EditorFor(model => model.WrongInfoCharge, new { htmlAttributes = new { @class = "form-control border_color_red", placeholder = "", @readonly = "readonly" } })
-                                    }
+
                                 </div>
 
-                            </div>
 
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label text-lg-right">নেট কর প্রদেয় পরিমান</label>
-                                <div class="col-lg-4">
-                                    @Html.EditorFor(model => model.SubTotalHoldingTax, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
-                                    @*<span class="form-text text-muted">Please enter your contact number</span>*@
+                                <div class="form-group row">
+                                    <div class="col-md-1"></div>
+                                    <label class="col-lg-3 col-form-label text-lg-right">@Model.FinancialYear.Replace(" ", "") অর্থ বছরের গৃহকর </label>
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.TotalHoldingTax, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-1"></div>
+                                    <label class="col-lg-3 col-form-label text-lg-right">@Model.FinancialYear.Replace(" ", "") অর্থ বছরের সারচার্জ সহ গৃহকর</label>
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.TotalTaxOfThisYear, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
+                                    </div>
                                 </div>
 
-                                <label class="col-lg-2 col-form-label text-lg-right">পরিশোধিত টাকার পরিমান</label>
-                                <div class="col-lg-4">
-                                    @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
-                                    @*<span class="form-text text-muted">Please enter your full name</span>*@
+                                <div class="form-group row">
+                                    <div class="col-md-1"></div>
+                                    <label class="col-lg-3 col-form-label text-lg-right"> জরিমানাসহ গৃহকরের বকেয়া</label>
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.DuesPreviousYear, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-1"></div>
+                                    <label class="col-lg-3 col-form-label text-lg-right">নেট কর প্রদেয় পরিমান (বকেয়া গৃহকর সহ)</label>
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.NetTaxPayableAmount, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
+                                    </div>
                                 </div>
 
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label text-lg-right">নোট</label>
-                                <div class="col-lg-4">
-                                    @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", placeholder = "" })
+                                <div class="form-group row">
+                                    <div class="col-md-1"></div>
+                                    <label class="col-lg-3 col-form-label text-lg-right">পরিশোধিত টাকার পরিমান</label>
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
+                                    </div>
                                 </div>
-                                <label class="col-lg-2 col-form-label text-lg-right">টাকা প্রদানের তারিখ</label>
-                                <div class="col-lg-4">
-                                    @Html.EditorFor(model => model.StringPaymentDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                    @*<span class="form-text text-muted">Please enter your contact number</span>*@
+
+                                <div class="form-group row">
+                                    <div class="col-md-1"></div>
+                                    <label class="col-lg-3 col-form-label text-lg-right">টাকা প্রদানের তারিখ</label>
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.StringPaymentDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                    </div>
+
                                 </div>
-                            </div>
 
 
+                                <div class="form-group row">
+                                    <div class="col-md-1"></div>
+                                    <label class="col-lg-3 col-form-label text-lg-right">নোট</label>
+                                    <div class="col-lg-4">
+                                        @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", placeholder = "" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-1"></div>
+                                    <label class="col-lg-3 col-form-label text-lg-right">চুড়ান্ত করুন</label>
+                                    <div class="col-lg-2">
+                                        <div class="">
+                                            @if (Model.isFinalized == true)
+                                            {
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.FinalizeInfo, "Yes", new { @checked = "true" })
+                                                    <span></span>চুড়ান্ত
+                                                </label>
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.FinalizeInfo, "No")
+                                                    <span></span>চুড়ান্ত নয়
+                                                </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.FinalizeInfo, "Yes")
+                                                    <span></span>চুড়ান্ত
+                                                </label>
+                                                <label class="radio radio-solid">
+                                                    @Html.RadioButtonFor(model => model.FinalizeInfo, "No", new { @checked = "true" })
+                                                    <span></span>চুড়ান্ত নয়
+                                                </label>
+                                            }
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </fieldset>
+                            <br />
 
                         </div>
                         <div class="card-footer">
@@ -275,9 +311,17 @@
                 rules: {
                     PaidAmount: {
                         number: true
+                    },
+                    Remarks: {
+                        required: true
                     }
                 },
-
+                messages: {
+                    Remarks: "তথ্য হালনাগাদ করতে হলে ঘরটি অবশ্যই পূরণ করতে হবে",
+                    PaidAmount: {
+                        number: "পরিশোধিত টাকার পরিমান ইংরেজীতে দিন"
+                    }
+                },
                 invalidHandler: function (event, validator) {
                     KTUtil.scrollTop();
                 }
@@ -286,74 +330,84 @@
             $('input[type=radio][name=RebateInfo]').change(function () {
                 if (this.value === 'Yes') {
                     //$("#RebatePercent").text("");
-                    var subTotal = $("#SubTotalHoldingTax").val();
-                    var minusValue = $("#Rebate").val();
-                    var exactValue = parseFloat(subTotal) - parseFloat(minusValue);
-                    $("#SubTotalHoldingTax").val(exactValue.toFixed(2));
+                    @*var totalHoldingTax = parseFloat($("#TotalHoldingTax").val()) || 0;
+                    var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+                    var duesPreviousYear = parseFloat($("#DuesPreviousYear").val()) || 0;
+                    var wrongInfoCharge = parseFloat($("#WrongInfoCharge").val()) || 0;
+                    var exactValue = (parseFloat(totalHoldingTax) * parseFloat(@Model.RebatePercent)) / 100;
+                    $("#Rebate").val(exactValue.toFixed(2));
                     $("#Rebate").css("border", "2px solid green");
-                    //var holdingTaxId = parseInt($('#HoldingTaxId').val());
-                    //var json = {
-                    //    id: holdingTaxId,
-                    //};
-                    //$.ajax({
-                    //    url: '/HoldingTax/GetRebateAndWrongInfoByHoldingTaxId',
-                    //    type: "POST",
-                    //    contentType: "application/json; charset=utf-8",
-                    //    data: JSON.stringify(json),
-                    //    success: function (data) {
-                    //        ///  $("#RebatePercent").text(data.RebatePercent + "%");
-                    //        $("#Rebate").val(data.RebateValue.toFixed(2));
-                    //        var subTotal = $("#SubTotalHoldingTax").val();
-                    //        var minusValue = data.RebateValue.toFixed(2);
-                    //        var exactValue = subTotal - minusValue;
-                    //        $("#SubTotalHoldingTax").val(exactValue.toFixed(2));
-                    //    },
-                    //    error: function (e) {
-                    //        console.log(e);
-                    //    }
-                    //});
+                    $("#is_rebate_validate").val("1");
+                    var newNetExactValue = (parseFloat(netPayAmount) + parseFloat(duesPreviousYear) + parseFloat(wrongInfoCharge)) - exactValue.toFixed(2);
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));*@
+
+                    var totalHoldingTax = parseFloat($("#TotalHoldingTax").val()) || 0;
+                    var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+                    var exactValue = (parseFloat(totalHoldingTax) * parseFloat(@Model.RebatePercent)) / 100;
+                    $("#Rebate").val(exactValue.toFixed(2));
+                    $("#Rebate").css("border", "2px solid green");
+                    $("#is_rebate_validate").val("1");
+                    var newNetExactValue = parseFloat(netPayAmount) - exactValue.toFixed(2);
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));
                 }
                 else if (this.value === 'No') {
-                    var subTotal = $("#SubTotalHoldingTax").val();
-                    var minusValue = $("#Rebate").val();
-                    var exactValue = parseFloat(subTotal) + parseFloat(minusValue);
-                    $("#SubTotalHoldingTax").val(exactValue.toFixed(2));
+                    //var totalHoldingTax = parseFloat($("#TotalHoldingTax").val()) || 0;
+                    //var netPayAmount = parseFloat($("#TotalTaxOfThisYear").val()) || 0;
+                    //var duesPreviousYear = parseFloat($("#DuesPreviousYear").val()) || 0;
+                    //var wrongInfoCharge = parseFloat($("#WrongInfoCharge").val()) || 0;
+                    //$("#Rebate").val("");
+                    //$("#Rebate").css("border", "2px solid red");
+                    //$("#is_rebate_validate").val("0");
+                    //var newNetExactValue = (parseFloat(netPayAmount) + parseFloat(duesPreviousYear) + parseFloat(wrongInfoCharge));
+                    //$("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));
+
+                    var totalHoldingTax = parseFloat($("#TotalHoldingTax").val()) || 0;
+                    var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+                    var exactValue = (parseFloat(totalHoldingTax) * parseFloat(@Model.RebatePercent)) / 100;
+                    $("#Rebate").val("");
                     $("#Rebate").css("border", "2px solid red");
+                    $("#is_rebate_validate").val("0");
+                    var newNetExactValue = parseFloat(netPayAmount) + parseFloat(exactValue.toFixed(2));
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));
                 }
             });
 
             $('input[type=radio][name=WrongInfo]').change(function () {
                 if (this.value === 'Yes') {
-                    $("#WrongInfoCharge").val("");
-                    var holdingTaxId = parseInt($('#HoldingTaxId').val());
-                    var json = {
-                        id: holdingTaxId,
-                    };
-                    $.ajax({
-                        url: '/HoldingTax/GetRebateAndWrongInfoByHoldingTaxId',
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify(json),
-                        success: function (data) {
-                            debugger;
-                            //  $("#WrongInfoChargePercent").text(data.WrongInfoChargePercent + "%");
-                            $("#WrongInfoCharge").val(data.WrongInfoChargeValue.toFixed(2));
-                            var subTotal = $("#SubTotalHoldingTax").val();
-                            var plusValue = data.WrongInfoChargeValue.toFixed(2);
-                            var exactValue = parseFloat(subTotal) + parseFloat(plusValue);
-                            $("#SubTotalHoldingTax").val(exactValue.toFixed(2));
-                            $("#WrongInfoCharge").css("border", "2px solid green");
-                        },
-                        error: function (e) {
-                            console.log(e);
-                        }
-                    });
+                    @*var totalTaxOfThisYear = parseFloat($("#TotalTaxOfThisYear").val()) || 0;
+                    var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+                    var duesPreviousYear = parseFloat($("#DuesPreviousYear").val()) || 0;
+                    var rebate = parseFloat($("#Rebate").val()) || 0;
+                    var wrongInfocharge = (parseFloat(totalTaxOfThisYear) * parseFloat(@Model.WrongInfoChargePercent)) / 100;
+                    $("#WrongInfoCharge").val(wrongInfocharge.toFixed(2));
+                    var newNetExactValue = (parseFloat(netPayAmount) + parseFloat(duesPreviousYear) + parseFloat(wrongInfocharge)) - parseFloat(rebate);
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));*@
+
+                    var totalTaxOfThisYear = parseFloat($("#TotalTaxOfThisYear").val()) || 0;
+                    var wrongInfocharge = (parseFloat(totalTaxOfThisYear) * parseFloat(@Model.WrongInfoChargePercent)) / 100;
+                    $("#WrongInfoCharge").val(wrongInfocharge.toFixed(2));
+                    var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+                    var newNetExactValue = (parseFloat(netPayAmount) + parseFloat(wrongInfocharge));
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));
+                    $("#WrongInfoCharge").css("border", "2px solid green");
                 }
                 else if (this.value === 'No') {
-                    var subTotal = $("#SubTotalHoldingTax").val();
-                    var plusValue = $("#WrongInfoCharge").val();
-                    var exactValue = parseFloat(subTotal) - parseFloat(plusValue);
-                    $("#SubTotalHoldingTax").val(exactValue.toFixed(2));
+                    @*var totalTaxOfThisYear = parseFloat($("#TotalTaxOfThisYear").val()) || 0;
+                    var netPayAmount = parseFloat($("#TotalTaxOfThisYear").val()) || 0;
+                    var duesPreviousYear = parseFloat($("#DuesPreviousYear").val()) || 0;
+                    var rebate = parseFloat($("#Rebate").val()) || 0;
+                    var wrongInfocharge = (parseFloat(totalTaxOfThisYear) * parseFloat(@Model.WrongInfoChargePercent)) / 100;
+                    $("#WrongInfoCharge").val("");
+                    var newNetExactValue = (parseFloat(netPayAmount) + parseFloat(duesPreviousYear)) - parseFloat(rebate);
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));
+                    $("#WrongInfoCharge").css("border", "2px solid red");*@
+
+                     var totalTaxOfThisYear = parseFloat($("#TotalTaxOfThisYear").val()) || 0;
+                    var wrongInfocharge = (parseFloat(totalTaxOfThisYear) * parseFloat(@Model.WrongInfoChargePercent)) / 100;
+                    $("#WrongInfoCharge").val("");
+                    var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+                    var newNetExactValue = (parseFloat(netPayAmount) - parseFloat(wrongInfocharge));
+                    $("#NetTaxPayableAmount").val(newNetExactValue.toFixed(2));
                     $("#WrongInfoCharge").css("border", "2px solid red");
                 }
             });

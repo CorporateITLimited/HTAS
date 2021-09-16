@@ -65,5 +65,13 @@ namespace HoldingTaxWebApp.Models.Constant
 
         [Display(Name = "বকেয়া অতিরিক্ত চার্জ রেফারেন্স")]
         public string DueChargeRef { get; set; }
+
+
+        [Display(Name = "ডিওএইচএস ব্যাতিত অন্যান্য এলাকার মালিকদের জন্য প্রযোজ্য ছাড়ের হার(শতাংশ)")]
+
+        public decimal? OwnFlatDiscount { get; set; }
+
+        [Display(Name = "ডিওএইচএস ব্যাতিত অন্যান্য এলাকার মালিকদের জন্য প্রযোজ্য ছাড়ের হার")]
+        public string OwnFlatDiscountRef { get; set; }
     }
 }

@@ -1,0 +1,120 @@
+﻿@model HoldingTaxWebApp.ViewModels.QueryCommon
+
+@{
+    ViewBag.Title = "Regenerate Tax";
+}
+@section Sheets{
+    <link href="~/Content/formdesign.css" rel="stylesheet" />
+}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">নির্দিষ্ট সংখ্যক গৃহকরদাতাদের জন্য পুনরায় গৃহকর হালনাগাদকরণ</h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted">গৃহকর হালনাগাদকরণ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="card card-custom" id="kt_card_1">
+                    <div class="card-header">
+                        <h3 class="card-title">পুনরায় গৃহকর হালনাগাদ করুন</h3>
+                        <span style="color: forestgreen; font-size: 18px;">প্লটভিত্তিক গৃহকরের তথ্য হালনাগাদ করুন</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.FinancialYearId, "আর্থিক বছর", htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.FinancialYearId, null, "-- নির্বাচন করুন --", new
+                           {
+                               @class = "form-control",
+                               @name = "FinancialYearId",
+                               @id = "FinancialYearId"
+                           })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.AreaId, null, "-- নির্বাচন করুন --", new
+                           {
+                               @class = "form-control",
+                               @name = "AreaId",
+                               @id = "AreaId"
+                           })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.PlotId, "প্লট নম্বর", htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                            <div class="col-lg-9">
+                                @Html.DropDownListFor(model => model.PlotId, null, "-- নির্বাচন করুন --", new
+                           {
+                               @class = "form-control",
+                               @name = "PlotId",
+                               @id = "PlotId"
+                           })
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-center">
+                            <button type="button" id="btnSearch" class="btn btn-outline-primary btn-sm"><i class="fas fa-search"></i>গৃহকরদাতাদের তালিকা দেখুন</button>
+                            <button class="btn btn-outline-dark btn-sm" id="reset_button"><i class="fas fa-trash-restore"></i>রিসেট করুন </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="card card-custom" id="kt_card_1">
+                    <div class="card-header">
+                        <h3 class="card-title">গৃহকরদাতাদের তালিকা</h3>
+                        <span style="color: forestgreen; font-size: 18px;">যেসব গৃহকরদাতাদের গৃহকরের তথ্য হালনাগাদ করবেন তাদেরকে টিক দিন </span>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover table-sm" width="100" id="holder_details">
+                            <thead class="thead-light text-center">
+                                <tr>
+                                    <th>নাম</th>
+                                    <th>আইডি নম্বর</th>
+                                    <th>নেট করের পরিমাণ</th>
+                                    <th>টিক দিন</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-center">
+                            <button type="submit" id="btnSubmit" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i>গৃহকর হালনাগাদ করুন</button>
+                            <button type="button" onclick="window.location.href = '/HoldingTax/Index'" class="btn btn-outline-dark btn-sm"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</button>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+  
+}

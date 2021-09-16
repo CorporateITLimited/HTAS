@@ -7,6 +7,7 @@
 }
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
+
 }
 
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
@@ -48,7 +49,7 @@
                     <div class="card-body" id="print_div">
                         <div class="row offset-1">
                             <legend>পুরাতন জমি মালিকানা ও হস্তান্তর তথ্য</legend>
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -110,13 +111,13 @@
                                     </div>
                                 </div>
 
-                              
 
-                        
+
+
 
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -168,71 +169,73 @@
 
                             </div>
                         </div>
-                       
-                            <div class="separator separator-dashed my-10"></div>
-                            <div class="row offset-1">
-                                <div class="col-lg-11">
-                                    <legend>যৌথ মালিকানার ক্ষেত্রে অন্যান্য মালিকের বিবরণ</legend>
-                                    <br />
-                                    <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
-                                        <thead class="thead-light text-center">
-                                            <tr>
-                                                <th>সিরিয়াল নাম্বার</th>
-                                                <th>প্লট মালিকের নাম</th>
-                                                <th>ঠিকানা</th>
-                                                <th>মন্তব্য</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody class="text-center">
-                                            @{ int i = 1;
-                                                foreach (var item in Model.OldOthetPlotOwner)
-                                                {
-                                                    <tr>
-                                                        <td>@i</td>
-                                                        <td>@item.OldOthetOwneeName</td>
-                                                        <td>@item.Address</td>
-                                                        <td>@item.Remarks</td>
+                        <div class="separator separator-dashed my-10"></div>
+                        <div class="row offset-1">
+                            <div class="col-lg-11">
+                                <legend>যৌথ মালিকানার ক্ষেত্রে অন্যান্য মালিকের বিবরণ</legend>
+                                <br />
+                                <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
+                                    <thead class="thead-light text-center">
+                                        <tr>
+                                            <th>সিরিয়াল নাম্বার</th>
+                                            <th>প্লট মালিকের নাম</th>
+                                            <th>ঠিকানা</th>
+                                            <th>মন্তব্য</th>
 
-                                                    </tr>
-                                                    i = i + 1;
-                                                }
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        @{ int i = 1;
+                                            foreach (var item in Model.OldOthetPlotOwner)
+                                            {
+                                                <tr>
+                                                    <td>@i</td>
+                                                    <td>@item.OldOthetOwneeName</td>
+                                                    <td>@item.Address</td>
+                                                    <td>@item.Remarks</td>
+
+                                                </tr>
+                                                i = i + 1;
                                             }
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                                                
-
-
-                                              
-                                            </div>
-
-                                            <div class="card-footer">
-                                                <div class="text-center">
-                                                    @*<a href="~/OldPlotOwner/Edit/@Model.OldPlotOwnerId" class="btn btn-outline-success btn-md">
-                                                        <i class="fas fa-pen"></i>হালনাগাদের পেজে  যান
-                                                    </a>*@
-                                                    <a href="~/OldPlotOwner/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>
-                                                    <button id="print_this" class="btn btn-light-primary btn-md"><i class="fas fa-list"></i>প্রিন্ট করুন</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
-                        @section Scripts {
-                            <script src="~/Scripts/printThis.js"></script>
-                            <script>
+
+
+
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="text-center">
+                            @*<a href="~/OldPlotOwner/Edit/@Model.OldPlotOwnerId" class="btn btn-outline-success btn-md">
+                                    <i class="fas fa-pen"></i>হালনাগাদের পেজে  যান
+                                </a>*@
+                            <a href="~/OldPlotOwner/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>
+                            <button id="print_this" class="btn btn-light-primary btn-md"><i class="fas fa-list"></i>প্রিন্ট করুন</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/printThis.js"></script>
+    <script>
         jQuery(document).ready(function () {
             $("#print_this").on('click', function (e) {
                 e.preventDefault();
                 $("#print_div").printThis({
-                    header: $('#print_header')
+                    header: $('#print_header'),
+
+                    importStyle: true
                 });
             });
         });
-                            </script>
-                        }
+    </script>
+}

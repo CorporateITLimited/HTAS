@@ -5,6 +5,134 @@
 
 <div class="d-flex flex-column-fluid">
     <div class="container">
+        <div class="row">
+            <div class="col-md-12"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-custom">
+                    <div class="card-header">
+                        <h3 class="card-title ">গৃহকর সংক্রান্ত সর্বশেষ বিজ্ঞপ্তি</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-vertical-center thead-light" id="tblIssue">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>আর্থিক বছর </th>
+                                    <th>বিজ্ঞপ্তির নাম</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-center">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-custom">
+                    <div class="card-header">
+                        <h3 class="card-title ">গৃহকর সংক্রান্ত সর্বশেষ তথ্য </h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-vertical-center thead-light" id="tblTax">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>আর্থিক বছর </th>
+                                    <th>নেট কর প্রদেয় পরিমাণ</th>
+                                    <th> পেমেন্ট স্টেটাস</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-center">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+@section Scripts
+{
+    @*<script src="~/Theme/dist/assets/js/pages/features/charts/flotcharts.js"></script>
+        <script src="~/Theme/dist/assets/plugins/custom/flot/flot.bundle.js"></script>*@
+    <script>
+        jQuery(document).ready(function () {
+            var issueTable = $('#tblIssue tbody');
+            $.ajax(
+                {
+                    type: 'POST',
+                    dataType: 'JSON',
+                    url: '/Home/GetHolderNotice',
+                    success:
+                        function (data) {
+                            issueTable.empty();
+
+                            $(data).each(function (index, ep) {
+                                issueTable.append('<tr>' +
+                                    '<td class="FinancialYear" id="FinancialYear">' + ep.FinancialYear + '</td>' +
+                                    '<td class="NoticeName" id="NoticeName" >' + ep.NoticeName + '</td>' +
+                                    '<td class="" id=""> <a href="../Notice/NoticeReport/?FYID=' + ep.FinancialYearId + '&NTID=' + ep.NoticeTypeId + '&HID=' + ep.HolderId + '" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" title="হালনাগাদ পেজে যান"> <b> <i class="fa fa-edit"></i>  </b></a></td>' +
+                                    '</tr>');
+                            });
+                        },
+                    error:
+                        function (data) {
+                            alert("Error: " + data);
+                        }
+                });
+
+            var taxTable = $('#tblTax tbody');
+            $.ajax(
+                {
+                    type: 'POST',
+                    dataType: 'JSON',
+                    url: '/Home/GetHolderTax',
+                    success:
+                        function (data) {
+                            taxTable.empty();
+
+                            $(data).each(function (index, ep) {
+                                taxTable.append('<tr>' +
+                                    '<input type="hidden" value=' + ep.IsPaid + ' class="is_paid" />' +
+                                    '<td class="FinancialYear" id="FinancialYear">' + ep.FinancialYear + '</td>' +
+                                    '<td class="NetTaxPayableAmount" id="NetTaxPayableAmount" >' + ep.NetTaxPayableAmount + '</td>' +
+                                    '<td class="StatusOfTax" id="StatusOfTax" > </td>' +
+                                    '<td class="" id=""> <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="../HoldingTax/Invoice/' + ep.HoldingTaxId + '" title="ইনভয়েস দেখুন"><b> <i class="fa fa-file-invoice"></i> </b></a>' +
+                                    '<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="../HoldingTax/Details/' + ep.HoldingTaxId + '" title="রিপোর্ট দেখুন"><b><i class="fa fa-chart-bar" aria-hidden="true"></i></b></a></td>' +
+                                    '</tr>');
+                            });
+
+                            $("#tblTax tbody tr").each(function () {
+                                var currentRow = $(this).closest("tr");
+                                var status_val = currentRow.find('.is_paid').val();
+
+                                if (status_val === "true") {
+                                    currentRow.find('.StatusOfTax').append('<span style="color: green; font-size: 16px;">কর পরিশোধিত</span>');
+                                }
+                               else {
+                                    currentRow.find('.StatusOfTax').append('<span style="color: red; font-size: 16px;">কর অপরিশোধিত    </span>');
+                                }
+                            });
+                        },
+                    error:
+                        function (data) {
+                            alert("Error: " + data);
+                        }
+                });
+
+        });
+    </script>
+
+
+}

@@ -107,5 +107,8 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "পদবির নাম")]
         public string DesignationName { get; set; }
+
+        [Display(Name = "আইডি নম্বর")]
+        public string HolderNo { get; set; }
     }
 }

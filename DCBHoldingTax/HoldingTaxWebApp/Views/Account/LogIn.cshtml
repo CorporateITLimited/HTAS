@@ -38,9 +38,9 @@
         <div class="login login-3 wizard d-flex flex-column flex-lg-row flex-column-fluid">
 
             <div class="login-content flex-row-fluid d-flex flex-column p-10">
-                <div class="d-flex flex-row-fluid flex-center">
+                <div class="d-flex flex-row-fluid flex-center min-w-md-auto">
                     @*<img src="~/Images/Cantonment-Dhaka4login.png" />*@
-                    <img src="~/Images/dcb_4_eng_bn.png" />
+                    <img style="width:-webkit-fill-available;" src="~/Images/dcb_4_eng_bn.png" />
                 </div>
                 <div class="d-flex flex-row-fluid flex-center">
                    
@@ -53,8 +53,7 @@
                                 <h4 class="font-weight-bolder text-primary font-size-h2 font-size-h1-lg">লগইন করুন</h4>
                             </div>
 
-                            @Html.AntiForgeryToken()
-
+                            @Html.AntiForgeryToken();
                             <h5 style="color:red !important"> @Html.ValidationSummary(true, "", new { @class = "text-danger" })</h5>
                             if (TempData["PM"] != null)
                             {

@@ -64,6 +64,27 @@ var KTWizard4 = function () {
                     //_formEl.submit(); // Submit form
                     var isAllValid = true;
                     var list = [];
+                    debugger;
+                    //var area_type_id = $("#area_type_id").val();
+                    //if (area_type_id === 2) {
+                    //    $('#flat_details tbody tr').each(function (index, ele) {
+                    //        var monthlyRent = parseFloat($('.MonthlyRent', this).val()) || 0;
+                    //        if (monthlyRent === 0) {
+                    //            Swal.fire({
+                    //                text: "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন ",
+                    //                icon: "error",
+                    //                buttonsStyling: false,
+                    //                confirmButtonText: "  ERROR  ",
+                    //                customClass: {
+                    //                    confirmButton: "btn font-weight-bold btn-danger",
+                    //                }
+                    //            });
+                    //            $('#details_error').text("মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন");
+                    //            return;
+                    //        }
+                    //    });
+                    //}
+
 
                     var isHolderOwner = $('#IsHolderAnOwner').val();
                     if (isHolderOwner === 'true') {

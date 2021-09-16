@@ -33,6 +33,8 @@ namespace HoldingTaxWebApp.Manager.Holding
                 return CommonConstantHelper.Success;
             else if (result == 401)
                 return CommonConstantHelper.Conflict;
+            else if (result == 404)
+                return "404";
             else if (result == 500)
                 return CommonConstantHelper.Error;
             else

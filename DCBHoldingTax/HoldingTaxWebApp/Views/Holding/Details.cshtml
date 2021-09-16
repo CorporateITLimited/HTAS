@@ -34,7 +34,7 @@
                     <div class="card-header" id="print_header">
                         <div class="row offset-1">
                             <h3 class="card-title">
-                                <b class="kt-font-brand"> @Model.AreaPlotFlatData   &nbsp; </b>  &nbsp; এর বিস্তারিত তথ্য
+                                <b class="kt-font-brand">গৃহকরদাতার আইডি নম্বর : @Model.HolderNo   &nbsp; </b>  &nbsp; এর বিস্তারিত তথ্য
                             </h3>
 
                             <div class="card-toolbar">
@@ -46,7 +46,7 @@
                     <div class="card-body" id="print_div">
                         <div class="row offset-1">
                             <legend> এলাকার তথ্য </legend>
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.AreaName)
@@ -71,7 +71,7 @@
                                 </div>
 
                             </div>
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.RoadNo)
@@ -101,8 +101,7 @@
                         <div class="row offset-1">
                             <legend> ব্যাক্তিগত তথ্য</legend>
 
-                            <div class="col-lg-5">
-
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.HolderName)
@@ -114,7 +113,17 @@
                                         </span>
                                     </div>
                                 </div>
-
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.HolderNo)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.HolderNo)
+                                        </span>
+                                    </div>
+                                </div>
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -179,7 +188,7 @@
 
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
@@ -328,7 +337,7 @@
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
                             <legend>   জমি ও ভবন সংক্রান্ত তথ্য</legend>
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.SourceName)
@@ -379,7 +388,7 @@
 
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
                                 @if (Model.OwnerType == 3)
                                 {
@@ -472,52 +481,95 @@
                             <div class="col-lg-11">
                                 <legend>   ফ্ল্যাটসমূহের বিবরণ</legend>
                                 <br />
-                                <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
-                                    <thead class="thead-light text-center">
-                                        <tr>
-                                            <th>তলা</th>
-                                            <th>ফ্ল্যাট নম্বর </th>
-                                            <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
-                                            <th>নিজ বসতি/ভাড়া </th>
-                                            <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
-                                            <th>সম্পত্তির ধরন</th>
-                                            <th>মালিকানা </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-center">
-                                        @foreach (var item in Model.HolderFlatList)
-                                        {
+                                @if (Model.Area_type_id == 1)
+                                {
+                                    <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
+                                        <thead class="thead-light text-center">
                                             <tr>
-                                                <td>@item.FloorTypeName</td>
-                                                <td>@item.FlatNo</td>
-                                                <td>@item.StrFlatArea</td>
-                                                <td>@item.OwnOrRentType</td>
-                                                <td>@item.StrMonthlyRent </td>
-                                                <td>@item.SelfOwnType </td>
-                                                @if (string.IsNullOrWhiteSpace(item.OwnerName))
-                                                {
-                                                    <td>
-                                                        ফ্ল্যাটের কোনো মালিকানা নেই
-                                                    </td>
-                                                }
-                                                else
-                                                {
-                                                    <td>
-                                                        @item.OwnerName
-                                                    </td>
-                                                }
-
+                                                <th>তলা</th>
+                                                <th>ফ্ল্যাট নম্বর </th>
+                                                <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
+                                                <th>নিজ বসতি/ভাড়া </th>
+                                                <th>সম্পত্তির ধরন</th>
+                                                <th>মালিকানা </th>
                                             </tr>
-                                        }
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            @foreach (var item in Model.HolderFlatList)
+                                            {
+                                                <tr>
+                                                    <td>@item.FloorTypeName</td>
+                                                    <td>@item.FlatNo</td>
+                                                    <td>@item.StrFlatArea</td>
+                                                    <td>@item.OwnOrRentType</td>
+                                                    <td>@item.SelfOwnType </td>
+                                                    @if (string.IsNullOrWhiteSpace(item.OwnerName))
+                                                    {
+                                                        <td>
+                                                            ফ্ল্যাটের কোনো মালিকানা নেই
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.OwnerName
+                                                        </td>
+                                                    }
+
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                                else
+                                {
+                                    <table class="table table-bordered table-hover table-sm" width="100" id="flat_details">
+                                        <thead class="thead-light text-center">
+                                            <tr>
+                                                <th>তলা</th>
+                                                <th>ফ্ল্যাট নম্বর </th>
+                                                <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
+                                                <th>নিজ বসতি/ভাড়া </th>
+                                                <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
+                                                <th>সম্পত্তির ধরন</th>
+                                                <th>মালিকানা </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            @foreach (var item in Model.HolderFlatList)
+                                            {
+                                                <tr>
+                                                    <td>@item.FloorTypeName</td>
+                                                    <td>@item.FlatNo</td>
+                                                    <td>@item.StrFlatArea</td>
+                                                    <td>@item.OwnOrRentType</td>
+                                                    <td>@item.StrMonthlyRent </td>
+                                                    <td>@item.SelfOwnType </td>
+                                                    @if (string.IsNullOrWhiteSpace(item.OwnerName))
+                                                    {
+                                                        <td>
+                                                            ফ্ল্যাটের কোনো মালিকানা নেই
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            @item.OwnerName
+                                                        </td>
+                                                    }
+
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
                             </div>
                         </div>
 
                         <div class="separator separator-dashed my-10"></div>
                         <div class="row offset-1">
                             <legend>    বরাদ্দ/নামজারী ও নকশা অনুমোদন সংক্রান্ত তথ্য</legend>
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.PlotOwnerName)
@@ -604,7 +656,7 @@
 
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
 
                                 <div class="form-group form-group-xs row">
@@ -716,7 +768,8 @@
             $("#print_this").on('click', function (e) {
                 e.preventDefault();
                 $("#print_div").printThis({
-                    header: $('#print_header')
+                    header: $('#print_header'),
+                    importStyle: true
                 });
             });
         });

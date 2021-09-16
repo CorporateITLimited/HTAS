@@ -6,6 +6,11 @@
 @*<h2>সব রিপোর্টস</h2>*@
 @section Sheets{
     <link href="~/Content/formdesign.css" rel="stylesheet" />
+    @*<style>
+        #kt_card_4{
+            position:inherit !important;
+        }
+    </style>*@
 }
 
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
@@ -29,96 +34,182 @@
 <div class="d-flex flex-column-fluid">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
-                <div class="card card-custom" id="kt_card_1">
-                    <div class="card-header">
-                        <h3 class="card-title">গৃহকর সংক্রান্ত সকল রিপোর্ট</h3>
-                        <div class="card-toolbar">
-                            <div class="example-tools justify-content-center">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                      <ul class="h5">
-                          <li>
-                              @Html.ActionLink("সম্ভাব্য আদায়যোগ্য গৃহকর", "Index", "TaxReports", new { rptId = 1 }, null)
-                          </li>
-                          <li>
-                              @Html.ActionLink("আদায়কৃত গৃহকর", "Index", "TaxReports", new { rptId = 2 }, null)
-                          </li>
-                          <li>
-                              @Html.ActionLink("অনাদায় কৃত গৃহকর", "Index", "TaxReports", new { rptId = 3 }, null)
-                          </li>
-                          <li>
-                              @Html.ActionLink("গৃহকর প্রদানকারী করদাতাদের তালিকা", "Index", "TaxReports", new { rptId = 4}, null)
-                          </li>
-                          <li>
-                              @Html.ActionLink("গৃহকর প্রদান না করা করদাতাদের তালিকা", "Index", "TaxReports", new { rptId = 5 }, null)
-                          </li>
-                      </ul>
 
-                    </div>
-                    <div class="card-footer">
-                        <div class="text-center">
-                           
-                        </div>
-                        <div>
-                            <span id="details_error"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
             <div class="col-lg-4">
                 <div class="card card-custom" id="kt_card_1">
                     <div class="card-header">
-                        <h3 class="card-title">হোল্ডার সংক্রান্ত সকল রিপোর্ট </h3>
+                        <h3 class="card-title ">প্লট/জমি মালিকানা সংক্রান্ত রিপোর্ট</h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <ul class="h5">
-                            <li>
-                               <a href="~/Holding/HolderReport">হোল্ডারের বিস্তারিত তথ্য রিপোর্ট</a>
+                        <ul class="navi navi-border navi-hover navi-active">
+                            <li class="navi-item">
+                                <a class="navi-link" href="~/Plot/PlotReport">
+                                    <span class="navi-icon"><i class="flaticon-placeholder-3 text-primary"></i></span>
+                                    <span class="navi-text">এলাকা ভিত্তিক প্লট রিপোর্ট</span>
+                                </a>
                             </li>
-                           
+                            <li class="navi-item">
+                                <a class="navi-link" href="~/PlotOwner/PlotOwnerReport">
+                                    <span class="navi-icon"><i class="flaticon-users-1 text-primary"></i></span>
+                                    <span class="navi-text">এলাকা ভিত্তিক প্লট মালিকদের তালিকা</span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a class="navi-link" href="~/PlotOwner/PlotOwnerDetailsReport">
+                                    <span class="navi-icon"><i class="flaticon2-google-drive-file text-primary"></i></span>
+                                    <span class="navi-text">প্লট মালিকের বিস্তারিত রিপোর্ট</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                &nbsp;
+                            </li>
+
                         </ul>
                     </div>
-                    <div class="card-footer">
-                        <div class="text-center">
-                            
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
+
             <div class="col-lg-4">
-                <div class="card card-custom" id="kt_card_1">
+                <div class="card card-custom" id="kt_card_2">
                     <div class="card-header">
-                        <h3 class="card-title"> </h3>
+                        <h3 class="card-title ">করদাতা সংক্রান্ত রিপোর্ট</h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
+                        <ul class="navi navi-border navi-hover navi-active">
+                            <li class="navi-item">
+                                <a class="navi-link" href="~/Holding/HolderReport">
+                                    <span class="navi-icon"><i class="flaticon2-google-drive-file text-primary"></i></span>
+                                    <span class="navi-text">করদাতার বিস্তারিত তথ্য রিপোর্ট</span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a class="navi-link" href="~/Holding/HolderListReport">
+                                    <span class="navi-icon"><i class="flaticon-users-1 text-primary"></i></span>
+                                    <span class="navi-text">এলাকা ভিত্তিক করদাতাদের তালিকা</span>
+                                </a>
+                            </li>
 
-                    </div>
-                    <div class="card-footer">
-                        <div class="text-center">
+                            <li>
+                                &nbsp;
+                            </li>
 
-                        </div>
+                        </ul>
                     </div>
+
+
                 </div>
             </div>
+
+            <div class="col-lg-4">
+                <div class="card card-custom" id="kt_card_3">
+                    <div class="card-header">
+                        <h3 class="card-title ">গৃহকর সংক্রান্ত রিপোর্ট</h3>
+                        <div class="card-toolbar">
+                            <div class="example-tools justify-content-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="navi navi-border navi-hover navi-active">
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "1" })">
+                                    <span class="navi-icon"><i class="flaticon2-analytics text-primary"></i></span>
+                                    <span class="navi-text">সম্ভাব্য আদায়যোগ্য গৃহকর</span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "2" })">
+                                    <span class="navi-icon"><i class="flaticon2-analytics text-primary"></i></span>
+                                    <span class="navi-text">আদায়কৃত গৃহকর</span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "3" })">
+                                    <span class="navi-icon"><i class="flaticon2-analytics text-primary"></i></span>
+                                    <span class="navi-text">অনাদায় কৃত গৃহকর</span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "4" })">
+                                    <span class="navi-icon"><i class="flaticon-users-1 text-primary"></i></span>
+                                    <span class="navi-text">গৃহকর প্রদানকারী করদাতাদের তালিকা</span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "5" })">
+                                    <span class="navi-icon"><i class="flaticon-users-1 text-primary"></i></span>
+                                    <span class="navi-text">গৃহকর প্রদান না করা করদাতাদের তালিকা</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                 
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-4">
+                <div class="card card-custom" id="kt_card_4">
+                    <div class="card-header">
+                        <h3 class="card-title">অ্যাডমিন রিপোর্ট </h3>
+                        <div class="card-toolbar">
+                            <div class="example-tools justify-content-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="navi navi-border navi-hover navi-active">
+                            <li class="navi-item">
+                                <a class="navi-link" href="~/Home/EmployeeList">
+                                    <span class="navi-icon"><i class="flaticon-users-1 text-primary"></i></span>
+                                    <span class="navi-text">কর্মকর্তা ও কর্মচারীর তালিকা</span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a class="navi-link" href="~/Home/LoginHistory">
+                                    <span class="navi-icon"><i class="flaticon2-shield text-primary"></i></span>
+                                    <span class="navi-text">ব্যবহারকারীর লগইন রিপোর্ট</span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                &nbsp;
+                            </li>
+
+
+
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+
+
 
 
         </div>
+
     </div>
+
 </div>
 
 @section Scripts {
 
-   
+
 }
 

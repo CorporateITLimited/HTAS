@@ -6,99 +6,7 @@
 }
 @section Sheets{
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
-    <style>
-        #chat li {
-            padding: 10px 30px;
-        }
 
-        #chat .message {
-            padding: 10px;
-            color: #fff;
-            line-height: 25px;
-            max-width: 90%;
-            display: inline-block;
-            text-align: left;
-            border-radius: 5px;
-        }
-
-        #chat .doc {
-            padding: 5px;
-            color: #fff;
-            /*line-height: 25px;*/
-            max-width: 90%;
-            display: inline-block;
-            text-align: left;
-            border-radius: 2px;
-        }
-
-        #chat .me {
-            text-align: right;
-        }
-
-        #chat .you .btn {
-            color: black;
-            border: 3px solid #EB9F28;
-        }
-
-        #chat .me .btn {
-            color: black;
-            border: 3px solid #2272b0;
-        }
-
-            #chat .me .btn:hover {
-                background-color: #315D7D;
-                color: white;
-                border: 3px solid #2272b0
-            }
-
-        #chat .you .btn:hover {
-            background-color: #9A681A;
-            color: white;
-            border: 3px solid #EB9F28;
-        }
-
-        #chat .you .message {
-            background-color: #EB9F28;
-        }
-
-        #chat .me .message {
-            background-color: #2272b0;
-        }
-
-        #chat .triangle {
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 0 10px 10px 10px;
-        }
-
-        #chat .you .triangle {
-            border-color: transparent transparent #EB9F28 transparent;
-            margin-left: 15px;
-        }
-
-        #chat .me .triangle {
-            border-color: transparent transparent #2272b0 transparent;
-            margin-left: 1130px;
-        }
-
-
-        #chat h2 {
-            display: inline-block;
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        #chat h3 {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: normal;
-        }
-
-        #chat h3 {
-            color: #bbb;
-        }
-    </style>
 }
 
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
@@ -138,9 +46,9 @@
                             </div>
                         </div>*@
                     <div class="card-body">
-                        <div class="row offset-1">
-                            <legend> ধ্রুবক মান তথ্য</legend>
-                            <div class="col-lg-5">
+                        <div class="row offset-1" id="print_div">
+                            <legend> প্রয়োজনীয় হারসমূহ</legend>
+                            <div class="col-lg-5 divflex">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-6 col-form-label">
@@ -221,7 +129,17 @@
                                     </div>
                                 </div>
 
-
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-6 col-form-label">
+                                        @Html.DisplayNameFor(model => model.OwnFlatDiscountRef)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.OwnFlatDiscountRef)
+                                        </span>
+                                    </div>
+                                </div>
                                 <div class="form-group form-group-xs row">
                                     <label class="col-6 col-form-label">
                                         @Html.DisplayNameFor(model => model.CreateDate)
@@ -245,9 +163,11 @@
                                     </div>
                                 </div>
 
+
+
                             </div>
 
-                            <div class="col-lg-5">
+                            <div class="col-lg-5 divflex">
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-6 col-form-label">
@@ -326,6 +246,18 @@
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-6 col-form-label">
+                                        @Html.DisplayNameFor(model => model.OwnFlatDiscount)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.OwnFlatDiscount)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-6 col-form-label">
                                         @Html.DisplayNameFor(model => model.CreatedByUserName)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
@@ -359,10 +291,11 @@
 
                         <div class="card-footer">
                             <div class="text-center">
+                                <button id="print_this" class="btn btn-light-primary btn-md"><i class="fas fa-list"></i>প্রিন্ট করুন</button>
                                 <a href="~/ConstantValue/Edit" class="btn btn-outline-success btn-md">
                                     <i class="fas fa-pen"></i>হালনাগাদের পেজে  যান
                                 </a>
-                                @*<a href="~/Issue/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>*@
+
                             </div>
                         </div>
                     </div>
@@ -371,7 +304,21 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="~/Scripts/printThis.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $("#print_this").on('click', function (e) {
+                e.preventDefault();
+                $("#print_div").printThis({
+                    header: $('#print_header'),
 
+                    importStyle: true
+                });
+            });
+        });
+    </script>
+}
 
 
 

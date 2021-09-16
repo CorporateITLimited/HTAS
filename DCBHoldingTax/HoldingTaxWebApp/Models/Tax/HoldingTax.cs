@@ -69,7 +69,7 @@ namespace HoldingTaxWebApp.Models.Tax
         [Display(Name = "প্লটের নম্বর")]
         public string PlotNo { get; set; }
 
-        [Display(Name = "হোল্ডারের প্লট/ফ্ল্যাট/বাড়ী এর তথ্য")]
+        [Display(Name = "গৃহকরদাতার ফ্ল্যাট/বাড়ী এর তথ্য")]
         public string AreaPlotFlatData { get; set; }
 
         [Display(Name = "ছাড়")]
@@ -115,5 +115,15 @@ namespace HoldingTaxWebApp.Models.Tax
 
         [Display(Name = "পেমেন্ট স্টেটাস")]
         public bool? IsPaid { get; set; }
+
+        [Display(Name = "গৃহকরদাতার আইডি নম্বর")]
+        public string HolderNo { get; set; }
+
+        public decimal? DuesPreviousYear { get; set; }
+        public decimal? DuesFineAmount { get; set; }
+        public decimal? TotalTaxOfThisYear { get; set; }
+
+        public decimal? TotalHoldingTaxWithRebate { get; set; }
+        public decimal? TotalHoldingTaxWithRebateAndSurcharge { get; set; }
     }
 }

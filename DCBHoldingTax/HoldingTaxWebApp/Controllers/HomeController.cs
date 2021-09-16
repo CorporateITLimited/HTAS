@@ -1,5 +1,9 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager;
+using HoldingTaxWebApp.Manager.Holding;
+using HoldingTaxWebApp.Manager.Tax;
+using HoldingTaxWebApp.Manager.Users;
+using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,10 +15,16 @@ namespace COMSApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly NoticeManager _noticeManager;
+        private readonly HoldingTaxManager _holdingTaxManager;
+        private readonly DesignationManager _DesignationManager;
         private readonly bool CanAccess = false;
         private readonly bool CanReadWrite = false;
         public HomeController()
         {
+            _noticeManager = new NoticeManager();
+            _holdingTaxManager = new HoldingTaxManager();
+            _DesignationManager = new DesignationManager();
             //if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             //{
             //    List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
@@ -72,7 +82,6 @@ namespace COMSApp.Controllers
             //}
         }
 
-
         public ActionResult Reports()
         {
             try
@@ -96,6 +105,23 @@ namespace COMSApp.Controllers
             {
                 return View();
             }
+        }
+
+
+
+
+        public JsonResult GetHolderNotice()
+        {
+            var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
+            var data = _noticeManager.GetAllNoticeForHolder(HolderId).OrderByDescending(s => s.NoticeId).Take(1).ToList();
+            return new JsonResult { Data = data ?? null };
+        }
+
+        public JsonResult GetHolderTax()
+        {
+            var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
+            var data = _holdingTaxManager.GetAllHoldingTaxForHolder(HolderId).OrderByDescending(s => s.HoldingTaxId).Take(1).ToList();
+            return new JsonResult { Data = data ?? null };
         }
 
         public ActionResult Test()
@@ -616,6 +642,72 @@ namespace COMSApp.Controllers
             //}
         }
 
+        #region Login History Report
+
+        public ActionResult LoginHistory()
+        {
+            return View();
+        }
+        public ActionResult rptLoginHistory(string userName, int? userType, string fromDate, string toDate)
+        {
+            Session["userName"] = userName;
+            Session["userType"] = userType;
+            if (userType == 0)
+            {
+                Session["userType"] = null;
+            }
+            if (userName == null || userName == "")
+            {
+                Session["userName"] = null;
+            }
+            
+
+           
+            if (fromDate == null || fromDate == "")
+            {
+                Session["fromDate"] = null;
+            }
+            else
+            {
+                Session["fromDate"] = DateTime.ParseExact(fromDate, "dd/MM/yyyy", null);
+            }
+            if (toDate == null || toDate == "")
+            {
+                Session["toDate"] = null;
+            }
+            else
+            {
+                Session["toDate"] = DateTime.ParseExact(toDate, "dd/MM/yyyy", null);
+            }
+
+     
+            return View();
+        }
+        #endregion
+
+        #region Employee list Report
+
+        public ActionResult EmployeeList()
+        {
+            ViewBag.DesignationId = new SelectList(_DesignationManager.GetAllDesignation(), "DesignationId", "DesignationName");
+            return View();
+        }
+        public ActionResult rptEmployeeList(int? id, string name)
+        {
+            Session["DesignationId"] = id;
+            Session["EmployeeName"] = name;
+            if (id == 0)
+            {
+                Session["DesignationId"] = null;
+            }
+            if (name == null || name == "")
+            {
+                Session["EmployeeName"] = null;
+            }
+
+            return View();
+        }
+        #endregion
 
     }
 }

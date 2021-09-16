@@ -85,6 +85,12 @@
         .ab {
             color: yellow;
         }
+        ul {
+            list-style-type: square;
+        }
+        li {
+            margin-bottom: 3px;
+        }
     </style>
 }
 <div class="d-flex flex-column-fluid">
@@ -150,33 +156,48 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <ul class="h5">
-                            <li>
-                                @Html.ActionLink("সম্ভাব্য আদায়যোগ্য গৃহকর", "Index", "TaxReports", new { rptId = 1 }, null)
+                        <ul class="navi navi-border navi-hover navi-active">
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "1" })">
+                                    <span class="navi-icon"><i class="flaticon2-analytics text-primary"></i></span>
+                                    <span class="navi-text">সম্ভাব্য আদায়যোগ্য গৃহকর</span>
+                                </a>
                             </li>
-                            <li>
-                                @Html.ActionLink("আদায়কৃত গৃহকর", "Index", "TaxReports", new { rptId = 2 }, null)
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "2" })">
+                                    <span class="navi-icon"><i class="flaticon2-analytics text-primary"></i></span>
+                                    <span class="navi-text">আদায়কৃত গৃহকর</span>
+                                </a>
                             </li>
-                            <li>
-                                @Html.ActionLink("অনাদায় কৃত গৃহকর", "Index", "TaxReports", new { rptId = 3 }, null)
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "3" })">
+                                    <span class="navi-icon"><i class="flaticon2-analytics text-primary"></i></span>
+                                    <span class="navi-text">অনাদায় কৃত গৃহকর</span>
+                                </a>
                             </li>
-                            <li>
-                                @Html.ActionLink("গৃহকর প্রদানকারী করদাতাদের তালিকা", "Index", "TaxReports", new { rptId = 4 }, null)
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "4" })">
+                                    <span class="navi-icon"><i class="flaticon-users-1 text-primary"></i></span>
+                                    <span class="navi-text">গৃহকর প্রদানকারী করদাতাদের তালিকা</span>
+                                </a>
                             </li>
-                            <li>
-                                @Html.ActionLink("গৃহকর প্রদান না করা করদাতাদের তালিকা", "Index", "TaxReports", new { rptId = 5 }, null)
+                            <li class="navi-item">
+                                <a class="navi-link" href="@Url.Action("Index", "TaxReports", new { rptId = "5" })">
+                                    <span class="navi-icon"><i class="flaticon-users-1 text-primary"></i></span>
+                                    <span class="navi-text">গৃহকর প্রদান না করা করদাতাদের তালিকা</span>
+                                </a>
                             </li>
                         </ul>
-
                     </div>
-                    <div class="card-footer">
+
+                    @*<div class="card-footer">
                         <div class="text-center">
 
                         </div>
                         <div>
                             <span id="details_error"></span>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="col-lg-8">
@@ -202,19 +223,19 @@
                         <div class="tab-content mt-5" id="myTabTables11">
                             <!--begin::Tap pane-->
                             <div class="table-responsive">
-                                <table class="table table-borderless table-vertical-center thead-light" id="tblIssue">
+                                <table class="table  table-vertical-center thead-light" id="tblIssue">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th class="p-0 min-w-200px ">হোল্ডারের নাম </th>
-                                            <th class="p-0 min-w-250px">বিষয়</th>
-                                            <th class="p-0 min-w-200px">ইস্যুটির বর্তমান অবস্থা</th>
-                                            <th class="p-0 min-w-100px"></th>
+                                            <th class="p-2">হোল্ডারের নাম </th>
+                                            <th class="p-2">বিষয়</th>
+                                            <th class="p-2">ইস্যুটির বর্তমান অবস্থা</th>
+                                            <th class="p-2"></th>
 
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
                                 </table>
-                            </div>
+
 
 
 
@@ -228,6 +249,7 @@
                 </div>
                 <!--end::Advance Table Widget 2-->
             </div>
+
         </div>
 
     </div>
@@ -242,6 +264,9 @@
     <script>
         jQuery(document).ready(function () {
             var issueTable = $('#tblIssue tbody');
+            $('#tblIssue').after("<div id='spin'><div class='spinner spinner-primary spinner-lg spinner-center p-5'></div></div>");
+            
+
             $.ajax(
                 {
                     type: 'POST',
@@ -258,8 +283,7 @@
                                     '<td class="HolderName" id="HolderName">' + ep.HolderName + '</td>' +
                                     '<td class="Subject" id="Subject">' + ep.Subject + '</td>' +
                                     '<td class="StatusName" id="StatusName" > </td>' +
-                                    '<td class="" id=""> <a href="../Issue/Edit/' + ep.IssueId + '"class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" title="হালনাগাদ পেজে যান"> <b> <i class="fa fa-edit"></i>  </b></a></td>' +
-                                    '</tr>');
+                                    '<td class="" id=""> <a href="../Issue/Edit/' + ep.IssueId + '"class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" title="হালনাগাদ পেজে যান"><b><i class="fa fa-edit"></i></b></a></td>'+'</tr>');
                             });
 
 
@@ -283,7 +307,7 @@
                                     currentRow.find('.StatusName').append('<span> ' + status_name_val + ' </span>');
                                 }
                             });
-
+                            $('#spin').remove()
                         },
                     error:
                         function (data) {

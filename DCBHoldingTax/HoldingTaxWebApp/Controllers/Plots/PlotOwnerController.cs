@@ -21,6 +21,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
         private readonly OfficialStatusManager _OfficialStatusManager;
         private readonly ConstructionStatusManager _ConstructionStatusManager;
 
+        private readonly DOHSAreaManager _dOHSAreaManager;
         public PlotOwnerController()
         {
             _PlotOwnerManager = new PlotOwnerManager();
@@ -29,6 +30,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
             _LeaseQuotaManager = new LeaseQuotaManager();
             _OfficialStatusManager = new OfficialStatusManager();
             _ConstructionStatusManager = new ConstructionStatusManager();
+            _dOHSAreaManager = new DOHSAreaManager();
         }
 
         // GET: PlotOwner
@@ -134,6 +136,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         GroundFlorArea = item.GroundFlorArea,
                         MEO_NCCDate = item.MEO_NCCDate,
                         Reference = item.Reference,
+                        OtherFlorArea = item.OtherFlorArea
                     };
                     DesignApprovalVM.Add(Approval);
                 }
@@ -302,6 +305,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         GroundFlorArea = item.GroundFlorArea,
                         MEO_NCCDate = item.MEO_NCCDate,
                         Reference = item.Reference,
+                        OtherFlorArea = item.OtherFlorArea
 
                     };
                     DesignApprovalVM.Add(Approval);
@@ -1395,6 +1399,51 @@ namespace HoldingTaxWebApp.Controllers.Plots
                 return new JsonResult { Data = "not_done" };
             }
         }
+        #endregion
+
+
+
+        #region Plot Owner list Report
+        public ActionResult PlotOwnerReport()
+        {
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
+            return View();
+        }
+
+
+
+        public ActionResult rptPlotOwnerList(int? id)
+        {
+            Session["AreaId_"] = id;
+            if (id == 0)
+            {
+                Session["AreaId_"] = null;
+            }
+            return View();
+        }
+
+        #endregion
+
+
+        #region Plot Owner Details Report
+        public ActionResult PlotOwnerDetailsReport()
+        {
+            ViewBag.PlotId = new SelectList(_PlotManager.GetAllPlot(), "PlotId", "PlotNo");
+            return View();
+        }
+
+
+
+        public ActionResult rptPlotOwnerDetails(int id)
+        {
+            Session["PlotId_"] = id;
+            if (id == 0)
+            {
+                Session["PlotId_"] = null;
+            }
+            return View();
+        }
+
         #endregion
 
 

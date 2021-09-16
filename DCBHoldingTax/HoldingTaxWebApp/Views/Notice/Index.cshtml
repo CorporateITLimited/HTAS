@@ -107,8 +107,8 @@
                             </div>
                         </div>
                         <div class="col-lg-2 col-xl-4 mt-5 mt-lg-0">
-                            <a href="#" id="search_button" class="btn btn-success px-6 font-weight-bold" style="margin-top: -8px;">Search</a>
-                            <a href="#" id="reset_button" class="btn btn-bg-warning px-6 font-weight-bold" style="margin-top: -8px;">Reset</a>
+                            <a href="#" id="search_button" class="btn btn-success px-6 font-weight-bold" style="margin-top: -8px;">অনুসন্ধান করুন</a>
+                            <a href="#" id="reset_button" class="btn btn-bg-warning px-6 font-weight-bold" style="margin-top: -8px;">রিসেট</a>
                         </div>
                     </div>
                 </div>
@@ -119,8 +119,8 @@
                                 <th>আর্থিক বছর </th>
                                 <th>এলাকা  </th>
                                 <th>প্লট নম্বর</th>
-                                <th>হোল্ডারের নাম  </th>
-                                <th>হোল্ডারের প্লট/ফ্ল্যাট/বাড়ী এর বিবরণ </th>
+                                <th>গৃহকরদাতার নাম  </th>
+                                <th>আইডি নম্বর </th>
                                 <th>বিজ্ঞপ্তির নাম </th>
                             </tr>
                         </thead>
@@ -141,7 +141,7 @@
                                         @item.HolderName
                                     </td>
                                     <td>
-                                        @item.AreaPlotFlatData
+                                        @item.HolderNo
                                     </td>
                                     <td>
                                         @if (!string.IsNullOrWhiteSpace(item.NoticeName))
