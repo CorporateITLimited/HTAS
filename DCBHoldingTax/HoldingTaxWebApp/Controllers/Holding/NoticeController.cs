@@ -189,8 +189,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 if (sendNotice == CommonConstantHelper.Success)
                 {
                     TempData["SM"] = "সফলভাবে বিজ্ঞপ্তি প্রস্তুত করা হয়েছে";
-                    //return RedirectToAction("CreateReport", "Notice", new { notice.FinancialYearId, notice.NoticeTypeId, notice.AreaId });
-                    return RedirectToAction("Index", "Notice");
+                    return RedirectToAction("CreateReport", "Notice", new { notice.FinancialYearId, notice.NoticeTypeId, notice.AreaId });
+                    //return RedirectToAction("Index", "Notice");
                 }
                 else if (sendNotice == CommonConstantHelper.Conflict)
                 {
