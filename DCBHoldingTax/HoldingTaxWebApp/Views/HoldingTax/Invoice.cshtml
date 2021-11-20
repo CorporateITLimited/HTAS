@@ -242,7 +242,7 @@
                                                 <p>
                                                     জনাব : @Model.HolderName <br />
                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;হইতে @Model.FinancialYear আর্থিক সনের উপর গৃহকর বাবদ প্রাপ্ত টাকা (কথায়) ............................................................টাকা
-                                                    
+
                                                     (@Model.NetTaxPayableAmount  টাকা)
 
                                                 </p>
@@ -275,15 +275,15 @@
                 <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
                     <div class="col-md-9">
                         <div class="d-flex justify-content-between">
-                            @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
-                            {
-                                if (Model.Ispaid == false)
+                            @*@if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
                                 {
-                                    <a class="btn btn-light-success font-weight-bold" href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @HoldingTaxId = @Model.HoldingTaxId, @FinancialYear =  @Model.FinancialYear.Replace(" ","") }))">
-                                        <b> <i class="far fa-credit-card"></i></b>পেমেন্ট করুন
-                                    </a>
-                                }
-                            }
+                                    if (Model.Ispaid == false)
+                                    {*@
+                            <a class="btn btn-light-success font-weight-bold" href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @HoldingTaxId = @Model.HoldingTaxId, @FinancialYear =  @Model.FinancialYear.Replace(" ","") }))">
+                                <b> <i class="far fa-credit-card"></i></b>পেমেন্ট করুন
+                            </a>
+                            @*}
+                                }*@
                             @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
                             {
                                 if (Model.Ispaid == false)

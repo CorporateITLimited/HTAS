@@ -4611,6 +4611,7 @@
     <Compile Include="Controllers\Plots\PlotController.cs" />
     <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
+    <Compile Include="Controllers\SPGPaymentController.cs" />
     <Compile Include="Controllers\Tax\HoldingTaxController.cs" />
     <Compile Include="Controllers\Tax\PrimaryTransactionController.cs" />
     <Compile Include="Controllers\Tax\TaxReportsController.cs" />
@@ -5045,6 +5046,7 @@
     <Folder Include="Documents\Issues\" />
     <Folder Include="Documents\Plots\" />
     <Folder Include="Models\Users\Plot\" />
+    <Folder Include="Views\SPGPayment\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
