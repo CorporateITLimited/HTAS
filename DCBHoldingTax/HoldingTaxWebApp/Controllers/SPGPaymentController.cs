@@ -20,8 +20,8 @@ namespace HoldingTaxWebApp.Controllers
 
             NameValueCollection PostData = new NameValueCollection
             {
-                { "AccessUser.{}.userName", "bdtaxUser2014" },
-                { "AccessUser.{}.password", "duUserPayment2014" },
+                { "AccessUser.[].userName", "bdtaxUser2014" },
+                { "AccessUser.[].password", "duUserPayment2014" },
                 { "strUserId", "bdtaxUser2014" },
                 { "strPassKey", "duUserPayment2014" },
                 { "strRequestId", "1231231233" }, // change
