@@ -11,6 +11,10 @@ using HoldingTaxWebApp.Manager.Tax;
 using HoldingTaxWebApp.Manager.Holding;
 using HoldingTaxWebApp.Models.Tax;
 using HoldingTaxWebApp.Manager.Constant;
+using System.Net;
+using System.IO;
+using System.Web.Script.Serialization;
+using HoldingTaxWebApp.Models;
 
 namespace HoldingTaxWebApp.Controllers
 {
@@ -132,44 +136,128 @@ namespace HoldingTaxWebApp.Controllers
                     PostData.Add("fail_url", baseUrl + "/Cart/CheckoutFail");
                     PostData.Add("cancel_url", baseUrl + "/Cart/CheckoutCancel");
 
-                    PostData.Add("version", "3.00");
-                    PostData.Add("cus_name", "ABC XY");
-                    PostData.Add("cus_email", "abc.xyz@mail.co");
-                    PostData.Add("cus_add1", "Address Line On");
-                    PostData.Add("cus_add2", "Address Line Tw");
-                    PostData.Add("cus_city", "City Nam");
-                    PostData.Add("cus_state", "State Nam");
-                    PostData.Add("cus_postcode", "Post Cod");
-                    PostData.Add("cus_country", "Countr");
-                    PostData.Add("cus_phone", "0111111111");
-                    PostData.Add("cus_fax", "0171111111");
-                    PostData.Add("ship_name", "ABC XY");
-                    PostData.Add("ship_add1", "Address Line On");
-                    PostData.Add("ship_add2", "Address Line Tw");
-                    PostData.Add("ship_city", "City Nam");
-                    PostData.Add("ship_state", "State Nam");
-                    PostData.Add("ship_postcode", "Post Cod");
-                    PostData.Add("ship_country", "Countr");
-                    PostData.Add("value_a", $"{HoldingTaxId.ToString()}");
-                    PostData.Add("value_b", $"{logCreId_Usertpye.ToString()}");
-                    PostData.Add("value_c", $"{username_holderid.ToString()}");
-                    PostData.Add("value_d", "ref00");
-                    PostData.Add("shipping_method", "NO");
-                    PostData.Add("num_of_item", "1");
-                    PostData.Add("product_name", $"{productName}");
-                    PostData.Add("product_profile", "general");
-                    PostData.Add("product_category", "Demo");
+                    //PostData.Add("version", "3.00");
+                    //PostData.Add("cus_name", "ABC XY");
+                    //PostData.Add("cus_email", "abc.xyz@mail.co");
+                    //PostData.Add("cus_add1", "Address Line On");
+                    //PostData.Add("cus_add2", "Address Line Tw");
+                    //PostData.Add("cus_city", "City Nam");
+                    //PostData.Add("cus_state", "State Nam");
+                    //PostData.Add("cus_postcode", "Post Cod");
+                    //PostData.Add("cus_country", "Countr");
+                    //PostData.Add("cus_phone", "0111111111");
+                    //PostData.Add("cus_fax", "0171111111");
+                    //PostData.Add("ship_name", "ABC XY");
+                    //PostData.Add("ship_add1", "Address Line On");
+                    //PostData.Add("ship_add2", "Address Line Tw");
+                    //PostData.Add("ship_city", "City Nam");
+                    //PostData.Add("ship_state", "State Nam");
+                    //PostData.Add("ship_postcode", "Post Cod");
+                    //PostData.Add("ship_country", "Countr");
+                    //PostData.Add("value_a", $"{HoldingTaxId.ToString()}");
+                    //PostData.Add("value_b", $"{logCreId_Usertpye.ToString()}");
+                    //PostData.Add("value_c", $"{username_holderid.ToString()}");
+                    //PostData.Add("value_d", "ref00");
+                    //PostData.Add("shipping_method", "NO");
+                    //PostData.Add("num_of_item", "1");
+                    //PostData.Add("product_name", $"{productName}");
+                    //PostData.Add("product_profile", "general");
+                    //PostData.Add("product_category", "Demo");
+
+
+
+                    var stCode = "du";
+                    var userName = "duUser2014";
+                    var password = "duUserPayment2014";
+        
+        // it will be sequence payment id which will start from 1 and before end;
+        //var number = rand(1000000, 9999999); 
+        var reqId = "0254618";
+        
+        // student role number/ biller id 
+        var refId = "4623476874";
+
+                    /*set transaction param array*/
+
+                    PostData.Add("strRequestId", reqId);
+                    PostData.Add("strAmount", "10");
+                    PostData.Add("strTranDate", "2021-11-20 12:00:00");
+                    PostData.Add("strAccounts", "");
+                    PostData.Add("ContactName", "");
+                    PostData.Add("ContactNo", "");
+                    PostData.Add("Address", "demo add");
+                    PostData.Add("purpose", "demo");
+                    PostData.Add("onbehalf", "demo");
+
+
+                    //-------------Change -------------------
+                    var dictionary = new Dictionary<string, object>();
+                    dictionary.Add("userName", userName);
+                    dictionary.Add("password", password);
+                    dictionary.Add("Content-Type", "application/json");
+
+
+
+                    //    var header = array(
+                    //    "Content-Type: application/json"
+                    //);
+
+                    /*set transaction param array*/
+
+                    //var data = array("AccessUser" =>credentials,
+                    //           "strUserId" => credentials["userName"],
+                    //           "strPassKey" => credentials["password"],
+                    //           "strRequestId" => tran_param["strRequestId"],
+                    //           "strAmount" => tran_param["strAmount"],
+                    //           "strTranDate" => tran_param["strTranDate"],
+                    //           "strAccounts" => tran_param["strAccounts"]
+                    //       );
+
 
                     //we can get from email notificaton
-                    var storeId = "citl61129439348f4";
-                    var storePassword = "citl61129439348f4@ssl";
-                    var isSandboxMood = true;
+                    //var storeId = "citl61129439348f4";
+                    //var storePassword = "citl61129439348f4@ssl";
+                    //var isSandboxMood = true;
 
-                    SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, isSandboxMood);
+                    //SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, isSandboxMood);
 
-                    string response = sslcz.InitiateTransaction(PostData);
+                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://spg.sblesheba.com:6314/api/SpgService/GetSessionKey");
+                    httpWebRequest.ContentType = "application/json";
+                    httpWebRequest.Method = "POST";
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
-                    return Redirect(response);
+                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                    {
+                        string json = new JavaScriptSerializer().Serialize(new
+                        {
+                            AccessUser = dictionary,
+                            strUserId = "bdtaxUser2014",
+                            strPassKey="duUserPayment2014",
+                            strRequestId="1231231235",
+                            strAmount="10",
+                            strTranDate="2021-11-20",
+                            strAccounts="0002601020864"
+                        });
+                        streamWriter.Write(json);
+                        streamWriter.Flush();
+                        streamWriter.Close();
+                    }
+
+
+                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                    var sessionKey = "";
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        var result = streamReader.ReadToEnd();
+                        JavaScriptSerializer serializer = new JavaScriptSerializer();
+                        var item = serializer.Deserialize<CommonConstantHelper>(result);
+                        sessionKey = item.scretKey;
+                        var ss = item;
+                    }
+
+                    //string response = sslcz.InitiateTransaction(PostData);
+
+                    return RedirectToAction("Index", "HoldingTax");
                 }
                 else
                 {
@@ -311,7 +399,7 @@ namespace HoldingTaxWebApp.Controllers
 
                 TempData["SM"] = "আপনার পেমেন্ট সফলভাবে সম্পন্ন হয়েছে";
 
-                var successInfo = $"Validation Response: {resonse}";
+                var successInfo = "Validation Response: {resonse}";
                 ViewBag.SuccessInfo = successInfo;
 
                 Session["_holdingTaxId"] = trnxData.HoldingTaxId;
