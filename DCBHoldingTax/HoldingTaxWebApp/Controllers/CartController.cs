@@ -15,6 +15,7 @@ using System.Net;
 using System.IO;
 using System.Web.Script.Serialization;
 using HoldingTaxWebApp.Models;
+using Newtonsoft.Json.Linq;
 
 namespace HoldingTaxWebApp.Controllers
 {
@@ -164,56 +165,6 @@ namespace HoldingTaxWebApp.Controllers
                     //PostData.Add("product_profile", "general");
                     //PostData.Add("product_category", "Demo");
 
-
-
-                    var stCode = "du";
-                    var userName = "duUser2014";
-                    var password = "duUserPayment2014";
-        
-        // it will be sequence payment id which will start from 1 and before end;
-        //var number = rand(1000000, 9999999); 
-        var reqId = "0254618";
-        
-        // student role number/ biller id 
-        var refId = "4623476874";
-
-                    /*set transaction param array*/
-
-                    PostData.Add("strRequestId", reqId);
-                    PostData.Add("strAmount", "10");
-                    PostData.Add("strTranDate", "2021-11-20 12:00:00");
-                    PostData.Add("strAccounts", "");
-                    PostData.Add("ContactName", "");
-                    PostData.Add("ContactNo", "");
-                    PostData.Add("Address", "demo add");
-                    PostData.Add("purpose", "demo");
-                    PostData.Add("onbehalf", "demo");
-
-
-                    //-------------Change -------------------
-                    var dictionary = new Dictionary<string, object>();
-                    dictionary.Add("userName", userName);
-                    dictionary.Add("password", password);
-                    dictionary.Add("Content-Type", "application/json");
-
-
-
-                    //    var header = array(
-                    //    "Content-Type: application/json"
-                    //);
-
-                    /*set transaction param array*/
-
-                    //var data = array("AccessUser" =>credentials,
-                    //           "strUserId" => credentials["userName"],
-                    //           "strPassKey" => credentials["password"],
-                    //           "strRequestId" => tran_param["strRequestId"],
-                    //           "strAmount" => tran_param["strAmount"],
-                    //           "strTranDate" => tran_param["strTranDate"],
-                    //           "strAccounts" => tran_param["strAccounts"]
-                    //       );
-
-
                     //we can get from email notificaton
                     //var storeId = "citl61129439348f4";
                     //var storePassword = "citl61129439348f4@ssl";
@@ -221,22 +172,41 @@ namespace HoldingTaxWebApp.Controllers
 
                     //SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, isSandboxMood);
 
+                    //string response = sslcz.InitiateTransaction(PostData);
+
+                    // step 1
+
+                    var userName = "duUser2014";
+                    var password = "duUserPayment2014";
+                    var trnDate = DateTime.Now.ToString();
+                    var dcbAcc = "0002601020864";
+                    var price_amount = Convert.ToString(10);
+                    var reqId = "1231231236";
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+
+                    //-------------Change -------------------
+                    var accUser = new Dictionary<string, object>();
+                    accUser.Add("userName", userName);
+                    accUser.Add("password", password);
+                    accUser.Add("Content-Type", "application/json");
+
+
                     var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://spg.sblesheba.com:6314/api/SpgService/GetSessionKey");
                     httpWebRequest.ContentType = "application/json";
                     httpWebRequest.Method = "POST";
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
                     using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                     {
                         string json = new JavaScriptSerializer().Serialize(new
                         {
-                            AccessUser = dictionary,
-                            strUserId = "bdtaxUser2014",
-                            strPassKey="duUserPayment2014",
-                            strRequestId="1231231235",
-                            strAmount="10",
-                            strTranDate="2021-11-20",
-                            strAccounts="0002601020864"
+                            AccessUser = accUser,
+                            strUserId = userName, // static
+                            strPassKey = password, // static
+                            strRequestId = reqId, // 
+                            strAmount = price_amount, // pay amount
+                            strTranDate = trnDate, // date
+                            strAccounts = dcbAcc // dcb account
                         });
                         streamWriter.Write(json);
                         streamWriter.Flush();
@@ -250,12 +220,87 @@ namespace HoldingTaxWebApp.Controllers
                     {
                         var result = streamReader.ReadToEnd();
                         JavaScriptSerializer serializer = new JavaScriptSerializer();
-                        var item = serializer.Deserialize<CommonConstantHelper>(result);
-                        sessionKey = item.scretKey;
-                        var ss = item;
+                        var item = serializer.Deserialize<string>(result);
+                        var pDtata = JObject.Parse(item);
+                        sessionKey = pDtata["scretKey"].ToString();
                     }
 
-                    //string response = sslcz.InitiateTransaction(PostData);
+
+                    // step 2
+                    var auth = new Dictionary<string, object>();
+                    auth.Add("ApiAccessUserId", userName);
+                    auth.Add("ApiAccessPassKey", sessionKey.ToString());
+                    auth.Add("Content-Type", "application/json");
+
+                    var refInfo = new Dictionary<string, object>();
+                    refInfo.Add("RequestId", reqId); // same
+                    refInfo.Add("RefTranNo", TransactionCode); // we create
+                    refInfo.Add("RefTranDateTime", trnDate); // str same
+                    refInfo.Add("ReturnUrl", baseUrl + "/Cart/CheckoutConfirmation"); // them
+                    refInfo.Add("ReturnMethod", "POST"); // 
+                    refInfo.Add("TranAmount", price_amount); //
+                    refInfo.Add("ContactName", "Abu"); //
+                    refInfo.Add("ContactNo", "01744558899"); //
+                    refInfo.Add("PayerId", "na"); // 
+                    refInfo.Add("Address", "na"); // 
+                    refInfo.Add("Content-Type", "application/json");
+
+
+                    var credentials_info = new Dictionary<string, object>();
+                    credentials_info.Add("SLNO", "1");
+                    credentials_info.Add("CreditAccount", dcbAcc);
+                    credentials_info.Add("CrAmount", price_amount);
+                    credentials_info.Add("Purpose", "TAX");
+                    credentials_info.Add("Onbehalf", "DCB");
+                    credentials_info.Add("Content-Type", "application/json");
+
+
+                    var httpWebRequest_2 = (HttpWebRequest)WebRequest.Create("https://spg.sblesheba.com:6314/api/SpgService/PaymentByPortal");
+                    httpWebRequest_2.ContentType = "application/json";
+                    httpWebRequest_2.Method = "POST";
+
+                    using (var streamWriter = new StreamWriter(httpWebRequest_2.GetRequestStream()))
+                    {
+                        string json = new JavaScriptSerializer().Serialize(new
+                        {
+                            Authentication = auth,
+                            ReferenceInfo = refInfo, // static
+                            CreditInformations = credentials_info
+                        });
+                        streamWriter.Write(json);
+                        streamWriter.Flush();
+                        streamWriter.Close();
+                    }
+
+
+                    var httpResponse_2 = (HttpWebResponse)httpWebRequest_2.GetResponse();
+                    var session_token = "";
+                    var status = "";
+                    var message = "";
+                    using (var streamReader = new StreamReader(httpResponse_2.GetResponseStream()))
+                    {
+                        var result = streamReader.ReadToEnd();
+                        JavaScriptSerializer serializer = new JavaScriptSerializer();
+                        var item = serializer.Deserialize<string>(result);
+                        var pDtata = JObject.Parse(item);
+                        // sessionKey = pDtata["scretKey"].ToString();
+                        status = pDtata["status"].ToString();
+                        session_token = pDtata["session_token"].ToString();
+                        message = pDtata["message"].ToString();
+                    }
+
+                    if (status != "200")
+                    {
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("CheckoutConfirmation", "Cart");
+                    }
+
+
+                    // return RedirectToAction("https://spg.sblesheba.com:6313/Bkash/PaymentInitiate/" + sessionKey);
+
 
                     return RedirectToAction("Index", "HoldingTax");
                 }
