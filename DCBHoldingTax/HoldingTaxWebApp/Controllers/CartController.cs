@@ -16,6 +16,7 @@ using System.IO;
 using System.Web.Script.Serialization;
 using HoldingTaxWebApp.Models;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
 
 namespace HoldingTaxWebApp.Controllers
 {
@@ -174,18 +175,27 @@ namespace HoldingTaxWebApp.Controllers
 
                     //string response = sslcz.InitiateTransaction(PostData);
 
-                    // step 1
 
-                    var userName = "duUser2014";
+
+                    //HttpClientHandler clientHandler = new HttpClientHandler();
+                    //clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+                    // Pass the handler to httpclient(from you are calling api)
+                    //var client = new HttpClient(clientHandler);
+
+
+                    // variables
+                    var userName = "bdtaxUser2014";
                     var password = "duUserPayment2014";
-                    var trnDate = DateTime.Now.ToString();
+                    var trnDate = DateTime.Now;
                     var dcbAcc = "0002601020864";
-                    var price_amount = Convert.ToString(10);
-                    var reqId = "1231231236";
+                    var price_amount = Convert.ToString(100);
+                    var reqId = "1231231231";
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+                    ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
 
-                    //-------------Change -------------------
+                    // step 1
                     var accUser = new Dictionary<string, object>();
                     accUser.Add("userName", userName);
                     accUser.Add("password", password);
@@ -203,9 +213,9 @@ namespace HoldingTaxWebApp.Controllers
                             AccessUser = accUser,
                             strUserId = userName, // static
                             strPassKey = password, // static
-                            strRequestId = reqId, // 
+                            strRequestId = reqId, // 10 digit
                             strAmount = price_amount, // pay amount
-                            strTranDate = trnDate, // date
+                            strTranDate = "2021-11-08", // date
                             strAccounts = dcbAcc // dcb account
                         });
                         streamWriter.Write(json);
@@ -221,21 +231,21 @@ namespace HoldingTaxWebApp.Controllers
                         var result = streamReader.ReadToEnd();
                         JavaScriptSerializer serializer = new JavaScriptSerializer();
                         var item = serializer.Deserialize<string>(result);
-                        var pDtata = JObject.Parse(item);
-                        sessionKey = pDtata["scretKey"].ToString();
+                        var pData = JObject.Parse(item);
+                        sessionKey = pData["scretKey"].ToString();
                     }
 
 
                     // step 2
                     var auth = new Dictionary<string, object>();
                     auth.Add("ApiAccessUserId", userName);
-                    auth.Add("ApiAccessPassKey", sessionKey.ToString());
-                    auth.Add("Content-Type", "application/json");
+                    auth.Add("ApiAccessPassKey", sessionKey.ToString().Trim());
+                   // auth.Add("Content-Type", "application/json");
 
                     var refInfo = new Dictionary<string, object>();
                     refInfo.Add("RequestId", reqId); // same
                     refInfo.Add("RefTranNo", TransactionCode); // we create
-                    refInfo.Add("RefTranDateTime", trnDate); // str same
+                    refInfo.Add("RefTranDateTime", "2021-11-08 11:11:11"); // str same
                     refInfo.Add("ReturnUrl", baseUrl + "/Cart/CheckoutConfirmation"); // them
                     refInfo.Add("ReturnMethod", "POST"); // 
                     refInfo.Add("TranAmount", price_amount); //
@@ -243,16 +253,16 @@ namespace HoldingTaxWebApp.Controllers
                     refInfo.Add("ContactNo", "01744558899"); //
                     refInfo.Add("PayerId", "na"); // 
                     refInfo.Add("Address", "na"); // 
-                    refInfo.Add("Content-Type", "application/json");
+                    //refInfo.Add("Content-Type", "application/json");
 
 
-                    var credentials_info = new Dictionary<string, object>();
-                    credentials_info.Add("SLNO", "1");
-                    credentials_info.Add("CreditAccount", dcbAcc);
-                    credentials_info.Add("CrAmount", price_amount);
-                    credentials_info.Add("Purpose", "TAX");
-                    credentials_info.Add("Onbehalf", "DCB");
-                    credentials_info.Add("Content-Type", "application/json");
+                    var credentialsInfo = new Dictionary<string, object>();
+                    credentialsInfo.Add("SLNO", "01");
+                    credentialsInfo.Add("CreditAccount", dcbAcc);
+                    credentialsInfo.Add("CrAmount", price_amount);
+                    credentialsInfo.Add("Purpose", "TRN");
+                    credentialsInfo.Add("Onbehalf", "DCB");
+                    //credentialsInfo.Add("Content-Type", "application/json");
 
 
                     var httpWebRequest_2 = (HttpWebRequest)WebRequest.Create("https://spg.sblesheba.com:6314/api/SpgService/PaymentByPortal");
@@ -265,7 +275,7 @@ namespace HoldingTaxWebApp.Controllers
                         {
                             Authentication = auth,
                             ReferenceInfo = refInfo, // static
-                            CreditInformations = credentials_info
+                            CreditInformations = credentialsInfo
                         });
                         streamWriter.Write(json);
                         streamWriter.Flush();
@@ -282,11 +292,11 @@ namespace HoldingTaxWebApp.Controllers
                         var result = streamReader.ReadToEnd();
                         JavaScriptSerializer serializer = new JavaScriptSerializer();
                         var item = serializer.Deserialize<string>(result);
-                        var pDtata = JObject.Parse(item);
+                        var pData = JObject.Parse(item);
                         // sessionKey = pDtata["scretKey"].ToString();
-                        status = pDtata["status"].ToString();
-                        session_token = pDtata["session_token"].ToString();
-                        message = pDtata["message"].ToString();
+                        status = pData["status"].ToString();
+                        session_token = pData["session_token"].ToString();
+                        message = pData["message"].ToString();
                     }
 
                     if (status != "200")
@@ -299,7 +309,7 @@ namespace HoldingTaxWebApp.Controllers
                     }
 
 
-                    // return RedirectToAction("https://spg.sblesheba.com:6313/Bkash/PaymentInitiate/" + sessionKey);
+                    // return Redirect("https://spg.sblesheba.com:6313/Bkash/PaymentInitiate/" + sessionKey);
 
 
                     return RedirectToAction("Index", "HoldingTax");
