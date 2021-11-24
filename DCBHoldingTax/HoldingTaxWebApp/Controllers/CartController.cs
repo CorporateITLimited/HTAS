@@ -11,10 +11,14 @@ using HoldingTaxWebApp.Manager.Tax;
 using HoldingTaxWebApp.Manager.Holding;
 using HoldingTaxWebApp.Models.Tax;
 using HoldingTaxWebApp.Manager.Constant;
+using HoldingTaxWebApp.Models;
+using System.Data;
+using System.Xml;
+using HoldingTaxWebApp.Gateway;
 
 namespace HoldingTaxWebApp.Controllers
 {
-    public class CartController : Controller
+    public class CartController : CommonController
     {
         private readonly FinancialYearManager _yearManager;
         private readonly HoldingTaxManager _holdingTaxManager;
@@ -22,6 +26,7 @@ namespace HoldingTaxWebApp.Controllers
         private readonly InitialTranscationManager _initialTrnxManager;
         private readonly PrimaryTransactionManager _primaryTrnxManager;
         private readonly ConstantValueManager _constantValueManager;
+        private readonly SPGPaymentGateway _sPGPaymentGateway;
 
         public CartController()
         {
@@ -31,12 +36,161 @@ namespace HoldingTaxWebApp.Controllers
             _initialTrnxManager = new InitialTranscationManager();
             _primaryTrnxManager = new PrimaryTransactionManager();
             _constantValueManager = new ConstantValueManager();
+            _sPGPaymentGateway = new SPGPaymentGateway();
         }
 
         // GET: Cart
-        public ActionResult ProductList()
+        [HttpPost, ValidateInput(false)]
+        public ActionResult ResponseData(string Request)
         {
-            return View();
+            ResponseData objResponseData = new ResponseData();
+
+            try
+            {
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.LoadXml(Request);
+
+
+                DataSet ds = new DataSet();
+                XmlReader xr = new XmlNodeReader(xmlDocument);
+                ds.ReadXml(xr);
+
+                DataTable dtResponseStatus = ds.Tables["ResponseStatus"];
+
+                if (dtResponseStatus.Rows.Count > 0)
+                {
+                    objResponseData.ApiAccessUserId = dtResponseStatus.Rows[0]["ApiAccessUserId"].ToString();
+                    objResponseData.AuthenticationKey = dtResponseStatus.Rows[0]["AuthenticationKey"].ToString();
+                    objResponseData.TransactionId = dtResponseStatus.Rows[0]["TransactionId"].ToString();
+                    objResponseData.TranDateTime = dtResponseStatus.Rows[0]["TranDateTime"].ToString();
+                    objResponseData.RefTranNo = dtResponseStatus.Rows[0]["RefTranNo"].ToString();
+                    objResponseData.RefTranDateTime = dtResponseStatus.Rows[0]["RefTranDateTime"].ToString();
+                    objResponseData.TranAmount = dtResponseStatus.Rows[0]["TranAmount"].ToString();
+                    objResponseData.PayAmount = dtResponseStatus.Rows[0]["PayAmount"].ToString();
+                    objResponseData.OrgiBrCode = dtResponseStatus.Rows[0]["OrgiBrCode"].ToString();
+                    objResponseData.StatusMsg = dtResponseStatus.Rows[0]["StatusMsg"].ToString();
+                    objResponseData.PayMode = dtResponseStatus.Rows[0]["PayMode"].ToString();
+                    objResponseData.ScrollNo = dtResponseStatus.Rows[0]["ScrollNo"].ToString();
+                    objResponseData.TransactionStatus = dtResponseStatus.Rows[0]["TransactionStatus"].ToString();
+                }
+
+                if (objResponseData.TransactionStatus == "200")
+                {
+                    ValidationInputClass validationInputClass = new ValidationInputClass
+                    {
+                        RequiestNo = objResponseData.TransactionId.Substring(6, 10),
+                        ReferenceDate = objResponseData.RefTranDateTime.Substring(0, 10)
+                    };
+                    TranVerifyResponse objTranVerifyResponse = Verification(validationInputClass);
+
+
+                    if (objTranVerifyResponse.StatusCode == objResponseData.TransactionStatus)
+                    {
+                        objResponseData.Message = "Payment Successful";
+
+                        SPGTransaction trnxDetails = new SPGTransaction
+                        {
+                            RefTranNo = dtResponseStatus.Rows[0]["RefTranNo"].ToString(),
+                            RefTranDate = Convert.ToDateTime(dtResponseStatus.Rows[0]["RefTranDateTime"].ToString()),
+                            TranAmount = dtResponseStatus.Rows[0]["TranAmount"].ToString()
+                        };
+
+                        var relatableData = _sPGPaymentGateway.GetSPGTransactionByTrnxDetails(trnxDetails);
+
+
+                        Session[CommonConstantHelper.LogInCredentialId] = Convert.ToInt32(relatableData.LastUpdatedBy);
+                        Session[CommonConstantHelper.UserTypeId] = 2;
+                        Session[CommonConstantHelper.UserName] = Convert.ToString(relatableData.HolderUserName);
+                        Session[CommonConstantHelper.HolderId] = Convert.ToInt32(relatableData.HolderId);
+
+
+                        SPGTransaction sPGTrnx = new SPGTransaction()
+                        {
+                            Id = relatableData.Id,
+                            TranactionId = dtResponseStatus.Rows[0]["TransactionId"].ToString(),
+                            TranDateTime = Convert.ToDateTime(dtResponseStatus.Rows[0]["TranDateTime"].ToString()),
+                            PayAmount = dtResponseStatus.Rows[0]["PayAmount"].ToString(),
+                            PayMode = dtResponseStatus.Rows[0]["PayMode"].ToString(),
+                            OrgiBrCode = dtResponseStatus.Rows[0]["OrgiBrCode"].ToString(),
+                            StatusMsg = dtResponseStatus.Rows[0]["StatusMsg"].ToString(),
+                            TransactionStatus = dtResponseStatus.Rows[0]["TransactionStatus"].ToString(),
+                            LastUpdated = DateTime.Now
+                        };
+                        ;
+
+
+                        var rt = _holdingTaxManager.GetRebateAndWrongInfoByHoldingTaxId(Convert.ToInt32(relatableData.PayerId));
+                        HoldingTax holdingTax = _holdingTaxManager.GetHoldingTaxById(Convert.ToInt32(relatableData.PayerId));
+
+                        DateTime startDate = new DateTime(DateTime.Now.Year, 6, 30);
+                        DateTime newstartDate = startDate.Add(new TimeSpan(23, 59, 59));
+                        DateTime endDate = new DateTime(DateTime.Now.Year, 12, 31);
+                        DateTime newendDate = endDate.Add(new TimeSpan(23, 59, 59));
+
+                        decimal? totalHoldingTax = 0; //TotalHoldingTax
+                        decimal? totalRebate = 0;  // Rebate
+                        decimal? netTotalTax = 0;  //NetTaxPayableAmount
+                        decimal? wrongInfoCharge = 0; //WrongInfoCharge
+
+                        if (DateTime.Now > newstartDate && DateTime.Now < newendDate)
+                        {
+                            totalHoldingTax = rt.TotalHoldingTax;
+                            totalRebate = rt.RebateValue;
+                            wrongInfoCharge = holdingTax.WrongInfoCharge > 0 ? holdingTax.WrongInfoCharge : 0;
+                            netTotalTax = rt.NetTaxPayableAmount - totalRebate + wrongInfoCharge;
+                        }
+                        else
+                        {
+                            totalHoldingTax = rt.TotalHoldingTax;
+                            totalRebate = 0;
+                            wrongInfoCharge = holdingTax.WrongInfoCharge > 0 ? holdingTax.WrongInfoCharge : 0;
+                            netTotalTax = rt.NetTaxPayableAmount - totalRebate + wrongInfoCharge;
+                        }
+
+                        HoldingTax tax = new HoldingTax
+                        {
+                            Rebate = totalRebate,
+                            WrongInfoCharge = wrongInfoCharge,
+                            isFinalized = null,
+                            PaidAmount = netTotalTax,
+                            LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                            LastUpdated = DateTime.Now,
+                            HoldingTaxId = Convert.ToInt32(relatableData.PayerId),
+                            NetTaxPayableAmount = netTotalTax,
+                            Remarks = "Online Payment",
+                            PaymentDate = Convert.ToDateTime(dtResponseStatus.Rows[0]["TranDateTime"].ToString()),
+                            TotalHoldingTax = null,
+                            TotalTaxOfThisYear = null,
+                            Surcharge = null
+                        };
+
+                        int updateData = _sPGPaymentGateway.SPGTransactionUpdate(sPGTrnx);
+
+                        string updateString = _holdingTaxManager.UpdateTax(tax);
+
+                    }
+
+                }
+                else if ((objResponseData.PayMode == "A01") && (objResponseData.TransactionStatus == "5017"))
+                {
+                    //generate offline receipt
+                    //must carry contact no & Transaction Id,
+                    //Reference Date
+
+                    // after payment (branch) we will hit in IPN your system
+                }
+                else
+                {
+                    objResponseData.Message = "Fail Transaction";
+                }
+            }
+            catch (Exception ex)
+            {
+                objResponseData.Message = ex.Message.ToString();
+            }
+
+
+            return View(objResponseData);
         }
 
 
@@ -50,12 +204,13 @@ namespace HoldingTaxWebApp.Controllers
                 string spaceLessYear = FinancialYear.Replace(" ", "");
                 string YearFirstPart = spaceLessYear.Substring(2, 2);
                 string YearSecondPart = spaceLessYear.Substring(7, 2);
-                var TransactionCode = YearFirstPart + YearSecondPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(7);
-                if (_initialTrnxManager.IsTransactionCodeExist(TransactionCode))
-                    TransactionCode = YearFirstPart + YearFirstPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(4) + PasswordHelper.TransactionID(3);
+                var _transactionCode = YearFirstPart + YearSecondPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(11);
+                if (_sPGPaymentGateway.IsTransactionCodeExist(_transactionCode))
+                    _transactionCode = YearFirstPart + YearFirstPart + holdingTaxData.HolderId.ToString("D5") + PasswordHelper.TransactionID(6) + PasswordHelper.TransactionID(5);
 
+                var reqCode = new Random().Next(111, 999).ToString() + new Random().Next(1111111, 9999999).ToString();
+                var currDate = DateTime.Now;
 
-                var productName = "Holding Tax of Mr./Mrs. " + holderData.HolderName + " for Financial Year " + spaceLessYear;
 
                 var relatableData = _holdingTaxManager.GetRebateAndWrongInfoByHoldingTaxId(HoldingTaxId ?? default(int));
                 HoldingTax holdingTax = _holdingTaxManager.GetHoldingTaxById(HoldingTaxId ?? default(int));
@@ -87,99 +242,119 @@ namespace HoldingTaxWebApp.Controllers
 
                 var price = netTotalTax;
 
-                var baseUrl = Request.Url.Port > 0
-                    ? Request.Url.Scheme + "://" + Request.Url.Host + ":" + Request.Url.Port
-                    : Request.Url.Scheme + "://" + Request.Url.Host;
-
-
-                InitialTransaction transactionPayment = new InitialTransaction()
+                RequestInfo requestInfo = new RequestInfo
                 {
-                    HoldingTaxId = HoldingTaxId,
-                    IPAddressDetails = Session["_ipDetails"].ToString(),
-                    LastUpdated = DateTime.Now,
-                    LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
-                    ProductName = productName,
-                    TransactionAmount = price,
-                    TransactionCode = TransactionCode,
-                    TransactionCurrency = "BDT",
-                    TransactionDate = DateTime.Now,
-                    TransactionId = 0,
-                    ApiDirectPaymentURL = null,
-                    ApiDirectPaymentURLBank = null,
-                    ApiDirectPaymentURLCard = null,
-                    ApiFailedReason = null,
-                    ApiGatewayPageURL = null,
-                    ApiRedirectGatewayURL = null,
-                    ApiRedirectGatewayURLFailed = null,
-                    ApiSessionKey = null,
-                    ApiStatus = null
+                    requestid = reqCode,
+                    mobileno = holderData.Contact1.ToString(),
+                    applicentName = holderData.HolderName.ToString() + " (" + holderData.HolderNo.ToString() + ")",
+                    applicentAddress = holderData.ContactAdd.ToString(),
+                    refdate = currDate.ToString("yyyy-MM-dd"),
+                    accountnumber1 = "0002601020864",
+                    amount1 = Convert.ToDecimal(price)
                 };
-                int count = _initialTrnxManager.InsertTranscation(transactionPayment);
-                if (count > 0)
+
+                decimal totalAmount = requestInfo.amount1;
+                string creditAccout = requestInfo.accountnumber1;
+
+
+                string SectKey = GetNewSessionKey(requestInfo.requestid, totalAmount.ToString(), requestInfo.refdate, creditAccout);
+                if ((SectKey == "Authorization is not valid") || (SectKey == ""))
                 {
-                    Session["_TransactionId_"] = count;
-
-
-                    var logCreId_Usertpye = Session[CommonConstantHelper.LogInCredentialId].ToString() + "/" + Session[CommonConstantHelper.UserTypeId].ToString();
-                    var username_holderid = Session[CommonConstantHelper.UserName].ToString() + "/" + Session[CommonConstantHelper.HolderId].ToString();
-
-                    // CREATING LIST OF POST DATA
-                    NameValueCollection PostData = new NameValueCollection();
-
-                    PostData.Add("total_amount", $"{price}");
-                    PostData.Add("tran_id", $"{TransactionCode}");
-                    PostData.Add("success_url", baseUrl + "/Cart/CheckoutConfirmation");
-                    PostData.Add("fail_url", baseUrl + "/Cart/CheckoutFail");
-                    PostData.Add("cancel_url", baseUrl + "/Cart/CheckoutCancel");
-
-                    PostData.Add("version", "3.00");
-                    PostData.Add("cus_name", "ABC XY");
-                    PostData.Add("cus_email", "abc.xyz@mail.co");
-                    PostData.Add("cus_add1", "Address Line On");
-                    PostData.Add("cus_add2", "Address Line Tw");
-                    PostData.Add("cus_city", "City Nam");
-                    PostData.Add("cus_state", "State Nam");
-                    PostData.Add("cus_postcode", "Post Cod");
-                    PostData.Add("cus_country", "Countr");
-                    PostData.Add("cus_phone", "0111111111");
-                    PostData.Add("cus_fax", "0171111111");
-                    PostData.Add("ship_name", "ABC XY");
-                    PostData.Add("ship_add1", "Address Line On");
-                    PostData.Add("ship_add2", "Address Line Tw");
-                    PostData.Add("ship_city", "City Nam");
-                    PostData.Add("ship_state", "State Nam");
-                    PostData.Add("ship_postcode", "Post Cod");
-                    PostData.Add("ship_country", "Countr");
-                    PostData.Add("value_a", $"{HoldingTaxId.ToString()}");
-                    PostData.Add("value_b", $"{logCreId_Usertpye.ToString()}");
-                    PostData.Add("value_c", $"{username_holderid.ToString()}");
-                    PostData.Add("value_d", "ref00");
-                    PostData.Add("shipping_method", "NO");
-                    PostData.Add("num_of_item", "1");
-                    PostData.Add("product_name", $"{productName}");
-                    PostData.Add("product_profile", "general");
-                    PostData.Add("product_category", "Demo");
-
-                    //we can get from email notificaton
-                    var storeId = "citl61129439348f4";
-                    var storePassword = "citl61129439348f4@ssl";
-                    var isSandboxMood = true;
-
-                    SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, isSandboxMood);
-
-                    string response = sslcz.InitiateTransaction(PostData);
-
-                    return Redirect(response);
-                }
-                else
-                {
-                    TempData["SM"] = "db error";
+                    TempData["SM"] = "SectKey is not valid";
                     return RedirectToAction("Index", "HoldingTax");
                 }
+
+                TokenClass tokenClass = new TokenClass();
+                tokenClass.Authentication.ApiAccessPassKey = SectKey;
+
+                ReferenceInfo referenceInfo = new ReferenceInfo
+                {
+                    RequestId = requestInfo.requestid,
+                    RefTranNo = _transactionCode, //new Random().Next(111111, 999999).ToString();
+                    RefTranDateTime = currDate.ToString("yyyy-MM-dd HH:mm:ss"),  //DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    ReturnUrl = ResponseUrl,
+                    ReturnMethod = "POST",
+                    TranAmount = totalAmount,
+                    ContactName = requestInfo.applicentName,
+                    ContactNo = requestInfo.mobileno,
+                    PayerId = requestInfo.requestid, //any value
+                    Address = requestInfo.applicentAddress
+                };
+                tokenClass.ReferenceInfo = referenceInfo;
+
+
+                CreditInformations creditInformations = new CreditInformations
+                {
+                    SLNO = "01",
+                    CreditAccount = requestInfo.accountnumber1,
+                    CrAmount = requestInfo.amount1,
+                    Purpose = "TRN", //for account transasfer, for Challan "CHL"
+                    Onbehalf = "Any name will be here"
+                };
+                tokenClass.CreditInformations.Add(creditInformations);
+
+                ResponseToken responseToken = GetToken(tokenClass);
+
+                if (responseToken.status == "200")
+                {
+                    SPGTransaction sPGTrnx = new SPGTransaction();
+                    sPGTrnx.Address = requestInfo.applicentAddress;
+                    sPGTrnx.ApiSessionKey = SectKey;
+                    sPGTrnx.ApiTokenKey = responseToken.session_token;
+                    sPGTrnx.ContactName = requestInfo.applicentName;
+                    sPGTrnx.ContactNo = requestInfo.mobileno;
+                    sPGTrnx.CrAmount = totalAmount.ToString();
+                    sPGTrnx.CreditAccounts = creditAccout;
+                    sPGTrnx.HolderId = int.Parse(Session[CommonConstantHelper.HolderId].ToString());
+                    sPGTrnx.HolderUserName = Session[CommonConstantHelper.UserName].ToString();
+                    sPGTrnx.Id = 0;
+
+                    string ipDetails = "";
+                    if (Session[""] != null)
+                    {
+                        ipDetails = Session["_ipDetails"].ToString();
+                    }
+                    else
+                    {
+                        string ipAddress = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+                        if (string.IsNullOrEmpty(ipAddress))
+                            ipAddress = Request.ServerVariables["REMOTE_ADDR"];
+
+                        ipDetails = Request.Browser.IsMobileDevice ?
+                                                $"mobile {ipAddress}" : $"desktop {ipAddress}";
+                    }
+
+                    sPGTrnx.IPAddressDetails = ipDetails;
+                    sPGTrnx.LastUpdated = DateTime.Now;
+                    sPGTrnx.LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]);
+                    sPGTrnx.OnBehalf = holderData.HolderNo;
+                    sPGTrnx.PayerId = HoldingTaxId.ToString();
+                    sPGTrnx.Purpose = creditInformations.Purpose;
+                    sPGTrnx.RefTranDate = Convert.ToDateTime(referenceInfo.RefTranDateTime);
+                    sPGTrnx.RefTranNo = referenceInfo.RefTranNo;
+                    sPGTrnx.RequestId = requestInfo.requestid;
+                    sPGTrnx.TranAmount = totalAmount.ToString();
+
+                    sPGTrnx.TranactionId = null;
+                    sPGTrnx.TranDateTime = null;
+                    sPGTrnx.PayAmount = null;
+                    sPGTrnx.PayMode = null;
+                    sPGTrnx.OrgiBrCode = null;
+                    sPGTrnx.StatusMsg = null;
+                    sPGTrnx.TransactionStatus = null;
+                    int insertData = _sPGPaymentGateway.SPGTransactionInsert(sPGTrnx);
+
+
+                    string srtdata = LandingUI + responseToken.session_token;
+                    return Redirect(srtdata);
+                }
+
+                TempData["SM"] = "Bad http request";
+                return RedirectToAction("Index", "HoldingTax");
             }
             else
             {
-                TempData["SM"] = "bad http request";
+                TempData["SM"] = "Bad http request";
                 return RedirectToAction("Index", "HoldingTax");
             }
         }
@@ -439,40 +614,5 @@ namespace HoldingTaxWebApp.Controllers
             }
         }
 
-        public ActionResult CheckoutTest()
-        {
-            try
-            {
-                //if (!(!string.IsNullOrEmpty(Request.Form["status"]) && Request.Form["status"] == "success"))
-                //{
-                //    ViewBag.SuccessInfo = "There some error while processing your payment. Please try again.";
-                //    return View();
-                //}
-                string bankTrnxId = "210819104248mxlki7iQUe83mXn";
-                decimal refundAmount = 100;
-                string refundRemarks = "On an test refund";
-                string referId = "#" + PasswordHelper.TransactionID(10);
-                var storeId = "citl61129439348f4";
-                var storePassword = "citl61129439348f4@ssl";
-
-                SSLCommerz sslcz = new SSLCommerz(storeId, storePassword, true);
-                var resonse = sslcz.RefundInitiate(bankTrnxId, refundAmount, refundRemarks, referId); /// request changes
-
-                string APIConnect = !string.IsNullOrEmpty(Request.Form["APIConnect"]) ? Request.Form["APIConnect"].ToString() : null;
-                string bank_tran_id = !string.IsNullOrEmpty(Request.Form["bank_tran_id"]) ? Request.Form["bank_tran_id"].ToString() : null;
-                string trans_id = !string.IsNullOrEmpty(Request.Form["trans_id"]) ? Request.Form["trans_id"].ToString() : null;
-                string refund_ref_id = !string.IsNullOrEmpty(Request.Form["refund_ref_id"]) ? Request.Form["refund_ref_id"].ToString() : null;
-                string status = !string.IsNullOrEmpty(Request.Form["status"]) ? Request.Form["status"].ToString() : null;
-                string errorReason = !string.IsNullOrEmpty(Request.Form["errorReason"]) ? Request.Form["errorReason"].ToString() : null;
-
-
-                return View();
-            }
-            catch (Exception ex)
-            {
-                TempData["SM"] = ex.Message.ToString();
-                return View();
-            }
-        }
     }
 }

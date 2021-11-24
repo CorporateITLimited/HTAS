@@ -4597,6 +4597,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\Constant\ConstantValueController.cs" />
     <Compile Include="Controllers\Constant\OwnTaxRateController.cs" />
     <Compile Include="Controllers\DBO\DOHSAreaController.cs" />
@@ -4650,6 +4651,7 @@
     <Compile Include="Gateway\Plots\OldPlotOwnerGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
+    <Compile Include="Gateway\SPGPaymentGateway.cs" />
     <Compile Include="Gateway\Tax\PrimaryTransactionGateway.cs" />
     <Compile Include="Gateway\Tax\InitialTransactionGateway.cs" />
     <Compile Include="Gateway\Tax\HoldingTaxGateway.cs" />
@@ -4689,6 +4691,7 @@
     <Compile Include="Manager\Plots\OldPlotOwnerManager.cs" />
     <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
+    <Compile Include="Manager\SPGPaymentManager.cs" />
     <Compile Include="Manager\Tax\PrimaryTransactionManager.cs" />
     <Compile Include="Manager\Tax\InitialTranscationManager.cs" />
     <Compile Include="Manager\Tax\HoldingTaxManager.cs" />
@@ -4716,6 +4719,7 @@
     <Compile Include="Models\Holding\HolderFlat.cs" />
     <Compile Include="Models\Holding\HolderFlatHistory.cs" />
     <Compile Include="Models\Holding\Notice.cs" />
+    <Compile Include="Models\SPGTransaction.cs" />
     <Compile Include="Models\Plots\ConstructionProgress.cs" />
     <Compile Include="Models\Plots\DesignApproval.cs" />
     <Compile Include="Models\Plots\OldOthetPlotOwner.cs" />
@@ -4724,6 +4728,7 @@
     <Compile Include="Models\Plots\Plot.cs" />
     <Compile Include="Models\Plots\PlotOwner.cs" />
     <Compile Include="Models\Plots\UnauthPortion.cs" />
+    <Compile Include="Models\RequestInfo.cs" />
     <Compile Include="Models\Tax\HoldingTax.cs" />
     <Compile Include="Models\Tax\OwnFlatTax.cs" />
     <Compile Include="Models\Tax\OwnTaxRate.cs" />
@@ -4738,7 +4743,6 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
-    <Compile Include="PaymentGateway\SonaliBank.cs" />
     <Compile Include="PaymentGateway\SSLCommerz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DBO\IssueCombineVM.cs" />
@@ -5011,7 +5015,6 @@
     <Content Include="Views\Holding\FlatTransfer.cshtml" />
     <Content Include="Views\HolderFlatHistory\Index.cshtml" />
     <Content Include="Views\HolderFlatHistory\Details.cshtml" />
-    <Content Include="Views\Cart\ProductList.cshtml" />
     <Content Include="Views\Cart\CheckoutCancel.cshtml" />
     <Content Include="Views\Cart\CheckoutConfirmation.cshtml" />
     <Content Include="Views\Cart\CheckoutFail.cshtml" />
@@ -5032,6 +5035,7 @@
     <Content Include="Views\Home\EmployeeList.cshtml" />
     <Content Include="Views\Home\rptEmployeeList.cshtml" />
     <Content Include="Views\HoldingTax\RegenerateTax.cshtml" />
+    <Content Include="Views\Cart\ResponseData.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
