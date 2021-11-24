@@ -84,6 +84,8 @@ namespace HoldingTaxWebApp.Helpers
         public const string DevRootDirectoryFaisal = @"C:/Users/acer/Documents/GitHub/HTAS/DCBHoldingTax/HoldingTaxWebApp";
 
         public const string ServerRootDirectory = @"C:/inetpub/wwwroot/DCB";
+
+        public string scretKey { get; set; }
         #endregion
 
 
