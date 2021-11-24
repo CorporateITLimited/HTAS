@@ -1,7 +1,9 @@
 ﻿@model HoldingTaxWebApp.ViewModels.Tax.InvoiceVM
 @using HoldingTaxWebApp.Helpers
 @{
-    ViewBag.Title = "Invoice";
+                /**/
+
+                ViewBag.Title = "Invoice";
 }
 @section sheets{
     <style>
@@ -279,9 +281,8 @@
                                 {
                                     if (Model.Ispaid == false)
                                     {*@
-                            <a class="btn btn-light-success font-weight-bold"  id="btnPayment"
-                               href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @HoldingTaxId = @Model.HoldingTaxId, @FinancialYear =  @Model.FinancialYear.Replace(" ","") }))"
-                               >
+                            <a class="btn btn-light-success font-weight-bold" id="btnPayment"
+                               href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @HoldingTaxId = @Model.HoldingTaxId, @FinancialYear =  @Model.FinancialYear.Replace(" ","") }))">
                                 <b> <i class="far fa-credit-card"></i></b>পেমেন্ট করুন
                             </a>
                             @*}
@@ -339,7 +340,7 @@
                 });
             });
 
-            
+
             //$("#btnPayment").on('click', function (e) {
             //    e.preventDefault();
             //    debugger;
