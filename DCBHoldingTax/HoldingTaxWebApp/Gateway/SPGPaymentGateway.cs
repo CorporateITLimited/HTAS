@@ -61,7 +61,7 @@ namespace HoldingTaxWebApp.Gateway
                         TranactionId = Data_Reader["TranactionId"].ToString(),
                         TranDateTime = Data_Reader["TranDateTime"] != DBNull.Value ?
                                                     Convert.ToDateTime(Data_Reader["TranDateTime"]) : (DateTime?)null,
-                        PayAmount = Data_Reader["TranactionId"].ToString(),
+                        PayAmount = Data_Reader["PayAmount"].ToString(),
                         PayMode = Data_Reader["PayMode"].ToString(),
                         OrgiBrCode = Data_Reader["OrgiBrCode"].ToString(),
                         StatusMsg = Data_Reader["StatusMsg"].ToString(),
@@ -75,7 +75,9 @@ namespace HoldingTaxWebApp.Gateway
                                                     Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null,
                         HolderId = Data_Reader["HolderId"] != DBNull.Value ?
                                                     Convert.ToInt32(Data_Reader["HolderId"]) : (int?)null,
-                        HolderUserName = Data_Reader["HolderUserName"].ToString()
+                        HolderUserName = Data_Reader["HolderUserName"].ToString(),
+                        FinancialYear = Data_Reader["FinancialYear"].ToString(),
+                        HolderName = Data_Reader["HolderName"].ToString()
                     };
                     trnx.strRefTranDate = $"{trnx.RefTranDate:dd/MM/yyyy hh:mm:ss tt}";
                     trnx.strTranDateTime = $"{trnx.TranDateTime:dd/MM/yyyy hh:mm:ss tt}";
@@ -158,7 +160,7 @@ namespace HoldingTaxWebApp.Gateway
                     trnx.TranactionId = Data_Reader["TranactionId"].ToString();
                     trnx.TranDateTime = Data_Reader["TranDateTime"] != DBNull.Value ?
                                                 Convert.ToDateTime(Data_Reader["TranDateTime"]) : (DateTime?)null;
-                    trnx.PayAmount = Data_Reader["TranactionId"].ToString();
+                    trnx.PayAmount = Data_Reader["PayAmount"].ToString();
                     trnx.PayMode = Data_Reader["PayMode"].ToString();
                     trnx.OrgiBrCode = Data_Reader["OrgiBrCode"].ToString();
                     trnx.StatusMsg = Data_Reader["StatusMsg"].ToString();
@@ -176,7 +178,8 @@ namespace HoldingTaxWebApp.Gateway
                     trnx.strRefTranDate = $"{trnx.RefTranDate:dd/MM/yyyy hh:mm:ss tt}";
                     trnx.strTranDateTime = $"{trnx.TranDateTime:dd/MM/yyyy hh:mm:ss tt}";
                     trnx.strLastUpdated = $"{trnx.LastUpdated:dd/MM/yyyy hh:mm:ss tt}";
-
+                    trnx.FinancialYear = Data_Reader["FinancialYear"].ToString();
+                    trnx.HolderName = Data_Reader["HolderName"].ToString();
                 }
 
                 Data_Reader.Close();
@@ -255,7 +258,7 @@ namespace HoldingTaxWebApp.Gateway
                     trnx.TranactionId = Data_Reader["TranactionId"].ToString();
                     trnx.TranDateTime = Data_Reader["TranDateTime"] != DBNull.Value ?
                                                 Convert.ToDateTime(Data_Reader["TranDateTime"]) : (DateTime?)null;
-                    trnx.PayAmount = Data_Reader["TranactionId"].ToString();
+                    trnx.PayAmount = Data_Reader["PayAmount"].ToString();
                     trnx.PayMode = Data_Reader["PayMode"].ToString();
                     trnx.OrgiBrCode = Data_Reader["OrgiBrCode"].ToString();
                     trnx.StatusMsg = Data_Reader["StatusMsg"].ToString();
@@ -273,6 +276,8 @@ namespace HoldingTaxWebApp.Gateway
                     trnx.strRefTranDate = $"{trnx.RefTranDate:dd/MM/yyyy hh:mm:ss tt}";
                     trnx.strTranDateTime = $"{trnx.TranDateTime:dd/MM/yyyy hh:mm:ss tt}";
                     trnx.strLastUpdated = $"{trnx.LastUpdated:dd/MM/yyyy hh:mm:ss tt}";
+                    trnx.FinancialYear = Data_Reader["FinancialYear"].ToString();
+                    trnx.HolderName = Data_Reader["HolderName"].ToString();
                 }
 
                 Data_Reader.Close();

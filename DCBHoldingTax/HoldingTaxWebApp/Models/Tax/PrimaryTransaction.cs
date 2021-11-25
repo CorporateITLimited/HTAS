@@ -8,7 +8,7 @@ namespace HoldingTaxWebApp.Models.Tax
 {
     public class PrimaryTransaction
     {
-        public Int64 PrimaryTransactionId { get; set; }
+        public long PrimaryTransactionId { get; set; }
         [Display(Name = "ট্রানজেকশন স্ট্যাটাস")]
         public string Status { get; set; }
         public DateTime? TranDate { get; set; }

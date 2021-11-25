@@ -4621,6 +4621,7 @@
     <Compile Include="Controllers\Plots\PlotController.cs" />
     <Compile Include="Controllers\Plots\PlotOwnerController.cs" />
     <Compile Include="Controllers\RentTaxTateController.cs" />
+    <Compile Include="Controllers\SPGController.cs" />
     <Compile Include="Controllers\Tax\HoldingTaxController.cs" />
     <Compile Include="Controllers\Tax\PrimaryTransactionController.cs" />
     <Compile Include="Controllers\Tax\TaxReportsController.cs" />
@@ -5044,6 +5045,8 @@
     <Content Include="Views\Home\rptEmployeeList.cshtml" />
     <Content Include="Views\HoldingTax\RegenerateTax.cshtml" />
     <Content Include="Views\Cart\ResponseData.cshtml" />
+    <Content Include="Views\SPG\Index.cshtml" />
+    <Content Include="Views\SPG\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

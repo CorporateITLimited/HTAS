@@ -116,8 +116,6 @@ namespace HoldingTaxWebApp.Controllers
                             TransactionStatus = dtResponseStatus.Rows[0]["TransactionStatus"].ToString(),
                             LastUpdated = DateTime.Now
                         };
-                        ;
-
 
                         var rt = _holdingTaxManager.GetRebateAndWrongInfoByHoldingTaxId(Convert.ToInt32(relatableData.PayerId));
                         HoldingTax holdingTax = _holdingTaxManager.GetHoldingTaxById(Convert.ToInt32(relatableData.PayerId));
@@ -157,7 +155,7 @@ namespace HoldingTaxWebApp.Controllers
                             LastUpdated = DateTime.Now,
                             HoldingTaxId = Convert.ToInt32(relatableData.PayerId),
                             NetTaxPayableAmount = netTotalTax,
-                            Remarks = "Online Payment",
+                            Remarks = "Online Payment.Bank Transaction Id : " + dtResponseStatus.Rows[0]["TranDateTime"].ToString() + " Bank Transaction Date: " + dtResponseStatus.Rows[0]["TranDateTime"].ToString() + ")",
                             PaymentDate = Convert.ToDateTime(dtResponseStatus.Rows[0]["TranDateTime"].ToString()),
                             TotalHoldingTax = null,
                             TotalTaxOfThisYear = null,
@@ -167,6 +165,10 @@ namespace HoldingTaxWebApp.Controllers
                         int updateData = _sPGPaymentGateway.SPGTransactionUpdate(sPGTrnx);
 
                         string updateString = _holdingTaxManager.UpdateTax(tax);
+
+                        TempData["SM"] = "আপনার পেমেন্ট সফলভাবে সম্পন্ন হয়েছে";
+
+                        Session["_holdingTaxId"] = Convert.ToInt32(relatableData.PayerId);
 
                     }
 
@@ -182,6 +184,42 @@ namespace HoldingTaxWebApp.Controllers
                 else
                 {
                     objResponseData.Message = "Fail Transaction";
+
+
+                    SPGTransaction trnxDetails = new SPGTransaction
+                    {
+                        RefTranNo = dtResponseStatus.Rows[0]["RefTranNo"].ToString(),
+                        RefTranDate = Convert.ToDateTime(dtResponseStatus.Rows[0]["RefTranDateTime"].ToString()),
+                        TranAmount = dtResponseStatus.Rows[0]["TranAmount"].ToString()
+                    };
+
+                    var relatableData = _sPGPaymentGateway.GetSPGTransactionByTrnxDetails(trnxDetails);
+
+
+                    Session[CommonConstantHelper.LogInCredentialId] = Convert.ToInt32(relatableData.LastUpdatedBy);
+                    Session[CommonConstantHelper.UserTypeId] = 2;
+                    Session[CommonConstantHelper.UserName] = Convert.ToString(relatableData.HolderUserName);
+                    Session[CommonConstantHelper.HolderId] = Convert.ToInt32(relatableData.HolderId);
+
+
+                    SPGTransaction sPGTrnx = new SPGTransaction()
+                    {
+                        Id = relatableData.Id,
+                        TranactionId = dtResponseStatus.Rows[0]["TransactionId"].ToString(),
+                        TranDateTime = Convert.ToDateTime(dtResponseStatus.Rows[0]["TranDateTime"].ToString()),
+                        PayAmount = dtResponseStatus.Rows[0]["PayAmount"].ToString(),
+                        PayMode = dtResponseStatus.Rows[0]["PayMode"].ToString(),
+                        OrgiBrCode = dtResponseStatus.Rows[0]["OrgiBrCode"].ToString(),
+                        StatusMsg = dtResponseStatus.Rows[0]["StatusMsg"].ToString(),
+                        TransactionStatus = dtResponseStatus.Rows[0]["TransactionStatus"].ToString(),
+                        LastUpdated = DateTime.Now
+                    };
+
+                    int updateData = _sPGPaymentGateway.SPGTransactionUpdate(sPGTrnx);
+
+                    TempData["SM"] = "There some error while processing your payment. Please try again later.";
+
+                    Session["_holdingTaxId"] = Convert.ToInt32(relatableData.PayerId);
                 }
             }
             catch (Exception ex)
