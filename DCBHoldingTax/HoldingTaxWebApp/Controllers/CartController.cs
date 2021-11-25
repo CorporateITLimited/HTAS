@@ -155,7 +155,7 @@ namespace HoldingTaxWebApp.Controllers
                             LastUpdated = DateTime.Now,
                             HoldingTaxId = Convert.ToInt32(relatableData.PayerId),
                             NetTaxPayableAmount = netTotalTax,
-                            Remarks = "Online Payment.Bank Transaction Id : " + dtResponseStatus.Rows[0]["TranDateTime"].ToString() + " Bank Transaction Date: " + dtResponseStatus.Rows[0]["TranDateTime"].ToString() + ")",
+                            Remarks = "Online Payment.Bank Transaction Id : " + dtResponseStatus.Rows[0]["TransactionId"].ToString() + " Bank Transaction Date: " + dtResponseStatus.Rows[0]["TranDateTime"].ToString() + ")",
                             PaymentDate = Convert.ToDateTime(dtResponseStatus.Rows[0]["TranDateTime"].ToString()),
                             TotalHoldingTax = null,
                             TotalTaxOfThisYear = null,
@@ -217,7 +217,7 @@ namespace HoldingTaxWebApp.Controllers
 
                     int updateData = _sPGPaymentGateway.SPGTransactionUpdate(sPGTrnx);
 
-                    TempData["SM"] = "There some error while processing your payment. Please try again later.";
+                    TempData["SM"] = "আপনার পেমেন্ট প্রক্রিয়া সম্পাদন করা এখন সম্ভব হচ্ছে না। কিছুক্ষন পরে আবার চেষ্টা করুন।";
 
                     Session["_holdingTaxId"] = Convert.ToInt32(relatableData.PayerId);
                 }

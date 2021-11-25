@@ -318,10 +318,6 @@
     <script>
         jQuery(document).ready(function () {
 
-            //all variable list
-            var seretKey;
-            var session_token;
-
             $("#print_this").on('click', function (e) {
                 e.preventDefault();
                 $("#print_div").printThis({
@@ -340,38 +336,6 @@
                 });
             });
 
-
-            //$("#btnPayment").on('click', function (e) {
-            //    e.preventDefault();
-            //    debugger;
-            //    var data = {
-            //        "AccessUser": {
-            //            "userName": "bdtaxUser2014",
-            //            "password": "duUserPayment2014"
-            //        },
-            //        "strUserId": "bdtaxUser2014",
-            //        "strPassKey": "duUserPayment2014",
-            //        "strRequestId": "1231231235",
-            //        "strAmount": "10",
-            //        "strTranDate": "2021-11-20",
-            //        "strAccounts": "0002601020864"
-            //    }
-            //    var url = "https://cors-anywhere.herokuapp.com/https://spg.sblesheba.com:6314/api/SpgService/GetSessionKey";
-            //    $.ajax({
-            //        type: "POST",
-            //        url: url,
-            //        data: data,
-            //        success: function (key) {
-            //            alert(key);
-            //            session_token = key.scretKey;
-            //        },
-            //        //dataType: dataType,
-            //        ContentType: "application/json",
-            //        error: function (error) {
-            //            console.log(JSON.stringify(error));
-            //        },
-            //    });
-            //});
         });
     </script>
 }
