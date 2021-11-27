@@ -25,7 +25,7 @@ namespace HoldingTaxWebApp.Manager
             return _trnx.GetSPGTransactionById(id);
         }
 
-        public SPGTransaction GetSPGTransactionByHolderId(int id)
+        public List<SPGTransaction> GetSPGTransactionByHolderId(int id)
         {
             return _trnx.GetSPGTransactionByHolderId(id);
         }

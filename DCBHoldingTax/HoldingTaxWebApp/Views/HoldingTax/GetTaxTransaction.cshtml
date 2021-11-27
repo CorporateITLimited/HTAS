@@ -1,34 +1,25 @@
-﻿@model HoldingTaxWebApp.Models.SPGTransaction
+﻿@model IEnumerable<HoldingTaxWebApp.Models.SPGTransaction>
 @using HoldingTaxWebApp.Helpers
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @section Sheets{
+
     <link href="~/Content/FormDesign.css" rel="stylesheet" />
-    <style>
-        .firstrow {
-            background-color: #D7F9EF;
-        }
-
-        .is_paid {
-            background-color: #0BB783;
-        }
-
-        .un_paid {
-            background-color: #F64E60;
-        }
-    </style>
 }
-
 
 <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকর</h5>
-
+                <h5 class="text-dark font-weight-bold my-1 mr-5">রোল</h5>
+                @*<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item text-muted">
+                            <a href="" class="text-muted">Crud</a>
+                        </li>
+                    </ul>*@
             </div>
         </div>
         <div class="d-flex align-items-center">
@@ -39,241 +30,98 @@
 
 <div class="d-flex flex-column-fluid">
     <div class="container">
-        @if (TempData["SM"] != null)
-        {
-            <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
-                <div class="alert-text text-center font-weight-bolder" style="color: #24AEEF; font-size: 17px;"> @TempData["SM"]</div>
-                <div class="alert-close">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
-                    </button>
-                </div>
-            </div>
-        }
         <div class="card card-custom">
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
                 <div class="card-title">
                     <h3 class="card-label">
-                        গৃহকরের তালিকা
+                        ট্রানজেকশন তথ্য
                     </h3>
                 </div>
                 <div class="card-toolbar">
-                    @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
-                    {
-                        <a href="~/HoldingTax/Create" class="btn btn-primary font-weight-bolder">
-                            <i class="fas fa-plus">
-                            </i> গৃহকর প্রস্তুতকরণ/পুনঃ প্রস্তুতকরণ/চূড়ান্তকরণ
-                        </a>
-                    }
                 </div>
             </div>
             <div class="card-body">
-                <div class="card-body">
-                    <!--begin: Search Form-->
-                    <!--begin::Search Form-->
-                    @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
-                    {
-                        <div class="mb-7">
+                <div class="mb-7">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-xl-8">
                             <div class="row align-items-center">
-                                <div class="col-lg-8 col-xl-8">
-                                    <div class="row align-items-center">
-                                        <div class="col-md-12 my-2 my-md-0">
-                                            <div class="form-group row">
-                                                @Html.LabelFor(model => model.FinancialYearId, "আর্থিক বছর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                <div class="col-lg-4">
-                                                    @Html.DropDownListFor(model => model.FinancialYearId, null, " নির্বাচন করুন ", new
-                                               {
-                                                   @class = "form-control",
-                                               })
-                                                </div>
-
-                                                @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                <div class="col-lg-4">
-                                                    @Html.DropDownListFor(model => model.AreaId, null, " নির্বাচন করুন ", new
-                                               {
-                                                   @class = "form-control",
-                                               })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-
-                                                @Html.LabelFor(model => model.PlotId, "প্লট নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                <div class="col-lg-4">
-                                                    @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
-                                               {
-                                                   @class = "form-control",
-                                               })
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="col-md-4 my-2 my-md-0">
+                                    <div class="input-icon">
+                                        <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
+                                        <span>
+                                            <i class="flaticon2-search-1 text-muted"></i>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="col-lg-2 col-xl-4 mt-5 mt-lg-0">
-                                    <a href="#" id="search_button" class="btn btn-success px-6 font-weight-bold" style="margin-top: -8px;">অনুসন্ধান করুন</a>
-                                    <a href="#" id="reset_button" class="btn btn-bg-warning px-6 font-weight-bold" style="margin-top: -8px;">
-                                        রিসেট
-                                    </a>
-                                </div>
+
+
                             </div>
                         </div>
-                    }
-                    <div class="initial_result" id="initial_result">
-                        <table class="table table-bordered table-sm table-hover table-responsive" width="100" id="int_table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>
-                                        গৃহকরদাতার নাম
-                                    </th>
-                                    <th>
-                                        এলাকা
-                                    </th>
-                                    <th>
-                                        প্লটের নম্বর
-                                    </th>
-                                    <th>
-                                        গৃহকরদাতার আইডি নম্বর
-                                    </th>
-                                    <th>
-                                        আর্থিক বছর
-                                    </th>
-                                    <th>
-                                        নেট কর প্রদেয় পরিমাণ
-                                    </th>
-                                    <th>
-                                        পরিশোধিত টাকার পরিমান
-                                    </th>
-                                    <th>
-                                        পেমেন্ট স্টেটাস
-                                    </th>
-                                    <th></th>
 
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in ViewBag.ListOfData)
-                                {
-                                    <tr>
-                                        <td>
-                                            @item.HolderName
-                                        </td>
-                                        <td>
-                                            @item.AreaName
-                                        </td>
-                                        <td>
-                                            @item.PlotNo
-                                        </td>
-                                        <td>
-                                            @item.HolderNo
-                                        </td>
-                                        <td>
-                                            @item.FinancialYear
-                                        </td>
-                                        <td>
-                                            @item.NetTaxPayableAmount
-                                        </td>
-                                        <td>
-                                            @item.PaidAmount
-                                        </td>
-                                        <td>
-                                            @if (item.IsPaid == true)
-                                            {
-                                                <span style="color: green; font-size: 16px;">কর পরিশোধিত    </span>
-                                            }
-                                            else
-                                            {
-                                                <span style="color: red; font-size: 16px;">কর অপরিশোধিত    </span>
-                                            }
-                                        </td>
-                                        <td>
-                                            @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
-                                            {
-                                                if (item.IsPaid == false)
-                                                {
-                                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Edit/@item.HoldingTaxId" title="কাউন্টার পেমেন্ট করুন">
-                                                        <b> <i class="fa fa-edit"></i>  </b>
-                                                    </a>
-                                                }
-                                            }
-                                            @*@if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
-                                                {
-                                                    if (item.IsPaid == false)
-                                                    {
-                                                        @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" title="পেমেন্ট করুন" href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @FinancialYearId = @item.FinancialYearId, @HoldingTaxId = @item.HoldingTaxId, @HolderId = @item.HolderId, @NetTaxPayableAmount = @item.NetTaxPayableAmount }))">
-                                                                <b> <i class="fa fa-money-check"></i></b>
-                                                            </a>
-                                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" title="পেমেন্ট করুন" href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @HoldingTaxId = @item.HoldingTaxId, @FinancialYear =  @item.FinancialYear }))">
-                                                            <b> <i class="fa fa-money-check"></i></b>
-                                                        </a>
-                                                    }
-                                                }*@
-                                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Invoice/@item.HoldingTaxId" title="ইনভয়েস দেখুন">
-                                                <b> <i class="fa fa-file-invoice"></i>  </b>
-                                            </a>
-                                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/HoldingTax/Details/@item.HoldingTaxId" title="রিপোর্ট দেখুন">
-                                                <b><i class="fa fa-chart-bar" aria-hidden="true"></i></b>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        <br />
-                        @if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1))
-                        {
-                            <table class="table table-bordered table-hover table-sm" width="100">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th class="font-size-h4-md">
-                                            <b>মোট নেট প্রদেয়/আদায়যোগ্য করের পরিমাণ : &nbsp; @ViewBag.TotalNetPayableAmount_</b>
-                                        </th>
-                                        <th class="font-size-h4-md">
-                                            <b> মোট পরিশোধিত করের পরিমাণ : &nbsp; @ViewBag.TotalPaidAmount_</b>
-                                        </th>
-                                        <th class="font-size-h4-md">
-                                            <b> মোট অপরিশোধিত করের পরিমাণ : &nbsp; @ViewBag.TotalUnPaidAmount_ </b>
-                                        </th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        }
-                    </div>
-                    <div class="search-result" id="search-result">
                     </div>
                 </div>
+                <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.FinancialYear)</th>
+                            <th>@Html.DisplayNameFor(model => model.HolderName)</th>
+                            <th>@Html.DisplayNameFor(model => model.PayAmount)</th>
+                            <th>@Html.DisplayNameFor(model => model.TranactionId)</th>
+                            <th>@Html.DisplayNameFor(model => model.strTranDateTime)</th>
+                            <th>@Html.DisplayNameFor(model => model.RefTranNo)</th>
+                            <th>@Html.DisplayNameFor(model => model.strRefTranDate)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FinancialYear)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HolderName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PayAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TranactionId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.strTranDateTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RefTranNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.strRefTranDate)
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Role/Details/@item.Id" title="বিস্তারিত তথ্য পেজে যান">
+                                    <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                </a>
+
+                            </td>
+
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+                <!--end: Datatable-->
             </div>
         </div>
     </div>
 </div>
+<!--end::Card-->
 
 
 @section Scripts
 {
     <script>
         jQuery(document).ready(function () {
-            var nxt = "@ViewBag.IsHolder";
-            if (nxt === "yes") {
-                $('#int_table tbody tr:first-child').addClass('firstrow');
-            } else {
-                $('#int_table tbody tr:first-child').removeClass('firstrow');
-            }
-
-            $('#FinancialYearId').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-            $('#AreaId').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-            $('#PlotId').select2({
-                placeholder: "--নির্বাচন করুন--",
-                allowClear: true
-            });
-
-            $("#initial_result").show();
-
             $('#kt_datatable').KTDatatable({
                 search: {
                     input: $('#kt_datatable_search_query'),
@@ -283,57 +131,11 @@
                     class: 'datatable-bordered',
                 }
             });
-
-            $("#AreaId").change(function () {
-                var areaId = $("#AreaId").val();
-
-                var json = {
-                    AreaId: areaId
-                };
-                $.ajax({
-                    url: '@Url.Action("GetAllPlotByAreaId", "Holding")',
-                    type: "POST",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(json),
-                    success: function (data) {
-                        if (data.length === 0) {
-                            Swal.fire(
-                                'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'info'
-                            )
-                        }
-                        else {
-                            $("#PlotId").empty();
-                            $("#PlotId").append("<option value=''>--নির্বাচন করুন--</option>");
-                            $.each(data, function (index, row) {
-                                $("#PlotId").append("<option value='" + row.PlotId + "'>" + row.PlotNo + "</option>");
-                            });
-                        }
-                    },
-                    error: function () {
-                        Swal.fire(
-                            'পাওয়া যায়নি!', 'নির্বাচিত এলাকার জন্য কোনো প্লট পাওয়া যায়নি', 'error'
-                        )
-                    }
-                });
-            });
-
-            $("#search_button").click(function (e) {
-                e.preventDefault();
-                var yearId = parseInt($("#FinancialYearId").val()) || 0;
-                var areaId = parseInt($("#AreaId").val()) || 0;
-                var plotId = parseInt($("#PlotId").val()) || 0;
-
-                $("#initial_result").hide();
-                $("#search-result").empty();
-                $("#search-result").load("/HoldingTax/PartialIndex", { AreaId: areaId, FinancialYearId: yearId, PlotId: plotId });
-            });
-
-            $("#reset_button").click(function () {
-                location.reload();
-            });
-
         });
     </script>
-
-
 }
+
+
+
+
+

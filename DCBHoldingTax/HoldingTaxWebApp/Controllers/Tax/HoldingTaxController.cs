@@ -508,18 +508,18 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
         public ActionResult GetTaxTransaction()
         {
-            var listOfTax = new SPGTransaction();
+            var listOfTax = new List<SPGTransaction>();
 
-            if (Session[CommonConstantHelper.UserTypeId].ToString() == "2")
-            {
-                var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
-                listOfTax = _sPGPaymentManager.GetSPGTransactionByHolderId(HolderId);
+            //if (Session[CommonConstantHelper.UserTypeId].ToString() == "2")
+            //{
+                //var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
+                listOfTax = _sPGPaymentManager.GetSPGTransactionByHolderId(39);
                 ViewBag.IsHolder = "yes";
-            }
-            else
-            {
-                ViewBag.IsHolder = "no";
-            }
+            //}
+            //else
+            //{
+            //    ViewBag.IsHolder = "no";
+            //}
 
             return View(listOfTax);
         }

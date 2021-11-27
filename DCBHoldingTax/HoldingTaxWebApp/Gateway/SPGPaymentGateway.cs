@@ -208,7 +208,7 @@ namespace HoldingTaxWebApp.Gateway
         }
 
 
-        public SPGTransaction GetSPGTransactionByHolderId(int id)
+        public List<SPGTransaction> GetSPGTransactionByHolderId(int id)
         {
             try
             {
@@ -236,10 +236,11 @@ namespace HoldingTaxWebApp.Gateway
                 Sql_Connection.Open();
                 Data_Reader = Sql_Command.ExecuteReader();
 
-                SPGTransaction trnx = new SPGTransaction();
+                List<SPGTransaction> trnx_list = new List<SPGTransaction>();
 
                 while (Data_Reader.Read())
                 {
+                    SPGTransaction trnx = new SPGTransaction();
                     trnx.Id = Convert.ToInt64(Data_Reader["Id"]);
                     trnx.RequestId = Data_Reader["RequestId"].ToString();
                     trnx.RefTranNo = Data_Reader["RefTranNo"].ToString();
@@ -277,12 +278,14 @@ namespace HoldingTaxWebApp.Gateway
                     trnx.strLastUpdated = $"{trnx.LastUpdated:dd/MM/yyyy hh:mm:ss tt}";
                     trnx.FinancialYear = Data_Reader["FinancialYear"].ToString();
                     trnx.HolderName = Data_Reader["HolderName"].ToString();
+
+                    trnx_list.Add(trnx);
                 }
 
                 Data_Reader.Close();
                 Sql_Connection.Close();
 
-                return trnx;
+                return trnx_list;
             }
             catch (SqlException exception)
             {
