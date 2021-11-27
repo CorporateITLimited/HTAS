@@ -5047,6 +5047,7 @@
     <Content Include="Views\Cart\ResponseData.cshtml" />
     <Content Include="Views\SPG\Index.cshtml" />
     <Content Include="Views\SPG\Details.cshtml" />
+    <Content Include="Views\HoldingTax\GetTaxTransaction.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

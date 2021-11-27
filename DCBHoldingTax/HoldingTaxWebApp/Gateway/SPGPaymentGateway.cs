@@ -207,6 +207,103 @@ namespace HoldingTaxWebApp.Gateway
             }
         }
 
+
+        public SPGTransaction GetSPGTransactionByHolderId(int id)
+        {
+            try
+            {
+                Sql_Query = "[paygateway].[spSPGTransactionMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "by_holder_id";
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = id;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                SPGTransaction trnx = new SPGTransaction();
+
+                while (Data_Reader.Read())
+                {
+                    trnx.Id = Convert.ToInt64(Data_Reader["Id"]);
+                    trnx.RequestId = Data_Reader["RequestId"].ToString();
+                    trnx.RefTranNo = Data_Reader["RefTranNo"].ToString();
+                    trnx.RefTranDate = Data_Reader["RefTranDate"] != DBNull.Value ?
+                                                Convert.ToDateTime(Data_Reader["RefTranDate"]) : (DateTime?)null;
+                    trnx.TranAmount = Data_Reader["TranAmount"].ToString();
+                    trnx.ContactName = Data_Reader["ContactName"].ToString();
+                    trnx.ContactNo = Data_Reader["ContactNo"].ToString();
+                    trnx.Address = Data_Reader["Address"].ToString();
+                    trnx.PayerId = Data_Reader["PayerId"].ToString();
+                    trnx.CreditAccounts = Data_Reader["CreditAccounts"].ToString();
+                    trnx.CrAmount = Data_Reader["CrAmount"].ToString();
+                    trnx.Purpose = Data_Reader["Purpose"].ToString();
+                    trnx.OnBehalf = Data_Reader["OnBehalf"].ToString();
+                    trnx.TranactionId = Data_Reader["TranactionId"].ToString();
+                    trnx.TranDateTime = Data_Reader["TranDateTime"] != DBNull.Value ?
+                                                Convert.ToDateTime(Data_Reader["TranDateTime"]) : (DateTime?)null;
+                    trnx.PayAmount = Data_Reader["PayAmount"].ToString();
+                    trnx.PayMode = Data_Reader["PayMode"].ToString();
+                    trnx.OrgiBrCode = Data_Reader["OrgiBrCode"].ToString();
+                    trnx.StatusMsg = Data_Reader["StatusMsg"].ToString();
+                    trnx.TransactionStatus = Data_Reader["TransactionStatus"].ToString();
+                    trnx.IPAddressDetails = Data_Reader["IPAddressDetails"].ToString();
+                    trnx.ApiSessionKey = Data_Reader["ApiSessionKey"].ToString();
+                    trnx.ApiTokenKey = Data_Reader["ApiTokenKey"].ToString();
+                    trnx.LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ?
+                                                Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null;
+                    trnx.LastUpdatedBy = Data_Reader["LastUpdatedBy"] != DBNull.Value ?
+                                                Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null;
+                    trnx.HolderId = Data_Reader["HolderId"] != DBNull.Value ?
+                                                 Convert.ToInt32(Data_Reader["HolderId"]) : (int?)null;
+                    trnx.HolderUserName = Data_Reader["HolderUserName"].ToString();
+                    trnx.strRefTranDate = $"{trnx.RefTranDate:dd/MM/yyyy hh:mm:ss tt}";
+                    trnx.strTranDateTime = $"{trnx.TranDateTime:dd/MM/yyyy hh:mm:ss tt}";
+                    trnx.strLastUpdated = $"{trnx.LastUpdated:dd/MM/yyyy hh:mm:ss tt}";
+                    trnx.FinancialYear = Data_Reader["FinancialYear"].ToString();
+                    trnx.HolderName = Data_Reader["HolderName"].ToString();
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return trnx;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
         public SPGTransaction GetSPGTransactionByTrnxDetails(SPGTransaction spg)
         {
             try

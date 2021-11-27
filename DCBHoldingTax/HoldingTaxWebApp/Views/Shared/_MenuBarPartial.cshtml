@@ -30,8 +30,8 @@
                                             <li class="menu-item" aria-haspopup="true">
                                                 <a href="~/Employee/Index" class="menu-link">
                                                     @*<i class="menu-bullet menu-bullet-dot">
-                                                        <span></span>
-                                                    </i>*@
+                                                            <span></span>
+                                                        </i>*@
                                                     <span class="svg-icon menu-icon">
                                                         <i class="fas fa-users"></i>
                                                     </span>
@@ -247,15 +247,15 @@
                             </ul>
 
                             @*<ul class="menu-subnav">
-                                <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
-                                    <a href="~/HoldingTax/RegenerateTax" class="menu-link">
-                                        <span class="svg-icon menu-icon">
-                                            <i class="fas fa-info"></i>
-                                        </span>
-                                        <span class="menu-text">গৃহকরের তথ্য পুনরায় হালনাগাদকরণ</span>
-                                    </a>
-                                </li>
-                            </ul>*@
+                                    <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+                                        <a href="~/HoldingTax/RegenerateTax" class="menu-link">
+                                            <span class="svg-icon menu-icon">
+                                                <i class="fas fa-info"></i>
+                                            </span>
+                                            <span class="menu-text">গৃহকরের তথ্য পুনরায় হালনাগাদকরণ</span>
+                                        </a>
+                                    </li>
+                                </ul>*@
 
                             <ul class="menu-subnav">
                                 <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
@@ -340,6 +340,31 @@ else if ((Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 2))
                             <span class="menu-text">গৃহকর</span>
                             <i class="menu-arrow"></i>
                         </a>
+                        <div class="menu-submenu menu-submenu-classic menu-submenu-left">
+                            <ul class="menu-subnav">
+                                <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="~/HoldingTax/Index" class="menu-link">
+                                        <span class="svg-icon menu-icon">
+                                            <i class="fas fa-money-check-alt"></i>
+                                        </span>
+                                        <span class="menu-text">গৃহকর</span>
+                                    </a>
+
+                                </li>
+                            </ul>
+
+                            <ul class="menu-subnav">
+                                <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+                                    <a href="~/HoldingTax/GetTaxTransaction" class="menu-link">
+                                        <span class="svg-icon menu-icon">
+                                            <i class="fas fa-map-signs"></i>
+                                        </span>
+                                        <span class="menu-text">ট্রানজেকশন তথ্য</span>
+                                    </a>
+
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="hover" aria-haspopup="true">
                         <a href="~/Notice/NewIndex" class="menu-link">

@@ -13,6 +13,8 @@ using HoldingTaxWebApp.Manager.Plots;
 using HoldingTaxWebApp.ViewModels.Tax;
 using HoldingTaxWebApp.ViewModels;
 using HoldingTaxWebApp.Manager.Constant;
+using HoldingTaxWebApp.Models;
+using HoldingTaxWebApp.Manager;
 
 namespace HoldingTaxWebApp.Controllers.Tax
 {
@@ -24,6 +26,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
         private readonly DOHSAreaManager _dOHSAreaManager;
         private readonly PlotManager _plotManager;
         private readonly ConstantValueManager _constantValueManager;
+        private readonly SPGPaymentManager _sPGPaymentManager;
 
         public HoldingTaxController()
         {
@@ -34,6 +37,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
             _dOHSAreaManager = new DOHSAreaManager();
             _plotManager = new PlotManager();
             _constantValueManager = new ConstantValueManager();
+            _sPGPaymentManager = new SPGPaymentManager();
         }
 
 
@@ -499,5 +503,27 @@ namespace HoldingTaxWebApp.Controllers.Tax
 
             return Json(array, JsonRequestBehavior.AllowGet);
         }
+
+        #region tax transaction
+
+        public ActionResult GetTaxTransaction()
+        {
+            var listOfTax = new SPGTransaction();
+
+            if (Session[CommonConstantHelper.UserTypeId].ToString() == "2")
+            {
+                var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
+                listOfTax = _sPGPaymentManager.GetSPGTransactionByHolderId(HolderId);
+                ViewBag.IsHolder = "yes";
+            }
+            else
+            {
+                ViewBag.IsHolder = "no";
+            }
+
+            return View(listOfTax);
+        }
+
+        #endregion
     }
 }
