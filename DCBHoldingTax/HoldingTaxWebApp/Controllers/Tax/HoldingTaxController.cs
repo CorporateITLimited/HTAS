@@ -510,18 +510,35 @@ namespace HoldingTaxWebApp.Controllers.Tax
         {
             var listOfTax = new List<SPGTransaction>();
 
-            //if (Session[CommonConstantHelper.UserTypeId].ToString() == "2")
-            //{
-                //var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
-                listOfTax = _sPGPaymentManager.GetSPGTransactionByHolderId(39);
+            if (Session[CommonConstantHelper.UserTypeId].ToString() == "2")
+            {
+                var HolderId = Convert.ToInt32(Session[CommonConstantHelper.HolderId]);
+                listOfTax = _sPGPaymentManager.GetSPGTransactionByHolderId(HolderId);
                 ViewBag.IsHolder = "yes";
-            //}
-            //else
-            //{
-            //    ViewBag.IsHolder = "no";
-            //}
+            }
+            else
+            {
+                ViewBag.IsHolder = "no";
+            }
 
             return View(listOfTax);
+        }
+
+
+        public ActionResult TrnxDetailsById(long id)
+        {
+            try
+            {
+                if (id <= 0)
+                    return HttpNotFound();
+
+                return View(_sPGPaymentManager.GetSPGTransactionById(id));
+            }
+            catch (Exception exception)
+            {
+                TempData["EM"] = "error | " + exception.Message.ToString();
+                return View();
+            }
         }
 
         #endregion
