@@ -475,6 +475,78 @@ namespace HoldingTaxWebApp.Gateway.Plots
 
         }
 
+        //get present addres for plotno change event
+
+        public Plot GetPresentAddress(int id)
+        {
+            try
+            {
+                Sql_Query = "[Plot].[spPlotOwnerMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "presentAddressByPlotId";
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = id;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                Plot vm = new Plot();
+
+                while (Data_Reader.Read())
+                {
+
+                    vm.PlotId = Convert.ToInt32(Data_Reader["PlotId"]);
+                    vm.PlotIdNumber = Data_Reader["PlotIdNumber"].ToString();
+                    vm.PlotNo = Data_Reader["PlotNo"].ToString();
+                    vm.AreaName = Data_Reader["AreaName"].ToString();
+                    vm.AreaId = Convert.ToInt32(Data_Reader["AreaId"]);
+                    
+
+                   
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
 
         //Create Plot Owner Details
         public int PlotOwnerInsert(PlotOwnerCombineVM model)

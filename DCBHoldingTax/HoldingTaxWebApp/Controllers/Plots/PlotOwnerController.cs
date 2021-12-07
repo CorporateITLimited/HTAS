@@ -467,7 +467,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
             try
             {
                 var maxId = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-                string status = "error";
+                string status = "success";
 
                 if (POVM.PlotOwnerId == 0) //IsNullOrEmpty(POVM.NoaId.ToString())
                 {
@@ -728,6 +728,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             plotw.Doc5 = null;
                         }
                     }
+
                     if (Session["DocFile6"] != null)
                     {
                         HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile6"];
@@ -1446,6 +1447,17 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
         #endregion
 
+        #region Get Present Address By Plot Id Change Event
+        public JsonResult GetPresentAddress(int PlotId)
+        {
+            var data = _PlotOwnerManager.GetPresentAddress(PlotId);
+            return new JsonResult
+            {
+                Data = data,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        #endregion
 
     }
 }
