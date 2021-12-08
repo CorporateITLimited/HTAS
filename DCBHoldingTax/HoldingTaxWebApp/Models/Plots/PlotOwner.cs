@@ -66,16 +66,22 @@ namespace HoldingTaxWebApp.Models.Plots
         public string ConsStatusName { get; set; }
         [Display(Name = "নথি নং ১")]
         public string Doc1 { get; set; }
+        public string File1 { get; set; }
         [Display(Name = "নথি নং ২")]
         public string Doc2 { get; set; }
+        public string File2 { get; set; }
         [Display(Name = "নথি নং ৩")]
         public string Doc3 { get; set; }
+        public string File3 { get; set; }
         [Display(Name = "নথি নং ৪")]
         public string Doc4 { get; set; }
+        public string File4 { get; set; }
         [Display(Name = "নথি নং ৫")]
         public string Doc5 { get; set; }
+        public string File5 { get; set; }
         [Display(Name = "নথি নং ৬")]
         public string Doc6 { get; set; }
+        public string File6 { get; set; }
 
         [Display(Name = "অন্তর্ভুক্তির তারিখ ")]
         public DateTime? CreateDate { get; set; }

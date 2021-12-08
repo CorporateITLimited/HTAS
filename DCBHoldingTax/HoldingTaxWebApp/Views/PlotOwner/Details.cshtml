@@ -176,7 +176,8 @@
                                         <div class="col-5">
                                             <span class="form-control-plaintext kt-font-bolder">
 
-                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc1" title="Download">ডাউনলোড নথি নং ১</a>
+                                                @*<a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc1" title="Download">ডাউনলোড নথি নং ১</a>*@
+                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc1" title="Download">@Model.File1</a>
 
 
                                             </span>
@@ -195,7 +196,7 @@
                                             <span class="form-control-plaintext kt-font-bolder">
                                                 @if (!string.IsNullOrWhiteSpace(Model.Doc2))
                                                 {
-                                                    <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc2" title="Download">ডাউনলোড নথি নং ২</a>
+                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc2" title="Download">@Model.File2</a>
                                                 }
 
                                             </span>
@@ -212,7 +213,7 @@
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                         <div class="col-5">
                                             <span class="form-control-plaintext kt-font-bolder">
-                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc3" title="Download">ডাউনলোড নথি নং ৩</a>
+                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc3" title="Download">@Model.File3</a>
                                             </span>
                                         </div>
                                     </div>
@@ -228,7 +229,7 @@
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                         <div class="col-5">
                                             <span class="form-control-plaintext kt-font-bolder">
-                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc4" title="Download">ডাউনলোড নথি নং ৪</a>
+                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc4" title="Download">@Model.File4</a>
                                             </span>
                                         </div>
                                     </div>
@@ -243,7 +244,7 @@
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                         <div class="col-5">
                                             <span class="form-control-plaintext kt-font-bolder">
-                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc5" title="Download">ডাউনলোড নথি নং ৫</a>
+                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc5" title="Download">@Model.File5</a>
                                             </span>
                                         </div>
                                     </div>
@@ -258,7 +259,7 @@
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                         <div class="col-5">
                                             <span class="form-control-plaintext kt-font-bolder">
-                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc6" title="Download">ডাউনলোড নথি নং ৬</a>
+                                                <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc6" title="Download">@Model.File6</a>
                                             </span>
                                         </div>
                                     </div>

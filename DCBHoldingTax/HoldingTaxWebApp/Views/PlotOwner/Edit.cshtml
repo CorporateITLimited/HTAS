@@ -641,14 +641,17 @@
                                             <div class="pb-5" data-wizard-type="step-content">
                                                 <div class="form-group row col-lg-12 col-md-12" id="Document">
 
-                                                    <div class="col-lg-6 col-md-6 ml-10">
+                                                    <div class="col-lg-6 col-md-6">
                                                         @Html.LabelFor(model => model.Doc1, "জমি মালিকানার প্রমাণাদি", htmlAttributes: new { @class = "col-form-label text-lg-right" })
                                                         <br />
                                                         @if (!string.IsNullOrWhiteSpace(Model.Doc1))
-                                                        {
-                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc1" title="Download">ডাউনলোড নথি নং ১</a>
+                                                        {<label>নথি নং ১ :</label>
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc1" title="Download">@Model.File1</a>
 
                                                         }
+                                                        <br />
+                                                        <label class="control-label">নথি নং ১ পরিবর্তন করতে চাইলে নুতুন ফাইলের নাম  :</label>
+                                                        <input type="text" name="file_1" id="file_1" class="form-control" />
                                                         <input type="file" name="document_file_1" id="document_file_1" />
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
@@ -656,20 +659,25 @@
                                                         <br />
 
                                                         @if (!string.IsNullOrWhiteSpace(Model.Doc2))
-                                                        {
-                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc2" title="Download">ডাউনলোড নথি নং ২</a>
+                                                        {<label>নথি নং ২ :</label>
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc2" title="Download">@Model.File2</a>
 
                                                         }
+                                                        <br />
+                                                        <label class="control-label">নথি নং ২ পরিবর্তন করতে চাইলে নুতুন ফাইলের নাম  :</label>
+                                                        <input type="text" name="file_2" id="file_2" class="form-control" />
                                                         <input type="file" name="document_file_2" id="document_file_2" />
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                                         </span>
                                                         <br />
                                                         @if (!string.IsNullOrWhiteSpace(Model.Doc3))
-                                                        {
-                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc3" title="Download">ডাউনলোড নথি নং ৩</a>
+                                                        {<label>নথি নং ৩ :</label>
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc3" title="Download">@Model.File3</a>
 
-                                                        }
+                                                        } <br />
+                                                          <label class="control-label">নথি নং ৩ পরিবর্তন করতে চাইলে নুতুন ফাইলের নাম  :</label>
+                                                        <input type="text" name="file_3" id="file_3" class="form-control" />
                                                         <input type="file" name="document_file_3" id="document_file_3" />
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
@@ -677,31 +685,40 @@
                                                     </div>
 
 
-                                                    <div class="col-lg-5 col-md-5">
+                                                    <div class="col-lg-6 col-md-6">
                                                         @Html.LabelFor(model => model.Doc1, "জমি মালিকানার প্রমাণাদি", htmlAttributes: new { @class = "col-form-label text-lg-right" })
                                                         <br />
                                                         @if (!string.IsNullOrWhiteSpace(Model.Doc4))
-                                                        {
-                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc4" title="Download">ডাউনলোড নথি নং ৪</a>
+                                                        {<label>নথি নং ৪ :</label>
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc4" title="Download">@Model.File4</a>
                                                         }
+                                                        <br />
+                                                        <label class="control-label">নথি নং ৪ পরিবর্তন করতে চাইলে নুতুন ফাইলের নাম  :</label>
+                                                        <input type="text" name="file_4" id="file_4" class="form-control" />
                                                         <input type="file" name="document_file_4" id="document_file_4" />
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                                         </span>
                                                         <br />
                                                         @if (!string.IsNullOrWhiteSpace(Model.Doc5))
-                                                        {
-                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc5" title="Download">ডাউনলোড নথি নং ৫</a>
+                                                        {<label>নথি নং ৫ :</label>
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc5" title="Download">@Model.File5</a>
                                                         }
+                                                        <br />
+                                                        <label class="control-label">নথি নং ৫ পরিবর্তন করতে চাইলে নুতুন ফাইলের নাম  :</label>
+                                                        <input type="text" name="file_5" id="file_5" class="form-control" />
                                                         <input type="file" name="document_file_5" id="document_file_5" />
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                                         </span>
                                                         <br />
                                                         @if (!string.IsNullOrWhiteSpace(Model.Doc6))
-                                                        {
-                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc6" title="Download">ডাউনলোড নথি নং ৬</a>
+                                                        {<label>নথি নং ৬ :</label>
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Doc6" title="Download">@Model.File6</a>
                                                         }
+                                                        <br />
+                                                        <label class="control-label">নথি নং ৬ পরিবর্তন করতে চাইলে নুতুন ফাইলের নাম  :</label>
+                                                        <input type="text" name="file_6" id="file_6" class="form-control" />
                                                         <input type="file" name="document_file_6" id="document_file_6" />
                                                         <span class="form-text text-info">
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন

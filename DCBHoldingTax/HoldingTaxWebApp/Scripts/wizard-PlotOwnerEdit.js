@@ -188,6 +188,14 @@ var KTWizard4 = function () {
                             FineRate: parseFloat($('#FineRate').val()) || 0,
                             FineAmount: parseFloat($('#FineAmount').val()) || 0,
 
+
+                            File1: $('#file_1').val().trim(),
+                            File2: $('#file_2').val().trim(),
+                            File3: $('#file_3').val().trim(),
+                            File4: $('#file_4').val().trim(),
+                            File5: $('#file_5').val().trim(),
+                            File6: $('#file_6').val().trim(),
+
                             DesignApproval: DesignApprovallist,
                             OthetPlotOwner: OthetPlotOwnerlist
                            

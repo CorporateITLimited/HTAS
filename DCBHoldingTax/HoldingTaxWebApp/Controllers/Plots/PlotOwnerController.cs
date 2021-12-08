@@ -172,6 +172,13 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     Doc4 = PlotOwnerdetails.Doc4,
                     Doc5 = PlotOwnerdetails.Doc5,
                     Doc6 = PlotOwnerdetails.Doc6,
+
+                    //File1 = PlotOwnerdetails.Doc1.Substring(40),
+                    //File2 = PlotOwnerdetails.Doc2.Substring(40),
+                    //File3 = PlotOwnerdetails.Doc3.Substring(40),
+                    //File4 = PlotOwnerdetails.Doc4.Substring(40),
+                    //File5 = PlotOwnerdetails.Doc5.Substring(40),
+                    //File6 = PlotOwnerdetails.Doc6.Substring(40),
                     CreateDate = PlotOwnerdetails.CreateDate,
                     CreatedBy = PlotOwnerdetails.CreatedBy,
                     LastUpdated = PlotOwnerdetails.LastUpdated,
@@ -232,7 +239,30 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
                 };
 
-
+                if (!String.IsNullOrEmpty(PlotOwnerdetails.Doc1))
+                {
+                    plotOwnerVM.File1 = PlotOwnerdetails.Doc1.Substring(40);
+                }
+                if (!String.IsNullOrEmpty(PlotOwnerdetails.Doc2))
+                {
+                    plotOwnerVM.File2 = PlotOwnerdetails.Doc2.Substring(40);
+                }
+                if (!String.IsNullOrEmpty(PlotOwnerdetails.Doc3))
+                {
+                    plotOwnerVM.File3 = PlotOwnerdetails.Doc3.Substring(40);
+                }
+                if (!String.IsNullOrEmpty(PlotOwnerdetails.Doc4))
+                {
+                    plotOwnerVM.File4 = PlotOwnerdetails.Doc4.Substring(40);
+                }
+                if (!String.IsNullOrEmpty(PlotOwnerdetails.Doc5))
+                {
+                    plotOwnerVM.File5 = PlotOwnerdetails.Doc5.Substring(40);
+                }
+                if (!String.IsNullOrEmpty(PlotOwnerdetails.Doc6))
+                {
+                    plotOwnerVM.File6 = PlotOwnerdetails.Doc6.Substring(40);
+                }
 
                 return View(plotOwnerVM);
             }
@@ -342,6 +372,12 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     Doc4 = PlotOwnerdetails.Doc4,
                     Doc5 = PlotOwnerdetails.Doc5,
                     Doc6 = PlotOwnerdetails.Doc6,
+                    //File1 = PlotOwnerdetails.Doc1.Substring(40),
+                    //File2 = PlotOwnerdetails.Doc2.Substring(40),
+                    //File3 = PlotOwnerdetails.Doc3.Substring(40),
+                    //File4 = PlotOwnerdetails.Doc4.Substring(40),
+                    //File5 = PlotOwnerdetails.Doc5.Substring(40),
+                    //File6 = PlotOwnerdetails.Doc6.Substring(40),
                     CreateDate = PlotOwnerdetails.CreateDate,
                     CreatedBy = PlotOwnerdetails.CreatedBy,
                     LastUpdated = PlotOwnerdetails.LastUpdated,
@@ -401,6 +437,33 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     UpdatedByUserName = PlotOwnerdetails.UpdatedByUserName,
 
                 };
+
+                if (!String.IsNullOrEmpty(PlotOwnerdetails.Doc1))
+                {
+                    plotOwnerVM.File1 = PlotOwnerdetails.Doc1.Substring(40);
+                }
+                if (!String.IsNullOrEmpty(PlotOwnerdetails.Doc2))
+                {
+                    plotOwnerVM.File2 = PlotOwnerdetails.Doc2.Substring(40);
+                }
+                if (!String.IsNullOrEmpty(PlotOwnerdetails.Doc3))
+                {
+                    plotOwnerVM.File3 = PlotOwnerdetails.Doc3.Substring(40);
+                }
+                if (!String.IsNullOrEmpty(PlotOwnerdetails.Doc4))
+                {
+                    plotOwnerVM.File4 = PlotOwnerdetails.Doc4.Substring(40);
+                }
+                if (!String.IsNullOrEmpty(PlotOwnerdetails.Doc5))
+                {
+                    plotOwnerVM.File5 = PlotOwnerdetails.Doc5.Substring(40);
+                }
+                if (!String.IsNullOrEmpty(PlotOwnerdetails.Doc6))
+                {
+                    plotOwnerVM.File6 = PlotOwnerdetails.Doc6.Substring(40);
+                }
+
+
 
                 ViewBag.PlotId = new SelectList(_PlotManager.GetAllPlot(), "PlotId", "PlotIdNumber", plotOwnerVM.PlotId);
                 ViewBag.LeaseQuotaId = new SelectList(_LeaseQuotaManager.GetAllLeaseQuota(), "LeaseQuotaId", "LeaseQuotaName", plotOwnerVM.LeaseQuotaId);
@@ -516,7 +579,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         POVM.ThirdFCDate = DateTime.ParseExact(POVM.StringThirdFCDate, "dd/MM/yyyy", null);
                     }
 
-                    
+
 
 
                     PlotOwnerCombineVM plotw = new PlotOwnerCombineVM()
@@ -570,6 +633,16 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         FineAmount = POVM.FineAmount,
 
 
+                        ////File Name Portion 
+
+                        File1 = POVM.File1,
+                        File2 = POVM.File2,
+                        File3 = POVM.File3,
+                        File4 = POVM.File4,
+                        File5 = POVM.File5,
+                        File6 = POVM.File6,
+
+
                         ////Common portion
 
                         IsActive = true,
@@ -583,7 +656,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     };
 
 
-                   
+
                     if (Session["DocFile1"] != null)
                     {
                         HttpPostedFileBase file = (HttpPostedFileBase)Session["DocFile1"];
@@ -598,7 +671,17 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var extension = Path.GetExtension(file.FileName);
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
-                            var newFilename = maxId + "_doc1_" + fileOldName + extension;
+                            //var newFilename = maxId + "_doc1_" + fileOldName + extension;
+                            var newFilename = "";
+                            if (!String.IsNullOrEmpty(POVM.File1))
+                            {
+                                newFilename = maxId + "_doc1_" + POVM.File1 + extension;
+                            }
+                            else
+                            {
+                                newFilename = maxId + "_doc1_" + fileOldName + extension;
+                            }
+
                             newFilename = "/Documents/Plots/" + newFilename;
 
                             if (System.IO.File.Exists(newFilename))
@@ -627,7 +710,17 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var extension = Path.GetExtension(file.FileName);
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
-                            var newFilename = maxId + "_doc2_" + fileOldName + extension;
+                            //var newFilename = maxId + "_doc2_" + fileOldName + extension;
+                            var newFilename = "";
+                            if (!String.IsNullOrEmpty(POVM.File2))
+                            {
+                                newFilename = maxId + "_doc2_" + POVM.File2 + extension;
+                            }
+                            else
+                            {
+                                newFilename = maxId + "_doc2_" + fileOldName + extension;
+                            }
+
                             newFilename = "/Documents/Plots/" + newFilename;
 
                             if (System.IO.File.Exists(newFilename))
@@ -656,7 +749,16 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var extension = Path.GetExtension(file.FileName);
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
-                            var newFilename = maxId + "_doc3_" + fileOldName + extension;
+                            //var newFilename = maxId + "_doc3_" + fileOldName + extension;
+                            var newFilename = "";
+                            if (!String.IsNullOrEmpty(POVM.File3))
+                            {
+                                newFilename = maxId + "_doc3_" + POVM.File3 + extension;
+                            }
+                            else
+                            {
+                                newFilename = maxId + "_doc3_" + fileOldName + extension;
+                            }
                             newFilename = "/Documents/Plots/" + newFilename;
 
                             if (System.IO.File.Exists(newFilename))
@@ -685,7 +787,16 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var extension = Path.GetExtension(file.FileName);
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
-                            var newFilename = maxId + "_doc4_" + fileOldName + extension;
+                            //var newFilename = maxId + "_doc4_" + fileOldName + extension;
+                            var newFilename = "";
+                            if (!String.IsNullOrEmpty(POVM.File4))
+                            {
+                                newFilename = maxId + "_doc4_" + POVM.File4 + extension;
+                            }
+                            else
+                            {
+                                newFilename = maxId + "_doc4_" + fileOldName + extension;
+                            }
                             newFilename = "/Documents/Plots/" + newFilename;
 
                             if (System.IO.File.Exists(newFilename))
@@ -714,7 +825,16 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var extension = Path.GetExtension(file.FileName);
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
-                            var newFilename = maxId + "_doc5_" + fileOldName + extension;
+                            //var newFilename = maxId + "_doc5_" + fileOldName + extension;
+                            var newFilename = "";
+                            if (!String.IsNullOrEmpty(POVM.File5))
+                            {
+                                newFilename = maxId + "_doc5_" + POVM.File5 + extension;
+                            }
+                            else
+                            {
+                                newFilename = maxId + "_doc5_" + fileOldName + extension;
+                            }
                             newFilename = "/Documents/Plots/" + newFilename;
 
                             if (System.IO.File.Exists(newFilename))
@@ -743,7 +863,16 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var extension = Path.GetExtension(file.FileName);
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
-                            var newFilename = maxId + "_doc6_" + fileOldName + extension;
+                            //var newFilename = maxId + "_doc6_" + fileOldName + extension;
+                            var newFilename = "";
+                            if (!String.IsNullOrEmpty(POVM.File6))
+                            {
+                                newFilename = maxId + "_doc6_" + POVM.File6 + extension;
+                            }
+                            else
+                            {
+                                newFilename = maxId + "_doc6_" + fileOldName + extension;
+                            }
                             newFilename = "/Documents/Plots/" + newFilename;
 
                             if (System.IO.File.Exists(newFilename))
@@ -960,6 +1089,15 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         FineRate = POVM.FineRate,
                         FineAmount = POVM.FineAmount,
 
+                        ////File Name Portion 
+
+                        File1 = POVM.File1,
+                        File2 = POVM.File2,
+                        File3 = POVM.File3,
+                        File4 = POVM.File4,
+                        File5 = POVM.File5,
+                        File6 = POVM.File6,
+
 
                         ////Common portion
 
@@ -988,7 +1126,16 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var extension = Path.GetExtension(file.FileName);
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
-                            var newFilename = maxId + "_doc1_" + fileOldName + extension;
+                            //var newFilename = maxId + "_doc1_" + fileOldName + extension;
+                            var newFilename = "";
+                            if (!String.IsNullOrEmpty(POVM.File1))
+                            {
+                                newFilename = maxId + "_doc1_" + POVM.File1 + extension;
+                            }
+                            else
+                            {
+                                newFilename = maxId + "_doc1_" + fileOldName + extension;
+                            }
                             newFilename = "/Documents/Plots/" + newFilename;
 
                             //if (System.IO.File.Exists(newFilename))
@@ -1027,7 +1174,16 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var extension = Path.GetExtension(file.FileName);
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
-                            var newFilename = maxId + "_doc2_" + fileOldName + extension;
+                            //var newFilename = maxId + "_doc2_" + fileOldName + extension;
+                            var newFilename = "";
+                            if (!String.IsNullOrEmpty(POVM.File2))
+                            {
+                                newFilename = maxId + "_doc2_" + POVM.File2 + extension;
+                            }
+                            else
+                            {
+                                newFilename = maxId + "_doc2_" + fileOldName + extension;
+                            }
                             newFilename = "/Documents/Plots/" + newFilename;
 
                             //if (System.IO.File.Exists(newFilename))
@@ -1063,7 +1219,16 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var extension = Path.GetExtension(file.FileName);
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
-                            var newFilename = maxId + "_doc3_" + fileOldName + extension;
+                            //var newFilename = maxId + "_doc3_" + fileOldName + extension;
+                            var newFilename = "";
+                            if (!String.IsNullOrEmpty(POVM.File3))
+                            {
+                                newFilename = maxId + "_doc3_" + POVM.File3 + extension;
+                            }
+                            else
+                            {
+                                newFilename = maxId + "_doc3_" + fileOldName + extension;
+                            }
                             newFilename = "/Documents/Plots/" + newFilename;
 
                             //if (System.IO.File.Exists(newFilename))
@@ -1098,7 +1263,18 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var extension = Path.GetExtension(file.FileName);
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
-                            var newFilename = maxId + "_doc4_" + fileOldName + extension;
+                            //var newFilename = maxId + "_doc4_" + fileOldName + extension;
+
+                            var newFilename = "";
+                            if (!String.IsNullOrEmpty(POVM.File4))
+                            {
+                                newFilename = maxId + "_doc4_" + POVM.File4 + extension;
+                            }
+                            else
+                            {
+                                newFilename = maxId + "_doc4_" + fileOldName + extension;
+                            }
+
                             newFilename = "/Documents/Plots/" + newFilename;
 
                             //if (System.IO.File.Exists(newFilename))
@@ -1133,7 +1309,16 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var extension = Path.GetExtension(file.FileName);
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
-                            var newFilename = maxId + "_doc5_" + fileOldName + extension;
+                            //var newFilename = maxId + "_doc5_" + fileOldName + extension;
+                            var newFilename = "";
+                            if (!String.IsNullOrEmpty(POVM.File5))
+                            {
+                                newFilename = maxId + "_doc5_" + POVM.File5 + extension;
+                            }
+                            else
+                            {
+                                newFilename = maxId + "_doc5_" + fileOldName + extension;
+                            }
                             newFilename = "/Documents/Plots/" + newFilename;
 
                             //if (System.IO.File.Exists(newFilename))
@@ -1168,7 +1353,16 @@ namespace HoldingTaxWebApp.Controllers.Plots
                             var extension = Path.GetExtension(file.FileName);
                             var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
                             fileOldName = fileOldName.Replace(" ", string.Empty);
-                            var newFilename = maxId + "_doc6_" + fileOldName + extension;
+                            //var newFilename = maxId + "_doc6_" + fileOldName + extension;
+                            var newFilename = "";
+                            if (!String.IsNullOrEmpty(POVM.File6))
+                            {
+                                newFilename = maxId + "_doc6_" + POVM.File6 + extension;
+                            }
+                            else
+                            {
+                                newFilename = maxId + "_doc6_" + fileOldName + extension;
+                            }
                             newFilename = "/Documents/Plots/" + newFilename;
 
                             //if (System.IO.File.Exists(newFilename))
