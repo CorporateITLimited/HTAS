@@ -97,7 +97,7 @@ var KTWizard4 = function () {
                             var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
                             var ownerName = '';//$('.OwnerName', this).val().trim();
                             var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
-
+                            var remarks = $('.Remarks', this).val().trim();
                             var detailsData = {
                                 HolderFlatId: 0,
                                 FlorNo: florNo,
@@ -107,7 +107,8 @@ var KTWizard4 = function () {
                                 SelfOwn: selfOwned,
                                 MonthlyRent: monthlyRent,
                                 OwnerName: ownerName,
-                                IsCheckedByHolder: isCheckedByHolder
+                                IsCheckedByHolder: isCheckedByHolder,
+                                Remarks: remarks
                             }
                             list.push(detailsData);
                         });
@@ -122,6 +123,7 @@ var KTWizard4 = function () {
                             var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
                             var ownerName = '';//$('.OwnerName', this).val().trim();
                             var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
+                            var remarks = $('.Remarks', this).val().trim();
 
                             var detailsData = {
                                 HolderFlatId: holderFlatId,
@@ -132,7 +134,8 @@ var KTWizard4 = function () {
                                 SelfOwn: selfOwned,
                                 MonthlyRent: monthlyRent,
                                 OwnerName: ownerName,
-                                IsCheckedByHolder: isCheckedByHolder
+                                IsCheckedByHolder: isCheckedByHolder,
+                                Remarks: remarks
                             }
                             list.push(detailsData);
                         });

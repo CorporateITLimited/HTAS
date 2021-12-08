@@ -41,6 +41,9 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "মালিকের নাম")]
         public string OwnerName { get; set; }
 
+        [Display(Name = "মন্তব্য")]
+        public string Remarks { get; set; }
+
         [Display(Name = "তারিখ তৈরি করুন")]
         public DateTime? CreateDate { get; set; }
         [Display(Name = "তৈরিকারী")]

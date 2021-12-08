@@ -721,6 +721,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                             SelfOwn = ui_item.SelfOwn,
                                             IsCheckedByHolder = false,
                                             MainHolderId = ui_item.SelfOwn == 1 ? (int?)holderId : null,
+                                            Remarks=ui_item.Remarks
                                         };
 
                                         string returnString = _holdingManager.HoldersFlatInsert(details);
@@ -757,7 +758,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                                 OwnOrRent = ui_item.OwnOrRent,
                                                 SelfOwn = null,
                                                 IsCheckedByHolder = true,
-                                                MainHolderId = ui_item.SelfOwn == 1 ? (int?)holderId : null
+                                                MainHolderId = ui_item.SelfOwn == 1 ? (int?)holderId : null,
+                                                Remarks = ui_item.Remarks
                                             };
 
                                             string returnString = _holdingManager.HoldersFlatUpdateForMainHolder(details);
@@ -1447,6 +1449,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                                 SelfOwn = ui_item.SelfOwn,
                                                 IsCheckedByHolder = null,
                                                 MainHolderId = ui_item.SelfOwn == 1 ? (int?)holderId : null,
+                                                Remarks=ui_item.Remarks
                                             };
 
                                             string returnString = CommonConstantHelper.Success;
@@ -1497,7 +1500,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                                     OwnOrRent = ui_item.OwnOrRent,
                                                     SelfOwn = null,
                                                     IsCheckedByHolder = true,
-                                                    MainHolderId = ui_item.SelfOwn == 1 ? (int?)holderId : null
+                                                    MainHolderId = ui_item.SelfOwn == 1 ? (int?)holderId : null,
+                                                    Remarks=ui_item.Remarks
                                                 };
 
                                                 string returnString = _holdingManager.HoldersFlatUpdateForMainHolder(details);
@@ -1532,7 +1536,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                                     OwnOrRent = 1,
                                                     SelfOwn = 2,
                                                     IsCheckedByHolder = false,
-                                                    MainHolderId = null
+                                                    MainHolderId = null,
+                                                    Remarks=null
                                                 };
 
                                                 string returnString = _holdingManager.HoldersFlatUpdateForMainHolder(details);

@@ -421,6 +421,7 @@
                                                                 <th>নিজ বসতি/ভাড়া </th>
                                                                 <th id="rent_by_area">মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
                                                                 <th>সম্পত্তির ধরন</th>
+                                                                <th>মন্তব্য</th>
                                                                 <th>
                                                                     <button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button>
                                                                     <span id="mess_for_flat">নিজস্ব মালিকানার ফ্ল্যাট হলে টিক দিন </span>
@@ -974,7 +975,8 @@
                         '    <select class="form-control SelfOwned">' +
                         '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
-                        '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr>');
+                        '<td width="20%;"><input type="text" class="form-control Remarks" /></td>' +
+                        '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr >');
                 } else {
                     flat_details_table.append('<tr>' +
                         '<input type="hidden" id="MonthlyRent" value="0" class= "MonthlyRent" />' +
@@ -992,6 +994,7 @@
                         '    <select class="form-control SelfOwned">' +
                         '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                        '<td width="20%;"><input type="text" class="form-control Remarks" /></td>' +
                         '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr>');
                 }
 

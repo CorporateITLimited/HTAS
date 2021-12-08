@@ -709,7 +709,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         CreatedBy = Data_Reader["CreatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
                         LastUpdatedBy = Data_Reader["LastUpdatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null,
                         FloorTypeName = Data_Reader["FloorTypeName"].ToString(),
-                        IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null
+                        IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null,
+                        Remarks = Convert.ToString(Data_Reader["Remarks"])
                     };
 
                     model.StrFlatArea = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.FlatArea);
@@ -870,6 +871,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
                 Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = model.IsCheckedByHolder;
+                Sql_Command.Parameters.Add("@Remarks", SqlDbType.Int).Value = model.Remarks;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -1080,6 +1082,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
                 Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = model.IsCheckedByHolder;
+                Sql_Command.Parameters.Add("@Remarks", SqlDbType.Int).Value = model.Remarks;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -1150,6 +1153,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
                 Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = model.IsCheckedByHolder;
+                Sql_Command.Parameters.Add("@Remarks", SqlDbType.Int).Value = model.Remarks;
+
 
                 SqlParameter result = new SqlParameter
                 {
@@ -1359,7 +1364,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         SelfOwn = Data_Reader["SelfOwn"] != DBNull.Value ? Convert.ToInt32(Data_Reader["SelfOwn"]) : (int?)null,
                         SelfOwnType = Convert.ToString(Data_Reader["SelfOwnType"]),
                         FloorTypeName = Data_Reader["FloorTypeName"].ToString(),
-                        IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null
+                        IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null,
+                        Remarks = Convert.ToString(Data_Reader["Remarks"])
                     };
 
                     model.StrFlatArea = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.FlatArea);
