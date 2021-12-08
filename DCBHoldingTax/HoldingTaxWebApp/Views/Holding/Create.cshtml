@@ -786,6 +786,7 @@
                                     '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +*@
                                         '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                        '<td width="20%;"><input type="text" class="form-control nRemarks" />' +
                                         '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
                                 });
 
@@ -821,6 +822,7 @@
                                     '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +*@
                                         '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                        '<td width="20%;"><input type="text" class="form-control nRemarks" />' +
                                         '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
                                 });
 
@@ -975,7 +977,7 @@
                         '    <select class="form-control SelfOwned">' +
                         '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
-                        '<td width="20%;"><input type="text" class="form-control Remarks" /></td>' +
+                        '<td width="20%;"><input type="text" class="form-control nRemarks" /></td>' +
                         '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr >');
                 } else {
                     flat_details_table.append('<tr>' +
@@ -994,7 +996,7 @@
                         '    <select class="form-control SelfOwned">' +
                         '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
-                        '<td width="20%;"><input type="text" class="form-control Remarks" /></td>' +
+                        '<td width="20%;"><input type="text" class="form-control nRemarks" /></td>' +
                         '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr>');
                 }
 

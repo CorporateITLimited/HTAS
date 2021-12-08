@@ -76,7 +76,7 @@ var KTWizard4 = function () {
                             var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
                             var ownerName = '';//$('.OwnerName', this).val().trim();
                             var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
-                            var remarks = $('.Remarks', this).val().trim();
+                            var remarks = $('.nRemarks', this).val().trim();
 
                             var detailsData = {
                                 HolderFlatId: holderFlatId,
@@ -103,7 +103,7 @@ var KTWizard4 = function () {
                             var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
                             var ownerName = '';//$('.OwnerName', this).val().trim();
                             var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
-                            var remarks = $('.Remarks', this).val().trim();
+                            var remarks = $('.nRemarks', this).val().trim();
 
                             var detailsData = {
                                 HolderFlatId: holderFlatId,

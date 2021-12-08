@@ -801,7 +801,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         CreatedBy = Data_Reader["CreatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
                         LastUpdatedBy = Data_Reader["LastUpdatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null,
                         FloorTypeName = Data_Reader["FloorTypeName"].ToString(),
-                        IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null
+                        IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null,
+                        Remarks = Data_Reader["Remarks"].ToString()
                     };
                     if (model.IsCheckedByHolder == true)
                         model.SelfOwnType = "নিজস্ব মালিকানা";
@@ -871,7 +872,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
                 Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = model.IsCheckedByHolder;
-                Sql_Command.Parameters.Add("@Remarks", SqlDbType.Int).Value = model.Remarks;
+                Sql_Command.Parameters.Add("@Remarks", SqlDbType.NVarChar).Value = model.Remarks;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -1082,7 +1083,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
                 Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = model.IsCheckedByHolder;
-                Sql_Command.Parameters.Add("@Remarks", SqlDbType.Int).Value = model.Remarks;
+                Sql_Command.Parameters.Add("@Remarks", SqlDbType.NVarChar).Value = model.Remarks;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -1153,7 +1154,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
                 Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = model.IsCheckedByHolder;
-                Sql_Command.Parameters.Add("@Remarks", SqlDbType.Int).Value = model.Remarks;
+                Sql_Command.Parameters.Add("@Remarks", SqlDbType.NVarChar).Value = model.Remarks;
 
 
                 SqlParameter result = new SqlParameter
