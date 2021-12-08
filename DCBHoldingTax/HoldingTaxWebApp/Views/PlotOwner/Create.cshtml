@@ -190,7 +190,7 @@
                                                 </div>
 
                                                 <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.OfficialStatusId, "প্লট মালিকের অফিসিয়াল অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    @Html.LabelFor(model => model.OfficialStatusId, "সামরিক / বেসামরিক", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.DropDownListFor(model => model.OfficialStatusId, null, "-- নির্বাচন করুন --", new
                                                    {
@@ -203,7 +203,7 @@
 
                                                     @Html.LabelFor(model => model.PresentAdd, "বর্তমান ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.PresentAdd, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.PresentAdd, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly= "readonly" } })
                                                     </div>
                                                 </div>
 
@@ -331,26 +331,24 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.OwnerDeclaration, "প্লট মালিকের ঘোষণা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.OwnerDeclaration, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
+                                                        @*@Html.EditorFor(model => model.OwnerDeclaration, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })*@
+                                                        <select class="form-control" id="OwnerDeclaration" name="OwnerDeclaration">
+                                                            <option value="">নির্বাচন করুন</option>
+                                                            <option value="নিজ">নিজ</option>
+                                                            <option value="ডেভেলপার">ডেভেলপার</option>
+                                                        </select>
 
-                                                    @Html.LabelFor(model => model.RealBuilder, "প্রকৃত নির্মানকারী", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.RealBuilder, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.DevelopDeposit, "ডেভোলপারের জমার পরিমান", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.DevelopDeposit, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
                                                     @Html.LabelFor(model => model.FloorNumber, "ভবনের তলার সংখ্যা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.FloorNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
+
+
                                                 </div>
+
+
 
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.StringCompletionDate, "কাজ শেষ হওয়ার তারিখ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -411,22 +409,39 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.DeveloperPortion, "ডেভোলপারের অংশ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.DeveloperPortion, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
+                                                 
 
                                                     @Html.LabelFor(model => model.BuyerPortion, "ক্রেতার অংশ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.BuyerPortion, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
-                                                </div>
-                                                <div class="form-group row m-2">
+
                                                     @Html.LabelFor(model => model.SubmittedPortion, "হস্তান্তরিত অংশ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.SubmittedPortion, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
+                                                </div>
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.DevelopDeposit, "ডেভোলপারের জমার পরিমান", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right dev" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.DevelopDeposit, new { htmlAttributes = new { @class = "form-control dev", placeholder = "" } })
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.RealBuilder, "প্রকৃত নির্মানকারী", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right dev" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.RealBuilder, new { htmlAttributes = new { @class = "form-control dev", placeholder = "" } })
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group row m-2">
+
+                                                    @Html.LabelFor(model => model.DeveloperPortion, "ডেভোলপারের অংশ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right dev" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.DeveloperPortion, new { htmlAttributes = new { @class = "form-control dev", placeholder = "" } })
+                                                    </div>
 
                                                 </div>
 
@@ -589,154 +604,175 @@
     <script>
          jQuery(document).ready(function () {
 
+             $('#LeasePeriod').val(99);
 
-    $('#PlotId').select2({
-        placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-    });
+                    $('#PlotId').select2({
+                        placeholder: "--নির্বাচন করুন--",
+                        allowClear: true
+                    });
 
-    $('#ConsStatusId').select2({
-        placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-    });
-      $('#OfficialStatusId').select2({
-        placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-    });
-    $('#LeaseQuotaId').select2({
-        placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-    });
-   $('#IsAlive').select2({
-       placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-   });
-     $('#LeaseType').select2({
-       placeholder: "--নির্বাচন করুন--",
-        allowClear: true
-   });
-   // autosize($('#PresentAdd'));
-   // autosize($('#PermanentAdd'));
-   // autosize($('#ContactAdd'));
+                    $('#ConsStatusId').select2({
+                        placeholder: "--নির্বাচন করুন--",
+                        allowClear: true
+                    });
+                      $('#OfficialStatusId').select2({
+                        placeholder: "--নির্বাচন করুন--",
+                        allowClear: true
+                    });
+                    $('#LeaseQuotaId').select2({
+                        placeholder: "--নির্বাচন করুন--",
+                        allowClear: true
+                    });
+                   $('#IsAlive').select2({
+                       placeholder: "--নির্বাচন করুন--",
+                        allowClear: true
+                   });
+                     $('#LeaseType').select2({
+                       placeholder: "--নির্বাচন করুন--",
+                        allowClear: true
+                   });
+               // autosize($('#PresentAdd'));
+               // autosize($('#PermanentAdd'));
+               // autosize($('#ContactAdd'));
+             
+           
 
-
-
-
-    //$('#OwnershipSourceId').select2({
-       // placeholder: "--নির্বাচন করুন--",
-       // allowClear: true
-    //});
-    //$('#OwnerType').select2({
-       // placeholder: "--নির্বাচন করুন--",
-       // allowClear: true
-   // });
-
-
-
-
-         $('#StringLeaveDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
+              $('#PlotId').change(function () {
+                var PlotId = parseInt($('#PlotId option:selected').val()) || 0;
+                 var json = {
+                    PlotId: PlotId
+                };
+                debugger;
+                   $.ajax({
+                    url: '@Url.Action("GetPresentAddress", "PlotOwner")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                       success: function (data) {
+                           var address = data.PlotNo + ',' + data.AreaName + ',' + 'ঢাকা ক্যান্টনমেন্ট';
+                           //alert(data.PlotNo);
+                           $('#PresentAdd').val(address);
+                    },
+                    error: function () {
+                        alert('error count');
+                    }
+                });
             });
-         $('#StringCompletionDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringGroundFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringFirstFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringSccFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringThirdFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringForthFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringFivthFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringSixFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('#StringOtherFCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('.StringMEO_NCCDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
-         $('.StringApprovalDate').datepicker({
-                rtl: KTUtil.isRTL(),
-                todayBtn: "linked",
-                clearBtn: true,
-                todayHighlight: true,
-                format: "dd/mm/yyyy",
-                autoclose: true
-            });
+                //$('#OwnershipSourceId').select2({
+                   // placeholder: "--নির্বাচন করুন--",
+                   // allowClear: true
+                //});
+                //$('#OwnerType').select2({
+                   // placeholder: "--নির্বাচন করুন--",
+                   // allowClear: true
+               // });
+
+
+
+
+                     $('#StringLeaveDate').datepicker({
+                            rtl: KTUtil.isRTL(),
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            format: "dd/mm/yyyy",
+                            autoclose: true
+                        });
+                     $('#StringCompletionDate').datepicker({
+                            rtl: KTUtil.isRTL(),
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            format: "dd/mm/yyyy",
+                            autoclose: true
+                        });
+                     $('#StringGroundFCDate').datepicker({
+                            rtl: KTUtil.isRTL(),
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            format: "dd/mm/yyyy",
+                            autoclose: true
+                        });
+                     $('#StringFirstFCDate').datepicker({
+                            rtl: KTUtil.isRTL(),
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            format: "dd/mm/yyyy",
+                            autoclose: true
+                        });
+                     $('#StringSccFCDate').datepicker({
+                            rtl: KTUtil.isRTL(),
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            format: "dd/mm/yyyy",
+                            autoclose: true
+                        });
+                     $('#StringThirdFCDate').datepicker({
+                            rtl: KTUtil.isRTL(),
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            format: "dd/mm/yyyy",
+                            autoclose: true
+                        });
+                     $('#StringForthFCDate').datepicker({
+                            rtl: KTUtil.isRTL(),
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            format: "dd/mm/yyyy",
+                            autoclose: true
+                        });
+                     $('#StringFivthFCDate').datepicker({
+                            rtl: KTUtil.isRTL(),
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            format: "dd/mm/yyyy",
+                            autoclose: true
+                        });
+                     $('#StringSixFCDate').datepicker({
+                            rtl: KTUtil.isRTL(),
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            format: "dd/mm/yyyy",
+                            autoclose: true
+                        });
+                     $('#StringOtherFCDate').datepicker({
+                            rtl: KTUtil.isRTL(),
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            format: "dd/mm/yyyy",
+                            autoclose: true
+                        });
+                     $('.StringMEO_NCCDate').datepicker({
+                            rtl: KTUtil.isRTL(),
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            format: "dd/mm/yyyy",
+                            autoclose: true
+                        });
+                     $('.StringApprovalDate').datepicker({
+                            rtl: KTUtil.isRTL(),
+                            todayBtn: "linked",
+                            clearBtn: true,
+                            todayHighlight: true,
+                            format: "dd/mm/yyyy",
+                            autoclose: true
+                        });
 
 
 
 
 
 
-  $("#LeaseType").change(function () {
+                 $("#LeaseType").change(function () {
           var otherOwnerTableHead = $('#tableOther thead');
           var otherOwnerTableBody = $('#tableOther tbody');
     //#যৌথ
@@ -755,23 +791,33 @@
             otherOwnerTableHead.empty();
             otherOwnerTableBody.empty();
             }
-    });
-        //btn btn-icon btn-light btn-hover-primary btn-sm mx-3
-        //btn btn-success btn-sm
+             });
 
-    //$("#addOthersOwner").on('click', function (e) {
-    //    //e.preventDefault();
-    //    debugger;
-    //    var otherOwnerTableBody = $('#tableOther tbody');
-    //    otherOwnerTableBody.append('<tr>'+
-    //        '<td><input type="text" class="form-control OthetOwneeName" name="OthetOwneeName" /></td>' +
-    //        '<td><input type="text" class="form-control Address" name="Address" /></td>' +
-    //        '<td><input type="text" class="form-control Remarks" name="Remarks" /></td>' +
-    //        '<td><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
-    //});
+                     //$("#LeasePeriod").change(function () {
+                     //    var LeasePeriod = $('#LeasePeriod').val();
+                        
+                     //    if (isNumeric(LeasePeriod)) {
+                     //        alert(LeasePeriod);
+                     //    } 
+                     //});
+
+            
+                        //btn btn-icon btn-light btn-hover-primary btn-sm mx-3
+                        //btn btn-success btn-sm
+
+                    //$("#addOthersOwner").on('click', function (e) {
+                    //    //e.preventDefault();
+                    //    debugger;
+                    //    var otherOwnerTableBody = $('#tableOther tbody');
+                    //    otherOwnerTableBody.append('<tr>'+
+                    //        '<td><input type="text" class="form-control OthetOwneeName" name="OthetOwneeName" /></td>' +
+                    //        '<td><input type="text" class="form-control Address" name="Address" /></td>' +
+                    //        '<td><input type="text" class="form-control Remarks" name="Remarks" /></td>' +
+                    //        '<td><button class="remove btn btn-danger btn-sm" id="remove_old_details"><i class="fas fa-minus"></i></button></td></tr>');
+                    //});
 
 
-    $('#tableOther tbody').on('click', '.remove', function (e) {
+             $('#tableOther tbody').on('click', '.remove', function (e) {
         e.preventDefault();
         $(this).parents('tr').css("background-color", "red").fadeOut(1000, function () {
             $(this).remove();
@@ -779,7 +825,7 @@
     });
 
 
-   $("#addDesign").on('click', function (e) {
+                 $("#addDesign").on('click', function (e) {
         e.preventDefault();
         var DesignTableBody = $('#DesignTable tbody');
         DesignTableBody.append('<tr>'+
@@ -816,130 +862,136 @@
 
     });
 
-  $('#DesignTable tbody').on('click', '.remove', function (e) {
+                 $('#DesignTable tbody').on('click', '.remove', function (e) {
         e.preventDefault();
         $(this).parents('tr').css("background-color", "red").fadeOut(1000, function () {
             $(this).remove();
         });
     });
 
-
-
-         $("#document_file_1").change(function () {
-                var data = new FormData();
-                data.append("fileBase", $("#document_file_1").get(0).files[0]);
-                $.ajax({
-                    type: 'POST',
-                    url: '/PlotOwner/GetDocFile1',
-                    data: data, // modify
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (d) {
-                        console.log(d);
-                    },
-                    error: function (error) {
-                        console.log(error);
+                $("#OwnerDeclaration").change(function () {
+                    var OwnerDeclaration = $('#OwnerDeclaration option:selected').val().trim();
+                    //alert(OwnerDeclaration);
+                    if (OwnerDeclaration == 'নিজ') {
+                        $('.dev').hide();
+                    } else {
+                        $('.dev').show();
                     }
-                });
-            });
-            $("#document_file_2").change(function () {
-                var data = new FormData();
-                data.append("fileBase", $("#document_file_2").get(0).files[0]);
-                $.ajax({
-                    type: 'POST',
-                    url: '/PlotOwner/GetDocFile2',
-                    data: data, // modify
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (d) {
-                        console.log(d);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
-         $("#document_file_3").change(function () {
-                var data = new FormData();
-                data.append("fileBase", $("#document_file_3").get(0).files[0]);
-                $.ajax({
-                    type: 'POST',
-                    url: '/PlotOwner/GetDocFile3',
-                    data: data, // modify
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (d) {
-                        console.log(d);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
-            $("#document_file_4").change(function () {
-                var data = new FormData();
-                data.append("fileBase", $("#document_file_4").get(0).files[0]);
-                $.ajax({
-                    type: 'POST',
-                    url: '/PlotOwner/GetDocFile4',
-                    data: data, // modify
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (d) {
-                        console.log(d);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
-         $("#document_file_5").change(function () {
-                var data = new FormData();
-                data.append("fileBase", $("#document_file_5").get(0).files[0]);
-                $.ajax({
-                    type: 'POST',
-                    url: '/PlotOwner/GetDocFile5',
-                    data: data, // modify
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (d) {
-                        console.log(d);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
-            $("#document_file_6").change(function () {
-                var data = new FormData();
-                data.append("fileBase", $("#document_file_6").get(0).files[0]);
-                $.ajax({
-                    type: 'POST',
-                    url: '/PlotOwner/GetDocFile6',
-                    data: data, // modify
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (d) {
-                        console.log(d);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
+      
+                }); 
+
+         
 
 
 
-
-
-
-
+                 $("#document_file_1").change(function () {
+                        var data = new FormData();
+                        data.append("fileBase", $("#document_file_1").get(0).files[0]);
+                        $.ajax({
+                            type: 'POST',
+                            url: '/PlotOwner/GetDocFile1',
+                            data: data, // modify
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (d) {
+                                console.log(d);
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
+                    });
+                    $("#document_file_2").change(function () {
+                        var data = new FormData();
+                        data.append("fileBase", $("#document_file_2").get(0).files[0]);
+                        $.ajax({
+                            type: 'POST',
+                            url: '/PlotOwner/GetDocFile2',
+                            data: data, // modify
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (d) {
+                                console.log(d);
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
+                    });
+                 $("#document_file_3").change(function () {
+                        var data = new FormData();
+                        data.append("fileBase", $("#document_file_3").get(0).files[0]);
+                        $.ajax({
+                            type: 'POST',
+                            url: '/PlotOwner/GetDocFile3',
+                            data: data, // modify
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (d) {
+                                console.log(d);
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
+                    });
+                    $("#document_file_4").change(function () {
+                        var data = new FormData();
+                        data.append("fileBase", $("#document_file_4").get(0).files[0]);
+                        $.ajax({
+                            type: 'POST',
+                            url: '/PlotOwner/GetDocFile4',
+                            data: data, // modify
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (d) {
+                                console.log(d);
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
+                    });
+                 $("#document_file_5").change(function () {
+                        var data = new FormData();
+                        data.append("fileBase", $("#document_file_5").get(0).files[0]);
+                        $.ajax({
+                            type: 'POST',
+                            url: '/PlotOwner/GetDocFile5',
+                            data: data, // modify
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (d) {
+                                console.log(d);
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
+                    });
+                    $("#document_file_6").change(function () {
+                        var data = new FormData();
+                        data.append("fileBase", $("#document_file_6").get(0).files[0]);
+                        $.ajax({
+                            type: 'POST',
+                            url: '/PlotOwner/GetDocFile6',
+                            data: data, // modify
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (d) {
+                                console.log(d);
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
+                    });
 
 
 

@@ -57,13 +57,16 @@ namespace HoldingTaxWebApp.Manager.Plots
 
         }
 
+        //get present addres for plotno change event
+
+        public Plot GetPresentAddress(int id)
+        {
+            return _PlotOwnerGateway.GetPresentAddress(id);
+        }
 
 
-
-
-
-        //Create Plot Owner Details
-        public int PlotOwnerInsert(PlotOwnerCombineVM model)
+            //Create Plot Owner Details
+            public int PlotOwnerInsert(PlotOwnerCombineVM model)
         {
             return _PlotOwnerGateway.PlotOwnerInsert(model);
 

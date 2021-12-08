@@ -1,20 +1,49 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>rptPlotOwnerDetails</title>
-</head>
-<body>
-    <div class="col-md-12 col-lg-12 col-sm-12 align-center">
-        <iframe runat="server" id="Reports" src="~/WebForms/Plots/PlotOwnerDetails.aspx"
-                style="width:92%; min-height:1000px" frameBorder="0"></iframe>
-
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">প্লট মালিকানার বিস্তারিত তথ্য রিপোর্ট </h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
     </div>
-</body>
-</html>
+</div>
+
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-custom gutter-b example example-compact">
+                    <div class="card-body" id="print_div">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12 offset-1">
+                                <iframe runat="server" id="Reports" src="~/WebForms/Plots/PlotOwnerDetails.aspx"
+                                        style="width:92%; min-height:1000px" frameBorder="0"></iframe>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

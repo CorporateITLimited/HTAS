@@ -76,12 +76,12 @@ var KTWizard4 = function () {
                             OthetOwneeName: OthetOwneeName,
                             Address: Address,
                             Remarks: Remarks
-                        }
+                        };
                         OthetPlotOwnerlist.push(OthetPlotOwner);
                     });
 
 
-
+                    debugger;
                     $('#DesignTable tbody tr').each(function (index, ele) {
                         var StringMEO_NCCDate = $('.StringMEO_NCCDate', this).val().trim();
                         var Reference = $('.Reference', this).val().trim();
@@ -101,8 +101,8 @@ var KTWizard4 = function () {
                             FlorNumber: FlorNumber,
                             GroundFlorArea: GroundFlorArea,
                             OtherFlorArea: OtherFlorArea
-                           
-                        }
+
+                        };
                         DesignApprovallist.push(DesignApproval);
                     });
                  
@@ -121,8 +121,9 @@ var KTWizard4 = function () {
                         KTUtil.scrollTop();
                     }
                     else {
+                        debugger;
                         var data = {
-                            
+                           
                             PlotOwnerId: 0,
                             PlotId: parseInt($('#PlotId option:selected').val()) || 0,
                             PlotOwnerName: $('#PlotOwnerName').val().trim(),
@@ -145,7 +146,8 @@ var KTWizard4 = function () {
 
 
 
-                            OwnerDeclaration: $('#OwnerDeclaration').val().trim(),
+                            OwnerDeclaration: $('#OwnerDeclaration option:selected').val().trim(),
+                            //OwnerDeclaration: $('#OwnerDeclaration').val().trim(),
                             RealBuilder: $('#RealBuilder').val().trim(),
                             DevelopDeposit: parseFloat($('#DevelopDeposit').val().trim()),
                             FloorNumber: parseInt($('#FloorNumber').val().trim()),
@@ -181,7 +183,7 @@ var KTWizard4 = function () {
                           
                         };
 
-
+                        debugger;
                         $.ajax({
                             type: 'POST',
                             url: '/PlotOwner/AddOrUpdate',
@@ -253,7 +255,7 @@ var KTWizard4 = function () {
                             }
                         }
                     },
-                     ConsStatusId1: {
+                    LeaseType: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
@@ -294,7 +296,7 @@ var KTWizard4 = function () {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             }
                         }
-                    },
+                    }
                  
                  
                  
@@ -314,83 +316,20 @@ var KTWizard4 = function () {
             _formEl,
             {
                 fields: {
-                    OwnershipSourceId: {
+                    OwnershipSourceId1: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    OwnerType: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    BuildingTypeId: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    AmountOfLand: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    TotalFloor: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    EachFloorArea: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    TotalFlat: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    HoldersFlatNumber: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
                             }
                         }
                     }
+                
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
                     bootstrap: new FormValidation.plugins.Bootstrap({
                         eleInvalidClass: '',
-                        eleValidClass: '',
+                        eleValidClass: ''
                     })
                 }
             }

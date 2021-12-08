@@ -157,7 +157,8 @@ var KTWizard4 = function () {
 
                             
                             ConsProgressId: parseInt($('#ConsProgressId').val()) || 0,
-                            OwnerDeclaration: $('#OwnerDeclaration').val().trim(),
+                            OwnerDeclaration: $('#OwnerDeclaration option:selected').val().trim(),
+                            //OwnerDeclaration: $('#OwnerDeclaration').val().trim(),
                             RealBuilder: $('#RealBuilder').val().trim(),
                             DevelopDeposit: parseFloat($('#DevelopDeposit').val().trim()),
                             FloorNumber: parseInt($('#FloorNumber').val().trim()),
@@ -273,7 +274,7 @@ var KTWizard4 = function () {
                            }
                        }
                    },
-                     OfficialStatusId: {
+                     OfficialStatusId1: {
                        validators: {
                            notEmpty: {
                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
@@ -300,13 +301,13 @@ var KTWizard4 = function () {
                             }
                         }
                     },
-                    PermanentAdd1: {
+                    PlotOwnerName: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
                             }
                         }
-                    },
+                    }
                  
                  
                  
@@ -315,7 +316,7 @@ var KTWizard4 = function () {
                     trigger: new FormValidation.plugins.Trigger(),
                     bootstrap: new FormValidation.plugins.Bootstrap({
                         eleInvalidClass: '',
-                        eleValidClass: '',
+                        eleValidClass: ''
                     })
                 }
             }
@@ -326,77 +327,15 @@ var KTWizard4 = function () {
             _formEl,
             {
                 fields: {
-                    OwnershipSourceId: {
+                    OwnershipSourceId1: {
                         validators: {
                             notEmpty: {
                                 message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    OwnerType: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    BuildingTypeId: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
-                    AmountOfLand: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    TotalFloor: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    EachFloorArea: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    TotalFlat: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
-                            }
-                        }
-                    },
-                    HoldersFlatNumber: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            },
-                            numeric: {
-                                message: 'বৈধ ভ্যালু দিন'
                             }
                         }
                     }
+                   
+                  
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
