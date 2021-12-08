@@ -9,10 +9,10 @@ namespace HoldingTaxWebApp.Models.Plots
     public class PlotOwner
     {
         public int PlotOwnerId { get; set; }
-        [Display(Name = "আইডি নম্বর")]
+        [Display(Name = "প্লট আইডি নম্বর")]
         public int PlotId { get; set; }
 
-        [Display(Name = "আইডি নম্বর")]
+        [Display(Name = "প্লট আইডি নম্বর")]
         public string PlotIdNumber { get; set; }
         [Display(Name = "প্লট মালিকের নাম")]
         public string PlotOwnerName { get; set; }
@@ -20,7 +20,7 @@ namespace HoldingTaxWebApp.Models.Plots
         public bool? IsAlive { get; set; }
         [Display(Name = "সামরিক / বেসামরিক")]
         public int OfficialStatusId { get; set; }
-        [Display(Name = "প্লট মালিকের অফিসিয়াল অবস্থা")]
+        [Display(Name = "সামরিক / বেসামরিক")]
         public string OffStatusName { get; set; }
         [Display(Name = "বর্তমান ঠিকানা")]
         public string PresentAdd { get; set; }

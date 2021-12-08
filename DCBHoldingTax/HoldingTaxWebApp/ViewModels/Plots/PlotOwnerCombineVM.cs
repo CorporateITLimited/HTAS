@@ -13,10 +13,10 @@ namespace HoldingTaxWebApp.ViewModels.Plots
         //Plot Owner Portion Start
         #region Plot Owner Portion Start
         public int PlotOwnerId { get; set; }
-        [Display(Name = "আইডি নম্বর")]
+        [Display(Name = "প্লট আইডি নম্বর")]
         public int PlotId { get; set; }
 
-        [Display(Name = "আইডি নম্বর")]
+        [Display(Name = "প্লট আইডি নম্বর")]
         public string PlotIdNumber { get; set; }
         [Display(Name = "প্লট মালিকের নাম")]
         public string PlotOwnerName { get; set; }
