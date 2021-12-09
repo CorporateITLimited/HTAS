@@ -13,10 +13,10 @@ namespace HoldingTaxWebApp.ViewModels.Plots
         //Plot Owner Portion Start
         #region Plot Owner Portion Start
         public int PlotOwnerId { get; set; }
-        [Display(Name = "আইডি নম্বর")]
+        [Display(Name = "প্লট আইডি নম্বর")]
         public int PlotId { get; set; }
 
-        [Display(Name = "আইডি নম্বর")]
+        [Display(Name = "প্লট আইডি নম্বর")]
         public string PlotIdNumber { get; set; }
         [Display(Name = "প্লট মালিকের নাম")]
         public string PlotOwnerName { get; set; }
@@ -66,17 +66,22 @@ namespace HoldingTaxWebApp.ViewModels.Plots
         public string ConsStatusName { get; set; }
         [Display(Name = "নথি নং ১")]
         public string Doc1 { get; set; }
+        public string File1 { get; set; }
         [Display(Name = "নথি নং ২")]
         public string Doc2 { get; set; }
+        public string File2 { get; set; }
         [Display(Name = "নথি নং ৩")]
         public string Doc3 { get; set; }
+        public string File3 { get; set; }
         [Display(Name = "নথি নং ৪")]
         public string Doc4 { get; set; }
+        public string File4 { get; set; }
         [Display(Name = "নথি নং ৫")]
         public string Doc5 { get; set; }
+        public string File5 { get; set; }
         [Display(Name = "নথি নং ৬")]
         public string Doc6 { get; set; }
-
+        public string File6 { get; set; }
         #endregion
         //Plot Owner Portion End
 
