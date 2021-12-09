@@ -1,6 +1,7 @@
 ﻿using HoldingTaxWebApp.Gateway.Holding;
 using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Models.Holding;
+using HoldingTaxWebApp.Models.Plots;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,5 +59,24 @@ namespace HoldingTaxWebApp.Manager.Holding
         {
             return _notice.GetAllNoticeFiltering(FinancialYearId, NoticeTypeId, AreaId, PlotId);
         }
+
+
+        #region Added By Hasan for load plot and Holder (Date: 09/12/2021)
+
+        public List<Plot> GetPlotByAreaId(int id)
+        {
+            return _notice.GetPlotByAreaId(id);
+        }
+
+        public List<Holder> GetHolderByPlotId(int id)
+        {
+            return _notice.GetHolderByPlotId(id);
+        }
+
+
+        #endregion
+
+
+
     }
 }

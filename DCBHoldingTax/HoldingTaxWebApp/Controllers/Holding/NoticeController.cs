@@ -119,6 +119,11 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 ViewBag.NoticeTypeId = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text");
                 ViewBag.NoticeTypeId_Two = new SelectList(StaticDataHelper.GetNoticeTypeNameStatusForDropdown(), "Value", "Text");
                 ViewBag.EmpolyeeId = new SelectList(_employeeManager.GetAllEmployeeListForSelect(), "EmpolyeeId", "EmployeeName");
+                //ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+                //ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+
+
+
                 var currDate = DateTime.Now;
                 ViewBag.DateTimeStr = "আজকের তারিখ : " + BanglaConvertionHelper.StringEnglish2StringBanglaDate(currDate.ToString("dd/MM/yyyy"));
 
@@ -315,7 +320,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 notice.CreateDate = null;
                 notice.CreatedBy = null;
-                notice.HolderId = 0;
+                //notice.HolderId = 0;
                 notice.IsActive = null;
                 notice.IsDeleted = null;
                 notice.IsNoticeSent = true;
@@ -404,5 +409,32 @@ namespace HoldingTaxWebApp.Controllers.Holding
             Session["Type"] = null;
             return View();
         }
+
+        #region Create page Change Event Added By Hasan 09/12/2021
+
+        public JsonResult LoadPlotData(int AreaId)
+        {
+            return new JsonResult
+            {
+                Data = _noticeManager.GetPlotByAreaId(AreaId).ToList(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult LoadHolderData(int PlotId)
+        {
+            return new JsonResult
+            {
+                Data = _noticeManager.GetHolderByPlotId(PlotId).ToList(),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+
+
+        #endregion
+
+
+
     }
 }
