@@ -491,6 +491,7 @@
                                                 <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
                                                 <th>নিজ বসতি/ভাড়া </th>
                                                 <th>সম্পত্তির ধরন</th>
+                                                <th>মন্তব্য </th>
                                                 <th>মালিকানা </th>
                                             </tr>
                                         </thead>
@@ -503,10 +504,12 @@
                                                     <td>@item.StrFlatArea</td>
                                                     <td>@item.OwnOrRentType</td>
                                                     <td>@item.SelfOwnType </td>
+                                                    <td>@item.Remarks </td>
                                                     @if (string.IsNullOrWhiteSpace(item.OwnerName))
                                                     {
                                                         <td>
-                                                            ফ্ল্যাটের কোনো মালিকানা নেই
+                                                            @*ফ্ল্যাটের কোনো মালিকানা নেই*@
+                                                            ভাড়া
                                                         </td>
                                                     }
                                                     else
@@ -515,7 +518,6 @@
                                                             @item.OwnerName
                                                         </td>
                                                     }
-
                                                 </tr>
                                             }
                                         </tbody>
@@ -532,6 +534,7 @@
                                                 <th>নিজ বসতি/ভাড়া </th>
                                                 <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
                                                 <th>সম্পত্তির ধরন</th>
+                                                <th>মন্তব্য </th>
                                                 <th>মালিকানা </th>
                                             </tr>
                                         </thead>
@@ -545,10 +548,12 @@
                                                     <td>@item.OwnOrRentType</td>
                                                     <td>@item.StrMonthlyRent </td>
                                                     <td>@item.SelfOwnType </td>
+                                                    <td>@item.Remarks </td>
                                                     @if (string.IsNullOrWhiteSpace(item.OwnerName))
                                                     {
                                                         <td>
-                                                            ফ্ল্যাটের কোনো মালিকানা নেই
+                                                            @*ফ্ল্যাটের কোনো মালিকানা নেই*@
+                                                            ভাড়া
                                                         </td>
                                                     }
                                                     else

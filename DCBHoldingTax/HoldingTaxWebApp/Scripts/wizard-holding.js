@@ -64,8 +64,6 @@ var KTWizard4 = function () {
                     //_formEl.submit(); // Submit form
                     var isAllValid = true;
                     var list = [];
-                    debugger;
-                    //var area_type_id = $("#area_type_id").val();
                     //if (area_type_id === 2) {
                     //    $('#flat_details tbody tr').each(function (index, ele) {
                     //        var monthlyRent = parseFloat($('.MonthlyRent', this).val()) || 0;
@@ -85,7 +83,7 @@ var KTWizard4 = function () {
                     //    });
                     //}
 
-
+                    debugger;
                     var isHolderOwner = $('#IsHolderAnOwner').val();
                     if (isHolderOwner === 'true') {
                         $('#flat_details tbody tr').each(function (index, ele) {
@@ -97,7 +95,11 @@ var KTWizard4 = function () {
                             var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
                             var ownerName = '';//$('.OwnerName', this).val().trim();
                             var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
-
+                            var remarks = $('.nRemarks', this).val().trim();
+                            if (remarks == null) {
+                                alert("null");
+                                return;
+                            }
                             var detailsData = {
                                 HolderFlatId: 0,
                                 FlorNo: florNo,
@@ -107,7 +109,8 @@ var KTWizard4 = function () {
                                 SelfOwn: selfOwned,
                                 MonthlyRent: monthlyRent,
                                 OwnerName: ownerName,
-                                IsCheckedByHolder: isCheckedByHolder
+                                IsCheckedByHolder: isCheckedByHolder,
+                                Remarks: remarks
                             }
                             list.push(detailsData);
                         });
@@ -122,6 +125,7 @@ var KTWizard4 = function () {
                             var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
                             var ownerName = '';//$('.OwnerName', this).val().trim();
                             var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
+                            var remarks = $('.nRemarks', this).val();
 
                             var detailsData = {
                                 HolderFlatId: holderFlatId,
@@ -132,7 +136,8 @@ var KTWizard4 = function () {
                                 SelfOwn: selfOwned,
                                 MonthlyRent: monthlyRent,
                                 OwnerName: ownerName,
-                                IsCheckedByHolder: isCheckedByHolder
+                                IsCheckedByHolder: isCheckedByHolder,
+                                Remarks: remarks
                             }
                             list.push(detailsData);
                         });

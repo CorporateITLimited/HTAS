@@ -482,6 +482,7 @@
                                                                     <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
                                                                     <th>নিজ বসতি/ভাড়া </th>
                                                                     <th>সম্পত্তির ধরন</th>
+                                                                    <th>মন্তব্য</th>
                                                                     @*<th>মালিকানা </th>*@
                                                                     @if (Model.IsHolderAnOwner == true)
                                                                     {
@@ -577,6 +578,19 @@
                                                                                 </td>
                                                                                 @*<td width="13%;"><input type="text" class="form-control OwnerName" value="@item.OwnerName" /></td>*@
 
+                                                                                @if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
+                                                                                {
+                                                                                    <td width="20%">
+                                                                                        <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" readonly value="@item.Remarks">
+                                                                                    </td>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <td width="20%">
+                                                                                        <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" value="@item.Remarks">
+                                                                                    </td>
+                                                                                }
+
                                                                                 @if (item.SelfOwn == 1)
                                                                                 {
                                                                                     <td width="15%;">
@@ -589,7 +603,7 @@
                                                                                     if (string.IsNullOrWhiteSpace(item.OwnerName))
                                                                                     {
                                                                                         <td width="15%;">
-                                                                                            ফ্ল্যাটের কোনো মালিকানা নেই
+                                                                                            ভাড়া
                                                                                         </td>
                                                                                     }
                                                                                     else
@@ -648,6 +662,18 @@
                                                                                         <option value="1" selected>নিজস্ব মালিকানা</option>
                                                                                     </select>
                                                                                 </td>
+                                                                                @*@if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
+                                                                                {
+                                                                                    <td width="20%">
+                                                                                        <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" readonly value="@item.Remarks">
+                                                                                    </td>
+                                                                                }
+                                                                                else
+                                                                                {*@
+                                                                                    <td width="20%">
+                                                                                        <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" value="@item.Remarks">
+                                                                                    </td>
+                                                                                @*}*@
                                                                                 @*<td width="13%;"><input type="text" class="form-control OwnerName" value="@item.OwnerName" /></td>*@
                                                                                 @if (item.IsCheckedByHolder == true)
                                                                                 {
@@ -675,6 +701,7 @@
                                                                     <th>নিজ বসতি/ভাড়া </th>
                                                                     <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
                                                                     <th>সম্পত্তির ধরন</th>
+                                                                    <th>মন্তব্য</th>
                                                                     @*<th>মালিকানা </th>*@
                                                                     @if (Model.IsHolderAnOwner == true)
                                                                     {
@@ -768,7 +795,18 @@
                                                                                     }
                                                                                 </td>
                                                                                 @*<td width="13%;"><input type="text" class="form-control OwnerName" value="@item.OwnerName" /></td>*@
-
+                                                                                @if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
+                                                                                {
+                                                                                    <td width="20%">
+                                                                                        <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" readonly value="@item.Remarks">
+                                                                                    </td>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <td width="20%">
+                                                                                        <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" value="@item.Remarks">
+                                                                                    </td>
+                                                                                }
                                                                                 @if (item.SelfOwn == 1)
                                                                                 {
                                                                                     <td width="15%;">
@@ -781,7 +819,7 @@
                                                                                     if (string.IsNullOrWhiteSpace(item.OwnerName))
                                                                                     {
                                                                                         <td width="15%;">
-                                                                                            ফ্ল্যাটের কোনো মালিকানা নেই
+                                                                                            ভাড়া
                                                                                         </td>
                                                                                     }
                                                                                     else
@@ -839,6 +877,18 @@
                                                                                         <option value="1" selected>নিজস্ব মালিকানা</option>
                                                                                     </select>
                                                                                 </td>
+                                                                                @*@if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
+                                                                                    {
+                                                                                        <td width="20%">
+                                                                                            <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" readonly value="@item.Remarks">
+                                                                                        </td>
+                                                                                    }
+                                                                                    else
+                                                                                    {*@
+                                                                                <td width="20%">
+                                                                                    <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" value="@item.Remarks">
+                                                                                </td>
+                                                                                @*  }*@
                                                                                 @*<td width="13%;"><input type="text" class="form-control OwnerName" value="@item.OwnerName" /></td>*@
                                                                                 @if (item.IsCheckedByHolder == true)
                                                                                 {
@@ -1360,6 +1410,7 @@
                         '    <select class="form-control SelfOwned">' +
                         '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                        '<td width="20%;"><input type="text" class="form-control nRemarks" /></td>' +
                         '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr>');
                 }
                 else if (areaType === 1) {
@@ -1379,6 +1430,7 @@
                         '    <select class="form-control SelfOwned">' +
                         '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                        '<td width="20%;"><input type="text" class="form-control nRemarks" /></td>' +
                         '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr>');
                 }
             });
