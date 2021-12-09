@@ -446,7 +446,8 @@
                                                                 <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
                                                                 <th>নিজ বসতি/ভাড়া </th>
                                                                 <th id="rent_by_area">মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
-                                                                <th>সম্পত্তির ধরন</th>
+                                                                @*<th>সম্পত্তির ধরন</th>*@
+                                                                <th>মন্তব্য</th>
                                                                 <th>
                                                                     <span id="mess_for_flat">হস্তান্তরযোগ্য ফ্ল্যাট এ টিক দিন </span>
                                                                 </th>
@@ -872,7 +873,8 @@
                                     '@foreach (var item in ViewBag.OwnOrRent)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
                                     '<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" placeholder="0" required /></td>' +
-                                    '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                    //'<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                    '<td width="20%;"><input type="text" class="form-control nRemarks" /></td>' +
                                     '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
                             });
                         }
@@ -889,7 +891,8 @@
                                     ' <select class="form-control OwnOrRent">' +
                                     '@foreach (var item in ViewBag.OwnOrRent)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
-                                    '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                    //'<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                    '<td width="20%;"><input type="text" class="form-control nRemarks" /></td>' +
                                     '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
                             });
                         }

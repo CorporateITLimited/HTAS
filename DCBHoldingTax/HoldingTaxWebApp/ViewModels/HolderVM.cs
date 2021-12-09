@@ -254,6 +254,8 @@ namespace HoldingTaxWebApp.ViewModels
 
         public int? Area_type_id { get; set; }
 
+        public bool? IsFlatApprove { get; set; }
+
         public List<HolderFlat> HolderFlatList { get; set; }
         public List<HolderFlat> HolderFlatListForEdit { get; set; }
 

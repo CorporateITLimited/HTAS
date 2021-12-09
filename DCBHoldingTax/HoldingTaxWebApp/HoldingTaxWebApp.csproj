@@ -5049,6 +5049,7 @@
     <Content Include="Views\SPG\Details.cshtml" />
     <Content Include="Views\HoldingTax\GetTaxTransaction.cshtml" />
     <Content Include="Views\HoldingTax\TrnxDetailsById.cshtml" />
+    <Content Include="Views\Holding\UnApproveIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

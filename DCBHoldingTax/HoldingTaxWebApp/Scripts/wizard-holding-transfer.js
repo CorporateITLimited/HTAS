@@ -71,9 +71,10 @@ var KTWizard4 = function () {
                         var flatArea = parseFloat($('.FlatArea', this).html()) || 0;
                         var ownOrRent = parseInt($('.OwnOrRent option:selected', this).val()) || 0;
                         var monthlyRent = parseFloat($('.MonthlyRent', this).val()) || 0;
-                        var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
+                        var selfOwned = 1;//parseInt($('.SelfOwned option:selected', this).val()) || 0;
                         var ownerName = '';//$('.OwnerName', this).val().trim();
                         var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
+                        var remarks = $('.nRemarks', this).val().trim();
 
                         var detailsData = {
                             HolderFlatId: holderFlatId,
@@ -84,7 +85,8 @@ var KTWizard4 = function () {
                             SelfOwn: selfOwned,
                             MonthlyRent: monthlyRent,
                             OwnerName: ownerName,
-                            IsCheckedByHolder: isCheckedByHolder
+                            IsCheckedByHolder: isCheckedByHolder,
+                            Remarks: remarks
                         }
                         list.push(detailsData);
                     });

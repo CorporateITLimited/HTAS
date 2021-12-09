@@ -100,7 +100,128 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         RecordCorrectionDate = Data_Reader["RecordCorrectionDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["RecordCorrectionDate"]) : (DateTime?)null,
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
                         IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null,
-                        HolderNo = Convert.ToString(Data_Reader["HolderNo"])
+                        HolderNo = Convert.ToString(Data_Reader["HolderNo"]),
+                        IsFlatApprove = Data_Reader["IsFlatApprove"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsFlatApprove"]) : (bool?)null,
+                    };
+
+                    vm.Add(model);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
+        public List<Holder> GetAllUnapproveHolder()
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spHolderMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "unapprove_holder";
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<Holder> vm = new List<Holder>();
+
+                while (Data_Reader.Read())
+                {
+                    Holder model = new Holder
+                    {
+                        HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
+                        HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
+                        AreaName = Convert.ToString(Data_Reader["AreaName"]),
+                        PlotId = Convert.ToInt32(Data_Reader["PlotId"]),
+                        PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
+                        NID = Convert.ToString(Data_Reader["NID"]),
+                        Gender = Data_Reader["Gender"] != DBNull.Value ? Convert.ToInt32(Data_Reader["Gender"]) : (int?)null,
+                        GenderType = Convert.ToString(Data_Reader["GenderType"]),
+                        MaritialStatus = Data_Reader["MaritialStatus"] != DBNull.Value ? Convert.ToInt32(Data_Reader["MaritialStatus"]) : (int?)null,
+                        MaritialStatusType = Convert.ToString(Data_Reader["MaritialStatusType"]),
+                        Father = Convert.ToString(Data_Reader["Father"]),
+                        Mother = Convert.ToString(Data_Reader["Mother"]),
+                        Spouse = Convert.ToString(Data_Reader["Spouse"]),
+                        Contact1 = Convert.ToString(Data_Reader["Contact1"]),
+                        Contact2 = Convert.ToString(Data_Reader["Contact2"]),
+                        Email = Convert.ToString(Data_Reader["Email"]),
+                        PresentAdd = Convert.ToString(Data_Reader["PresentAdd"]),
+                        PermanentAdd = Convert.ToString(Data_Reader["PermanentAdd"]),
+                        ContactAdd = Convert.ToString(Data_Reader["ContactAdd"]),
+                        OwnershipSourceId = Convert.ToInt32(Data_Reader["OwnershipSourceId"]),
+                        SourceName = Convert.ToString(Data_Reader["SourceName"]),
+                        OwnerType = Data_Reader["OwnerType"] != DBNull.Value ? Convert.ToInt32(Data_Reader["OwnerType"]) : (int?)null,
+                        OwnerTypeName = Convert.ToString(Data_Reader["OwnerTypeName"]),
+                        BuildingTypeId = Convert.ToInt32(Data_Reader["BuildingTypeId"]),
+                        BuildingTypeName = Convert.ToString(Data_Reader["BuildingTypeName"]),
+                        AmountOfLand = Data_Reader["AmountOfLand"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["AmountOfLand"]) : (decimal?)null,
+                        TotalFloor = Data_Reader["TotalFloor"] != DBNull.Value ? Convert.ToInt32(Data_Reader["TotalFloor"]) : (int?)null,
+                        EachFloorArea = Data_Reader["EachFloorArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["EachFloorArea"]) : (decimal?)null,
+                        TotalFlat = Data_Reader["TotalFlat"] != DBNull.Value ? Convert.ToInt32(Data_Reader["TotalFlat"]) : (int?)null,
+                        HoldersFlatNumber = Data_Reader["HoldersFlatNumber"] != DBNull.Value ? Convert.ToInt32(Data_Reader["HoldersFlatNumber"]) : (int?)null,
+                        PreviousDueTax = Data_Reader["PreviousDueTax"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["PreviousDueTax"]) : (decimal?)null,
+                        ImageLocation = Convert.ToString(Data_Reader["ImageLocation"]),
+                        Document1 = Convert.ToString(Data_Reader["Document1"]),
+                        Document2 = Convert.ToString(Data_Reader["Document2"]),
+                        CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null,
+                        CreatedByUsername = Data_Reader["CreatedByUsername"].ToString(),
+                        UpdatedByUsername = Data_Reader["UpdatedByUserName"].ToString(),
+                        LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null,
+                        IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null,
+                        IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
+                        CreatedBy = Data_Reader["CreatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
+                        LastUpdatedBy = Data_Reader["LastUpdatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null,
+
+                        //this part done by Masum  ====================
+                        AllocationLetterNo = Convert.ToString(Data_Reader["AllocationLetterNo"]),
+                        NamjariLetterNo = Convert.ToString(Data_Reader["NamjariLetterNo"]),
+                        AllocationDate = Data_Reader["AllocationDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["AllocationDate"]) : (DateTime?)null,
+                        NamjariDate = Data_Reader["NamjariDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["NamjariDate"]) : (DateTime?)null,
+                        RecordCorrectionDate = Data_Reader["RecordCorrectionDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["RecordCorrectionDate"]) : (DateTime?)null,
+                        AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
+                        IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null,
+                        HolderNo = Convert.ToString(Data_Reader["HolderNo"]),
+                        IsFlatApprove = Data_Reader["IsFlatApprove"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsFlatApprove"]) : (bool?)null,
                     };
 
                     vm.Add(model);
@@ -220,6 +341,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     vm.AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]);
                     vm.IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null;
                     vm.HolderNo = Convert.ToString(Data_Reader["HolderNo"]);
+                    vm.IsFlatApprove = Data_Reader["IsFlatApprove"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsFlatApprove"]) : (bool?)null;
                 };
 
                 vm.StringCreateDate = $"{vm.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -388,6 +510,113 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@RecordCorrectionDate", SqlDbType.DateTime).Value = model.RecordCorrectionDate;
 
                 Sql_Command.Parameters.Add("@HolderNo", SqlDbType.NVarChar).Value = null;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
+        public int UpdateApprove()
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spHolderMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "unapprove";
+
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
+        public int ApproveInformation(Holder model)
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spHolderMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "approve";
+
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = model.HolderId;
+                Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = model.LastUpdated;
+                Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = model.LastUpdatedBy;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -943,6 +1172,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
                 Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = model.IsCheckedByHolder;
+                Sql_Command.Parameters.Add("@Remarks", SqlDbType.NVarChar).Value = model.Remarks;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -1851,6 +2081,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
         }
 
         #endregion
+
+
 
     }
 }

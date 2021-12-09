@@ -136,6 +136,8 @@
                                                     <label class="show_plot"></label>
                                                 </div>
                                                 <input type="hidden" id="area_type_id" />
+
+
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
@@ -168,7 +170,7 @@
 
                                                     <label class="col-lg-2 col-form-label text-lg-right" for="road_name">রোডের নাম</label>
                                                     <div class="col-lg-4">
-                                                        <input type="text" class="form-control border-0" id="road_name" name="road_name" readonly />
+                                                        <input type="text" class="form-control border-0 " id="road_name" name="road_name" readonly />
                                                     </div>
                                                 </div>
                                                 <div class="separator separator-dashed my-10"></div>
@@ -176,6 +178,17 @@
                                                     ব্যাক্তিগত তথ্য &nbsp;
                                                     <label class="show_plot"></label>
                                                 </div>
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.IsHolderAnOwner, "গৃহকরদাতা নিজেই কি প্লটের মালিক?", htmlAttributes: new { @class = "col-lg-5 col-form-label text-lg-right font-weight-bolder" })
+                                                    <div class="col-lg-4">
+                                                        @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
+                                                   {
+                                                       @class = "form-control",
+                                                   })
+                                                    </div>
+                                                </div>
+                                                <br />
+
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.HolderName, "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
@@ -299,13 +312,13 @@
                                                         </span>
                                                     </div>
 
-                                                    @Html.LabelFor(model => model.IsHolderAnOwner, "গৃহকরদাতা নিজেই কি প্লটের মালিক?", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
-                                                   {
-                                                       @class = "form-control",
-                                                   })
-                                                    </div>
+                                                    @*@Html.LabelFor(model => model.IsHolderAnOwner, "গৃহকরদাতা নিজেই কি প্লটের মালিক?", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                         <div class="col-lg-4">
+                                                             @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
+                                                        {
+                                                            @class = "form-control",
+                                                        })
+                                                         </div>*@
                                                 </div>
 
                                             </div>
@@ -420,7 +433,7 @@
                                                                 <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
                                                                 <th>নিজ বসতি/ভাড়া </th>
                                                                 <th id="rent_by_area">মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
-                                                                <th>সম্পত্তির ধরন</th>
+                                                                @*<th>সম্পত্তির ধরন</th>*@
                                                                 <th>মন্তব্য</th>
                                                                 <th>
                                                                     <button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button>
@@ -785,7 +798,7 @@
                                     '    <select class="form-control SelfOwned">' +
                                     '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +*@
-                                        '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                        //'<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
                                         '<td width="20%;"><input type="text" class="form-control nRemarks" />' +
                                         '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
                                 });
@@ -821,7 +834,7 @@
                                     '    <select class="form-control SelfOwned">' +
                                     '@foreach (var item in ViewBag.SelfOwned)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +*@
-                                        '<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
+                                        //'<td width="15%;"><select class="form-control SelfOwned"><option value="1" selected>নিজস্ব মালিকানা</option> </select></td>' +
                                         '<td width="20%;"><input type="text" class="form-control nRemarks" />' +
                                         '<td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td></tr>');
                                 });
@@ -846,6 +859,36 @@
                         }
                     });
                 } else {
+
+                    // add data here for owner
+
+                    var plotid = parseInt($('#PlotId option:selected').val());
+                    var json = {
+                        PlotId: plotid,
+                    };
+                    $.ajax({
+                        url: '/Holding/GetPlotOwnerDetailsByPlotId',
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(json),
+                        success: function (data) {
+                            $("#HolderName").val(data.PlotOwnerName);
+                            $("#PresentAdd").val(data.PresentAdd);
+                            $("#ContactAdd").val(data.PresentAdd);
+                            $("#PermanentAdd").val(data.PermanentAdd);
+                            $("#Contact2").val(data.PhoneNumber);
+                            $("#Contact1").val(data.PhoneNumber);
+                            $("#Email").val(data.Email);
+                        },
+                        error: function (e) {
+                            console.log(e);
+                        }
+                    });
+
+
+
+
+
                     $('#for_owner').show();
                     $('#for_not_owner').hide();
                     $('#mess_for_flat').hide();
@@ -973,10 +1016,10 @@
                         '@foreach (var item in ViewBag.OwnOrRent)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
                         '<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" placeholder="0" /></td>' +
-                        '<td width="15%;">' +
+                        @*'<td width="15%;">' +
                         '    <select class="form-control SelfOwned">' +
                         '@foreach (var item in ViewBag.SelfOwned)
-                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +*@
                         '<td width="20%;"><input type="text" class="form-control nRemarks" /></td>' +
                         '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr >');
                 } else {
@@ -992,10 +1035,10 @@
                         ' <select class="form-control OwnOrRent">' +
                         '@foreach (var item in ViewBag.OwnOrRent)
                     { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
-                        '<td width="15%;">' +
+                        @*'<td width="15%;">' +
                         '    <select class="form-control SelfOwned">' +
                         '@foreach (var item in ViewBag.SelfOwned)
-                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +
+                    { <option value="@item.TypeId">@item.TypeName</option>} +</select></td>' +*@
                         '<td width="20%;"><input type="text" class="form-control nRemarks" /></td>' +
                         '<td width="15%;"><button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button></td></tr>');
                 }

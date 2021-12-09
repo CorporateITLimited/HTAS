@@ -73,7 +73,7 @@ var KTWizard4 = function () {
                             var flatArea = parseFloat($('.FlatArea', this).val()) || 0;
                             var ownOrRent = parseInt($('.OwnOrRent option:selected', this).val()) || 0;
                             var monthlyRent = parseFloat($('.MonthlyRent', this).val()) || 0;
-                            var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
+                            var selfOwned = 1;//parseInt($('.SelfOwned option:selected', this).val()) || 0;
                             var ownerName = '';//$('.OwnerName', this).val().trim();
                             var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
                             var remarks = $('.nRemarks', this).val().trim();
@@ -100,7 +100,7 @@ var KTWizard4 = function () {
                             var flatArea = parseFloat($('.FlatArea', this).html()) || 0;
                             var ownOrRent = parseInt($('.OwnOrRent option:selected', this).val()) || 0;
                             var monthlyRent = parseFloat($('.MonthlyRent', this).val()) || 0;
-                            var selfOwned = parseInt($('.SelfOwned option:selected', this).val()) || 0;
+                            var selfOwned = 1;//parseInt($('.SelfOwned option:selected', this).val()) || 0;
                             var ownerName = '';//$('.OwnerName', this).val().trim();
                             var isCheckedByHolder = $('.IsCheckedByHolder', this).val();
                             var remarks = $('.nRemarks', this).val().trim();
@@ -178,7 +178,7 @@ var KTWizard4 = function () {
                             oldDoc2: $('#Document2').val().trim(),
                             HolderNo: $('#HolderNo').val().trim()
                         };
-                        
+
 
                         $.ajax({
                             type: 'POST',

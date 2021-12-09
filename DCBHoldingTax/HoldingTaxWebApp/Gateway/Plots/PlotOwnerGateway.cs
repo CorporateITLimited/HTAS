@@ -223,6 +223,104 @@ namespace HoldingTaxWebApp.Gateway.Plots
 
         }
 
+        public PlotOwner GetPlotOwnerByPlotId(int id)
+        {
+            try
+            {
+                Sql_Query = "[Plot].[spPlotOwnerMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "select_by_plotid";
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = id;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                PlotOwner vm = new PlotOwner();
+
+                while (Data_Reader.Read())
+                {
+                    vm.CreateDate = Data_Reader["CreateDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null;
+                    vm.CreatedByUserName = Data_Reader["CreatedByUsername"].ToString();
+                    vm.UpdatedByUserName = Data_Reader["UpdatedByUserName"].ToString();
+                    vm.LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null;
+                    vm.IsActive = Data_Reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null;
+                    vm.IsDeleted = Data_Reader["IsDeleted"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null;
+                    vm.CreatedBy = Data_Reader["CreatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (Int32?)null;
+                    vm.LastUpdatedBy = Data_Reader["LastUpdatedBy"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (Int32?)null;
+
+                    vm.PlotOwnerId = Convert.ToInt32(Data_Reader["PlotOwnerId"]);
+                    vm.PlotId = Convert.ToInt32(Data_Reader["PlotId"]);
+                    vm.PlotIdNumber = Data_Reader["PlotIdNumber"].ToString();
+                    vm.PlotOwnerName = Data_Reader["PlotOwnerName"].ToString();
+                    vm.IsAlive = Data_Reader["IsAlive"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsAlive"]) : (bool?)null;
+                    vm.OfficialStatusId = Convert.ToInt32(Data_Reader["OfficialStatusId"]);
+                    vm.OffStatusName = Data_Reader["OffStatusName"].ToString();
+                    vm.PresentAdd = Data_Reader["PresentAdd"].ToString();
+                    vm.PermanentAdd = Data_Reader["PermanentAdd"].ToString();
+                    vm.PhoneNumber = Data_Reader["PhoneNumber"].ToString();
+                    vm.Email = Data_Reader["Email"].ToString();
+                    vm.LeaveDate = Data_Reader["LeaveDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["LeaveDate"]) : (DateTime?)null;
+                    vm.LeaseAuthority = Data_Reader["LeaseAuthority"].ToString();
+                    vm.LeaseType = Data_Reader["LeaseType"].ToString();
+                    vm.LeasePeriod = Data_Reader["LeasePeriod"] != DBNull.Value ? Convert.ToInt32(Data_Reader["LeasePeriod"]) : (Int32?)null;
+                    vm.LeaseQuotaId = Convert.ToInt32(Data_Reader["LeaseQuotaId"]);
+                    vm.HandOverOffice = Data_Reader["HandOverOffice"].ToString();
+                    vm.HandOverLetterNo = Data_Reader["HandOverLetterNo"].ToString();
+                    vm.LandDevelopChange = Data_Reader["LandDevelopChange"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["LandDevelopChange"]) : (Decimal?)null;
+                    vm.ConsStatusId = Convert.ToInt32(Data_Reader["ConsStatusId"]);
+                    vm.Doc1 = Data_Reader["Doc1"].ToString();
+                    vm.Doc2 = Data_Reader["Doc2"].ToString();
+                    vm.Doc3 = Data_Reader["Doc3"].ToString();
+                    vm.Doc4 = Data_Reader["Doc4"].ToString();
+                    vm.Doc5 = Data_Reader["Doc5"].ToString();
+                    vm.Doc6 = Data_Reader["Doc6"].ToString();
+                    vm.ConsStatusName = Data_Reader["ConsStatusName"].ToString();
+                    vm.LeaseQuotaName = Data_Reader["LeaseQuotaName"].ToString();
+                    vm.TotalArea = Data_Reader["TotalArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["TotalArea"]) : (Decimal?)null;
+                };
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
         //Get Construction Progress By Id
         public ConstructionProgress GetConstructionProgressById(int id)
         {
