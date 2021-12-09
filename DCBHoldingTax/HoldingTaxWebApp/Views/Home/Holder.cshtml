@@ -93,6 +93,12 @@
                 });
 
             var taxTable = $('#tblTax tbody');
+            var holdingTaxId = null;
+            function callback(response) {
+                 
+                holdingTaxId = response.HoldingTaxId;
+            }
+             
             $.ajax(
                 {
                     type: 'POST',
@@ -103,6 +109,8 @@
                             taxTable.empty();
 
                             $(data).each(function (index, ep) {
+                                callback(ep);
+                                //console.log(ep);
                                 taxTable.append('<tr>' +
                                     '<input type="hidden" value=' + ep.IsPaid + ' class="is_paid" />' +
                                     '<td class="FinancialYear" id="FinancialYear">' + ep.FinancialYear + '</td>' +
@@ -121,7 +129,7 @@
                                     currentRow.find('.StatusOfTax').append('<span style="color: green; font-size: 16px;">কর পরিশোধিত</span>');
                                 }
                                else {
-                                    currentRow.find('.StatusOfTax').append('<span style="color: red; font-size: 16px;">কর অপরিশোধিত    </span>');
+                                    currentRow.find('.StatusOfTax').append('<span style="color: red; font-size: 16px;">কর অপরিশোধিত    </span>' + '<a href="../HoldingTax/Invoice/' + holdingTaxId + '" class="btn btn-danger active mr-2" role="button">কর পরিশোধ করুন</a>');
                                 }
                             });
                         },

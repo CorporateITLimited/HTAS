@@ -281,7 +281,7 @@
                             {
                                 if (Model.Ispaid == false)
                                 {
-                                    <a class="btn btn-light-success font-weight-bold" id="btnPayment"
+                                    <a class="btn btn-success font-weight-bold" id="btnPayment"
                                        href="@Html.Raw(@Url.Action("Checkout", "Cart", new { @HoldingTaxId = @Model.HoldingTaxId, @FinancialYear =  @Model.FinancialYear.Replace(" ","") }))">
                                         <b> <i class="far fa-credit-card"></i></b>পেমেন্ট করুন
                                     </a>
@@ -291,7 +291,7 @@
                             {
                                 if (Model.Ispaid == false)
                                 {
-                                    <a class="btn btn-light-success font-weight-bold" href="~/HoldingTax/Edit/@Model.HoldingTaxId">
+                                    <a class="btn btn-success font-weight-bold" href="~/HoldingTax/Edit/@Model.HoldingTaxId">
                                         <b> <i class="far fa-credit-card"></i></b>কাউন্টার পেমেন্ট করুন
                                     </a>
                                 }
