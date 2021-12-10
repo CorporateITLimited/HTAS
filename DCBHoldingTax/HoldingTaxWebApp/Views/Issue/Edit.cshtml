@@ -118,6 +118,8 @@
             </div>
         </div>
         <div class="d-flex align-items-center">
+            <a href="~/Holding/Edit/@Model.HolderId" type="button" class="btn btn-primary mr-2">গৃহকরদাতার তথ্য হালনাগাদ</a>
+
             <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
         </div>
     </div>
@@ -137,6 +139,7 @@
                         <!--begin::Header-->
                         <div class="d-flex align-items-center justify-content-between py-5 pl-8 pr-5 border-bottom">
                             <h5 class="font-weight-bold m-0">মেসেজ/বার্তা</h5>
+                            
                             @if (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
                             {
                                 <div class="font-weight-bold m-0">
