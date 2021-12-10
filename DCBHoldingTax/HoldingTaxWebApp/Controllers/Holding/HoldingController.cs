@@ -45,10 +45,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             return View(_holdingManager.GetAllHolder());
         }
 
-        public ActionResult UnApproveIndex()
-        {
-            return View(_holdingManager.GetAllUnapproveHolder());
-        }
+
 
         public ActionResult NewIndex()
         {
@@ -2434,7 +2431,10 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
 
         #region approval
-
+        public ActionResult UnApproveIndex()
+        {
+            return View(_holdingManager.GetAllUnapproveHolder());
+        }
         public JsonResult ApproveInformation(int HolderId)
         {
 
@@ -2444,7 +2444,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
             holder.HolderId = HolderId;
 
             var data = _holdingManager.ApproveInformation(holder);
-            return new JsonResult { Data = data };
+
+            return Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
         #endregion

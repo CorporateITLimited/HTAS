@@ -802,9 +802,8 @@
                             url: '/Holding/ApproveInformation',
                             data: "HolderId=" + @Model.HolderId,
                             contentType: 'application/json',
-                            success: function (status) {
-
-                                if (status === 202) {
+                            success: function (data) {
+                                if (data.data > 0) {
                                     Swal.fire({
                                         text: "সফলভাবে গৃহকর অনুমোদন চূড়ান্তকরণ করা হয়েছে",
                                         icon: "success",
@@ -814,30 +813,19 @@
                                             confirmButton: "btn font-weight-bold btn-success",
                                         }
                                     });
-                                    setTimeout(function () { window.location.href = "/HoldingTax/Index"; }, 2000);
-                                }
-                                else if (status === 409) {
-                                    Swal.fire({
-                                        text: " নির্বাচিত আর্থিক বছরের জন্য এখনো কোনো গৃহকর প্রস্তুত কর হয়নি",
-                                        icon: "error",
-                                        buttonsStyling: false,
-                                        confirmButtonText: "বাতিল করা হয়েছে",
-                                        customClass: {
-                                            confirmButton: "btn font-weight-bold btn-danger",
-                                        }
-                                    });
-                                    KTUtil.scrollTop();
+                                    setTimeout(function () { window.location.href = "/Holding/Details/" + @Model.HolderId; }, 2000);
                                 }
                                 else {
                                     Swal.fire({
                                         text: status,
                                         icon: "error",
                                         buttonsStyling: false,
-                                        confirmButtonText: " বাতিল করা হয়েছে ",
+                                        confirmButtonText: " অনুমোদন করা সম্ভব হয়নি  ",
                                         customClass: {
                                             confirmButton: "btn font-weight-bold btn-danger",
                                         }
                                     });
+                                    KTUtil.scrollTop();
                                 }
                             },
                             error: function (error) {
