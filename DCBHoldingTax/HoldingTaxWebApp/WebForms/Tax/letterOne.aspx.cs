@@ -56,10 +56,10 @@ namespace HoldingTaxWebApp.WebForms.Tax
                 {
                     throw ex;
                 }
-
+                int? rptHolderId = Session["HolderID"] != null ? Convert.ToInt32(Session["HolderID"]) : (int?)null;
                 SqlCommand cmd2 = new SqlCommand("exec [constant].[spRentTaxRate] @StatementType=@StatementType,@result=Null", con);
                 cmd2.CommandType = CommandType.Text; // always text
-
+                cmd2.Parameters.AddWithValue("@HolderId", SqlDbType.Int).Value = rptHolderId ?? (object)DBNull.Value;
                 cmd2.Parameters.AddWithValue("@StatementType", SqlDbType.NVarChar).Value = "selectForResidential";
                 try
                 {
@@ -116,10 +116,10 @@ namespace HoldingTaxWebApp.WebForms.Tax
                 {
                     throw ex;
                 }
-
-                SqlCommand cmd2 = new SqlCommand("exec [constant].[spRentTaxRate] @StatementType=@StatementType,@result=Null", con);
+                //int? rptHolderId = Session["HolderID"] != null ? Convert.ToInt32(Session["HolderID"]) : (int?)null;
+                SqlCommand cmd2 = new SqlCommand("exec [constant].[spRentTaxRate] @HolderId = @HolderId,@StatementType=@StatementType,@result=Null", con);
                 cmd2.CommandType = CommandType.Text; // always text
-
+                cmd2.Parameters.AddWithValue("@HolderId", SqlDbType.Int).Value = rptHolderId ?? (object)DBNull.Value;
                 cmd2.Parameters.AddWithValue("@StatementType", SqlDbType.NVarChar).Value = "selectForResidential";
                 try
                 {

@@ -19,9 +19,9 @@ namespace HoldingTaxWebApp.Models.Plots
         public string OldPlotOwnerName { get; set; }
         [Display(Name = "প্লট মালিকের বর্তমান অবস্থা")]
         public bool? IsAlive { get; set; }
-        [Display(Name = "প্লট মালিকের অফিসিয়াল অবস্থা")]
+        [Display(Name = "সামরিক / বেসামরিক")]
         public int OfficialStatusId { get; set; }
-        [Display(Name = "প্লট মালিকের অফিসিয়াল অবস্থা")]
+        [Display(Name = "সামরিক / বেসামরিক")]
         public string OffStatusName { get; set; }
         [Display(Name = "বর্তমান ঠিকানা")]
         public string PresentAdd { get; set; }

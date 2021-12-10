@@ -200,7 +200,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
                 ViewBag.IsRebate = 0;
 
             holdingTax.TotalHoldingTaxWithRebate = holdingTax.TotalHoldingTax - (holdingTax.Rebate ?? 0);
-            holdingTax.TotalHoldingTaxWithRebateAndSurcharge = holdingTax.TotalHoldingTaxWithRebate + (holdingTax.TotalHoldingTaxWithRebate * constantSurcharge);
+            holdingTax.TotalHoldingTaxWithRebateAndSurcharge = holdingTax.TotalHoldingTaxWithRebate; //+ (holdingTax.TotalHoldingTaxWithRebate * constantSurcharge);
 
             holdingTax.RebatePercent = relatedData.RebatePercent;
             holdingTax.WrongInfoChargePercent = relatedData.WrongInfoChargePercent;

@@ -1,5 +1,6 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Models.Holding;
+using HoldingTaxWebApp.Models.Plots;
 using HoldingTaxWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -453,7 +454,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@NoticeId", SqlDbType.BigInt).Value = 0;
                 Sql_Command.Parameters.Add("@FinancialYearId", SqlDbType.Int).Value = model.FinancialYearId_Two;
                 Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = model.AreaId;
-                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = 0;
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = model.HolderId;
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = model.PlotId;
                 Sql_Command.Parameters.Add("@NoticeTypeId", SqlDbType.Int).Value = model.NoticeTypeId_Two;
                 Sql_Command.Parameters.Add("@IsNoticeSent", SqlDbType.Bit).Value = model.IsNoticeSent;
                 Sql_Command.Parameters.Add("@NoticeSentDate", SqlDbType.DateTime).Value = model.NoticeSentDate;
@@ -595,5 +597,151 @@ namespace HoldingTaxWebApp.Gateway.Holding
             }
 
         }
+
+
+
+        #region Added By Hasan for load plot and Holder (Date: 09/12/2021)
+
+        public List<Plot> GetPlotByAreaId(int id)
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spNoticeMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "LoadPlotByAreaId";
+                Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = id;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<Plot> vm = new List<Plot>();
+
+                while (Data_Reader.Read())
+                {
+                    Plot model = new Plot
+                    {
+                        PlotId = Convert.ToInt32(Data_Reader["PlotId"]),
+                        PlotIdNumber = Convert.ToString(Data_Reader["PlotIdNumber"]),
+                        PlotNo = Convert.ToString(Data_Reader["PlotNo"])
+                    };
+                    vm.Add(model);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
+        public List<Holder> GetHolderByPlotId(int id)
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spNoticeMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "LoadHolderByPlotId";
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = id;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<Holder> vm = new List<Holder>();
+
+                while (Data_Reader.Read())
+                {
+                    Holder model = new Holder
+                    {
+                        HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
+                      
+                        HolderName = Convert.ToString(Data_Reader["HolderName"])
+                    };
+                    vm.Add(model);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
+
+        #endregion
+
+
+
     }
 }
