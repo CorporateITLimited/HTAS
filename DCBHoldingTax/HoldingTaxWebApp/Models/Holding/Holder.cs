@@ -248,5 +248,7 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "গৃহকরদাতার আইডি নম্বর")]
         public string HolderNo { get; set; }
+
+        public bool? IsFlatApprove { get; set; }
     }
 }

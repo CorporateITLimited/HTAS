@@ -156,6 +156,26 @@
                                    })
                                     </div>
                                 </div>
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.PlotId, "প্লট নাম্বার", htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                                    <div class="col-lg-9">
+                                        <select class="PlotId form-control" id="PlotId" name="PlotId">
+                                            <option>-- নির্বাচন করুন  --</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.HolderId, "গৃহ করদাতা", htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
+                                    <div class="col-lg-9">
+                                        <select class="HolderId form-control" id="HolderId" name="HolderId">
+                                            <option>-- নির্বাচন করুন  --</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
                             </fieldset>
                         </div>
                         <div class="card-footer">
@@ -210,12 +230,93 @@
             allowClear: true
         });
 
+        $('#PlotId').select2({
+            placeholder: "-- নির্বাচন করুন  --",
+            allowClear: true
+        });
+        $('#HolderId').select2({
+            placeholder: "-- নির্বাচন করুন  --",
+            allowClear: true
+        });
+        
+
         jQuery(document).ready(function () {
+
+
+
+              ////Start AreaId change event Added by Hasan Date 09/12/2021
+            $("#AreaId").change(function () {
+
+                        //NoaPricetable.empty();
+                var AreaId = $("#AreaId").val();
+                        //alert(PlotId);
+                        var json = {
+                            AreaId: AreaId
+                        };
+
+                         $.ajax({
+                         url: '@Url.Action("LoadPlotData", "Notice")',
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify(json),
+                            success: function (data) {
+                                $("#PlotId").empty();
+                                $("#PlotId").append("<option value='0'>-- নির্বাচন করুন  --</option>");
+                                $.each(data, function (index, row) {
+                                    $("#PlotId").append("<option value='" + row.PlotId + "'>" + row.PlotNo + "</option>");
+                                });
+                      
+                            }
+                        });
+
+                    });
+                ///End AreaId change event
+
+                ////Start PlotId change event Added by Hasan Date 09/12/2021
+                        $("#PlotId").change(function () {
+
+                            //NoaPricetable.empty();
+                            var PlotId = $("#PlotId").val();
+                            //alert(PlotId);
+                            var json1 = {
+                                PlotId: PlotId
+                            };
+
+                                $.ajax({
+                                url: '@Url.Action("LoadHolderData", "Notice")',
+                                type: "POST",
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify(json1),
+                                success: function (data) {
+                                    $("#HolderId").empty();
+                                    $("#HolderId").append("<option value='0'>-- নির্বাচন করুন  --</option>");
+                                    $.each(data, function (index, row) {
+                                        $("#HolderId").append("<option value='" + row.HolderId + "'>" + row.HolderName + "</option>");
+                                    });
+                      
+                                }
+                            });
+
+                        });
+                    ///End PlotId change event
+
+
+
+
+
+
+
+
+
+
+
+
 
             $('#send_notification').click(function (e) {
                 e.preventDefault();
                 alert("finalle");
             });
+
 
 
             $("#kt_form_2").validate({

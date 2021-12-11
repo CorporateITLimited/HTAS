@@ -200,14 +200,14 @@ namespace HoldingTaxWebApp.Controllers.Tax
                 ViewBag.IsRebate = 0;
 
             holdingTax.TotalHoldingTaxWithRebate = holdingTax.TotalHoldingTax - (holdingTax.Rebate ?? 0);
-            holdingTax.TotalHoldingTaxWithRebateAndSurcharge = holdingTax.TotalHoldingTaxWithRebate + (holdingTax.TotalHoldingTaxWithRebate * constantSurcharge);
+            holdingTax.TotalHoldingTaxWithRebateAndSurcharge = holdingTax.TotalHoldingTaxWithRebate; //+ (holdingTax.TotalHoldingTaxWithRebate * constantSurcharge);
 
             holdingTax.RebatePercent = relatedData.RebatePercent;
             holdingTax.WrongInfoChargePercent = relatedData.WrongInfoChargePercent;
 
-            holdingTax.DuesPreviousYear = (holdingTax.DuesPreviousYear ?? 0) + (holdingTax.DuesFineAmount ?? 0);
+            holdingTax.DuesPreviousYear = (holdingTax.DuesPreviousYear ?? 0); //+ (holdingTax.DuesFineAmount ?? 0);
 
-            holdingTax.NetTaxPayableAmount = holdingTax.TotalHoldingTaxWithRebateAndSurcharge + holdingTax.DuesPreviousYear + (holdingTax.WrongInfoCharge ?? 0);
+            //holdingTax.NetTaxPayableAmount = holdingTax.TotalHoldingTaxWithRebateAndSurcharge + holdingTax.DuesPreviousYear + (holdingTax.WrongInfoCharge ?? 0);
 
             return View(holdingTax);
         }

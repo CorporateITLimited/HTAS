@@ -23,6 +23,11 @@ namespace HoldingTaxWebApp.Manager.Holding
             return _holdingGateway.GetAllHolder();
         }
 
+        public List<Holder> GetAllUnapproveHolder()
+        {
+            return _holdingGateway.GetAllUnapproveHolder();
+        }
+
         public Holder GetHolderById(int id)
         {
             return _holdingGateway.GetHolderById(id);
@@ -36,6 +41,16 @@ namespace HoldingTaxWebApp.Manager.Holding
         public int InsertHolder(Holder model)
         {
             return _holdingGateway.InsertHolder(model);
+        }
+
+        public int UpdateApprove()
+        {
+            return _holdingGateway.UpdateApprove();
+        }
+
+        public int ApproveInformation(Holder model)
+        {
+            return _holdingGateway.ApproveInformation(model);
         }
 
         public bool IsHolderNoExist(string HolderNo, int HolderId)

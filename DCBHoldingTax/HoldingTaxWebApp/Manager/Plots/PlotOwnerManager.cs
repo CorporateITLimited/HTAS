@@ -65,8 +65,8 @@ namespace HoldingTaxWebApp.Manager.Plots
         }
 
 
-            //Create Plot Owner Details
-            public int PlotOwnerInsert(PlotOwnerCombineVM model)
+        //Create Plot Owner Details
+        public int PlotOwnerInsert(PlotOwnerCombineVM model)
         {
             return _PlotOwnerGateway.PlotOwnerInsert(model);
 
@@ -138,7 +138,7 @@ namespace HoldingTaxWebApp.Manager.Plots
         //Get All Design Approval List
         public List<DesignApproval> GetDesignApprovalById(int id)
         {
-           return _PlotOwnerGateway.GetDesignApprovalById(id);
+            return _PlotOwnerGateway.GetDesignApprovalById(id);
 
         }
 
@@ -178,6 +178,11 @@ namespace HoldingTaxWebApp.Manager.Plots
         }
 
         #endregion
+
+        public PlotOwner GetPlotOwnerByPlotId(int id)
+        {
+            return _PlotOwnerGateway.GetPlotOwnerByPlotId(id);
+        }
 
     }
 }
