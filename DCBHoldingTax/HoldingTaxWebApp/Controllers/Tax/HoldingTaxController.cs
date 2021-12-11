@@ -205,9 +205,9 @@ namespace HoldingTaxWebApp.Controllers.Tax
             holdingTax.RebatePercent = relatedData.RebatePercent;
             holdingTax.WrongInfoChargePercent = relatedData.WrongInfoChargePercent;
 
-            holdingTax.DuesPreviousYear = (holdingTax.DuesPreviousYear ?? 0) + (holdingTax.DuesFineAmount ?? 0);
+            holdingTax.DuesPreviousYear = (holdingTax.DuesPreviousYear ?? 0); //+ (holdingTax.DuesFineAmount ?? 0);
 
-            holdingTax.NetTaxPayableAmount = holdingTax.TotalHoldingTaxWithRebateAndSurcharge + holdingTax.DuesPreviousYear + (holdingTax.WrongInfoCharge ?? 0);
+            //holdingTax.NetTaxPayableAmount = holdingTax.TotalHoldingTaxWithRebateAndSurcharge + holdingTax.DuesPreviousYear + (holdingTax.WrongInfoCharge ?? 0);
 
             return View(holdingTax);
         }
