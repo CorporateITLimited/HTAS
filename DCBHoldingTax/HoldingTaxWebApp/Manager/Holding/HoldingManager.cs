@@ -62,6 +62,11 @@ namespace HoldingTaxWebApp.Manager.Holding
             return _holdingGateway.UpdateHolder(model);
         }
 
+        public int UpdateHolderProfile(Holder model)
+        {
+            return _holdingGateway.UpdateHolderProfile(model);
+        }
+
         #endregion
 
         #region holder flat
@@ -123,6 +128,18 @@ namespace HoldingTaxWebApp.Manager.Holding
         public string HoldersFlatUpdateForMainHolder(HolderFlat model)
         {
             int result = _holdingGateway.HoldersFlatUpdateForMainHolder(model);
+
+            if (result == 202)
+                return CommonConstantHelper.Success;
+            else if (result == 500)
+                return CommonConstantHelper.Error;
+            else
+                return CommonConstantHelper.Failed;
+        }
+
+        public string HoldersFlatUpdateForMainHolderProfile(HolderFlat model)
+        {
+            int result = _holdingGateway.HoldersFlatUpdateForMainHolderProfile(model);
 
             if (result == 202)
                 return CommonConstantHelper.Success;

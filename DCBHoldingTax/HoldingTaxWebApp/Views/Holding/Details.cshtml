@@ -1,4 +1,5 @@
 ﻿@model HoldingTaxWebApp.ViewModels.HolderVM
+@using HoldingTaxWebApp.Helpers
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -755,9 +756,13 @@
                             <a href="~/Holding/Edit/@Model.HolderId" class="btn btn-outline-success btn-md">
                                 <i class="fas fa-pen"></i>হালনাগাদ পেজে  যান
                             </a>
-                            @if (Model.IsFlatApprove == false)
+                            @if (Session[CommonConstantHelper.RoleName].ToString() == "এডমিন" ||
+                            Session[CommonConstantHelper.RoleName].ToString() == "ম্যানেজমেন্ট")
                             {
-                                <button type="button" id="ApproveBTN" class="btn btn-outline-danger btn-md"><i class="fas fa-envelope-open-text"></i>অনুমোদন করুন </button>
+                                if (Model.IsFlatApprove == false)
+                                {
+                                    <button type="button" id="ApproveBTN" class="btn btn-outline-danger btn-md"><i class="fas fa-envelope-open-text"></i>অনুমোদন করুন </button>
+                                }
                             }
 
                             <a href="~/Holding/Index" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান</a>

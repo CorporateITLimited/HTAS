@@ -548,6 +548,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
             }
         }
 
+
         public int UpdateApprove()
         {
             try
@@ -794,6 +795,105 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     Sql_Connection.Close();
             }
         }
+
+        public int UpdateHolderProfile(Holder model)
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spHolderMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "update_new";
+
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = model.HolderId;
+                Sql_Command.Parameters.Add("@HolderName", SqlDbType.NVarChar).Value = model.HolderName;
+                Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = model.AreaId;
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = model.PlotId;
+                Sql_Command.Parameters.Add("@NID", SqlDbType.NVarChar).Value = model.NID;
+                Sql_Command.Parameters.Add("@Gender", SqlDbType.Int).Value = model.Gender;
+                Sql_Command.Parameters.Add("@MaritialStatus", SqlDbType.Int).Value = model.MaritialStatus;
+                Sql_Command.Parameters.Add("@Father", SqlDbType.NVarChar).Value = model.Father;
+                Sql_Command.Parameters.Add("@Mother", SqlDbType.NVarChar).Value = model.Mother;
+                Sql_Command.Parameters.Add("@Spouse", SqlDbType.NVarChar).Value = model.Spouse;
+                Sql_Command.Parameters.Add("@Contact1", SqlDbType.NVarChar).Value = model.Contact1;
+                Sql_Command.Parameters.Add("@Contact2", SqlDbType.NVarChar).Value = model.Contact2;
+                Sql_Command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = model.Email;
+                Sql_Command.Parameters.Add("@PresentAdd", SqlDbType.NVarChar).Value = model.PresentAdd;
+                Sql_Command.Parameters.Add("@PermanentAdd", SqlDbType.NVarChar).Value = model.PermanentAdd;
+                Sql_Command.Parameters.Add("@ContactAdd", SqlDbType.NVarChar).Value = model.ContactAdd;
+                Sql_Command.Parameters.Add("@OwnershipSourceId", SqlDbType.Int).Value = model.OwnershipSourceId;
+                Sql_Command.Parameters.Add("@OwnerType", SqlDbType.Int).Value = model.OwnerType;
+                Sql_Command.Parameters.Add("@BuildingTypeId", SqlDbType.Int).Value = model.BuildingTypeId;
+                Sql_Command.Parameters.Add("@AmountOfLand", SqlDbType.Decimal).Value = model.AmountOfLand;
+                Sql_Command.Parameters.Add("@TotalFloor", SqlDbType.Int).Value = model.TotalFloor;
+                Sql_Command.Parameters.Add("@EachFloorArea", SqlDbType.Decimal).Value = model.EachFloorArea;
+                Sql_Command.Parameters.Add("@TotalFlat", SqlDbType.Int).Value = model.TotalFlat;
+                Sql_Command.Parameters.Add("@HoldersFlatNumber", SqlDbType.Int).Value = model.HoldersFlatNumber;
+                Sql_Command.Parameters.Add("@PreviousDueTax", SqlDbType.Decimal).Value = model.PreviousDueTax;
+                Sql_Command.Parameters.Add("@ImageLocation", SqlDbType.NVarChar).Value = model.ImageLocation;
+                Sql_Command.Parameters.Add("@Document1", SqlDbType.NVarChar).Value = model.Document1;
+                Sql_Command.Parameters.Add("@Document2", SqlDbType.NVarChar).Value = model.Document2;
+
+                Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = model.CreateDate;
+                Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = model.CreatedBy;
+                Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = model.LastUpdated;
+                Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = model.LastUpdatedBy;
+                Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
+                Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
+                Sql_Command.Parameters.Add("@IsHolderAnOwner", SqlDbType.Bit).Value = model.IsHolderAnOwner;
+
+
+                //created by Masum ===================
+                Sql_Command.Parameters.Add("@AllocationLetterNo", SqlDbType.NVarChar).Value = model.AllocationLetterNo;
+                Sql_Command.Parameters.Add("@NamjariLetterNo", SqlDbType.NVarChar).Value = model.NamjariLetterNo;
+                Sql_Command.Parameters.Add("@AllocationDate", SqlDbType.DateTime).Value = model.AllocationDate;
+                Sql_Command.Parameters.Add("@NamjariDate", SqlDbType.DateTime).Value = model.NamjariDate;
+                Sql_Command.Parameters.Add("@RecordCorrectionDate", SqlDbType.DateTime).Value = model.RecordCorrectionDate;
+
+                Sql_Command.Parameters.Add("@HolderNo", SqlDbType.NVarChar).Value = model.HolderNo;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
         #endregion
 
         #region holder flat
@@ -1365,6 +1465,78 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 };
 
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "insert_update";
+
+                Sql_Command.Parameters.Add("@HolderFlatId", SqlDbType.Int).Value = model.HolderFlatId;
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = model.HolderId;
+                Sql_Command.Parameters.Add("@MainHolderId", SqlDbType.Int).Value = model.MainHolderId;
+                Sql_Command.Parameters.Add("@FlorNo", SqlDbType.Int).Value = model.FlorNo;
+                Sql_Command.Parameters.Add("@FlatNo", SqlDbType.NVarChar).Value = model.FlatNo;
+                Sql_Command.Parameters.Add("@FlatArea", SqlDbType.Decimal).Value = model.FlatArea;
+                Sql_Command.Parameters.Add("@OwnOrRent", SqlDbType.Int).Value = model.OwnOrRent;
+                Sql_Command.Parameters.Add("@IsSelfOwned", SqlDbType.Bit).Value = model.IsSelfOwned;
+                Sql_Command.Parameters.Add("@OwnerName", SqlDbType.NVarChar).Value = model.OwnerName;
+                Sql_Command.Parameters.Add("@MonthlyRent", SqlDbType.Decimal).Value = model.MonthlyRent;
+                Sql_Command.Parameters.Add("@SelfOwn", SqlDbType.Int).Value = model.SelfOwn;
+                Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = model.CreateDate;
+                Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = model.CreatedBy;
+                Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = model.LastUpdated;
+                Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = model.LastUpdatedBy;
+                Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = model.IsActive;
+                Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = model.IsDeleted;
+                Sql_Command.Parameters.Add("@IsCheckedByHolder", SqlDbType.Bit).Value = model.IsCheckedByHolder;
+                Sql_Command.Parameters.Add("@Remarks", SqlDbType.NVarChar).Value = model.Remarks;
+
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
+        public int HoldersFlatUpdateForMainHolderProfile(HolderFlat model)
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spHolderFlatMaster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "insert_update_new";
 
                 Sql_Command.Parameters.Add("@HolderFlatId", SqlDbType.Int).Value = model.HolderFlatId;
                 Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = model.HolderId;

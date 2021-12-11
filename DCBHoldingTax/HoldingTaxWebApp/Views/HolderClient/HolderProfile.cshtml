@@ -749,6 +749,16 @@
 
                     <div class="card-footer">
                         <div class="text-center">
+                            @if (Model.IsFlatApprove == true)
+                            {
+                                <a href="~/HolderClient/Edit/@Model.HolderId" class="btn btn-outline-success btn-md">
+                                    <i class="fas fa-pen"></i> তথ্য হালনাগাদ করুন
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="text text-info font-weight-bold">আপনার প্রদানকৃত তথ্যাবলী অ্যাডমিন এর অনুমতির জন্য প্রক্রিয়াধীন অবস্থায় রয়েছে</span>
+                            }
                             <button id="print_this" class="btn btn-light-primary btn-md"><i class="fas fa-list"></i>প্রিন্ট করুন</button>
                         </div>
                     </div>

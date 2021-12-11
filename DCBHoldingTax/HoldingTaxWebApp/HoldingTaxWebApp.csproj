@@ -2440,6 +2440,7 @@
     </Content>
     <Content Include="Scripts\printThis.js" />
     <Content Include="Scripts\wizard-holding-transfer.js" />
+    <Content Include="Scripts\wizard-holding-update-profile.js" />
     <Content Include="Scripts\wizard-OldPlotOwnerCreate.js" />
     <Content Include="WebForms\Administrative\EmployeeList.aspx" />
     <Content Include="WebForms\Administrative\LoginHistory.aspx" />
@@ -5050,6 +5051,7 @@
     <Content Include="Views\HoldingTax\GetTaxTransaction.cshtml" />
     <Content Include="Views\HoldingTax\TrnxDetailsById.cshtml" />
     <Content Include="Views\Holding\UnApproveIndex.cshtml" />
+    <Content Include="Views\HolderClient\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

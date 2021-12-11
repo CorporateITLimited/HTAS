@@ -55,10 +55,10 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকরদাতা</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">গৃহকরদাতা (@Model.HolderName)</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="#" class="text-muted">গৃহকরদাতার তথ্য হালনাগাদ করুন</a>
+                        <a href="#" class="text-muted">ব্যাক্তিগত তথ্য এবং ফ্ল্যাট নম্বর হালনাগাদ করুন</a>
                     </li>
                 </ul>
             </div>
@@ -181,7 +181,7 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.HolderNo, "গৃহকরদাতার আইডি নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.HolderNo, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.HolderNo, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                                     </div>
                                                     @*<div class="col-md-6">
                                                             <button class="btn btn-success">ডাটাবেজে চেক করুন </button>
@@ -190,7 +190,7 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.HolderName, "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.HolderName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.HolderName, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                                     </div>
 
                                                     @Html.LabelFor(model => model.MaritialStatus, "বৈবাহিক অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -290,7 +290,7 @@
 
                                                     @Html.LabelFor(model => model.PreviousDueTax, "আগের অর্থ বছর পর্যন্ত বকেয়া গৃহকর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.PreviousDueTax, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.PreviousDueTax, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                                     </div>
                                                 </div>
                                                 <div class="form-group row m-2">
@@ -340,17 +340,19 @@
                                                     @Html.LabelFor(model => model.OwnershipSourceId, "মালিকানার সূত্র", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.DropDownListFor(model => model.OwnershipSourceId, null, " নির্বাচন করুন ", new
-                                                    {
-                                                        @class = "form-control",
-                                                    })
+                                                   {
+                                                       @class = "form-control",
+                                                       @disabled = "disabled"
+                                                   })
                                                     </div>
 
                                                     @Html.LabelFor(model => model.OwnerType, "মালিকানার ধরন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.DropDownListFor(model => model.OwnerType, null, " নির্বাচন করুন ", new
-                                                 {
-                                                     @class = "form-control",
-                                                 })
+                                                   {
+                                                       @class = "form-control",
+                                                       @disabled = "disabled"
+                                                   })
                                                     </div>
                                                 </div>
                                                 @if (Model.OwnerType == 3)
@@ -376,19 +378,19 @@
                                                             {
                                                                 <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document1" title="Download">ডাউনলোড প্রমাণাদি ১</a>
                                                             }
-                                                            <input type="file" name="document_file_1" id="document_file_1" />
-                                                            <span class="form-text text-info">
-                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
-                                                            </span>
+                                                            @*<input type="file" name="document_file_1" id="document_file_1" />
+                                                                <span class="form-text text-info">
+                                                                    সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                                </span>*@
                                                             <br />
                                                             @if (!string.IsNullOrWhiteSpace(Model.Document2))
                                                             {
                                                                 <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.Document2" title="Download">ডাউনলোড প্রমাণাদি ২</a>
                                                             }
-                                                            <input type="file" name="document_file_2" id="document_file_2" />
-                                                            <span class="form-text text-info">
-                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
-                                                            </span>
+                                                            @*<input type="file" name="document_file_2" id="document_file_2" />
+                                                                <span class="form-text text-info">
+                                                                    সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                                </span>*@
                                                         </div>
                                                     </div>
 
@@ -403,12 +405,12 @@
 
                                                         @Html.LabelFor(model => model.Document2, "মুক্তিযোদ্ধার প্রমাণাদি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                         <div class="col-lg-4">
-                                                            <input type="file" name="document_file_1" id="document_file_1" />
+                                                            @*<input type="file" name="document_file_1" id="document_file_1" />*@
                                                             <span class="form-text text-info">
                                                                 সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                                             </span>
                                                             <br />
-                                                            <input type="file" name="document_file_2" id="document_file_2" />
+                                                            @*<input type="file" name="document_file_2" id="document_file_2" />*@
                                                             <span class="form-text text-info">
                                                                 সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                                             </span>
@@ -420,26 +422,27 @@
                                                     @Html.LabelFor(model => model.BuildingTypeId, "ভবনের ধরন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.DropDownListFor(model => model.BuildingTypeId, null, " নির্বাচন করুন ", new
-                                                  {
-                                                      @class = "form-control",
-                                                  })
+                                                   {
+                                                       @class = "form-control",
+                                                       @disabled = "disabled"
+                                                   })
                                                     </div>
 
                                                     @Html.LabelFor(model => model.AmountOfLand, "জমির পরিমাণ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-3">
-                                                        @Html.EditorFor(model => model.AmountOfLand, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.AmountOfLand, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                                     </div>
                                                     <label class="col-form-label text-lg-left">বর্গফুট</label>
                                                 </div>
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.TotalFloor, "মোট তলার সংখ্যা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.TotalFloor, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.TotalFloor, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "", @readonly = "readonly" } })
                                                     </div>
 
                                                     @Html.LabelFor(model => model.EachFloorArea, "প্রতিতলার আয়তন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-3">
-                                                        @Html.EditorFor(model => model.EachFloorArea, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.EachFloorArea, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                                     </div>
                                                     <label class="col-form-label text-lg-left">বর্গফুট</label>
                                                 </div>
@@ -447,12 +450,12 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.TotalFlat, "মোট ফ্ল্যাট সংখ্যা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.TotalFlat, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.TotalFlat, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "", @readonly = "readonly" } })
                                                     </div>
 
                                                     @Html.LabelFor(model => model.HoldersFlatNumber, "নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.HoldersFlatNumber, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.HoldersFlatNumber, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "", @readonly = "readonly" } })
                                                     </div>
                                                 </div>
                                             </div>
@@ -462,14 +465,6 @@
                                                 <div class="mb-10 font-weight-bold text-dark" style="font-weight:500; font-size: 20px;">
                                                     ফ্ল্যাটসমূহের বিবরণ &nbsp;
                                                     <label class="show_plot">- @Model.AreaPlotFlatData </label>  &nbsp;
-                                                    @if (Model.IsHolderAnOwner == true)
-                                                    {
-                                                        <label id="for_owner" class="text text-danger">যদি গৃহকরদাতা নিজেই প্লট এর মালিক হোন তাহলে গৃহকরদাতাকে একটা একটা করে ঐ নির্দিষ্ট প্লট এর জন্য সকল ফ্ল্যাট সাবমিট করতে হবে </label>
-                                                    }
-                                                    else
-                                                    {
-                                                        <label id="for_not_owner" class="text text-danger">যদি গৃহকরদাতা নিজেই প্লট এর মালিক না  হোন তাহলে গৃহকরদাতাকে ঐ নির্দিষ্ট প্লট এর নির্দিষ্ট  ফ্ল্যাট সমূহকে  টিক দিতে হবে</label>
-                                                    }
                                                 </div>
                                                 <div class="row m-2">
                                                     @if (Model.Area_type_id == 1)
@@ -481,191 +476,45 @@
                                                                     <th>ফ্ল্যাট নম্বর </th>
                                                                     <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
                                                                     <th>নিজ বসতি/ভাড়া </th>
-                                                                    @* <th>সম্পত্তির ধরন</th>*@
                                                                     <th>মন্তব্য</th>
-                                                                    @*<th>মালিকানা </th>*@
-                                                                    @if (Model.IsHolderAnOwner == true)
-                                                                    {
-                                                                        <th> <button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button></th>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <th>নিজস্ব মালিকানার ফ্ল্যাট হলে টিক দিন </th>
-                                                                    }
+                                                                    <th> মালিকানা </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="text-center">
-                                                                @if (Model.IsHolderAnOwner == true)
+                                                                @if (Model.HolderFlatList.Count() > 0 && Model.HolderFlatList != null)
                                                                 {
-                                                                    if (Model.HolderFlatList.Count() > 0 && Model.HolderFlatList != null)
+                                                                    foreach (var item in Model.HolderFlatList)
                                                                     {
-                                                                        foreach (var item in Model.HolderFlatList)
-                                                                        {
-                                                                            <tr>
-                                                                                <input type="hidden" id="HolderFlatId" class="HolderFlatId" value="@item.HolderFlatId" />
-                                                                                <input type="hidden" id="MonthlyRent" class="MonthlyRent" value="0" />
-                                                                                <td width="10%;">
-                                                                                    <select class="form-control FlorNo">
-                                                                                        <option value="@item.FlorNo">@item.FloorTypeName</option>
-                                                                                        @foreach (var floor in ViewBag.FlorNo)
-                                                                                        {
-                                                                                            if (item.FlorNo != floor.TypeId)
-                                                                                            {
-                                                                                                <option value="@floor.TypeId">
-                                                                                                    @floor.TypeName
-                                                                                                </option>
-                                                                                            }
-                                                                                        }
-                                                                                    </select>
-                                                                                </td>
-                                                                                <td width="13%;"><input type="text" class="form-control FlatNo" value="@item.FlatNo" /></td>
-                                                                                <td width="14%;"><input type="number" class="form-control FlatArea your_class" value="@item.FlatArea" placeholder="0" /></td>
-                                                                                <td width="12%;">
-                                                                                    @if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
-                                                                                    {
-                                                                                        <select class="form-control OwnOrRent">
-                                                                                            <option value="@item.OwnOrRent" selected>@item.OwnOrRentType</option>
-                                                                                        </select>
-                                                                                    }
-                                                                                    else
-                                                                                    {
-                                                                                        <select class="form-control OwnOrRent">
-                                                                                            <option value="@item.OwnOrRent">@item.OwnOrRentType</option>
-                                                                                            @foreach (var onw in ViewBag.OwnOrRent)
-                                                                                            {
-                                                                                                if (item.OwnOrRent != onw.TypeId)
-                                                                                                {
-                                                                                                    <option value="@onw.TypeId">
-                                                                                                        @onw.TypeName
-                                                                                                    </option>
-                                                                                                }
-                                                                                            }
-                                                                                        </select>
-                                                                                    }
-                                                                                </td>
-                                                                                @*<td width="14%;">
-                                                                                        @if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
-                                                                                        {
-                                                                                            <input type="number" class="form-control MonthlyRent your_class" value="@item.MonthlyRent" placeholder="0" readonly />
-                                                                                        }
-                                                                                        else
-                                                                                        {
-                                                                                            <input type="number" class="form-control MonthlyRent your_class" value="@item.MonthlyRent" placeholder="0" />
-                                                                                        }
-                                                                                    </td>*@
-                                                                                @*<td width="15%;">
-                                                                                        @if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
-                                                                                        {
-                                                                                            <select class="form-control SelfOwned">
-                                                                                                <option value="2" selected>অন্য মালিকানা</option>
-                                                                                            </select>
-                                                                                        }
-                                                                                        else
-                                                                                        {
-                                                                                            <select class="form-control SelfOwned">
-                                                                                                <option value="@item.SelfOwn">@item.SelfOwnType</option>
-                                                                                                @foreach (var own_ in ViewBag.SelfOwned)
-                                                                                                {
-                                                                                                    if (item.SelfOwn != own_.TypeId)
-                                                                                                    {
-                                                                                                        <option value="@own_.TypeId">
-                                                                                                            @own_.TypeName
-                                                                                                        </option>
-                                                                                                    }
-                                                                                                }
-                                                                                            </select>
-                                                                                        }
-                                                                                    </td>*@
-                                                                                @*<td width="13%;"><input type="text" class="form-control OwnerName" value="@item.OwnerName" /></td>*@
-
-                                                                                @*@if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
-                                                                                    {
-                                                                                        <td width="20%">
-                                                                                            <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" readonly value="@item.Remarks">
-                                                                                        </td>
-                                                                                    }
-                                                                                    else
-                                                                                    {*@
-                                                                                <td width="20%">
-                                                                                    <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" value="@item.Remarks">
-                                                                                </td>
-                                                                                @*  }*@
-
-                                                                                <td width="15%;">
-                                                                                    নিজস্ব মালিকানা (@item.OwnerName)
-                                                                                </td>
-                                                                            </tr>
-                                                                        }
-                                                                    }
-                                                                }
-                                                                else
-                                                                {
-                                                                    if (Model.HolderFlatListForEdit.Count() > 0 && Model.HolderFlatListForEdit != null)
-                                                                    {
-                                                                        foreach (var item in Model.HolderFlatListForEdit)
-                                                                        {
-                                                                            <tr>
-                                                                                <input type="hidden" id="FlorNo" value='@item.FlorNo' class="FlorNo" />
-                                                                                <input type="hidden" id="HolderFlatId" class="HolderFlatId" value="@item.HolderFlatId" />
-                                                                                <input type="hidden" id="MonthlyRent" class="MonthlyRent" value="0" />
-                                                                                <td width="10%;"> @item.FloorTypeName  </td>
-                                                                                <td width="13%;" class="FlatNo"> @item.FlatNo </td>
-                                                                                <td width="14%;" class="FlatArea"> @item.FlatArea  </td>
-                                                                                <td width="12%;">
-                                                                                    <select class="form-control OwnOrRent">
-                                                                                        <option value="@item.OwnOrRent">@item.OwnOrRentType</option>
-                                                                                        @foreach (var onw in ViewBag.OwnOrRent)
-                                                                                        {
-                                                                                            if (item.OwnOrRent != onw.TypeId)
-                                                                                            {
-                                                                                                <option value="@onw.TypeId">
-                                                                                                    @onw.TypeName
-                                                                                                </option>
-                                                                                            }
-                                                                                        }
-                                                                                    </select>
-                                                                                </td>
-                                                                                @*<td width="14%;"><input type="number" class="form-control MonthlyRent your_class" value="@item.MonthlyRent" placeholder="0" /></td>*@
-                                                                                @*<td width="15%;">
-                                                                                        @*<select class="form-control SelfOwned">
-                                                                                                <option value="@item.SelfOwn">@item.SelfOwnType</option>
-                                                                                                @foreach (var own_ in ViewBag.SelfOwned)
-                                                                                                {
-                                                                                                    if (item.OwnOrRent != own_.TypeId)
-                                                                                                    {
-                                                                                                        <option value="@own_.TypeId">
-                                                                                                            @own_.TypeName
-                                                                                                        </option>
-                                                                                                    }
-                                                                                                }
-                                                                                            </select>
-                                                                                        <select class="form-control SelfOwned">
-                                                                                            <option value="1" selected>নিজস্ব মালিকানা</option>
-                                                                                        </select>
-                                                                                    </td>*@
-                                                                                @*@if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
-                                                                                    {
-                                                                                        <td width="20%">
-                                                                                            <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" readonly value="@item.Remarks">
-                                                                                        </td>
-                                                                                    }
-                                                                                    else
-                                                                                    {*@
-                                                                                <td width="20%">
-                                                                                    <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" value="@item.Remarks">
-                                                                                </td>
-                                                                                @*}*@
-                                                                                @*<td width="13%;"><input type="text" class="form-control OwnerName" value="@item.OwnerName" /></td>*@
-                                                                                @if (item.IsCheckedByHolder == true)
-                                                                                {
-                                                                                    <td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" checked value="true" /></td>
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    <td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td>
-                                                                                }
-                                                                            </tr>
-                                                                        }
+                                                                        <tr>
+                                                                            <input type="hidden" id="HolderFlatId" class="HolderFlatId" value="@item.HolderFlatId" />
+                                                                            <input type="hidden" id="MonthlyRent" class="MonthlyRent" value="0" />
+                                                                            @if (item.IsCheckedByHolder == true)
+                                                                            {
+                                                                                <input type="hidden" class="IsCheckedByHolder" checked value="true" />
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <input type="hidden" class="IsCheckedByHolder" value="false" />
+                                                                            }
+                                                                            <td width="10%;">
+                                                                                <select class="form-control FlorNo">
+                                                                                    <option value="@item.FlorNo" selected>@item.FloorTypeName</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td width="13%;"><input type="text" class="form-control FlatNo" value="@item.FlatNo" /></td>
+                                                                            <td width="14%;"><input type="number" class="form-control FlatArea your_class" value="@item.FlatArea" placeholder="0" readonly /></td>
+                                                                            <td width="12%;">
+                                                                                <select class="form-control OwnOrRent">
+                                                                                    <option value="@item.OwnOrRent" selected>@item.OwnOrRentType</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td width="20%">
+                                                                                <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" value="@item.Remarks" readonly>
+                                                                            </td>
+                                                                            <td width="15%;">
+                                                                                নিজস্ব মালিকানা (@item.OwnerName)
+                                                                            </td>
+                                                                        </tr>
                                                                     }
                                                                 }
                                                             </tbody>
@@ -681,190 +530,48 @@
                                                                     <th>ফ্ল্যাটের আয়তন (বর্গফুট)</th>
                                                                     <th>নিজ বসতি/ভাড়া </th>
                                                                     <th>মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া </th>
-                                                                    @*<th>সম্পত্তির ধরন</th>*@
                                                                     <th>মন্তব্য</th>
-                                                                    @*<th>মালিকানা </th>*@
-                                                                    @if (Model.IsHolderAnOwner == true)
-                                                                    {
-                                                                        <th> <button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button></th>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <th>নিজস্ব মালিকানার ফ্ল্যাট হলে টিক দিন </th>
-                                                                    }
+                                                                    <th>মালিকানা </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="text-center">
-                                                                @if (Model.IsHolderAnOwner == true)
+                                                                @if (Model.HolderFlatList.Count() > 0 && Model.HolderFlatList != null)
                                                                 {
-                                                                    if (Model.HolderFlatList.Count() > 0 && Model.HolderFlatList != null)
+                                                                    foreach (var item in Model.HolderFlatList)
                                                                     {
-                                                                        foreach (var item in Model.HolderFlatList)
-                                                                        {
-                                                                            <tr>
-                                                                                <input type="hidden" id="HolderFlatId" class="HolderFlatId" value="@item.HolderFlatId" />
-                                                                                <td width="10%;">
-                                                                                    <select class="form-control FlorNo">
-                                                                                        <option value="@item.FlorNo">@item.FloorTypeName</option>
-                                                                                        @foreach (var floor in ViewBag.FlorNo)
-                                                                                        {
-                                                                                            if (item.FlorNo != floor.TypeId)
-                                                                                            {
-                                                                                                <option value="@floor.TypeId">
-                                                                                                    @floor.TypeName
-                                                                                                </option>
-                                                                                            }
-                                                                                        }
-                                                                                    </select>
-                                                                                </td>
-                                                                                <td width="13%;"><input type="text" class="form-control FlatNo" value="@item.FlatNo" /></td>
-                                                                                <td width="14%;"><input type="number" class="form-control FlatArea your_class" value="@item.FlatArea" placeholder="0" /></td>
-                                                                                <td width="12%;">
-                                                                                    @if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
-                                                                                    {
-                                                                                        <select class="form-control OwnOrRent">
-                                                                                            <option value="@item.OwnOrRent" selected>@item.OwnOrRentType</option>
-                                                                                        </select>
-                                                                                    }
-                                                                                    else
-                                                                                    {
-                                                                                        <select class="form-control OwnOrRent">
-                                                                                            <option value="@item.OwnOrRent">@item.OwnOrRentType</option>
-                                                                                            @foreach (var onw in ViewBag.OwnOrRent)
-                                                                                            {
-                                                                                                if (item.OwnOrRent != onw.TypeId)
-                                                                                                {
-                                                                                                    <option value="@onw.TypeId">
-                                                                                                        @onw.TypeName
-                                                                                                    </option>
-                                                                                                }
-                                                                                            }
-                                                                                        </select>
-                                                                                    }
-                                                                                </td>
-                                                                                <td width="14%;">
-                                                                                    @if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
-                                                                                    {
-                                                                                        <input type="number" class="form-control MonthlyRent your_class" value="@item.MonthlyRent" placeholder="0" readonly />
-                                                                                    }
-                                                                                    else
-                                                                                    {
-                                                                                        <input type="number" class="form-control MonthlyRent your_class" value="@item.MonthlyRent" placeholder="0" />
-                                                                                    }
-                                                                                </td>
-                                                                                @*<td width="15%;">
-                                                                                        @if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
-                                                                                        {
-                                                                                            <select class="form-control SelfOwned">
-                                                                                                <option value="2" selected>অন্য মালিকানা</option>
-                                                                                            </select>
-                                                                                        }
-                                                                                        else
-                                                                                        {
-                                                                                            <select class="form-control SelfOwned">
-                                                                                                <option value="@item.SelfOwn">@item.SelfOwnType</option>
-                                                                                                @foreach (var own_ in ViewBag.SelfOwned)
-                                                                                                {
-                                                                                                    if (item.SelfOwn != own_.TypeId)
-                                                                                                    {
-                                                                                                        <option value="@own_.TypeId">
-                                                                                                            @own_.TypeName
-                                                                                                        </option>
-                                                                                                    }
-                                                                                                }
-                                                                                            </select>
-                                                                                        }
-                                                                                    </td>*@
-                                                                                @*<td width="13%;"><input type="text" class="form-control OwnerName" value="@item.OwnerName" /></td>*@
-                                                                                @*@if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
-                                                                                    {
-                                                                                        <td width="20%">
-                                                                                            <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" readonly value="@item.Remarks">
-                                                                                        </td>
-                                                                                    }
-                                                                                    else
-                                                                                    {*@
-                                                                                <td width="20%">
-                                                                                    <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" value="@item.Remarks">
-                                                                                </td>
-                                                                                @*  }*@
+                                                                        <tr>
+                                                                            <input type="hidden" id="HolderFlatId" class="HolderFlatId" value="@item.HolderFlatId" />
+                                                                            @if (item.IsCheckedByHolder == true)
+                                                                            {
+                                                                                <input type="hidden" class="IsCheckedByHolder" checked value="true" />
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <input type="hidden" class="IsCheckedByHolder" value="false" />
+                                                                            }
+                                                                            <td width="10%;">
+                                                                                <select class="form-control FlorNo">
+                                                                                    <option value="@item.FlorNo" selected>@item.FloorTypeName</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td width="13%;"><input type="text" class="form-control FlatNo" value="@item.FlatNo" /></td>
+                                                                            <td width="14%;"><input type="number" class="form-control FlatArea your_class" value="@item.FlatArea" placeholder="0" readonly /></td>
+                                                                            <td width="12%;">
+                                                                                <select class="form-control OwnOrRent">
+                                                                                    <option value="@item.OwnOrRent">@item.OwnOrRentType</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td width="14%;">
+                                                                                <input type="number" class="form-control MonthlyRent your_class" value="@item.MonthlyRent" placeholder="0" />
+                                                                            </td>
+                                                                            <td width="20%">
+                                                                                <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" value="@item.Remarks" readonly>
+                                                                            </td>
+                                                                            <td width="15%;">
+                                                                                নিজস্ব মালিকানা (@item.OwnerName)
+                                                                            </td>
 
-                                                                                <td width="15%;">
-                                                                                    নিজস্ব মালিকানা (@item.OwnerName)
-                                                                                    @*<button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button>*@
-                                                                                </td>
-
-                                                                            </tr>
-                                                                        }
-                                                                    }
-                                                                }
-                                                                else
-                                                                {
-                                                                    if (Model.HolderFlatListForEdit.Count() > 0 && Model.HolderFlatListForEdit != null)
-                                                                    {
-                                                                        foreach (var item in Model.HolderFlatListForEdit)
-                                                                        {
-                                                                            <tr>
-                                                                                <input type="hidden" id="FlorNo" value='@item.FlorNo' class="FlorNo" />
-                                                                                <input type="hidden" id="HolderFlatId" class="HolderFlatId" value="@item.HolderFlatId" />
-                                                                                <td width="10%;"> @item.FloorTypeName  </td>
-                                                                                <td width="13%;" class="FlatNo"> @item.FlatNo </td>
-                                                                                <td width="14%;" class="FlatArea"> @item.FlatArea  </td>
-                                                                                <td width="12%;">
-                                                                                    <select class="form-control OwnOrRent">
-                                                                                        <option value="@item.OwnOrRent">@item.OwnOrRentType</option>
-                                                                                        @foreach (var onw in ViewBag.OwnOrRent)
-                                                                                        {
-                                                                                            if (item.OwnOrRent != onw.TypeId)
-                                                                                            {
-                                                                                                <option value="@onw.TypeId">
-                                                                                                    @onw.TypeName
-                                                                                                </option>
-                                                                                            }
-                                                                                        }
-                                                                                    </select>
-                                                                                </td>
-                                                                                <td width="14%;"><input type="number" class="form-control MonthlyRent your_class" value="@item.MonthlyRent" placeholder="0" /></td>
-                                                                                @*<td width="15%;">
-                                                                                        @*<select class="form-control SelfOwned">
-                                                                                                <option value="@item.SelfOwn">@item.SelfOwnType</option>
-                                                                                                @foreach (var own_ in ViewBag.SelfOwned)
-                                                                                                {
-                                                                                                    if (item.OwnOrRent != own_.TypeId)
-                                                                                                    {
-                                                                                                        <option value="@own_.TypeId">
-                                                                                                            @own_.TypeName
-                                                                                                        </option>
-                                                                                                    }
-                                                                                                }
-                                                                                            </select>
-                                                                                        <select class="form-control SelfOwned">
-                                                                                            <option value="1" selected>নিজস্ব মালিকানা</option>
-                                                                                        </select>
-                                                                                    </td>*@
-                                                                                @*@if (item.SelfOwn == 2 && !string.IsNullOrWhiteSpace(item.OwnerName))
-                                                                                    {
-                                                                                        <td width="20%">
-                                                                                            <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" readonly value="@item.Remarks">
-                                                                                        </td>
-                                                                                    }
-                                                                                    else
-                                                                                    {*@
-                                                                                <td width="20%">
-                                                                                    <input type="text" class="form-control nRemarks" spellcheck="false" data-ms-editor="true" value="@item.Remarks">
-                                                                                </td>
-                                                                                @*  }*@
-                                                                                @*<td width="13%;"><input type="text" class="form-control OwnerName" value="@item.OwnerName" /></td>*@
-                                                                                @if (item.IsCheckedByHolder == true)
-                                                                                {
-                                                                                    <td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" checked value="true" /></td>
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    <td width="15%;"> <input type="checkbox" class="IsCheckedByHolder" value="false" /></td>
-                                                                                }
-                                                                            </tr>
-                                                                        }
+                                                                        </tr>
                                                                     }
                                                                 }
                                                             </tbody>
@@ -890,12 +597,12 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.AllocationLetterNo, "বরাদ্দ পত্র নম্বর :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.AllocationLetterNo, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.AllocationLetterNo, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                                     </div>
 
                                                     @Html.LabelFor(model => model.StringAllocationDate, "তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.StringAllocationDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.StringAllocationDate, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                                     </div>
                                                 </div>
 
@@ -914,19 +621,19 @@
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.NamjariLetterNo, "নামজারী আদেশের পত্র নং :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.NamjariLetterNo, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.NamjariLetterNo, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                                     </div>
 
                                                     @Html.LabelFor(model => model.StringNamjariDate, "তারিখ :", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.StringNamjariDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.StringNamjariDate, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.StringRecordCorrectionDate, "রেকর্ড সংশোধনের তারিখ : ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.StringRecordCorrectionDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.EditorFor(model => model.StringRecordCorrectionDate, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                                     </div>
                                                 </div>
 
@@ -988,7 +695,7 @@
 
 @section Scripts {
     @*save and validation funtionality implemented in this js*@
-    <script src="~/Scripts/wizard-holding-update.js"></script>
+    <script src="~/Scripts/wizard-holding-update-profile.js"></script>
     <script>
         jQuery(document).ready(function () {
             var invalidChars = ["-", "e", "+", "E"];
