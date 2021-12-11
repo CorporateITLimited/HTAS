@@ -550,7 +550,9 @@ namespace HoldingTaxWebApp.Gateway.Tax
                                                 Convert.ToDecimal(Data_Reader["DuesFineAmount"]) : (Decimal?)null,
                         DuesPreviousYear = Data_Reader["DuesPreviousYear"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["DuesPreviousYear"]) : (Decimal?)null,
-                        HolderNo = Convert.ToString(Data_Reader["HolderNo"])
+                        HolderNo = Convert.ToString(Data_Reader["HolderNo"]),
+                        Reduction = Data_Reader["Reduction"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["Reduction"]) : (Decimal?)null,
                     };
 
                     holdingtax.StringPaymentDate = $"{holdingtax.PaymentDate:dd/MM/yyyy}";
@@ -624,6 +626,8 @@ namespace HoldingTaxWebApp.Gateway.Tax
                                              Convert.ToDecimal(Data_Reader["WrongInfoChargePercent"]) : (decimal?)null;
                     holdingtax.WrongInfoChargeValue = Data_Reader["WrongInfoChargeValue"] != DBNull.Value ?
                                             Convert.ToDecimal(Data_Reader["WrongInfoChargeValue"]) : (decimal?)null;
+                    holdingtax.Reduction = Data_Reader["Reduction"] != DBNull.Value ?
+                                                Convert.ToDecimal(Data_Reader["Reduction"]) : (Decimal?)null;
                 }
 
                 Data_Reader.Close();
@@ -680,6 +684,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                 Sql_Command.Parameters.Add("@TotalHoldingTax", SqlDbType.Decimal).Value = tax.TotalHoldingTax;
                 Sql_Command.Parameters.Add("@TotalTaxOfThisYear", SqlDbType.Decimal).Value = tax.TotalTaxOfThisYear;
                 Sql_Command.Parameters.Add("@Surcharge", SqlDbType.Decimal).Value = tax.Surcharge;
+                Sql_Command.Parameters.Add("@Reduction", SqlDbType.Decimal).Value = tax.Reduction;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -1079,6 +1084,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                     vm.Ispaid = Convert.ToBoolean(Data_Reader["IsPaid"]);
                     vm.WrongInfoCharge = Data_Reader["WrongInfoCharge"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["WrongInfoCharge"]) : (decimal?)null;
                     vm.WrongInfoChargeRate = Data_Reader["WrongInfoChargeRate"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["WrongInfoChargeRate"]) : (decimal?)null;
+                    vm.Reduction = Data_Reader["Reduction"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["Reduction"]) : (decimal?)null;
 
 
                 };

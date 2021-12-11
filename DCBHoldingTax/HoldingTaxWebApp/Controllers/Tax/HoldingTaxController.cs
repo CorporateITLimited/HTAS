@@ -208,7 +208,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
             holdingTax.DuesPreviousYear = (holdingTax.DuesPreviousYear ?? 0); //+ (holdingTax.DuesFineAmount ?? 0);
 
             //holdingTax.NetTaxPayableAmount = holdingTax.TotalHoldingTaxWithRebateAndSurcharge + holdingTax.DuesPreviousYear + (holdingTax.WrongInfoCharge ?? 0);
-
+            //holdingTax.Reduction = 
             return View(holdingTax);
         }
 
@@ -298,6 +298,11 @@ namespace HoldingTaxWebApp.Controllers.Tax
                 else
                     netTotalTax = relatableData.NetTaxPayableAmount + wrongInfoCharge - totalRebate;
 
+                //if (holdingTax.Reduction != 0)
+                //{
+                //    netTotalTax = netTotalTax - holdingTax.Reduction;
+                //}
+
                 HoldingTax tax = new HoldingTax
                 {
                     Rebate = totalRebate,//holdingTax.RebateInfo == "Yes" ? holdingTax.Rebate : 0,
@@ -312,7 +317,8 @@ namespace HoldingTaxWebApp.Controllers.Tax
                     PaymentDate = holdingTax.PaymentDate,
                     TotalHoldingTax = null,
                     TotalTaxOfThisYear = null,
-                    Surcharge = null
+                    Surcharge = null,
+                    Reduction = holdingTax.Reduction
                 };
 
 

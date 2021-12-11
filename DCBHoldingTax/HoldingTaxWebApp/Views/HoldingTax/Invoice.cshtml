@@ -163,6 +163,13 @@
                                             <td class="text-right" width="20%">@Model.WrongInfoCharge</td>
                                             <td class="text-left" width="10%">টাকা</td>
                                         </tr>
+                                        @if(@Model.Reduction != 0) { 
+                                        <tr class="font-weight-boldest">
+                                            <td class="text-left" width="70%">বিশেষ বিবেচনায় মওকুফ (প্রযোজ্য ক্ষেত্রে)</td>
+                                            <td class="text-right" width="20%">@Model.Reduction</td>
+                                            <td class="text-left" width="10%">টাকা</td>
+                                        </tr>
+                                        }
                                         <tr class="font-weight-boldest">
                                             <td class="text-right" width="70%">সর্বমোট</td>
                                             <td class="text-right" width="20%">@Model.NetTaxPayableAmount</td>
