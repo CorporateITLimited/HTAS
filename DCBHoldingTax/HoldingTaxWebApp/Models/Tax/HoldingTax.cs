@@ -125,5 +125,8 @@ namespace HoldingTaxWebApp.Models.Tax
 
         public decimal? TotalHoldingTaxWithRebate { get; set; }
         public decimal? TotalHoldingTaxWithRebateAndSurcharge { get; set; }
+
+        [Display(Name = "মওকুফ")]
+        public decimal? Reduction { get; set; }
     }
 }

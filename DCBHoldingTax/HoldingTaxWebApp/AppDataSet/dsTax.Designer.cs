@@ -1254,6 +1254,8 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             private global::System.Data.DataColumn columnAreaType;
             
+            private global::System.Data.DataColumn columnReduction;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtHoldingTaxDataTable() {
@@ -1897,6 +1899,14 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ReductionColumn {
+                get {
+                    return this.columnReduction;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2005,7 +2015,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                         decimal OwnMonthlyRent, 
                         decimal TotalOwnTax, 
                         decimal OwnFlatDiscount, 
-                        int AreaType) {
+                        int AreaType, 
+                        decimal Reduction) {
                 dtHoldingTaxRow rowdtHoldingTaxRow = ((dtHoldingTaxRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2083,7 +2094,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                         OwnMonthlyRent,
                         TotalOwnTax,
                         OwnFlatDiscount,
-                        AreaType};
+                        AreaType,
+                        Reduction};
                 rowdtHoldingTaxRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtHoldingTaxRow);
                 return rowdtHoldingTaxRow;
@@ -2182,6 +2194,7 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnTotalOwnTax = base.Columns["TotalOwnTax"];
                 this.columnOwnFlatDiscount = base.Columns["OwnFlatDiscount"];
                 this.columnAreaType = base.Columns["AreaType"];
+                this.columnReduction = base.Columns["Reduction"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2339,6 +2352,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnOwnFlatDiscount);
                 this.columnAreaType = new global::System.Data.DataColumn("AreaType", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAreaType);
+                this.columnReduction = new global::System.Data.DataColumn("Reduction", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReduction);
                 this.columnHoldingTaxId.AutoIncrement = true;
                 this.columnHoldingTaxId.AutoIncrementSeed = -1;
                 this.columnHoldingTaxId.AutoIncrementStep = -1;
@@ -2547,6 +2562,8 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             private global::System.Data.DataColumn columnEmployeeName;
             
+            private global::System.Data.DataColumn columnReduction;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtLetterThreeDataTable() {
@@ -2742,6 +2759,14 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ReductionColumn {
+                get {
+                    return this.columnReduction;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2796,7 +2821,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                         System.DateTime StartingDate, 
                         System.DateTime EndDate, 
                         System.DateTime oldDate, 
-                        string EmployeeName) {
+                        string EmployeeName, 
+                        decimal Reduction) {
                 dtLetterThreeRow rowdtLetterThreeRow = ((dtLetterThreeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2818,7 +2844,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                         StartingDate,
                         EndDate,
                         oldDate,
-                        EmployeeName};
+                        EmployeeName,
+                        Reduction};
                 rowdtLetterThreeRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtLetterThreeRow);
                 return rowdtLetterThreeRow;
@@ -2861,6 +2888,7 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnEndDate = base.Columns["EndDate"];
                 this.columnoldDate = base.Columns["oldDate"];
                 this.columnEmployeeName = base.Columns["EmployeeName"];
+                this.columnReduction = base.Columns["Reduction"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2906,6 +2934,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnoldDate);
                 this.columnEmployeeName = new global::System.Data.DataColumn("EmployeeName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmployeeName);
+                this.columnReduction = new global::System.Data.DataColumn("Reduction", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReduction);
                 this.columnHoldingTaxId.AutoIncrement = true;
                 this.columnHoldingTaxId.AutoIncrementSeed = -1;
                 this.columnHoldingTaxId.AutoIncrementStep = -1;
@@ -9982,6 +10012,22 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal Reduction {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHoldingTax.ReductionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Reduction\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.ReductionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsTotalRentNull() {
                 return this.IsNull(this.tabledtHoldingTax.TotalRentColumn);
             }
@@ -10855,6 +10901,18 @@ namespace HoldingTaxWebApp.AppDataSet {
             public void SetAreaTypeNull() {
                 this[this.tabledtHoldingTax.AreaTypeColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsReductionNull() {
+                return this.IsNull(this.tabledtHoldingTax.ReductionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetReductionNull() {
+                this[this.tabledtHoldingTax.ReductionColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -11178,6 +11236,22 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal Reduction {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtLetterThree.ReductionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Reduction\' in table \'dtLetterThree\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtLetterThree.ReductionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsNetTaxPayableAmountNull() {
                 return this.IsNull(this.tabledtLetterThree.NetTaxPayableAmountColumn);
             }
@@ -11378,6 +11452,18 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetEmployeeNameNull() {
                 this[this.tabledtLetterThree.EmployeeNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsReductionNull() {
+                return this.IsNull(this.tabledtLetterThree.ReductionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetReductionNull() {
+                this[this.tabledtLetterThree.ReductionColumn] = global::System.Convert.DBNull;
             }
         }
         

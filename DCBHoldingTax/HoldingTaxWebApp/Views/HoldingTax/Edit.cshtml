@@ -47,14 +47,14 @@
             <div class="col-md-12">
 
                 <div class="card card-custom gutter-b example example-compact">
-                    <div class="card-header">
+                    @*<div class="card-header">
                         <h3 class="card-title">গৃহকরের তথ্য হালনাগাদ/পরিবর্তন</h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
 
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                     <!--begin::Form-->
                     @using (Html.BeginForm("Edit", "HoldingTax", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_2", role = "form" }))
                     {
@@ -84,7 +84,7 @@
 
                                 @Html.LabelFor(model => model.AreaPlotFlatData, htmlAttributes: new { @class = "col-lg-3 col-form-label text-lg-right" })
                                 <div class="col-lg-3">
-                                    @Html.EditorFor(model => model.AreaPlotFlatData, new { htmlAttributes = new { @class = "form-control border-0", placeholder = "", @readonly = "readonly" } })
+                                    @Html.TextAreaFor(model => model.AreaPlotFlatData, new { @class = "form-control", placeholder = "", @readonly = "readonly" })
                                 </div>
 
                             </div>
@@ -129,6 +129,9 @@
                                             @Html.EditorFor(model => model.Rebate, new { htmlAttributes = new { @class = "form-control border_color_red", placeholder = "", @readonly = "readonly" } })
                                         }
                                     </div>
+                                    <div class="Col-lg-3">
+                                        <label class="col-form-label text-lg-right"> (@Model.FinancialYear.Replace(" ", "") অর্থ বছরের গৃহকরের উপর প্রযোজ্য)</label>
+                                    </div>
                                 </div>
 
                                 <div class="form-group row">
@@ -169,67 +172,73 @@
                                             @Html.EditorFor(model => model.WrongInfoCharge, new { htmlAttributes = new { @class = "form-control border_color_red", placeholder = "", @readonly = "readonly" } })
                                         }
                                     </div>
+                                    <div class="Col-lg-3">
+                                        <label class="col-form-label text-lg-right"> (@Model.FinancialYear.Replace(" ", "") অর্থ বছরের সারচার্জ সহ গৃহকরের উপর প্রযোজ্য)</label>
+                                    </div>
 
                                 </div>
 
 
                                 <div class="form-group row">
-                                    <div class="col-md-1"></div>
                                     <label class="col-lg-3 col-form-label text-lg-right">@Model.FinancialYear.Replace(" ", "") অর্থ বছরের গৃহকর </label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.TotalHoldingTax, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                     </div>
-                                </div>
-                                <div class="form-group row" style="display:none">
-                                    <div class="col-md-1"></div>
-                                    <label class="col-lg-3 col-form-label text-lg-right" >@Model.FinancialYear.Replace(" ", "") অর্থ বছরের সারচার্জ সহ গৃহকর</label>
+
+                                    <label class="col-lg-2 col-form-label text-lg-right">@Model.FinancialYear.Replace(" ", "") অর্থ বছরের সারচার্জ সহ গৃহকর</label>
                                     <div class="col-lg-3">
-                                        @Html.EditorFor(model => model.TotalTaxOfThisYear, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
+                                        @Html.EditorFor(model => model.TotalTaxOfThisYear, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "", @readonly = "readonly" } })
                                     </div>
                                 </div>
+                                @*<div class="form-group row">
+                                    <div class="col-md-1"></div>
+                                    <label class="col-lg-3 col-form-label text-lg-right">@Model.FinancialYear.Replace(" ", "") অর্থ বছরের সারচার্জ সহ গৃহকর</label>
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.TotalTaxOfThisYear, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "", @readonly = "readonly" } })
+                                    </div>
+                                    <div class="Col-lg-3">
+                                        <label class="col-form-label text-lg-right"> (@Model.FinancialYear.Replace(" ", "") অর্থ বছরের গৃহকর + বকেয়া গৃহকরের উপর সারচার্জ )</label>
+                                    </div>
+                                </div>*@
 
                                 <div class="form-group row">
-                                    <div class="col-md-1"></div>
-                                    <label class="col-lg-3 col-form-label text-lg-right"> জরিমানাসহ গৃহকরের বকেয়া</label>
+                                   
+                                    <label class="col-lg-3 col-form-label text-lg-right">বকেয়া গৃহকর</label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.DuesPreviousYear, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                     </div>
+
+                                    <label class="col-lg-2 col-form-label text-lg-right">মওকুফ গৃহকর</label>
+                                    <div class="col-lg-3">
+                                        @Html.EditorFor(model => model.Reduction, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                    </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-md-1"></div>
-                                    <label class="col-lg-3 col-form-label text-lg-right">নেট কর প্রদেয় পরিমান (বকেয়া গৃহকর সহ)</label>
+                                   
+                                    <label class="col-lg-3 col-form-label text-lg-right">নেট কর প্রদেয় পরিমান (বকেয়া সহ)</label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.NetTaxPayableAmount, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                     </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-md-1"></div>
-                                    <label class="col-lg-3 col-form-label text-lg-right">পরিশোধিত টাকার পরিমান</label>
+                                    <label class="col-lg-2 col-form-label text-lg-right">পরিশোধিত টাকার পরিমান</label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.PaidAmount, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
-                                    <div class="col-md-1"></div>
                                     <label class="col-lg-3 col-form-label text-lg-right">টাকা প্রদানের তারিখ</label>
                                     <div class="col-lg-3">
                                         @Html.EditorFor(model => model.StringPaymentDate, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                     </div>
-
-                                </div>
-
-
-                                <div class="form-group row">
-                                    <div class="col-md-1"></div>
-                                    <label class="col-lg-3 col-form-label text-lg-right">নোট</label>
-                                    <div class="col-lg-4">
+                                    <label class="col-lg-2 col-form-label text-lg-right">নোট</label>
+                                    <div class="col-lg-3">
                                         @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", placeholder = "" })
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+
+                               
+
+                                @*<div class="form-group row">
                                     <div class="col-md-1"></div>
                                     <label class="col-lg-3 col-form-label text-lg-right">চুড়ান্ত করুন</label>
                                     <div class="col-lg-2">
@@ -259,7 +268,7 @@
                                         </div>
                                     </div>
 
-                                </div>
+                                </div>*@
 
                             </fieldset>
                             <br />
@@ -413,6 +422,21 @@
             });
 
 
+
+            $('#Reduction').change(function () {
+
+
+                 
+                var Reduction = parseFloat($("#Reduction").val()) || 0;
+                   
+                var netPayAmount = parseFloat($("#NetTaxPayableAmount").val()) || 0;
+
+                var newPayment = netPayAmount - Reduction;
+                $("#NetTaxPayableAmount").val(newPayment.toFixed(2));
+                   
+
+
+            })
         });
     </script>
 }

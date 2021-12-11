@@ -46,5 +46,9 @@ namespace HoldingTaxWebApp.ViewModels.Tax
 
         public decimal? WrongInfoChargeRate { get; set; }
         public decimal? WrongInfoCharge { get; set; }
+
+
+       
+        public decimal? Reduction { get; set; }
     }
 }

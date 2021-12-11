@@ -2,11 +2,25 @@
 @model IEnumerable<HoldingTaxWebApp.Models.Tax.HoldingTax>
 @using HoldingTaxWebApp.Helpers
 
+@section sheets{
+    <style>
+        .tab_list {
+            counter-reset: Serial; /* Set the Serial counter to 0 */
+        }
+
+            .tab_list td:first-child:before {
+                counter-increment: Serial; /* Increment the Serial counter */
+                content: counter(Serial); /* Display the counter */
+            }
+    </style>
+    }
+
 @if (Model != null && Model.Count() > 0)
 {
-    <table class="table table-bordered table-hover table-sm" width="100">
+    <table class="table table-bordered table-hover table-sm tab_list" width="100">
         <thead class="thead-dark">
             <tr>
+                <th></th>
                 <th>
                     @Html.DisplayNameFor(model => model.HolderName)
                 </th>
@@ -40,6 +54,7 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <td></td>
                     <td>
                         @Html.DisplayFor(modelItem => item.HolderName)
                     </td>

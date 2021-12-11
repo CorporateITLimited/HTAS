@@ -19,6 +19,15 @@
         .un_paid {
             background-color: #F64E60;
         }
+
+        .tab_list {
+            counter-reset: Serial; /* Set the Serial counter to 0 */
+        }
+
+        .tab_list td:first-child:before {
+            counter-increment: Serial; /* Increment the Serial counter */
+            content: counter(Serial); /* Display the counter */
+        }
     </style>
 }
 
@@ -119,9 +128,10 @@
                         </div>
                     }
                     <div class="initial_result" id="initial_result">
-                        <table class="table table-bordered table-sm table-hover table-responsive" width="100" id="int_table">
+                        <table class="table table-bordered table-sm table-hover table-responsive tab_list" width="100" id="int_table">
                             <thead class="thead-dark">
                                 <tr>
+                                    <th></th>
                                     <th>
                                         গৃহকরদাতার নাম
                                     </th>
@@ -155,6 +165,7 @@
                                 @foreach (var item in ViewBag.ListOfData)
                                 {
                                     <tr>
+                                        <td></td>
                                         <td>
                                             @item.HolderName
                                         </td>
@@ -283,6 +294,8 @@
                     class: 'datatable-bordered',
                 }
             });
+
+
 
             $("#AreaId").change(function () {
                 var areaId = $("#AreaId").val();

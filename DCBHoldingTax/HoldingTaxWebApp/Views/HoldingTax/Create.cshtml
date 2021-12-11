@@ -114,14 +114,18 @@
 
                         </div>
                         <br />
-                        <h5 class="card-title"><span style="color: forestgreen; text-decoration:underline;"> যেসব গৃহকরদাতাদের গৃহকরের তথ্য পুনঃ প্রস্তুত করবেন তাদেরকে টিক দিন </span> </h5>
+                        <h5 class="card-title"><span style="color: forestgreen; text-decoration:underline;"> যেসব গৃহকরদাতাদের গৃহকরের তথ্য পুনঃ প্রস্তুত করবেন তাদের পাশে টিক দিন </span> </h5>
                         <table class="table table-bordered table-hover table-sm" width="100" id="holder_details">
                             <thead class="thead-light text-center">
                                 <tr>
+                                    <th>নং</th>
                                     <th>নাম</th>
                                     <th>আইডি নম্বর</th>
                                     <th>নেট করের পরিমাণ</th>
-                                    <th>টিক দিন</th>
+                                    <th>
+                                        <input type="checkbox" id="chkHolder" />
+                                        সব টিক দিন
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -211,7 +215,7 @@
                     }
                     else if (status === 300) {
                         Swal.fire({
-                            text: "  Already Exists  ",
+                            text: " নতুন করে হোল্ডিং ট্যাক্স তৈরি করার জন্য কোনো হোল্ডার পাওয়া যায়নি  ",
                             icon: "error",
                             buttonsStyling: false,
                             //confirmButtonText: " Canceled ",
@@ -374,6 +378,11 @@
                 });
             });
 
+            function incrementByOne(index) {
+                var i = index + 1;
+                return i
+            }
+
             $("#btnSearch").click(function (e) {
                 e.preventDefault();
                 var holder_details_table = $('#holder_details tbody');
@@ -427,7 +436,8 @@
                                 holder_details_table.append('<tr>' +
                                     '<input type="hidden" value=' + upd.HoldingTaxId + ' class="HoldingTaxId" id="HoldingTaxId" />' +
                                     '<input type="hidden" value=' + upd.HolderId + ' class="HolderId" id="HolderId" />' +
-                                    '<td class="text-center">' + upd.HolderName + '</td>' +
+                                    '<td>' + incrementByOne(index) +'</td>'+
+                                    '<td class="">' + upd.HolderName + '</td>' +
                                     '<td class="text-center">' + upd.HolderNo + '</td>' +
                                     '<td class="text-center">' + upd.NetTaxPayableAmount + '</td>' +
                                     '<td class="text-center"> <input type="checkbox" class="holding_tax_id_status" value="false" /> </td>' +
@@ -544,6 +554,17 @@
                     }
                 });
             });
+
+
+            $("#chkHolder").change(function () {
+                if ($(this).is(':checked')) {
+                    $('.holding_tax_id_status').prop('checked', true);
+                }
+                else {
+                    $('.holding_tax_id_status').prop('checked', false);
+                }
+            });
+
         });
 
     </script>
