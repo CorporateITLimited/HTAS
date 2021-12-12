@@ -88,12 +88,14 @@ namespace HoldingTaxWebApp.Controllers
                     {
                         objResponseData.Message = "Payment Successful";
 
-                        SPGTransaction trnxDetails = new SPGTransaction
-                        {
-                            RefTranNo = dtResponseStatus.Rows[0]["RefTranNo"].ToString(),
-                            RefTranDate = Convert.ToDateTime(dtResponseStatus.Rows[0]["RefTranDateTime"].ToString()),
-                            TranAmount = dtResponseStatus.Rows[0]["TranAmount"].ToString()
-                        };
+                        SPGTransaction trnxDetails = new SPGTransaction();
+                        trnxDetails.RefTranNo = dtResponseStatus.Rows[0]["RefTranNo"].ToString();
+                        trnxDetails.RefTranDate = Convert.ToDateTime(dtResponseStatus.Rows[0]["RefTranDateTime"].ToString());
+                        trnxDetails.TranAmount = dtResponseStatus.Rows[0]["TranAmount"].ToString();
+
+                        if (!trnxDetails.TranAmount.Contains('.'))
+                            trnxDetails.TranAmount = trnxDetails.TranAmount + ".00";
+
 
                         var relatableData = _sPGPaymentGateway.GetSPGTransactionByTrnxDetails(trnxDetails);
 
@@ -348,7 +350,7 @@ namespace HoldingTaxWebApp.Controllers
                     sPGTrnx.Id = 0;
 
                     string ipDetails = "";
-                    if (Session[""] != null)
+                    if (Session["_ipDetails"] != null)
                     {
                         ipDetails = Session["_ipDetails"].ToString();
                     }
