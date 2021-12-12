@@ -17,7 +17,7 @@
                 <h5 class="text-dark font-weight-bold my-1 mr-5">ক্লাস্টার</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="" class="text-muted">ক্লাস্টার হালনাগাদ করুন</a>
+                        <a href="" class="text-muted">নতুন ক্লাস্টার যুক্ত করুন</a>
                     </li>
                 </ul>
             </div>
@@ -34,13 +34,13 @@
             <div class="col-md-12">
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
-                        <h3 class="card-title"> ক্লাস্টার হালনাগাদ করুন</h3>
+                        <h3 class="card-title"> নতুন ক্লাস্টার যুক্ত করুন</h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
                         </div>
                     </div>
-                    @using (Html.BeginForm("Edit", "Cluster", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_3", role = "form" }))
+                    @using (Html.BeginForm("Create", "Cluster", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_3", role = "form" }))
                     {
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.AntiForgeryToken()
@@ -66,16 +66,17 @@
                                 </div>
 
                                 <div class="form-group row m-2">
-                                    @Html.LabelFor(model => model.UserFullName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                    <div class="col-lg-4">
-                                        @Html.EditorFor(model => model.UserFullName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
-                                    </div>
+                                    @*@Html.LabelFor(model => model.UserFullName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                        <div class="col-lg-4">
+                                            @Html.EditorFor(model => model.UserFullName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly",@disabled = "disabled" } })
+                                        </div>*@
 
                                     @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
                                         @Html.DropDownListFor(model => model.IsActive, null, new
                                    {
                                        @class = "form-control",
+                                       @disabled = "disabled"
                                    })
                                         @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
                                     </div>
@@ -85,7 +86,7 @@
                         </div>
                         <div class="card-footer">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>হালনাগাদ  করুন</button>
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>সাবমিট  করুন</button>
                                 <button type="button" onclick="window.location.href = '/Cluster/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
                             </div>
                         </div>
