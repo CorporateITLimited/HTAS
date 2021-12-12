@@ -45,6 +45,10 @@ namespace HoldingTaxWebApp.Models.DBO
         [Display(Name = "ব্যবহারকারীর নাম দ্বারা আপডেট")]
         public string UpdatedByUserName { get; set; }
 
+
+        public int? Collector { get; set; }
+        public string CollectorName { get; set; }
+
         ////out of table
         [Display(Name = "হোল্ডার এর নাম")]
         public string HolderName { get; set; }
