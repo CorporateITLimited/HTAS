@@ -224,8 +224,6 @@ namespace HoldingTaxWebApp.Controllers.Users
                     {
                         if (id <= 0)
                             return HttpNotFound();
-
-
                         var cls = _cluster.GetClusterById(id);
                         ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", cls.IsActive);
                         return View(cls);
@@ -280,7 +278,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                         return View(cls);
                     }
 
-                    cls.IsActive = true;
+                    cls.IsActive = cls.IsActive;
                     cls.IsDeleted = null;
                     cls.CreatedBy = null;
                     cls.CreateDate = null;

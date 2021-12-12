@@ -1,7 +1,7 @@
-﻿@model HoldingTaxWebApp.Models.Users.Role
+﻿@model HoldingTaxWebApp.Models.Users.Cluster
 @using HoldingTaxWebApp.Helpers
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,10 +14,10 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <div class="d-flex align-items-center flex-wrap mr-1">
             <div class="d-flex align-items-baseline flex-wrap mr-5">
-                <h5 class="text-dark font-weight-bold my-1 mr-5">রোল</h5>
+                <h5 class="text-dark font-weight-bold my-1 mr-5">ক্লাস্টার</h5>
                 <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                     <li class="breadcrumb-item text-muted">
-                        <a href="" class="text-muted"> রোলের তথ্য হালনাগাদ করুন </a>
+                        <a href="" class="text-muted">ক্লাস্টার হালনাগাদ করুন</a>
                     </li>
                 </ul>
             </div>
@@ -34,44 +34,49 @@
             <div class="col-md-12">
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="card-header">
-                        <h3 class="card-title">রোলের তথ্য হালনাগাদ করুন</h3>
+                        <h3 class="card-title"> ক্লাস্টার হালনাগাদ করুন</h3>
                         <div class="card-toolbar">
                             <div class="example-tools justify-content-center">
                             </div>
                         </div>
                     </div>
-                    @using (Html.BeginForm("Edit", "Role", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_3", role = "form" }))
+                    @using (Html.BeginForm("Edit", "Cluster", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_3", role = "form" }))
                     {
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.AntiForgeryToken()
-                        @Html.HiddenFor(model => model.RoleId)
+                        @Html.HiddenFor(s => s.ClusterId)
                         <div class="card-body">
                             <fieldset>
 
-                                <legend>রোলের সাধারণ তথ্য</legend>
+                                <legend>ক্লাস্টারের  সাধারণ তথ্য</legend>
 
                                 <div class="form-group row m-2">
-                                    @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    @Html.LabelFor(model => model.ClusterName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control", @name = "RoleName", placeholder = "Enter role name", @id = "RoleName" } })
-                                        @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                                        @Html.EditorFor(model => model.ClusterName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ClusterName, "", new { @class = "text-danger" })
                                     </div>
 
 
-                                    @Html.LabelFor(model => model.RoleDetails, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    @Html.LabelFor(model => model.ClusterDetails, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        @Html.TextAreaFor(model => model.RoleDetails, new { @class = "form-control", @name = "RoleDetails", @id = "RoleDetails", placeholder = "Enter role details" })
-                                        @Html.ValidationMessageFor(model => model.RoleDetails, "", new { @class = "text-danger" })
+                                        @Html.TextAreaFor(model => model.ClusterDetails, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ClusterDetails, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 
                                 <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.UserFullName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.UserFullName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
+                                    </div>
+
                                     @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                     <div class="col-lg-4">
-                                        <select class="form-control" name="IsActive" id="IsActive" disabled>
-                                            <option value="true">Active</option>
-                                            <option value="flase">Inactive</option>
-                                        </select>
+                                        @Html.DropDownListFor(model => model.IsActive, null, new
+                                   {
+                                       @class = "form-control",
+                                   })
                                         @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
                                     </div>
 
@@ -80,8 +85,8 @@
                         </div>
                         <div class="card-footer">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>হালনাগাদ করুন</button>
-                                <button type="button" onclick="window.location.href = '/Role/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>হালনাগাদ  করুন</button>
+                                <button type="button" onclick="window.location.href = '/Cluster/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
                             </div>
                         </div>
                     }
@@ -95,19 +100,18 @@
 
     <script>
 
-        autosize($('#RoleDetails'));
+        autosize($('#ClusterDetails'));
 
         jQuery(document).ready(function () {
             $("#kt_form_3").validate({
                 rules: {
-                    RoleName: {
+                    ClusterName: {
                         required: true
                     },
-                    RoleDetails: {
+                    ClusterDetails: {
                         required: true
                     }
                 },
-
                 invalidHandler: function (event, validator) {
                     KTUtil.scrollTop();
                 }

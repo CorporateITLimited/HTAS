@@ -22,6 +22,11 @@ namespace HoldingTaxWebApp.Manager.Users
             return _gateway.GetAllCluster();
         }
 
+        public List<Cluster> GetAllActiveCluster()
+        {
+            return _gateway.GetAllActiveCluster();
+        }
+
         public Cluster GetClusterById(int id)
         {
             return _gateway.GetClusterById(id);
@@ -56,6 +61,6 @@ namespace HoldingTaxWebApp.Manager.Users
                 return CommonConstantHelper.Failed;
         }
 
-        
+
     }
 }

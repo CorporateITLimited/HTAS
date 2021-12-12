@@ -93,6 +93,88 @@ namespace HoldingTaxWebApp.Gateway.Users
             }
         }
 
+        public List<Cluster> GetAllActiveCluster()
+        {
+            try
+            {
+                Sql_Query = "[user].[spCluster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "select_active";
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<Cluster> clusterList = new List<Cluster>();
+
+                while (Data_Reader.Read())
+                {
+                    Cluster roleVM = new Cluster
+                    {
+                        LastUpdated = Data_Reader["LastUpdated"] != DBNull.Value ?
+                                                Convert.ToDateTime(Data_Reader["LastUpdated"]) : (DateTime?)null,
+                        IsActive = Data_Reader["IsActive"] !=
+                                                DBNull.Value ? Convert.ToBoolean(Data_Reader["IsActive"]) : (bool?)null,
+                        IsDeleted = Data_Reader["IsDeleted"] !=
+                                                DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
+                        ClusterDetails = Data_Reader["ClusterDetails"].ToString(),
+                        ClusterId = Convert.ToInt32(Data_Reader["ClusterId"]),
+                        ClusterName = Data_Reader["ClusterName"].ToString(),
+                        UserFullName = Data_Reader["UserFullName"].ToString(),
+                        UserId = Data_Reader["UserId"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["UserId"]) : (int?)null,
+                        LastUpdatedBy = Data_Reader["LastUpdatedBy"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["LastUpdatedBy"]) : (int?)null,
+                        CreatedBy = Data_Reader["CreatedBy"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["CreatedBy"]) : (int?)null,
+                        CreateDate = Data_Reader["CreateDate"] != DBNull.Value ?
+                                                Convert.ToDateTime(Data_Reader["CreateDate"]) : (DateTime?)null
+                    };
+
+                    clusterList.Add(roleVM);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return clusterList;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
         public Cluster GetClusterById(int id)
         {
             try
@@ -190,8 +272,8 @@ namespace HoldingTaxWebApp.Gateway.Users
 
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Insert;
                 Sql_Command.Parameters.Add("@ClusterId", SqlDbType.Int).Value = cluster.ClusterId;
-                Sql_Command.Parameters.Add("@RoleName", SqlDbType.NVarChar).Value = cluster.ClusterName;
-                Sql_Command.Parameters.Add("@RoleDetails", SqlDbType.NVarChar).Value = cluster.ClusterDetails;
+                Sql_Command.Parameters.Add("@ClusterName", SqlDbType.NVarChar).Value = cluster.ClusterName;
+                Sql_Command.Parameters.Add("@ClusterDetails", SqlDbType.NVarChar).Value = cluster.ClusterDetails;
                 Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = cluster.CreatedBy;
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = cluster.CreateDate;
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = cluster.LastUpdatedBy;
@@ -253,8 +335,8 @@ namespace HoldingTaxWebApp.Gateway.Users
 
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = CommonConstantHelper.Update;
                 Sql_Command.Parameters.Add("@ClusterId", SqlDbType.Int).Value = cluster.ClusterId;
-                Sql_Command.Parameters.Add("@RoleName", SqlDbType.NVarChar).Value = cluster.ClusterName;
-                Sql_Command.Parameters.Add("@RoleDetails", SqlDbType.NVarChar).Value = cluster.ClusterDetails;
+                Sql_Command.Parameters.Add("@ClusterName", SqlDbType.NVarChar).Value = cluster.ClusterName;
+                Sql_Command.Parameters.Add("@ClusterDetails", SqlDbType.NVarChar).Value = cluster.ClusterDetails;
                 Sql_Command.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = cluster.CreatedBy;
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = cluster.CreateDate;
                 Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = cluster.LastUpdatedBy;

@@ -4900,7 +4900,7 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Details.cshtml" />
-    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Cluster\Edit.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Theme\dist\assets\plugins\global\fonts\%40fortawesome\fa-brands-400.eot" />
     <Content Include="Theme\dist\assets\plugins\global\fonts\%40fortawesome\fa-brands-400.ttf" />
@@ -5057,6 +5057,9 @@
     <Content Include="Views\Holding\UnApproveIndex.cshtml" />
     <Content Include="Views\HolderClient\Edit.cshtml" />
     <Content Include="Views\Cluster\Index.cshtml" />
+    <Content Include="Views\Cluster\Create.cshtml" />
+    <Content Include="Views\Cluster\Details.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
