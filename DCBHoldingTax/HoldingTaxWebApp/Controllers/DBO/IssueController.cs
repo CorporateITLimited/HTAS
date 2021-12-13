@@ -62,7 +62,10 @@ namespace HoldingTaxWebApp.Controllers.DBO
                             CreatedByUserName = item.CreatedByUserName,
                             LastUpdated = item.LastUpdated,
                             LastUpdatedBy = item.LastUpdatedBy,
-                            UpdatedByUserName = item.UpdatedByUserName
+                            UpdatedByUserName = item.UpdatedByUserName,
+                            IsSendToClusUser = item.IsSendToClusUser,
+                            AreaName = item.AreaName,
+                            PlotNo = item.PlotNo,
 
                         };
                         IssueListVM.Add(IssueVM);
@@ -70,34 +73,81 @@ namespace HoldingTaxWebApp.Controllers.DBO
                 }
                 else if (Session[CommonConstantHelper.UserTypeId].ToString() == "1")
                 {
-                    IssueList = _IssueManager.GetAllIssue();
-                    foreach (var item in IssueList)
+
+
+                    if(Session[CommonConstantHelper.RoleName].ToString() == "এডমিন" || Session[CommonConstantHelper.RoleName].ToString() == "ম্যানেজমেন্ট")
                     {
-                        Issue IssueVM = new Issue()
+                        IssueList = _IssueManager.GetAllIssue();
+                        foreach (var item in IssueList)
                         {
-                            IssueId = item.IssueId,
-                            HolderId = item.HolderId,
-                            HolderName = item.HolderName,
-                            Remarks = item.Remarks,
-                            SolvedDate = item.SolvedDate,
-                            StatusName = item.StatusName,
-                            StatusTypeId = item.StatusTypeId,
-                            Subject = item.Subject,
-                            StringSolvedDate = $"{item.SolvedDate:dd/MM/yyyy}",
+                            Issue IssueVM = new Issue()
+                            {
+                                IssueId = item.IssueId,
+                                HolderId = item.HolderId,
+                                HolderName = item.HolderName,
+                                Remarks = item.Remarks,
+                                SolvedDate = item.SolvedDate,
+                                StatusName = item.StatusName,
+                                StatusTypeId = item.StatusTypeId,
+                                Subject = item.Subject,
+                                StringSolvedDate = $"{item.SolvedDate:dd/MM/yyyy}",
 
 
-                            IsActive = item.IsActive,
-                            IsDeleted = item.IsDeleted,
-                            CreateDate = item.CreateDate,
-                            CreatedBy = item.CreatedBy,
-                            CreatedByUserName = item.CreatedByUserName,
-                            LastUpdated = item.LastUpdated,
-                            LastUpdatedBy = item.LastUpdatedBy,
-                            UpdatedByUserName = item.UpdatedByUserName
+                                IsActive = item.IsActive,
+                                IsDeleted = item.IsDeleted,
+                                CreateDate = item.CreateDate,
+                                CreatedBy = item.CreatedBy,
+                                CreatedByUserName = item.CreatedByUserName,
+                                LastUpdated = item.LastUpdated,
+                                LastUpdatedBy = item.LastUpdatedBy,
+                                UpdatedByUserName = item.UpdatedByUserName,
+                                IsSendToClusUser = item.IsSendToClusUser,
+                                AreaName = item.AreaName,
+                                PlotNo = item.PlotNo,
 
-                        };
-                        IssueListVM.Add(IssueVM);
+                            };
+                            IssueListVM.Add(IssueVM);
+                        }
                     }
+                    else if(Session[CommonConstantHelper.RoleName].ToString() == "কঞ্জারভেন্সী")
+                    {
+                        var Collector = Convert.ToInt32(Session[CommonConstantHelper.UserId]);
+                        IssueList = _IssueManager.GetAllIssueByUserId(Collector);
+                        //IssueList = _IssueManager.GetAllIssue();
+                        foreach (var item in IssueList)
+                        {
+                            Issue IssueVM = new Issue()
+                            {
+                                IssueId = item.IssueId,
+                                HolderId = item.HolderId,
+                                HolderName = item.HolderName,
+                                Remarks = item.Remarks,
+                                SolvedDate = item.SolvedDate,
+                                StatusName = item.StatusName,
+                                StatusTypeId = item.StatusTypeId,
+                                Subject = item.Subject,
+                                StringSolvedDate = $"{item.SolvedDate:dd/MM/yyyy}",
+
+
+                                IsActive = item.IsActive,
+                                IsDeleted = item.IsDeleted,
+                                CreateDate = item.CreateDate,
+                                CreatedBy = item.CreatedBy,
+                                CreatedByUserName = item.CreatedByUserName,
+                                LastUpdated = item.LastUpdated,
+                                LastUpdatedBy = item.LastUpdatedBy,
+                                UpdatedByUserName = item.UpdatedByUserName,
+                                IsSendToClusUser = item.IsSendToClusUser,
+                                AreaName = item.AreaName,
+                                PlotNo = item.PlotNo,
+
+                            };
+                            IssueListVM.Add(IssueVM);
+                        }
+                    }
+
+
+                   
                 }
                 else
                 {
@@ -167,7 +217,10 @@ namespace HoldingTaxWebApp.Controllers.DBO
                     StatusTypeId = IssueList.StatusTypeId,
                     StringSolvedDate = $"{IssueList.SolvedDate:dd/MM/yyyy}",
                     Subject = IssueList.Subject,
-                    UpdatedByUserName = IssueList.UpdatedByUserName
+                    UpdatedByUserName = IssueList.UpdatedByUserName,
+                    IsSendToClusUser = IssueList.IsSendToClusUser,
+                    AreaName = IssueList.AreaName,
+                    PlotNo = IssueList.PlotNo,
 
                 };
 
@@ -226,6 +279,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
             issueVM.UpdatedByUserName = issue.UpdatedByUserName;
             issueVM.HolderName = issue.HolderName;
             issueVM.StatusName = issue.StatusName;
+            issueVM.IsSendToClusUser = issue.IsSendToClusUser;
             issueVM.IssueDetails = issueDetailsList;
 
 
@@ -458,7 +512,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
 
                     if(issss.SolvedDate == null) {
 
-                        if (issue.StatusTypeId == 3)
+                        if (issue.StatusTypeId == 2)
                         {
                             Iss.SolvedDate = DateTime.Now;
                         }
@@ -654,12 +708,6 @@ namespace HoldingTaxWebApp.Controllers.DBO
 
 
 
-
-
-
-
-
-
         public ActionResult DownloadFile(string filePath)
         {
             //string fullName = Server.MapPath(filePath);
@@ -727,7 +775,18 @@ namespace HoldingTaxWebApp.Controllers.DBO
 
         public JsonResult GetTopFiveIssue()
         {
-            var data = _IssueManager.GetTopFiveIssue();
+            List<Issue> data = new List<Issue>();
+
+            if (Session[CommonConstantHelper.RoleName].ToString() == "এডমিন" || Session[CommonConstantHelper.RoleName].ToString() == "ম্যানেজমেন্ট")
+            {
+                 data = _IssueManager.GetTopFiveIssue();
+            }
+            else if(Session[CommonConstantHelper.RoleName].ToString() == "কঞ্জারভেন্সী")
+            {
+                var Collector = Convert.ToInt32(Session[CommonConstantHelper.UserId]);
+                data = _IssueManager.GetAllIssueByUserId(Collector).Take(5).ToList();
+            }
+            
 
             return new JsonResult
             {
@@ -735,6 +794,51 @@ namespace HoldingTaxWebApp.Controllers.DBO
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+
+
+        #region Save Data
+
+        [HttpPost]
+        public JsonResult RemarksUpdate(Issue iss)
+        {
+            try
+            {
+                string status = "success";
+                Issue issue = new Issue()
+                {
+                    IssueId = iss.IssueId,
+                    Remarks = iss.Remarks,
+                    LastUpdated = DateTime.Now,
+                    LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+
+
+                };
+                string returnString  = _IssueManager.remarksUpdate(issue);
+                if (returnString != CommonConstantHelper.Success)
+
+                {
+                    status = "error_details";
+                    
+                }
+                else
+                {
+                    status = "success";
+                }
+                return new JsonResult { Data = new { status } };
+                
+  
+            }
+            catch (Exception exception)
+            {
+                TempData["EM"] = "error | " + exception.Message.ToString();
+                return new JsonResult { Data = "error" };
+
+            }
+
+        }
+
+        #endregion
 
     }
 }

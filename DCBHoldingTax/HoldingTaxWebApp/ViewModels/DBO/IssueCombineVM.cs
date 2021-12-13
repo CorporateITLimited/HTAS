@@ -44,16 +44,16 @@ namespace HoldingTaxWebApp.ViewModels.DBO
         public string UpdatedByUserName { get; set; }
 
 
+        [Display(Name = "প্রেরণ স্ট্যাটাস")]
 
-        public int? Collector { get; set; }
-        public string CollectorName { get; set; }
+        public bool? IsSendToClusUser { get; set; }
 
 
 
         ////out of table
         [Display(Name = "হোল্ডার এর নাম")]
         public string HolderName { get; set; }
-        [Display(Name = "স্ট্যাটাস এর নাম")]
+        [Display(Name = "বর্তমান স্ট্যাটাস")]
         public string StatusName { get; set; }
 
         public List<IssueDetails> IssueDetails { get; set; }
@@ -80,6 +80,13 @@ namespace HoldingTaxWebApp.ViewModels.DBO
             IssueDetails = new List<IssueDetails>();
         }
 
+
+        //new added 
+        [Display(Name = "এলাকার নাম")]
+        public string AreaName { get; set; }
+
+        [Display(Name = "প্লট নম্বর")]
+        public string PlotNo { get; set; }
 
     }
 }

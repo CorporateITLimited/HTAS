@@ -87,9 +87,19 @@
                             <th>@Html.DisplayNameFor(model => model.HolderName)</th>
                             <th>@Html.DisplayNameFor(model => model.StatusName)</th>
                             <th>@Html.DisplayNameFor(model => model.Subject)</th>
-                            <th>@Html.DisplayNameFor(model => model.StringSolvedDate)</th>
+                            @if (Convert.ToInt32(Session[HoldingTaxWebApp.Helpers.CommonConstantHelper.UserTypeId]) == 1)
+                            {
+                                <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
+                                <th>@Html.DisplayNameFor(model => model.AreaName)</th>
+                            }
 
-                            @*<th>@Html.DisplayNameFor(model => model.Remarks)</th>*@
+
+                            <th>@Html.DisplayNameFor(model => model.StringSolvedDate)</th>
+                            @if ((Convert.ToInt32(Session[HoldingTaxWebApp.Helpers.CommonConstantHelper.UserTypeId]) == 1) && ((Convert.ToString(Session[HoldingTaxWebApp.Helpers.CommonConstantHelper.RoleName]) == "এডমিন")) || ((Convert.ToString(Session[HoldingTaxWebApp.Helpers.CommonConstantHelper.RoleName]) == "ম্যানেজমেন্ট")))
+                            {
+                                <th>@Html.DisplayNameFor(model => model.IsSendToClusUser)</th>
+                            }
+
 
 
                             <th></th>
@@ -100,58 +110,86 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.HolderName)
-                                </td>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HolderName)
+                            </td>
 
+                            <td>
+                                @if (item.StatusTypeId == 1)
+                                {
+                                    <span style="color:blue"> @Html.DisplayFor(modelItem => item.StatusName) </span>
+                                }
+                                else if (item.StatusTypeId == 2)
+                                {
+                                    <span class="text-warning"> @Html.DisplayFor(modelItem => item.StatusName) </span>
+
+                                }
+                                else if (item.StatusTypeId == 3)
+                                {
+                                    <span style="color:forestgreen"> @Html.DisplayFor(modelItem => item.StatusName) </span>
+
+                                }
+                                else if (item.StatusTypeId == 4)
+                                {
+                                    <span style="color:red"> @Html.DisplayFor(modelItem => item.StatusName) </span>
+
+                                }
+
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subject)
+                            </td>
+
+                            @if (Convert.ToInt32(Session[HoldingTaxWebApp.Helpers.CommonConstantHelper.UserTypeId]) == 1)
+                            {
                                 <td>
-                                    @if (item.StatusTypeId == 1)
+                                    @Html.DisplayFor(modelItem => item.PlotNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AreaName)
+                                </td>
+                            }
+
+
+
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.StringSolvedDate)
+
+                            </td>
+                            @if ((Convert.ToInt32(Session[HoldingTaxWebApp.Helpers.CommonConstantHelper.UserTypeId]) == 1) && ((Convert.ToString(Session[HoldingTaxWebApp.Helpers.CommonConstantHelper.RoleName]) == "এডমিন")) || ((Convert.ToString(Session[HoldingTaxWebApp.Helpers.CommonConstantHelper.RoleName]) == "ম্যানেজমেন্ট")))
+                            {
+                                <td>
+                                    @if (item.IsSendToClusUser == true)
                                     {
-                                        <span style="color:blue"> @Html.DisplayFor(modelItem => item.StatusName) </span>
+                                        <span style="color:forestgreen"> প্রেরণ হয়েছে </span>
                                     }
-                                    else if (item.StatusTypeId == 2)
+                                    else
                                     {
-                                        <span class="text-warning"> @Html.DisplayFor(modelItem => item.StatusName) </span>
-
+                                        <span style="color:red"> প্রেরণ হয়নি </span>
                                     }
-                                    else if (item.StatusTypeId == 3)
-                                    {
-                                        <span style="color:forestgreen"> @Html.DisplayFor(modelItem => item.StatusName) </span>
-
-                                    }
-                                    else if (item.StatusTypeId == 4)
-                                    {
-                                        <span style="color:red"> @Html.DisplayFor(modelItem => item.StatusName) </span>
-
-                                    }
-
                                 </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Subject)
-                                </td>
-                                <td>
-
-                                    @Html.DisplayFor(modelItem => item.StringSolvedDate)
-
-                                </td>
-                                @*<td>
-                                        @Html.DisplayFor(modelItem => item.Remarks)
-                                    </td>*@
+                            }
 
 
-                                <td>
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Edit/@item.IssueId" title="হালনাগাদ পেজে যান">
-                                        <b> <i class="fa fa-edit"></i>  </b>
-                                    </a>
-                                    @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Details/@item.IssueId" title="বিস্তারিত তথ্য পেজে যান">
-                                            <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                        </a>*@
-                                </td>
+                            @*<td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>*@
 
 
-                            </tr>
+                            <td>
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Edit/@item.IssueId" title="হালনাগাদ পেজে যান">
+                                    <b> <i class="fa fa-edit"></i>  </b>
+                                </a>
+                                @*<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Issue/Details/@item.IssueId" title="বিস্তারিত তথ্য পেজে যান">
+                <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+            </a>*@
+                            </td>
+
+
+                        </tr>
                         }
                     </tbody>
 

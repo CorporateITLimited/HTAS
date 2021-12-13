@@ -45,15 +45,20 @@ namespace HoldingTaxWebApp.Models.DBO
         [Display(Name = "ব্যবহারকারীর নাম দ্বারা আপডেট")]
         public string UpdatedByUserName { get; set; }
 
-
-        public int? Collector { get; set; }
-        public string CollectorName { get; set; }
+        [Display(Name = "প্রেরণ স্ট্যাটাস")]
+        public bool? IsSendToClusUser { get; set; }
 
         ////out of table
         [Display(Name = "হোল্ডার এর নাম")]
         public string HolderName { get; set; }
-        [Display(Name = "স্ট্যাটাস এর নাম")]
+        [Display(Name = "বর্তমান স্ট্যাটাস")]
         public string StatusName { get; set; }
+
+        [Display(Name = "এলাকার নাম")]
+        public string AreaName { get; set; }
+
+        [Display(Name = "প্লট নম্বর")]
+        public string PlotNo { get; set; }
 
 
     }

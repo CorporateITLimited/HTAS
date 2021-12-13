@@ -25,12 +25,18 @@ namespace HoldingTaxWebApp.Manager.DBO
 
         }
 
+        //Get Issue By Holder ID
         public List<Issue> GetAllIssueByHolderId(int id)
         {
             return _IssueGateway.GetAllIssueByHolderId(id);
         }
 
+        //Get Issue By User Id 
+        public List<Issue> GetAllIssueByUserId(int id)
+        {
+            return _IssueGateway.GetAllIssueByUserId(id);
 
+        }
         //Get Top 5 Issue List
         public List<Issue> GetTopFiveIssue()
         {
@@ -62,6 +68,24 @@ namespace HoldingTaxWebApp.Manager.DBO
         {
             return _IssueGateway.IssueUpdate(model);
         }
+
+
+        //Remarks update remarksUpdate
+        public string remarksUpdate(Issue model)
+        {
+            int result = _IssueGateway.remarksUpdate(model);
+
+            if (result == 202)
+                return CommonConstantHelper.Success;
+            else if (result == 409)
+                return CommonConstantHelper.Conflict;
+            else if (result == 500)
+                return CommonConstantHelper.Error;
+            else
+                return CommonConstantHelper.Failed;
+            //return _IssueGateway.IssueUpdate(model);
+        }
+
         #endregion
 
 

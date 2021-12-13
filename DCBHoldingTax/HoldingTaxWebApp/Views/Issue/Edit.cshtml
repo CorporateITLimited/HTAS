@@ -139,7 +139,7 @@
                         <!--begin::Header-->
                         <div class="d-flex align-items-center justify-content-between py-5 pl-8 pr-5 border-bottom">
                             <h5 class="font-weight-bold m-0">মেসেজ/বার্তা</h5>
-                            
+
                             @if (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
                             {
                                 <div class="font-weight-bold m-0">
@@ -173,22 +173,22 @@
                             <!--begin::Message-->
                             @*<div id="kt_inbox_compose_editor" class="border-0" style="height: 250px; padding-top:10px">
 
-                                    <div class="ql-editor px-8 ql-blank" data-gramm="false" contenteditable="true" data-placeholder="Type message..." spellcheck="false"><p><br></p></div>
+                        <div class="ql-editor px-8 ql-blank" data-gramm="false" contenteditable="true" data-placeholder="Type message..." spellcheck="false"><p><br></p></div>
 
-                                </div>*@
+                    </div>*@
                             <div class="form-control border-0" style="height: 250px; padding-top:10px">
                                 <textarea class="border-0" id="MsgDetails" style="padding-top:10px; width:100%" rows="7"></textarea>
                             </div>
                             <div class="ml-5">
-                                <input type="file" name="document_file_1" id="document_file_1" class="btn btn-bg-info btn-info"/>
+                                <input type="file" name="document_file_1" id="document_file_1" class="btn btn-bg-info btn-info" />
                                 <span class="form-text text-info">
                                     সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                 </span>
-                                <br />
-                                <input type="file" name="document_file_2" id="document_file_2" class="btn btn-bg-info btn-info"/>
-                                <span class="form-text text-info">
-                                    সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
-                                </span>
+
+                                @*<input type="file" name="document_file_2" id="document_file_2" class="btn btn-bg-info btn-info"/>
+                        <span class="form-text text-info">
+                            সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                        </span>*@
                             </div>
                             <!--end::Attachments-->
                         </div>
@@ -201,40 +201,40 @@
                                 <div class="btn-group mr-4">
                                     <span class="btn btn-primary font-weight-bold px-6" id="btnSend">প্রেরণ করুন</span>
                                     @*<span class="btn btn-primary font-weight-bold dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button"></span>
-                                        <div class="dropdown-menu dropdown-menu-sm dropup p-0 m-0 dropdown-menu-right">
-                                            <ul class="navi py-3">
-                                                <li class="navi-item">
-                                                    <a href="#" class="navi-link">
-                                                        <span class="navi-icon">
-                                                            <i class="flaticon2-writing"></i>
-                                                        </span>
-                                                        <span class="navi-text">Schedule Send</span>
-                                                    </a>
-                                                </li>
-                                                <li class="navi-item">
-                                                    <a href="#" class="navi-link">
-                                                        <span class="navi-icon">
-                                                            <i class="flaticon2-medical-records"></i>
-                                                        </span>
-                                                        <span class="navi-text">Save &amp; archive</span>
-                                                    </a>
-                                                </li>
-                                                <li class="navi-item">
-                                                    <a href="#" class="navi-link">
-                                                        <span class="navi-icon">
-                                                            <i class="flaticon2-hourglass-1"></i>
-                                                        </span>
-                                                        <span class="navi-text">Cancel</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>*@
+                            <div class="dropdown-menu dropdown-menu-sm dropup p-0 m-0 dropdown-menu-right">
+                                <ul class="navi py-3">
+                                    <li class="navi-item">
+                                        <a href="#" class="navi-link">
+                                            <span class="navi-icon">
+                                                <i class="flaticon2-writing"></i>
+                                            </span>
+                                            <span class="navi-text">Schedule Send</span>
+                                        </a>
+                                    </li>
+                                    <li class="navi-item">
+                                        <a href="#" class="navi-link">
+                                            <span class="navi-icon">
+                                                <i class="flaticon2-medical-records"></i>
+                                            </span>
+                                            <span class="navi-text">Save &amp; archive</span>
+                                        </a>
+                                    </li>
+                                    <li class="navi-item">
+                                        <a href="#" class="navi-link">
+                                            <span class="navi-icon">
+                                                <i class="flaticon2-hourglass-1"></i>
+                                            </span>
+                                            <span class="navi-text">Cancel</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>*@
                                 </div>
                                 <!--end::Send-->
                                 <!--begin::Other-->
                                 @*<span class="btn btn-icon btn-sm btn-clean mr-2" id="kt_inbox_compose_attachments_select">
-                                        <i class="flaticon2-clip-symbol"></i>
-                                    </span>*@
+                            <i class="flaticon2-clip-symbol"></i>
+                        </span>*@
 
                             </div>
                             <!--end::Actions-->
@@ -243,6 +243,61 @@
                         <!--end::Footer-->
                     </form>
                 </div>
+
+                @if (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+                {
+                    if (Session[CommonConstantHelper.RoleName].ToString() == "এডমিন" || Session[CommonConstantHelper.RoleName].ToString() == "ম্যানেজমেন্ট")
+                    {
+                        <div class="card card-custom gutter-b example example-compact">
+                            <div class="row col-lg-12">
+                                <div class="col-lg-3">
+                                    <label class="col-form-label align-center font-weight-bold px-6">এডমিনের  নির্দেশবলী</label>
+                                </div>
+                                <div class="col-lg-7">
+                                    <input type="text" id="Remarks" name="Remarks" class="form-control Remarks" value="@Model.Remarks" />
+                                </div>
+                                <div class="col-lg-2">
+                                    @*<input type="button" id="btnInstruction" class="btn btn-bg-info" value="Send" />*@
+                                    <span class="btn btn-primary font-weight-bold px-6 align-center" id="btnInstruction">প্রেরণ করুন</span>
+                                </div>
+
+
+
+                            </div>
+
+
+                        </div>
+                    }
+                    else if (Session[CommonConstantHelper.RoleName].ToString() == "কঞ্জারভেন্সী")
+                    {
+                        <div class="card card-custom gutter-b example example-compact">
+                            <div class="row col-lg-12">
+                                <div class="col-lg-3">
+                                    <label class="col-form-label align-center font-weight-bold px-6">এডমিনের  নির্দেশবলী</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <input type="text" id="Remarks" name="Remarks" class="form-control Remarks" value="@Model.Remarks" />
+                                </div>
+                                @*<div class="col-lg-2">
+                                    <span class="btn btn-primary font-weight-bold px-6 align-center" id="btnInstruction">প্রেরণ করুন</span>
+                                </div>*@
+
+
+
+                            </div>
+
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div></div>
+                    }
+
+                }
+
+
+
                 <div class="card card-custom gutter-b example example-compact">
                     <div class="col-lg-12 col-sm-24">
                         <ul id="chat">
@@ -266,10 +321,10 @@
                                             {
                                                 <a class="btn btn-sm" href="~/Issue/DownloadFile?filePath=@item.Doc1" title="Download">ডাউনলোড নথি</a>
                                             }
-                                            @if (!string.IsNullOrWhiteSpace(item.Doc2))
-                                            {
-                                                <a class="btn btn-sm" href="~/Issue/DownloadFile?filePath=@item.Doc2" title="Download">ডাউনলোড নথি</a>
-                                            }
+                                            @*@if (!string.IsNullOrWhiteSpace(item.Doc2))
+                                    {
+                                        <a class="btn btn-sm" href="~/Issue/DownloadFile?filePath=@item.Doc2" title="Download">ডাউনলোড নথি</a>
+                                    }*@
                                         </div>
                                         <div class="message">
                                             @item.MsgDetails
@@ -297,10 +352,10 @@
                                             {
                                                 <a class="btn  btn-sm" href="~/Issue/DownloadFile?filePath=@item.Doc1" title="Download">ডাউনলোড নথি</a>
                                             }
-                                            @if (!string.IsNullOrWhiteSpace(item.Doc2))
-                                            {
-                                                <a class="btn btn-sm" href="~/Issue/DownloadFile?filePath=@item.Doc2" title="Download">ডাউনলোড নথি</a>
-                                            }
+                                            @*@if (!string.IsNullOrWhiteSpace(item.Doc2))
+                                    {
+                                        <a class="btn btn-sm" href="~/Issue/DownloadFile?filePath=@item.Doc2" title="Download">ডাউনলোড নথি</a>
+                                    }*@
 
                                         </div>
 
@@ -323,7 +378,7 @@
          jQuery(document).ready(function () {
 
 
-         $("#kt_inbox_compose_form").validate({
+            $("#kt_inbox_compose_form").validate({
                 rules: {
                     Subject: {
                         required: true
@@ -342,18 +397,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-          $("#document_file_1").change(function () {
+            $("#document_file_1").change(function () {
                 var data = new FormData();
                 data.append("fileBase", $("#document_file_1").get(0).files[0]);
                 $.ajax({
@@ -371,26 +415,26 @@
                     }
                 });
             });
-            $("#document_file_2").change(function () {
-                var data = new FormData();
-                data.append("fileBase", $("#document_file_2").get(0).files[0]);
-                $.ajax({
-                    type: 'POST',
-                    url: '/Issue/GetDocFile2',
-                    data: data, // modify
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (d) {
-                        console.log(d);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
+            //$("#document_file_2").change(function () {
+            //    var data = new FormData();
+            //    data.append("fileBase", $("#document_file_2").get(0).files[0]);
+            //    $.ajax({
+            //        type: 'POST',
+            //        url: '/Issue/GetDocFile2',
+            //        data: data, // modify
+            //        cache: false,
+            //        contentType: false,
+            //        processData: false,
+            //        success: function (d) {
+            //            console.log(d);
+            //        },
+            //        error: function (error) {
+            //            console.log(error);
+            //        }
+            //    });
+            //});
 
-             $("#StatusTypeId").change(function () {
+                $("#StatusTypeId").change(function () {
                  $('#MsgDetails').val('');
                  var Status = $('#StatusTypeId option:selected').text();
                  var MsgDetails = $('#MsgDetails').val().trim();
@@ -401,97 +445,137 @@
 
 
 
-			$('#btnSend').click(function () {
+			    $('#btnSend').click(function () {
 
 
-				var isAllValid = true;
+				    var isAllValid = true;
 
-				//validate pcase  items
+				    //validate pcase  items
 
-				//$('#pcase_details_error').text('');
+				    //$('#pcase_details_error').text('');
 
-				var list = [];
+				    var list = [];
 
-				var errorItemCount = 0;
-
-
-
-                    var MsgDetails =  $('#MsgDetails').val().trim();
-
-					debugger;
-						var detailsItem = {
-							MsgDetails: MsgDetails
-						}
-						list.push(detailsItem);
-
-
-				if (list.length == 0) {
-					$('#bill_details_error').text('At least one Product required.');
-			        isAllValid = false;
-				}
+				    var errorItemCount = 0;
 
 
 
-				// Bill validation
+                        var MsgDetails =  $('#MsgDetails').val().trim();
+
+					    debugger;
+						    var detailsItem = {
+							    MsgDetails: MsgDetails
+						    }
+						    list.push(detailsItem);
+
+
+				    if (list.length == 0) {
+					    $('#bill_details_error').text('At least one Product required.');
+			            isAllValid = false;
+				    }
 
 
 
-				if (!isAllValid) {
-					KTUtil.scrollTop();
-				}
-				else {
-					var data = {
-
-						Subject: $('#Subject').val(),
-						IssueId: parseInt($('#IssueId').val()) || 0,
-						HolderId: parseInt($('#HolderId').val()) || 0,
-						StatusTypeId: parseInt($('#StatusTypeId').val()) || 0,
-
-
-						IssueDetails: list
-					}
-
-					$.ajax({
-						type: 'POST',
-						url: '@Url.Action("AddOrUpdate", "Issue")',
-						data: JSON.stringify(data),
-						contentType: 'application/json',
-						success: function (d) {
-					if (d.status === "success") {
-								$('#Subject').val('');
-
-						list = [];
-
-                        swal.fire({
-                            "icon": 'success',
-                            "title": 'আপনার বার্তা সফলভাবে প্রেরণ করা হয়েছে',
-                            "timer": 1500
-                        });
-						setTimeout(function () { window.location.href = "/Issue/Edit/@Model.IssueId"; }, 2000);
-					}
-					else if (d.status === "error") {
-						alert('Error');
-					}
-					else {
-						alert('error_full');
-					}
-							$('#btnSend').val('Send');
-				},
-						error: function (error) {
-					console.log(error);
-							$('#btnSend').val('Send');
-				}
-					});
-
-
-				}
-			});
+				    // Bill validation
 
 
 
+				    if (!isAllValid) {
+					    KTUtil.scrollTop();
+				    }
+				    else {
+					    var data = {
+
+						    Subject: $('#Subject').val(),
+						    IssueId: parseInt($('#IssueId').val()) || 0,
+						    HolderId: parseInt($('#HolderId').val()) || 0,
+						    StatusTypeId: parseInt($('#StatusTypeId').val()) || 0,
+
+
+						    IssueDetails: list
+					    }
+
+					    $.ajax({
+						    type: 'POST',
+						    url: '@Url.Action("AddOrUpdate", "Issue")',
+						    data: JSON.stringify(data),
+						    contentType: 'application/json',
+						    success: function (d) {
+					            if (d.status === "success") {
+								            $('#Subject').val('');
+
+						            list = [];
+
+                                    swal.fire({
+                                        "icon": 'success',
+                                        "title": 'আপনার বার্তা সফলভাবে প্রেরণ করা হয়েছে',
+                                        "timer": 1500
+                                    });
+						            setTimeout(function () { window.location.href = "/Issue/Edit/@Model.IssueId"; }, 2000);
+					            }
+					            else if (d.status === "error") {
+						            alert('Error');
+					            }
+					            else {
+						            alert('error_full');
+					                 }
+							            $('#btnSend').val('Send');
+				            },
+						    error: function (error) {
+					    console.log(error);
+							    $('#btnSend').val('Send');
+				    }
+					    });
+
+
+				    }
+			    });
 
 
 
+             $('#btnInstruction').click(function () {
+                 //var isAllValid = true;
+                 var Remarks = $('#Remarks').val().trim();
+                 var IssueId = @Model.IssueId;
+                 debugger;
+                 //var LastUpdatedBy = Session[CommonConstantHelper.LogInCredentialId];
+                 //Remarks
+                 var data = {
+                     Remarks: Remarks,
+                     IssueId: IssueId
+                 }
+                 $.ajax({
+                     type: 'POST',
+                     url: '/Issue/RemarksUpdate',
+                     data: JSON.stringify(data),
+                     contentType: 'application/json',
+                     success: function (d) {
+                         if (d.status === "success") {
+                             //$('#btnInstruction').html('প্রেরণ করুন');
+                             swal.fire({
+                                 "icon": 'success',
+                                 "title": 'ক্লাষ্টার ব্যবহারকারীর কাছে প্রেরণ করা হয়েছে। ',
+                                 "timer": 2000
+                             });
+                             //setTimeout(function () { window.location.href = "/PlotOwner/Index"; }, 1000);
+                         }
+                         else if (d.status === "error_details") {
+                             alert('Error');
+                         }
+                         else {
+                             alert('error_full');
+                         }
+                         $('#btnInstruction').html('প্রেরণ করুন');
+                     },
+                     error: function (error) {
+                         console.log(error);
+                         $('#btnInstruction').html('প্রেরণ করুন');
+                     }
+                 });
+
+
+
+             });
 
 
 
