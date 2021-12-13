@@ -1,0 +1,121 @@
+﻿@model HoldingTaxWebApp.Models.Users.Cluster
+@using HoldingTaxWebApp.Helpers
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Sheets{
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
+}
+
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">ক্লাস্টার</h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="" class="text-muted">ক্লাস্টার হালনাগাদ করুন</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-custom gutter-b example example-compact">
+                    <div class="card-header">
+                        <h3 class="card-title"> ক্লাস্টার হালনাগাদ করুন</h3>
+                        <div class="card-toolbar">
+                            <div class="example-tools justify-content-center">
+                            </div>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("Edit", "Cluster", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_3", role = "form" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(s => s.ClusterId)
+                        <div class="card-body">
+                            <fieldset>
+
+                                <legend>ক্লাস্টারের  সাধারণ তথ্য</legend>
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.ClusterName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.ClusterName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ClusterName, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    @Html.LabelFor(model => model.ClusterDetails, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.TextAreaFor(model => model.ClusterDetails, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ClusterDetails, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.UserFullName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.UserFullName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" } })
+                                    </div>
+
+                                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.DropDownListFor(model => model.IsActive, null, new
+                                   {
+                                       @class = "form-control",
+                                   })
+                                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>হালনাগাদ  করুন</button>
+                                <button type="button" onclick="window.location.href = '/Cluster/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+
+        autosize($('#ClusterDetails'));
+
+        jQuery(document).ready(function () {
+            $("#kt_form_3").validate({
+                rules: {
+                    ClusterName: {
+                        required: true
+                    },
+                    ClusterDetails: {
+                        required: true
+                    }
+                },
+                invalidHandler: function (event, validator) {
+                    KTUtil.scrollTop();
+                }
+            });
+        });
+    </script>
+}

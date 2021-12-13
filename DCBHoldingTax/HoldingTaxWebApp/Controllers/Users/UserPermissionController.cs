@@ -1,6 +1,7 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager;
 using HoldingTaxWebApp.Manager.Users;
+using HoldingTaxWebApp.Models.Users;
 using HoldingTaxWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,14 @@ namespace HoldingTaxWebApp.Controllers.Users
         private readonly bool CanReadWrite = false;
         private readonly AccountManager _accountManager;
         private readonly UserManager _userManager;
+        private readonly ClusterManager _clusterManager;
 
 
         public UserPermissionController()
         {
             _accountManager = new AccountManager();
             _userManager = new UserManager();
+            _clusterManager = new ClusterManager();
             if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             {
                 List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
@@ -42,7 +45,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                 }
             }
         }
-       
+
 
         [HttpGet]
         public ActionResult Details(int id)
@@ -223,6 +226,93 @@ namespace HoldingTaxWebApp.Controllers.Users
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+        public JsonResult GetAllActiveClusterByUserId(int UserId)
+        {
+            return new JsonResult
+            {
+                Data = _clusterManager.GetAllActiveClusterByUserId(UserId),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+        [HttpPost]
+        public JsonResult UpdateUserCluster(List<Cluster> clusterList)
+        {
+            if (CanAccess && CanReadWrite)
+            {
+                try
+                {
+                    string status = "error";
+
+                    if (Session[CommonConstantHelper.UserId] != null && Convert.ToInt32(Session[CommonConstantHelper.UserId]) > 0)
+                    {
+                        if (clusterList != null && clusterList.Count > 0)
+                        {
+                            foreach (var item in clusterList)
+                            {
+                                Cluster cluster = new Cluster()
+                                {
+                                    UserId = item.UserId,
+                                    LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                    LastUpdated = DateTime.Now,
+                                    ClusterId = item.ClusterId,
+                                    IsChecked = item.IsChecked
+                                };
+
+                                string returnString = "";
+                                if (cluster.IsChecked == true)
+                                    returnString = _clusterManager.ClusterManagerUpdate(cluster);
+                                else if (cluster.IsChecked == false)
+                                    returnString = _clusterManager.ClusterManagerUpdateNonCheck(cluster);
+
+
+                                if (returnString != CommonConstantHelper.Success)
+                                {
+                                    status = "failed";
+                                    break;
+                                }
+                                else
+                                {
+                                    status = "success";
+                                }
+                            }
+                            return new JsonResult { Data = new { status } };
+                        }
+                        else
+                        {
+                            status = "empty";
+                            return new JsonResult { Data = new { status } };
+                        }
+                    }
+                    else
+                    {
+                        status = "no_user";
+                        return new JsonResult
+                        {
+                            Data = new
+                            {
+                                status
+                            }
+                        };
+                    }
+
+
+                }
+                catch (Exception exception)
+                {
+                    TempData["EM"] = "error | " + exception.Message.ToString();
+                    return new JsonResult { Data = "error" };
+                }
+            }
+            else
+            {
+                TempData["PM"] = "Permission Denied.";
+                return new JsonResult { Data = "_denied_" };
+            }
+        }
+
+
+
 
         public string FindController()
         {

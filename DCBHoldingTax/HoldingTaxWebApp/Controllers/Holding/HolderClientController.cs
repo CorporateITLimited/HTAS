@@ -156,7 +156,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     PlotOwnerName = holderVMOtherData.PlotOwnerName,
                     HolderNo = holder.HolderNo,
                     Area_type_id = _dOHSAreaManager.GetDOHSAreaId(holder.AreaId).AreaType,
-                    IsFlatApprove = holder.IsFlatApprove
+                    IsFlatApprove = holder.IsFlatApprove,
+                    IsHolderAnOwner = holder.IsHolderAnOwner
                 };
 
 

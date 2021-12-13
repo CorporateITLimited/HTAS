@@ -1,6 +1,7 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager.DBO;
 using HoldingTaxWebApp.Manager.Plots;
+using HoldingTaxWebApp.Manager.Users;
 using HoldingTaxWebApp.Models.Plots;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,13 @@ namespace HoldingTaxWebApp.Controllers.Plots
     {
         private readonly PlotManager _plotManager;
         private readonly DOHSAreaManager _dOHSAreaManager;
+        private readonly ClusterManager _clusterManager;
 
         public PlotController()
         {
             _plotManager = new PlotManager();
             _dOHSAreaManager = new DOHSAreaManager();
+            _clusterManager = new ClusterManager();
         }
 
         // GET: Plot
@@ -49,6 +52,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
             ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text");
+            ViewBag.ClusterId = new SelectList(_clusterManager.GetAllActiveCluster(), "ClusterId", "ClusterName");
 
             return View();
         }
@@ -63,10 +67,17 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", plot.AreaId);
             ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", plot.IsActive);
+            ViewBag.ClusterId = new SelectList(_clusterManager.GetAllActiveCluster(), "ClusterId", "ClusterName", plot.ClusterId);
 
             if (plot.AreaId <= 0)
             {
                 ModelState.AddModelError("", "এলাকার নাম অবশ্যই পূরণ করতে হবে");
+                return View(plot);
+            }
+
+            if (plot.ClusterId <= 0)
+            {
+                ModelState.AddModelError("", "ক্লাস্টার অবশ্যই পূরণ করতে হবে");
                 return View(plot);
             }
 
@@ -139,6 +150,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", plot.AreaId);
             ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", plot.IsActive);
+            ViewBag.ClusterId = new SelectList(_clusterManager.GetAllActiveCluster(), "ClusterId", "ClusterName", plot.ClusterId);
 
             return View(plot);
         }
@@ -153,10 +165,17 @@ namespace HoldingTaxWebApp.Controllers.Plots
 
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", plot.AreaId);
             ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", plot.IsActive);
+            ViewBag.ClusterId = new SelectList(_clusterManager.GetAllActiveCluster(), "ClusterId", "ClusterName", plot.ClusterId);
 
             if (plot.AreaId <= 0)
             {
                 ModelState.AddModelError("", "এলাকার নাম অবশ্যই পূরণ করতে হবে");
+                return View(plot);
+            }
+
+            if (plot.ClusterId <= 0)
+            {
+                ModelState.AddModelError("", "ক্লাস্টার অবশ্যই পূরণ করতে হবে");
                 return View(plot);
             }
 

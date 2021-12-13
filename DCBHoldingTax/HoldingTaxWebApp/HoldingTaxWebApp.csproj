@@ -4628,6 +4628,7 @@
     <Compile Include="Controllers\Tax\TaxReportsController.cs" />
     <Compile Include="Controllers\Users\DesignationController.cs" />
     <Compile Include="Controllers\Users\EmployeeController.cs" />
+    <Compile Include="Controllers\Users\ClusterController.cs" />
     <Compile Include="Controllers\Users\RoleController.cs" />
     <Compile Include="Controllers\Users\HolderUserController.cs" />
     <Compile Include="Controllers\Users\UserController.cs" />
@@ -4667,6 +4668,7 @@
     <Compile Include="Gateway\Tax\HoldingTaxGateway.cs" />
     <Compile Include="Gateway\Tax\OwnFlatTaxGateway.cs" />
     <Compile Include="Gateway\Tax\RentedFlatTaxGateway.cs" />
+    <Compile Include="Gateway\Users\ClusterGateway.cs" />
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
     <Compile Include="Gateway\Users\RoleGateway.cs" />
@@ -4707,6 +4709,7 @@
     <Compile Include="Manager\Tax\HoldingTaxManager.cs" />
     <Compile Include="Manager\Users\DesignationManager.cs" />
     <Compile Include="Manager\Users\EmployeeManager.cs" />
+    <Compile Include="Manager\Users\ClusterManager.cs" />
     <Compile Include="Manager\Users\RoleManager.cs" />
     <Compile Include="Manager\Users\HolderUserManager.cs" />
     <Compile Include="Manager\Users\UserManager.cs" />
@@ -4745,6 +4748,7 @@
     <Compile Include="Models\Tax\PrimaryTransaction.cs" />
     <Compile Include="Models\Tax\RentedFlatTax.cs" />
     <Compile Include="Models\Tax\InitialTransaction.cs" />
+    <Compile Include="Models\Users\Cluster.cs" />
     <Compile Include="Models\Users\HolderUser.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
@@ -4896,7 +4900,7 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Details.cshtml" />
-    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Cluster\Edit.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Theme\dist\assets\plugins\global\fonts\%40fortawesome\fa-brands-400.eot" />
     <Content Include="Theme\dist\assets\plugins\global\fonts\%40fortawesome\fa-brands-400.ttf" />
@@ -5052,6 +5056,10 @@
     <Content Include="Views\HoldingTax\TrnxDetailsById.cshtml" />
     <Content Include="Views\Holding\UnApproveIndex.cshtml" />
     <Content Include="Views\HolderClient\Edit.cshtml" />
+    <Content Include="Views\Cluster\Index.cshtml" />
+    <Content Include="Views\Cluster\Create.cshtml" />
+    <Content Include="Views\Cluster\Details.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

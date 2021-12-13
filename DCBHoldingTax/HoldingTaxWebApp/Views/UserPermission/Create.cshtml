@@ -52,7 +52,7 @@
                         <fieldset>
                             <legend> ব্যবহারকারীদের তথ্য (ঢাকা ক্যাটনমেন্ট বোর্ড) </legend>
                             <div class="row m-2">
-                                <div class="col-sm-8 col-lg-8 col-md-8">
+                                <div class="col-sm-6 col-lg-6 col-md-6">
                                     <div class="form-group">
 
                                         <label>ব্যবহারকারীর পুরো নাম (ইউজারনেইম)</label>
@@ -63,6 +63,20 @@
                                        @id = "UserId"
                                    })
                                         <span class="error">ব্যবহারকারী নির্বাচন করুন </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-6 col-md-6" style="margin-top: -63px;">
+                                    <div class="form-group">
+                                        <table class="table table-bordered table-hover table-sm" width="100" id="cluster_data">
+                                            <thead class="thead-light text-center">
+                                                <tr>
+                                                    <th class="text-left">ক্লাস্টার চেক</th>
+                                                    <th class="text-left">ক্লাস্টারের নাম</th>
+                                                    <th class="text-left">ক্লাস্টারের তত্ত্বাবধায়ক</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -109,6 +123,17 @@
                 allowClear: true
             });
 
+            $("#cluster_data tbody").on('change', '.IsChecked', function () {
+                var currentRow = $(this).closest("tr");
+                if (currentRow.find('.IsChecked').is(":checked")) {
+                    currentRow.find('.IsChecked').val("true");
+                    currentRow.find('.IsChecked').prop('checked', true);
+                } else {
+                    currentRow.find('.IsChecked').val("false");
+                    currentRow.find('.IsChecked').prop('checked', false);
+                }
+            });
+
             $("#user_permission_table tbody").on('change', '.per_can_access', function () {
                 var currentRow = $(this).closest("tr");
                 if (currentRow.find('.per_can_access').is(":checked")) {
@@ -135,6 +160,7 @@
             });
 
             var AcceptableItemTable = $('#user_permission_table tbody');
+            var ClusterTable = $('#cluster_data tbody');
 
             $("#UserId").change(function () {
                 $('#UserId').siblings('span.error').css('visibility', 'hidden');
@@ -191,6 +217,7 @@
 
                             });
                         }
+
                     },
                     error: function () {
                         Swal.fire(
@@ -198,6 +225,53 @@
                         )
                     }
                 });
+
+
+                ClusterTable.empty();
+
+                 $.ajax({
+                    url: '@Url.Action("GetAllActiveClusterByUserId", "UserPermission")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        if (data.length === 0) {
+                            Swal.fire(
+                                '??????', 'No Data Found!', 'info'
+                            )
+                        }
+                        else {
+                            $(data).each(function (index, userPermissionDetails) {
+                                ClusterTable.append('<tr>' +
+                                    '<input type="hidden" value=' + userPermissionDetails.ClusterId + ' class="ClusterId" />' +
+                                    '<td> <input type="checkbox" class="IsChecked" value=' + userPermissionDetails.IsChecked + ' /> </td>' +
+                                    '<td class="per_description">' + userPermissionDetails.ClusterName + '</td>' +
+                                    '<td class="per_description">' + userPermissionDetails.UserFullName + '</td>' +
+                                    '</tr>');
+                            });
+
+                            $("#cluster_data tbody tr").each(function () {
+                                var currentRow = $(this).closest("tr");
+                                var access_val = currentRow.find('.IsChecked').val();
+
+                                if (access_val === "true") {
+                                    currentRow.find('.IsChecked').prop('checked', true);
+                                    currentRow.find('.IsChecked').val("true");
+                                } else {
+                                    currentRow.find('.IsChecked').prop('checked', false);
+                                    currentRow.find('.IsChecked').val("false");
+                                }
+                            });
+                        }
+
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'Failed!', 'Fetching data failed.', 'error'
+                        )
+                    }
+                });
+
             });
 
 
@@ -263,12 +337,45 @@
                                     contentType: 'application/json',
                                     success: function (d) {
                                         if (d.status === "success") {
-                                            list = [];
-                                            $('#user_permission_table tbody').empty();
-                                            swal.fire({
-                                                "icon": 'সাফল্য',
-                                                "title": 'সফলভাবে নির্বাচিত সফটওয়্যার ব্যবহারকারীকে (ঢাকা ক্যাটনমেন্ট বোর্ড) অনুমতি প্রদান করা হল।',
-                                                "timer": 1000
+
+                                            var n_list = [];
+                                            $('#cluster_data tbody tr').each(function (index, ele) {
+                                                debugger;
+                                                var clusterId = parseInt($('.ClusterId', this).val());
+                                                var userId = parseInt($('#UserId option:selected').val());
+                                                var isChecked = $('.IsChecked', this).val();
+                                                var userCluster = {
+                                                    ClusterId: clusterId,
+                                                    UserId: userId,
+                                                    IsChecked: isChecked
+                                                }
+                                                n_list.push(userCluster);
+                                            });
+
+                                            var n_data = {
+                                                clusterList: n_list
+                                            }
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: '@Url.Action("UpdateUserCluster", "UserPermission")',
+                                                data: JSON.stringify(n_data),
+                                                contentType: 'application/json',
+                                                success: function (d) {
+                                                    if (d.status === "success") {
+
+                                                        list = [];
+                                                        $('#user_permission_table tbody').empty();
+
+                                                        n_list = [];
+                                                        $('#cluster_data tbody').empty();
+
+                                                        swal.fire({
+                                                            "icon": 'সাফল্য',
+                                                            "title": 'সফলভাবে নির্বাচিত সফটওয়্যার ব্যবহারকারীকে (ঢাকা ক্যাটনমেন্ট বোর্ড) অনুমতি প্রদান করা হল।',
+                                                            "timer": 1000
+                                                        });
+                                                    }
+                                                }
                                             });
                                             //setTimeout(function () { window.location.href = "/UserPermission/Index"; }, 1500);
                                         }

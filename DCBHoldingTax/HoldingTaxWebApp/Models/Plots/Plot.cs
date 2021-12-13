@@ -53,5 +53,9 @@ namespace HoldingTaxWebApp.Models.Plots
         public string RoadName { get; set; }
 
         public string CombinedArea { get; set; }
+        [Display(Name = "ক্লাস্টারের নাম")]
+        public int? ClusterId { get; set; }
+        [Display(Name = "ক্লাস্টারের নাম")]
+        public string ClusterName { get; set; }
     }
 }

@@ -68,7 +68,10 @@ namespace HoldingTaxWebApp.Gateway.Plots
                                                     DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
                         RoadName = Data_Reader["RoadName"].ToString(),
                         AreaName = Data_Reader["AreaName"].ToString(),
-                        CombinedArea = Data_Reader["CombinedArea"].ToString()
+                        CombinedArea = Data_Reader["CombinedArea"].ToString(),
+                        ClusterId = Data_Reader["ClusterId"] !=
+                                                    DBNull.Value ? Convert.ToInt32(Data_Reader["ClusterId"]) : (int?)null,
+                        ClusterName = Data_Reader["ClusterName"].ToString()
                     };
 
                     plot.StrCreateDate = $"{plot.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -157,6 +160,9 @@ namespace HoldingTaxWebApp.Gateway.Plots
                     plot.RoadName = Data_Reader["RoadName"].ToString();
                     plot.AreaName = Data_Reader["AreaName"].ToString();
                     plot.CombinedArea = Data_Reader["CombinedArea"].ToString();
+                    plot.ClusterId = Data_Reader["ClusterId"] !=
+                                                    DBNull.Value ? Convert.ToInt32(Data_Reader["ClusterId"]) : (int?)null;
+                    plot.ClusterName = Data_Reader["ClusterName"].ToString();
                 }
 
                 plot.StrCreateDate = $"{plot.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -243,7 +249,10 @@ namespace HoldingTaxWebApp.Gateway.Plots
                                                     DBNull.Value ? Convert.ToBoolean(Data_Reader["IsDeleted"]) : (bool?)null,
                         RoadName = Data_Reader["RoadName"].ToString(),
                         AreaName = Data_Reader["AreaName"].ToString(),
-                        CombinedArea = Data_Reader["CombinedArea"].ToString()
+                        CombinedArea = Data_Reader["CombinedArea"].ToString(),
+                        ClusterId = Data_Reader["ClusterId"] !=
+                                                    DBNull.Value ? Convert.ToInt32(Data_Reader["ClusterId"]) : (int?)null,
+                        ClusterName = Data_Reader["ClusterName"].ToString()
                     };
 
                     plot.StrCreateDate = $"{plot.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -304,6 +313,7 @@ namespace HoldingTaxWebApp.Gateway.Plots
                 Sql_Command.Parameters.Add("@TotalArea", SqlDbType.Decimal).Value = Plot.TotalArea;
                 Sql_Command.Parameters.Add("@RoadName", SqlDbType.NVarChar).Value = Plot.RoadName;
                 Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = Plot.PlotId;
+                Sql_Command.Parameters.Add("@ClusterId", SqlDbType.Int).Value = Plot.ClusterId;
 
 
 
@@ -370,6 +380,7 @@ namespace HoldingTaxWebApp.Gateway.Plots
                 Sql_Command.Parameters.Add("@TotalArea", SqlDbType.Decimal).Value = Plot.TotalArea;
                 Sql_Command.Parameters.Add("@RoadName", SqlDbType.NVarChar).Value = Plot.RoadName;
                 Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = 0;
+                Sql_Command.Parameters.Add("@ClusterId", SqlDbType.Int).Value = Plot.ClusterId;
 
                 SqlParameter result = new SqlParameter
                 {
