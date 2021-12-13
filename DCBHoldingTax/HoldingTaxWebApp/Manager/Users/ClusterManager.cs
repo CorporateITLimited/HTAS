@@ -27,6 +27,11 @@ namespace HoldingTaxWebApp.Manager.Users
             return _gateway.GetAllActiveCluster();
         }
 
+        public List<Cluster> GetAllActiveClusterByUserId(int UserId)
+        {
+            return _gateway.GetAllActiveClusterByUserId(UserId);
+        }
+
         public Cluster GetClusterById(int id)
         {
             return _gateway.GetClusterById(id);
@@ -50,6 +55,34 @@ namespace HoldingTaxWebApp.Manager.Users
         public string ClusterUpdate(Cluster cluster)
         {
             int result = _gateway.ClusterUpdate(cluster);
+
+            if (result == 202)
+                return CommonConstantHelper.Success;
+            else if (result == 409)
+                return CommonConstantHelper.Conflict;
+            else if (result == 500)
+                return CommonConstantHelper.Error;
+            else
+                return CommonConstantHelper.Failed;
+        }
+
+        public string ClusterManagerUpdate(Cluster cluster)
+        {
+            int result = _gateway.ClusterManagerUpdate(cluster);
+
+            if (result == 202)
+                return CommonConstantHelper.Success;
+            else if (result == 409)
+                return CommonConstantHelper.Conflict;
+            else if (result == 500)
+                return CommonConstantHelper.Error;
+            else
+                return CommonConstantHelper.Failed;
+        }
+
+        public string ClusterManagerUpdateNonCheck(Cluster cluster)
+        {
+            int result = _gateway.ClusterManagerUpdateNonCheck(cluster);
 
             if (result == 202)
                 return CommonConstantHelper.Success;

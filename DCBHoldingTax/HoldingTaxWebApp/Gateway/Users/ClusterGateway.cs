@@ -175,6 +175,75 @@ namespace HoldingTaxWebApp.Gateway.Users
             }
         }
 
+        public List<Cluster> GetAllActiveClusterByUserId(int UserId)
+        {
+            try
+            {
+                Sql_Query = "[user].[spCluster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "select_cluster_for_permission";
+                Sql_Command.Parameters.Add("@UserId", SqlDbType.Int).Value = UserId;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                List<Cluster> clusterList = new List<Cluster>();
+
+                while (Data_Reader.Read())
+                {
+                    Cluster roleVM = new Cluster
+                    {
+                        ClusterId = Convert.ToInt32(Data_Reader["ClusterId"]),
+                        ClusterName = Data_Reader["ClusterName"].ToString(),
+                        UserFullName = Data_Reader["UserFullName"].ToString(),
+                        IsChecked = Data_Reader["IsChecked"] !=
+                                            DBNull.Value ? Convert.ToBoolean(Data_Reader["IsChecked"]) : (bool?)null
+                    };
+                    clusterList.Add(roleVM);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return clusterList;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
         public Cluster GetClusterById(int id)
         {
             try
@@ -343,6 +412,120 @@ namespace HoldingTaxWebApp.Gateway.Users
                 Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = cluster.LastUpdated;
                 Sql_Command.Parameters.Add("@IsActive", SqlDbType.Bit).Value = cluster.IsActive;
                 Sql_Command.Parameters.Add("@IsDeleted", SqlDbType.Bit).Value = cluster.IsDeleted;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
+        public int ClusterManagerUpdate(Cluster cluster)
+        {
+            try
+            {
+                Sql_Query = "[user].[spCluster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "update_cluster_manager";
+                Sql_Command.Parameters.Add("@ClusterId", SqlDbType.Int).Value = cluster.ClusterId;
+                Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = cluster.LastUpdatedBy;
+                Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = cluster.LastUpdated;
+                Sql_Command.Parameters.Add("@UserId", SqlDbType.Int).Value = cluster.UserId;
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
+
+        public int ClusterManagerUpdateNonCheck(Cluster cluster)
+        {
+            try
+            {
+                Sql_Query = "[user].[spCluster]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "update_cluster_manager_noncheck";
+                Sql_Command.Parameters.Add("@ClusterId", SqlDbType.Int).Value = cluster.ClusterId;
+                Sql_Command.Parameters.Add("@LastUpdatedBy", SqlDbType.Int).Value = cluster.LastUpdatedBy;
+                Sql_Command.Parameters.Add("@LastUpdated", SqlDbType.DateTime).Value = cluster.LastUpdated;
+                Sql_Command.Parameters.Add("@UserId", SqlDbType.Int).Value = cluster.UserId;
 
                 SqlParameter result = new SqlParameter
                 {

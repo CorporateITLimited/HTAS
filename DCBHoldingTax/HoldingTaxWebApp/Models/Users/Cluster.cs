@@ -30,5 +30,6 @@ namespace HoldingTaxWebApp.Models.Users
 
         public string UpdatedByUserName { get; set; }
         public string CreatedByUserName { get; set; }
+        public bool? IsChecked { get; set; }
     }
 }
