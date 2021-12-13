@@ -18,6 +18,7 @@ namespace COMSApp.Controllers
         private readonly NoticeManager _noticeManager;
         private readonly HoldingTaxManager _holdingTaxManager;
         private readonly DesignationManager _DesignationManager;
+        private readonly ClusterManager _ClusterManager;
         private readonly bool CanAccess = false;
         private readonly bool CanReadWrite = false;
         public HomeController()
@@ -25,6 +26,7 @@ namespace COMSApp.Controllers
             _noticeManager = new NoticeManager();
             _holdingTaxManager = new HoldingTaxManager();
             _DesignationManager = new DesignationManager();
+            _ClusterManager = new ClusterManager();
             //if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             //{
             //    List<UserPermission> userPermisson = (List<UserPermission>)System.Web.HttpContext.Current.Session["ListofPermissions"];
@@ -708,6 +710,30 @@ namespace COMSApp.Controllers
             return View();
         }
         #endregion
+
+        #region Cluster Report
+
+        public ActionResult Cluster()
+        {
+
+            ViewBag.ClusterId = new SelectList(_ClusterManager.GetAllActiveCluster(), "ClusterId", "ClusterName");
+
+            return View();
+        }
+
+        public ActionResult rptCluster(int? id)
+        {
+            Session["ClusterId"] = id;
+           
+            if (id == 0)
+            {
+                Session["ClusterId"] = null;
+            }
+            return View();
+        }
+
+        #endregion
+
 
     }
 }

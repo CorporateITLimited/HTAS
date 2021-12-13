@@ -2442,6 +2442,7 @@
     <Content Include="Scripts\wizard-holding-transfer.js" />
     <Content Include="Scripts\wizard-holding-update-profile.js" />
     <Content Include="Scripts\wizard-OldPlotOwnerCreate.js" />
+    <Content Include="WebForms\Administrative\ClusterReport.aspx" />
     <Content Include="WebForms\Administrative\EmployeeList.aspx" />
     <Content Include="WebForms\Administrative\LoginHistory.aspx" />
     <Content Include="WebForms\Holding\HolderDetails.aspx" />
@@ -4478,6 +4479,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppReports\Administrative\rptCluster.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCluster.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AppReports\Administrative\rptEmployeeList.cs">
       <DependentUpon>rptEmployeeList.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -4769,6 +4776,13 @@
     <Compile Include="ViewModels\Tax\InvoiceVM.cs" />
     <Compile Include="ViewModels\UserLogInCredentialVM.cs" />
     <Compile Include="ViewModels\UserPermission.cs" />
+    <Compile Include="WebForms\Administrative\ClusterReport.aspx.cs">
+      <DependentUpon>ClusterReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Administrative\ClusterReport.aspx.designer.cs">
+      <DependentUpon>ClusterReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Administrative\EmployeeList.aspx.cs">
       <DependentUpon>EmployeeList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5060,6 +5074,8 @@
     <Content Include="Views\Cluster\Create.cshtml" />
     <Content Include="Views\Cluster\Details.cshtml" />
     <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Home\Cluster.cshtml" />
+    <Content Include="Views\Home\rptCluster.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -5083,6 +5099,10 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AppReports\Administrative\rptCluster.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCluster.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Administrative\rptEmployeeList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptEmployeeList.cs</LastGenOutput>

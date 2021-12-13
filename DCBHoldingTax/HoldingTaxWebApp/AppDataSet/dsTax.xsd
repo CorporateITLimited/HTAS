@@ -1190,6 +1190,79 @@ on b.BuildingTypeId=r.BuildingTypeId</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="dtCluster" msprop:Generator_TableClassName="dtClusterDataTable" msprop:Generator_TableVarName="tabledtCluster" msprop:Generator_RowChangedName="dtClusterRowChanged" msprop:Generator_TablePropName="dtCluster" msprop:Generator_RowDeletingName="dtClusterRowDeleting" msprop:Generator_RowChangingName="dtClusterRowChanging" msprop:Generator_RowEvHandlerName="dtClusterRowChangeEventHandler" msprop:Generator_RowDeletedName="dtClusterRowDeleted" msprop:Generator_RowClassName="dtClusterRow" msprop:Generator_UserTableName="dtCluster" msprop:Generator_RowEvArgName="dtClusterRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ClusterId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnClusterId" msprop:Generator_ColumnPropNameInRow="ClusterId" msprop:Generator_ColumnPropNameInTable="ClusterIdColumn" msprop:Generator_UserColumnName="ClusterId" type="xs:int" />
+              <xs:element name="ClusterName" msprop:Generator_ColumnVarNameInTable="columnClusterName" msprop:Generator_ColumnPropNameInRow="ClusterName" msprop:Generator_ColumnPropNameInTable="ClusterNameColumn" msprop:Generator_UserColumnName="ClusterName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="512" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ClusterDetails" msprop:Generator_ColumnVarNameInTable="columnClusterDetails" msprop:Generator_ColumnPropNameInRow="ClusterDetails" msprop:Generator_ColumnPropNameInTable="ClusterDetailsColumn" msprop:Generator_UserColumnName="ClusterDetails" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserId" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" msprop:Generator_UserColumnName="UserId" type="xs:int" minOccurs="0" />
+              <xs:element name="CreateDate" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" msprop:Generator_UserColumnName="CreateDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CreatedBy" msprop:Generator_ColumnVarNameInTable="columnCreatedBy" msprop:Generator_ColumnPropNameInRow="CreatedBy" msprop:Generator_ColumnPropNameInTable="CreatedByColumn" msprop:Generator_UserColumnName="CreatedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="LastUpdated" msprop:Generator_ColumnVarNameInTable="columnLastUpdated" msprop:Generator_ColumnPropNameInRow="LastUpdated" msprop:Generator_ColumnPropNameInTable="LastUpdatedColumn" msprop:Generator_UserColumnName="LastUpdated" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LastUpdatedBy" msprop:Generator_ColumnVarNameInTable="columnLastUpdatedBy" msprop:Generator_ColumnPropNameInRow="LastUpdatedBy" msprop:Generator_ColumnPropNameInTable="LastUpdatedByColumn" msprop:Generator_UserColumnName="LastUpdatedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="IsActive" msprop:Generator_ColumnVarNameInTable="columnIsActive" msprop:Generator_ColumnPropNameInRow="IsActive" msprop:Generator_ColumnPropNameInTable="IsActiveColumn" msprop:Generator_UserColumnName="IsActive" type="xs:boolean" minOccurs="0" />
+              <xs:element name="IsDeleted" msprop:Generator_ColumnVarNameInTable="columnIsDeleted" msprop:Generator_ColumnPropNameInRow="IsDeleted" msprop:Generator_ColumnPropNameInTable="IsDeletedColumn" msprop:Generator_UserColumnName="IsDeleted" type="xs:boolean" minOccurs="0" />
+              <xs:element name="SysRemarks" msprop:Generator_ColumnVarNameInTable="columnSysRemarks" msprop:Generator_ColumnPropNameInRow="SysRemarks" msprop:Generator_ColumnPropNameInTable="SysRemarksColumn" msprop:Generator_UserColumnName="SysRemarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserFullName" msprop:Generator_ColumnVarNameInTable="columnUserFullName" msprop:Generator_ColumnPropNameInRow="UserFullName" msprop:Generator_ColumnPropNameInTable="UserFullNameColumn" msprop:Generator_UserColumnName="UserFullName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PlotNo" msprop:Generator_ColumnVarNameInTable="columnPlotNo" msprop:Generator_ColumnPropNameInRow="PlotNo" msprop:Generator_ColumnPropNameInTable="PlotNoColumn" msprop:Generator_UserColumnName="PlotNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PlotId" msprop:Generator_ColumnVarNameInTable="columnPlotId" msprop:Generator_ColumnPropNameInRow="PlotId" msprop:Generator_ColumnPropNameInTable="PlotIdColumn" msprop:Generator_UserColumnName="PlotId" type="xs:int" minOccurs="0" />
+              <xs:element name="RoadNo" msprop:Generator_ColumnVarNameInTable="columnRoadNo" msprop:Generator_ColumnPropNameInRow="RoadNo" msprop:Generator_ColumnPropNameInTable="RoadNoColumn" msprop:Generator_UserColumnName="RoadNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RoadName" msprop:Generator_ColumnVarNameInTable="columnRoadName" msprop:Generator_ColumnPropNameInRow="RoadName" msprop:Generator_ColumnPropNameInTable="RoadNameColumn" msprop:Generator_UserColumnName="RoadName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TotalArea" msprop:Generator_ColumnVarNameInTable="columnTotalArea" msprop:Generator_ColumnPropNameInRow="TotalArea" msprop:Generator_ColumnPropNameInTable="TotalAreaColumn" msprop:Generator_UserColumnName="TotalArea" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AreaId" msprop:Generator_ColumnVarNameInTable="columnAreaId" msprop:Generator_ColumnPropNameInRow="AreaId" msprop:Generator_ColumnPropNameInTable="AreaIdColumn" msprop:Generator_UserColumnName="AreaId" type="xs:int" minOccurs="0" />
+              <xs:element name="AreaName" msprop:Generator_ColumnVarNameInTable="columnAreaName" msprop:Generator_ColumnPropNameInRow="AreaName" msprop:Generator_ColumnPropNameInTable="AreaNameColumn" msprop:Generator_UserColumnName="AreaName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
