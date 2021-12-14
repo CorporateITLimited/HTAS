@@ -1,6 +1,8 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager;
 using HoldingTaxWebApp.Manager.Users;
+using HoldingTaxWebApp.Models;
+using HoldingTaxWebApp.Models.Users;
 using HoldingTaxWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -190,6 +192,147 @@ namespace HoldingTaxWebApp.Controllers
                 return RedirectToAction("LogIn", "Account");
             }
         }
+
+
+
+        #region Forget Password portion
+
+        [HttpGet]
+        [AllowAnonymous]
+
+        public ActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgetPassword(ChangePassword cp)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                ModelState.AddModelError("", errors.ToString());
+                return View(cp);
+            }
+            if (cp.LogInCredentialId == 0)
+            {
+                ModelState.AddModelError("", "Username is required.");
+                return View(cp);
+            }
+
+            if (cp.UserName == null)
+            {
+                ModelState.AddModelError("", "Username is required.");
+                return View(cp);
+            }
+
+            if (cp.otp == 0)
+            {
+                ModelState.AddModelError("", "Otp is required.");
+                return View(cp);
+            }
+
+
+            if (cp.HashPassword == null)
+            {
+                ModelState.AddModelError("", "Password is required.");
+                return View(cp);
+            }
+
+            if (!cp.HashPassword.Equals(cp.ConfirmPassword))
+            {
+                ModelState.AddModelError("", "Password does not match.");
+                return View(cp);
+            }
+
+            cp.HashPassword = PasswordHelper.EncryptPass(cp.HashPassword);
+
+            string changePassword = "success";//_accountManager.passwordUpdate(cp);
+
+            if (changePassword == CommonConstantHelper.Success)
+            {
+                TempData["SM"] = "সফলভাবে পাসওয়ার্ড হালনাগাদ করা হয়েছে";
+                return RedirectToAction("LogIn", "Account");
+            }
+            else if (changePassword == CommonConstantHelper.Conflict)
+            {
+                ModelState.AddModelError("", "পাসওয়ার্ড ডাটাবেজে বিদ্যমান ৱয়েছে");
+                return View(cp);
+            }
+            else if (changePassword == CommonConstantHelper.Error)
+            {
+                ModelState.AddModelError("", "Error");
+                TempData["EM"] = "Error.";
+                return View(cp);
+            }
+            else if (changePassword == CommonConstantHelper.Failed)
+            {
+                ModelState.AddModelError("", "Failed");
+                return View(cp);
+            }
+            else
+            {
+                ModelState.AddModelError("", "Error Not Recognized");
+                return View();
+            }
+
+
+
+
+
+
+
+            //return View();
+        }
+
+        #region jason result
+
+        public JsonResult UserNameCheck(string UserName)
+        {
+            ChangePassword data = new ChangePassword();
+
+            data = _accountManager.findUserName(UserName);
+     
+            return new JsonResult
+            {
+                Data = data,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+
+        public JsonResult MobileNo(string MobileNumber)
+        {
+            string mag = "this is a test otp 569856";
+
+
+            string result = SmsApi.SendSms(mag, MobileNumber);
+
+            //ChangePassword data = new ChangePassword();
+
+            //data = _accountManager.findUserName(UserName);
+
+            return new JsonResult
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        #endregion
+
+
+
+
+
+
+        #endregion
+
+
+
 
     }
 }

@@ -4739,6 +4739,7 @@
     <Compile Include="Models\Holding\HolderFlat.cs" />
     <Compile Include="Models\Holding\HolderFlatHistory.cs" />
     <Compile Include="Models\Holding\Notice.cs" />
+    <Compile Include="Models\SmsApi.cs" />
     <Compile Include="Models\SPGTransaction.cs" />
     <Compile Include="Models\Plots\ConstructionProgress.cs" />
     <Compile Include="Models\Plots\DesignApproval.cs" />
@@ -4755,6 +4756,7 @@
     <Compile Include="Models\Tax\PrimaryTransaction.cs" />
     <Compile Include="Models\Tax\RentedFlatTax.cs" />
     <Compile Include="Models\Tax\InitialTransaction.cs" />
+    <Compile Include="Models\Users\ChangePassword.cs" />
     <Compile Include="Models\Users\Cluster.cs" />
     <Compile Include="Models\Users\HolderUser.cs" />
     <Compile Include="Models\Users\clsUser.cs" />
@@ -5076,6 +5078,7 @@
     <Content Include="Views\Role\Edit.cshtml" />
     <Content Include="Views\Home\Cluster.cshtml" />
     <Content Include="Views\Home\rptCluster.cshtml" />
+    <Content Include="Views\Account\ForgetPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

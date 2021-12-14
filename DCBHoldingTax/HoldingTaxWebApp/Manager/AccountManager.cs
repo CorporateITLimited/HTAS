@@ -1,4 +1,6 @@
 ﻿using HoldingTaxWebApp.Gateway;
+using HoldingTaxWebApp.Helpers;
+using HoldingTaxWebApp.Models.Users;
 using HoldingTaxWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -40,5 +42,32 @@ namespace HoldingTaxWebApp.Manager
         {
             return _accountGateway.GetUserPermissionByUserAndController(UserId, ControllerId);
         }
+
+
+        #region Forget Password Portion
+
+        public ChangePassword findUserName(string UserName)
+        {
+            return _accountGateway.findUserName(UserName);
+        }
+
+
+        public string passwordUpdate(ChangePassword cp)
+        {
+            int result = _accountGateway.passwordUpdate(cp);
+
+            if (result == 202)
+                return CommonConstantHelper.Success;
+            else if (result == 401)
+                return CommonConstantHelper.Conflict;
+            else if (result == 500)
+                return CommonConstantHelper.Error;
+            else
+                return CommonConstantHelper.Failed;
+        }
+
+        #endregion
+
+
     }
 }

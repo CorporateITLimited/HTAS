@@ -62,7 +62,7 @@
 
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">ইউজারনেইম</label>
-                                <input class="form-control h-auto py-7 px-6 rounded-lg border-0" type="text" name="UserName" autocomplete="off" required />
+                                <input class="form-control h-auto py-7 px-6 rounded-lg border-0" type="text" name="UserName" autocomplete="off" required id="UserName"/>
                             </div>
                             <div class="form-group">
                                 <div class="d-flex justify-content-between mt-n5">
@@ -73,6 +73,10 @@
                             </div>
                             <div class="pb-lg-0 pb-5">
                                 <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Sign In</button>
+                                @*<span id="btnforgoten"class="">Forgotten Password?</span>*@
+                                <a class="" href="~/Account/ForgetPassword">
+                                    Forgotten Password?
+                                </a>
                             </div>
                         }
                         @*</form>*@
@@ -106,6 +110,59 @@
                 }
             });
         });
+
+        //$('#btnforgoten1').click(function () {
+        //    var UserName = $('#UserName').val().trim();
+        //         debugger;
+        //         var data = {
+        //             UserName: UserName
+        //         }
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: '/Account/UserNameCheck',
+        //             data: JSON.stringify(data),
+        //             contentType: 'application/json',
+        //             success: function (d) {
+        //                 debugger;
+        //                 if (d.UserName != null && d.MobileNumber != 0) {
+        //                     if (d.UserName == UserName) {
+        //                         alert(d.UserName + ' Hasan');
+        //                     }
+        //                     else {
+        //                         alert('Hasan');
+        //                     }
+
+        //                 }
+        //                 else if (d.UserName != null && d.MobileNumber == "") {
+        //                     swal.fire({
+        //                         "icon": 'error',
+        //                         "title": 'মোবাইল নাম্বার খুঁজে পাওয়া যায়নি। দয়াকরে এডমিনের সাথে যোগাযোগ করুন। ',
+        //                         "timer": 5000
+        //                     });
+        //                 }
+        //                 else {
+        //                     swal.fire({
+        //                         "icon": 'error',
+        //                         "title": 'ইউজার নাম ভুল। দয়াকরে পুনরায় সঠিক ইউজার নাম দিয়ে চেষ্টা করুন।',
+        //                         "timer": 5000
+        //                     });
+        //                 }
+                       
+        //             },
+        //             error: function (error) {
+        //                 console.log(error);
+                        
+        //             }
+        //         });
+
+
+            
+
+        //})
+
+
+
+
     </script>
 </body>
 <!--end::Body-->
