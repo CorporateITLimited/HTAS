@@ -51,7 +51,7 @@ namespace HoldingTaxWebApp.Models
 
             response.Close();
 
-            return "";
+            return responseString;
 
             //var httpRequest = (HttpWebRequest)WebRequest.Create(url);
             //httpRequest.Method = "POST";

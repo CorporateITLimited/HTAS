@@ -18,11 +18,13 @@ namespace HoldingTaxWebApp.Controllers
         // GET: Account
         private readonly AccountManager _accountManager;
         private readonly UserManager _userManager;
+        private readonly OtpHistoryManager _OtpHistoryManager;
 
         public AccountController()
         {
             _accountManager = new AccountManager();
             _userManager = new UserManager();
+            _OtpHistoryManager = new OtpHistoryManager();
         }
 
 
@@ -302,28 +304,83 @@ namespace HoldingTaxWebApp.Controllers
 
         public JsonResult UserNameCheck(string UserName)
         {
-            ChangePassword data = new ChangePassword();
+            string status = "";
+            //ChangePassword data = new ChangePassword();
+            var data = _accountManager.findUserName(UserName);
+            if (data.UserName != null && data.MobileNumber != null)
+            {
 
-            data = _accountManager.findUserName(UserName);
-     
+                Random random = new Random();
+                int otp = random.Next(100000, 999999);
+
+                OtpHistory newHistory = new OtpHistory()
+                {
+                    LogInCredentialId = data.LogInCredentialId,
+                    Otp = otp,
+                    UserName = data.UserName,
+                    Purpose = "Change Password",
+                    CreateDate = DateTime.Now
+                };
+
+                string mag = "গৃহসেবা(DCB)ঃ আপনার OTP কোড -" + otp + ", ধন্যবাদ।";
+
+
+                string result = "Hello";//SmsApi.SendSms(mag, oh.MobileNumber);
+
+                newHistory.responseString = result;
+                string strmsg = _OtpHistoryManager.OtpHistoryInsert(newHistory);
+
+
+
+
+                status = "Success";
+            }
+            else if (data.UserName != null && data.MobileNumber == null)
+            {
+                status = "Mobile No Not Found";
+            }
+            else
+            {
+                status = "Wrong user Name";
+            }
+
+
             return new JsonResult
             {
-                Data = data,
+                Data = status,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
 
 
-        public JsonResult MobileNo(string MobileNumber)
+        public JsonResult MobileNo(OtpHistory oh)
         {
             Random random = new Random();
-            int otp = random.Next(100000,999999);
-            Session["Otp"] = otp;
-            //ViewBag.otp = Session["Otp"];
-            string mag = "this is a test otp "+ otp;
+            int otp = random.Next(100000, 999999);
+
+            OtpHistory newHistory = new OtpHistory()
+            {
+                LogInCredentialId = oh.LogInCredentialId,
+                Otp = otp,
+                UserName = oh.UserName,
+                Purpose = "Change Password",
+                CreateDate = DateTime.Now
+            };
+
+            string mag = "গৃহসেবা অনলাইন(DCB)ঃ আপনার OTP কোড -" + otp + ", ধন্যবাদ।";
 
 
-            string result = " ";//SmsApi.SendSms(mag, MobileNumber);
+            string result = "Hello";//SmsApi.SendSms(mag, oh.MobileNumber);
+
+            newHistory.responseString = result;
+            string strmsg = _OtpHistoryManager.OtpHistoryInsert(newHistory);
+            //string result = "";
+            //if (strmsg == CommonConstantHelper.Success)
+            //{
+
+            //}
+
+
 
             //ChangePassword data = new ChangePassword();
 
@@ -338,14 +395,13 @@ namespace HoldingTaxWebApp.Controllers
 
 
 
-        public JsonResult DestroySession()
+        public JsonResult getOtp(int otp)
         {
+            var data = _OtpHistoryManager.GetOtpHistoryById(otp);
 
-            Session["Otp"] = null;
-            //Session.Remove("Otp");
             return new JsonResult
             {
-                Data = "success",
+                Data = data,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

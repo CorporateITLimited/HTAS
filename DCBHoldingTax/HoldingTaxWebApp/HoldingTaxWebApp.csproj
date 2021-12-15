@@ -4678,6 +4678,7 @@
     <Compile Include="Gateway\Users\ClusterGateway.cs" />
     <Compile Include="Gateway\Users\DesignationGateway.cs" />
     <Compile Include="Gateway\Users\EmployeeGateway.cs" />
+    <Compile Include="Gateway\Users\OtpHistoryGateway.cs" />
     <Compile Include="Gateway\Users\RoleGateway.cs" />
     <Compile Include="Gateway\Users\HolderUserGateway.cs" />
     <Compile Include="Gateway\Users\UserGateway.cs" />
@@ -4717,6 +4718,7 @@
     <Compile Include="Manager\Users\DesignationManager.cs" />
     <Compile Include="Manager\Users\EmployeeManager.cs" />
     <Compile Include="Manager\Users\ClusterManager.cs" />
+    <Compile Include="Manager\Users\OtpHistoryManager.cs" />
     <Compile Include="Manager\Users\RoleManager.cs" />
     <Compile Include="Manager\Users\HolderUserManager.cs" />
     <Compile Include="Manager\Users\UserManager.cs" />
@@ -4762,6 +4764,7 @@
     <Compile Include="Models\Users\clsUser.cs" />
     <Compile Include="Models\Users\Designation.cs" />
     <Compile Include="Models\Users\Employee.cs" />
+    <Compile Include="Models\Users\OtpHistory.cs" />
     <Compile Include="Models\Users\Role.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
