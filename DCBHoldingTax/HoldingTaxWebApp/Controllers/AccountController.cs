@@ -323,7 +323,7 @@ namespace HoldingTaxWebApp.Controllers
             string mag = "this is a test otp "+ otp;
 
 
-            string result = SmsApi.SendSms(mag, MobileNumber);
+            string result = " ";//SmsApi.SendSms(mag, MobileNumber);
 
             //ChangePassword data = new ChangePassword();
 
