@@ -18,7 +18,7 @@ namespace HoldingTaxWebApp.Models
             var httpRequest = (HttpWebRequest)WebRequest.Create(url);
             httpRequest.Method = "POST";
 
-            var data = "api_key="+ api_key.Trim() +"& msg=" + msg.Trim() + "&to=" + to.Trim();
+            var data = "api_key="+ api_key.Trim() +"&msg=" + msg.Trim() + "&to=" + to.Trim();
 
             using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
             {

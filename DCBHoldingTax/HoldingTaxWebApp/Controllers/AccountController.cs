@@ -18,6 +18,7 @@ namespace HoldingTaxWebApp.Controllers
         // GET: Account
         private readonly AccountManager _accountManager;
         private readonly UserManager _userManager;
+
         public AccountController()
         {
             _accountManager = new AccountManager();
@@ -288,6 +289,15 @@ namespace HoldingTaxWebApp.Controllers
             //return View();
         }
 
+
+
+        //public ActionResult DestroySession()
+        //{
+        //    Session = null;
+        //}
+
+
+
         #region jason result
 
         public JsonResult UserNameCheck(string UserName)
@@ -306,7 +316,11 @@ namespace HoldingTaxWebApp.Controllers
 
         public JsonResult MobileNo(string MobileNumber)
         {
-            string mag = "this is a test otp 569856";
+            Random random = new Random();
+            int otp = random.Next(100000,999999);
+            Session["Otp"] = otp;
+            //ViewBag.otp = Session["Otp"];
+            string mag = "this is a test otp "+ otp;
 
 
             string result = SmsApi.SendSms(mag, MobileNumber);
@@ -318,6 +332,20 @@ namespace HoldingTaxWebApp.Controllers
             return new JsonResult
             {
                 Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+
+
+        public JsonResult DestroySession()
+        {
+
+            Session["Otp"] = null;
+            //Session.Remove("Otp");
+            return new JsonResult
+            {
+                Data = "success",
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
