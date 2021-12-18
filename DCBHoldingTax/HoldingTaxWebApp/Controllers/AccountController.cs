@@ -232,11 +232,11 @@ namespace HoldingTaxWebApp.Controllers
                 return View(cp);
             }
 
-            if (cp.otp == 0)
-            {
-                ModelState.AddModelError("", "Otp is required.");
-                return View(cp);
-            }
+            //if (cp.otp == 0)
+            //{
+            //    ModelState.AddModelError("", "Otp is required.");
+            //    return View(cp);
+            //}
 
 
             if (cp.HashPassword == null)
@@ -253,16 +253,17 @@ namespace HoldingTaxWebApp.Controllers
 
             cp.HashPassword = PasswordHelper.EncryptPass(cp.HashPassword);
 
-            string changePassword = "success";//_accountManager.passwordUpdate(cp);
+            string changePassword = _accountManager.passwordUpdate(cp);
 
             if (changePassword == CommonConstantHelper.Success)
             {
-                TempData["SM"] = "সফলভাবে পাসওয়ার্ড হালনাগাদ করা হয়েছে";
+                TempData["SM"] = "সফলভাবে পাসওয়ার্ড হালনাগাদ করা হয়েছে। পুনরায় নুতুন পাসওয়ার্ড দিয়ে লগইন করুন।";
                 return RedirectToAction("LogIn", "Account");
             }
             else if (changePassword == CommonConstantHelper.Conflict)
             {
                 ModelState.AddModelError("", "পাসওয়ার্ড ডাটাবেজে বিদ্যমান ৱয়েছে");
+                TempData["PM"] = "পাসওয়ার্ড ডাটাবেজে বিদ্যমান ৱয়েছে";
                 return View(cp);
             }
             else if (changePassword == CommonConstantHelper.Error)
@@ -307,9 +308,18 @@ namespace HoldingTaxWebApp.Controllers
             string status = "";
             //ChangePassword data = new ChangePassword();
             var data = _accountManager.findUserName(UserName);
-            if (data.UserName != null && data.MobileNumber != null)
-            {
+            //IsNullOrEmpty(data.UserName.ToString())
 
+            if(string.IsNullOrEmpty(data.UserName) && string.IsNullOrEmpty(data.MobileNumber))
+            {
+                status = "Wrong user Name";
+            }
+            else if (string.IsNullOrEmpty(data.MobileNumber) && data.UserName != null)
+            {
+                status = "Mobile No Not Found";
+            }
+            else
+            {
                 Random random = new Random();
                 int otp = random.Next(100000, 999999);
 
@@ -323,26 +333,17 @@ namespace HoldingTaxWebApp.Controllers
                 };
 
                 string mag = "গৃহসেবা(DCB)ঃ আপনার OTP কোড -" + otp + ", ধন্যবাদ।";
-
-
-                string result = "Hello";//SmsApi.SendSms(mag, oh.MobileNumber);
+                string result = SmsApi.SendSms(mag, data.MobileNumber);
 
                 newHistory.responseString = result;
                 string strmsg = _OtpHistoryManager.OtpHistoryInsert(newHistory);
 
-
-
-
                 status = "Success";
             }
-            else if (data.UserName != null && data.MobileNumber == null)
-            {
-                status = "Mobile No Not Found";
-            }
-            else
-            {
-                status = "Wrong user Name";
-            }
+
+
+
+           
 
 
             return new JsonResult

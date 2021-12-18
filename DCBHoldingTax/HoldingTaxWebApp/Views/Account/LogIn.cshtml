@@ -45,7 +45,7 @@
                 <div class="d-flex flex-row-fluid flex-center">
                    
                     <div class="login-form">
-                       
+
                         @*<form class="form" id="kt_login" action="">*@
                         @using (Html.BeginForm("LogIn", "Account", null, FormMethod.Post, new { @class = "kt-form", @id = "kt_login", role = "form", novalidate = "novalidate" }))
                         {
@@ -59,10 +59,13 @@
                             {
                                 <h5 style="color:red !important">  @TempData["PM"]</h5>
                             }
-
+                            if (TempData["SM"] != null)
+                            {
+                                <h5 style="color:green !important">  @TempData["SM"]</h5>
+                            }
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">ইউজারনেইম</label>
-                                <input class="form-control h-auto py-7 px-6 rounded-lg border-0" type="text" name="UserName" autocomplete="off" required id="UserName"/>
+                                <input class="form-control h-auto py-7 px-6 rounded-lg border-0" type="text" name="UserName" autocomplete="off" required id="UserName" />
                             </div>
                             <div class="form-group">
                                 <div class="d-flex justify-content-between mt-n5">
