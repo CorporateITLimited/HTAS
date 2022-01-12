@@ -28,7 +28,7 @@ namespace HoldingTaxWebApp.WebForms.Holding
         private void cryreportshow()
         {
             cryRpt = new ReportDocument();
-            cryRpt.Load(Server.MapPath("~/AppReports/Holding/rptHolderList.rpt"));
+            cryRpt.Load(Server.MapPath("~/AppReports/Holding/rptHolderListWithDetails.rpt"));
             cryRpt.SetDatabaseLogon("sa", "#PimsOne$1m#", @"119.18.146.107", "DCB_HTAS");
 
             CrystalReportViewer1.ReportSource = cryRpt;
@@ -49,7 +49,7 @@ namespace HoldingTaxWebApp.WebForms.Holding
 
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("exec [rpt].[spHolderList] @AreaId, @PlotId", con);
+            SqlCommand cmd = new SqlCommand("exec [rpt].[spHolderListWithDetails] @AreaId, @PlotId", con);
             cmd.CommandType = CommandType.Text; // always text
 
 

@@ -4497,6 +4497,12 @@
       <DependentUpon>rptHolderDetails.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AppReports\Holding\rptHolderListWithDetails.cs">
+      <DependentUpon>rptHolderListWithDetails.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="AppReports\Holding\rptHolderList.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -5020,7 +5026,6 @@
     <Content Include="Views\DOHSArea\Details.cshtml" />
     <Content Include="Views\Holding\rptHolderDetails.cshtml" />
     <Content Include="Views\Holding\HolderReport.cshtml" />
-    <Content Include="Views\Holding\rptHolderDetails2.cshtml" />
     <Content Include="Views\HolderClient\HolderProfile.cshtml" />
     <Content Include="Views\OldPlotOwner\Index.cshtml" />
     <Content Include="Views\OldPlotOwner\Details.cshtml" />
@@ -5116,6 +5121,10 @@
     <EmbeddedResource Include="AppReports\Holding\rptHolderDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptHolderDetails.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Holding\rptHolderListWithDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptHolderListWithDetails.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Holding\rptHolderList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

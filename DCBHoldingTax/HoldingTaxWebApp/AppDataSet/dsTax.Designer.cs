@@ -5846,6 +5846,16 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             private global::System.Data.DataColumn columnTypeName;
             
+            private global::System.Data.DataColumn columnPlotOwner;
+            
+            private global::System.Data.DataColumn columnOwnOrRent;
+            
+            private global::System.Data.DataColumn columnFlorNo;
+            
+            private global::System.Data.DataColumn columnFlatArea;
+            
+            private global::System.Data.DataColumn columnMonthlyRent;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtHolderListDataTable() {
@@ -5985,6 +5995,46 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotOwnerColumn {
+                get {
+                    return this.columnPlotOwner;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OwnOrRentColumn {
+                get {
+                    return this.columnOwnOrRent;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FlorNoColumn {
+                get {
+                    return this.columnFlorNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FlatAreaColumn {
+                get {
+                    return this.columnFlatArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn MonthlyRentColumn {
+                get {
+                    return this.columnMonthlyRent;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6020,7 +6070,24 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public dtHolderListRow AdddtHolderListRow(string HolderName, int AreaId, int PlotId, string Contact2, string Email, string PresentAdd, int OwnershipSourceId, string PlotNo, string AreaName, string FlatNo, string SourceName, string TypeName) {
+            public dtHolderListRow AdddtHolderListRow(
+                        string HolderName, 
+                        int AreaId, 
+                        int PlotId, 
+                        string Contact2, 
+                        string Email, 
+                        string PresentAdd, 
+                        int OwnershipSourceId, 
+                        string PlotNo, 
+                        string AreaName, 
+                        string FlatNo, 
+                        string SourceName, 
+                        string TypeName, 
+                        string PlotOwner, 
+                        string OwnOrRent, 
+                        string FlorNo, 
+                        string FlatArea, 
+                        string MonthlyRent) {
                 dtHolderListRow rowdtHolderListRow = ((dtHolderListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -6035,7 +6102,12 @@ namespace HoldingTaxWebApp.AppDataSet {
                         AreaName,
                         FlatNo,
                         SourceName,
-                        TypeName};
+                        TypeName,
+                        PlotOwner,
+                        OwnOrRent,
+                        FlorNo,
+                        FlatArea,
+                        MonthlyRent};
                 rowdtHolderListRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtHolderListRow);
                 return rowdtHolderListRow;
@@ -6071,6 +6143,11 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnFlatNo = base.Columns["FlatNo"];
                 this.columnSourceName = base.Columns["SourceName"];
                 this.columnTypeName = base.Columns["TypeName"];
+                this.columnPlotOwner = base.Columns["PlotOwner"];
+                this.columnOwnOrRent = base.Columns["OwnOrRent"];
+                this.columnFlorNo = base.Columns["FlorNo"];
+                this.columnFlatArea = base.Columns["FlatArea"];
+                this.columnMonthlyRent = base.Columns["MonthlyRent"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6102,6 +6179,16 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnSourceName);
                 this.columnTypeName = new global::System.Data.DataColumn("TypeName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTypeName);
+                this.columnPlotOwner = new global::System.Data.DataColumn("PlotOwner", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotOwner);
+                this.columnOwnOrRent = new global::System.Data.DataColumn("OwnOrRent", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOwnOrRent);
+                this.columnFlorNo = new global::System.Data.DataColumn("FlorNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFlorNo);
+                this.columnFlatArea = new global::System.Data.DataColumn("FlatArea", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFlatArea);
+                this.columnMonthlyRent = new global::System.Data.DataColumn("MonthlyRent", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMonthlyRent);
                 this.columnHolderId.AutoIncrement = true;
                 this.columnHolderId.AutoIncrementSeed = -1;
                 this.columnHolderId.AutoIncrementStep = -1;
@@ -15274,6 +15361,86 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PlotOwner {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderList.PlotOwnerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PlotOwner\' in table \'dtHolderList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderList.PlotOwnerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OwnOrRent {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderList.OwnOrRentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OwnOrRent\' in table \'dtHolderList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderList.OwnOrRentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string FlorNo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderList.FlorNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FlorNo\' in table \'dtHolderList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderList.FlorNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string FlatArea {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderList.FlatAreaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FlatArea\' in table \'dtHolderList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderList.FlatAreaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string MonthlyRent {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderList.MonthlyRentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MonthlyRent\' in table \'dtHolderList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderList.MonthlyRentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsHolderNameNull() {
                 return this.IsNull(this.tabledtHolderList.HolderNameColumn);
             }
@@ -15378,6 +15545,66 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetTypeNameNull() {
                 this[this.tabledtHolderList.TypeNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPlotOwnerNull() {
+                return this.IsNull(this.tabledtHolderList.PlotOwnerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPlotOwnerNull() {
+                this[this.tabledtHolderList.PlotOwnerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOwnOrRentNull() {
+                return this.IsNull(this.tabledtHolderList.OwnOrRentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOwnOrRentNull() {
+                this[this.tabledtHolderList.OwnOrRentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFlorNoNull() {
+                return this.IsNull(this.tabledtHolderList.FlorNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFlorNoNull() {
+                this[this.tabledtHolderList.FlorNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFlatAreaNull() {
+                return this.IsNull(this.tabledtHolderList.FlatAreaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFlatAreaNull() {
+                this[this.tabledtHolderList.FlatAreaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsMonthlyRentNull() {
+                return this.IsNull(this.tabledtHolderList.MonthlyRentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetMonthlyRentNull() {
+                this[this.tabledtHolderList.MonthlyRentColumn] = global::System.Convert.DBNull;
             }
         }
         
