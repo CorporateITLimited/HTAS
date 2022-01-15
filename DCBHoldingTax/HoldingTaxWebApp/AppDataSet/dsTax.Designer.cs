@@ -5856,6 +5856,8 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             private global::System.Data.DataColumn columnMonthlyRent;
             
+            private global::System.Data.DataColumn columnClusterName;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtHolderListDataTable() {
@@ -6035,6 +6037,14 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ClusterNameColumn {
+                get {
+                    return this.columnClusterName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6087,7 +6097,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                         string OwnOrRent, 
                         string FlorNo, 
                         string FlatArea, 
-                        string MonthlyRent) {
+                        string MonthlyRent, 
+                        string ClusterName) {
                 dtHolderListRow rowdtHolderListRow = ((dtHolderListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -6107,7 +6118,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                         OwnOrRent,
                         FlorNo,
                         FlatArea,
-                        MonthlyRent};
+                        MonthlyRent,
+                        ClusterName};
                 rowdtHolderListRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtHolderListRow);
                 return rowdtHolderListRow;
@@ -6148,6 +6160,7 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnFlorNo = base.Columns["FlorNo"];
                 this.columnFlatArea = base.Columns["FlatArea"];
                 this.columnMonthlyRent = base.Columns["MonthlyRent"];
+                this.columnClusterName = base.Columns["ClusterName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6189,6 +6202,8 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnFlatArea);
                 this.columnMonthlyRent = new global::System.Data.DataColumn("MonthlyRent", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMonthlyRent);
+                this.columnClusterName = new global::System.Data.DataColumn("ClusterName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnClusterName);
                 this.columnHolderId.AutoIncrement = true;
                 this.columnHolderId.AutoIncrementSeed = -1;
                 this.columnHolderId.AutoIncrementStep = -1;
@@ -15441,6 +15456,22 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ClusterName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderList.ClusterNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ClusterName\' in table \'dtHolderList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderList.ClusterNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsHolderNameNull() {
                 return this.IsNull(this.tabledtHolderList.HolderNameColumn);
             }
@@ -15605,6 +15636,18 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetMonthlyRentNull() {
                 this[this.tabledtHolderList.MonthlyRentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsClusterNameNull() {
+                return this.IsNull(this.tabledtHolderList.ClusterNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetClusterNameNull() {
+                this[this.tabledtHolderList.ClusterNameColumn] = global::System.Convert.DBNull;
             }
         }
         

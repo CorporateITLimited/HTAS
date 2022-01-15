@@ -41,7 +41,7 @@
                             <div class="form-group row">
                                 @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-4 col-form-label text-lg-right" })
                                 <div class="col-lg-8">
-                                    @Html.DropDownListFor(model => model.AreaId, null, "-- নির্বাচন করুন --", new
+                                    @Html.DropDownListFor(model => model.AreaId, null, "-- সকল এলাকা --", new
                                {
                                    @class = "form-control",
                                    @name = "AreaId",
@@ -56,7 +56,7 @@
                             <div class="form-group row">
                                 @Html.LabelFor(model => model.PlotId, "প্লটের নাম", htmlAttributes: new { @class = "col-lg-4 col-form-label text-lg-right" })
                                 <div class="col-lg-8">
-                                    @Html.DropDownListFor(model => model.PlotId, null, "-- নির্বাচন করুন --", new
+                                    @Html.DropDownListFor(model => model.PlotId, null, "-- সকল প্লট --", new
                                {
                                    @class = "form-control",
                                    @name = "PlotId",
@@ -102,11 +102,12 @@
 
     <script>
         $('#AreaId').select2({
-            placeholder: "--নির্বাচন করুন--",
+            placeholder: "-- সকল এলাকা --",
             allowClear: true
         });
+
         $('#PlotId').select2({
-            placeholder: "--নির্বাচন করুন--",
+            placeholder: "-- সকল প্লট --",
             allowClear: true
         });
 
