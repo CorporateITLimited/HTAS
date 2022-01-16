@@ -250,5 +250,10 @@ namespace HoldingTaxWebApp.Models.Holding
         public string HolderNo { get; set; }
 
         public bool? IsFlatApprove { get; set; }
+
+        [Display(Name = "ক্লাস্টারের নাম")]
+        public int? ClusterId { get; set; }
+
+
     }
 }

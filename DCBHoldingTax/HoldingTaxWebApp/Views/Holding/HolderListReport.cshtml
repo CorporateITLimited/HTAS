@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="card-body row">
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <div class="form-group row">
                                 @Html.LabelFor(model => model.AreaId, "এলাকার নাম", htmlAttributes: new { @class = "col-lg-4 col-form-label text-lg-right" })
                                 <div class="col-lg-8">
@@ -52,7 +52,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <div class="form-group row">
                                 @Html.LabelFor(model => model.PlotId, "প্লটের নাম", htmlAttributes: new { @class = "col-lg-4 col-form-label text-lg-right" })
                                 <div class="col-lg-8">
@@ -67,7 +67,21 @@
 
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.PlotId, "ক্লাস্টারের নাম", htmlAttributes: new { @class = "col-lg-4 col-form-label text-lg-right" })
+                                <div class="col-lg-8">
+                                    @Html.DropDownListFor(model => model.ClusterId, null, "-- সকল ক্লাস্টার --", new
+                               {
+                                   @class = "form-control",
+                                   @name = "ClusterId",
+                                   @id = "ClusterId"
+                               })
+                                    @Html.ValidationMessageFor(model => model.ClusterId, "", new { @class = "text-danger" })
+                                </div>
 
+                            </div>
+                        </div>
 
 
                     </div>
@@ -110,6 +124,10 @@
             placeholder: "-- সকল প্লট --",
             allowClear: true
         });
+        $('#ClusterId').select2({
+            placeholder: "--  সকল ক্লাস্টার --",
+            allowClear: true
+        });
 
 
 
@@ -121,8 +139,9 @@
             $("#report_button").click(function () {
                 var AreaId = parseInt($("#AreaId").val()) || 0;
                 var PlotId = parseInt($("#PlotId").val()) || 0;
+                var ClusterId = parseInt($("#ClusterId").val()) || 0;
                 debugger;
-                $(".search-result").load("/Holding/rptHolderList", { aid: AreaId, pid: PlotId });
+                $(".search-result").load("/Holding/rptHolderList", { aid: AreaId, pid: PlotId, cid: ClusterId });
                 //if (AreaId > 0) {
                 //    $(".search-result").load("/Holding/rptHolderList", { aid: AreaId, pid: PlotId });
                 //}
