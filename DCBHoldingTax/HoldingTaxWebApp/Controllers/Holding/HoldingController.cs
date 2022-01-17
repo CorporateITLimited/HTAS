@@ -2444,6 +2444,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
         {
             return View(_holdingManager.GetAllUnapproveHolder());
         }
+
+
+
         public JsonResult ApproveInformation(int HolderId)
         {
 
@@ -2455,6 +2458,27 @@ namespace HoldingTaxWebApp.Controllers.Holding
             var data = _holdingManager.ApproveInformation(holder);
 
             return Json(new { data }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult UnapprovedItemForHome()
+        {
+            List<Holder> holders = new List<Holder>();
+            if (Session[CommonConstantHelper.RoleName].ToString() == "এডমিন" || Session[CommonConstantHelper.RoleName].ToString() == "ম্যানেজমেন্ট")
+            {
+                holders = _holdingManager.GetAllUnapproveHolder().ToList();
+            }
+            else
+            {
+                holders= _holdingManager.GetAllUnapproveHolder().Take(0).ToList();
+            }
+
+            
+
+            return new JsonResult
+            {
+                Data = holders,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
 
         #endregion
