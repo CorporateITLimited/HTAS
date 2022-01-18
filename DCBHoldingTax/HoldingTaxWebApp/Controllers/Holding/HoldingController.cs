@@ -9,6 +9,7 @@ using HoldingTaxWebApp.Manager;
 using HoldingTaxWebApp.Manager.DBO;
 using HoldingTaxWebApp.Manager.Holding;
 using HoldingTaxWebApp.Manager.Plots;
+using HoldingTaxWebApp.Manager.Users;
 using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.ViewModels;
 
@@ -26,6 +27,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
         private readonly BuildingTypeManager _buildingTypeManager;
         private readonly HolderFlatHistoryManager _flatHistoryManager;
         private readonly PlotOwnerManager _plotOwnerManager;
+        private readonly ClusterManager _clusterManager;
 
         public HoldingController()
         {
@@ -37,6 +39,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             _buildingTypeManager = new BuildingTypeManager();
             _flatHistoryManager = new HolderFlatHistoryManager();
             _plotOwnerManager = new PlotOwnerManager();
+            _clusterManager = new ClusterManager();
         }
 
         // GET: Holding
@@ -2408,15 +2411,17 @@ namespace HoldingTaxWebApp.Controllers.Holding
         {
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
             ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+            ViewBag.ClusterId = new SelectList(_clusterManager.GetAllActiveCluster(), "ClusterId", "ClusterName");
             return View();
         }
 
 
-        public ActionResult rptHolderList(int? aid, int? pid)
+        public ActionResult rptHolderList(int? aid, int? pid,int? cid)
         {
 
             Session["AreaId_"] = aid;
             Session["PlotId_"] = pid;
+            Session["ClusterId_"] = cid;
             if (aid == 0)
             {
                 Session["AreaId_"] = null;
@@ -2424,6 +2429,10 @@ namespace HoldingTaxWebApp.Controllers.Holding
             if (pid == 0)
             {
                 Session["PlotId_"] = null;
+            }
+            if (cid == 0)
+            {
+                Session["ClusterId_"] = null;
             }
             return View();
         }
@@ -2435,6 +2444,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
         {
             return View(_holdingManager.GetAllUnapproveHolder());
         }
+
+
+
         public JsonResult ApproveInformation(int HolderId)
         {
 
@@ -2446,6 +2458,27 @@ namespace HoldingTaxWebApp.Controllers.Holding
             var data = _holdingManager.ApproveInformation(holder);
 
             return Json(new { data }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult UnapprovedItemForHome()
+        {
+            List<Holder> holders = new List<Holder>();
+            if (Session[CommonConstantHelper.RoleName].ToString() == "এডমিন" || Session[CommonConstantHelper.RoleName].ToString() == "ম্যানেজমেন্ট")
+            {
+                holders = _holdingManager.GetAllUnapproveHolder().ToList();
+            }
+            else
+            {
+                holders= _holdingManager.GetAllUnapproveHolder().Take(0).ToList();
+            }
+
+            
+
+            return new JsonResult
+            {
+                Data = holders,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
 
         #endregion

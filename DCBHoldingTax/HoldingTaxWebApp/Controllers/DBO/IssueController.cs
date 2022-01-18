@@ -779,12 +779,12 @@ namespace HoldingTaxWebApp.Controllers.DBO
 
             if (Session[CommonConstantHelper.RoleName].ToString() == "এডমিন" || Session[CommonConstantHelper.RoleName].ToString() == "ম্যানেজমেন্ট")
             {
-                 data = _IssueManager.GetTopFiveIssue();
+                 data = _IssueManager.GetTopFiveIssue().Take(15).ToList();
             }
             else if(Session[CommonConstantHelper.RoleName].ToString() == "কঞ্জারভেন্সী")
             {
                 var Collector = Convert.ToInt32(Session[CommonConstantHelper.UserId]);
-                data = _IssueManager.GetAllIssueByUserId(Collector).Take(5).ToList();
+                data = _IssueManager.GetAllIssueByUserId(Collector).Take(15).ToList();
             }
             
 

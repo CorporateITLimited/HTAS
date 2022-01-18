@@ -46,15 +46,17 @@ namespace HoldingTaxWebApp.WebForms.Holding
 
             int? rptAreaId = Session["AreaId_"] != null ? Convert.ToInt32(Session["AreaId_"]) : (int?)null;
             int? rptPlotId = Session["PlotId_"] != null ? Convert.ToInt32(Session["PlotId_"]) : (int?)null;
+            int? rptClusterId = Session["ClusterId_"] != null ? Convert.ToInt32(Session["ClusterId_"]) : (int?)null;
 
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("exec [rpt].[spHolderListWithDetails] @AreaId, @PlotId", con);
+            SqlCommand cmd = new SqlCommand("exec [rpt].[spHolderListWithDetails] @AreaId, @PlotId, @ClusterId", con);
             cmd.CommandType = CommandType.Text; // always text
 
 
             cmd.Parameters.AddWithValue("@AreaId", SqlDbType.Int).Value = rptAreaId ?? (object)DBNull.Value;
             cmd.Parameters.AddWithValue("@PlotId", SqlDbType.Int).Value = rptPlotId ?? (object)DBNull.Value;
+            cmd.Parameters.AddWithValue("@ClusterId", SqlDbType.Int).Value = rptClusterId ?? (object)DBNull.Value;
 
             try
             {
