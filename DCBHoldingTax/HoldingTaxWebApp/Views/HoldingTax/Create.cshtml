@@ -188,6 +188,8 @@
     </script>
     <script>
         $("#btnSubmit").click(function (e) {
+
+            $("#btnSubmit").addClass('spinner spinner-rgb(0, 0, 0) spinner-right')
             debugger;
             var fy = $('#FinancialYearId').val();
             if (fy === "0" || fy === '') {
@@ -223,7 +225,7 @@
                                 confirmButton: "btn font-weight-bold btn-danger",
                             }
                         });
-                        $('#details_error').text(d.status);
+                        $('#details_error').text(status);
                         //KTUtil.scrollTop();
                     }
                     else {
@@ -242,7 +244,9 @@
                 error: function (error) {
                     console.log(error);
                 }
+                
             });
+            //$("#btnSubmit").removeClass('spinner spinner-rgb(0, 0, 0) spinner-right')
         })
 
     </script>
