@@ -790,7 +790,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                     Connection = Sql_Connection,
                     CommandType = CommandType.StoredProcedure
                 };
-
+                Sql_Command.CommandTimeout = 300;
                 Sql_Command.Parameters.Clear();
 
                 Sql_Command.Parameters.Add("@FinancialyearId", SqlDbType.NVarChar).Value = FinYearid;
