@@ -285,7 +285,7 @@ namespace HoldingTaxWebApp.Controllers
                 RequestInfo requestInfo = new RequestInfo
                 {
                     requestid = reqCode,
-                    mobileno = holderData.Contact1.ToString(),
+                    mobileno = holderData.Contact2.ToString(),
                     applicentName = holderData.HolderName.ToString() + " (" + holderData.HolderNo.ToString() + ")",
                     applicentAddress = holderData.ContactAdd.ToString(),
                     refdate = currDate.ToString("yyyy-MM-dd"),
@@ -329,7 +329,7 @@ namespace HoldingTaxWebApp.Controllers
                     CreditAccount = requestInfo.accountnumber1,
                     CrAmount = requestInfo.amount1,
                     Purpose = "TRN", //for account transasfer, for Challan "CHL"
-                    Onbehalf = "Any name will be here"
+                    Onbehalf = "CBD"
                 };
                 tokenClass.CreditInformations.Add(creditInformations);
 
