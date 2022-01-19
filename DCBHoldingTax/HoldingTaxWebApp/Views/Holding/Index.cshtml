@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<HoldingTaxWebApp.Models.Holding.Holder>
 @{
-                /**/
-
-                ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
 @section Sheets{
-    <link href="~/Content/FormDesign.css" rel="stylesheet" />
+    @*<link href="~/Content/FormDesign.css" rel="stylesheet" />*@
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 }
 
 
@@ -31,14 +30,14 @@
     <div class="container">
         @if (TempData["SM"] != null)
         {
-        <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
-            <div class="alert-text text-center font-weight-bolder" style="color: #24AEEF; font-size: 17px;"> @TempData["SM"]</div>
-            <div class="alert-close">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true"><i class="ki ki-close"></i></span>
-                </button>
+            <div class="alert alert-custom alert-white alert-shadow gutter-b fade show mb-5" role="alert">
+                <div class="alert-text text-center font-weight-bolder" style="color: #24AEEF; font-size: 17px;"> @TempData["SM"]</div>
+                <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                    </button>
+                </div>
             </div>
-        </div>
         }
 
         <div class="card card-custom">
@@ -77,12 +76,12 @@
                         <div class="col-lg-9 col-xl-8">
                             <div class="row align-items-center">
                                 <div class="col-md-4 my-2 my-md-0">
-                                    <div class="input-icon">
+                                    @*<div class="input-icon">
                                         <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
                                         <span>
                                             <i class="flaticon2-search-1 text-muted"></i>
                                         </span>
-                                    </div>
+                                    </div>*@
                                 </div>
 
                             </div>
@@ -92,7 +91,7 @@
                 <!--end::Search Form-->
                 <!--end: Search Form-->
                 <!--begin: Datatable-->
-                <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
+                <table class="datatable datatable-bordered datatable-head-custom" id="data_table" width="100">
                     <thead>
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.HolderNo)</th>
@@ -101,52 +100,65 @@
                             <th>@Html.DisplayNameFor(model => model.HolderName)</th>
                             <th>@Html.DisplayNameFor(model => model.OwnerTypeName)</th>
                             <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
-                            <th></th>
+                            @*<th></th>*@
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.HolderNo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AreaName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PlotNo)
-                                </td>
-                                <td class="role_name">
-                                    @Html.DisplayFor(modelItem => item.HolderName)
-                                </td>
+                    @*<tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HolderNo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AreaName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PlotNo)
+                                    </td>
+                                    <td class="role_name">
+                                        @Html.DisplayFor(modelItem => item.HolderName)
+                                    </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.OwnerTypeName)
-                                </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OwnerTypeName)
+                                    </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.BuildingTypeName)
-                                </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BuildingTypeName)
+                                    </td>
 
-                                <td>
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/Edit/@item.HolderId" title="হালনাগাদ পেজে যান">
-                                        <b> <i class="fa fa-edit"></i>  </b>
-                                    </a>
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/Details/@item.HolderId" title="বিস্তারিত তথ্য পেজে যান">
-                                        <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                    </a>
-                                    <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/rptHolderDetails/@item.HolderId" title="হোল্ডার রিপোর্ট">
-                                        <b>
-                                            <i class="fa fa-file-alt" aria-hidden="true"></i>
-                                        </b>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
+                                    <td>
+                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/Edit/@item.HolderId" title="হালনাগাদ পেজে যান">
+                                            <b> <i class="fa fa-edit"></i>  </b>
+                                        </a>
+                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/Details/@item.HolderId" title="বিস্তারিত তথ্য পেজে যান">
+                                            <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                        </a>
+                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/rptHolderDetails/@item.HolderId" title="হোল্ডার রিপোর্ট">
+                                            <b>
+                                                <i class="fa fa-file-alt" aria-hidden="true"></i>
+                                            </b>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>*@
+
+                    <tfoot>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.HolderNo)</th>
+                            <th>@Html.DisplayNameFor(model => model.AreaName)</th>
+                            <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
+                            <th>@Html.DisplayNameFor(model => model.HolderName)</th>
+                            <th>@Html.DisplayNameFor(model => model.OwnerTypeName)</th>
+                            <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
+                            @*<th></th>*@
+                        </tr>
+                    </tfoot>
 
                 </table>
+                @*<div id="test"></div>*@
                 <!--end: Datatable-->
             </div>
         </div>
@@ -156,46 +168,58 @@
 
 @section Scripts
 {
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
     <script>
         jQuery(document).ready(function () {
-            $('#kt_datatable').KTDatatable({
-                search: {
-                    input: $('#kt_datatable_search_query'),
-                    key: 'generalSearch',
+            //$('#kt_datatable').KTDatatable({
+            //    search: {
+            //        input: $('#kt_datatable_search_query'),
+            //        key: 'generalSearch',
+            //    },
+            //    layout: {
+            //        class: 'datatable-bordered',
+            //    }
+            //});
+          
+
+             $('#data_table').DataTable({
+                "ajax": {
+                    "url": '@Url.Action("GetData", "Holding")',
+                    "type": "GET",
+                    "datatype": "json",
+                    "dataSrc": "data",
+                    "data": function (request) {
+                        console.log(JSON.stringify(request));
+                    },
+                    "complete": function (response) {
+                        console.log(JSON.stringify(response));
+                    }
                 },
-                layout: {
-                    class: 'datatable-bordered',
+                "columns": [
+                    { "data": "HolderNo", "name": "HolderNo", "orderable": true },
+                    { "data": "AreaName", "name":"AreaName", "orderable": true },
+                    { "data": "PlotNo", "name": "PlotNo", "orderable": true},
+                    { "data": "HolderName", "name": "HolderName", "orderable": true},
+                    { "data": "OwnerTypeName", "name": "OwnerTypeName", "orderable": true},
+                    { "data": "BuildingTypeName", "name": "BuildingTypeName", "orderable": true},
+                ],
+                "columnDefs": [{
+                    "defaultContent": "-",
+                    "targets": "_all",
+                    "visible": true,
+                }],
+                "serverSide": "true",
+                "order": [0, "asc"],
+                "processing": "true",
+                "language": {
+                    "processing":"Data loading . . . . please wait"
                 }
             });
-            //$('#kt_datatable_search_status').on('change', function () {
-            //    var valueForSearch = $("#kt_datatable_search_status").val();
-            //    search_table(valueForSearch);
-            //});
-
-            //$('#kt_datatable_search_type').on('change', function () {
-            //    var valueForSearch = $("#kt_datatable_search_type").val();
-            //    search_table(valueForSearch);
-            //});
-           
-            //function search_table(value) {
-            //    $('#kt_datatable tbody tr').each(function () {
-            //        var found = 'false';
-            //        $(this).each(function () {
-            //            if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-            //                found = 'true';
-            //            }
-            //        });
-            //        if (found == 'true') {
-            //            $(this).show();
-            //        }
-            //        else {
-            //            $(this).hide();
-            //        }
-            //    });
-            //}
 
 
-           
+
+
 
         });
     </script>
