@@ -74,7 +74,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
             ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
 
-            var data = _holdingTaxManager.GetAllHoldingTaxIndex(null, null, null);
+            var data = new List<HoldingTax>(); // _holdingTaxManager.GetAllHoldingTaxIndex(null, null, null);
             if (data != null && data.Count > 0)
             {
                 var firstRow = data.Take(1).FirstOrDefault();
@@ -97,7 +97,7 @@ namespace HoldingTaxWebApp.Controllers.Tax
             }
             else
             {
-                ViewBag.ListOfData = data;
+                ViewBag.ListOfData = new List<HoldingTax>();  //data;
                 ViewBag.IsHolder = "no";
             }
 

@@ -3,7 +3,9 @@ using HoldingTaxWebApp.Manager.DBO;
 using HoldingTaxWebApp.Manager.Holding;
 using HoldingTaxWebApp.Manager.Plots;
 using HoldingTaxWebApp.Manager.Users;
+using HoldingTaxWebApp.Models;
 using HoldingTaxWebApp.Models.Holding;
+using HoldingTaxWebApp.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
         private readonly DOHSAreaManager _dOHSAreaManager;
         private readonly EmployeeManager _employeeManager;
         private readonly PlotManager _plotManager;
+        private readonly OtpHistoryManager _OtpHistoryManager;
 
         public NoticeController()
         {
@@ -27,6 +30,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             _dOHSAreaManager = new DOHSAreaManager();
             _employeeManager = new EmployeeManager();
             _plotManager = new PlotManager();
+            _OtpHistoryManager = new OtpHistoryManager();
         }
 
         // GET: Notice
@@ -64,7 +68,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
             ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
 
-            ViewBag.ListOfData = _noticeManager.GetAllNoticeFiltering(null, null, null, null);
+            ViewBag.ListOfData = new List<Notice>(); // _noticeManager.GetAllNoticeFiltering(null, null, null, null);
 
             return View();
         }
@@ -332,6 +336,22 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 IsNoticeSentUi = true;
 
+                string msg = "";
+                if (notice.NoticeTypeId_Two == 1)
+                {
+                    msg = "সম্মানিত করদাতা, আপনার গৃহকরের প্রাথমিক বিজ্ঞপ্তি আপনার পোর্টালে পাঠানো হয়েছে। -গৃহসেবা(DCB)";
+                }
+                else if (notice.NoticeTypeId_Two == 2)
+                {
+                    msg = "সম্মানিত করদাতা, আপনার রিবেটসহ গৃহকর প্রদানের বিজ্ঞপ্তি আপনার পোর্টালে পাঠানো হয়েছে। -গৃহসেবা(DCB)";
+                }
+                else if (notice.NoticeTypeId_Two == 3)
+                {
+                    msg = "সম্মানিত করদাতা, আপনার রিবেটসহ গৃহকরের চূড়ান্ত বিজ্ঞপ্তি  আপনার পোর্টালে পাঠানো হয়েছে। -গৃহসেবা(DCB)";
+                }
+                string mobileNumber = _noticeManager.GetHolderMobileForSendMessage(notice);
+                mobileNumber = mobileNumber.Replace(" ", "");
+
                 if (!IsNoticeSentUi)
                 {
                     ModelState.AddModelError("", "বিজ্ঞপ্তি পাঠানোর সময় এখনো হয়নি বা সময়সীমা অতিবাহিত হয়েছে");
@@ -343,8 +363,18 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                     if (sendNotice == CommonConstantHelper.Success)
                     {
-                        TempData["SM"] = "সফলভাবে বিজ্ঞপ্তি পাঠানো হয়েছে";
-                        return RedirectToAction("Index", "Notice");
+                        string result = "";// SmsApi.SendSms(msg, mobileNumber);
+
+                        if (result.Contains("Request successfully submitted"))
+                        {
+                            TempData["SM"] = "সফলভাবে বিজ্ঞপ্তি পাঠানো হয়েছে";
+                            return RedirectToAction("Index", "Notice");
+                        }
+                        else
+                        {
+                            TempData["SM"] = "সফলভাবে বিজ্ঞপ্তি পোর্টালে পাঠানো হয়েছে";
+                            return RedirectToAction("Index", "Notice");
+                        }
                     }
                     else if (sendNotice == CommonConstantHelper.Conflict)
                     {

@@ -706,7 +706,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     Holder model = new Holder
                     {
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
-                      
+
                         HolderName = Convert.ToString(Data_Reader["HolderName"])
                     };
                     vm.Add(model);
@@ -741,7 +741,65 @@ namespace HoldingTaxWebApp.Gateway.Holding
 
         #endregion
 
+        public string GetHolderMobileForSendMessage(Notice model)
+        {
+            try
+            {
+                Sql_Query = "[Holding].[spGetHolderMobileForSendMessage]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
 
+                Sql_Command.Parameters.Clear();
+
+                int? areaId = model.AreaId > 0 ? model.AreaId : (int?)null;
+                int? plotId = model.PlotId > 0 ? model.PlotId : (int?)null;
+                int? holderId = model.HolderId > 0 ? model.HolderId : (int?)null;
+
+                Sql_Command.Parameters.Add("@NoticeTypeId", SqlDbType.Int).Value = model.NoticeTypeId_Two;
+                Sql_Command.Parameters.Add("@FinancialYearId", SqlDbType.Int).Value = model.FinancialYearId_Two;
+                Sql_Command.Parameters.Add("@AreaId", SqlDbType.Int).Value = areaId;
+                Sql_Command.Parameters.Add("@PlotId", SqlDbType.Int).Value = plotId;
+                Sql_Command.Parameters.Add("@HolderId", SqlDbType.Int).Value = holderId;
+
+                string str = "";
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+
+                while (Data_Reader.Read())
+                {
+                    str = Convert.ToString(Data_Reader["Contact2"]);
+                }
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return str;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
 
     }
 }

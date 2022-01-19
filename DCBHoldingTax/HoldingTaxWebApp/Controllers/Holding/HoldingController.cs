@@ -264,7 +264,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                         foreach (HolderFlat item in trueItems)
                         {
-                            if (item.MonthlyRent == 0)
+                            if (item.MonthlyRent == 0 && item.FlorNo > 0)
                             {
                                 status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
                                 return new JsonResult { Data = new { status } };
@@ -279,7 +279,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     {
                         foreach (HolderFlat item in hvm.HolderFlatList)
                         {
-                            if (item.MonthlyRent == 0)
+                            if (item.MonthlyRent == 0 && item.FlorNo > 0)
                             {
                                 status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
                                 return new JsonResult { Data = new { status } };
@@ -980,7 +980,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                         foreach (HolderFlat item in trueItems)
                         {
-                            if (item.MonthlyRent == 0)
+                            if (item.MonthlyRent == 0 && item.FlorNo > 0)
                             {
                                 status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
                                 return new JsonResult { Data = new { status } };
@@ -995,7 +995,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     {
                         foreach (HolderFlat item in hvm.HolderFlatList)
                         {
-                            if (item.MonthlyRent == 0)
+                            if (item.MonthlyRent == 0 && item.FlorNo > 0)
                             {
                                 status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
                                 return new JsonResult { Data = new { status } };
@@ -1687,7 +1687,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                     foreach (HolderFlat item in trueItems)
                     {
-                        if (item.MonthlyRent == 0)
+                        if (item.MonthlyRent == 0 && item.FlorNo > 0)
                         {
                             status = "মাসিক ভাড়া/সম্ভাব্য মাসিক ভাড়া ঘরটি অবশই পূরণ করুন";
                             return new JsonResult { Data = new { status } };
@@ -2416,7 +2416,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
         }
 
 
-        public ActionResult rptHolderList(int? aid, int? pid,int? cid)
+        public ActionResult rptHolderList(int? aid, int? pid, int? cid)
         {
 
             Session["AreaId_"] = aid;
@@ -2469,10 +2469,10 @@ namespace HoldingTaxWebApp.Controllers.Holding
             }
             else
             {
-                holders= _holdingManager.GetAllUnapproveHolder().Take(0).ToList();
+                holders = _holdingManager.GetAllUnapproveHolder().Take(0).ToList();
             }
 
-            
+
 
             return new JsonResult
             {

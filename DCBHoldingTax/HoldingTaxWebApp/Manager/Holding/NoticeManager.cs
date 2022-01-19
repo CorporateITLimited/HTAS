@@ -76,7 +76,10 @@ namespace HoldingTaxWebApp.Manager.Holding
 
         #endregion
 
-
+        public string GetHolderMobileForSendMessage(Notice model)
+        {
+            return _notice.GetHolderMobileForSendMessage(model);
+        }
 
     }
 }
