@@ -57,13 +57,13 @@
                     </a>
 
                     @*@if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin) ||
-                            (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleManagement))
-                        {
-                            <a href="~/User/Create" class="btn btn-brand btn-elevate btn-icon-sm">
-                                <i class="la la-plus"></i>
-                                Add User
-                            </a>
-                        }*@
+                        (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleManagement))
+                    {
+                        <a href="~/User/Create" class="btn btn-brand btn-elevate btn-icon-sm">
+                            <i class="la la-plus"></i>
+                            Add User
+                        </a>
+                    }*@
 
                     <!--end::Button-->
                 </div>
@@ -90,76 +90,38 @@
                 </div>
                 <!--end::Search Form-->
                 <!--end: Search Form-->
-                <!--begin: Datatable-->
-                <table class="datatable datatable-bordered datatable-head-custom" id="data_table" width="100">
-                    <thead>
-                        <tr>
-                            <th>@Html.DisplayNameFor(model => model.HolderNo)</th>
-                            <th>@Html.DisplayNameFor(model => model.AreaName)</th>
-                            <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
-                            <th>@Html.DisplayNameFor(model => model.HolderName)</th>
-                            <th>@Html.DisplayNameFor(model => model.OwnerTypeName)</th>
-                            <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
-                            @*<th></th>*@
-                        </tr>
-                    </thead>
-                    @*<tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.HolderNo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.AreaName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PlotNo)
-                                    </td>
-                                    <td class="role_name">
-                                        @Html.DisplayFor(modelItem => item.HolderName)
-                                    </td>
+                <div class="datatable datatable-bordered datatable-head-custom datatable-default datatable-primary datatable-loaded">
+                    <!--begin: Datatable-->
+                    <table class="table-bordered datatable-table" id="data_table" width="90">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.HolderNo)</th>
+                                <th>@Html.DisplayNameFor(model => model.AreaName)</th>
+                                <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
+                                <th>@Html.DisplayNameFor(model => model.HolderName)</th>
+                                <th>@Html.DisplayNameFor(model => model.OwnerTypeName)</th>
+                                <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
+                                <th></th>
+                            </tr>
+                        </thead>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OwnerTypeName)
-                                    </td>
+                        <tfoot>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.HolderNo)</th>
+                                <th>@Html.DisplayNameFor(model => model.AreaName)</th>
+                                <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
+                                <th>@Html.DisplayNameFor(model => model.HolderName)</th>
+                                <th>@Html.DisplayNameFor(model => model.OwnerTypeName)</th>
+                                <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.BuildingTypeName)
-                                    </td>
+                    </table>
+                    @*<div id="test"></div>*@
+                    <!--end: Datatable-->
+                </div>
 
-                                    <td>
-                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/Edit/@item.HolderId" title="হালনাগাদ পেজে যান">
-                                            <b> <i class="fa fa-edit"></i>  </b>
-                                        </a>
-                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/Details/@item.HolderId" title="বিস্তারিত তথ্য পেজে যান">
-                                            <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                        </a>
-                                        <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/Holding/rptHolderDetails/@item.HolderId" title="হোল্ডার রিপোর্ট">
-                                            <b>
-                                                <i class="fa fa-file-alt" aria-hidden="true"></i>
-                                            </b>
-                                        </a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>*@
-
-                    <tfoot>
-                        <tr>
-                            <th>@Html.DisplayNameFor(model => model.HolderNo)</th>
-                            <th>@Html.DisplayNameFor(model => model.AreaName)</th>
-                            <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
-                            <th>@Html.DisplayNameFor(model => model.HolderName)</th>
-                            <th>@Html.DisplayNameFor(model => model.OwnerTypeName)</th>
-                            <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
-                            @*<th></th>*@
-                        </tr>
-                    </tfoot>
-
-                </table>
-                @*<div id="test"></div>*@
-                <!--end: Datatable-->
             </div>
         </div>
     </div>
@@ -169,6 +131,7 @@
 @section Scripts
 {
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    @*<script src="~/Scripts/custom/holderListIndex.js"></script>*@
 
     <script>
         jQuery(document).ready(function () {
@@ -181,10 +144,10 @@
             //        class: 'datatable-bordered',
             //    }
             //});
-          
+
 
              $('#data_table').DataTable({
-                "ajax": {
+                ajax: {
                     "url": '@Url.Action("GetData", "Holding")',
                     "type": "GET",
                     "datatype": "json",
@@ -196,23 +159,36 @@
                         console.log(JSON.stringify(response));
                     }
                 },
-                "columns": [
-                    { "data": "HolderNo", "name": "HolderNo", "orderable": true },
+                columns: [
+                    
+                    { "data": "HolderNo", "name": "HolderNo" ,"orderable": true },
                     { "data": "AreaName", "name":"AreaName", "orderable": true },
                     { "data": "PlotNo", "name": "PlotNo", "orderable": true},
                     { "data": "HolderName", "name": "HolderName", "orderable": true},
                     { "data": "OwnerTypeName", "name": "OwnerTypeName", "orderable": true},
-                    { "data": "BuildingTypeName", "name": "BuildingTypeName", "orderable": true},
+                    { "data": "BuildingTypeName", "name": "BuildingTypeName", "orderable": true }, 
+                    {
+                        "Data": '',
+                        render: (data, type, row) => {
+                            return `<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href='/Holding/Edit/${row.HolderId}' title="হালনাগাদ পেজে যান"><b> <i class="fa fa-edit"></i>  </b></a><a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href='/Holding/Edit/${row.HolderId}'  title="বিস্তারিত তথ্য পেজে যান"><b><i class="fa fa-th-list" aria-hidden="true"></i></b></a><a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href='/Holding/rptHolderDetails/${row.HolderId}' title="হোল্ডার রিপোর্ট"><b><i class="fa fa-file-alt" aria-hidden="true"></i></b></a>`;
+
+
+                            //return '<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href='/Holding/Edit/${row.HolderId}' title="হালনাগাদ পেজে যান"><b> <i class="fa fa-edit"></i></b></a><a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href='/Holding/Details/${row.HolderId}' title="বিস্তারিত তথ্য পেজে যান"><b><i class="fa fa-th-list" aria-hidden="true"></i></b></a><a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href='/Holding/rptHolderDetails/${row.HolderId}' title="হোল্ডার রিপোর্ট"><b><i class="fa fa-file-alt" aria-hidden="true"></i></b></a>'
+                        }
+
+                    },
+
                 ],
-                "columnDefs": [{
+                columnDefs: [{
                     "defaultContent": "-",
                     "targets": "_all",
                     "visible": true,
+
                 }],
-                "serverSide": "true",
-                "order": [0, "asc"],
-                "processing": "true",
-                "language": {
+                serverSide: "true",
+                order: [0, "asc"],
+                processing: "true",
+                language: {
                     "processing":"Data loading . . . . please wait"
                 }
             });
@@ -220,8 +196,7 @@
 
 
 
-
-        });
+        });      
     </script>
 
 

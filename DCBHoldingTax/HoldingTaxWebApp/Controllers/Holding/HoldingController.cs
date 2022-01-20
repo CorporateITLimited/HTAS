@@ -90,14 +90,15 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 // sorting
                 if (sortDirection == "desc")
                 {
-                    seiListVM = DynamicOrderBy.OrderByDescending<Holder>(seiListVM.AsQueryable(), sortColumnName).Take(25).ToList();
+                    seiListVM = DynamicOrderBy.OrderByDescending<Holder>(seiListVM.AsQueryable(), sortColumnName).ToList();
                 }
                 else
                 {
-                    seiListVM = seiListVM.OrderBy(s => sortColumnName).Take(25).ToList();
+                    seiListVM = seiListVM.OrderBy(s => sortColumnName).ToList();
                 }
 
                 var data1 = seiListVM.Select(s => new {
+                    s.HolderId,
                     s.HolderNo,
                     s.AreaName,
                     s.PlotNo,
@@ -112,7 +113,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 if (!string.IsNullOrEmpty(searchValue))
                 {
-                    data1 = data1.Where(s => s.HolderNo.ToLower().Contains(searchValue.ToLower()) ||
+                    data1 = data1.Where(s => s.HolderNo.ToLower().Contains(searchValue.ToLower())
+                    ||
                       s.AreaName.ToLower().Contains(searchValue.ToLower()) ||
                       s.PlotNo.ToString().Contains(searchValue.ToLower()) ||
                       s.HolderName.ToLower().Contains(searchValue.ToLower()) ||
