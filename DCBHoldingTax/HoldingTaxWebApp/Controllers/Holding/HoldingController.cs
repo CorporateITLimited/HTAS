@@ -45,10 +45,101 @@ namespace HoldingTaxWebApp.Controllers.Holding
         // GET: Holding
         public ActionResult Index()
         {
-            return View(_holdingManager.GetAllHolder());
+            return View();
+            //_holdingManager.GetAllHolder()
         }
 
+        public JsonResult GetData()
+        {
+            //server side parameter
+            int start = Convert.ToInt32(Request["start"]);
+            int length = Convert.ToInt32(Request["length"]);
+            string searchValue = Request["search[value]"];
+            string sortColumnName = Request.QueryString["columns[" + Request.QueryString["order[0][column]"] + "][name]"];
+            string sortDirection = Request.QueryString["order[0][dir]"];
 
+
+            try
+            {
+                var seiList = _holdingManager.GetAllHolder();
+                List<Holder> seiListVM = new List<Holder>();
+                foreach (var item in seiList)
+                {
+                    Holder seiVM = new Holder()
+                    {
+                        CreateDate = item.CreateDate,
+                      
+                        CreatedBy = item.CreatedBy,
+                       
+                        IsActive = item.IsActive,
+                        IsDeleted = item.IsDeleted,
+                        LastUpdated = item.LastUpdated,
+                        LastUpdatedBy = item.LastUpdatedBy,
+                        HolderId = item.HolderId,
+                        HolderNo = item.HolderNo,
+                        AreaName = item.AreaName,
+                        PlotNo = item.PlotNo,
+                        HolderName = item.HolderName,
+                        OwnerTypeName = item.OwnerTypeName,
+                        BuildingTypeName = item.BuildingTypeName
+
+                    };
+                    seiListVM.Add(seiVM);
+                }
+
+                // sorting
+                if (sortDirection == "desc")
+                {
+                    seiListVM = DynamicOrderBy.OrderByDescending<Holder>(seiListVM.AsQueryable(), sortColumnName).ToList();
+                }
+                else
+                {
+                    seiListVM = seiListVM.OrderBy(s => sortColumnName).ToList();
+                }
+
+                var data1 = seiListVM.Select(s => new {
+                    s.HolderId,
+                    s.HolderNo,
+                    s.AreaName,
+                    s.PlotNo,
+                    s.HolderName,
+                    s.OwnerTypeName,
+                    s.BuildingTypeName
+                }).ToList();
+
+
+
+                int TotalRec = data1.Count(); ////// for total records
+
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data1 = data1.Where(s => s.HolderNo.ToLower().Contains(searchValue.ToLower())
+                    ||
+                      s.AreaName.ToLower().Contains(searchValue.ToLower()) ||
+                      s.PlotNo.ToString().Contains(searchValue.ToLower()) ||
+                      s.HolderName.ToLower().Contains(searchValue.ToLower()) ||
+                      s.OwnerTypeName.ToLower().Contains(searchValue.ToLower()) ||
+                      s.BuildingTypeName.ToLower().Contains(searchValue.ToLower())
+                    ).ToList();
+                }
+
+
+                int totalrowsafterfiltering = data1.Count(); /// after filtering total
+
+
+                //paging
+                data1 = data1.Skip(start).Take(length).ToList();
+
+                return Json(new { data = data1, draw = Request["draw"], recordsTotal = TotalRec, recordsFiltered = totalrowsafterfiltering }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception exception)
+            {
+
+                TempData["EM"] = "error | " + exception.Message.ToString();
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         public ActionResult NewIndex()
         {
