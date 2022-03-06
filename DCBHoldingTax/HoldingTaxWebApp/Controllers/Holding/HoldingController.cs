@@ -2265,7 +2265,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                             FlatNo = !string.IsNullOrWhiteSpace(ui_item.FlatNo) ? ui_item.FlatNo.Trim() : null,
                                             FlorNo = ui_item.FlorNo,
                                             HolderFlatId = 0,
-                                            HolderId = holderId,
+                                            HolderId = hvm.HolderId, // described by masum bhai 
                                             IsActive = true,
                                             IsDeleted = false,
                                             LastUpdated = DateTime.Now,
