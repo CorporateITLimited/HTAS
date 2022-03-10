@@ -61,52 +61,31 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
             try
             {
-                
+                var seiList = _holdingManager.GetAllHolder();
                 List<Holder> seiListVM = new List<Holder>();
-
-                if (Session["searchResultList"] != null)
+                foreach (var item in seiList)
                 {
-                    var list = Session["searchResultList"] as List<Holder>;
-
-                    seiListVM = list.Where(s => s.HolderNo.ToLower().Contains(searchValue.ToLower())
-                 ||
-                   s.AreaName.ToLower().Contains(searchValue.ToLower()) ||
-                   s.PlotNo.ToString().Contains(searchValue.ToLower()) ||
-                   s.HolderName.ToLower().Contains(searchValue.ToLower()) ||
-                   s.OwnerTypeName.ToLower().Contains(searchValue.ToLower()) ||
-                   s.BuildingTypeName.ToLower().Contains(searchValue.ToLower())
-                ).ToList();
-
-                }
-
-                else {
-                    var seiList = _holdingManager.GetAllHolder();
-                    foreach (var item in seiList)
+                    Holder seiVM = new Holder()
                     {
-                        Holder seiVM = new Holder()
-                        {
-                            CreateDate = item.CreateDate,
+                        CreateDate = item.CreateDate,
 
-                            CreatedBy = item.CreatedBy,
+                        CreatedBy = item.CreatedBy,
 
-                            IsActive = item.IsActive,
-                            IsDeleted = item.IsDeleted,
-                            LastUpdated = item.LastUpdated,
-                            LastUpdatedBy = item.LastUpdatedBy,
-                            HolderId = item.HolderId,
-                            HolderNo = item.HolderNo,
-                            AreaName = item.AreaName,
-                            PlotNo = item.PlotNo,
-                            HolderName = item.HolderName,
-                            OwnerTypeName = item.OwnerTypeName,
-                            BuildingTypeName = item.BuildingTypeName
+                        IsActive = item.IsActive,
+                        IsDeleted = item.IsDeleted,
+                        LastUpdated = item.LastUpdated,
+                        LastUpdatedBy = item.LastUpdatedBy,
+                        HolderId = item.HolderId,
+                        HolderNo = item.HolderNo,
+                        AreaName = item.AreaName,
+                        PlotNo = item.PlotNo,
+                        HolderName = item.HolderName,
+                        OwnerTypeName = item.OwnerTypeName,
+                        BuildingTypeName = item.BuildingTypeName
 
-                        };
-                        seiListVM.Add(seiVM);
-                    }
+                    };
+                    seiListVM.Add(seiVM);
                 }
-                    
-                
 
                 // sorting
                 if (sortDirection == "desc")
@@ -117,25 +96,6 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 {
                     seiListVM = seiListVM.OrderBy(s => sortColumnName).ToList();
                 }
-
-
-          
-
-
-                        seiListVM = seiListVM.Where(s => s.HolderNo.ToLower().Contains(searchValue.ToLower())  ||
-                      s.AreaName.ToLower().Contains(searchValue.ToLower()) ||
-                      s.PlotNo.ToString().Contains(searchValue.ToLower()) ||
-                      s.HolderName.ToLower().Contains(searchValue.ToLower()) ||
-                      s.OwnerTypeName.ToLower().Contains(searchValue.ToLower()) ||
-                      s.BuildingTypeName.ToLower().Contains(searchValue.ToLower())
-                    ).ToList();
-
-                        Session["searchColHistory"] = searchValue;
-                        Session["searchResultList"] = seiListVM;
-              
-
-                    
-
 
                 var data1 = seiListVM.Select(s => new {
                     s.HolderId,
@@ -150,6 +110,18 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
 
                 int TotalRec = data1.Count(); ////// for total records
+
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    data1 = data1.Where(s => s.HolderNo.ToLower().Contains(searchValue.ToLower())
+                    ||
+                      s.AreaName.ToLower().Contains(searchValue.ToLower()) ||
+                      s.PlotNo.ToString().Contains(searchValue.ToLower()) ||
+                      s.HolderName.ToLower().Contains(searchValue.ToLower()) ||
+                      s.OwnerTypeName.ToLower().Contains(searchValue.ToLower()) ||
+                      s.BuildingTypeName.ToLower().Contains(searchValue.ToLower())
+                    ).ToList();
+                }
 
 
                 int totalrowsafterfiltering = data1.Count(); /// after filtering total
