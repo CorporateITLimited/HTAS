@@ -487,11 +487,13 @@
                                                                     @if (Model.IsHolderAnOwner == true)
                                                                     {
                                                                         <th> <button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button></th>
+                                                                        <th>ফ্ল্যাট মুছে ফেলুন </th>
                                                                     }
                                                                     else
                                                                     {
                                                                         <th>নিজস্ব মালিকানার ফ্ল্যাট হলে টিক দিন </th>
                                                                     }
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="text-center">
@@ -594,6 +596,11 @@
                                                                                 <td width="15%;">
                                                                                     নিজস্ব মালিকানা (@item.OwnerName)
                                                                                 </td>
+                                                                                <td>
+                                                                                    <button class="delete_flat_details btn btn-icon btn-danger btn-hover-danger btn-sm mx-3" id="delete_flat_details">
+                                                                                        <i class="fas fa-minus"></i>
+                                                                                    </button>
+                                                                                </td>
                                                                             </tr>
                                                                         }
                                                                     }
@@ -687,6 +694,7 @@
                                                                     @if (Model.IsHolderAnOwner == true)
                                                                     {
                                                                         <th> <button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button></th>
+                                                                        <th>ফ্ল্যাট মুছে ফেলুন</th>
                                                                     }
                                                                     else
                                                                     {
@@ -792,6 +800,11 @@
                                                                                 <td width="15%;">
                                                                                     নিজস্ব মালিকানা (@item.OwnerName)
                                                                                     @*<button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button>*@
+                                                                                </td>
+                                                                                <td>
+                                                                                    <button class="delete_flat_details btn btn-icon btn-danger btn-hover-danger btn-sm mx-3" id="delete_flat_details">
+                                                                                        <i class="fas fa-minus"></i>
+                                                                                    </button>
                                                                                 </td>
 
                                                                             </tr>
@@ -1424,6 +1437,82 @@
                     $(this).remove();
                 });
             });
+
+            $('#flat_details tbody').on('click', '.delete_flat_details', function (e) {
+                e.preventDefault();
+
+                Swal.fire({
+                    text: "আপনি কি ফ্ল্যাটটি মুছে ফেলতে চান?",
+                    icon: "success",
+                    showCancelButton: true,
+                    buttonsStyling: false,
+                    confirmButtonText: "হ্যা, সাবমিট",
+                    cancelButtonText: "না, বাতিল",
+                    customClass: {
+                        confirmButton: "btn font-weight-bold btn-primary",
+                        cancelButton: "btn font-weight-bold btn-danger"
+                    }
+                }).then(function (result) {
+                    if (result.value) {
+                        var currentRow = $(this).closest("tr")
+                        var holderFlatId = parseInt(currentRow.find('.HolderFlatId').val()) || 0;
+                        alert(holderFlatId);
+                        var data = {
+
+                        }
+                        return;
+                        //$.ajax({
+                        //    type: 'POST',
+                        //    url: '/HolderClient/DeleteFlat',
+                        //    data: JSON.stringify(data),
+                        //    contentType: 'application/json',
+                        //    success: function (d) {
+                        //        if (d.status === "success") {
+                        //            list = [];
+                        //            $('#flat_details tbody').empty();
+                        //            Swal.fire({
+                        //                text: "আপনার প্রদানকৃত তথ্যাবলী অ্যাডমিন এর অনুমতির জন্য প্রক্রিয়াধীন অবস্থায় রয়েছে।",
+                        //                icon: "success",
+                        //                buttonsStyling: false,
+                        //                confirmButtonText: "সফলভাবে সম্পন্ন",
+                        //                customClass: {
+                        //                    confirmButton: "btn font-weight-bold btn-success",
+                        //                }
+                        //            });
+                        //            setTimeout(function () { window.location.href = "/HolderClient/HolderProfile"; }, 2000);
+                        //        }
+                        //        else if (d.status !== "success") {
+                        //            Swal.fire({
+                        //                text: d.status,
+                        //                icon: "error",
+                        //                buttonsStyling: false,
+                        //                confirmButtonText: "  ERROR  ",
+                        //                customClass: {
+                        //                    confirmButton: "btn font-weight-bold btn-danger",
+                        //                }
+                        //            });
+                        //            $('#details_error').text(d.status);
+                        //            //KTUtil.scrollTop();
+                        //        }
+                        //        else {
+                        //            Swal.fire({
+                        //                text: "Unknown Error",
+                        //                icon: "error",
+                        //                buttonsStyling: false,
+                        //                confirmButtonText: "  ERROR  ",
+                        //                customClass: {
+                        //                    confirmButton: "btn font-weight-bold btn-danger",
+                        //                }
+                        //            });
+                        //            $('#details_error').text(d.status);
+                        //        }
+                        //    },
+                        //    error: function (error) {
+                        //        console.log(error);
+                        //    }
+                        //});
+                    };
+
 
             //$('#flat_details tbody').on('change', '.FlatArea', function () {
             //    ratePerSquareFeet = 5;
