@@ -5324,6 +5324,7 @@
     <Content Include="Views\Home\Cluster.cshtml" />
     <Content Include="Views\Home\rptCluster.cshtml" />
     <Content Include="Views\Account\ForgetPassword.cshtml" />
+    <Content Include="Views\PlotOwner\Edit_.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
