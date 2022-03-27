@@ -5225,7 +5225,6 @@
     <Content Include="Views\Holding\Details.cshtml" />
     <Content Include="Views\PlotOwner\Create.cshtml" />
     <Content Include="Views\PlotOwner\Details.cshtml" />
-    <Content Include="Views\PlotOwner\Edit.cshtml" />
     <Content Include="Views\PlotOwner\Index.cshtml" />
     <Content Include="Views\Holding\Create.cshtml" />
     <Content Include="Views\Holding\Index.cshtml" />
@@ -5324,7 +5323,7 @@
     <Content Include="Views\Home\Cluster.cshtml" />
     <Content Include="Views\Home\rptCluster.cshtml" />
     <Content Include="Views\Account\ForgetPassword.cshtml" />
-    <Content Include="Views\PlotOwner\Edit_.cshtml" />
+    <Content Include="Views\PlotOwner\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
