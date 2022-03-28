@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager;
@@ -12,6 +16,7 @@ using HoldingTaxWebApp.Manager.Plots;
 using HoldingTaxWebApp.Manager.Users;
 using HoldingTaxWebApp.Models.Holding;
 using HoldingTaxWebApp.ViewModels;
+using Newtonsoft.Json;
 
 namespace HoldingTaxWebApp.Controllers.Holding
 {
@@ -49,97 +54,6 @@ namespace HoldingTaxWebApp.Controllers.Holding
             //_holdingManager.GetAllHolder()
         }
 
-        public JsonResult GetData()
-        {
-            //server side parameter
-            int start = Convert.ToInt32(Request["start"]);
-            int length = Convert.ToInt32(Request["length"]);
-            string searchValue = Request["search[value]"];
-            string sortColumnName = Request.QueryString["columns[" + Request.QueryString["order[0][column]"] + "][name]"];
-            string sortDirection = Request.QueryString["order[0][dir]"];
-
-
-            try
-            {
-                var seiList = _holdingManager.GetAllHolder();
-                List<Holder> seiListVM = new List<Holder>();
-                foreach (var item in seiList)
-                {
-                    Holder seiVM = new Holder()
-                    {
-                        CreateDate = item.CreateDate,
-
-                        CreatedBy = item.CreatedBy,
-
-                        IsActive = item.IsActive,
-                        IsDeleted = item.IsDeleted,
-                        LastUpdated = item.LastUpdated,
-                        LastUpdatedBy = item.LastUpdatedBy,
-                        HolderId = item.HolderId,
-                        HolderNo = item.HolderNo,
-                        AreaName = item.AreaName,
-                        PlotNo = item.PlotNo,
-                        HolderName = item.HolderName,
-                        OwnerTypeName = item.OwnerTypeName,
-                        BuildingTypeName = item.BuildingTypeName
-
-                    };
-                    seiListVM.Add(seiVM);
-                }
-
-                // sorting
-                if (sortDirection == "desc")
-                {
-                    seiListVM = DynamicOrderBy.OrderByDescending<Holder>(seiListVM.AsQueryable(), sortColumnName).ToList();
-                }
-                else
-                {
-                    seiListVM = seiListVM.OrderBy(s => sortColumnName).ToList();
-                }
-
-                var data1 = seiListVM.Select(s => new {
-                    s.HolderId,
-                    s.HolderNo,
-                    s.AreaName,
-                    s.PlotNo,
-                    s.HolderName,
-                    s.OwnerTypeName,
-                    s.BuildingTypeName
-                }).ToList();
-
-
-
-                int TotalRec = data1.Count(); ////// for total records
-
-                if (!string.IsNullOrEmpty(searchValue))
-                {
-                    data1 = data1.Where(s => s.HolderNo.ToLower().Contains(searchValue.ToLower())
-                    ||
-                      s.AreaName.ToLower().Contains(searchValue.ToLower()) ||
-                      s.PlotNo.ToString().Contains(searchValue.ToLower()) ||
-                      s.HolderName.ToLower().Contains(searchValue.ToLower()) ||
-                      s.OwnerTypeName.ToLower().Contains(searchValue.ToLower()) ||
-                      s.BuildingTypeName.ToLower().Contains(searchValue.ToLower())
-                    ).ToList();
-                }
-
-
-                int totalrowsafterfiltering = data1.Count(); /// after filtering total
-
-
-                //paging
-                data1 = data1.Skip(start).Take(length).ToList();
-
-                return Json(new { data = data1, draw = Request["draw"], recordsTotal = TotalRec, recordsFiltered = totalrowsafterfiltering }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception exception)
-            {
-
-                TempData["EM"] = "error | " + exception.Message.ToString();
-
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
-        }
 
         public ActionResult NewIndex()
         {
@@ -336,7 +250,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 //checking if data is null
                 if (hvm == null)
                 {
-                    status = "কোনো ডাটা পাওয়া যাই নি";
+                    status = "কোনো ডাটা পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -406,7 +320,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "এলাকার নাম পাওয়া যাই নি";
+                    status = "এলাকার নাম পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -416,7 +330,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "প্লট/বাড়ী/ফ্ল্যাট নম্বর পাওয়া যাই নি";
+                    status = "প্লট/বাড়ী/ফ্ল্যাট নম্বর পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -426,7 +340,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম পাওয়া যাই নি";
+                    status = "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -436,7 +350,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "জাতীয় পরিচয়পত্র পাওয়া যাই নি";
+                    status = "জাতীয় পরিচয়পত্র পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -446,7 +360,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "লিঙ্গ পাওয়া যাই নি";
+                    status = "লিঙ্গ পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -456,7 +370,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "বৈবাহিক অবস্থা পাওয়া যাই নি";
+                    status = "বৈবাহিক অবস্থা পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -467,7 +381,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.Father = null;
-                    //status = "পিতার নাম পাওয়া যাই নি";
+                    //status = "পিতার নাম পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -478,7 +392,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.Mother = null;
-                    //status = "মাতার নাম পাওয়া যাই নি";
+                    //status = "মাতার নাম পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -492,7 +406,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.Contact2 = null;
-                    //status = "মোবাইল নম্বর পাওয়া যাই নি";
+                    //status = "মোবাইল নম্বর পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -505,7 +419,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.PresentAdd = null;
-                    //status = "বর্তমান ঠিকানা পাওয়া যাই নি";
+                    //status = "বর্তমান ঠিকানা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -516,7 +430,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.PermanentAdd = null;
-                    //status = "স্থায়ী ঠিকানা পাওয়া যাই নি";
+                    //status = "স্থায়ী ঠিকানা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -527,7 +441,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.ContactAdd = null;
-                    //status = "পত্র যোগাযোগের ঠিকানা পাওয়া যাই নি";
+                    //status = "পত্র যোগাযোগের ঠিকানা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -539,7 +453,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "গৃহকরদাতা নিজেই কি মালিক? পাওয়া যাই নি";
+                    status = "গৃহকরদাতা কি প্লট  মালিকের সুবিধা পাবেন? পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -577,14 +491,14 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     else
                     {
                         holder.ImageLocation = null;
-                        //status = "পাসপোর্ট সাইজের ছবি পাওয়া যাই নি";
+                        //status = "পাসপোর্ট সাইজের ছবি পাওয়া যায়নি";
                         //return new JsonResult { Data = new { status } };
                     }
                 }
                 else
                 {
                     holder.ImageLocation = null;
-                    //status = "পাসপোর্ট সাইজের ছবি পাওয়া যাই নি";
+                    //status = "পাসপোর্ট সাইজের ছবি পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -594,7 +508,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "মালিকানার সূত্র পাওয়া যাই নি";
+                    status = "মালিকানার সূত্র পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -667,7 +581,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "মালিকানার ধরন পাওয়া যাই নি";
+                    status = "মালিকানার ধরন পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -677,7 +591,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "ভবনের ধরন পাওয়া যাই নি";
+                    status = "ভবনের ধরন পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -688,7 +602,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.AmountOfLand = 0;
-                    //status = "জমির পরিমাণ পাওয়া যাই নি";
+                    //status = "জমির পরিমাণ পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -699,7 +613,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.TotalFloor = 0;
-                    //status = "মোট তলার সংখ্যা পাওয়া যাই নি";
+                    //status = "মোট তলার সংখ্যা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -710,7 +624,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.EachFloorArea = 0;
-                    //status = "প্রতিতলার আয়তন পাওয়া যাই নি";
+                    //status = "প্রতিতলার আয়তন পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -721,7 +635,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.TotalFlat = 0;
-                    //status = "মোট ফ্ল্যাট সংখ্যা পাওয়া যাই নি";
+                    //status = "মোট ফ্ল্যাট সংখ্যা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -732,7 +646,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.HoldersFlatNumber = 0;
-                    //status = "নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা পাওয়া যাই নি";
+                    //status = "নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1041,7 +955,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 //checking if data is null
                 if (hvm == null)
                 {
-                    status = "কোনো ডাটা পাওয়া যাই নি";
+                    status = "কোনো ডাটা পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1053,7 +967,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
                 if (string.IsNullOrEmpty(hvm.HolderNo))
                 {
-                    status = "গৃহকরদাতার আইডি নম্বরটি পাওয়া যাই নি";
+                    status = "গৃহকরদাতার আইডি নম্বরটি পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1124,7 +1038,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "এলাকার নাম পাওয়া যাই নি";
+                    status = "এলাকার নাম পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1134,7 +1048,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "প্লট/বাড়ী/ফ্ল্যাট নম্বর পাওয়া যাই নি";
+                    status = "প্লট/বাড়ী/ফ্ল্যাট নম্বর পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1144,7 +1058,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম পাওয়া যাই নি";
+                    status = "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1154,7 +1068,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "জাতীয় পরিচয়পত্র পাওয়া যাই নি";
+                    status = "জাতীয় পরিচয়পত্র পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1164,7 +1078,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "লিঙ্গ পাওয়া যাই নি";
+                    status = "লিঙ্গ পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1174,7 +1088,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "বৈবাহিক অবস্থা পাওয়া যাই নি";
+                    status = "বৈবাহিক অবস্থা পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1185,7 +1099,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.Father = null;
-                    //status = "পিতার নাম পাওয়া যাই নি";
+                    //status = "পিতার নাম পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1196,7 +1110,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.Mother = null;
-                    //status = "মাতার নাম পাওয়া যাই নি";
+                    //status = "মাতার নাম পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1210,7 +1124,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.Contact2 = null;
-                    //status = "মোবাইল নম্বর পাওয়া যাই নি";
+                    //status = "মোবাইল নম্বর পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1223,7 +1137,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.PresentAdd = null;
-                    //status = "বর্তমান ঠিকানা পাওয়া যাই নি";
+                    //status = "বর্তমান ঠিকানা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1234,7 +1148,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.PermanentAdd = null;
-                    //status = "স্থায়ী ঠিকানা পাওয়া যাই নি";
+                    //status = "স্থায়ী ঠিকানা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1245,7 +1159,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.ContactAdd = null;
-                    //status = "পত্র যোগাযোগের ঠিকানা পাওয়া যাই নি";
+                    //status = "পত্র যোগাযোগের ঠিকানা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1257,7 +1171,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "গৃহকরদাতা নিজেই কি মালিক? পাওয়া যাই নি";
+                    status = "গৃহকরদাতা কি প্লট  মালিকের সুবিধা পাবেন? পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1299,14 +1213,14 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     else
                     {
                         holder.ImageLocation = null;
-                        //status = "পাসপোর্ট সাইজের ছবি পাওয়া যাই নি";
+                        //status = "পাসপোর্ট সাইজের ছবি পাওয়া যায়নি";
                         //return new JsonResult { Data = new { status } };
                     }
                 }
                 else
                 {
                     holder.ImageLocation = null;
-                    //status = "পাসপোর্ট সাইজের ছবি পাওয়া যাই নি";
+                    //status = "পাসপোর্ট সাইজের ছবি পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1316,7 +1230,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "মালিকানার সূত্র পাওয়া যাই নি";
+                    status = "মালিকানার সূত্র পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1397,7 +1311,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "মালিকানার ধরন পাওয়া যাই নি";
+                    status = "মালিকানার ধরন পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1407,7 +1321,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "ভবনের ধরন পাওয়া যাই নি";
+                    status = "ভবনের ধরন পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1418,7 +1332,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.AmountOfLand = 0;
-                    //status = "জমির পরিমাণ পাওয়া যাই নি";
+                    //status = "জমির পরিমাণ পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1429,7 +1343,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.TotalFloor = 0;
-                    //status = "মোট তলার সংখ্যা পাওয়া যাই নি";
+                    //status = "মোট তলার সংখ্যা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1440,7 +1354,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.EachFloorArea = 0;
-                    //status = "প্রতিতলার আয়তন পাওয়া যাই নি";
+                    //status = "প্রতিতলার আয়তন পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1451,7 +1365,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.TotalFlat = 0;
-                    //status = "মোট ফ্ল্যাট সংখ্যা পাওয়া যাই নি";
+                    //status = "মোট ফ্ল্যাট সংখ্যা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1462,7 +1376,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.HoldersFlatNumber = 0;
-                    //status = "নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা পাওয়া যাই নি";
+                    //status = "নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1759,7 +1673,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 //checking if data is null
                 if (hvm == null)
                 {
-                    status = "কোনো ডাটা পাওয়া যাই নি";
+                    status = "কোনো ডাটা পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1827,7 +1741,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "এলাকার নাম পাওয়া যাই নি";
+                    status = "এলাকার নাম পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1837,19 +1751,19 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "প্লট নম্বর পাওয়া যাই নি";
+                    status = "প্লট নম্বর পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
                 if (string.IsNullOrWhiteSpace(hvm.TransferRefNo))
                 {
-                    status = "ফ্ল্যাট হস্তান্তরের রেফারেন্স পাওয়া যাই নি";
+                    status = "ফ্ল্যাট হস্তান্তরের রেফারেন্স পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
                 if (string.IsNullOrWhiteSpace(hvm.StrTransferRefDate))
                 {
-                    status = "ফ্ল্যাট হস্তান্তরের তারিখ পাওয়া যাই নি";
+                    status = "ফ্ল্যাট হস্তান্তরের তারিখ পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
                 else
@@ -1864,7 +1778,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "ফ্ল্যাট/বাড়ী মালিকের নাম পাওয়া যাই নি";
+                    status = "ফ্ল্যাট/বাড়ী মালিকের নাম পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1874,7 +1788,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "জাতীয় পরিচয়পত্র পাওয়া যাই নি";
+                    status = "জাতীয় পরিচয়পত্র পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1884,7 +1798,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "লিঙ্গ পাওয়া যাই নি";
+                    status = "লিঙ্গ পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1894,7 +1808,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "বৈবাহিক অবস্থা পাওয়া যাই নি";
+                    status = "বৈবাহিক অবস্থা পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -1905,7 +1819,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.Father = null;
-                    //status = "পিতার নাম পাওয়া যাই নি";
+                    //status = "পিতার নাম পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1916,7 +1830,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.Mother = null;
-                    //status = "মাতার নাম পাওয়া যাই নি";
+                    //status = "মাতার নাম পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1930,7 +1844,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.Contact2 = null;
-                    //status = "মোবাইল নম্বর পাওয়া যাই নি";
+                    //status = "মোবাইল নম্বর পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1943,7 +1857,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.PresentAdd = null;
-                    //status = "বর্তমান ঠিকানা পাওয়া যাই নি";
+                    //status = "বর্তমান ঠিকানা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1954,7 +1868,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.PermanentAdd = null;
-                    //status = "স্থায়ী ঠিকানা পাওয়া যাই নি";
+                    //status = "স্থায়ী ঠিকানা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -1965,7 +1879,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.ContactAdd = null;
-                    //status = "পত্র যোগাযোগের ঠিকানা পাওয়া যাই নি";
+                    //status = "পত্র যোগাযোগের ঠিকানা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -2006,14 +1920,14 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     else
                     {
                         holder.ImageLocation = null;
-                        //status = "পাসপোর্ট সাইজের ছবি পাওয়া যাই নি";
+                        //status = "পাসপোর্ট সাইজের ছবি পাওয়া যায়নি";
                         //return new JsonResult { Data = new { status } };
                     }
                 }
                 else
                 {
                     holder.ImageLocation = null;
-                    //status = "পাসপোর্ট সাইজের ছবি পাওয়া যাই নি";
+                    //status = "পাসপোর্ট সাইজের ছবি পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -2023,7 +1937,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "মালিকানার সূত্র পাওয়া যাই নি";
+                    status = "মালিকানার সূত্র পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -2096,7 +2010,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "মালিকানার ধরন পাওয়া যাই নি";
+                    status = "মালিকানার ধরন পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -2106,7 +2020,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 }
                 else
                 {
-                    status = "ভবনের ধরন পাওয়া যাই নি";
+                    status = "ভবনের ধরন পাওয়া যায়নি";
                     return new JsonResult { Data = new { status } };
                 }
 
@@ -2117,7 +2031,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.AmountOfLand = 0;
-                    //status = "জমির পরিমাণ পাওয়া যাই নি";
+                    //status = "জমির পরিমাণ পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -2128,7 +2042,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.TotalFloor = 0;
-                    //status = "মোট তলার সংখ্যা পাওয়া যাই নি";
+                    //status = "মোট তলার সংখ্যা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -2139,7 +2053,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.EachFloorArea = 0;
-                    //status = "প্রতিতলার আয়তন পাওয়া যাই নি";
+                    //status = "প্রতিতলার আয়তন পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -2150,7 +2064,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.TotalFlat = 0;
-                    //status = "মোট ফ্ল্যাট সংখ্যা পাওয়া যাই নি";
+                    //status = "মোট ফ্ল্যাট সংখ্যা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -2161,7 +2075,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 else
                 {
                     holder.HoldersFlatNumber = 0;
-                    //status = "নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা পাওয়া যাই নি";
+                    //status = "নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
 
@@ -2620,6 +2534,85 @@ namespace HoldingTaxWebApp.Controllers.Holding
         }
 
         #endregion
+
+        public void GetAllHolderForDatatable(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
+        {
+            string _conString = WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString;
+            SqlConnection Sql_Connection = new SqlConnection(_conString);
+            int displayLength = iDisplayLength;
+            int displayStart = iDisplayStart;
+            int sortCol = iSortCol_0;
+            string sortDir = sSortDir_0;
+            string search = sSearch;
+            List<Holder> listdata = new List<Holder>();
+            int filteredCount = 0;
+
+
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = "[dbo].[Get_All_HolderDatatable]",
+                Connection = Sql_Connection,
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@DisplayLength", SqlDbType.Int).Value = displayLength;
+            cmd.Parameters.Add("@DisplayStart", SqlDbType.Int).Value = displayStart;
+            cmd.Parameters.Add("@SortCol", SqlDbType.Int).Value = sortCol;
+            cmd.Parameters.Add("@SortDir", SqlDbType.VarChar).Value = sortDir;
+            cmd.Parameters.Add("@Search", SqlDbType.NVarChar).Value = search;
+            Sql_Connection.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                Holder hol = new Holder();
+                filteredCount = Convert.ToInt32(rdr["Totalcount"]);
+                hol.Rownum = Convert.ToInt32(rdr["Rownum"]);
+                hol.HolderId = Convert.ToInt32(rdr["HolderId"]);
+                hol.Totalcount = Convert.ToInt32(rdr["Totalcount"]);
+                hol.HolderNo = rdr["HolderNo"].ToString();
+                hol.AreaName= rdr["AreaName"].ToString();
+                hol.PlotNo= rdr["PlotNo"].ToString();
+                hol.HolderName= rdr["HolderName"].ToString();
+                hol.OwnerTypeName= rdr["OwnerTypeName"].ToString();
+                hol.BuildingTypeName= rdr["BuildingTypeName"].ToString();
+
+
+                //hol.Smv = Convert.ToDecimal(rdr["Smv"]);
+                listdata.Add(hol);
+            }
+            Sql_Connection.Close();
+            string q = "SELECT COUNT(*) from [Holding].[tHolder]";
+            var result = new
+            {
+                iTotalRecords = GetTotalCount(q),
+                iTotalDisplayRecords = filteredCount,
+                aaData = listdata
+            };
+            
+            //Context.Response.Write(js.Serialize(result));
+            HttpContext.Response.Write( JsonConvert.SerializeObject(result));
+
+
+        }
+
+        public int GetTotalCount(string s)
+        {
+            int countTotal = 0;
+            string _conString = WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString;
+            SqlConnection Sql_Connection = new SqlConnection(_conString);
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = s,
+                Connection = Sql_Connection,
+                CommandType = CommandType.Text
+            };
+
+            Sql_Connection.Open();
+            countTotal = (int)cmd.ExecuteScalar();
+
+            return countTotal;
+
+        }
 
     }
 }
