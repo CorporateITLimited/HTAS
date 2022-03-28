@@ -320,11 +320,33 @@
                                                     </div>
                                                     @Html.LabelFor(model => model.IsHolderAnOwner, "গৃহকরদাতা নিজেই কি প্লটের মালিক?", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
-                                                   {
-                                                       @class = "form-control",
-                                                       @disabled = "disabled"
-                                                   })
+                                                        @if (Model.IsHolderAnOwner == true)
+                                                        {
+                                                            @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
+                                                  {
+                                                      @class = "form-control",
+                                                      @disabled = "disabled"
+                                                  })
+                                                        }
+                                                        else if (Model.IsHolderAnOwner == false && Session["RoleName"].ToString() == "এডমিন")
+                                                        {
+                                                            @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
+                                                  {
+                                                      @class = "form-control",
+
+                                                  })
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
+                                                           {
+                                                               @class = "form-control",
+                                                               @disabled = "disabled"
+                                                           })
+                                                        }
+                                                 
+
+
                                                     </div>
 
                                                 </div>
