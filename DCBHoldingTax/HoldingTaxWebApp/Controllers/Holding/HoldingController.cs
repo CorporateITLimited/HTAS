@@ -2330,6 +2330,53 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
         }
 
+        [HttpPost]
+        public JsonResult DeleteFlat(int flatId)
+        {
+            var status = "error";
+
+            if (flatId > 0)
+            {
+                HolderFlat details = new HolderFlat()
+                {
+                    CreateDate = null,
+                    CreatedBy = null,
+                    FlatArea = null,
+                    FlatNo = null,
+                    FlorNo = null,
+                    HolderFlatId = flatId,
+                    HolderId = null, // described by masum bhai 
+                    IsActive = null,
+                    IsDeleted = null,
+                    LastUpdated = DateTime.Now,
+                    LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                    IsSelfOwned = null,//ui_item.SelfOwn == 1 ? true : false,
+                    MonthlyRent = null,
+                    OwnerName = null,
+                    OwnOrRent = null,
+                    SelfOwn = null,//ui_item.SelfOwn,
+                    IsCheckedByHolder = true,
+                    MainHolderId = null,
+                    Remarks = null
+                };
+                var count = _holdingManager.DeleteHoldersFlatDataByHolderFlatId(details);
+                if (count == 202)
+                {
+                    status = "success";
+                    return new JsonResult { Data = new { status } };
+                }
+                else
+                {
+                    status = "error";
+                    return new JsonResult { Data = new { status } };
+                }
+            }
+            else
+            {
+                return new JsonResult { Data = new { status } };
+            }
+        }
+
 
         public JsonResult GetHolderByAreaIdAndPlotId(int AreaId, int PlotId)
         {

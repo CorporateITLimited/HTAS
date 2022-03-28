@@ -323,28 +323,28 @@
                                                         @if (Model.IsHolderAnOwner == true)
                                                         {
                                                             @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
-                                                  {
-                                                      @class = "form-control",
-                                                      @disabled = "disabled"
-                                                  })
+                                                       {
+                                                           @class = "form-control",
+                                                           @disabled = "disabled"
+                                                       })
                                                         }
                                                         else if (Model.IsHolderAnOwner == false && Session["RoleName"].ToString() == "এডমিন")
                                                         {
                                                             @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
-                                                  {
-                                                      @class = "form-control",
+                                                       {
+                                                           @class = "form-control",
 
-                                                  })
+                                                       })
                                                         }
                                                         else
                                                         {
                                                             @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
-                                                           {
-                                                               @class = "form-control",
-                                                               @disabled = "disabled"
-                                                           })
+                                                       {
+                                                           @class = "form-control",
+                                                           @disabled = "disabled"
+                                                       })
                                                         }
-                                                 
+
 
 
                                                     </div>
@@ -1463,6 +1463,9 @@
             $('#flat_details tbody').on('click', '.delete_flat_details', function (e) {
                 e.preventDefault();
 
+                var currentRow = $(this).closest("tr")
+                var holderFlatId = parseInt(currentRow.find('.HolderFlatId').val()) || 0;
+
                 Swal.fire({
                     text: "আপনি কি ফ্ল্যাটটি মুছে ফেলতে চান?",
                     icon: "success",
@@ -1476,64 +1479,44 @@
                     }
                 }).then(function (result) {
                     if (result.value) {
-                        var currentRow = $(this).closest("tr")
-                        var holderFlatId = parseInt(currentRow.find('.HolderFlatId').val()) || 0;
-                        alert(holderFlatId);
                         var data = {
-
+                            flatId: holderFlatId
                         }
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Holding/DeleteFlat',
+                            data: JSON.stringify(data),
+                            contentType: 'application/json',
+                            success: function (d) {
+                                if (d.status === "success") {
+                                    currentRow.css("background-color", "red").fadeOut(1000, function () {
+                                        currentRow.remove();
+                                    });
+                                }
+                                else {
+                                    Swal.fire({
+                                        text: "ফ্ল্যাটটি মুছে ফেলা সম্ভব হয়নি",
+                                        icon: "error",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "  ERROR  ",
+                                        customClass: {
+                                            confirmButton: "btn font-weight-bold btn-danger",
+                                        }
+                                    });
+                                    return;
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        Swal.fire({
+                            text: "আপনার সাবমিশন বাতিল করা হয়েছে",
+                            icon: "success"
+                        });
                         return;
-                        //$.ajax({
-                        //    type: 'POST',
-                        //    url: '/HolderClient/DeleteFlat',
-                        //    data: JSON.stringify(data),
-                        //    contentType: 'application/json',
-                        //    success: function (d) {
-                        //        if (d.status === "success") {
-                        //            list = [];
-                        //            $('#flat_details tbody').empty();
-                        //            Swal.fire({
-                        //                text: "আপনার প্রদানকৃত তথ্যাবলী অ্যাডমিন এর অনুমতির জন্য প্রক্রিয়াধীন অবস্থায় রয়েছে।",
-                        //                icon: "success",
-                        //                buttonsStyling: false,
-                        //                confirmButtonText: "সফলভাবে সম্পন্ন",
-                        //                customClass: {
-                        //                    confirmButton: "btn font-weight-bold btn-success",
-                        //                }
-                        //            });
-                        //            setTimeout(function () { window.location.href = "/HolderClient/HolderProfile"; }, 2000);
-                        //        }
-                        //        else if (d.status !== "success") {
-                        //            Swal.fire({
-                        //                text: d.status,
-                        //                icon: "error",
-                        //                buttonsStyling: false,
-                        //                confirmButtonText: "  ERROR  ",
-                        //                customClass: {
-                        //                    confirmButton: "btn font-weight-bold btn-danger",
-                        //                }
-                        //            });
-                        //            $('#details_error').text(d.status);
-                        //            //KTUtil.scrollTop();
-                        //        }
-                        //        else {
-                        //            Swal.fire({
-                        //                text: "Unknown Error",
-                        //                icon: "error",
-                        //                buttonsStyling: false,
-                        //                confirmButtonText: "  ERROR  ",
-                        //                customClass: {
-                        //                    confirmButton: "btn font-weight-bold btn-danger",
-                        //                }
-                        //            });
-                        //            $('#details_error').text(d.status);
-                        //        }
-                        //    },
-                        //    error: function (error) {
-                        //        console.log(error);
-                        //    }
-                        //});
-                    };
+                    }
+                });
+            });
 
 
             //$('#flat_details tbody').on('change', '.FlatArea', function () {
