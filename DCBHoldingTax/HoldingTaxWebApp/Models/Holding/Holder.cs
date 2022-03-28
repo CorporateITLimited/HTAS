@@ -255,5 +255,10 @@ namespace HoldingTaxWebApp.Models.Holding
         public int? ClusterId { get; set; }
 
 
+
+        //-- for datatable use only-----------------
+
+        public int Rownum { get; set; }
+        public int Totalcount { get; set; }
     }
 }
