@@ -244,7 +244,7 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "অনুমোদন নম্বর")]
         public string LastApprovalLetterNo { get; set; }
 
-        [Display(Name = "গৃহকরদাতা নিজেই কি প্লটের মালিক?")]
+        [Display(Name = "গৃহকরদাতা কি প্লট  মালিকের সুবিধা পাবেন?")]
         public bool? IsHolderAnOwner { get; set; }
 
         [Display(Name = "গৃহকরদাতার আইডি নম্বর")]
