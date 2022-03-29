@@ -5,6 +5,16 @@
 @section Sheets{
     @*<link href="~/Content/FormDesign.css" rel="stylesheet" />*@
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <style>
+        .highlight {
+            font-weight: bold;
+            color: #4D7629;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #FF0000;
+        }
+    </style>
 }
 
 
@@ -92,7 +102,7 @@
                 <!--end: Search Form-->
                 <div class="datatable datatable-bordered datatable-head-custom datatable-default datatable-primary datatable-loaded">
                     <!--begin: Datatable-->
-                    <table class="table-bordered datatable-table" id="data_table" width="90">
+                    <table class="table-bordered datatable-table" id="data_table" width="90" >
                         <thead>
                             <tr>
                                 <th>@Html.DisplayNameFor(model => model.HolderNo)</th>
@@ -100,7 +110,8 @@
                                 <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
                                 <th>@Html.DisplayNameFor(model => model.HolderName)</th>
                                 <th>@Html.DisplayNameFor(model => model.OwnerTypeName)</th>
-                                <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
+                                @*<th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>*@
+                                <th>@Html.DisplayNameFor(model => model.IsHolderAnOwner)</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -112,6 +123,7 @@
                                 <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
                                 <th>@Html.DisplayNameFor(model => model.HolderName)</th>
                                 <th>@Html.DisplayNameFor(model => model.OwnerTypeName)</th>
+                                @*<th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>*@
                                 <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
                                 <th></th>
                             </tr>
@@ -136,9 +148,7 @@
     <script>
         jQuery(document).ready(function () {
             
-
-
-
+            
             function reDrawTable() {
                 registerTable.page('first').draw();
             }
@@ -147,6 +157,19 @@
                 "oLanguage": {
                     "sEmptyTable": "No Information available"
                 },
+                //"rowCallback": function (row, data, index) {
+                //    if (data[5] = false) {
+                //        $('td', row).eq(5).css('color', '#4F8A10');
+                //        $('td', row).eq(4).css('background-color', '#4F8A10');
+                //        $('td', row).eq(4).css('color', '#4F8A10');
+                //    }
+                //},
+                //"createdRow": function (row, data, index) {
+                //    if (data[5] = false) {
+                //        $('td', row).eq(5).addClass('highlight');
+                //    }
+                //},
+
                 "bProcessing": true,
                 "bServerSide": true,
                 "sAjaxSource": '@Url.Action("GetAllHolderForDatatable", "Holding")',
@@ -155,20 +178,37 @@
                 "aaSorting": [],
                 "lengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]], //value:item pair
                 "columnDefs": [
-                    { "targets": [0, 1, 2, 3, 4], "bSortable": false }
+                    { "targets": [0, 1, 2, 3, 4,5], "bSortable": true },
+                    {
+                        "targets": 5,
+                        "data": "status",
+                        "render": function (data, type, full, meta) {
+                            if (data == true)
+                                return '<b style="color:#008D00">সুবিধা পাবেন  </b>';
+                            else if (data == false)
+                                return '<b style="color:#FF0000">সুবিধা পাবেন না  </b>';
+                            else 
+                                return '<b style="color:#000000">No Data Found </b>';
+                        }
+                    }
                 ],
+
                 "columns": [
                     { 'data': 'HolderNo', class: 'text-left' },
                     { 'data': 'AreaName', class: 'text-center' },
                     { 'data': 'PlotNo', class: 'text-center' },
                     { 'data': 'HolderName', class: 'text-left' },
                     { 'data': 'OwnerTypeName', class: 'text-center' },
-                    { 'data': 'BuildingTypeName', class: 'text-left' },
+                    //{ 'data': 'BuildingTypeName', class: 'text-left' },
+                    { 'data': 'IsHolderAnOwner', class: 'text-left' },
                     {
                         'data': null, //its null here because history column will contain the mRender
+                                               
+
                         render: (data, type, row) => {
                             return `<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href='/Holding/Edit/${row.HolderId}' title="হালনাগাদ পেজে যান"><b> <i class="fa fa-edit"></i>  </b></a><a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href='/Holding/Details/${row.HolderId}'  title="বিস্তারিত তথ্য পেজে যান"><b><i class="fa fa-th-list" aria-hidden="true"></i></b></a><a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href='/Holding/rptHolderDetails/${row.HolderId}' title="হোল্ডার রিপোর্ট"><b><i class="fa fa-file-alt" aria-hidden="true"></i></b></a>`;
-                        }
+                        },
+
                     },
                 ]
             });
