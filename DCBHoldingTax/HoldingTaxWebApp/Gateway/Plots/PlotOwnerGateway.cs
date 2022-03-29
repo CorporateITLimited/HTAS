@@ -92,6 +92,7 @@ namespace HoldingTaxWebApp.Gateway.Plots
                         ConsStatusName = Data_Reader["ConsStatusName"].ToString(),
                         LeaseQuotaName = Data_Reader["LeaseQuotaName"].ToString(),
                         TotalArea = Data_Reader["TotalArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["TotalArea"]) : (Decimal?)null,
+                        AreaName = Data_Reader["AreaName"].ToString(),
 
                     };
 
@@ -195,6 +196,7 @@ namespace HoldingTaxWebApp.Gateway.Plots
                     vm.ConsStatusName = Data_Reader["ConsStatusName"].ToString();
                     vm.LeaseQuotaName = Data_Reader["LeaseQuotaName"].ToString();
                     vm.TotalArea = Data_Reader["TotalArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["TotalArea"]) : (Decimal?)null;
+                    vm.AreaName = Data_Reader["AreaName"].ToString();
                 };
 
                 Data_Reader.Close();
