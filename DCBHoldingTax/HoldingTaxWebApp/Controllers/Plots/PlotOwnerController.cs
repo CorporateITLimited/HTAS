@@ -86,7 +86,8 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         PresentAdd = item.PresentAdd,
                         StringLeaveDate = $"{item.LeaveDate:dd/MM/yyyy}",
                         TotalArea = item.TotalArea,
-                        UpdatedByUserName = item.UpdatedByUserName
+                        UpdatedByUserName = item.UpdatedByUserName,
+                        AreaName = item.AreaName,
 
                     };
                     PlotOwnerListVM.Add(PlotOwnerVM);
@@ -236,6 +237,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     CreatedByUserName = PlotOwnerdetails.CreatedByUserName,
                     TotalArea = PlotOwnerdetails.TotalArea,
                     UpdatedByUserName = PlotOwnerdetails.UpdatedByUserName,
+                    AreaName = PlotOwnerdetails.AreaName,
 
                 };
 
