@@ -269,5 +269,6 @@ namespace HoldingTaxWebApp.Models.Holding
 
         public int Rownum { get; set; }
         public int Totalcount { get; set; }
+        public int FlatCount { get; set; }
     }
 }

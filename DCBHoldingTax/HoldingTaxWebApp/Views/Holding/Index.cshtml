@@ -9,6 +9,7 @@
         .highlight {
             font-weight: bold;
             color: #4D7629;
+            font-size: large;
         }
         .highlight {
             font-weight: bold;
@@ -113,6 +114,7 @@
                                 @*<th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>*@
                                 <th>@Html.DisplayNameFor(model => model.IsHolderAnOwner)</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
 
@@ -124,7 +126,8 @@
                                 <th>@Html.DisplayNameFor(model => model.HolderName)</th>
                                 <th>@Html.DisplayNameFor(model => model.OwnerTypeName)</th>
                                 @*<th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>*@
-                                <th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>
+                                <th>@Html.DisplayNameFor(model => model.IsHolderAnOwner)</th>
+                                <th></th>
                                 <th></th>
                             </tr>
                         </tfoot>
@@ -164,8 +167,14 @@
                 "order": [[0, "desc"]],
                 "aaSorting": [],
                 "lengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]], //value:item pair
+                "createdRow": function (row, data, index) {
+                    if (data[6] = 0) {
+                        $('td', row).eq(6).addClass('highlight');
+                    }
+
+                }, 
                 "columnDefs": [
-                    { "targets": [0, 1, 2, 3, 4,5], "bSortable": true },
+                    { "targets": [0, 1, 2, 3, 4, 5], "bSortable": true },
                     {
                         "targets": 5,
                         "data": "status",
@@ -174,7 +183,7 @@
                                 return '<b style="color:#008D00">সুবিধা পাবেন  </b>';
                             else if (data == false)
                                 return '<b style="color:#FF0000">সুবিধা পাবেন না  </b>';
-                            else 
+                            else
                                 return '<b style="color:#000000">No Data Found </b>';
                         }
                     }
@@ -188,6 +197,7 @@
                     { 'data': 'OwnerTypeName', class: 'text-center' },
                     //{ 'data': 'BuildingTypeName', class: 'text-left' },
                     { 'data': 'IsHolderAnOwner', class: 'text-left' },
+                    { 'data': 'FlatCount', class: 'text-left' },
                     {
                         'data': null, //its null here because history column will contain the mRender
                                                

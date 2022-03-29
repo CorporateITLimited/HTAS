@@ -2824,6 +2824,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 hol.HolderName = rdr["HolderName"].ToString();
                 hol.OwnerTypeName = rdr["OwnerTypeName"].ToString();
                 hol.BuildingTypeName = rdr["BuildingTypeName"].ToString();
+                hol.IsHolderAnOwner = Convert.ToBoolean( rdr["IsHolderAnOwner"]);
+                hol.FlatCount = Convert.ToInt32(rdr["FlatCount"]);
 
 
                 //hol.Smv = Convert.ToDecimal(rdr["Smv"]);
