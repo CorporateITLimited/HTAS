@@ -269,6 +269,8 @@ namespace HoldingTaxWebApp.Models.Holding
 
         public int Rownum { get; set; }
         public int Totalcount { get; set; }
+
+        [Display(Name = "ফ্লাট সংখ্যা")]
         public int FlatCount { get; set; }
     }
 }
