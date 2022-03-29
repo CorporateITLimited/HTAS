@@ -102,6 +102,9 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null,
                         HolderNo = Convert.ToString(Data_Reader["HolderNo"]),
                         IsFlatApprove = Data_Reader["IsFlatApprove"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsFlatApprove"]) : (bool?)null,
+                        FlatDocument1 = Convert.ToString(Data_Reader["FlatDocument1"]),
+                        FlatDocument2 = Convert.ToString(Data_Reader["FlatDocument2"]),
+                        FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"])
                     };
 
                     vm.Add(model);
@@ -222,6 +225,9 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null,
                         HolderNo = Convert.ToString(Data_Reader["HolderNo"]),
                         IsFlatApprove = Data_Reader["IsFlatApprove"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsFlatApprove"]) : (bool?)null,
+                        FlatDocument1 = Convert.ToString(Data_Reader["FlatDocument1"]),
+                        FlatDocument2 = Convert.ToString(Data_Reader["FlatDocument2"]),
+                        FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"])
                     };
 
                     vm.Add(model);
@@ -342,6 +348,9 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     vm.IsHolderAnOwner = Data_Reader["IsHolderAnOwner"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsHolderAnOwner"]) : (bool?)null;
                     vm.HolderNo = Convert.ToString(Data_Reader["HolderNo"]);
                     vm.IsFlatApprove = Data_Reader["IsFlatApprove"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsFlatApprove"]) : (bool?)null;
+                    vm.FlatDocument1 = Convert.ToString(Data_Reader["FlatDocument1"]);
+                    vm.FlatDocument2 = Convert.ToString(Data_Reader["FlatDocument2"]);
+                    vm.FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"]);
                 };
 
                 vm.StringCreateDate = $"{vm.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -510,6 +519,10 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@RecordCorrectionDate", SqlDbType.DateTime).Value = model.RecordCorrectionDate;
 
                 Sql_Command.Parameters.Add("@HolderNo", SqlDbType.NVarChar).Value = null;
+
+                Sql_Command.Parameters.Add("@FlatDocument1", SqlDbType.NVarChar).Value = model.FlatDocument1;
+                Sql_Command.Parameters.Add("@FlatDocument2", SqlDbType.NVarChar).Value = model.FlatDocument2;
+                Sql_Command.Parameters.Add("@FlatDocument3", SqlDbType.NVarChar).Value = model.FlatDocument3;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -758,6 +771,10 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@RecordCorrectionDate", SqlDbType.DateTime).Value = model.RecordCorrectionDate;
 
                 Sql_Command.Parameters.Add("@HolderNo", SqlDbType.NVarChar).Value = model.HolderNo;
+
+                Sql_Command.Parameters.Add("@FlatDocument1", SqlDbType.NVarChar).Value = model.FlatDocument1;
+                Sql_Command.Parameters.Add("@FlatDocument2", SqlDbType.NVarChar).Value = model.FlatDocument2;
+                Sql_Command.Parameters.Add("@FlatDocument3", SqlDbType.NVarChar).Value = model.FlatDocument3;
 
                 SqlParameter result = new SqlParameter
                 {

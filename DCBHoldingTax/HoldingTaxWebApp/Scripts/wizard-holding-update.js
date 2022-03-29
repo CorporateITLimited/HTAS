@@ -176,6 +176,9 @@ var KTWizard4 = function () {
                             oldImg: $('#ImageLocation').val().trim(),
                             oldDoc1: $('#Document1').val().trim(),
                             oldDoc2: $('#Document2').val().trim(),
+                            oldFlatDoc1: $('#FlatDocument1').val().trim(),
+                            oldFlatDoc2: $('#FlatDocument2').val().trim(),
+                            oldFlatDoc3: $('#FlatDocument3').val().trim(),
                             HolderNo: $('#HolderNo').val().trim()
                         };
 
