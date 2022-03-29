@@ -243,7 +243,7 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "অনুমোদন নম্বর")]
         public string LastApprovalLetterNo { get; set; }
 
-        [Display(Name = "গৃহকরদাতা প্লট মালিকের সুবিধা পাবেন?")]
+        [Display(Name = "গৃহকরদাতা কি প্লট মালিকের সুবিধা পাবেন?")]
         public bool? IsHolderAnOwner { get; set; }
 
         [Display(Name = "গৃহকরদাতার আইডি নম্বর")]
@@ -255,11 +255,19 @@ namespace HoldingTaxWebApp.Models.Holding
         public int? ClusterId { get; set; }
 
 
+        [Display(Name = "ফ্ল্যাট সংযুক্তি ১")]
+        public string FlatDocument1 { get; set; }
+
+        [Display(Name = "ফ্ল্যাট সংযুক্তি ২")]
+        public string FlatDocument2 { get; set; }
+
+        [Display(Name = "ফ্ল্যাট সংযুক্তি ৩")]
+        public string FlatDocument3 { get; set; }
+
 
         //-- for datatable use only-----------------
 
         public int Rownum { get; set; }
         public int Totalcount { get; set; }
-
     }
 }

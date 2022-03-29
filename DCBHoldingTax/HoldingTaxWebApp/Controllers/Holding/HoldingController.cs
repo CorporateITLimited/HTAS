@@ -197,7 +197,10 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 IsHolderAnOwner = holder.IsHolderAnOwner,
                 HolderNo = holder.HolderNo,
                 Area_type_id = _dOHSAreaManager.GetDOHSAreaId(holder.AreaId).AreaType,
-                IsFlatApprove = holder.IsFlatApprove
+                IsFlatApprove = holder.IsFlatApprove,
+                FlatDocument1 = holder.FlatDocument1,
+                FlatDocument2 = holder.FlatDocument2,
+                FlatDocument3 = holder.FlatDocument3
             };
 
 
@@ -639,6 +642,97 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     //return new JsonResult { Data = new { status } };
                 }
 
+                if (Session["FlatDocFile1"] != null)
+                {
+                    HttpPostedFileBase file = (HttpPostedFileBase)Session["FlatDocFile1"];
+                    if (file != null && file.ContentLength > 0)
+                    {
+
+                        if (file.ContentLength > 2 * 1024 * 1024)
+                        {
+                            status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                            return new JsonResult { Data = new { status } };
+                        }
+
+                        var extension = Path.GetExtension(file.FileName);
+                        var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                        fileOldName = fileOldName.Replace(" ", string.Empty);
+                        var newFilename = maxId + "_doc0_" + fileOldName + extension;
+                        newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
+
+                        if (System.IO.File.Exists(newFilename))
+                            System.IO.File.Delete(newFilename);
+                        file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                        holder.FlatDocument1 = newFilename;
+                    }
+                }
+                else
+                {
+                    holder.FlatDocument1 = null;
+                }
+
+                if (Session["FlatDocFile2"] != null)
+                {
+                    HttpPostedFileBase file = (HttpPostedFileBase)Session["FlatDocFile2"];
+                    if (file != null && file.ContentLength > 0)
+                    {
+
+                        if (file.ContentLength > 2 * 1024 * 1024)
+                        {
+                            status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                            return new JsonResult { Data = new { status } };
+                        }
+
+                        var extension = Path.GetExtension(file.FileName);
+                        var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                        fileOldName = fileOldName.Replace(" ", string.Empty);
+                        var newFilename = maxId + "_doc0_" + fileOldName + extension;
+                        newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
+
+                        if (System.IO.File.Exists(newFilename))
+                            System.IO.File.Delete(newFilename);
+                        file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                        holder.FlatDocument2 = newFilename;
+                    }
+                }
+                else
+                {
+                    holder.FlatDocument2 = null;
+                }
+
+                if (Session["FlatDocFile3"] != null)
+                {
+                    HttpPostedFileBase file = (HttpPostedFileBase)Session["FlatDocFile3"];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        if (file.ContentLength > 2 * 1024 * 1024)
+                        {
+                            status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                            return new JsonResult { Data = new { status } };
+                        }
+
+                        var extension = Path.GetExtension(file.FileName);
+                        var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                        fileOldName = fileOldName.Replace(" ", string.Empty);
+                        var newFilename = maxId + "_doc0_" + fileOldName + extension;
+                        newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
+
+                        if (System.IO.File.Exists(newFilename))
+                            System.IO.File.Delete(newFilename);
+                        file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                        holder.FlatDocument3 = newFilename;
+                    }
+                }
+                else
+                {
+                    holder.FlatDocument3 = null;
+                }
+
+
+
                 if (hvm.HoldersFlatNumber != null && hvm.HoldersFlatNumber > 0)
                 {
                     holder.HoldersFlatNumber = hvm.HoldersFlatNumber;
@@ -729,7 +823,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                             IsSelfOwned = true,//ui_item.SelfOwn == 1 ? true : false,
                                             MonthlyRent = ui_item.MonthlyRent != null && ui_item.MonthlyRent > 0 ? ui_item.MonthlyRent : null,
                                             OwnerName = holder.HolderName,//ui_item.SelfOwn == 1 ? holder.HolderName : null,
-                                            //holder.HolderName, //!string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
+                                                                          //holder.HolderName, //!string.IsNullOrWhiteSpace(ui_item.OwnerName) ? ui_item.OwnerName : null,
                                             OwnOrRent = ui_item.OwnOrRent,
                                             SelfOwn = 1,//ui_item.SelfOwn,
                                             IsCheckedByHolder = false,
@@ -910,7 +1004,10 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 PlotOwnerName = holderVMOtherData.PlotOwnerName,
                 IsHolderAnOwner = holder.IsHolderAnOwner,
                 HolderNo = holder.HolderNo,
-                Area_type_id = _dOHSAreaManager.GetDOHSAreaId(holder.AreaId).AreaType
+                Area_type_id = _dOHSAreaManager.GetDOHSAreaId(holder.AreaId).AreaType,
+                FlatDocument1 = holder.FlatDocument1,
+                FlatDocument2 = holder.FlatDocument2,
+                FlatDocument3 = holder.FlatDocument3
             };
 
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", hvm.AreaId);
@@ -930,7 +1027,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
         }
 
         [HttpPost]
-        public JsonResult UpdateData(HolderVM hvm, string oldImg, string oldDoc1, string oldDoc2)
+        public JsonResult UpdateData(HolderVM hvm, string oldImg, string oldDoc1, string oldDoc2,
+                                     string oldFlatDoc1, string oldFlatDoc2, string oldFlatDoc3)
         {
             //if (CanAccess && CanReadWrite)
             //{
@@ -1379,6 +1477,112 @@ namespace HoldingTaxWebApp.Controllers.Holding
                     //status = "নিজ মালিকানাধীন ফ্ল্যাট সংখ্যা পাওয়া যায়নি";
                     //return new JsonResult { Data = new { status } };
                 }
+
+
+                if (Session["FlatDocFile1"] != null)
+                {
+                    HttpPostedFileBase file = (HttpPostedFileBase)Session["FlatDocFile1"];
+                    if (file != null && file.ContentLength > 0)
+                    {
+
+                        if (file.ContentLength > 2 * 1024 * 1024)
+                        {
+                            status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                            return new JsonResult { Data = new { status } };
+                        }
+
+                        var extension = Path.GetExtension(file.FileName);
+                        var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                        fileOldName = fileOldName.Replace(" ", string.Empty);
+                        var newFilename = maxId + "_doc0_" + fileOldName + extension;
+                        newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
+
+                        if (!string.IsNullOrWhiteSpace(oldFlatDoc1))
+                        {
+                            var deletePathFile = Path.Combine(Server.MapPath(oldFlatDoc1));
+                            if (System.IO.File.Exists(deletePathFile))
+                                System.IO.File.Delete(deletePathFile);
+                        }
+
+                        file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                        holder.FlatDocument1 = newFilename;
+                    }
+                }
+                else
+                {
+                    holder.FlatDocument1 = null;
+                }
+
+                if (Session["FlatDocFile2"] != null)
+                {
+                    HttpPostedFileBase file = (HttpPostedFileBase)Session["FlatDocFile2"];
+                    if (file != null && file.ContentLength > 0)
+                    {
+
+                        if (file.ContentLength > 2 * 1024 * 1024)
+                        {
+                            status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                            return new JsonResult { Data = new { status } };
+                        }
+
+                        var extension = Path.GetExtension(file.FileName);
+                        var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                        fileOldName = fileOldName.Replace(" ", string.Empty);
+                        var newFilename = maxId + "_doc0_" + fileOldName + extension;
+                        newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
+
+                        if (!string.IsNullOrWhiteSpace(oldFlatDoc2))
+                        {
+                            var deletePathFile = Path.Combine(Server.MapPath(oldFlatDoc2));
+                            if (System.IO.File.Exists(deletePathFile))
+                                System.IO.File.Delete(deletePathFile);
+                        }
+
+                        file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                        holder.FlatDocument2 = newFilename;
+                    }
+                }
+                else
+                {
+                    holder.FlatDocument2 = null;
+                }
+
+                if (Session["FlatDocFile3"] != null)
+                {
+                    HttpPostedFileBase file = (HttpPostedFileBase)Session["FlatDocFile3"];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        if (file.ContentLength > 2 * 1024 * 1024)
+                        {
+                            status = "আপলোড করা ডকুমেন্ট এর সাইজ ২ এমবি এর বেশি। সাইজ ২ এমবি এর সমান বা ২ এমবি চেয়ে ছোট ডকুমেন্ট আপলোড করুন";
+                            return new JsonResult { Data = new { status } };
+                        }
+
+                        var extension = Path.GetExtension(file.FileName);
+                        var fileOldName = Path.GetFileNameWithoutExtension(file.FileName);
+                        fileOldName = fileOldName.Replace(" ", string.Empty);
+                        var newFilename = maxId + "_doc0_" + fileOldName + extension;
+                        newFilename = "/Documents/Holders/FFDocuments/" + newFilename;
+
+                        if (!string.IsNullOrWhiteSpace(oldFlatDoc3))
+                        {
+                            var deletePathFile = Path.Combine(Server.MapPath(oldFlatDoc3));
+                            if (System.IO.File.Exists(deletePathFile))
+                                System.IO.File.Delete(deletePathFile);
+                        }
+
+                        file.SaveAs(Path.Combine(Server.MapPath(newFilename)));
+
+                        holder.FlatDocument3 = newFilename;
+                    }
+                }
+                else
+                {
+                    holder.FlatDocument3 = null;
+                }
+
 
                 holder.AllocationLetterNo = !string.IsNullOrWhiteSpace(hvm.AllocationLetterNo) ? hvm.AllocationLetterNo : null;
                 holder.AllocationDate = !string.IsNullOrWhiteSpace(hvm.StringAllocationDate)
@@ -2151,7 +2355,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                             FlatNo = !string.IsNullOrWhiteSpace(ui_item.FlatNo) ? ui_item.FlatNo.Trim() : null,
                                             FlorNo = ui_item.FlorNo,
                                             HolderFlatId = 0,
-                                            HolderId = holderId,
+                                            HolderId = hvm.HolderId, // described by masum bhai 
                                             IsActive = true,
                                             IsDeleted = false,
                                             LastUpdated = DateTime.Now,
@@ -2242,6 +2446,53 @@ namespace HoldingTaxWebApp.Controllers.Holding
             //    return new JsonResult { Data = "forbidden" };
             //}
 
+        }
+
+        [HttpPost]
+        public JsonResult DeleteFlat(int flatId)
+        {
+            var status = "error";
+
+            if (flatId > 0)
+            {
+                HolderFlat details = new HolderFlat()
+                {
+                    CreateDate = null,
+                    CreatedBy = null,
+                    FlatArea = null,
+                    FlatNo = null,
+                    FlorNo = null,
+                    HolderFlatId = flatId,
+                    HolderId = null, // described by masum bhai 
+                    IsActive = null,
+                    IsDeleted = null,
+                    LastUpdated = DateTime.Now,
+                    LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                    IsSelfOwned = null,//ui_item.SelfOwn == 1 ? true : false,
+                    MonthlyRent = null,
+                    OwnerName = null,
+                    OwnOrRent = null,
+                    SelfOwn = null,//ui_item.SelfOwn,
+                    IsCheckedByHolder = true,
+                    MainHolderId = null,
+                    Remarks = null
+                };
+                var count = _holdingManager.DeleteHoldersFlatDataByHolderFlatId(details);
+                if (count == 202)
+                {
+                    status = "success";
+                    return new JsonResult { Data = new { status } };
+                }
+                else
+                {
+                    status = "error";
+                    return new JsonResult { Data = new { status } };
+                }
+            }
+            else
+            {
+                return new JsonResult { Data = new { status } };
+            }
         }
 
 
@@ -2376,6 +2627,51 @@ namespace HoldingTaxWebApp.Controllers.Holding
             else
             {
                 Session["DocFile2"] = null;
+                return new JsonResult { Data = "not_done" };
+            }
+        }
+
+        public JsonResult GetFlatDoc1(HttpPostedFileBase fileBase)
+        {
+            if (fileBase != null)
+            {
+                Session["FlatDocFile1"] = null;
+                Session["FlatDocFile1"] = fileBase;
+                return new JsonResult { Data = "done" };
+            }
+            else
+            {
+                Session["FlatDocFile1"] = null;
+                return new JsonResult { Data = "not_done" };
+            }
+        }
+
+        public JsonResult GetFlatDoc2(HttpPostedFileBase fileBase)
+        {
+            if (fileBase != null)
+            {
+                Session["FlatDocFile2"] = null;
+                Session["FlatDocFile2"] = fileBase;
+                return new JsonResult { Data = "done" };
+            }
+            else
+            {
+                Session["FlatDocFile2"] = null;
+                return new JsonResult { Data = "not_done" };
+            }
+        }
+
+        public JsonResult GetFlatDoc3(HttpPostedFileBase fileBase)
+        {
+            if (fileBase != null)
+            {
+                Session["FlatDocFile3"] = null;
+                Session["FlatDocFile3"] = fileBase;
+                return new JsonResult { Data = "done" };
+            }
+            else
+            {
+                Session["FlatDocFile3"] = null;
                 return new JsonResult { Data = "not_done" };
             }
         }
@@ -2523,11 +2819,11 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 hol.HolderId = Convert.ToInt32(rdr["HolderId"]);
                 hol.Totalcount = Convert.ToInt32(rdr["Totalcount"]);
                 hol.HolderNo = rdr["HolderNo"].ToString();
-                hol.AreaName= rdr["AreaName"].ToString();
-                hol.PlotNo= rdr["PlotNo"].ToString();
-                hol.HolderName= rdr["HolderName"].ToString();
-                hol.OwnerTypeName= rdr["OwnerTypeName"].ToString();
-                hol.BuildingTypeName= rdr["BuildingTypeName"].ToString();
+                hol.AreaName = rdr["AreaName"].ToString();
+                hol.PlotNo = rdr["PlotNo"].ToString();
+                hol.HolderName = rdr["HolderName"].ToString();
+                hol.OwnerTypeName = rdr["OwnerTypeName"].ToString();
+                hol.BuildingTypeName = rdr["BuildingTypeName"].ToString();
 
 
                 //hol.Smv = Convert.ToDecimal(rdr["Smv"]);
@@ -2541,9 +2837,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 iTotalDisplayRecords = filteredCount,
                 aaData = listdata
             };
-            
+
             //Context.Response.Write(js.Serialize(result));
-            HttpContext.Response.Write( JsonConvert.SerializeObject(result));
+            HttpContext.Response.Write(JsonConvert.SerializeObject(result));
 
 
         }

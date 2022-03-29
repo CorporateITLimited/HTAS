@@ -76,66 +76,70 @@
                 <!--begin: Datatable-->
                 <table class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
                     <thead>
-                            <tr>
+                        <tr>
 
-                                <th>@Html.DisplayNameFor(model => model.PlotOwnerName)</th>
-                                <th>@Html.DisplayNameFor(model => model.PlotIdNumber)</th>
-                                <th>@Html.DisplayNameFor(model => model.ConsStatusName)</th>
-                                <th>@Html.DisplayNameFor(model => model.LeaseQuotaName)</th>
+                            <th>@Html.DisplayNameFor(model => model.PlotOwnerName)</th>
+                            <th>@Html.DisplayNameFor(model => model.PlotIdNumber)</th>
+                            <th>@Html.DisplayNameFor(model => model.AreaName)</th>
+                            <th>@Html.DisplayNameFor(model => model.ConsStatusName)</th>
+                            <th>@Html.DisplayNameFor(model => model.LeaseQuotaName)</th>
 
-                                <th>@Html.DisplayNameFor(model => model.TotalArea)</th>
-                                <th>@Html.DisplayNameFor(model => model.OffStatusName)</th>
+                            <th>@Html.DisplayNameFor(model => model.TotalArea)</th>
+                            <th>@Html.DisplayNameFor(model => model.OffStatusName)</th>
 
-                                <th></th>
+                            <th></th>
 
 
-                            </tr>
+                        </tr>
                         </thead>
                     <tbody>
                         @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.PlotOwnerName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.PlotIdNumber)
-                                        </td>
-                                        <td >
-                                            @Html.DisplayFor(modelItem => item.ConsStatusName)
-                                        </td>
-                                        <td>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PlotOwnerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PlotIdNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AreaName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ConsStatusName)
+                            </td>
+                            <td>
 
-                                            @Html.DisplayFor(modelItem => item.LeaseQuotaName)
+                                @Html.DisplayFor(modelItem => item.LeaseQuotaName)
 
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TotalArea)
-                                        </td>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalArea)
+                            </td>
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.OffStatusName)
-                                        </td>
-
-
-                                       
-
-
-                                        <td>
-                                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/PlotOwner/Edit/@item.PlotOwnerId" title="হালনাগাদ পেজে যান">
-                                                <b> <i class="fa fa-edit"></i>  </b>
-                                            </a>
-                                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/PlotOwner/Details/@item.PlotOwnerId" title="বিস্তারিত তথ্য পেজে যান">
-                                                <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
-                                            </a>
-
-                                            <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/PlotOwner/rptPlotOwnerDetails/@item.PlotId" title="রিপোর্ট">
-                                                <b><i class="fa fa-chart-bar" aria-hidden="true"></i></b>
-                                            </a>
-                                        </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OffStatusName)
+                            </td>
 
 
-                                    </tr>
+
+
+
+                            <td>
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/PlotOwner/Edit/@item.PlotOwnerId" title="হালনাগাদ পেজে যান">
+                                    <b> <i class="fa fa-edit"></i>  </b>
+                                </a>
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/PlotOwner/Details/@item.PlotOwnerId" title="বিস্তারিত তথ্য পেজে যান">
+                                    <b><i class="fa fa-th-list" aria-hidden="true"></i></b>
+                                </a>
+
+                                <a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href="~/PlotOwner/rptPlotOwnerDetails/@item.PlotId" title="রিপোর্ট">
+                                    <b><i class="fa fa-chart-bar" aria-hidden="true"></i></b>
+                                </a>
+                            </td>
+
+
+                        </tr>
                                 }
                             </tbody>
 

@@ -179,7 +179,7 @@
                                                     <label class="show_plot"></label>
                                                 </div>
                                                 <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.IsHolderAnOwner, "গৃহকরদাতা নিজেই কি প্লটের মালিক?", htmlAttributes: new { @class = "col-lg-5 col-form-label text-lg-right font-weight-bolder" })
+                                                    @Html.LabelFor(model => model.IsHolderAnOwner, "গৃহকরদাতা কি প্লট  মালিকের সুবিধা পাবেন?", htmlAttributes: new { @class = "col-lg-5 col-form-label text-lg-right font-weight-bolder" })
                                                     <div class="col-lg-4">
                                                         @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
                                                    {
@@ -414,6 +414,38 @@
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.HoldersFlatNumber, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
                                                     </div>
+
+                                                    <!--New added-->
+
+                                                    <div class="form-group row m-2">
+                                                        @Html.LabelFor(model => model.FlatDocument1, "ফ্ল্যাট সংযুক্তি ১", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                        <div class="col-lg-4">
+                                                            <input type="file" name="flat_document_file_1" id="flat_document_file_1" />
+                                                            <span class="form-text text-info">
+                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                            </span>
+                                                        </div>
+
+                                                        @Html.LabelFor(model => model.FlatDocument2, "ফ্ল্যাট সংযুক্তি ২", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                        <div class="col-lg-4">
+                                                            <input type="file" name="flat_document_file_2" id="flat_document_file_2" />
+                                                            <span class="form-text text-info">
+                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row m-2">
+                                                        @Html.LabelFor(model => model.FlatDocument3, "ফ্ল্যাট সংযুক্তি 3", htmlAttributes: new { @class = "col-lg-4 col-form-label text-lg-right" })
+                                                        <div class="col-lg-8">
+                                                            <input type="file" name="flat_document_file_3" id="flat_document_file_3" />
+                                                            <span class="form-text text-info">
+                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--new added-->
                                                 </div>
                                             </div>
                                             <!--end: Wizard Step 2-->
@@ -990,6 +1022,63 @@
                     }
                 });
             });
+
+
+            $("#flat_document_file_1").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#flat_document_file_1").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Holding/GetFlatDoc1',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $("#flat_document_file_2").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#flat_document_file_2").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Holding/GetFlatDoc2',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $("#flat_document_file_3").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#flat_document_file_3").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Holding/GetFlatDoc3',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
 
             $('#OwnerType').change(function () {
                 var val = parseInt($('#OwnerType option:selected').val()) || 0;

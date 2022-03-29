@@ -321,11 +321,11 @@
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @if (Model.IsHolderAnOwner == true)
                                             {
-                                                <span class="text-primary font-weight-bolder">হ্যা মালিক</span>
+                                                <span class="text-primary font-weight-bolder">সুবিধা পাবেন</span>
                                             }
                                             else
                                             {
-                                                <span class="text-primary font-weight-bolder">না মালিক নয়</span>
+                                                <span class="text-primary font-weight-bolder">সুবিধা পাবেন না</span>
                                             }
                                         </span>
                                     </div>
@@ -384,6 +384,33 @@
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.StrTotalFloor)
                                         </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.FlatDocument1)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        @if (!string.IsNullOrWhiteSpace(Model.FlatDocument1))
+                                        {
+                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.FlatDocument1" title="Download">ডাউনলোড</a>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.FlatDocument3)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        @if (!string.IsNullOrWhiteSpace(Model.FlatDocument3))
+                                        {
+                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.FlatDocument3" title="Download">ডাউনলোড</a>
+                                        }
                                     </div>
                                 </div>
 
@@ -471,6 +498,19 @@
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.StrHoldersFlatNumber)
                                         </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.FlatDocument2)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        @if (!string.IsNullOrWhiteSpace(Model.FlatDocument2))
+                                        {
+                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.FlatDocument2" title="Download">ডাউনলোড</a>
+                                        }
                                     </div>
                                 </div>
 

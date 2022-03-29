@@ -154,6 +154,11 @@ namespace HoldingTaxWebApp.Manager.Holding
             return _holdingGateway.DeleteHoldersFlatDataByHolderId(HolderId);
         }
 
+        public int DeleteHoldersFlatDataByHolderFlatId(HolderFlat model)
+        {
+            return _holdingGateway.DeleteHoldersFlatDataByHolderFlatId(model);
+        }
+
         #endregion
 
         #region frontend queries

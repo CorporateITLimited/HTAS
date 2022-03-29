@@ -133,6 +133,9 @@
                                             @Html.HiddenFor(m => m.ImageLocation)
                                             @Html.HiddenFor(m => m.Document1)
                                             @Html.HiddenFor(m => m.Document2)
+                                            @Html.HiddenFor(m => m.FlatDocument1)
+                                            @Html.HiddenFor(m => m.FlatDocument2)
+                                            @Html.HiddenFor(m => m.FlatDocument3)
                                             <!--begin: Wizard Step 1-->
                                             <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
 
@@ -318,13 +321,35 @@
                                                             সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
                                                         </span>
                                                     </div>
-                                                    @Html.LabelFor(model => model.IsHolderAnOwner, "গৃহকরদাতা নিজেই কি প্লটের মালিক?", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    @Html.LabelFor(model => model.IsHolderAnOwner, "গৃহকরদাতা কি প্লট  মালিকের সুবিধা পাবেন?", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
-                                                   {
-                                                       @class = "form-control",
-                                                       @disabled = "disabled"
-                                                   })
+                                                        @if (Model.IsHolderAnOwner == true)
+                                                        {
+                                                            @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
+                                                       {
+                                                           @class = "form-control",
+                                                           @disabled = "disabled"
+                                                       })
+                                                        }
+                                                        else if (Model.IsHolderAnOwner == false && Session["RoleName"].ToString() == "এডমিন")
+                                                        {
+                                                            @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
+                                                       {
+                                                           @class = "form-control",
+
+                                                       })
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
+                                                       {
+                                                           @class = "form-control",
+                                                           @disabled = "disabled"
+                                                       })
+                                                        }
+
+
+
                                                     </div>
 
                                                 </div>
@@ -455,6 +480,49 @@
                                                         @Html.EditorFor(model => model.HoldersFlatNumber, new { htmlAttributes = new { @class = "form-control your_class", placeholder = "" } })
                                                     </div>
                                                 </div>
+
+                                                <!--New added-->
+
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.FlatDocument1, "ফ্ল্যাট সংযুক্তি ১", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @if (!string.IsNullOrWhiteSpace(Model.FlatDocument1))
+                                                        {
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.FlatDocument1" title="Download">ডাউনলোড</a>
+                                                        }
+                                                        <input type="file" name="flat_document_file_1" id="flat_document_file_1" />
+                                                        <span class="form-text text-info">
+                                                            সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                        </span>
+                                                    </div>
+
+                                                    @Html.LabelFor(model => model.FlatDocument2, "ফ্ল্যাট সংযুক্তি ২", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @if (!string.IsNullOrWhiteSpace(Model.FlatDocument2))
+                                                        {
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.FlatDocument2" title="Download">ডাউনলোড</a>
+                                                        }
+                                                        <input type="file" name="flat_document_file_2" id="flat_document_file_2" />
+                                                        <span class="form-text text-info">
+                                                            সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row m-2">
+                                                    @Html.LabelFor(model => model.FlatDocument3, "ফ্ল্যাট সংযুক্তি 3", htmlAttributes: new { @class = "col-lg-4 col-form-label text-lg-right" })
+                                                    <div class="col-lg-8">
+                                                        @if (!string.IsNullOrWhiteSpace(Model.FlatDocument3))
+                                                        {
+                                                            <a class="btn btn-outline-success btn-sm" href="~/Holding/DownloadFile?filePath=@Model.FlatDocument3" title="Download">ডাউনলোড</a>
+                                                        }
+                                                        <input type="file" name="flat_document_file_3" id="flat_document_file_3" />
+                                                        <span class="form-text text-info">
+                                                            সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <!--new added-->
                                             </div>
                                             <!--end: Wizard Step 2-->
                                             <!--begin: Wizard Step 3-->
@@ -487,11 +555,13 @@
                                                                     @if (Model.IsHolderAnOwner == true)
                                                                     {
                                                                         <th> <button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button></th>
+                                                                        <th>ফ্ল্যাট মুছে ফেলুন </th>
                                                                     }
                                                                     else
                                                                     {
                                                                         <th>নিজস্ব মালিকানার ফ্ল্যাট হলে টিক দিন </th>
                                                                     }
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody class="text-center">
@@ -594,6 +664,11 @@
                                                                                 <td width="15%;">
                                                                                     নিজস্ব মালিকানা (@item.OwnerName)
                                                                                 </td>
+                                                                                <td>
+                                                                                    <button class="delete_flat_details btn btn-icon btn-danger btn-hover-danger btn-sm mx-3" id="delete_flat_details">
+                                                                                        <i class="fas fa-minus"></i>
+                                                                                    </button>
+                                                                                </td>
                                                                             </tr>
                                                                         }
                                                                     }
@@ -687,6 +762,7 @@
                                                                     @if (Model.IsHolderAnOwner == true)
                                                                     {
                                                                         <th> <button class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3" id="add_new_details"><i class="fas fa-plus"></i></button></th>
+                                                                        <th>ফ্ল্যাট মুছে ফেলুন</th>
                                                                     }
                                                                     else
                                                                     {
@@ -792,6 +868,11 @@
                                                                                 <td width="15%;">
                                                                                     নিজস্ব মালিকানা (@item.OwnerName)
                                                                                     @*<button class="remove btn btn-icon btn-light btn-hover-danger btn-sm mx-3"><i class="fas fa-minus"></i></button>*@
+                                                                                </td>
+                                                                                <td>
+                                                                                    <button class="delete_flat_details btn btn-icon btn-danger btn-hover-danger btn-sm mx-3" id="delete_flat_details">
+                                                                                        <i class="fas fa-minus"></i>
+                                                                                    </button>
                                                                                 </td>
 
                                                                             </tr>
@@ -1341,6 +1422,64 @@
                 });
             });
 
+
+
+            $("#flat_document_file_1").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#flat_document_file_1").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Holding/GetFlatDoc1',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $("#flat_document_file_2").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#flat_document_file_2").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Holding/GetFlatDoc2',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $("#flat_document_file_3").change(function () {
+                var data = new FormData();
+                data.append("fileBase", $("#flat_document_file_3").get(0).files[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Holding/GetFlatDoc3',
+                    data: data, // modify
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (d) {
+                        console.log(d);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+
             $('#OwnerType').change(function () {
                 var val = parseInt($('#OwnerType option:selected').val()) || 0;
                 if (val === 3) {
@@ -1424,6 +1563,65 @@
                     $(this).remove();
                 });
             });
+
+            $('#flat_details tbody').on('click', '.delete_flat_details', function (e) {
+                e.preventDefault();
+
+                var currentRow = $(this).closest("tr")
+                var holderFlatId = parseInt(currentRow.find('.HolderFlatId').val()) || 0;
+
+                Swal.fire({
+                    text: "আপনি কি ফ্ল্যাটটি মুছে ফেলতে চান?",
+                    icon: "success",
+                    showCancelButton: true,
+                    buttonsStyling: false,
+                    confirmButtonText: "হ্যা, সাবমিট",
+                    cancelButtonText: "না, বাতিল",
+                    customClass: {
+                        confirmButton: "btn font-weight-bold btn-primary",
+                        cancelButton: "btn font-weight-bold btn-danger"
+                    }
+                }).then(function (result) {
+                    if (result.value) {
+                        var data = {
+                            flatId: holderFlatId
+                        }
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Holding/DeleteFlat',
+                            data: JSON.stringify(data),
+                            contentType: 'application/json',
+                            success: function (d) {
+                                if (d.status === "success") {
+                                    currentRow.css("background-color", "red").fadeOut(1000, function () {
+                                        currentRow.remove();
+                                    });
+                                }
+                                else {
+                                    Swal.fire({
+                                        text: "ফ্ল্যাটটি মুছে ফেলা সম্ভব হয়নি",
+                                        icon: "error",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "  ERROR  ",
+                                        customClass: {
+                                            confirmButton: "btn font-weight-bold btn-danger",
+                                        }
+                                    });
+                                    return;
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        Swal.fire({
+                            text: "আপনার সাবমিশন বাতিল করা হয়েছে",
+                            icon: "success"
+                        });
+                        return;
+                    }
+                });
+            });
+
 
             //$('#flat_details tbody').on('change', '.FlatArea', function () {
             //    ratePerSquareFeet = 5;

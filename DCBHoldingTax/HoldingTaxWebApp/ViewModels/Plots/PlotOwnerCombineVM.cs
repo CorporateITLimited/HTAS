@@ -226,6 +226,7 @@ namespace HoldingTaxWebApp.ViewModels.Plots
             OthetPlotOwner = new List<OthetPlotOwner>();
         }
 
-
+        [Display(Name = "ডিওএইচএস এলাকা")]
+        public string AreaName { get; set; }
     }
 }
