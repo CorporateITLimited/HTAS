@@ -874,6 +874,10 @@ namespace HoldingTaxWebApp.Gateway.Holding
 
                 Sql_Command.Parameters.Add("@HolderNo", SqlDbType.NVarChar).Value = model.HolderNo;
 
+                Sql_Command.Parameters.Add("@FlatDocument1", SqlDbType.NVarChar).Value = null;
+                Sql_Command.Parameters.Add("@FlatDocument2", SqlDbType.NVarChar).Value = null;
+                Sql_Command.Parameters.Add("@FlatDocument3", SqlDbType.NVarChar).Value = null;
+
                 SqlParameter result = new SqlParameter
                 {
                     ParameterName = "@result",
