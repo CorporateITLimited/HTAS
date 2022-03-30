@@ -323,7 +323,7 @@ namespace HoldingTaxWebApp.Gateway
 
                 Sql_Command.Parameters.Add("@StatementType", SqlDbType.NVarChar).Value = "tran_details";
                 Sql_Command.Parameters.Add("@RefTranNo", SqlDbType.NVarChar).Value = spg.RefTranNo;
-                Sql_Command.Parameters.Add("@RefTranDate", SqlDbType.DateTime).Value = spg.RefTranDate;
+               // Sql_Command.Parameters.Add("@RefTranDate", SqlDbType.DateTime).Value = spg.RefTranDate;
                 Sql_Command.Parameters.Add("@TranAmount", SqlDbType.NVarChar).Value = spg.TranAmount;
 
                 SqlParameter result = new SqlParameter
