@@ -2363,7 +2363,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                             FlatNo = !string.IsNullOrWhiteSpace(ui_item.FlatNo) ? ui_item.FlatNo.Trim() : null,
                                             FlorNo = ui_item.FlorNo,
                                             HolderFlatId = 0,
-                                            HolderId = hvm.HolderId, // described by masum bhai 
+                                            HolderId = _holdingManager.GetAllFlatByHolderFlatId(ui_item.HolderFlatId).HolderId, // described by masum bhai 
                                             IsActive = true,
                                             IsDeleted = false,
                                             LastUpdated = DateTime.Now,
@@ -2408,7 +2408,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                             PlotId = hvm.PlotId,
                                             OldHolderFlatId = ui_item.HolderFlatId,
                                             NewHolderFlatId = transferCountId,
-                                            OldHolderId = hvm.HolderId, //_holdingManager.GetHoldersFlatByHolderFlatId(ui_item.HolderFlatId).MainHolderId,
+                                            OldHolderId = hvm.HolderId,
+                                            //_holdingManager.GetAllFlatByHolderFlatId(ui_item.HolderFlatId).HolderId,
+                                            //hvm.HolderId, //_holdingManager.GetHoldersFlatByHolderFlatId(ui_item.HolderFlatId).MainHolderId,
                                             NewHolderId = holderId,
                                             ReferenceNo = hvm.TransferRefNo,
                                             ReferenceDate = hvm.TransferRefDate,
