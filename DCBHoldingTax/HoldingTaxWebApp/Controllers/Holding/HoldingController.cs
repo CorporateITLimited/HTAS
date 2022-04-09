@@ -2833,12 +2833,63 @@ namespace HoldingTaxWebApp.Controllers.Holding
             }
             Sql_Connection.Close();
             string q = "SELECT COUNT(*) from [Holding].[tHolder]";
+
+            switch (sortCol)
+            {
+                case 0:
+                    if(sortDir=="desc")
+                    listdata = listdata.OrderByDescending(s => s.HolderNo).ToList();
+                    else
+                        listdata = listdata.OrderBy(s => s.HolderNo).ToList();
+                    break;
+                case 1:
+                    if (sortDir == "desc")
+                        listdata = listdata.OrderByDescending(s => s.AreaName).ToList();
+                    else
+                        listdata = listdata.OrderBy(s => s.AreaName).ToList();
+                    break;
+                case 2:
+                    if (sortDir == "desc")
+                        listdata = listdata.OrderByDescending(s => s.PlotNo).ToList();
+                    else
+                        listdata = listdata.OrderBy(s => s.PlotNo).ToList();
+                    break;
+                case 3:
+                    if (sortDir == "desc")
+                        listdata = listdata.OrderByDescending(s => s.HolderName).ToList();
+                    else
+                        listdata = listdata.OrderBy(s => s.HolderName).ToList();
+                    break;
+                case 4:
+                    if (sortDir == "desc")
+                        listdata = listdata.OrderByDescending(s => s.OwnerTypeName).ToList();
+                    else
+                        listdata = listdata.OrderBy(s => s.OwnerTypeName).ToList();
+                    break;
+                case 5:
+                    if (sortDir == "desc")
+                        listdata = listdata.OrderByDescending(s => s.IsHolderAnOwner).ToList();
+                    else
+                        listdata = listdata.OrderBy(s => s.IsHolderAnOwner).ToList();
+                    break;
+                case 6:
+                    if (sortDir == "desc")
+                        listdata = listdata.OrderByDescending(s => s.FlatCount).ToList();
+                    else
+                        listdata = listdata.OrderBy(s => s.FlatCount).ToList();
+                    break;
+            }
+
+
             var result = new
             {
                 iTotalRecords = GetTotalCount(q),
                 iTotalDisplayRecords = filteredCount,
                 aaData = listdata
             };
+
+
+
 
             //Context.Response.Write(js.Serialize(result));
             HttpContext.Response.Write(JsonConvert.SerializeObject(result));
