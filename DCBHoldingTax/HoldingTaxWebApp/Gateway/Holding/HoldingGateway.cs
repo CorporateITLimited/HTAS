@@ -2067,18 +2067,18 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 while (Data_Reader.Read())
                 {
                     vm.HolderFlatId = Convert.ToInt32(Data_Reader["HolderFlatId"]);
-                    vm.FlorNo = Data_Reader["FlorNo"] != DBNull.Value ? Convert.ToInt32(Data_Reader["FlorNo"]) : (int?)null;
-                    vm.FlatNo = Convert.ToString(Data_Reader["FlatNo"]);
-                    vm.FlatArea = Data_Reader["FlatArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["FlatArea"]) : (decimal?)null;
-                    vm.OwnOrRent = Data_Reader["OwnOrRent"] != DBNull.Value ? Convert.ToInt32(Data_Reader["OwnOrRent"]) : (int?)null;
-                    vm.OwnOrRentType = Convert.ToString(Data_Reader["OwnOrRentType"]);
-                    vm.IsSelfOwned = Data_Reader["IsSelfOwned"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsSelfOwned"]) : (bool?)null;
-                    vm.MonthlyRent = Data_Reader["MonthlyRent"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["MonthlyRent"]) : (decimal?)null;
-                    vm.OwnerName = Convert.ToString(Data_Reader["OwnerName"]);
-                    vm.SelfOwn = Data_Reader["SelfOwn"] != DBNull.Value ? Convert.ToInt32(Data_Reader["SelfOwn"]) : (int?)null;
-                    vm.SelfOwnType = Convert.ToString(Data_Reader["SelfOwnType"]);
-                    vm.FloorTypeName = Data_Reader["FloorTypeName"].ToString();
-                    vm.IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null;
+                   // vm.FlorNo = Data_Reader["FlorNo"] != DBNull.Value ? Convert.ToInt32(Data_Reader["FlorNo"]) : (int?)null;
+                   // vm.FlatNo = Convert.ToString(Data_Reader["FlatNo"]);
+                   // vm.FlatArea = Data_Reader["FlatArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["FlatArea"]) : (decimal?)null;
+                   // vm.OwnOrRent = Data_Reader["OwnOrRent"] != DBNull.Value ? Convert.ToInt32(Data_Reader["OwnOrRent"]) : (int?)null;
+                   //// vm.OwnOrRentType = Convert.ToString(Data_Reader["OwnOrRentType"]);
+                   // vm.IsSelfOwned = Data_Reader["IsSelfOwned"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsSelfOwned"]) : (bool?)null;
+                   // vm.MonthlyRent = Data_Reader["MonthlyRent"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["MonthlyRent"]) : (decimal?)null;
+                   // vm.OwnerName = Convert.ToString(Data_Reader["OwnerName"]);
+                   // vm.SelfOwn = Data_Reader["SelfOwn"] != DBNull.Value ? Convert.ToInt32(Data_Reader["SelfOwn"]) : (int?)null;
+                   //// vm.SelfOwnType = Convert.ToString(Data_Reader["SelfOwnType"]);
+                   // vm.FloorTypeName = Data_Reader["FloorTypeName"].ToString();
+                   // vm.IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null;
                     vm.HolderId = Data_Reader["HolderId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["HolderId"]) : (int?)null;
                     vm.MainHolderId = Data_Reader["MainHolderId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["MainHolderId"]) : (int?)null;
                 }

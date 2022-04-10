@@ -2354,6 +2354,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
                                 {
                                     if (ui_item.IsCheckedByHolder == true)
                                     {
+                                        
+
                                         // step 1 insert in falt table 
                                         HolderFlat details = new HolderFlat()
                                         {
