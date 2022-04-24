@@ -4866,6 +4866,7 @@
     <Compile Include="Controllers\Holding\HolderFlatHistoryController.cs" />
     <Compile Include="Controllers\Holding\HoldingController.cs" />
     <Compile Include="Controllers\Holding\NoticeController.cs" />
+    <Compile Include="Controllers\Holding\RankController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Plots\OldPlotOwnerController.cs" />
     <Compile Include="Controllers\Plots\PlotController.cs" />
@@ -4908,6 +4909,7 @@
     <Compile Include="Gateway\Holding\HolderFlatHistoryGateway.cs" />
     <Compile Include="Gateway\Holding\HoldingGateway.cs" />
     <Compile Include="Gateway\Holding\NoticeGateway.cs" />
+    <Compile Include="Gateway\Holding\RankGateway.cs" />
     <Compile Include="Gateway\Plots\OldPlotOwnerGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
@@ -4951,6 +4953,7 @@
     <Compile Include="Manager\Holding\HolderFlatHistoryManager.cs" />
     <Compile Include="Manager\Holding\HoldingManager.cs" />
     <Compile Include="Manager\Holding\NoticeManager.cs" />
+    <Compile Include="Manager\Holding\RankManager.cs" />
     <Compile Include="Manager\Plots\OldPlotOwnerManager.cs" />
     <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
@@ -4980,6 +4983,7 @@
     <Compile Include="Models\Dbo\BuildingType.cs" />
     <Compile Include="Models\Dbo\DOHSArea.cs" />
     <Compile Include="Models\Holding\ChartPaidAm.cs" />
+    <Compile Include="Models\Holding\clsRank.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
     <Compile Include="Models\Holding\HolderFlat.cs" />
     <Compile Include="Models\Holding\HolderFlatHistory.cs" />
@@ -5324,6 +5328,10 @@
     <Content Include="Views\Home\rptCluster.cshtml" />
     <Content Include="Views\Account\ForgetPassword.cshtml" />
     <Content Include="Views\PlotOwner\Edit.cshtml" />
+    <Content Include="Views\Rank\Create.cshtml" />
+    <Content Include="Views\Rank\Details.cshtml" />
+    <Content Include="Views\Rank\Edit.cshtml" />
+    <Content Include="Views\Rank\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
