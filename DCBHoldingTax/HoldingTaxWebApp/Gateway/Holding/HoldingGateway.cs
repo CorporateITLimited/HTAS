@@ -104,7 +104,9 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         IsFlatApprove = Data_Reader["IsFlatApprove"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsFlatApprove"]) : (bool?)null,
                         FlatDocument1 = Convert.ToString(Data_Reader["FlatDocument1"]),
                         FlatDocument2 = Convert.ToString(Data_Reader["FlatDocument2"]),
-                        FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"])
+                        FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"]),
+                        RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null,
+                        RankName = Data_Reader["RankName"].ToString(),
                     };
 
                     vm.Add(model);
@@ -227,7 +229,9 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         IsFlatApprove = Data_Reader["IsFlatApprove"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsFlatApprove"]) : (bool?)null,
                         FlatDocument1 = Convert.ToString(Data_Reader["FlatDocument1"]),
                         FlatDocument2 = Convert.ToString(Data_Reader["FlatDocument2"]),
-                        FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"])
+                        FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"]),
+                        RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null,
+                        RankName = Data_Reader["RankName"].ToString()
                     };
 
                     vm.Add(model);
@@ -351,6 +355,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     vm.FlatDocument1 = Convert.ToString(Data_Reader["FlatDocument1"]);
                     vm.FlatDocument2 = Convert.ToString(Data_Reader["FlatDocument2"]);
                     vm.FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"]);
+                    vm.RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null;
+                    vm.RankName = Data_Reader["RankName"].ToString();
                 };
 
                 vm.StringCreateDate = $"{vm.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -523,6 +529,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@FlatDocument1", SqlDbType.NVarChar).Value = model.FlatDocument1;
                 Sql_Command.Parameters.Add("@FlatDocument2", SqlDbType.NVarChar).Value = model.FlatDocument2;
                 Sql_Command.Parameters.Add("@FlatDocument3", SqlDbType.NVarChar).Value = model.FlatDocument3;
+                Sql_Command.Parameters.Add("@RankId", SqlDbType.Int).Value = model.RankId;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -775,6 +782,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@FlatDocument1", SqlDbType.NVarChar).Value = model.FlatDocument1;
                 Sql_Command.Parameters.Add("@FlatDocument2", SqlDbType.NVarChar).Value = model.FlatDocument2;
                 Sql_Command.Parameters.Add("@FlatDocument3", SqlDbType.NVarChar).Value = model.FlatDocument3;
+                Sql_Command.Parameters.Add("@RankId", SqlDbType.Int).Value = model.RankId;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -877,6 +885,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@FlatDocument1", SqlDbType.NVarChar).Value = null;
                 Sql_Command.Parameters.Add("@FlatDocument2", SqlDbType.NVarChar).Value = null;
                 Sql_Command.Parameters.Add("@FlatDocument3", SqlDbType.NVarChar).Value = null;
+
+                Sql_Command.Parameters.Add("@RankId", SqlDbType.Int).Value = model.RankId;
 
                 SqlParameter result = new SqlParameter
                 {

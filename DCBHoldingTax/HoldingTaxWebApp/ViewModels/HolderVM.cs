@@ -267,6 +267,13 @@ namespace HoldingTaxWebApp.ViewModels
         public string FlatDocument3 { get; set; }
 
 
+        [Display(Name = "র‍্যাংক")]
+        public int? RankId { get; set; }
+        [Display(Name = "র‍্যাংক")]
+        public string RankName { get; set; }
+
+
+
         public List<HolderFlat> HolderFlatList { get; set; }
         public List<HolderFlat> HolderFlatListForEdit { get; set; }
 

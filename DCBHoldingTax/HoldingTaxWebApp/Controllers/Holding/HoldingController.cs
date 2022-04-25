@@ -33,6 +33,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
         private readonly HolderFlatHistoryManager _flatHistoryManager;
         private readonly PlotOwnerManager _plotOwnerManager;
         private readonly ClusterManager _clusterManager;
+        private readonly RankManager _RankManager;
 
         public HoldingController()
         {
@@ -45,6 +46,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             _flatHistoryManager = new HolderFlatHistoryManager();
             _plotOwnerManager = new PlotOwnerManager();
             _clusterManager = new ClusterManager();
+            _RankManager = new RankManager();
         }
 
         // GET: Holding
@@ -200,7 +202,10 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 IsFlatApprove = holder.IsFlatApprove,
                 FlatDocument1 = holder.FlatDocument1,
                 FlatDocument2 = holder.FlatDocument2,
-                FlatDocument3 = holder.FlatDocument3
+                FlatDocument3 = holder.FlatDocument3,
+                RankId = holder.RankId,
+                RankName = holder.RankName
+                
             };
 
 
@@ -224,6 +229,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
             ViewBag.FlorNo = _commonListManager.GetAllFloor();
             ViewBag.OwnOrRent = _commonListManager.GetAllOwnOrRent();
             ViewBag.SelfOwned = _commonListManager.GetAllOwnType();
+            ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName");
+
             return View();
         }
 
@@ -305,6 +312,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 ViewBag.MaritialStatus = new SelectList(_commonListManager.GetAllMaritalStatus(), "TypeId", "TypeName", hvm.MaritialStatus);
                 ViewBag.OwnerType = new SelectList(_commonListManager.GetAllOwnerShipType(), "TypeId", "TypeName", hvm.OwnerType);
                 ViewBag.IsHolderAnOwner = new SelectList(StaticDataHelper.GetOwnerForDropdown(), "Value", "Text", hvm.IsHolderAnOwner);
+                ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName",hvm.RankId);
 
                 ViewBag.FlorNo = _commonListManager.GetAllFloor();
                 ViewBag.OwnOrRent = _commonListManager.GetAllOwnOrRent();
@@ -316,6 +324,16 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 var maxId = DateTime.Now.ToString("yyyyMMddHHmmssfff");//_holdingManager.GetMAXId();
 
                 // validations
+
+                if (hvm.RankId > 0)
+                {
+                    holder.RankId = hvm.RankId;
+                }
+                else
+                {
+                    holder.RankId = null;
+                }
+
 
                 if (hvm.AreaId > 0)
                 {
@@ -1007,7 +1025,9 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 Area_type_id = _dOHSAreaManager.GetDOHSAreaId(holder.AreaId).AreaType,
                 FlatDocument1 = holder.FlatDocument1,
                 FlatDocument2 = holder.FlatDocument2,
-                FlatDocument3 = holder.FlatDocument3
+                FlatDocument3 = holder.FlatDocument3,
+                RankId = holder.RankId,
+                RankName = holder.RankName
             };
 
             ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName", hvm.AreaId);
@@ -1018,6 +1038,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
             ViewBag.MaritialStatus = new SelectList(_commonListManager.GetAllMaritalStatus(), "TypeId", "TypeName", hvm.MaritialStatus);
             ViewBag.OwnerType = new SelectList(_commonListManager.GetAllOwnerShipType(), "TypeId", "TypeName", hvm.OwnerType);
             ViewBag.IsHolderAnOwner = new SelectList(StaticDataHelper.GetOwnerForDropdown(), "Value", "Text", hvm.IsHolderAnOwner);
+            ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName", hvm.RankId);
+
             ViewBag.FlorNo = _commonListManager.GetAllFloor();
             ViewBag.OwnOrRent = _commonListManager.GetAllOwnOrRent();
             ViewBag.SelfOwned = _commonListManager.GetAllOwnType();
@@ -1116,6 +1138,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 ViewBag.MaritialStatus = new SelectList(_commonListManager.GetAllMaritalStatus(), "TypeId", "TypeName", hvm.MaritialStatus);
                 ViewBag.OwnerType = new SelectList(_commonListManager.GetAllOwnerShipType(), "TypeId", "TypeName", hvm.OwnerType);
                 ViewBag.IsHolderAnOwner = new SelectList(StaticDataHelper.GetOwnerForDropdown(), "Value", "Text", hvm.IsHolderAnOwner);
+                ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName", hvm.RankId);
                 ViewBag.FlorNo = _commonListManager.GetAllFloor();
                 ViewBag.OwnOrRent = _commonListManager.GetAllOwnOrRent();
                 ViewBag.SelfOwned = _commonListManager.GetAllOwnType();
@@ -1129,6 +1152,15 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 holder.HolderId = hvm.HolderId;
 
                 // validations
+
+                if (hvm.RankId > 0)
+                {
+                    holder.RankId = hvm.RankId;
+                }
+                else
+                {
+                    holder.RankId = null;
+                }
 
                 if (hvm.AreaId > 0)
                 {
@@ -1853,6 +1885,8 @@ namespace HoldingTaxWebApp.Controllers.Holding
             ViewBag.Gender = new SelectList(_commonListManager.GetAllGender(), "TypeId", "TypeName");
             ViewBag.MaritialStatus = new SelectList(_commonListManager.GetAllMaritalStatus(), "TypeId", "TypeName");
             ViewBag.OwnerType = new SelectList(_commonListManager.GetAllOwnerShipType(), "TypeId", "TypeName");
+            ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName");
+
             ViewBag.FlorNo = _commonListManager.GetAllFloor();
             ViewBag.OwnOrRent = _commonListManager.GetAllOwnOrRent();
             ViewBag.SelfOwned = _commonListManager.GetAllOwnType();
@@ -1935,6 +1969,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 ViewBag.Gender = new SelectList(_commonListManager.GetAllGender(), "TypeId", "TypeName", hvm.Gender);
                 ViewBag.MaritialStatus = new SelectList(_commonListManager.GetAllMaritalStatus(), "TypeId", "TypeName", hvm.MaritialStatus);
                 ViewBag.OwnerType = new SelectList(_commonListManager.GetAllOwnerShipType(), "TypeId", "TypeName", hvm.OwnerType);
+                ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName",hvm.RankId);
 
                 ViewBag.FlorNo = _commonListManager.GetAllFloor();
                 ViewBag.OwnOrRent = _commonListManager.GetAllOwnOrRent();
@@ -1946,6 +1981,15 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 var maxId = DateTime.Now.ToString("yyyyMMddHHmmssfff");//_holdingManager.GetMAXId();
 
                 // validations
+
+                if (hvm.RankId > 0)
+                {
+                    holder.RankId = hvm.RankId;
+                }
+                else
+                {
+                    holder.RankId = null;
+                }
 
                 if (hvm.AreaId > 0)
                 {

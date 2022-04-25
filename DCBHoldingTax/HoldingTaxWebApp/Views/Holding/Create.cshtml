@@ -291,11 +291,11 @@
                                                     @Html.LabelFor(model => model.ImageLocation, "পাসপোর্ট সাইজের ছবি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @*<input type="file" name="image_file" id="image_file" class="form-control" />
-                                                            <span class="form-text text-info">
-                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
-                                                            </span>
-                                                            <br />
-                                                            <img id="imgpreview" src="#" style="border:1px solid black;" />*@
+            <span class="form-text text-info">
+                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+            </span>
+            <br />
+            <img id="imgpreview" src="#" style="border:1px solid black;" />*@
                                                         <div class="image-input image-input-outline" id="kt_image_1">
                                                             <div class="image-input-wrapper" style="background-image: url(/Theme/dist/assets/media/users/default.jpg)"></div>
                                                             <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="ছবি পরিবর্তন করুন">
@@ -312,13 +312,23 @@
                                                         </span>
                                                     </div>
 
+
+                                                    @Html.LabelFor(model => model.RankId, "র‍্যাংক", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.DropDownListFor(model => model.RankId, null, " নির্বাচন করুন ", new
+                                                  {
+                                                      @class = "form-control",
+                                                  })
+                                                    </div>
+
+
                                                     @*@Html.LabelFor(model => model.IsHolderAnOwner, "গৃহকরদাতা নিজেই কি প্লটের মালিক?", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                         <div class="col-lg-4">
-                                                             @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
-                                                        {
-                                                            @class = "form-control",
-                                                        })
-                                                         </div>*@
+         <div class="col-lg-4">
+             @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
+        {
+            @class = "form-control",
+        })
+         </div>*@
                                                 </div>
 
                                             </div>

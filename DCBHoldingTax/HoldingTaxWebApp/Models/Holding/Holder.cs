@@ -272,5 +272,11 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "ফ্লাট সংখ্যা")]
         public int FlatCount { get; set; }
+
+
+        [Display(Name = "র‍্যাংক")]
+        public int? RankId { get; set; }
+        [Display(Name = "র‍্যাংক")]
+        public string RankName { get; set; }
     }
 }
