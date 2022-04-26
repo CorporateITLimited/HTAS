@@ -272,6 +272,9 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "র‍্যাংক")]
         public string RankName { get; set; }
 
+        [Display(Name = "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম")]
+        public string HolderNamecon { get; set; }
+
 
 
         public List<HolderFlat> HolderFlatList { get; set; }

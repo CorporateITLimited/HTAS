@@ -263,7 +263,9 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     if (returnString == CommonConstantHelper.Success)
 
                         {
-                            foreach (var item in POVM.OldOthetPlotOwner)
+                        status = "success";
+
+                        foreach (var item in POVM.OldOthetPlotOwner)
                             {
                                 OthetPlotOwner Details = new OthetPlotOwner()
                                 {

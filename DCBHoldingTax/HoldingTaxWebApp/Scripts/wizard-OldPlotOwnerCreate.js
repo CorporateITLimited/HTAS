@@ -76,7 +76,7 @@ var KTWizard4 = function () {
                             OldOthetOwneeName: OthetOwneeName,
                             Address: Address,
                             Remarks: Remarks
-                        }
+                        };
                         OthetPlotOwnerlist.push(OthetPlotOwner);
                     });
 
@@ -128,7 +128,7 @@ var KTWizard4 = function () {
                                     });
                                     setTimeout(function () { window.location.href = "/PlotOwner/Index"; }, 1000);
                                 }
-                                else if (d.status === "error") {
+                                else if (d.status === "error_details") {
                                     alert('Error');
                                 } else if (d.status === "no_user") {
                                     alert('Session gone');

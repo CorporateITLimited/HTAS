@@ -49,6 +49,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     {
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]),
                         AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
                         AreaName = Convert.ToString(Data_Reader["AreaName"]),
                         PlotId = Convert.ToInt32(Data_Reader["PlotId"]),
@@ -174,6 +175,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     {
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]),
                         AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
                         AreaName = Convert.ToString(Data_Reader["AreaName"]),
                         PlotId = Convert.ToInt32(Data_Reader["PlotId"]),
@@ -297,6 +299,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 {
                     vm.HolderId = Convert.ToInt32(Data_Reader["HolderId"]);
                     vm.HolderName = Convert.ToString(Data_Reader["HolderName"]);
+                    vm.HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]);
                     vm.AreaId = Convert.ToInt32(Data_Reader["AreaId"]);
                     vm.AreaName = Convert.ToString(Data_Reader["AreaName"]);
                     vm.PlotId = Convert.ToInt32(Data_Reader["PlotId"]);
@@ -433,7 +436,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     Holder model = new Holder
                     {
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
-                        HolderName = Convert.ToString(Data_Reader["HolderName"])
+                        HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]),
                     };
                     vm.Add(model);
                 };

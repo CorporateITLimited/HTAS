@@ -135,6 +135,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 GenderType = holder.GenderType,
                 HolderId = holder.HolderId,
                 HolderName = holder.HolderName,
+                HolderNamecon = holder.HolderNamecon,
                 HoldersFlatNumber = holder.HoldersFlatNumber,
                 ImageLocation = holder.ImageLocation,
                 IsActive = holder.IsActive,
@@ -229,7 +230,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             ViewBag.FlorNo = _commonListManager.GetAllFloor();
             ViewBag.OwnOrRent = _commonListManager.GetAllOwnOrRent();
             ViewBag.SelfOwned = _commonListManager.GetAllOwnType();
-            ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName");
+            ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName",1);
 
             return View();
         }
@@ -1885,7 +1886,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
             ViewBag.Gender = new SelectList(_commonListManager.GetAllGender(), "TypeId", "TypeName");
             ViewBag.MaritialStatus = new SelectList(_commonListManager.GetAllMaritalStatus(), "TypeId", "TypeName");
             ViewBag.OwnerType = new SelectList(_commonListManager.GetAllOwnerShipType(), "TypeId", "TypeName");
-            ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName");
+            ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName",1);
 
             ViewBag.FlorNo = _commonListManager.GetAllFloor();
             ViewBag.OwnOrRent = _commonListManager.GetAllOwnOrRent();
@@ -2877,7 +2878,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
                 hol.HolderNo = rdr["HolderNo"].ToString();
                 hol.AreaName = rdr["AreaName"].ToString();
                 hol.PlotNo = rdr["PlotNo"].ToString();
-                hol.HolderName = rdr["HolderName"].ToString();
+                hol.HolderNamecon = rdr["HolderNamecon"].ToString();
                 hol.OwnerTypeName = rdr["OwnerTypeName"].ToString();
                 hol.BuildingTypeName = rdr["BuildingTypeName"].ToString();
                 hol.IsHolderAnOwner = Convert.ToBoolean(rdr["IsHolderAnOwner"]);
