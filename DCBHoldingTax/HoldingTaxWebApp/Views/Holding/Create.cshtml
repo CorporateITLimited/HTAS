@@ -316,9 +316,11 @@
                                                     @Html.LabelFor(model => model.RankId, "র‍্যাংক", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.DropDownListFor(model => model.RankId, null, " নির্বাচন করুন ", new
-                                                  {
-                                                      @class = "form-control",
-                                                  })
+                                                   {
+                                                       @class = "form-control"
+                                                       //@name = "RankId",
+                                                       //@id= "RankId"
+                                                   })
                                                     </div>
 
 
@@ -630,10 +632,10 @@
                 placeholder: "--নির্বাচন করুন--",
                 allowClear: true
             });
-            //$('#Gender').select2({
-            //    placeholder: "--নির্বাচন করুন--",
-            //    allowClear: true
-            //});
+            $('#RankId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
             //$('#MaritialStatus').select2({
             //    placeholder: "--নির্বাচন করুন--",
             //    allowClear: true

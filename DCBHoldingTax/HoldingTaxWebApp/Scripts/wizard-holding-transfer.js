@@ -139,6 +139,7 @@ var KTWizard4 = function () {
                             StringRecordCorrectionDate: $('#StringRecordCorrectionDate').val().trim(),
                             TransferRefNo: $('#TransferRefNo').val().trim(),
                             StrTransferRefDate: $('#StrTransferRefDate').val().trim(),
+                            RankId: parseInt($('#RankId option:selected').val()) || 0
                         };
 
                         $.ajax({
