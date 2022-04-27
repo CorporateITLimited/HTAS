@@ -147,6 +147,7 @@ var KTWizard4 = function () {
                             HandOverLetterNo: $('#HandOverLetterNo').val().trim(),
                             LandDevelopChange: parseFloat($('#LandDevelopChange').val().trim()),
                             ConsStatusId: parseInt($('#ConsStatusId option:selected').val()) || 0,
+                            RankId: parseInt($('#RankId option:selected').val()) || 0,
                             Doc1: $('#Doc1').val().trim(),
                             Doc2: $('#Doc2').val().trim(),
                             Doc3: $('#Doc3').val().trim(),

@@ -179,10 +179,21 @@
 
 
                                                 <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.PlotOwnerName, "প্লট মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+
+                                                    @Html.LabelFor(model => model.RankId, "র‍্যাংক", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.PlotOwnerName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                        @Html.DropDownListFor(model => model.RankId, null, "-- নির্বাচন করুন --", new
+                                                   {
+                                                       @class = "form-control",
+                                                       @name = "RankId",
+                                                       @id = "RankId"
+                                                   })
+                                                        @Html.ValidationMessageFor(model => model.RankId, "", new { @class = "text-danger" })
                                                     </div>
+
+
+
+
 
                                                     @Html.LabelFor(model => model.IsAlive, "প্লট মালিকের বর্তমান অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
@@ -214,20 +225,18 @@
                                                 </div>
 
                                                 <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.OfficialStatusId, "সামরিক / বেসামরিক", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+
+                                                    @Html.LabelFor(model => model.PlotOwnerName, "প্লট মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.DropDownListFor(model => model.OfficialStatusId, null, "-- নির্বাচন করুন --", new
-                                                   {
-                                                       @class = "form-control",
-                                                       @name = "OfficialStatusId",
-                                                       @id = "OfficialStatusId"
-                                                   })
-                                                        @Html.ValidationMessageFor(model => model.OfficialStatusId, "", new { @class = "text-danger" })
+                                                        @Html.EditorFor(model => model.PlotOwnerName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
+
+
+                                                 
 
                                                     @Html.LabelFor(model => model.PresentAdd, "বর্তমান ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.PresentAdd, new { htmlAttributes = new { @class = "form-control", placeholder = "" , @readonly = "readonly" } })
+                                                        @Html.EditorFor(model => model.PresentAdd, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly" } })
                                                     </div>
                                                 </div>
 
@@ -330,7 +339,16 @@
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.LandDevelopChange, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
-
+                                                    @Html.LabelFor(model => model.OfficialStatusId, "সামরিক / বেসামরিক", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.DropDownListFor(model => model.OfficialStatusId, null, "-- নির্বাচন করুন --", new
+                                                   {
+                                                       @class = "form-control",
+                                                       @name = "OfficialStatusId",
+                                                       @id = "OfficialStatusId"
+                                                   })
+                                                        @Html.ValidationMessageFor(model => model.OfficialStatusId, "", new { @class = "text-danger" })
+                                                    </div>
 
                                                 </div>
 
@@ -815,10 +833,10 @@
                             });
                        });
 
-                    //$('#OwnershipSourceId').select2({
-                       // placeholder: "--নির্বাচন করুন--",
-                       // allowClear: true
-                    //});
+             $('#RankId').select2({
+                 placeholder: "--নির্বাচন করুন--",
+                 allowClear: true
+             });
                     //$('#OwnerType').select2({
                        // placeholder: "--নির্বাচন করুন--",
                        // allowClear: true

@@ -93,6 +93,9 @@ namespace HoldingTaxWebApp.Gateway.Plots
                         LeaseQuotaName = Data_Reader["LeaseQuotaName"].ToString(),
                         TotalArea = Data_Reader["TotalArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["TotalArea"]) : (Decimal?)null,
                         AreaName = Data_Reader["AreaName"].ToString(),
+                        RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (Int32?)null,
+                        RankName = Data_Reader["RankName"].ToString(),
+                        PlotOwnerNamecon = Data_Reader["PlotOwnerNamecon"].ToString(),
 
                     };
 
@@ -197,6 +200,10 @@ namespace HoldingTaxWebApp.Gateway.Plots
                     vm.LeaseQuotaName = Data_Reader["LeaseQuotaName"].ToString();
                     vm.TotalArea = Data_Reader["TotalArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["TotalArea"]) : (Decimal?)null;
                     vm.AreaName = Data_Reader["AreaName"].ToString();
+
+                    vm.RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (Int32?)null;
+                    vm.RankName = Data_Reader["RankName"].ToString();
+                    vm.PlotOwnerNamecon = Data_Reader["PlotOwnerNamecon"].ToString();
                 };
 
                 Data_Reader.Close();
@@ -295,6 +302,9 @@ namespace HoldingTaxWebApp.Gateway.Plots
                     vm.ConsStatusName = Data_Reader["ConsStatusName"].ToString();
                     vm.LeaseQuotaName = Data_Reader["LeaseQuotaName"].ToString();
                     vm.TotalArea = Data_Reader["TotalArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["TotalArea"]) : (Decimal?)null;
+                    vm.RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (Int32?)null;
+                    vm.RankName = Data_Reader["RankName"].ToString();
+                    vm.PlotOwnerNamecon = Data_Reader["PlotOwnerNamecon"].ToString();
                 };
 
                 Data_Reader.Close();
@@ -690,6 +700,9 @@ namespace HoldingTaxWebApp.Gateway.Plots
                 Sql_Command.Parameters.Add("@Doc4", SqlDbType.NVarChar).Value = model.Doc4;
                 Sql_Command.Parameters.Add("@Doc5", SqlDbType.NVarChar).Value = model.Doc5;
                 Sql_Command.Parameters.Add("@Doc6", SqlDbType.NVarChar).Value = model.Doc6;
+                Sql_Command.Parameters.Add("@RankId", SqlDbType.Int).Value = model.RankId;
+
+
                 //Sql_Command.Parameters.Add("@ConsProgressId", SqlDbType.Int).Value = model.ConsProgressId;
                 Sql_Command.Parameters.Add("@OwnerDeclaration", SqlDbType.NVarChar).Value = model.OwnerDeclaration;
                 Sql_Command.Parameters.Add("@RealBuilder", SqlDbType.NVarChar).Value = model.RealBuilder;
@@ -806,6 +819,8 @@ namespace HoldingTaxWebApp.Gateway.Plots
                 Sql_Command.Parameters.Add("@Doc4", SqlDbType.NVarChar).Value = model.Doc4;
                 Sql_Command.Parameters.Add("@Doc5", SqlDbType.NVarChar).Value = model.Doc5;
                 Sql_Command.Parameters.Add("@Doc6", SqlDbType.NVarChar).Value = model.Doc6;
+                Sql_Command.Parameters.Add("@RankId", SqlDbType.Int).Value = model.RankId;
+
                 Sql_Command.Parameters.Add("@ConsProgressId", SqlDbType.Int).Value = model.ConsProgressId;
                 Sql_Command.Parameters.Add("@OwnerDeclaration", SqlDbType.NVarChar).Value = model.OwnerDeclaration;
                 Sql_Command.Parameters.Add("@RealBuilder", SqlDbType.NVarChar).Value = model.RealBuilder;

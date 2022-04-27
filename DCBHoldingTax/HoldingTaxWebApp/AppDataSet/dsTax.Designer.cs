@@ -6423,6 +6423,12 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             private global::System.Data.DataColumn columnOtherOwner;
             
+            private global::System.Data.DataColumn columnRankId;
+            
+            private global::System.Data.DataColumn columnRankName;
+            
+            private global::System.Data.DataColumn columnPlotOwnerNamecon;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtPlotOwnerListDataTable() {
@@ -6554,6 +6560,30 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RankIdColumn {
+                get {
+                    return this.columnRankId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RankNameColumn {
+                get {
+                    return this.columnRankName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotOwnerNameconColumn {
+                get {
+                    return this.columnPlotOwnerNamecon;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6589,7 +6619,7 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public dtPlotOwnerListRow AdddtPlotOwnerListRow(int PlotId, string PlotOwnerName, int OfficialStatusId, string PresentAdd, string PhoneNumber, System.DateTime LeaveDate, int LeasePeriod, string OffStatusName, string PlotNo, string AreaName, string OtherOwner) {
+            public dtPlotOwnerListRow AdddtPlotOwnerListRow(int PlotId, string PlotOwnerName, int OfficialStatusId, string PresentAdd, string PhoneNumber, System.DateTime LeaveDate, int LeasePeriod, string OffStatusName, string PlotNo, string AreaName, string OtherOwner, int RankId, string RankName, string PlotOwnerNamecon) {
                 dtPlotOwnerListRow rowdtPlotOwnerListRow = ((dtPlotOwnerListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -6603,7 +6633,10 @@ namespace HoldingTaxWebApp.AppDataSet {
                         OffStatusName,
                         PlotNo,
                         AreaName,
-                        OtherOwner};
+                        OtherOwner,
+                        RankId,
+                        RankName,
+                        PlotOwnerNamecon};
                 rowdtPlotOwnerListRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtPlotOwnerListRow);
                 return rowdtPlotOwnerListRow;
@@ -6638,6 +6671,9 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnPlotNo = base.Columns["PlotNo"];
                 this.columnAreaName = base.Columns["AreaName"];
                 this.columnOtherOwner = base.Columns["OtherOwner"];
+                this.columnRankId = base.Columns["RankId"];
+                this.columnRankName = base.Columns["RankName"];
+                this.columnPlotOwnerNamecon = base.Columns["PlotOwnerNamecon"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6667,6 +6703,12 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnAreaName);
                 this.columnOtherOwner = new global::System.Data.DataColumn("OtherOwner", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOtherOwner);
+                this.columnRankId = new global::System.Data.DataColumn("RankId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRankId);
+                this.columnRankName = new global::System.Data.DataColumn("RankName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRankName);
+                this.columnPlotOwnerNamecon = new global::System.Data.DataColumn("PlotOwnerNamecon", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotOwnerNamecon);
                 this.columnPlotOwnerId.AutoIncrement = true;
                 this.columnPlotOwnerId.AutoIncrementSeed = -1;
                 this.columnPlotOwnerId.AutoIncrementStep = -1;
@@ -6933,6 +6975,14 @@ namespace HoldingTaxWebApp.AppDataSet {
             private global::System.Data.DataColumn columnAreaName;
             
             private global::System.Data.DataColumn columnPlotNo;
+            
+            private global::System.Data.DataColumn columnRankId;
+            
+            private global::System.Data.DataColumn columnRankName;
+            
+            private global::System.Data.DataColumn columnPlotOwnerNamecon;
+            
+            private global::System.Data.DataColumn columnDataColumn3;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -7441,6 +7491,38 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RankIdColumn {
+                get {
+                    return this.columnRankId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RankNameColumn {
+                get {
+                    return this.columnRankName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotOwnerNameconColumn {
+                get {
+                    return this.columnPlotOwnerNamecon;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DataColumn3Column {
+                get {
+                    return this.columnDataColumn3;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7534,7 +7616,11 @@ namespace HoldingTaxWebApp.AppDataSet {
                         decimal OtherFlorArea, 
                         int ApprovalNo, 
                         string AreaName, 
-                        string PlotNo) {
+                        string PlotNo, 
+                        int RankId, 
+                        string RankName, 
+                        string PlotOwnerNamecon, 
+                        string DataColumn3) {
                 dtPlotOwnerDetailsRow rowdtPlotOwnerDetailsRow = ((dtPlotOwnerDetailsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -7595,7 +7681,11 @@ namespace HoldingTaxWebApp.AppDataSet {
                         OtherFlorArea,
                         ApprovalNo,
                         AreaName,
-                        PlotNo};
+                        PlotNo,
+                        RankId,
+                        RankName,
+                        PlotOwnerNamecon,
+                        DataColumn3};
                 rowdtPlotOwnerDetailsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtPlotOwnerDetailsRow);
                 return rowdtPlotOwnerDetailsRow;
@@ -7677,6 +7767,10 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnApprovalNo = base.Columns["ApprovalNo"];
                 this.columnAreaName = base.Columns["AreaName"];
                 this.columnPlotNo = base.Columns["PlotNo"];
+                this.columnRankId = base.Columns["RankId"];
+                this.columnRankName = base.Columns["RankName"];
+                this.columnPlotOwnerNamecon = base.Columns["PlotOwnerNamecon"];
+                this.columnDataColumn3 = base.Columns["DataColumn3"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7800,6 +7894,14 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnAreaName);
                 this.columnPlotNo = new global::System.Data.DataColumn("PlotNo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPlotNo);
+                this.columnRankId = new global::System.Data.DataColumn("RankId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRankId);
+                this.columnRankName = new global::System.Data.DataColumn("RankName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRankName);
+                this.columnPlotOwnerNamecon = new global::System.Data.DataColumn("PlotOwnerNamecon", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotOwnerNamecon);
+                this.columnDataColumn3 = new global::System.Data.DataColumn("DataColumn3", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDataColumn3);
                 this.columnPlotOwnerId.AutoIncrement = true;
                 this.columnPlotOwnerId.AutoIncrementSeed = -1;
                 this.columnPlotOwnerId.AutoIncrementStep = -1;
@@ -15968,6 +16070,54 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int RankId {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtPlotOwnerList.RankIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RankId\' in table \'dtPlotOwnerList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.RankIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RankName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerList.RankNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RankName\' in table \'dtPlotOwnerList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.RankNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PlotOwnerNamecon {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerList.PlotOwnerNameconColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PlotOwnerNamecon\' in table \'dtPlotOwnerList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerList.PlotOwnerNameconColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsPresentAddNull() {
                 return this.IsNull(this.tabledtPlotOwnerList.PresentAddColumn);
             }
@@ -16060,6 +16210,42 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetOtherOwnerNull() {
                 this[this.tabledtPlotOwnerList.OtherOwnerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRankIdNull() {
+                return this.IsNull(this.tabledtPlotOwnerList.RankIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRankIdNull() {
+                this[this.tabledtPlotOwnerList.RankIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRankNameNull() {
+                return this.IsNull(this.tabledtPlotOwnerList.RankNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRankNameNull() {
+                this[this.tabledtPlotOwnerList.RankNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPlotOwnerNameconNull() {
+                return this.IsNull(this.tabledtPlotOwnerList.PlotOwnerNameconColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPlotOwnerNameconNull() {
+                this[this.tabledtPlotOwnerList.PlotOwnerNameconColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -16995,6 +17181,70 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int RankId {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtPlotOwnerDetails.RankIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RankId\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.RankIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RankName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.RankNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RankName\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.RankNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PlotOwnerNamecon {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.PlotOwnerNameconColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PlotOwnerNamecon\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.PlotOwnerNameconColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DataColumn3 {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtPlotOwnerDetails.DataColumn3Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DataColumn3\' in table \'dtPlotOwnerDetails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPlotOwnerDetails.DataColumn3Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsIsAliveNull() {
                 return this.IsNull(this.tabledtPlotOwnerDetails.IsAliveColumn);
             }
@@ -17627,6 +17877,54 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetPlotNoNull() {
                 this[this.tabledtPlotOwnerDetails.PlotNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRankIdNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.RankIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRankIdNull() {
+                this[this.tabledtPlotOwnerDetails.RankIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRankNameNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.RankNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRankNameNull() {
+                this[this.tabledtPlotOwnerDetails.RankNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPlotOwnerNameconNull() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.PlotOwnerNameconColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPlotOwnerNameconNull() {
+                this[this.tabledtPlotOwnerDetails.PlotOwnerNameconColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDataColumn3Null() {
+                return this.IsNull(this.tabledtPlotOwnerDetails.DataColumn3Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDataColumn3Null() {
+                this[this.tabledtPlotOwnerDetails.DataColumn3Column] = global::System.Convert.DBNull;
             }
         }
         
