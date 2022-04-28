@@ -2737,7 +2737,7 @@ namespace HoldingTaxWebApp.Controllers.Holding
         #region HolderReport
         public ActionResult HolderReport()
         {
-            ViewBag.HolderId = new SelectList(_holdingManager.GetAllHolder(), "HolderId", "HolderName");
+            ViewBag.HolderId = new SelectList(_holdingManager.GetAllHolder(), "HolderId", "HolderNamecon");
             return View();
         }
         #endregion

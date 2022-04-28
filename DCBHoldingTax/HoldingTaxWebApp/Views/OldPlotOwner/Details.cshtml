@@ -37,7 +37,7 @@
                     <div class="card-header" id="print_header">
                         <div class="row offset-1">
                             <h3 class="card-title">
-                                <b class="kt-font-brand">@Model.OldPlotOwnerName</b>  &nbsp; এর বিশদ তথ্য
+                                <b class="kt-font-brand">@Model.OldPlotOwnerNamecon</b>  &nbsp; এর বিশদ তথ্য
                             </h3>
 
                             <div class="card-toolbar">
@@ -53,15 +53,28 @@
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.OldPlotOwnerName)
+                                        @Html.DisplayNameFor(model => model.OldPlotOwnerNamecon)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
                                     <div class="col-5">
                                         <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.OldPlotOwnerName)
+                                            @Html.DisplayFor(model => model.OldPlotOwnerNamecon)
                                         </span>
                                     </div>
                                 </div>
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.RankName)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-5">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.RankName)
+                                        </span>
+                                    </div>
+                                </div>
+
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">

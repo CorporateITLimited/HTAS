@@ -128,5 +128,18 @@ namespace HoldingTaxWebApp.Models.Tax
 
         [Display(Name = "মওকুফ")]
         public decimal? Reduction { get; set; }
+
+
+        [Display(Name = "র‍্যাংক")]
+        public int? RankId { get; set; }
+        [Display(Name = "র‍্যাংক")]
+        public string RankName { get; set; }
+
+        [Display(Name = "গৃহকরদাতার নাম")]
+        public string HolderNamecon { get; set; }
+
+
+
+
     }
 }

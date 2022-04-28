@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                             <!--end::Wizard Step 1 Nav-->
-                          
+
                         </div>
                         <!--end: Wizard Nav-->
                         <!--begin: Wizard Body-->
@@ -116,7 +116,7 @@
                                                    })
                                                         @Html.ValidationMessageFor(model => model.PlotId, "", new { @class = "text-danger" })
                                                     </div>
-                                                  
+
                                                     @Html.LabelFor(model => model.PlotOwnerName, "বর্তমান প্লট মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.PlotOwnerName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
@@ -125,98 +125,111 @@
 
                                                     </div>
 
-                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="form-group row m-2">
+
+
+                                                @Html.LabelFor(model => model.RankId, "র‍্যাংক", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                <div class="col-lg-4">
+                                                    @Html.DropDownListFor(model => model.RankId, null, "-- নির্বাচন করুন --", new
+                                               {
+                                                   @class = "form-control",
+                                                   @name = "RankId",
+                                                   @id = "RankId"
+                                               })
 
                                                 </div>
 
 
-                                                <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.OldPlotOwnerName, "নুতুন প্লট মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.OldPlotOwnerName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                        @Html.ValidationMessageFor(model => model.OldPlotOwnerName, "", new { @class = "text-danger" })
 
-
-                                                    </div>
-
-                                                    @Html.LabelFor(model => model.IsAlive, "নুতুন প্লট মালিকের বর্তমান অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        <select class="form-control" id="IsAlive" name="IsAlive">
-                                                            <option value="">নির্বাচন করুন</option>
-                                                            <option value="1">জীবিত</option>
-                                                            <option value="0">মৃত</option>
-                                                        </select>
-                                                    </div>
+                                                @Html.LabelFor(model => model.OfficialStatusId, "সামরিক / বেসামরিক", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                <div class="col-lg-4">
+                                                    @Html.DropDownListFor(model => model.OfficialStatusId, null, "-- নির্বাচন করুন --", new
+                                               {
+                                                   @class = "form-control",
+                                                   @name = "OfficialStatusId",
+                                                   @id = "OfficialStatusId"
+                                               })
+                                                    @Html.ValidationMessageFor(model => model.OfficialStatusId, "", new { @class = "text-danger" })
                                                 </div>
 
-                                                <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.OfficialStatusId, "সামরিক / বেসামরিক", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.DropDownListFor(model => model.OfficialStatusId, null, "-- নির্বাচন করুন --", new
-                                                   {
-                                                       @class = "form-control",
-                                                       @name = "OfficialStatusId",
-                                                       @id = "OfficialStatusId"
-                                                   })
-                                                        @Html.ValidationMessageFor(model => model.OfficialStatusId, "", new { @class = "text-danger" })
-                                                    </div>
+                                            </div>
 
-                                                    @Html.LabelFor(model => model.PresentAdd, "নুতুন প্লট মালিকের বর্তমান ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.PresentAdd, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.PermanentAdd, "নুতুন প্লট মালিকের স্থায়ী ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.PermanentAdd, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
-
-                                                    @Html.LabelFor(model => model.PhoneNumber, "নুতুন প্লট মালিকের ফোন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.Email, "নুতুন প্লট মালিকের ই-মেইল", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
-                                                    
+                                            <div class="form-group row m-2">
+                                                @Html.LabelFor(model => model.OldPlotOwnerName, "নুতুন প্লট মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                <div class="col-lg-4">
+                                                    @Html.EditorFor(model => model.OldPlotOwnerName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    @Html.ValidationMessageFor(model => model.OldPlotOwnerName, "", new { @class = "text-danger" })
 
 
                                                 </div>
 
-                                             
+                                                @Html.LabelFor(model => model.PresentAdd, "নুতুন প্লট মালিকের বর্তমান ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                <div class="col-lg-4">
+                                                    @Html.EditorFor(model => model.PresentAdd, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                </div>
+                                            </div>
 
-                                                <div class="mt-2">
-                                                    <table class="table table-bordered table-hover table-sm" id="tableOther">
-                                                        <thead class="thead-light">
+                                            <div class="form-group row m-2">
+                                                @Html.LabelFor(model => model.PermanentAdd, "নুতুন প্লট মালিকের স্থায়ী ঠিকানা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                <div class="col-lg-4">
+                                                    @Html.EditorFor(model => model.PermanentAdd, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                </div>
+
+                                                @Html.LabelFor(model => model.PhoneNumber, "নুতুন প্লট মালিকের ফোন", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                <div class="col-lg-4">
+                                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row m-2">
+                                                @Html.LabelFor(model => model.Email, "নুতুন প্লট মালিকের ই-মেইল", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                <div class="col-lg-4">
+                                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                </div>
+
+                                                @Html.LabelFor(model => model.IsAlive, "নুতুন প্লট মালিকের বর্তমান অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                <div class="col-lg-4">
+                                                    <select class="form-control" id="IsAlive" name="IsAlive">
+                                                        <option value="">নির্বাচন করুন</option>
+                                                        <option value="1">জীবিত</option>
+                                                        <option value="0">মৃত</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="mt-2">
+                                                <table class="table table-bordered table-hover table-sm" id="tableOther">
+                                                    <thead class="thead-light">
                                                         <tr><th COLSPAN="4" style="text-align:center"><h1>যৌথ মালিকানার ক্ষেত্রে অন্য সব মালিকদের তথ্য</h1></th></tr>
-                                                            
-                                                            <tr>
-                                                                
-                                                                <th>অন্য মালিকের নাম</th>
-                                                                
-                                                                <th>ঠিকানা</th>
-                                                                
-                                                                <th>মন্তব্য</th>
-                                                                
-                                                                <th><span class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3 addOthersOwner" id="addOthersOwner" name="addOthersOwner" onclick="addRow()"><i class="fas fa-plus"></i></span></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody></tbody>
-                                                    </table>
-                                                </div>
+
+                                                        <tr>
+
+                                                            <th>অন্য মালিকের নাম</th>
+
+                                                            <th>ঠিকানা</th>
+
+                                                            <th>মন্তব্য</th>
+
+                                                            <th><span class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3 addOthersOwner" id="addOthersOwner" name="addOthersOwner" onclick="addRow()"><i class="fas fa-plus"></i></span></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
 
 
-                                            
+
 
 
                                             <!--end: Wizard Step 1-->
-                                          
                                             <!--begin: Wizard Actions-->
                                             <div class="d-flex justify-content-between border-top mt-5 pt-10">
                                                 <div class="mr-2">
@@ -274,7 +287,7 @@
     });
 
 
-      $('#OfficialStatusId').select2({
+    $('#OfficialStatusId').select2({
         placeholder: "--নির্বাচন করুন--",
         allowClear: true
     });
@@ -282,8 +295,14 @@
    $('#IsAlive').select2({
        placeholder: "--নির্বাচন করুন--",
         allowClear: true
-   });
+             });
 
+             $('#RankId').select2({
+        placeholder: "--নির্বাচন করুন--",
+        allowClear: true
+    });
+
+             
    // autosize($('#PresentAdd'));
    // autosize($('#PermanentAdd'));
    // autosize($('#ContactAdd'));
@@ -310,7 +329,7 @@
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(json),
                     success: function (data) {
-                        $("#PlotOwnerName").val(data.PlotOwnerName);
+                        $("#PlotOwnerName").val(data.PlotOwnerNamecon);
                         $("#PlotOwnerId").val(data.PlotOwnerId);
                     },
                     error: function () {

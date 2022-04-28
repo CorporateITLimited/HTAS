@@ -217,7 +217,8 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         TotalPaidAmount = Data_Reader["TotalPaidAmount"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["TotalPaidAmount"]) : (Decimal?)null,
                         IsPaid = Data_Reader["IsPaid"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsPaid"]) : (bool?)null,
-                        HolderNo = Convert.ToString(Data_Reader["HolderNo"])
+                        HolderNo = Convert.ToString(Data_Reader["HolderNo"]),
+                        HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]),
                     };
 
                     holdingtax.TotalUnPaidAmount = holdingtax.TotalNetPayableAmount - holdingtax.TotalPaidAmount;

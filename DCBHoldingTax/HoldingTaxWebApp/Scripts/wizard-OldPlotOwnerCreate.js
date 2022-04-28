@@ -106,6 +106,7 @@ var KTWizard4 = function () {
                             PermanentAdd: $('#PermanentAdd').val().trim(),
                             PhoneNumber: $('#PhoneNumber').val().trim(),
                             Email: $('#Email').val().trim(),
+                            RankId: parseInt($('#RankId option:selected').val()) || 0,
                             OldOthetPlotOwner: OthetPlotOwnerlist
                         };
 
@@ -216,13 +217,7 @@ var KTWizard4 = function () {
                             }
                         }
                     },
-                    OldPlotOwnerName: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
+                 
                  
                  
                  
