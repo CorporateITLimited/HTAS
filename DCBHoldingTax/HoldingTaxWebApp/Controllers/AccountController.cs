@@ -90,6 +90,7 @@ namespace HoldingTaxWebApp.Controllers
                     Session[CommonConstantHelper.HolderName] = logInCredentialVM.HolderName;
                     Session[CommonConstantHelper.AreaPlotFlatData] = logInCredentialVM.AreaPlotFlatData;
                     Session[CommonConstantHelper.AreaId] = logInCredentialVM.AreaId;
+                    Session[CommonConstantHelper.MobileNumber] = logInCredentialVM.MobileNumber;
 
                     string message = " " + Session[CommonConstantHelper.UserName];
 
@@ -300,6 +301,10 @@ namespace HoldingTaxWebApp.Controllers
         //}
 
 
+        public ActionResult ChangeUserName()
+        {
+            return View();
+        }
 
         #region jason result
 
@@ -403,6 +408,42 @@ namespace HoldingTaxWebApp.Controllers
             return new JsonResult
             {
                 Data = data,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult checkDuplicateUsername(string newUserName) {
+            bool userExists= true;
+            clsUser user = _userManager.checkDuplicateUserName(newUserName);
+
+            if (user.UserId == 0) { userExists = false; }
+            return new JsonResult
+            {
+                Data = userExists,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        public JsonResult jsonChangeUsername(string newUserName)
+        {
+            var status = false;
+            string updateUserName = _userManager.changeUserName(newUserName);
+
+            if (updateUserName == CommonConstantHelper.Success)
+            {
+                TempData["SM"] = "সফলভাবে ব্যবহারকারীর তথ্য হালনাগাদ করা হয়েছে ";
+                status = true;
+            }
+
+            else if (updateUserName == CommonConstantHelper.Error)
+            {
+                ModelState.AddModelError("", "Error.");
+                status = false;
+            }
+
+            return new JsonResult
+            {
+                Data = status,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

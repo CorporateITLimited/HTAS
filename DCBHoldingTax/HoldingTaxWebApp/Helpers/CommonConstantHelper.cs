@@ -26,6 +26,7 @@ namespace HoldingTaxWebApp.Helpers
         public const string AreaPlotFlatData = "AreaPlotFlatData";
         public const string HolderId = "HolderId";
         public const string AreaId = "AreaId";
+        public const string MobileNumber = "MobileNumber";
 
         #endregion
 

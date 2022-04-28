@@ -1005,6 +1005,126 @@ namespace HoldingTaxWebApp.Gateway.Users
             }
         }
 
+        public clsUser checkDuplicateUserName( string name)
+        {
+            try
+            {
+                Sql_Query = "[user].[spCheckDuplicateUserName]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@userName", SqlDbType.NVarChar).Value = name;
+
+                //SqlParameter result = new SqlParameter
+                //{
+                //    ParameterName = "@result",
+                //    SqlDbType = SqlDbType.Int,
+                //    Direction = ParameterDirection.Output
+                //};
+                //Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                clsUser userListVM = new clsUser();
+
+
+                while (Data_Reader.Read())
+                {
+                    userListVM.UserFullName = Data_Reader["UserFullName"].ToString();
+                    userListVM.UserId = Convert.ToInt32(Data_Reader["UserId"]);
+                }
+                    
+                
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return userListVM;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+
+            }
+
+        }
+
+        public int changeUserName(string newUserName)
+        {
+            try
+            {
+                Sql_Query = "[user].[spChangeUserName]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                string OlduserName = System.Web.HttpContext.Current.Session[CommonConstantHelper.UserName].ToString();
+
+                Sql_Command.Parameters.Add("@NewuserName", SqlDbType.NVarChar).Value = newUserName;
+                Sql_Command.Parameters.Add("@OlduserName", SqlDbType.NVarChar).Value = OlduserName;
+
+
+
+                SqlParameter result = new SqlParameter
+                {
+                    ParameterName = "@result",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                };
+                Sql_Command.Parameters.Add(result);
+
+                Sql_Connection.Open();
+                int rowAffected = Sql_Command.ExecuteNonQuery();
+                Sql_Connection.Close();
+
+                int resultOutPut = int.Parse(result.Value.ToString());
+
+                return resultOutPut;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+        }
         #endregion
     }
 }
