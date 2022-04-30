@@ -2973,5 +2973,35 @@ namespace HoldingTaxWebApp.Controllers.Holding
 
         }
 
+
+
+
+        #region old Flat owner list
+        public ActionResult OldFlatOwnerList()
+        {
+            ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+            return View();
+        }
+
+
+        public ActionResult rptOldFlatOwnerList(int? id, string FlatNo)
+        {
+            Session["PlotId_"] = id;
+            if (id == 0)
+            {
+                Session["PlotId_"] = null;
+            }
+            Session["FlatNo_"] = FlatNo;
+            if (FlatNo == null)
+            {
+                Session["FlatNo_"] = null;
+            }
+            return View();
+        }
+
+
+
+        #endregion
+
     }
 }

@@ -50,6 +50,8 @@ namespace HoldingTaxWebApp.AppDataSet {
         
         private dtClusterDataTable tabledtCluster;
         
+        private dtHolderFlatHistoryDataTable tabledtHolderFlatHistory;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -116,6 +118,9 @@ namespace HoldingTaxWebApp.AppDataSet {
                 }
                 if ((ds.Tables["dtCluster"] != null)) {
                     base.Tables.Add(new dtClusterDataTable(ds.Tables["dtCluster"]));
+                }
+                if ((ds.Tables["dtHolderFlatHistory"] != null)) {
+                    base.Tables.Add(new dtHolderFlatHistoryDataTable(ds.Tables["dtHolderFlatHistory"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -267,6 +272,16 @@ namespace HoldingTaxWebApp.AppDataSet {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public dtHolderFlatHistoryDataTable dtHolderFlatHistory {
+            get {
+                return this.tabledtHolderFlatHistory;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -370,6 +385,9 @@ namespace HoldingTaxWebApp.AppDataSet {
                 }
                 if ((ds.Tables["dtCluster"] != null)) {
                     base.Tables.Add(new dtClusterDataTable(ds.Tables["dtCluster"]));
+                }
+                if ((ds.Tables["dtHolderFlatHistory"] != null)) {
+                    base.Tables.Add(new dtHolderFlatHistoryDataTable(ds.Tables["dtHolderFlatHistory"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -482,6 +500,12 @@ namespace HoldingTaxWebApp.AppDataSet {
                     this.tabledtCluster.InitVars();
                 }
             }
+            this.tabledtHolderFlatHistory = ((dtHolderFlatHistoryDataTable)(base.Tables["dtHolderFlatHistory"]));
+            if ((initTable == true)) {
+                if ((this.tabledtHolderFlatHistory != null)) {
+                    this.tabledtHolderFlatHistory.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -518,6 +542,8 @@ namespace HoldingTaxWebApp.AppDataSet {
             base.Tables.Add(this.tabledtEmployeeList);
             this.tabledtCluster = new dtClusterDataTable();
             base.Tables.Add(this.tabledtCluster);
+            this.tabledtHolderFlatHistory = new dtHolderFlatHistoryDataTable();
+            base.Tables.Add(this.tabledtHolderFlatHistory);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -595,6 +621,12 @@ namespace HoldingTaxWebApp.AppDataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializedtCluster() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializedtHolderFlatHistory() {
             return false;
         }
         
@@ -691,6 +723,9 @@ namespace HoldingTaxWebApp.AppDataSet {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void dtClusterRowChangeEventHandler(object sender, dtClusterRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void dtHolderFlatHistoryRowChangeEventHandler(object sender, dtHolderFlatHistoryRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -9498,6 +9533,610 @@ namespace HoldingTaxWebApp.AppDataSet {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "dtClusterDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class dtHolderFlatHistoryDataTable : global::System.Data.TypedTableBase<dtHolderFlatHistoryRow> {
+            
+            private global::System.Data.DataColumn columnFlatHistoryId;
+            
+            private global::System.Data.DataColumn columnAreaId;
+            
+            private global::System.Data.DataColumn columnPlotId;
+            
+            private global::System.Data.DataColumn columnOldHolderFlatId;
+            
+            private global::System.Data.DataColumn columnNewHolderFlatId;
+            
+            private global::System.Data.DataColumn columnOldHolderId;
+            
+            private global::System.Data.DataColumn columnNewHolderId;
+            
+            private global::System.Data.DataColumn columnReferenceNo;
+            
+            private global::System.Data.DataColumn columnReferenceDate;
+            
+            private global::System.Data.DataColumn columnTransactionDate;
+            
+            private global::System.Data.DataColumn columnTransactionBy;
+            
+            private global::System.Data.DataColumn columnAreaName;
+            
+            private global::System.Data.DataColumn columnPlotIdNumber;
+            
+            private global::System.Data.DataColumn columnPlotNo;
+            
+            private global::System.Data.DataColumn columnOldFlatNo;
+            
+            private global::System.Data.DataColumn columnOldFlorNo;
+            
+            private global::System.Data.DataColumn columnOldFlatArea;
+            
+            private global::System.Data.DataColumn columnNewFlatNo;
+            
+            private global::System.Data.DataColumn columnNewFlorNo;
+            
+            private global::System.Data.DataColumn columnNewFlatArea;
+            
+            private global::System.Data.DataColumn columnOldHolderName;
+            
+            private global::System.Data.DataColumn columnNewHolderName;
+            
+            private global::System.Data.DataColumn columnDataColumn1;
+            
+            private global::System.Data.DataColumn columnDataColumn2;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtHolderFlatHistoryDataTable() {
+                this.TableName = "dtHolderFlatHistory";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal dtHolderFlatHistoryDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected dtHolderFlatHistoryDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FlatHistoryIdColumn {
+                get {
+                    return this.columnFlatHistoryId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AreaIdColumn {
+                get {
+                    return this.columnAreaId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotIdColumn {
+                get {
+                    return this.columnPlotId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OldHolderFlatIdColumn {
+                get {
+                    return this.columnOldHolderFlatId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NewHolderFlatIdColumn {
+                get {
+                    return this.columnNewHolderFlatId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OldHolderIdColumn {
+                get {
+                    return this.columnOldHolderId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NewHolderIdColumn {
+                get {
+                    return this.columnNewHolderId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ReferenceNoColumn {
+                get {
+                    return this.columnReferenceNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ReferenceDateColumn {
+                get {
+                    return this.columnReferenceDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TransactionDateColumn {
+                get {
+                    return this.columnTransactionDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TransactionByColumn {
+                get {
+                    return this.columnTransactionBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AreaNameColumn {
+                get {
+                    return this.columnAreaName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotIdNumberColumn {
+                get {
+                    return this.columnPlotIdNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PlotNoColumn {
+                get {
+                    return this.columnPlotNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OldFlatNoColumn {
+                get {
+                    return this.columnOldFlatNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OldFlorNoColumn {
+                get {
+                    return this.columnOldFlorNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OldFlatAreaColumn {
+                get {
+                    return this.columnOldFlatArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NewFlatNoColumn {
+                get {
+                    return this.columnNewFlatNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NewFlorNoColumn {
+                get {
+                    return this.columnNewFlorNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NewFlatAreaColumn {
+                get {
+                    return this.columnNewFlatArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OldHolderNameColumn {
+                get {
+                    return this.columnOldHolderName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NewHolderNameColumn {
+                get {
+                    return this.columnNewHolderName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DataColumn1Column {
+                get {
+                    return this.columnDataColumn1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DataColumn2Column {
+                get {
+                    return this.columnDataColumn2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtHolderFlatHistoryRow this[int index] {
+                get {
+                    return ((dtHolderFlatHistoryRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event dtHolderFlatHistoryRowChangeEventHandler dtHolderFlatHistoryRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event dtHolderFlatHistoryRowChangeEventHandler dtHolderFlatHistoryRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event dtHolderFlatHistoryRowChangeEventHandler dtHolderFlatHistoryRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event dtHolderFlatHistoryRowChangeEventHandler dtHolderFlatHistoryRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AdddtHolderFlatHistoryRow(dtHolderFlatHistoryRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtHolderFlatHistoryRow AdddtHolderFlatHistoryRow(
+                        int FlatHistoryId, 
+                        int AreaId, 
+                        int PlotId, 
+                        int OldHolderFlatId, 
+                        int NewHolderFlatId, 
+                        int OldHolderId, 
+                        int NewHolderId, 
+                        string ReferenceNo, 
+                        System.DateTime ReferenceDate, 
+                        System.DateTime TransactionDate, 
+                        int TransactionBy, 
+                        string AreaName, 
+                        string PlotIdNumber, 
+                        string PlotNo, 
+                        string OldFlatNo, 
+                        int OldFlorNo, 
+                        decimal OldFlatArea, 
+                        string NewFlatNo, 
+                        int NewFlorNo, 
+                        decimal NewFlatArea, 
+                        string OldHolderName, 
+                        string NewHolderName, 
+                        string DataColumn1, 
+                        string DataColumn2) {
+                dtHolderFlatHistoryRow rowdtHolderFlatHistoryRow = ((dtHolderFlatHistoryRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        FlatHistoryId,
+                        AreaId,
+                        PlotId,
+                        OldHolderFlatId,
+                        NewHolderFlatId,
+                        OldHolderId,
+                        NewHolderId,
+                        ReferenceNo,
+                        ReferenceDate,
+                        TransactionDate,
+                        TransactionBy,
+                        AreaName,
+                        PlotIdNumber,
+                        PlotNo,
+                        OldFlatNo,
+                        OldFlorNo,
+                        OldFlatArea,
+                        NewFlatNo,
+                        NewFlorNo,
+                        NewFlatArea,
+                        OldHolderName,
+                        NewHolderName,
+                        DataColumn1,
+                        DataColumn2};
+                rowdtHolderFlatHistoryRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowdtHolderFlatHistoryRow);
+                return rowdtHolderFlatHistoryRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                dtHolderFlatHistoryDataTable cln = ((dtHolderFlatHistoryDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new dtHolderFlatHistoryDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnFlatHistoryId = base.Columns["FlatHistoryId"];
+                this.columnAreaId = base.Columns["AreaId"];
+                this.columnPlotId = base.Columns["PlotId"];
+                this.columnOldHolderFlatId = base.Columns["OldHolderFlatId"];
+                this.columnNewHolderFlatId = base.Columns["NewHolderFlatId"];
+                this.columnOldHolderId = base.Columns["OldHolderId"];
+                this.columnNewHolderId = base.Columns["NewHolderId"];
+                this.columnReferenceNo = base.Columns["ReferenceNo"];
+                this.columnReferenceDate = base.Columns["ReferenceDate"];
+                this.columnTransactionDate = base.Columns["TransactionDate"];
+                this.columnTransactionBy = base.Columns["TransactionBy"];
+                this.columnAreaName = base.Columns["AreaName"];
+                this.columnPlotIdNumber = base.Columns["PlotIdNumber"];
+                this.columnPlotNo = base.Columns["PlotNo"];
+                this.columnOldFlatNo = base.Columns["OldFlatNo"];
+                this.columnOldFlorNo = base.Columns["OldFlorNo"];
+                this.columnOldFlatArea = base.Columns["OldFlatArea"];
+                this.columnNewFlatNo = base.Columns["NewFlatNo"];
+                this.columnNewFlorNo = base.Columns["NewFlorNo"];
+                this.columnNewFlatArea = base.Columns["NewFlatArea"];
+                this.columnOldHolderName = base.Columns["OldHolderName"];
+                this.columnNewHolderName = base.Columns["NewHolderName"];
+                this.columnDataColumn1 = base.Columns["DataColumn1"];
+                this.columnDataColumn2 = base.Columns["DataColumn2"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnFlatHistoryId = new global::System.Data.DataColumn("FlatHistoryId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFlatHistoryId);
+                this.columnAreaId = new global::System.Data.DataColumn("AreaId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAreaId);
+                this.columnPlotId = new global::System.Data.DataColumn("PlotId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotId);
+                this.columnOldHolderFlatId = new global::System.Data.DataColumn("OldHolderFlatId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOldHolderFlatId);
+                this.columnNewHolderFlatId = new global::System.Data.DataColumn("NewHolderFlatId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNewHolderFlatId);
+                this.columnOldHolderId = new global::System.Data.DataColumn("OldHolderId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOldHolderId);
+                this.columnNewHolderId = new global::System.Data.DataColumn("NewHolderId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNewHolderId);
+                this.columnReferenceNo = new global::System.Data.DataColumn("ReferenceNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReferenceNo);
+                this.columnReferenceDate = new global::System.Data.DataColumn("ReferenceDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReferenceDate);
+                this.columnTransactionDate = new global::System.Data.DataColumn("TransactionDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTransactionDate);
+                this.columnTransactionBy = new global::System.Data.DataColumn("TransactionBy", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTransactionBy);
+                this.columnAreaName = new global::System.Data.DataColumn("AreaName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAreaName);
+                this.columnPlotIdNumber = new global::System.Data.DataColumn("PlotIdNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotIdNumber);
+                this.columnPlotNo = new global::System.Data.DataColumn("PlotNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlotNo);
+                this.columnOldFlatNo = new global::System.Data.DataColumn("OldFlatNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOldFlatNo);
+                this.columnOldFlorNo = new global::System.Data.DataColumn("OldFlorNo", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOldFlorNo);
+                this.columnOldFlatArea = new global::System.Data.DataColumn("OldFlatArea", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOldFlatArea);
+                this.columnNewFlatNo = new global::System.Data.DataColumn("NewFlatNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNewFlatNo);
+                this.columnNewFlorNo = new global::System.Data.DataColumn("NewFlorNo", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNewFlorNo);
+                this.columnNewFlatArea = new global::System.Data.DataColumn("NewFlatArea", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNewFlatArea);
+                this.columnOldHolderName = new global::System.Data.DataColumn("OldHolderName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOldHolderName);
+                this.columnNewHolderName = new global::System.Data.DataColumn("NewHolderName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNewHolderName);
+                this.columnDataColumn1 = new global::System.Data.DataColumn("DataColumn1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDataColumn1);
+                this.columnDataColumn2 = new global::System.Data.DataColumn("DataColumn2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDataColumn2);
+                this.columnFlatHistoryId.AllowDBNull = false;
+                this.columnReferenceNo.MaxLength = 2147483647;
+                this.columnAreaName.MaxLength = 2147483647;
+                this.columnPlotIdNumber.MaxLength = 2147483647;
+                this.columnPlotNo.MaxLength = 100;
+                this.columnOldFlatNo.MaxLength = 2147483647;
+                this.columnNewFlatNo.MaxLength = 2147483647;
+                this.columnOldHolderName.ReadOnly = true;
+                this.columnOldHolderName.MaxLength = 2147483647;
+                this.columnNewHolderName.ReadOnly = true;
+                this.columnNewHolderName.MaxLength = 2147483647;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtHolderFlatHistoryRow NewdtHolderFlatHistoryRow() {
+                return ((dtHolderFlatHistoryRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new dtHolderFlatHistoryRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(dtHolderFlatHistoryRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.dtHolderFlatHistoryRowChanged != null)) {
+                    this.dtHolderFlatHistoryRowChanged(this, new dtHolderFlatHistoryRowChangeEvent(((dtHolderFlatHistoryRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.dtHolderFlatHistoryRowChanging != null)) {
+                    this.dtHolderFlatHistoryRowChanging(this, new dtHolderFlatHistoryRowChangeEvent(((dtHolderFlatHistoryRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.dtHolderFlatHistoryRowDeleted != null)) {
+                    this.dtHolderFlatHistoryRowDeleted(this, new dtHolderFlatHistoryRowChangeEvent(((dtHolderFlatHistoryRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.dtHolderFlatHistoryRowDeleting != null)) {
+                    this.dtHolderFlatHistoryRowDeleting(this, new dtHolderFlatHistoryRowChangeEvent(((dtHolderFlatHistoryRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemovedtHolderFlatHistoryRow(dtHolderFlatHistoryRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsTax ds = new dsTax();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "dtHolderFlatHistoryDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -19541,6 +20180,676 @@ namespace HoldingTaxWebApp.AppDataSet {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class dtHolderFlatHistoryRow : global::System.Data.DataRow {
+            
+            private dtHolderFlatHistoryDataTable tabledtHolderFlatHistory;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal dtHolderFlatHistoryRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabledtHolderFlatHistory = ((dtHolderFlatHistoryDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int FlatHistoryId {
+                get {
+                    return ((int)(this[this.tabledtHolderFlatHistory.FlatHistoryIdColumn]));
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.FlatHistoryIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int AreaId {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtHolderFlatHistory.AreaIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AreaId\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.AreaIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int PlotId {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtHolderFlatHistory.PlotIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PlotId\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.PlotIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int OldHolderFlatId {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtHolderFlatHistory.OldHolderFlatIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OldHolderFlatId\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.OldHolderFlatIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int NewHolderFlatId {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtHolderFlatHistory.NewHolderFlatIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NewHolderFlatId\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.NewHolderFlatIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int OldHolderId {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtHolderFlatHistory.OldHolderIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OldHolderId\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.OldHolderIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int NewHolderId {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtHolderFlatHistory.NewHolderIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NewHolderId\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.NewHolderIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ReferenceNo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderFlatHistory.ReferenceNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ReferenceNo\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.ReferenceNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime ReferenceDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtHolderFlatHistory.ReferenceDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ReferenceDate\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.ReferenceDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime TransactionDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtHolderFlatHistory.TransactionDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TransactionDate\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.TransactionDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int TransactionBy {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtHolderFlatHistory.TransactionByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TransactionBy\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.TransactionByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string AreaName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderFlatHistory.AreaNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AreaName\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.AreaNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PlotIdNumber {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderFlatHistory.PlotIdNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PlotIdNumber\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.PlotIdNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PlotNo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderFlatHistory.PlotNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PlotNo\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.PlotNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OldFlatNo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderFlatHistory.OldFlatNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OldFlatNo\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.OldFlatNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int OldFlorNo {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtHolderFlatHistory.OldFlorNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OldFlorNo\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.OldFlorNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal OldFlatArea {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHolderFlatHistory.OldFlatAreaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OldFlatArea\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.OldFlatAreaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string NewFlatNo {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderFlatHistory.NewFlatNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NewFlatNo\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.NewFlatNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int NewFlorNo {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtHolderFlatHistory.NewFlorNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NewFlorNo\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.NewFlorNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal NewFlatArea {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabledtHolderFlatHistory.NewFlatAreaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NewFlatArea\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.NewFlatAreaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OldHolderName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderFlatHistory.OldHolderNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OldHolderName\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.OldHolderNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string NewHolderName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderFlatHistory.NewHolderNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NewHolderName\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.NewHolderNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DataColumn1 {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderFlatHistory.DataColumn1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DataColumn1\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.DataColumn1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DataColumn2 {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHolderFlatHistory.DataColumn2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DataColumn2\' in table \'dtHolderFlatHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHolderFlatHistory.DataColumn2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAreaIdNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.AreaIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAreaIdNull() {
+                this[this.tabledtHolderFlatHistory.AreaIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPlotIdNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.PlotIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPlotIdNull() {
+                this[this.tabledtHolderFlatHistory.PlotIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOldHolderFlatIdNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.OldHolderFlatIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOldHolderFlatIdNull() {
+                this[this.tabledtHolderFlatHistory.OldHolderFlatIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNewHolderFlatIdNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.NewHolderFlatIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNewHolderFlatIdNull() {
+                this[this.tabledtHolderFlatHistory.NewHolderFlatIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOldHolderIdNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.OldHolderIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOldHolderIdNull() {
+                this[this.tabledtHolderFlatHistory.OldHolderIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNewHolderIdNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.NewHolderIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNewHolderIdNull() {
+                this[this.tabledtHolderFlatHistory.NewHolderIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsReferenceNoNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.ReferenceNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetReferenceNoNull() {
+                this[this.tabledtHolderFlatHistory.ReferenceNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsReferenceDateNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.ReferenceDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetReferenceDateNull() {
+                this[this.tabledtHolderFlatHistory.ReferenceDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTransactionDateNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.TransactionDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTransactionDateNull() {
+                this[this.tabledtHolderFlatHistory.TransactionDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTransactionByNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.TransactionByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTransactionByNull() {
+                this[this.tabledtHolderFlatHistory.TransactionByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAreaNameNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.AreaNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAreaNameNull() {
+                this[this.tabledtHolderFlatHistory.AreaNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPlotIdNumberNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.PlotIdNumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPlotIdNumberNull() {
+                this[this.tabledtHolderFlatHistory.PlotIdNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPlotNoNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.PlotNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPlotNoNull() {
+                this[this.tabledtHolderFlatHistory.PlotNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOldFlatNoNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.OldFlatNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOldFlatNoNull() {
+                this[this.tabledtHolderFlatHistory.OldFlatNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOldFlorNoNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.OldFlorNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOldFlorNoNull() {
+                this[this.tabledtHolderFlatHistory.OldFlorNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOldFlatAreaNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.OldFlatAreaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOldFlatAreaNull() {
+                this[this.tabledtHolderFlatHistory.OldFlatAreaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNewFlatNoNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.NewFlatNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNewFlatNoNull() {
+                this[this.tabledtHolderFlatHistory.NewFlatNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNewFlorNoNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.NewFlorNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNewFlorNoNull() {
+                this[this.tabledtHolderFlatHistory.NewFlorNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNewFlatAreaNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.NewFlatAreaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNewFlatAreaNull() {
+                this[this.tabledtHolderFlatHistory.NewFlatAreaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOldHolderNameNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.OldHolderNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOldHolderNameNull() {
+                this[this.tabledtHolderFlatHistory.OldHolderNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNewHolderNameNull() {
+                return this.IsNull(this.tabledtHolderFlatHistory.NewHolderNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNewHolderNameNull() {
+                this[this.tabledtHolderFlatHistory.NewHolderNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDataColumn1Null() {
+                return this.IsNull(this.tabledtHolderFlatHistory.DataColumn1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDataColumn1Null() {
+                this[this.tabledtHolderFlatHistory.DataColumn1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDataColumn2Null() {
+                return this.IsNull(this.tabledtHolderFlatHistory.DataColumn2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDataColumn2Null() {
+                this[this.tabledtHolderFlatHistory.DataColumn2Column] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -19968,6 +21277,40 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtClusterRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class dtHolderFlatHistoryRowChangeEvent : global::System.EventArgs {
+            
+            private dtHolderFlatHistoryRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtHolderFlatHistoryRowChangeEvent(dtHolderFlatHistoryRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public dtHolderFlatHistoryRow Row {
                 get {
                     return this.eventRow;
                 }

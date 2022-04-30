@@ -2680,6 +2680,7 @@
     <Content Include="WebForms\Administrative\LoginHistory.aspx" />
     <Content Include="WebForms\Holding\HolderDetails.aspx" />
     <Content Include="WebForms\Holding\HolderList.aspx" />
+    <Content Include="WebForms\Holding\OldFlatOwnerReport.aspx" />
     <Content Include="WebForms\Plots\OldPlotOwnerReport.aspx" />
     <Content Include="WebForms\Plots\PlotList.aspx" />
     <Content Include="WebForms\Plots\PlotOwnerDetails.aspx" />
@@ -5100,6 +5101,13 @@
     <Compile Include="WebForms\Holding\HolderList.aspx.designer.cs">
       <DependentUpon>HolderList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\Holding\OldFlatOwnerReport.aspx.cs">
+      <DependentUpon>OldFlatOwnerReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Holding\OldFlatOwnerReport.aspx.designer.cs">
+      <DependentUpon>OldFlatOwnerReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Plots\OldPlotOwnerReport.aspx.cs">
       <DependentUpon>OldPlotOwnerReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5397,6 +5405,8 @@
     <Content Include="Views\TaxReports\rptNonRebateIndex.cshtml" />
     <Content Include="Views\PlotOwner\OldPlotOwnerList.cshtml" />
     <Content Include="Views\PlotOwner\rptOldPlotOwnerList.cshtml" />
+    <Content Include="Views\Holding\OldFlatOwnerList.cshtml" />
+    <Content Include="Views\Holding\rptOldFlatOwnerList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
