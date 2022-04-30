@@ -5332,6 +5332,7 @@
     <Content Include="Views\Rank\Details.cshtml" />
     <Content Include="Views\Rank\Edit.cshtml" />
     <Content Include="Views\Rank\Index.cshtml" />
+    <Content Include="Views\Account\ChangeUserName.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

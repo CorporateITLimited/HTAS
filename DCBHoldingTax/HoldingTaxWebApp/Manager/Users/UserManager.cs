@@ -75,6 +75,26 @@ namespace HoldingTaxWebApp.Manager.Users
                 return CommonConstantHelper.Failed;
         }
 
+
+        public clsUser checkDuplicateUserName(string name)
+        {
+            return _userGateway.checkDuplicateUserName(name);
+        }
+
+        public string changeUserName(string name)
+        {
+            int result = _userGateway.changeUserName(name);
+
+            if (result == 202)
+                return CommonConstantHelper.Success;
+            else if (result == 409)
+                return CommonConstantHelper.Conflict;
+            else if (result == 500)
+                return CommonConstantHelper.Error;
+            else
+                return CommonConstantHelper.Failed;
+        }
+
         #region user-permission
 
         public List<clsUser> GetAllUserListForPermissionInsert()
