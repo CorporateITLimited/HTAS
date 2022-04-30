@@ -256,6 +256,19 @@ namespace HoldingTaxWebApp.ViewModels
         [Display(Name = "ফ্ল্যাট হস্তান্তরের তারিখ ")]
         public string StrTransferRefDate { get; set; }
 
+
+
+        [Display(Name = "র‍্যাংক")]
+        public int? RankId { get; set; }
+        [Display(Name = "র‍্যাংক")]
+        public string RankName { get; set; }
+        [Display(Name = "প্লট/ফ্ল্যাট/বাড়ী মালিকের নাম")]
+        public string HolderNamecon { get; set; }
+
+
+
+
+
         // no need to convert in bangla
         public List<HolderFlat> HolderFlatList { get; set; }
         public List<HolderFlat> HolderFlatListForEdit { get; set; }

@@ -1,0 +1,116 @@
+﻿@model HoldingTaxWebApp.Models.Holding.clsRank
+@using HoldingTaxWebApp.Helpers
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Sheets{
+    <link href="~/Content/FormDesign.css" rel="stylesheet" />
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+}
+
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <h5 class="text-dark font-weight-bold my-1 mr-5">র‍্যাংক</h5>
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item text-muted">
+                        <a href="#" class="text-muted">র‍্যাংক হালনাগাদ করুন</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+            <a onclick="return goBack();" class="btn btn-light-primary font-weight-bolder btn-sm"><i class="fas fa-arrow-left"></i>আগের পেজে যান</a>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-custom gutter-b example example-compact">
+                    <div class="card-header">
+                        <h3 class="card-title"> র‍্যাংক হালনাগাদ করুন</h3>
+                        <div class="card-toolbar">
+                            <div class="example-tools justify-content-center">
+                            </div>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("Edit", "Rank", null, FormMethod.Post, new { @class = "form-signin", @id = "kt_form_2", role = "form" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(h => h.RankId)
+
+                        <div class="card-body">
+                            <fieldset>
+
+                                <legend>র‍্যাংক তথ্য</legend>
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.RankName, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.RankName, new { htmlAttributes = new { @class = "form-control", @name = "RankName", placeholder = "Enter rank name", @id = "RankName" } })
+                                        @Html.ValidationMessageFor(model => model.RankName, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="form-group row m-2">
+                                    @Html.LabelFor(model => model.RankDetails, htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                    <div class="col-lg-4">
+                                        @Html.EditorFor(model => model.RankDetails, new { htmlAttributes = new { @class = "form-control", @name = "RankDetails", @id = "RankDetails", placeholder = "Enter Details" } })
+                                        @Html.ValidationMessageFor(model => model.RankDetails, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="card-footer">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-outline-success btn-md"><i class="fas fa-check"></i>হালনাগাদ করুন</button>
+                                <button type="button" onclick="window.location.href = '/Rank/Index'" class="btn btn-outline-dark btn-md"><i class="fas fa-arrow-left"></i>মূল তালিকায় ফিরে যান </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+
+        jQuery(document).ready(function () {
+            $("#kt_form_2").validate({
+                rules: {
+                    RankName: {
+                        required: true
+                    }
+                },
+                messages: {
+                    RankName: "ঘরটি অবশ্যই পূরণ করতে হবে",
+
+
+                },
+                invalidHandler: function (event, validator) {
+                    KTUtil.scrollTop();
+                }
+            });
+        });
+    </script>
+}

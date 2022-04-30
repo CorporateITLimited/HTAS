@@ -71,7 +71,11 @@ namespace HoldingTaxWebApp.Gateway.Plots
                         PermanentAdd = Data_Reader["PermanentAdd"].ToString(),
                         PhoneNumber = Data_Reader["PhoneNumber"].ToString(),
                         Email = Data_Reader["Email"].ToString(),
-                       
+
+                        RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (Int32?)null,
+                        RankName = Data_Reader["RankName"].ToString(),
+                        OldPlotOwnerNamecon = Data_Reader["OldPlotOwnerNamecon"].ToString(),
+
                         //TotalArea = Data_Reader["TotalArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["TotalArea"]) : (Decimal?)null,
 
                     };
@@ -159,6 +163,11 @@ namespace HoldingTaxWebApp.Gateway.Plots
                     vm.PermanentAdd = Data_Reader["PermanentAdd"].ToString();
                     vm.PhoneNumber = Data_Reader["PhoneNumber"].ToString();
                     vm.Email = Data_Reader["Email"].ToString();
+
+
+                    vm.RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (Int32?)null;
+                    vm.RankName = Data_Reader["RankName"].ToString();
+                    vm.OldPlotOwnerNamecon = Data_Reader["OldPlotOwnerNamecon"].ToString();
                   
                     //vm.TotalArea = Data_Reader["TotalArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["TotalArea"]) : (Decimal?)null;
                 };
@@ -301,10 +310,12 @@ namespace HoldingTaxWebApp.Gateway.Plots
                    
 
                     vm.PlotOwnerId = Convert.ToInt32(Data_Reader["PlotOwnerId"]);
-                  
-                 
+                    vm.PlotId = Convert.ToInt32(Data_Reader["PlotId"]);
+
+
                     vm.PlotOwnerName = Data_Reader["PlotOwnerName"].ToString();
-                    
+                    vm.PlotOwnerNamecon = Data_Reader["PlotOwnerNamecon"].ToString();
+
                 };
 
                 Data_Reader.Close();
@@ -360,7 +371,8 @@ namespace HoldingTaxWebApp.Gateway.Plots
                 Sql_Command.Parameters.Add("@PermanentAdd", SqlDbType.NVarChar).Value = model.PermanentAdd;
                 Sql_Command.Parameters.Add("@PhoneNumber", SqlDbType.NVarChar).Value = model.PhoneNumber;
                 Sql_Command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = model.Email;
-               
+                Sql_Command.Parameters.Add("@RankId", SqlDbType.Int).Value = model.RankId;
+
 
 
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = model.CreateDate;
@@ -436,6 +448,8 @@ namespace HoldingTaxWebApp.Gateway.Plots
                 Sql_Command.Parameters.Add("@PermanentAdd", SqlDbType.NVarChar).Value = model.PermanentAdd;
                 Sql_Command.Parameters.Add("@PhoneNumber", SqlDbType.NVarChar).Value = model.PhoneNumber;
                 Sql_Command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = model.Email;
+                Sql_Command.Parameters.Add("@RankId", SqlDbType.Int).Value = model.RankId;
+
 
 
 

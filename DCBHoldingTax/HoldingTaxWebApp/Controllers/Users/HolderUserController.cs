@@ -123,7 +123,7 @@ namespace HoldingTaxWebApp.Controllers.Users
             //{
             //    if (CanAccess && CanReadWrite)
             //    {
-            ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderName");
+            ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderNamecon");
             ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text");
             return View();
             //    }
@@ -153,7 +153,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                 if (user == null)
                     return HttpNotFound();
 
-                ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderName", user.HolderId);
+                ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderNamecon", user.HolderId);
                 ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text");
 
                 if (string.IsNullOrWhiteSpace(user.UserName))
@@ -274,7 +274,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                 if (holderUser == null)
                     return HttpNotFound();
 
-                ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForUpdate(), "HolderId", "HolderName", holderUser.HolderId);
+                ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForUpdate(), "HolderId", "HolderNamecon", holderUser.HolderId);
                 ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", holderUser.IsActive);
 
                 return View(holderUser);
@@ -310,7 +310,7 @@ namespace HoldingTaxWebApp.Controllers.Users
                 if (user == null)
                     return HttpNotFound();
 
-                ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderName", user.HolderId);
+                ViewBag.HolderId = new SelectList(_holderUserManager.GetAllHolderListForInsert(), "HolderId", "HolderNamecon", user.HolderId);
                 ViewBag.IsActive = new SelectList(StaticDataHelper.GetActiveStatusForDropdown(), "Value", "Text", user.IsActive);
 
                 if (string.IsNullOrWhiteSpace(user.UserName))

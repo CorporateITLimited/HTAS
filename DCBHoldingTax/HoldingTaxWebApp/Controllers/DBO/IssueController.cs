@@ -66,6 +66,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
                             IsSendToClusUser = item.IsSendToClusUser,
                             AreaName = item.AreaName,
                             PlotNo = item.PlotNo,
+                            HolderNamecon = item.HolderNamecon,
 
                         };
                         IssueListVM.Add(IssueVM);
@@ -85,6 +86,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
                                 IssueId = item.IssueId,
                                 HolderId = item.HolderId,
                                 HolderName = item.HolderName,
+                                HolderNamecon = item.HolderNamecon,
                                 Remarks = item.Remarks,
                                 SolvedDate = item.SolvedDate,
                                 StatusName = item.StatusName,
@@ -121,6 +123,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
                                 IssueId = item.IssueId,
                                 HolderId = item.HolderId,
                                 HolderName = item.HolderName,
+                                HolderNamecon = item.HolderNamecon,
                                 Remarks = item.Remarks,
                                 SolvedDate = item.SolvedDate,
                                 StatusName = item.StatusName,
@@ -221,6 +224,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
                     IsSendToClusUser = IssueList.IsSendToClusUser,
                     AreaName = IssueList.AreaName,
                     PlotNo = IssueList.PlotNo,
+                    HolderNamecon = IssueList.HolderNamecon
 
                 };
 
@@ -278,6 +282,7 @@ namespace HoldingTaxWebApp.Controllers.DBO
             issueVM.LastUpdatedBy = issue.LastUpdatedBy;
             issueVM.UpdatedByUserName = issue.UpdatedByUserName;
             issueVM.HolderName = issue.HolderName;
+            issueVM.HolderNamecon = issue.HolderNamecon;
             issueVM.StatusName = issue.StatusName;
             issueVM.IsSendToClusUser = issue.IsSendToClusUser;
             issueVM.IssueDetails = issueDetailsList;

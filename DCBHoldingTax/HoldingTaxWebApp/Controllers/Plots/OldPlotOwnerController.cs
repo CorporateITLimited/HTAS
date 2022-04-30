@@ -1,5 +1,6 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager.DBO;
+using HoldingTaxWebApp.Manager.Holding;
 using HoldingTaxWebApp.Manager.Plots;
 using HoldingTaxWebApp.Models.Plots;
 using HoldingTaxWebApp.ViewModels.Plots;
@@ -17,6 +18,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
         private readonly PlotOwnerManager _PlotOwnerManager;
         private readonly PlotManager _PlotManager;
         private readonly OfficialStatusManager _OfficialStatusManager;
+        private readonly RankManager _RankManager;
 
         public OldPlotOwnerController()
         {
@@ -24,6 +26,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
             _PlotOwnerManager = new PlotOwnerManager();
             _PlotManager = new PlotManager();
             _OfficialStatusManager = new OfficialStatusManager();
+            _RankManager = new RankManager();
         }
 
 
@@ -67,7 +70,10 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         PresentAdd = item.PresentAdd,
                         
                         //TotalArea = item.TotalArea,
-                        UpdatedByUserName = item.UpdatedByUserName
+                        UpdatedByUserName = item.UpdatedByUserName,
+                        OldPlotOwnerNamecon = item.OldPlotOwnerNamecon,
+                        RankId = item.RankId,
+                        RankName = item.RankName
 
                     };
                     OldPlotOwnerListVM.Add(OldPlotOwnerVM);
@@ -133,6 +139,13 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     //TotalArea = item.TotalArea,
                     UpdatedByUserName = OldPlotOwnerdetails.UpdatedByUserName,
                     OldPlotOwnerId = OldPlotOwnerdetails.OldPlotOwnerId,
+
+                    RankName = OldPlotOwnerdetails.RankName,
+                    OldPlotOwnerNamecon = OldPlotOwnerdetails.OldPlotOwnerNamecon,
+                    RankId = OldPlotOwnerdetails.RankId,
+
+
+
                     OldOthetPlotOwner = OldOthetPlotOwnerVM
 
                 };
@@ -154,6 +167,8 @@ namespace HoldingTaxWebApp.Controllers.Plots
         {
             ViewBag.PlotId = new SelectList(_OldPlotOwnerManager.GetPlot(), "PlotId", "PlotIdNumber");
             ViewBag.OfficialStatusId = new SelectList(_OfficialStatusManager.GetAllOfficialStatus(), "OfficialStatusId", "OffStatusName");
+            ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName",1);
+
             return View();
         }
 
@@ -250,6 +265,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         CreatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
                         LastUpdated = DateTime.Now,
                         LastUpdatedBy = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]), 
+                        RankId = POVM.RankId,
                     };
 
 
@@ -263,7 +279,9 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     if (returnString == CommonConstantHelper.Success)
 
                         {
-                            foreach (var item in POVM.OldOthetPlotOwner)
+                        status = "success";
+
+                        foreach (var item in POVM.OldOthetPlotOwner)
                             {
                                 OthetPlotOwner Details = new OthetPlotOwner()
                                 {

@@ -17,11 +17,13 @@ namespace HoldingTaxWebApp.Controllers.Tax
         private readonly bool CanReadWrite = false;
         private readonly FinancialYearManager _FinancialYearManager;
         private readonly DOHSAreaManager _dOHSAreaManager;
+        private readonly PlotManager _plotManager;
 
         public TaxReportsController()
         {
             _FinancialYearManager = new FinancialYearManager();
             _dOHSAreaManager = new DOHSAreaManager();
+            _plotManager = new PlotManager();
 
             //if (System.Web.HttpContext.Current.Session["ListofPermissions"] != null)
             //{
@@ -70,6 +72,83 @@ namespace HoldingTaxWebApp.Controllers.Tax
             //    return RedirectToAction("LogIn", "Account");
             //}
         }
+
+        public ActionResult RebateIndex()
+        {
+
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //       && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //       && (Session[CommonConstantHelper.UserId] != null))
+            //{
+            //    if (CanAccess)
+            //    {
+            clsFinancialYear year = new clsFinancialYear();
+            ViewBag.FinancialYearId = new SelectList(_FinancialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
+            ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+
+            return View(year);
+            //    }
+            //    else
+            //    {
+            //        TempData["PM"] = "Permission Denied.";
+            //        return RedirectToAction("LogIn", "Account");
+            //    }
+            //}
+            //else
+            //{
+            //    TempData["EM"] = "Session Expired.";
+            //    return RedirectToAction("LogIn", "Account");
+            //}
+        }
+
+
+        public ActionResult rptRebateIndex(int? FinancialYearId, int? AreaId, int? PlotId)
+        {
+            Session["rebate_FYID"] = FinancialYearId == 0 ? null : FinancialYearId;
+            Session["rebate_AreaID"] = AreaId == 0 ? null : AreaId;
+            Session["rebate_PlotID"] = PlotId == 0 ? null : PlotId;
+
+            return View();
+        }
+
+        public ActionResult NonRebateIndex()
+        {
+
+            //if ((Session[CommonConstantHelper.LogInCredentialId] != null)
+            //       && (Convert.ToInt32(Session[CommonConstantHelper.UserTypeId]) == 1)
+            //       && (Session[CommonConstantHelper.UserId] != null))
+            //{
+            //    if (CanAccess)
+            //    {
+            clsFinancialYear year = new clsFinancialYear();
+            ViewBag.FinancialYearId = new SelectList(_FinancialYearManager.GetAllFinancialYear(), "FinancialYearId", "FinancialYear");
+            ViewBag.AreaId = new SelectList(_dOHSAreaManager.GetAllDOHSArea(), "AreaId", "AreaName");
+            ViewBag.PlotId = new SelectList(_plotManager.GetAllPlot(), "PlotId", "PlotNo");
+
+            return View(year);
+            //    }
+            //    else
+            //    {
+            //        TempData["PM"] = "Permission Denied.";
+            //        return RedirectToAction("LogIn", "Account");
+            //    }
+            //}
+            //else
+            //{
+            //    TempData["EM"] = "Session Expired.";
+            //    return RedirectToAction("LogIn", "Account");
+            //}
+        }
+        public ActionResult rptNonRebateIndex(int? FinancialYearId, int? AreaId, int? PlotId)
+        {
+            Session["rebate_FYID"] = FinancialYearId == 0 ? null : FinancialYearId;
+            Session["rebate_AreaID"] = AreaId == 0 ? null : AreaId;
+            Session["rebate_PlotID"] = PlotId == 0 ? null : PlotId;
+
+            return View();
+        }
+
 
         // GET: TaxReports/Details/5
         public ActionResult Details(int id)

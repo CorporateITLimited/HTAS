@@ -55,6 +55,20 @@ namespace HoldingTaxWebApp.ViewModels.Plots
 
 
 
+        [Display(Name = "র‍্যাংক")]
+        public int? RankId { get; set; }
+        [Display(Name = "র‍্যাংক")]
+        public string RankName { get; set; }
+        [Display(Name = "প্লট মালিকের নাম")]
+        public string PlotOwnerNamecon { get; set; }
+
+        [Display(Name = "প্লট মালিকের নাম")]
+        public string OldPlotOwnerNamecon { get; set; }
+
+
+
+
+
         public List<OldOthetPlotOwner> OldOthetPlotOwner { get; set; }
 
 

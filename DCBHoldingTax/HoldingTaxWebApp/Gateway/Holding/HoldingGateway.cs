@@ -49,6 +49,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     {
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]),
                         AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
                         AreaName = Convert.ToString(Data_Reader["AreaName"]),
                         PlotId = Convert.ToInt32(Data_Reader["PlotId"]),
@@ -104,7 +105,9 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         IsFlatApprove = Data_Reader["IsFlatApprove"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsFlatApprove"]) : (bool?)null,
                         FlatDocument1 = Convert.ToString(Data_Reader["FlatDocument1"]),
                         FlatDocument2 = Convert.ToString(Data_Reader["FlatDocument2"]),
-                        FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"])
+                        FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"]),
+                        RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null,
+                        RankName = Data_Reader["RankName"].ToString(),
                     };
 
                     vm.Add(model);
@@ -172,6 +175,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     {
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]),
                         AreaId = Convert.ToInt32(Data_Reader["AreaId"]),
                         AreaName = Convert.ToString(Data_Reader["AreaName"]),
                         PlotId = Convert.ToInt32(Data_Reader["PlotId"]),
@@ -227,7 +231,9 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         IsFlatApprove = Data_Reader["IsFlatApprove"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsFlatApprove"]) : (bool?)null,
                         FlatDocument1 = Convert.ToString(Data_Reader["FlatDocument1"]),
                         FlatDocument2 = Convert.ToString(Data_Reader["FlatDocument2"]),
-                        FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"])
+                        FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"]),
+                        RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null,
+                        RankName = Data_Reader["RankName"].ToString()
                     };
 
                     vm.Add(model);
@@ -293,6 +299,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 {
                     vm.HolderId = Convert.ToInt32(Data_Reader["HolderId"]);
                     vm.HolderName = Convert.ToString(Data_Reader["HolderName"]);
+                    vm.HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]);
                     vm.AreaId = Convert.ToInt32(Data_Reader["AreaId"]);
                     vm.AreaName = Convert.ToString(Data_Reader["AreaName"]);
                     vm.PlotId = Convert.ToInt32(Data_Reader["PlotId"]);
@@ -351,6 +358,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     vm.FlatDocument1 = Convert.ToString(Data_Reader["FlatDocument1"]);
                     vm.FlatDocument2 = Convert.ToString(Data_Reader["FlatDocument2"]);
                     vm.FlatDocument3 = Convert.ToString(Data_Reader["FlatDocument3"]);
+                    vm.RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null;
+                    vm.RankName = Data_Reader["RankName"].ToString();
                 };
 
                 vm.StringCreateDate = $"{vm.CreateDate:dd/MM/yyyy HH:mm:ss tt}";
@@ -427,7 +436,8 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     Holder model = new Holder
                     {
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
-                        HolderName = Convert.ToString(Data_Reader["HolderName"])
+                        HolderName = Convert.ToString(Data_Reader["HolderName"]),
+                        HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]),
                     };
                     vm.Add(model);
                 };
@@ -523,6 +533,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@FlatDocument1", SqlDbType.NVarChar).Value = model.FlatDocument1;
                 Sql_Command.Parameters.Add("@FlatDocument2", SqlDbType.NVarChar).Value = model.FlatDocument2;
                 Sql_Command.Parameters.Add("@FlatDocument3", SqlDbType.NVarChar).Value = model.FlatDocument3;
+                Sql_Command.Parameters.Add("@RankId", SqlDbType.Int).Value = model.RankId;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -775,6 +786,7 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@FlatDocument1", SqlDbType.NVarChar).Value = model.FlatDocument1;
                 Sql_Command.Parameters.Add("@FlatDocument2", SqlDbType.NVarChar).Value = model.FlatDocument2;
                 Sql_Command.Parameters.Add("@FlatDocument3", SqlDbType.NVarChar).Value = model.FlatDocument3;
+                Sql_Command.Parameters.Add("@RankId", SqlDbType.Int).Value = model.RankId;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -873,6 +885,12 @@ namespace HoldingTaxWebApp.Gateway.Holding
                 Sql_Command.Parameters.Add("@RecordCorrectionDate", SqlDbType.DateTime).Value = model.RecordCorrectionDate;
 
                 Sql_Command.Parameters.Add("@HolderNo", SqlDbType.NVarChar).Value = model.HolderNo;
+
+                Sql_Command.Parameters.Add("@FlatDocument1", SqlDbType.NVarChar).Value = null;
+                Sql_Command.Parameters.Add("@FlatDocument2", SqlDbType.NVarChar).Value = null;
+                Sql_Command.Parameters.Add("@FlatDocument3", SqlDbType.NVarChar).Value = null;
+
+                Sql_Command.Parameters.Add("@RankId", SqlDbType.Int).Value = model.RankId;
 
                 SqlParameter result = new SqlParameter
                 {
@@ -2011,6 +2029,72 @@ namespace HoldingTaxWebApp.Gateway.Holding
                     model.StrMonthlyRent = BanglaConvertionHelper.DecimalValueEnglish2Bangla(model.MonthlyRent);
 
                     vm.Add(model);
+                }
+
+                Data_Reader.Close();
+                Sql_Connection.Close();
+
+                return vm;
+            }
+            catch (SqlException exception)
+            {
+                for (int i = 0; i < exception.Errors.Count; i++)
+                {
+                    ErrorMessages.Append("Index #" + i + "\n" +
+                        "Message: " + exception.Errors[i].Message + "\n" +
+                        "Error Number: " + exception.Errors[i].Number + "\n" +
+                        "LineNumber: " + exception.Errors[i].LineNumber + "\n" +
+                        "Source: " + exception.Errors[i].Source + "\n" +
+                        "Procedure: " + exception.Errors[i].Procedure + "\n");
+                }
+                throw new Exception(ErrorMessages.ToString());
+            }
+            finally
+            {
+                if (Sql_Connection.State == ConnectionState.Open)
+                    Sql_Connection.Close();
+            }
+
+        }
+
+        public HolderFlat GetAllFlatByHolderFlatId(int HolderFlatId)
+        {
+            try
+            {
+                Sql_Query = "[dbo].[spGetDataByHolderFlatId]";
+                Sql_Command = new SqlCommand
+                {
+                    CommandText = Sql_Query,
+                    Connection = Sql_Connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                Sql_Command.Parameters.Clear();
+
+                Sql_Command.Parameters.Add("@HolderFlatId", SqlDbType.Int).Value = HolderFlatId;
+
+                Sql_Connection.Open();
+                Data_Reader = Sql_Command.ExecuteReader();
+
+                HolderFlat vm = new HolderFlat();
+
+                while (Data_Reader.Read())
+                {
+                    vm.HolderFlatId = Convert.ToInt32(Data_Reader["HolderFlatId"]);
+                   // vm.FlorNo = Data_Reader["FlorNo"] != DBNull.Value ? Convert.ToInt32(Data_Reader["FlorNo"]) : (int?)null;
+                   // vm.FlatNo = Convert.ToString(Data_Reader["FlatNo"]);
+                   // vm.FlatArea = Data_Reader["FlatArea"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["FlatArea"]) : (decimal?)null;
+                   // vm.OwnOrRent = Data_Reader["OwnOrRent"] != DBNull.Value ? Convert.ToInt32(Data_Reader["OwnOrRent"]) : (int?)null;
+                   //// vm.OwnOrRentType = Convert.ToString(Data_Reader["OwnOrRentType"]);
+                   // vm.IsSelfOwned = Data_Reader["IsSelfOwned"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsSelfOwned"]) : (bool?)null;
+                   // vm.MonthlyRent = Data_Reader["MonthlyRent"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["MonthlyRent"]) : (decimal?)null;
+                   // vm.OwnerName = Convert.ToString(Data_Reader["OwnerName"]);
+                   // vm.SelfOwn = Data_Reader["SelfOwn"] != DBNull.Value ? Convert.ToInt32(Data_Reader["SelfOwn"]) : (int?)null;
+                   //// vm.SelfOwnType = Convert.ToString(Data_Reader["SelfOwnType"]);
+                   // vm.FloorTypeName = Data_Reader["FloorTypeName"].ToString();
+                   // vm.IsCheckedByHolder = Data_Reader["IsCheckedByHolder"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsCheckedByHolder"]) : (bool?)null;
+                    vm.HolderId = Data_Reader["HolderId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["HolderId"]) : (int?)null;
+                    vm.MainHolderId = Data_Reader["MainHolderId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["MainHolderId"]) : (int?)null;
                 }
 
                 Data_Reader.Close();

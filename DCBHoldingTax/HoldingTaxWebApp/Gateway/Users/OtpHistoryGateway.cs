@@ -9,7 +9,7 @@ using System.Web;
 
 namespace HoldingTaxWebApp.Gateway.Users
 {
-    public class OtpHistoryGateway:DefaultGateway
+    public class OtpHistoryGateway : DefaultGateway
     {
         //get Otp details by Otp
         public OtpHistory GetOtpHistoryById(int otp)
@@ -106,7 +106,7 @@ namespace HoldingTaxWebApp.Gateway.Users
                 Sql_Command.Parameters.Add("@responseString", SqlDbType.NVarChar).Value = OtpHistory.responseString;
                 Sql_Command.Parameters.Add("@CreateDate", SqlDbType.DateTime).Value = OtpHistory.CreateDate;
                 Sql_Command.Parameters.Add("@Otp", SqlDbType.Int).Value = OtpHistory.Otp;
-              
+
 
                 SqlParameter result = new SqlParameter
                 {

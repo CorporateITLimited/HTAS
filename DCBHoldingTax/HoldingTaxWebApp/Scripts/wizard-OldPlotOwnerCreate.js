@@ -76,7 +76,7 @@ var KTWizard4 = function () {
                             OldOthetOwneeName: OthetOwneeName,
                             Address: Address,
                             Remarks: Remarks
-                        }
+                        };
                         OthetPlotOwnerlist.push(OthetPlotOwner);
                     });
 
@@ -106,6 +106,7 @@ var KTWizard4 = function () {
                             PermanentAdd: $('#PermanentAdd').val().trim(),
                             PhoneNumber: $('#PhoneNumber').val().trim(),
                             Email: $('#Email').val().trim(),
+                            RankId: parseInt($('#RankId option:selected').val()) || 0,
                             OldOthetPlotOwner: OthetPlotOwnerlist
                         };
 
@@ -128,7 +129,7 @@ var KTWizard4 = function () {
                                     });
                                     setTimeout(function () { window.location.href = "/PlotOwner/Index"; }, 1000);
                                 }
-                                else if (d.status === "error") {
+                                else if (d.status === "error_details") {
                                     alert('Error');
                                 } else if (d.status === "no_user") {
                                     alert('Session gone');
@@ -216,13 +217,7 @@ var KTWizard4 = function () {
                             }
                         }
                     },
-                    OldPlotOwnerName: {
-                        validators: {
-                            notEmpty: {
-                                message: 'ঘরটি অবশ্যই পূরণ করতে হবে'
-                            }
-                        }
-                    },
+                 
                  
                  
                  

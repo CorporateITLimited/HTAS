@@ -2685,6 +2685,8 @@
     <Content Include="WebForms\Plots\PlotOwnerDetails.aspx" />
     <Content Include="WebForms\Plots\PlotOwnerList.aspx" />
     <Content Include="WebForms\Tax\GetHoldingTax.aspx" />
+    <Content Include="WebForms\Tax\HolderWhoDidNotGetRebate.aspx" />
+    <Content Include="WebForms\Tax\HolderWhoGetRebate.aspx" />
     <Content Include="WebForms\Tax\leterThree.aspx" />
     <Content Include="WebForms\Tax\letterOne.aspx" />
     <Content Include="WebForms\Tax\NonTaxPayingList.aspx" />
@@ -2692,6 +2694,17 @@
     <Content Include="WebForms\Tax\Recoverabletax.aspx" />
     <Content Include="WebForms\Tax\TaxPlayerList.aspx" />
     <Content Include="WebForms\Tax\UnPaidTax.aspx" />
+    <Content Include="AppDataSet\dsForRebate.xsc">
+      <DependentUpon>dsForRebate.xsd</DependentUpon>
+    </Content>
+    <None Include="AppDataSet\dsForRebate.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsForRebate.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="AppDataSet\dsForRebate.xss">
+      <DependentUpon>dsForRebate.xsd</DependentUpon>
+    </Content>
     <None Include="AppDataSet\dsTax.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -4716,6 +4729,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppDataSet\dsForRebate.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsForRebate.xsd</DependentUpon>
+    </Compile>
     <Compile Include="AppReports\Administrative\rptCluster.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4786,6 +4804,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>subOtherOwner.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppReports\Tax\crHolderWhoDidNotGetRebate.cs">
+      <DependentUpon>crHolderWhoDidNotGetRebate.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="AppReports\Tax\crHolderWhoGetRebate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crHolderWhoGetRebate.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="AppReports\Tax\rptletterOne.cs">
@@ -4873,6 +4903,7 @@
     <Compile Include="Controllers\Holding\HolderFlatHistoryController.cs" />
     <Compile Include="Controllers\Holding\HoldingController.cs" />
     <Compile Include="Controllers\Holding\NoticeController.cs" />
+    <Compile Include="Controllers\Holding\RankController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Plots\OldPlotOwnerController.cs" />
     <Compile Include="Controllers\Plots\PlotController.cs" />
@@ -4915,6 +4946,7 @@
     <Compile Include="Gateway\Holding\HolderFlatHistoryGateway.cs" />
     <Compile Include="Gateway\Holding\HoldingGateway.cs" />
     <Compile Include="Gateway\Holding\NoticeGateway.cs" />
+    <Compile Include="Gateway\Holding\RankGateway.cs" />
     <Compile Include="Gateway\Plots\OldPlotOwnerGateway.cs" />
     <Compile Include="Gateway\Plots\PlotGateway.cs" />
     <Compile Include="Gateway\Plots\PlotOwnerGateway.cs" />
@@ -4958,6 +4990,7 @@
     <Compile Include="Manager\Holding\HolderFlatHistoryManager.cs" />
     <Compile Include="Manager\Holding\HoldingManager.cs" />
     <Compile Include="Manager\Holding\NoticeManager.cs" />
+    <Compile Include="Manager\Holding\RankManager.cs" />
     <Compile Include="Manager\Plots\OldPlotOwnerManager.cs" />
     <Compile Include="Manager\Plots\PlotManager.cs" />
     <Compile Include="Manager\Plots\PlotOwnerManager.cs" />
@@ -4987,6 +5020,7 @@
     <Compile Include="Models\Dbo\BuildingType.cs" />
     <Compile Include="Models\Dbo\DOHSArea.cs" />
     <Compile Include="Models\Holding\ChartPaidAm.cs" />
+    <Compile Include="Models\Holding\clsRank.cs" />
     <Compile Include="Models\Holding\Holder.cs" />
     <Compile Include="Models\Holding\HolderFlat.cs" />
     <Compile Include="Models\Holding\HolderFlatHistory.cs" />
@@ -5100,6 +5134,20 @@
     </Compile>
     <Compile Include="WebForms\Tax\GetHoldingTax.aspx.designer.cs">
       <DependentUpon>GetHoldingTax.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Tax\HolderWhoDidNotGetRebate.aspx.cs">
+      <DependentUpon>HolderWhoDidNotGetRebate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Tax\HolderWhoDidNotGetRebate.aspx.designer.cs">
+      <DependentUpon>HolderWhoDidNotGetRebate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Tax\HolderWhoGetRebate.aspx.cs">
+      <DependentUpon>HolderWhoGetRebate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Tax\HolderWhoGetRebate.aspx.designer.cs">
+      <DependentUpon>HolderWhoGetRebate.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Tax\leterThree.aspx.cs">
       <DependentUpon>leterThree.aspx</DependentUpon>
@@ -5338,9 +5386,18 @@
     <Content Include="Views\Home\rptCluster.cshtml" />
     <Content Include="Views\Account\ForgetPassword.cshtml" />
     <Content Include="Views\PlotOwner\Edit.cshtml" />
+    <Content Include="Views\Rank\Create.cshtml" />
+    <Content Include="Views\Rank\Details.cshtml" />
+    <Content Include="Views\Rank\Edit.cshtml" />
+    <Content Include="Views\Rank\Index.cshtml" />
     <Content Include="Views\Account\ChangeUserName.cshtml" />
     <Content Include="Views\PlotOwner\OldPlotOwnerList.cshtml" />
     <Content Include="Views\PlotOwner\rptOldPlotOwnerList.cshtml" />
+    <Content Include="Views\TaxReports\RebateIndex.cshtml" />
+    <Content Include="Views\TaxReports\NonRebateIndex.cshtml" />
+    <Content Include="Views\TaxReports\rptRebateIndex.cshtml" />
+    <Content Include="Views\TaxReports\rptNonRebateIndex.cshtml" />
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -5411,6 +5468,14 @@
     <EmbeddedResource Include="AppReports\Plots\subOtherOwner.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>subOtherOwner.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Tax\crHolderWhoDidNotGetRebate.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crHolderWhoDidNotGetRebate.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Tax\crHolderWhoGetRebate.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crHolderWhoGetRebate.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Tax\rptletterOne.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

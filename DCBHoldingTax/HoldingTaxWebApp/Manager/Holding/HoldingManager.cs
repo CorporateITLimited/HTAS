@@ -179,6 +179,12 @@ namespace HoldingTaxWebApp.Manager.Holding
         {
             return _holdingGateway.GetAllFlatByHolderId(HolderId);
         }
+
+        public HolderFlat GetAllFlatByHolderFlatId(int HolderFlatId)
+        {
+            return _holdingGateway.GetAllFlatByHolderFlatId(HolderFlatId);
+        }
+
         public decimal GetPerSqrFeetPrice(int areaId, int buildingTypeId)
         {
             return _holdingGateway.GetPerSqrFeetPrice(areaId, buildingTypeId);

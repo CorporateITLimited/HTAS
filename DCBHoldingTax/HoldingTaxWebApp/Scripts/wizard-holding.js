@@ -194,7 +194,9 @@ var KTWizard4 = function () {
                             NamjariLetterNo: $('#NamjariLetterNo').val().trim(),
                             StringNamjariDate: $('#StringNamjariDate').val().trim(),
                             StringRecordCorrectionDate: $('#StringRecordCorrectionDate').val().trim(),
-                            IsHolderAnOwner: $("#IsHolderAnOwner").val()
+                            IsHolderAnOwner: $("#IsHolderAnOwner").val(),
+                            RankId: parseInt($('#RankId option:selected').val()) || 0
+
                         };
 
 

@@ -159,12 +159,12 @@
                                                         <select id="PlotId" name="PlotId" width="100%" class="tender_supplier form-control"></select>
                                                     </div>
                                                     @*@Html.LabelFor(model => model.PlotId, "প্লট/বাড়ী/ফ্ল্যাট নম্বর ", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                        <div class="col-lg-4">
-                                                            @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
-                                                        {
-                                                            @class = "form-control",
-                                                        })
-                                                        </div>*@
+            <div class="col-lg-4">
+                @Html.DropDownListFor(model => model.PlotId, null, " নির্বাচন করুন ", new
+            {
+                @class = "form-control",
+            })
+            </div>*@
 
                                                     <label class="col-lg-2 col-form-label text-lg-right" for="road_name">রোডের নাম</label>
                                                     <div class="col-lg-4">
@@ -203,11 +203,37 @@
                                                     নতুন মালিকের ব্যাক্তিগত তথ্য &nbsp;
                                                     <label class="show_plot"></label>
                                                 </div>
+
+                                                <div class="form-group row m-2">
+
+                                                    @Html.LabelFor(model => model.RankId, "র‍্যাংক", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.DropDownListFor(model => model.RankId, null, " নির্বাচন করুন ", new
+                                                   {
+                                                       @class = "form-control"
+                                                       //@name = "RankId",
+                                                       //@id= "RankId"
+                                                   })
+                                                    </div>
+
+                                                </div>
+
+
+
                                                 <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.HolderName, "ফ্ল্যাট/বাড়ী মালিকের নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.HolderName, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
+
+                                                    @Html.LabelFor(model => model.NID, "এনআইডি নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.NID, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row m-2">
+
 
 
                                                     @Html.LabelFor(model => model.MaritialStatus, "বৈবাহিক অবস্থা", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
@@ -216,13 +242,6 @@
                                                    {
                                                        @class = "form-control",
                                                    })
-                                                    </div>
-
-                                                </div>
-                                                <div class="form-group row m-2">
-                                                    @Html.LabelFor(model => model.NID, "এনআইডি নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.NID, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
 
@@ -257,19 +276,19 @@
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.Father, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
-
-                                                    @Html.LabelFor(model => model.Contact2, "মোবাইল নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                    <div class="col-lg-4">
-                                                        @Html.EditorFor(model => model.Contact2, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row m-2">
                                                     @Html.LabelFor(model => model.Mother, "মাতার নাম", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.Mother, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                                     </div>
 
+                                                </div>
+
+                                                <div class="form-group row m-2">
+
+                                                    @Html.LabelFor(model => model.Contact2, "মোবাইল নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
+                                                    <div class="col-lg-4">
+                                                        @Html.EditorFor(model => model.Contact2, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                                    </div>
                                                     @Html.LabelFor(model => model.Contact1, "ল্যান্ডলাইন নম্বর", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @Html.EditorFor(model => model.Contact1, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
@@ -305,11 +324,11 @@
                                                     @Html.LabelFor(model => model.ImageLocation, "পাসপোর্ট সাইজের ছবি", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
                                                     <div class="col-lg-4">
                                                         @*<input type="file" name="image_file" id="image_file" class="form-control" />
-                                                            <span class="form-text text-info">
-                                                                সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
-                                                            </span>
-                                                            <br />
-                                                            <img id="imgpreview" src="#" style="border:1px solid black;" />*@
+                <span class="form-text text-info">
+                    সর্বোচ্চ ফাইলের আকার ২ এমবি এবং সর্বোচ্চ ফাইল ১টি আপলোড করতে পারবেন
+                </span>
+                <br />
+                <img id="imgpreview" src="#" style="border:1px solid black;" />*@
                                                         <div class="image-input image-input-outline" id="kt_image_1">
                                                             <div class="image-input-wrapper" style="background-image: url(/Theme/dist/assets/media/users/default.jpg)"></div>
                                                             <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="ছবি পরিবর্তন করুন">
@@ -326,13 +345,19 @@
                                                         </span>
                                                     </div>
 
+
+
+
+
+
+
                                                     @*@Html.LabelFor(model => model.IsHolderAnOwner, "গৃহকরদাতা নিজেই কি প্লটের মালিক?", htmlAttributes: new { @class = "col-lg-2 col-form-label text-lg-right" })
-                                                         <div class="col-lg-4">
-                                                             @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
-                                                        {
-                                                            @class = "form-control",
-                                                        })
-                                                         </div>*@
+             <div class="col-lg-4">
+                 @Html.DropDownListFor(model => model.IsHolderAnOwner, null, " নির্বাচন করুন ", new
+            {
+                @class = "form-control",
+            })
+             </div>*@
                                                 </div>
 
                                             </div>
@@ -603,10 +628,10 @@
                 allowClear: true
             });
 
-            //$('#Gender').select2({
-            //    placeholder: "--নির্বাচন করুন--",
-            //    allowClear: true
-            //});
+            $('#RankId').select2({
+                placeholder: "--নির্বাচন করুন--",
+                allowClear: true
+            });
             //$('#MaritialStatus').select2({
             //    placeholder: "--নির্বাচন করুন--",
             //    allowClear: true
@@ -780,7 +805,7 @@
                             $("#HolderId").empty();
                             $("#HolderId").append("<option value=''>--নির্বাচন করুন--</option>");
                             $.each(data, function (index, row) {
-                                $("#HolderId").append("<option value='" + row.HolderId + "'>" + row.HolderName + "</option>");
+                                $("#HolderId").append("<option value='" + row.HolderId + "'>" + row.HolderNamecon + "</option>");
                             });
                         }
                     },

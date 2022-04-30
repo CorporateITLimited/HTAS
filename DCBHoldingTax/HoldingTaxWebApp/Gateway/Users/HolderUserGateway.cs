@@ -75,7 +75,11 @@ namespace HoldingTaxWebApp.Gateway.Users
                         UpdatedByUserName = Data_Reader["UpdatedByUserName"].ToString(),
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
                         HolderName = Data_Reader["HolderName"].ToString(),
-                        HolderUserId = Convert.ToInt32(Data_Reader["HolderUserId"])
+                        HolderUserId = Convert.ToInt32(Data_Reader["HolderUserId"]),
+                        RankId = Data_Reader["RankId"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null,
+                        RankName = Data_Reader["RankName"].ToString(),
+                        HolderNamecon = Data_Reader["HolderNamecon"].ToString(),
                     };
 
 
@@ -171,6 +175,13 @@ namespace HoldingTaxWebApp.Gateway.Users
                     vm.HolderId = Convert.ToInt32(Data_Reader["HolderId"]);
                     vm.HolderName = Data_Reader["HolderName"].ToString();
                     vm.HolderUserId = Convert.ToInt32(Data_Reader["HolderUserId"]);
+
+                    vm.RankId = Data_Reader["RankId"] !=
+                                               DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null;
+                    vm.RankName = Data_Reader["RankName"].ToString();
+                    vm.HolderNamecon = Data_Reader["HolderNamecon"].ToString();
+
+
                 }
                 vm.StringCreateDate = $"{vm.CreateDate:dd/MM/yyyy HH:mm:ss tt}" ?? "";
                 vm.StringLastUpdated = $"{vm.LastUpdated:dd/MM/yyyy HH:mm:ss tt}" ?? "";
@@ -371,7 +382,8 @@ namespace HoldingTaxWebApp.Gateway.Users
                     HolderUser holderUser = new HolderUser
                     {
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
-                        HolderName = Data_Reader["HolderName"].ToString()
+                        HolderName = Data_Reader["HolderName"].ToString(),
+                        HolderNamecon = Data_Reader["HolderNamecon"].ToString(),
                     };
                     holderUserVM.Add(holderUser);
                 }
@@ -435,7 +447,8 @@ namespace HoldingTaxWebApp.Gateway.Users
                     HolderUser holderUser = new HolderUser
                     {
                         HolderId = Convert.ToInt32(Data_Reader["HolderId"]),
-                        HolderName = Data_Reader["HolderName"].ToString()
+                        HolderName = Data_Reader["HolderName"].ToString(),
+                        HolderNamecon = Data_Reader["HolderNamecon"].ToString(),
                     };
                     holderUserVM.Add(holderUser);
                 }

@@ -82,6 +82,17 @@ namespace HoldingTaxWebApp.ViewModels.Plots
         [Display(Name = "নথি নং ৬")]
         public string Doc6 { get; set; }
         public string File6 { get; set; }
+
+
+
+
+        [Display(Name = "র‍্যাংক")]
+        public int? RankId { get; set; }
+        [Display(Name = "র‍্যাংক")]
+        public string RankName { get; set; }
+        [Display(Name = "প্লট মালিকের নাম")]
+        public string PlotOwnerNamecon { get; set; }
+
         #endregion
         //Plot Owner Portion End
 

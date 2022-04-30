@@ -88,5 +88,13 @@ namespace HoldingTaxWebApp.ViewModels.DBO
         [Display(Name = "প্লট নম্বর")]
         public string PlotNo { get; set; }
 
+        [Display(Name = "র‍্যাংক")]
+        public int? RankId { get; set; }
+        [Display(Name = "র‍্যাংক")]
+        public string RankName { get; set; }
+
+        [Display(Name = "হোল্ডার এর নাম")]
+        public string HolderNamecon { get; set; }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using HoldingTaxWebApp.Helpers;
 using HoldingTaxWebApp.Manager.DBO;
+using HoldingTaxWebApp.Manager.Holding;
 using HoldingTaxWebApp.Manager.Plots;
 using HoldingTaxWebApp.Models.Plots;
 using HoldingTaxWebApp.ViewModels.Plots;
@@ -22,6 +23,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
         private readonly ConstructionStatusManager _ConstructionStatusManager;
 
         private readonly DOHSAreaManager _dOHSAreaManager;
+        private readonly RankManager _RankManager;
         public PlotOwnerController()
         {
             _PlotOwnerManager = new PlotOwnerManager();
@@ -31,6 +33,8 @@ namespace HoldingTaxWebApp.Controllers.Plots
             _OfficialStatusManager = new OfficialStatusManager();
             _ConstructionStatusManager = new ConstructionStatusManager();
             _dOHSAreaManager = new DOHSAreaManager();
+
+            _RankManager = new RankManager();
         }
 
         // GET: PlotOwner
@@ -88,6 +92,9 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         TotalArea = item.TotalArea,
                         UpdatedByUserName = item.UpdatedByUserName,
                         AreaName = item.AreaName,
+                        RankId = item.RankId,
+                        RankName = item.RankName,
+                        PlotOwnerNamecon = item.PlotOwnerNamecon
 
                     };
                     PlotOwnerListVM.Add(PlotOwnerVM);
@@ -173,6 +180,10 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     Doc4 = PlotOwnerdetails.Doc4,
                     Doc5 = PlotOwnerdetails.Doc5,
                     Doc6 = PlotOwnerdetails.Doc6,
+
+                    RankId = PlotOwnerdetails.RankId,
+                    RankName = PlotOwnerdetails.RankName,
+                    PlotOwnerNamecon = PlotOwnerdetails.PlotOwnerNamecon,
 
                     //File1 = PlotOwnerdetails.Doc1.Substring(40),
                     //File2 = PlotOwnerdetails.Doc2.Substring(40),
@@ -284,6 +295,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
             ViewBag.OfficialStatusId = new SelectList(_OfficialStatusManager.GetAllOfficialStatus(), "OfficialStatusId", "OffStatusName");
             //ViewBag.OwnershipSourceId = new SelectList(_OwnershipSourceManager.GetAllOwnershipSource(), "OwnershipSourceId", "SourceName");
             ViewBag.ConsStatusId = new SelectList(_ConstructionStatusManager.GetAllConstructionStatus(), "ConsStatusId", "ConsStatusName");
+            ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName",1);
             return View();
         }
 
@@ -374,6 +386,8 @@ namespace HoldingTaxWebApp.Controllers.Plots
                     Doc4 = PlotOwnerdetails.Doc4,
                     Doc5 = PlotOwnerdetails.Doc5,
                     Doc6 = PlotOwnerdetails.Doc6,
+                    RankId = PlotOwnerdetails.RankId,
+                    RankName = PlotOwnerdetails.RankName,
                     //File1 = PlotOwnerdetails.Doc1.Substring(40),
                     //File2 = PlotOwnerdetails.Doc2.Substring(40),
                     //File3 = PlotOwnerdetails.Doc3.Substring(40),
@@ -472,7 +486,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                 ViewBag.OfficialStatusId = new SelectList(_OfficialStatusManager.GetAllOfficialStatus(), "OfficialStatusId", "OffStatusName", plotOwnerVM.OfficialStatusId);
                 //ViewBag.OwnershipSourceId = new SelectList(_OwnershipSourceManager.GetAllOwnershipSource(), "OwnershipSourceId", "SourceName");
                 ViewBag.ConsStatusId = new SelectList(_ConstructionStatusManager.GetAllConstructionStatus(), "ConsStatusId", "ConsStatusName", plotOwnerVM.ConsStatusId);
-
+                ViewBag.RankId = new SelectList(_RankManager.GetAllRank(), "RankId", "RankName", plotOwnerVM.RankId);
                 return View(plotOwnerVM);
             }
             catch (Exception exception)
@@ -604,6 +618,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         PlotId = POVM.PlotId,
                         PlotOwnerName = POVM.PlotOwnerName,
                         PresentAdd = POVM.PresentAdd,
+                        RankId = POVM.RankId,
 
                         /////Construction Progress
 
@@ -1060,7 +1075,7 @@ namespace HoldingTaxWebApp.Controllers.Plots
                         Doc4 = POVM.Doc4,
                         Doc5 = POVM.Doc5,
                         Doc6 = POVM.Doc6,
-
+                        RankId = POVM.RankId,
                         /////Construction Progress
                         ConsProgressId = POVM.ConsProgressId,
                         OwnerDeclaration = POVM.OwnerDeclaration,

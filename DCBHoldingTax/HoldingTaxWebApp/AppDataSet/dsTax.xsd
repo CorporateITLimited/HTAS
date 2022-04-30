@@ -217,6 +217,9 @@ on b.BuildingTypeId=r.BuildingTypeId</CommandText>
               <xs:element name="OwnFlatDiscount" msprop:Generator_ColumnVarNameInTable="columnOwnFlatDiscount" msprop:Generator_ColumnPropNameInRow="OwnFlatDiscount" msprop:Generator_ColumnPropNameInTable="OwnFlatDiscountColumn" msprop:Generator_UserColumnName="OwnFlatDiscount" type="xs:decimal" minOccurs="0" />
               <xs:element name="AreaType" msprop:Generator_ColumnVarNameInTable="columnAreaType" msprop:Generator_ColumnPropNameInRow="AreaType" msprop:Generator_ColumnPropNameInTable="AreaTypeColumn" msprop:Generator_UserColumnName="AreaType" type="xs:int" minOccurs="0" />
               <xs:element name="Reduction" msprop:Generator_ColumnVarNameInTable="columnReduction" msprop:Generator_ColumnPropNameInRow="Reduction" msprop:Generator_ColumnPropNameInTable="ReductionColumn" msprop:Generator_UserColumnName="Reduction" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RankId" msprop:Generator_ColumnVarNameInTable="columnRankId" msprop:Generator_ColumnPropNameInRow="RankId" msprop:Generator_ColumnPropNameInTable="RankIdColumn" msprop:Generator_UserColumnName="RankId" type="xs:int" minOccurs="0" />
+              <xs:element name="RankName" msprop:Generator_ColumnVarNameInTable="columnRankName" msprop:Generator_ColumnPropNameInRow="RankName" msprop:Generator_ColumnPropNameInTable="RankNameColumn" msprop:Generator_UserColumnName="RankName" type="xs:string" minOccurs="0" />
+              <xs:element name="HolderNamecon" msprop:Generator_ColumnVarNameInTable="columnHolderNamecon" msprop:Generator_ColumnPropNameInRow="HolderNamecon" msprop:Generator_ColumnPropNameInTable="HolderNameconColumn" msprop:Generator_UserColumnName="HolderNamecon" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -280,6 +283,9 @@ on b.BuildingTypeId=r.BuildingTypeId</CommandText>
               <xs:element name="oldDate" msprop:Generator_ColumnVarNameInTable="columnoldDate" msprop:Generator_ColumnPropNameInRow="oldDate" msprop:Generator_ColumnPropNameInTable="oldDateColumn" msprop:Generator_UserColumnName="oldDate" type="xs:dateTime" minOccurs="0" />
               <xs:element name="EmployeeName" msprop:Generator_ColumnVarNameInTable="columnEmployeeName" msprop:Generator_ColumnPropNameInRow="EmployeeName" msprop:Generator_ColumnPropNameInTable="EmployeeNameColumn" msprop:Generator_UserColumnName="EmployeeName" type="xs:string" minOccurs="0" />
               <xs:element name="Reduction" msprop:Generator_ColumnVarNameInTable="columnReduction" msprop:Generator_ColumnPropNameInRow="Reduction" msprop:Generator_ColumnPropNameInTable="ReductionColumn" msprop:Generator_UserColumnName="Reduction" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RankId" msprop:Generator_ColumnVarNameInTable="columnRankId" msprop:Generator_ColumnPropNameInRow="RankId" msprop:Generator_ColumnPropNameInTable="RankIdColumn" msprop:Generator_UserColumnName="RankId" type="xs:int" minOccurs="0" />
+              <xs:element name="RankName" msprop:Generator_ColumnVarNameInTable="columnRankName" msprop:Generator_ColumnPropNameInRow="RankName" msprop:Generator_ColumnPropNameInTable="RankNameColumn" msprop:Generator_UserColumnName="RankName" type="xs:string" minOccurs="0" />
+              <xs:element name="HolderNamecon" msprop:Generator_ColumnVarNameInTable="columnHolderNamecon" msprop:Generator_ColumnPropNameInRow="HolderNamecon" msprop:Generator_ColumnPropNameInTable="HolderNameconColumn" msprop:Generator_UserColumnName="HolderNamecon" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -365,6 +371,9 @@ on b.BuildingTypeId=r.BuildingTypeId</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="RankId" msprop:Generator_ColumnVarNameInTable="columnRankId" msprop:Generator_ColumnPropNameInRow="RankId" msprop:Generator_ColumnPropNameInTable="RankIdColumn" msprop:Generator_UserColumnName="RankId" type="xs:int" minOccurs="0" />
+              <xs:element name="RankName" msprop:Generator_ColumnVarNameInTable="columnRankName" msprop:Generator_ColumnPropNameInRow="RankName" msprop:Generator_ColumnPropNameInTable="RankNameColumn" msprop:Generator_UserColumnName="RankName" type="xs:string" minOccurs="0" />
+              <xs:element name="HolderNamecon" msprop:Generator_ColumnVarNameInTable="columnHolderNamecon" msprop:Generator_ColumnPropNameInRow="HolderNamecon" msprop:Generator_ColumnPropNameInTable="HolderNameconColumn" msprop:Generator_UserColumnName="HolderNamecon" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -425,6 +434,9 @@ on b.BuildingTypeId=r.BuildingTypeId</CommandText>
               </xs:element>
               <xs:element name="TotalTaxWithWrongInfo" msprop:Generator_ColumnVarNameInTable="columnTotalTaxWithWrongInfo" msprop:Generator_ColumnPropNameInRow="TotalTaxWithWrongInfo" msprop:Generator_ColumnPropNameInTable="TotalTaxWithWrongInfoColumn" msprop:Generator_UserColumnName="TotalTaxWithWrongInfo" type="xs:decimal" minOccurs="0" />
               <xs:element name="PaymentDate" msprop:Generator_ColumnVarNameInTable="columnPaymentDate" msprop:Generator_ColumnPropNameInRow="PaymentDate" msprop:Generator_ColumnPropNameInTable="PaymentDateColumn" msprop:Generator_UserColumnName="PaymentDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="RankId" msprop:Generator_ColumnVarNameInTable="columnRankId" msprop:Generator_ColumnPropNameInRow="RankId" msprop:Generator_ColumnPropNameInTable="RankIdColumn" msprop:Generator_UserColumnName="RankId" type="xs:string" minOccurs="0" />
+              <xs:element name="RankName" msprop:Generator_ColumnVarNameInTable="columnRankName" msprop:Generator_ColumnPropNameInRow="RankName" msprop:Generator_ColumnPropNameInTable="RankNameColumn" msprop:Generator_UserColumnName="RankName" type="xs:string" minOccurs="0" />
+              <xs:element name="HolderNamecon" msprop:Generator_ColumnVarNameInTable="columnHolderNamecon" msprop:Generator_ColumnPropNameInRow="HolderNamecon" msprop:Generator_ColumnPropNameInTable="HolderNameconColumn" msprop:Generator_UserColumnName="HolderNamecon" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -707,6 +719,9 @@ on b.BuildingTypeId=r.BuildingTypeId</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="RankId" msprop:Generator_ColumnVarNameInTable="columnRankId" msprop:Generator_ColumnPropNameInRow="RankId" msprop:Generator_ColumnPropNameInTable="RankIdColumn" msprop:Generator_UserColumnName="RankId" type="xs:int" minOccurs="0" />
+              <xs:element name="RankName" msprop:Generator_ColumnVarNameInTable="columnRankName" msprop:Generator_ColumnPropNameInRow="RankName" msprop:Generator_ColumnPropNameInTable="RankNameColumn" msprop:Generator_UserColumnName="RankName" type="xs:string" minOccurs="0" />
+              <xs:element name="HolderNamecon" msprop:Generator_ColumnVarNameInTable="columnHolderNamecon" msprop:Generator_ColumnPropNameInRow="HolderNamecon" msprop:Generator_ColumnPropNameInTable="HolderNameconColumn" msprop:Generator_UserColumnName="HolderNamecon" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -828,6 +843,8 @@ on b.BuildingTypeId=r.BuildingTypeId</CommandText>
               <xs:element name="FlatArea" msprop:Generator_ColumnVarNameInTable="columnFlatArea" msprop:Generator_ColumnPropNameInRow="FlatArea" msprop:Generator_ColumnPropNameInTable="FlatAreaColumn" msprop:Generator_UserColumnName="FlatArea" type="xs:string" minOccurs="0" />
               <xs:element name="MonthlyRent" msprop:Generator_ColumnVarNameInTable="columnMonthlyRent" msprop:Generator_ColumnPropNameInRow="MonthlyRent" msprop:Generator_ColumnPropNameInTable="MonthlyRentColumn" msprop:Generator_UserColumnName="MonthlyRent" type="xs:string" minOccurs="0" />
               <xs:element name="ClusterName" msprop:Generator_ColumnVarNameInTable="columnClusterName" msprop:Generator_ColumnPropNameInRow="ClusterName" msprop:Generator_ColumnPropNameInTable="ClusterNameColumn" msprop:Generator_UserColumnName="ClusterName" type="xs:string" minOccurs="0" />
+              <xs:element name="HolderNamecon" msprop:Generator_ColumnVarNameInTable="columnHolderNamecon" msprop:Generator_ColumnPropNameInRow="HolderNamecon" msprop:Generator_ColumnPropNameInTable="HolderNameconColumn" msprop:Generator_UserColumnName="HolderNamecon" type="xs:string" minOccurs="0" />
+              <xs:element name="PlotOwnercon" msprop:Generator_ColumnVarNameInTable="columnPlotOwnercon" msprop:Generator_ColumnPropNameInRow="PlotOwnercon" msprop:Generator_ColumnPropNameInTable="PlotOwnerconColumn" msprop:Generator_UserColumnName="PlotOwnercon" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -888,6 +905,9 @@ on b.BuildingTypeId=r.BuildingTypeId</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="RankId" msprop:Generator_ColumnVarNameInTable="columnRankId" msprop:Generator_ColumnPropNameInRow="RankId" msprop:Generator_ColumnPropNameInTable="RankIdColumn" msprop:Generator_UserColumnName="RankId" type="xs:int" minOccurs="0" />
+              <xs:element name="RankName" msprop:Generator_ColumnVarNameInTable="columnRankName" msprop:Generator_ColumnPropNameInRow="RankName" msprop:Generator_ColumnPropNameInTable="RankNameColumn" msprop:Generator_UserColumnName="RankName" type="xs:string" minOccurs="0" />
+              <xs:element name="PlotOwnerNamecon" msprop:Generator_ColumnVarNameInTable="columnPlotOwnerNamecon" msprop:Generator_ColumnPropNameInRow="PlotOwnerNamecon" msprop:Generator_ColumnPropNameInTable="PlotOwnerNameconColumn" msprop:Generator_UserColumnName="PlotOwnerNamecon" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1091,6 +1111,10 @@ on b.BuildingTypeId=r.BuildingTypeId</CommandText>
               <xs:element name="ApprovalNo" msprop:Generator_ColumnVarNameInTable="columnApprovalNo" msprop:Generator_ColumnPropNameInRow="ApprovalNo" msprop:Generator_ColumnPropNameInTable="ApprovalNoColumn" msprop:Generator_UserColumnName="ApprovalNo" type="xs:int" minOccurs="0" />
               <xs:element name="AreaName" msprop:Generator_ColumnVarNameInTable="columnAreaName" msprop:Generator_ColumnPropNameInRow="AreaName" msprop:Generator_ColumnPropNameInTable="AreaNameColumn" msprop:Generator_UserColumnName="AreaName" type="xs:string" minOccurs="0" />
               <xs:element name="PlotNo" msprop:Generator_ColumnVarNameInTable="columnPlotNo" msprop:Generator_ColumnPropNameInRow="PlotNo" msprop:Generator_ColumnPropNameInTable="PlotNoColumn" msprop:Generator_UserColumnName="PlotNo" type="xs:string" minOccurs="0" />
+              <xs:element name="RankId" msprop:Generator_ColumnVarNameInTable="columnRankId" msprop:Generator_ColumnPropNameInRow="RankId" msprop:Generator_ColumnPropNameInTable="RankIdColumn" msprop:Generator_UserColumnName="RankId" type="xs:int" minOccurs="0" />
+              <xs:element name="RankName" msprop:Generator_ColumnVarNameInTable="columnRankName" msprop:Generator_ColumnPropNameInRow="RankName" msprop:Generator_ColumnPropNameInTable="RankNameColumn" msprop:Generator_UserColumnName="RankName" type="xs:string" minOccurs="0" />
+              <xs:element name="PlotOwnerNamecon" msprop:Generator_ColumnVarNameInTable="columnPlotOwnerNamecon" msprop:Generator_ColumnPropNameInRow="PlotOwnerNamecon" msprop:Generator_ColumnPropNameInTable="PlotOwnerNameconColumn" msprop:Generator_UserColumnName="PlotOwnerNamecon" type="xs:string" minOccurs="0" />
+              <xs:element name="DataColumn3" msprop:Generator_ColumnVarNameInTable="columnDataColumn3" msprop:Generator_ColumnPropNameInRow="DataColumn3" msprop:Generator_ColumnPropNameInTable="DataColumn3Column" msprop:Generator_UserColumnName="DataColumn3" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

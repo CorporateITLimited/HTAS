@@ -49,5 +49,20 @@ namespace HoldingTaxWebApp.Models.Plots
         [Display(Name = "সক্রিয়তা ")]
         public bool? IsActive { get; set; }
         public bool? IsDeleted { get; set; }
+
+
+
+
+
+        [Display(Name = "র‍্যাংক")]
+        public int? RankId { get; set; }
+        [Display(Name = "র‍্যাংক")]
+        public string RankName { get; set; }
+        [Display(Name = "প্লট মালিকের নাম")]
+        public string PlotOwnerNamecon { get; set; }
+
+        [Display(Name = "প্লট মালিকের নাম")]
+        public string OldPlotOwnerNamecon { get; set; }
+
     }
 }

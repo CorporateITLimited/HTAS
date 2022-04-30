@@ -60,12 +60,12 @@
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
-                                        @Html.DisplayNameFor(model => model.PlotOwnerName)
+                                        @Html.DisplayNameFor(model => model.PlotOwnerNamecon)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
-                                            @Html.DisplayFor(model => model.PlotOwnerName)
+                                            @Html.DisplayFor(model => model.PlotOwnerNamecon)
                                         </span>
                                     </div>
                                 </div>
@@ -271,10 +271,23 @@
 
                                 <div class="form-group form-group-xs row">
                                     <label class="col-5 col-form-label">
+                                        @Html.DisplayNameFor(model => model.RankName)
+                                    </label>
+                                    <span class="col-1 col-form-label kt-font-bolder"> : </span>
+                                    <div class="col-6">
+                                        <span class="form-control-plaintext kt-font-bolder">
+                                            @Html.DisplayFor(model => model.RankName)
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group form-group-xs row">
+                                    <label class="col-5 col-form-label">
                                         @Html.DisplayNameFor(model => model.StringLeaveDate)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.StringLeaveDate)
                                         </span>
@@ -286,7 +299,7 @@
                                         @Html.DisplayNameFor(model => model.LeaseAuthority)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.LeaseAuthority)
                                         </span>
@@ -299,7 +312,7 @@
                                         @Html.DisplayNameFor(model => model.LeaseType)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.LeaseType)
                                         </span>
@@ -312,7 +325,7 @@
                                         @Html.DisplayNameFor(model => model.LeasePeriod)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.LeasePeriod)
                                         </span>
@@ -324,7 +337,7 @@
                                         @Html.DisplayNameFor(model => model.LeaseQuotaName)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.LeaseQuotaName)
                                         </span>
@@ -336,7 +349,7 @@
                                         @Html.DisplayNameFor(model => model.HandOverOffice)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.HandOverOffice)
                                         </span>
@@ -348,7 +361,7 @@
                                         @Html.DisplayNameFor(model => model.HandOverLetterNo)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.HandOverLetterNo)
                                         </span>
@@ -360,7 +373,7 @@
                                         @Html.DisplayNameFor(model => model.LandDevelopChange)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.LandDevelopChange)
                                         </span>
@@ -372,7 +385,7 @@
                                         @Html.DisplayNameFor(model => model.ConsStatusName)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.ConsStatusName)
                                         </span>
@@ -384,7 +397,7 @@
                                         @Html.DisplayNameFor(model => model.CreatedByUserName)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.CreatedByUserName)
                                         </span>
@@ -489,7 +502,7 @@
                                         @Html.DisplayNameFor(model => model.OwnerDeclaration)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.OwnerDeclaration)
                                         </span>
@@ -503,7 +516,7 @@
                                             @Html.DisplayNameFor(model => model.RealBuilder)
                                         </label>
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                        <div class="col-5">
+                                        <div class="col-6">
                                             <span class="form-control-plaintext kt-font-bolder">
                                                 @Html.DisplayFor(model => model.RealBuilder)
                                             </span>
@@ -515,7 +528,7 @@
                                             @Html.DisplayNameFor(model => model.DevelopDeposit)
                                         </label>
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                        <div class="col-5">
+                                        <div class="col-6">
                                             <span class="form-control-plaintext kt-font-bolder">
                                                 @Html.DisplayFor(model => model.DevelopDeposit)
                                             </span>
@@ -529,7 +542,7 @@
                                         @Html.DisplayNameFor(model => model.FloorNumber)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.FloorNumber)
                                         </span>
@@ -540,7 +553,7 @@
                                         @Html.DisplayNameFor(model => model.OwnerPortion)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.OwnerPortion)
                                         </span>
@@ -553,7 +566,7 @@
                                             @Html.DisplayNameFor(model => model.DeveloperPortion)
                                         </label>
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                        <div class="col-5">
+                                        <div class="col-6">
                                             <span class="form-control-plaintext kt-font-bolder">
                                                 @Html.DisplayFor(model => model.DeveloperPortion)
                                             </span>
@@ -566,7 +579,7 @@
                                         @Html.DisplayNameFor(model => model.BuyerPortion)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.BuyerPortion)
                                         </span>
@@ -578,7 +591,7 @@
                                         @Html.DisplayNameFor(model => model.SubmittedPortion)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.SubmittedPortion)
                                         </span>
@@ -590,7 +603,7 @@
                                         @Html.DisplayNameFor(model => model.StringCompletionDate)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.StringCompletionDate)
                                         </span>
@@ -609,7 +622,7 @@
                                         @Html.DisplayNameFor(model => model.StringGroundFCDate)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.StringGroundFCDate)
                                         </span>
@@ -621,7 +634,7 @@
                                         @Html.DisplayNameFor(model => model.StringFirstFCDate)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.StringFirstFCDate)
                                         </span>
@@ -633,7 +646,7 @@
                                         @Html.DisplayNameFor(model => model.StringSccFCDate)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.StringSccFCDate)
                                         </span>
@@ -645,7 +658,7 @@
                                         @Html.DisplayNameFor(model => model.StringThirdFCDate)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.StringThirdFCDate)
                                         </span>
@@ -657,7 +670,7 @@
                                         @Html.DisplayNameFor(model => model.StringForthFCDate)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.StringForthFCDate)
                                         </span>
@@ -669,7 +682,7 @@
                                         @Html.DisplayNameFor(model => model.StringFivthFCDate)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.StringFivthFCDate)
                                         </span>
@@ -681,7 +694,7 @@
                                         @Html.DisplayNameFor(model => model.StringSixFCDate)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.StringSixFCDate)
                                         </span>
@@ -693,7 +706,7 @@
                                         @Html.DisplayNameFor(model => model.StringOtherFCDate)
                                     </label>
                                     <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                    <div class="col-5">
+                                    <div class="col-6">
                                         <span class="form-control-plaintext kt-font-bolder">
                                             @Html.DisplayFor(model => model.StringOtherFCDate)
                                         </span>
@@ -717,7 +730,7 @@
                                             @Html.DisplayNameFor(model => model.TotalUnauthArea)
                                         </label>
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                        <div class="col-5">
+                                        <div class="col-6">
                                             <span class="form-control-plaintext kt-font-bolder">
                                                 @Html.DisplayFor(model => model.TotalUnauthArea)
                                             </span>
@@ -729,7 +742,7 @@
                                             @Html.DisplayNameFor(model => model.FineFreeArea)
                                         </label>
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                        <div class="col-5">
+                                        <div class="col-6">
                                             <span class="form-control-plaintext kt-font-bolder">
                                                 @Html.DisplayFor(model => model.FineFreeArea)
                                             </span>
@@ -741,7 +754,7 @@
                                             @Html.DisplayNameFor(model => model.WithFineUnauth)
                                         </label>
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                        <div class="col-5">
+                                        <div class="col-6">
                                             <span class="form-control-plaintext kt-font-bolder">
                                                 @Html.DisplayFor(model => model.WithFineUnauth)
                                             </span>
@@ -753,7 +766,7 @@
                                             @Html.DisplayNameFor(model => model.RemovedUnauthArea)
                                         </label>
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                        <div class="col-5">
+                                        <div class="col-6">
                                             <span class="form-control-plaintext kt-font-bolder">
                                                 @Html.DisplayFor(model => model.RemovedUnauthArea)
                                             </span>
@@ -769,7 +782,7 @@
                                             @Html.DisplayNameFor(model => model.NonRemovedUnauth)
                                         </label>
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                        <div class="col-5">
+                                        <div class="col-6">
                                             <span class="form-control-plaintext kt-font-bolder">
                                                 @Html.DisplayFor(model => model.NonRemovedUnauth)
                                             </span>
@@ -781,7 +794,7 @@
                                             @Html.DisplayNameFor(model => model.FineRate)
                                         </label>
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                        <div class="col-5">
+                                        <div class="col-6">
                                             <span class="form-control-plaintext kt-font-bolder">
                                                 @Html.DisplayFor(model => model.FineRate)
                                             </span>
@@ -793,7 +806,7 @@
                                             @Html.DisplayNameFor(model => model.FineAmount)
                                         </label>
                                         <span class="col-1 col-form-label kt-font-bolder"> : </span>
-                                        <div class="col-5">
+                                        <div class="col-6">
                                             <span class="form-control-plaintext kt-font-bolder">
                                                 @Html.DisplayFor(model => model.FineAmount)
                                             </span>

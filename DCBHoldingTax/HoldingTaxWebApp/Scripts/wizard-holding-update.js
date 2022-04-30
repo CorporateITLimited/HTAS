@@ -179,7 +179,8 @@ var KTWizard4 = function () {
                             oldFlatDoc1: $('#FlatDocument1').val().trim(),
                             oldFlatDoc2: $('#FlatDocument2').val().trim(),
                             oldFlatDoc3: $('#FlatDocument3').val().trim(),
-                            HolderNo: $('#HolderNo').val().trim()
+                            HolderNo: $('#HolderNo').val().trim(),
+                            RankId: parseInt($('#RankId option:selected').val()) || 0
                         };
 
 
