@@ -77,7 +77,16 @@ namespace HoldingTaxWebApp.Gateway
                                                     Convert.ToInt32(Data_Reader["HolderId"]) : (int?)null,
                         HolderUserName = Data_Reader["HolderUserName"].ToString(),
                         FinancialYear = Data_Reader["FinancialYear"].ToString(),
-                        HolderName = Data_Reader["HolderName"].ToString()
+                        HolderName = Data_Reader["HolderName"].ToString(),
+
+                        RankId = Data_Reader["RankId"] != DBNull.Value ?
+                                                    Convert.ToInt32(Data_Reader["RankId"]) : (int?)null,
+                        HolderNamecon = Data_Reader["HolderNamecon"].ToString(),
+                        RankName = Data_Reader["RankName"].ToString(),
+
+
+
+
                     };
                     trnx.strRefTranDate = $"{trnx.RefTranDate:dd/MM/yyyy hh:mm:ss tt}";
                     trnx.strTranDateTime = $"{trnx.TranDateTime:dd/MM/yyyy hh:mm:ss tt}";
@@ -180,6 +189,10 @@ namespace HoldingTaxWebApp.Gateway
                     trnx.strLastUpdated = $"{trnx.LastUpdated:dd/MM/yyyy hh:mm:ss tt}";
                     trnx.FinancialYear = Data_Reader["FinancialYear"].ToString();
                     trnx.HolderName = Data_Reader["HolderName"].ToString();
+                    trnx.RankId = Data_Reader["RankId"] != DBNull.Value ?
+                                                    Convert.ToInt32(Data_Reader["RankId"]) : (int?)null;
+                    trnx.HolderNamecon = Data_Reader["HolderNamecon"].ToString();
+                    trnx.RankName = Data_Reader["RankName"].ToString();
                 }
 
                 Data_Reader.Close();
@@ -278,6 +291,10 @@ namespace HoldingTaxWebApp.Gateway
                     trnx.strLastUpdated = $"{trnx.LastUpdated:dd/MM/yyyy hh:mm:ss tt}";
                     trnx.FinancialYear = Data_Reader["FinancialYear"].ToString();
                     trnx.HolderName = Data_Reader["HolderName"].ToString();
+                    trnx.RankId = Data_Reader["RankId"] != DBNull.Value ?
+                                                   Convert.ToInt32(Data_Reader["RankId"]) : (int?)null;
+                    trnx.HolderNamecon = Data_Reader["HolderNamecon"].ToString();
+                    trnx.RankName = Data_Reader["RankName"].ToString();
 
                     trnx_list.Add(trnx);
                 }
@@ -378,6 +395,10 @@ namespace HoldingTaxWebApp.Gateway
                     trnx.strLastUpdated = $"{trnx.LastUpdated:dd/MM/yyyy hh:mm:ss tt}";
                     trnx.FinancialYear = Data_Reader["FinancialYear"].ToString();
                     trnx.HolderName = Data_Reader["HolderName"].ToString();
+                    trnx.RankId = Data_Reader["RankId"] != DBNull.Value ?
+                                                   Convert.ToInt32(Data_Reader["RankId"]) : (int?)null;
+                    trnx.HolderNamecon = Data_Reader["HolderNamecon"].ToString();
+                    trnx.RankName = Data_Reader["RankName"].ToString();
                 }
 
                 Data_Reader.Close();

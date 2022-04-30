@@ -30,13 +30,13 @@ namespace HoldingTaxWebApp.Models.Holding
         [Display(Name = "প্লট নম্বর")]
         public string PlotNo { get; set; }
 
-        [Display(Name = "হোল্ডারের নাম  ")]
+        [Display(Name = "হোল্ডারের নাম")]
         public int HolderId { get; set; }
 
-        [Display(Name = "হোল্ডারের নাম  ")]
+        [Display(Name = "হোল্ডারের নাম ")]
         public string HolderName { get; set; }
 
-        [Display(Name = "হোল্ডারের প্লট/ফ্ল্যাট/বাড়ী এর বিবরণ ")]
+        [Display(Name = "হোল্ডারের প্লট/ফ্ল্যাট/বাড়ী এর বিবরণ")]
         public string AreaPlotFlatData { get; set; }
 
         [Display(Name = "বিজ্ঞপ্তির ধরণ")]
@@ -112,5 +112,18 @@ namespace HoldingTaxWebApp.Models.Holding
 
         [Display(Name = "আইডি নম্বর")]
         public string HolderNo { get; set; }
+
+
+        [Display(Name = "র‍্যাংক")]
+        public int? RankId { get; set; }
+        [Display(Name = "র‍্যাংক")]
+        public string RankName { get; set; }
+
+        [Display(Name = "হোল্ডারের নাম")]
+        public string HolderNamecon { get; set; }
+
+
+
+
     }
 }

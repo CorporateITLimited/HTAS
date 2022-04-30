@@ -61,5 +61,14 @@ namespace HoldingTaxWebApp.Models.DBO
         public string PlotNo { get; set; }
 
 
+        [Display(Name = "র‍্যাংক")]
+        public int? RankId { get; set; }
+        [Display(Name = "র‍্যাংক")]
+        public string RankName { get; set; }
+
+        [Display(Name = "হোল্ডার এর নাম")]
+        public string HolderNamecon { get; set; }
+
+
     }
 }

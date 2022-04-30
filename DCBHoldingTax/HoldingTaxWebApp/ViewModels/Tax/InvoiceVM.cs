@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -50,5 +51,15 @@ namespace HoldingTaxWebApp.ViewModels.Tax
 
        
         public decimal? Reduction { get; set; }
+
+
+        [Display(Name = "র‍্যাংক")]
+        public int? RankId { get; set; }
+        [Display(Name = "র‍্যাংক")]
+        public string RankName { get; set; }
+
+        [Display(Name = "গৃহকরদাতার নাম")]
+        public string HolderNamecon { get; set; }
+
     }
 }

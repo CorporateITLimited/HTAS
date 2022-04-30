@@ -84,7 +84,7 @@
                     <thead>
                         <tr>
 
-                            <th>@Html.DisplayNameFor(model => model.HolderName)</th>
+                            <th>@Html.DisplayNameFor(model => model.HolderNamecon)</th>
                             <th>@Html.DisplayNameFor(model => model.StatusName)</th>
                             <th>@Html.DisplayNameFor(model => model.Subject)</th>
                             @if (Convert.ToInt32(Session[HoldingTaxWebApp.Helpers.CommonConstantHelper.UserTypeId]) == 1)
@@ -112,7 +112,7 @@
                         {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.HolderName)
+                                @Html.DisplayFor(modelItem => item.HolderNamecon)
                             </td>
 
                             <td>

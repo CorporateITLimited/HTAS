@@ -100,7 +100,11 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         AreaPlotFlatData = Convert.ToString(Data_Reader["AreaPlotFlatData"]),
                         HolderName = Convert.ToString(Data_Reader["HolderName"]),
                         PaymentDate = Data_Reader["PaymentDate"] != DBNull.Value ? Convert.ToDateTime(Data_Reader["PaymentDate"]) : (DateTime?)null,
-                        Remarks = Convert.ToString(Data_Reader["Remarks"])
+                        Remarks = Convert.ToString(Data_Reader["Remarks"]),
+                        RankId = Data_Reader["RankId"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null,
+                        RankName = Convert.ToString(Data_Reader["RankName"]),
+                        HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]),
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -345,6 +349,10 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         Remarks = Convert.ToString(Data_Reader["Remarks"]),
                         IsPaid = Data_Reader["IsPaid"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsPaid"]) : (bool?)null,
                         HolderNo = Convert.ToString(Data_Reader["HolderNo"]),
+                        RankId = Data_Reader["RankId"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null,
+                        RankName = Convert.ToString(Data_Reader["RankName"]),
+                        HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]),
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -426,6 +434,7 @@ namespace HoldingTaxWebApp.Gateway.Tax
                                                 Convert.ToDecimal(Data_Reader["DuesFineAmount"]) : (decimal?)null,
                         DuesPreviousYear = Data_Reader["DuesPreviousYear"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["DuesPreviousYear"]) : (decimal?)null,
+                        HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]),
                     };
 
                     holdingtaxList.Add(holdingtax);
@@ -554,6 +563,12 @@ namespace HoldingTaxWebApp.Gateway.Tax
                         HolderNo = Convert.ToString(Data_Reader["HolderNo"]),
                         Reduction = Data_Reader["Reduction"] != DBNull.Value ?
                                                 Convert.ToDecimal(Data_Reader["Reduction"]) : (Decimal?)null,
+
+                        RankId = Data_Reader["RankId"] !=
+                                                DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null,
+                        RankName = Convert.ToString(Data_Reader["RankName"]),
+                        HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]),
+
                     };
 
                     holdingtax.StringPaymentDate = $"{holdingtax.PaymentDate:dd/MM/yyyy}";
@@ -1086,6 +1101,10 @@ namespace HoldingTaxWebApp.Gateway.Tax
                     vm.WrongInfoCharge = Data_Reader["WrongInfoCharge"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["WrongInfoCharge"]) : (decimal?)null;
                     vm.WrongInfoChargeRate = Data_Reader["WrongInfoChargeRate"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["WrongInfoChargeRate"]) : (decimal?)null;
                     vm.Reduction = Data_Reader["Reduction"] != DBNull.Value ? Convert.ToDecimal(Data_Reader["Reduction"]) : (decimal?)null;
+                    vm.RankId = Data_Reader["RankId"] !=
+                                               DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null;
+                    vm.RankName = Convert.ToString(Data_Reader["RankName"]);
+                    vm.HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]);
 
 
                 };

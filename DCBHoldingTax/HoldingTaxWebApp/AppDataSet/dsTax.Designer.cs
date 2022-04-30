@@ -1291,6 +1291,12 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             private global::System.Data.DataColumn columnReduction;
             
+            private global::System.Data.DataColumn columnRankId;
+            
+            private global::System.Data.DataColumn columnRankName;
+            
+            private global::System.Data.DataColumn columnHolderNamecon;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtHoldingTaxDataTable() {
@@ -1942,6 +1948,30 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RankIdColumn {
+                get {
+                    return this.columnRankId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RankNameColumn {
+                get {
+                    return this.columnRankName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn HolderNameconColumn {
+                get {
+                    return this.columnHolderNamecon;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2051,7 +2081,10 @@ namespace HoldingTaxWebApp.AppDataSet {
                         decimal TotalOwnTax, 
                         decimal OwnFlatDiscount, 
                         int AreaType, 
-                        decimal Reduction) {
+                        decimal Reduction, 
+                        int RankId, 
+                        string RankName, 
+                        string HolderNamecon) {
                 dtHoldingTaxRow rowdtHoldingTaxRow = ((dtHoldingTaxRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2130,7 +2163,10 @@ namespace HoldingTaxWebApp.AppDataSet {
                         TotalOwnTax,
                         OwnFlatDiscount,
                         AreaType,
-                        Reduction};
+                        Reduction,
+                        RankId,
+                        RankName,
+                        HolderNamecon};
                 rowdtHoldingTaxRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtHoldingTaxRow);
                 return rowdtHoldingTaxRow;
@@ -2230,6 +2266,9 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnOwnFlatDiscount = base.Columns["OwnFlatDiscount"];
                 this.columnAreaType = base.Columns["AreaType"];
                 this.columnReduction = base.Columns["Reduction"];
+                this.columnRankId = base.Columns["RankId"];
+                this.columnRankName = base.Columns["RankName"];
+                this.columnHolderNamecon = base.Columns["HolderNamecon"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2389,6 +2428,12 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnAreaType);
                 this.columnReduction = new global::System.Data.DataColumn("Reduction", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnReduction);
+                this.columnRankId = new global::System.Data.DataColumn("RankId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRankId);
+                this.columnRankName = new global::System.Data.DataColumn("RankName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRankName);
+                this.columnHolderNamecon = new global::System.Data.DataColumn("HolderNamecon", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHolderNamecon);
                 this.columnHoldingTaxId.AutoIncrement = true;
                 this.columnHoldingTaxId.AutoIncrementSeed = -1;
                 this.columnHoldingTaxId.AutoIncrementStep = -1;
@@ -2599,6 +2644,12 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             private global::System.Data.DataColumn columnReduction;
             
+            private global::System.Data.DataColumn columnRankId;
+            
+            private global::System.Data.DataColumn columnRankName;
+            
+            private global::System.Data.DataColumn columnHolderNamecon;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtLetterThreeDataTable() {
@@ -2802,6 +2853,30 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RankIdColumn {
+                get {
+                    return this.columnRankId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RankNameColumn {
+                get {
+                    return this.columnRankName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn HolderNameconColumn {
+                get {
+                    return this.columnHolderNamecon;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2857,7 +2932,10 @@ namespace HoldingTaxWebApp.AppDataSet {
                         System.DateTime EndDate, 
                         System.DateTime oldDate, 
                         string EmployeeName, 
-                        decimal Reduction) {
+                        decimal Reduction, 
+                        int RankId, 
+                        string RankName, 
+                        string HolderNamecon) {
                 dtLetterThreeRow rowdtLetterThreeRow = ((dtLetterThreeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2880,7 +2958,10 @@ namespace HoldingTaxWebApp.AppDataSet {
                         EndDate,
                         oldDate,
                         EmployeeName,
-                        Reduction};
+                        Reduction,
+                        RankId,
+                        RankName,
+                        HolderNamecon};
                 rowdtLetterThreeRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtLetterThreeRow);
                 return rowdtLetterThreeRow;
@@ -2924,6 +3005,9 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnoldDate = base.Columns["oldDate"];
                 this.columnEmployeeName = base.Columns["EmployeeName"];
                 this.columnReduction = base.Columns["Reduction"];
+                this.columnRankId = base.Columns["RankId"];
+                this.columnRankName = base.Columns["RankName"];
+                this.columnHolderNamecon = base.Columns["HolderNamecon"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2971,6 +3055,12 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnEmployeeName);
                 this.columnReduction = new global::System.Data.DataColumn("Reduction", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnReduction);
+                this.columnRankId = new global::System.Data.DataColumn("RankId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRankId);
+                this.columnRankName = new global::System.Data.DataColumn("RankName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRankName);
+                this.columnHolderNamecon = new global::System.Data.DataColumn("HolderNamecon", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHolderNamecon);
                 this.columnHoldingTaxId.AutoIncrement = true;
                 this.columnHoldingTaxId.AutoIncrementSeed = -1;
                 this.columnHoldingTaxId.AutoIncrementStep = -1;
@@ -3144,6 +3234,12 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             private global::System.Data.DataColumn columnAreaName;
             
+            private global::System.Data.DataColumn columnRankId;
+            
+            private global::System.Data.DataColumn columnRankName;
+            
+            private global::System.Data.DataColumn columnHolderNamecon;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtTaxPayersDataTable() {
@@ -3275,6 +3371,30 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RankIdColumn {
+                get {
+                    return this.columnRankId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RankNameColumn {
+                get {
+                    return this.columnRankName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn HolderNameconColumn {
+                get {
+                    return this.columnHolderNamecon;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3310,7 +3430,7 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public dtTaxPayersRow AdddtTaxPayersRow(int HolderId, int FinancialYearId, decimal PaidAmount, decimal NetTaxPayableAmount, int IsPaid, string FinancialYear, string HolderName, int HoldersFlatNumber, string PlotNo, string RoadNo, int AreaId, string AreaName) {
+            public dtTaxPayersRow AdddtTaxPayersRow(int HolderId, int FinancialYearId, decimal PaidAmount, decimal NetTaxPayableAmount, int IsPaid, string FinancialYear, string HolderName, int HoldersFlatNumber, string PlotNo, string RoadNo, int AreaId, string AreaName, int RankId, string RankName, string HolderNamecon) {
                 dtTaxPayersRow rowdtTaxPayersRow = ((dtTaxPayersRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         HolderId,
@@ -3324,7 +3444,10 @@ namespace HoldingTaxWebApp.AppDataSet {
                         PlotNo,
                         RoadNo,
                         AreaId,
-                        AreaName};
+                        AreaName,
+                        RankId,
+                        RankName,
+                        HolderNamecon};
                 rowdtTaxPayersRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtTaxPayersRow);
                 return rowdtTaxPayersRow;
@@ -3359,6 +3482,9 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnRoadNo = base.Columns["RoadNo"];
                 this.columnAreaId = base.Columns["AreaId"];
                 this.columnAreaName = base.Columns["AreaName"];
+                this.columnRankId = base.Columns["RankId"];
+                this.columnRankName = base.Columns["RankName"];
+                this.columnHolderNamecon = base.Columns["HolderNamecon"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3388,6 +3514,12 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnAreaId);
                 this.columnAreaName = new global::System.Data.DataColumn("AreaName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAreaName);
+                this.columnRankId = new global::System.Data.DataColumn("RankId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRankId);
+                this.columnRankName = new global::System.Data.DataColumn("RankName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRankName);
+                this.columnHolderNamecon = new global::System.Data.DataColumn("HolderNamecon", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHolderNamecon);
                 this.columnHolderId.AllowDBNull = false;
                 this.columnFinancialYearId.AllowDBNull = false;
                 this.columnIsPaid.ReadOnly = true;
@@ -3576,6 +3708,12 @@ namespace HoldingTaxWebApp.AppDataSet {
             private global::System.Data.DataColumn columnTotalTaxWithWrongInfo;
             
             private global::System.Data.DataColumn columnPaymentDate;
+            
+            private global::System.Data.DataColumn columnRankId;
+            
+            private global::System.Data.DataColumn columnRankName;
+            
+            private global::System.Data.DataColumn columnHolderNamecon;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -3804,6 +3942,30 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RankIdColumn {
+                get {
+                    return this.columnRankId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RankNameColumn {
+                get {
+                    return this.columnRankName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn HolderNameconColumn {
+                get {
+                    return this.columnHolderNamecon;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3862,7 +4024,10 @@ namespace HoldingTaxWebApp.AppDataSet {
                         int AreaId, 
                         string AreaName, 
                         decimal TotalTaxWithWrongInfo, 
-                        System.DateTime PaymentDate) {
+                        System.DateTime PaymentDate, 
+                        string RankId, 
+                        string RankName, 
+                        string HolderNamecon) {
                 dtRecoverableTaxRow rowdtRecoverableTaxRow = ((dtRecoverableTaxRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3888,7 +4053,10 @@ namespace HoldingTaxWebApp.AppDataSet {
                         AreaId,
                         AreaName,
                         TotalTaxWithWrongInfo,
-                        PaymentDate};
+                        PaymentDate,
+                        RankId,
+                        RankName,
+                        HolderNamecon};
                 rowdtRecoverableTaxRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtRecoverableTaxRow);
                 return rowdtRecoverableTaxRow;
@@ -3935,6 +4103,9 @@ namespace HoldingTaxWebApp.AppDataSet {
                 this.columnAreaName = base.Columns["AreaName"];
                 this.columnTotalTaxWithWrongInfo = base.Columns["TotalTaxWithWrongInfo"];
                 this.columnPaymentDate = base.Columns["PaymentDate"];
+                this.columnRankId = base.Columns["RankId"];
+                this.columnRankName = base.Columns["RankName"];
+                this.columnHolderNamecon = base.Columns["HolderNamecon"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3988,6 +4159,12 @@ namespace HoldingTaxWebApp.AppDataSet {
                 base.Columns.Add(this.columnTotalTaxWithWrongInfo);
                 this.columnPaymentDate = new global::System.Data.DataColumn("PaymentDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPaymentDate);
+                this.columnRankId = new global::System.Data.DataColumn("RankId", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRankId);
+                this.columnRankName = new global::System.Data.DataColumn("RankName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRankName);
+                this.columnHolderNamecon = new global::System.Data.DataColumn("HolderNamecon", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHolderNamecon);
                 this.columnHoldingTaxId.AutoIncrement = true;
                 this.columnHoldingTaxId.AutoIncrementSeed = -1;
                 this.columnHoldingTaxId.AutoIncrementStep = -1;
@@ -10873,6 +11050,54 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int RankId {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtHoldingTax.RankIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RankId\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.RankIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RankName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHoldingTax.RankNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RankName\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.RankNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string HolderNamecon {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtHoldingTax.HolderNameconColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HolderNamecon\' in table \'dtHoldingTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtHoldingTax.HolderNameconColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsTotalRentNull() {
                 return this.IsNull(this.tabledtHoldingTax.TotalRentColumn);
             }
@@ -11758,6 +11983,42 @@ namespace HoldingTaxWebApp.AppDataSet {
             public void SetReductionNull() {
                 this[this.tabledtHoldingTax.ReductionColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRankIdNull() {
+                return this.IsNull(this.tabledtHoldingTax.RankIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRankIdNull() {
+                this[this.tabledtHoldingTax.RankIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRankNameNull() {
+                return this.IsNull(this.tabledtHoldingTax.RankNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRankNameNull() {
+                this[this.tabledtHoldingTax.RankNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsHolderNameconNull() {
+                return this.IsNull(this.tabledtHoldingTax.HolderNameconColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetHolderNameconNull() {
+                this[this.tabledtHoldingTax.HolderNameconColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -12097,6 +12358,54 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int RankId {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtLetterThree.RankIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RankId\' in table \'dtLetterThree\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtLetterThree.RankIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RankName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtLetterThree.RankNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RankName\' in table \'dtLetterThree\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtLetterThree.RankNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string HolderNamecon {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtLetterThree.HolderNameconColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HolderNamecon\' in table \'dtLetterThree\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtLetterThree.HolderNameconColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsNetTaxPayableAmountNull() {
                 return this.IsNull(this.tabledtLetterThree.NetTaxPayableAmountColumn);
             }
@@ -12310,6 +12619,42 @@ namespace HoldingTaxWebApp.AppDataSet {
             public void SetReductionNull() {
                 this[this.tabledtLetterThree.ReductionColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRankIdNull() {
+                return this.IsNull(this.tabledtLetterThree.RankIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRankIdNull() {
+                this[this.tabledtLetterThree.RankIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRankNameNull() {
+                return this.IsNull(this.tabledtLetterThree.RankNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRankNameNull() {
+                this[this.tabledtLetterThree.RankNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsHolderNameconNull() {
+                return this.IsNull(this.tabledtLetterThree.HolderNameconColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetHolderNameconNull() {
+                this[this.tabledtLetterThree.HolderNameconColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -12510,6 +12855,54 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int RankId {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtTaxPayers.RankIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RankId\' in table \'dtTaxPayers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtTaxPayers.RankIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RankName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtTaxPayers.RankNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RankName\' in table \'dtTaxPayers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtTaxPayers.RankNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string HolderNamecon {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtTaxPayers.HolderNameconColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HolderNamecon\' in table \'dtTaxPayers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtTaxPayers.HolderNameconColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsPaidAmountNull() {
                 return this.IsNull(this.tabledtTaxPayers.PaidAmountColumn);
             }
@@ -12626,6 +13019,42 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetAreaNameNull() {
                 this[this.tabledtTaxPayers.AreaNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRankIdNull() {
+                return this.IsNull(this.tabledtTaxPayers.RankIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRankIdNull() {
+                this[this.tabledtTaxPayers.RankIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRankNameNull() {
+                return this.IsNull(this.tabledtTaxPayers.RankNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRankNameNull() {
+                this[this.tabledtTaxPayers.RankNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsHolderNameconNull() {
+                return this.IsNull(this.tabledtTaxPayers.HolderNameconColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetHolderNameconNull() {
+                this[this.tabledtTaxPayers.HolderNameconColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -13012,6 +13441,54 @@ namespace HoldingTaxWebApp.AppDataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RankId {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtRecoverableTax.RankIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RankId\' in table \'dtRecoverableTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtRecoverableTax.RankIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string RankName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtRecoverableTax.RankNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RankName\' in table \'dtRecoverableTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtRecoverableTax.RankNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string HolderNamecon {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtRecoverableTax.HolderNameconColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HolderNamecon\' in table \'dtRecoverableTax\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtRecoverableTax.HolderNameconColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsTaxFromOwnPropertyNull() {
                 return this.IsNull(this.tabledtRecoverableTax.TaxFromOwnPropertyColumn);
             }
@@ -13248,6 +13725,42 @@ namespace HoldingTaxWebApp.AppDataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetPaymentDateNull() {
                 this[this.tabledtRecoverableTax.PaymentDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRankIdNull() {
+                return this.IsNull(this.tabledtRecoverableTax.RankIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRankIdNull() {
+                this[this.tabledtRecoverableTax.RankIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRankNameNull() {
+                return this.IsNull(this.tabledtRecoverableTax.RankNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRankNameNull() {
+                this[this.tabledtRecoverableTax.RankNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsHolderNameconNull() {
+                return this.IsNull(this.tabledtRecoverableTax.HolderNameconColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetHolderNameconNull() {
+                this[this.tabledtRecoverableTax.HolderNameconColumn] = global::System.Convert.DBNull;
             }
         }
         
