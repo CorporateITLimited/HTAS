@@ -558,7 +558,10 @@ namespace HoldingTaxWebApp.Gateway.Holding
                         EmployeeName = Convert.ToString(Data_Reader["EmployeeName"]),
                         DesignationName = Convert.ToString(Data_Reader["DesignationName"]),
                         PlotNo = Convert.ToString(Data_Reader["PlotNo"]),
-                        HolderNo = Convert.ToString(Data_Reader["HolderNo"])
+                        HolderNo = Convert.ToString(Data_Reader["HolderNo"]),
+                        RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (int?)null,
+                        HolderNamecon = Convert.ToString(Data_Reader["HolderNamecon"]),
+                        RankName = Convert.ToString(Data_Reader["RankName"]),
                     };
                     if (model.NoticeTypeId == 1)
                         model.NoticeName = "গৃহকরের প্রাথমিক বিজ্ঞপ্তি দেখুন";

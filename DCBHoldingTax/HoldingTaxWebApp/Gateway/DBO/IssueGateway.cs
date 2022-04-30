@@ -71,6 +71,10 @@ namespace HoldingTaxWebApp.Gateway.DBO
                         AreaName = Data_Reader["AreaName"].ToString(),
                         PlotNo = Data_Reader["PlotNo"].ToString(),
 
+                        RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (Int32?)null,
+                        HolderNamecon = Data_Reader["HolderNamecon"].ToString(),
+                        RankName = Data_Reader["RankName"].ToString(),
+
                     };
 
                     vm.Add(model);
@@ -161,6 +165,9 @@ namespace HoldingTaxWebApp.Gateway.DBO
                         IsSendToClusUser = Data_Reader["IsSendToClusUser"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsSendToClusUser"]) : (bool?)null,
                         AreaName = Data_Reader["AreaName"].ToString(),
                         PlotNo = Data_Reader["PlotNo"].ToString(),
+                        RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (Int32?)null,
+                        HolderNamecon = Data_Reader["HolderNamecon"].ToString(),
+                        RankName = Data_Reader["RankName"].ToString(),
 
                     };
 
@@ -252,6 +259,9 @@ namespace HoldingTaxWebApp.Gateway.DBO
                         IsSendToClusUser = Data_Reader["IsSendToClusUser"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsSendToClusUser"]) : (bool?)null,
                         AreaName = Data_Reader["AreaName"].ToString(),
                         PlotNo = Data_Reader["PlotNo"].ToString(),
+                        RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (Int32?)null,
+                        HolderNamecon = Data_Reader["HolderNamecon"].ToString(),
+                        RankName = Data_Reader["RankName"].ToString(),
 
                     };
 
@@ -342,6 +352,9 @@ namespace HoldingTaxWebApp.Gateway.DBO
                         IsSendToClusUser = Data_Reader["IsSendToClusUser"] != DBNull.Value ? Convert.ToBoolean(Data_Reader["IsSendToClusUser"]) : (bool?)null,
                         AreaName = Data_Reader["AreaName"].ToString(),
                         PlotNo = Data_Reader["PlotNo"].ToString(),
+                        RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (Int32?)null,
+                        HolderNamecon = Data_Reader["HolderNamecon"].ToString(),
+                        RankName = Data_Reader["RankName"].ToString(),
 
                     };
 
@@ -430,6 +443,9 @@ namespace HoldingTaxWebApp.Gateway.DBO
 
                     vm.AreaName = Data_Reader["AreaName"].ToString();
                     vm.PlotNo = Data_Reader["PlotNo"].ToString();
+                    vm.RankId = Data_Reader["RankId"] != DBNull.Value ? Convert.ToInt32(Data_Reader["RankId"]) : (Int32?)null;
+                    vm.HolderNamecon = Data_Reader["HolderNamecon"].ToString();
+                    vm.RankName = Data_Reader["RankName"].ToString();
                 };
 
                 Data_Reader.Close();

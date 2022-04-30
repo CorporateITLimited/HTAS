@@ -70,5 +70,19 @@ namespace HoldingTaxWebApp.Models
 
         [Display(Name = "আর্থিক সন")]
         public string FinancialYear { get; set; }
+
+
+
+        [Display(Name = "র‍্যাংক")]
+        public int? RankId { get; set; }
+        [Display(Name = "র‍্যাংক")]
+        public string RankName { get; set; }
+
+        [Display(Name = "গৃহকরদাতা")]
+        public string HolderNamecon { get; set; }
+
+
+
+
     }
 }
