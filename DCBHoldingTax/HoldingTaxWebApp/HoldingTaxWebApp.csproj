@@ -2680,6 +2680,7 @@
     <Content Include="WebForms\Administrative\LoginHistory.aspx" />
     <Content Include="WebForms\Holding\HolderDetails.aspx" />
     <Content Include="WebForms\Holding\HolderList.aspx" />
+    <Content Include="WebForms\Plots\OldPlotOwnerReport.aspx" />
     <Content Include="WebForms\Plots\PlotList.aspx" />
     <Content Include="WebForms\Plots\PlotOwnerDetails.aspx" />
     <Content Include="WebForms\Plots\PlotOwnerList.aspx" />
@@ -4751,6 +4752,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="AppReports\Plots\OldPlotOwnerListReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldPlotOwnerListReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AppReports\Plots\rptPlotOwnerDetails.cs">
       <DependentUpon>rptPlotOwnerDetails.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5059,6 +5066,13 @@
     <Compile Include="WebForms\Holding\HolderList.aspx.designer.cs">
       <DependentUpon>HolderList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\Plots\OldPlotOwnerReport.aspx.cs">
+      <DependentUpon>OldPlotOwnerReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Plots\OldPlotOwnerReport.aspx.designer.cs">
+      <DependentUpon>OldPlotOwnerReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Plots\PlotList.aspx.cs">
       <DependentUpon>PlotList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5325,6 +5339,8 @@
     <Content Include="Views\Account\ForgetPassword.cshtml" />
     <Content Include="Views\PlotOwner\Edit.cshtml" />
     <Content Include="Views\Account\ChangeUserName.cshtml" />
+    <Content Include="Views\PlotOwner\OldPlotOwnerList.cshtml" />
+    <Content Include="Views\PlotOwner\rptOldPlotOwnerList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -5371,6 +5387,10 @@
     <EmbeddedResource Include="AppReports\Administrative\rptLoginHistory.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptLoginHistory.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppReports\Plots\OldPlotOwnerListReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OldPlotOwnerListReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="AppReports\Plots\rptPlotOwnerDetails.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
