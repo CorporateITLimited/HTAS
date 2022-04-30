@@ -32,5 +32,6 @@ namespace HoldingTaxWebApp.Models.DBO
 
         // for reporting only
         public int? AreaId { get; set; }
+        public int? PlotId { get; set; }
     }
 }
