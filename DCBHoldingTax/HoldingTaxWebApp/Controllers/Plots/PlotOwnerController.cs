@@ -1644,9 +1644,24 @@ namespace HoldingTaxWebApp.Controllers.Plots
             return View();
         }
 
+        public ActionResult OldPlotOwnerList()
+        {
+            ViewBag.PlotId = new SelectList(_PlotManager.GetAllPlot(), "PlotId", "PlotNo");
+            return View();
+        }
 
 
         public ActionResult rptPlotOwnerDetails(int id)
+        {
+            Session["PlotId_"] = id;
+            if (id == 0)
+            {
+                Session["PlotId_"] = null;
+            }
+            return View();
+        }
+
+        public ActionResult rptOldPlotOwnerList(int id)
         {
             Session["PlotId_"] = id;
             if (id == 0)
