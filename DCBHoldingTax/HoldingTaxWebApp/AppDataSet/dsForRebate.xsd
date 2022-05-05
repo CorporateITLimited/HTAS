@@ -2,9 +2,10 @@
 <xs:schema id="dsForRebate" targetNamespace="http://tempuri.org/dsForRebate.xsd" xmlns:mstns="http://tempuri.org/dsForRebate.xsd" xmlns="http://tempuri.org/dsForRebate.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnStrHTAS" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnStrHTAS (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnStrHTAS.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DCB_HTASConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="DCB_HTASConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DCB_HTASConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables />
         <Sources />
@@ -77,6 +78,78 @@
               <xs:element name="TotalTaxOfThisYear" msprop:Generator_ColumnVarNameInTable="columnTotalTaxOfThisYear" msprop:Generator_ColumnPropNameInRow="TotalTaxOfThisYear" msprop:Generator_ColumnPropNameInTable="TotalTaxOfThisYearColumn" msprop:Generator_UserColumnName="TotalTaxOfThisYear" type="xs:decimal" minOccurs="0" />
               <xs:element name="NetTaxPayableAmount" msprop:Generator_ColumnVarNameInTable="columnNetTaxPayableAmount" msprop:Generator_ColumnPropNameInRow="NetTaxPayableAmount" msprop:Generator_ColumnPropNameInTable="NetTaxPayableAmountColumn" msprop:Generator_UserColumnName="NetTaxPayableAmount" type="xs:decimal" minOccurs="0" />
               <xs:element name="IsPaid" msprop:Generator_ColumnVarNameInTable="columnIsPaid" msprop:Generator_ColumnPropNameInRow="IsPaid" msprop:Generator_ColumnPropNameInTable="IsPaidColumn" msprop:Generator_UserColumnName="IsPaid" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PlotTransferHistory" msprop:Generator_TableClassName="PlotTransferHistoryDataTable" msprop:Generator_TableVarName="tablePlotTransferHistory" msprop:Generator_RowChangedName="PlotTransferHistoryRowChanged" msprop:Generator_TablePropName="PlotTransferHistory" msprop:Generator_RowDeletingName="PlotTransferHistoryRowDeleting" msprop:Generator_RowChangingName="PlotTransferHistoryRowChanging" msprop:Generator_RowEvHandlerName="PlotTransferHistoryRowChangeEventHandler" msprop:Generator_RowDeletedName="PlotTransferHistoryRowDeleted" msprop:Generator_RowClassName="PlotTransferHistoryRow" msprop:Generator_UserTableName="PlotTransferHistory" msprop:Generator_RowEvArgName="PlotTransferHistoryRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlotId" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPlotId" msprop:Generator_ColumnPropNameInRow="PlotId" msprop:Generator_ColumnPropNameInTable="PlotIdColumn" msprop:Generator_UserColumnName="PlotId" type="xs:int" minOccurs="0" />
+              <xs:element name="PlotIdNumber" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPlotIdNumber" msprop:Generator_ColumnPropNameInRow="PlotIdNumber" msprop:Generator_ColumnPropNameInTable="PlotIdNumberColumn" msprop:Generator_UserColumnName="PlotIdNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AreaName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAreaName" msprop:Generator_ColumnPropNameInRow="AreaName" msprop:Generator_ColumnPropNameInTable="AreaNameColumn" msprop:Generator_UserColumnName="AreaName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PlotOwnerName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPlotOwnerName" msprop:Generator_ColumnPropNameInRow="PlotOwnerName" msprop:Generator_ColumnPropNameInTable="PlotOwnerNameColumn" msprop:Generator_UserColumnName="PlotOwnerName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OffStatusName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnOffStatusName" msprop:Generator_ColumnPropNameInRow="OffStatusName" msprop:Generator_ColumnPropNameInTable="OffStatusNameColumn" msprop:Generator_UserColumnName="OffStatusName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PresentAdd" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPresentAdd" msprop:Generator_ColumnPropNameInRow="PresentAdd" msprop:Generator_ColumnPropNameInTable="PresentAddColumn" msprop:Generator_UserColumnName="PresentAdd" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PhoneNumber" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPhoneNumber" msprop:Generator_ColumnPropNameInRow="PhoneNumber" msprop:Generator_ColumnPropNameInTable="PhoneNumberColumn" msprop:Generator_UserColumnName="PhoneNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PermanentAdd" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPermanentAdd" msprop:Generator_ColumnPropNameInRow="PermanentAdd" msprop:Generator_ColumnPropNameInTable="PermanentAddColumn" msprop:Generator_UserColumnName="PermanentAdd" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CreateDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" msprop:Generator_UserColumnName="CreateDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="status" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_UserColumnName="status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="7" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OldPlotOwnerName" msprop:Generator_ColumnVarNameInTable="columnOldPlotOwnerName" msprop:Generator_ColumnPropNameInRow="OldPlotOwnerName" msprop:Generator_ColumnPropNameInTable="OldPlotOwnerNameColumn" msprop:Generator_UserColumnName="OldPlotOwnerName" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

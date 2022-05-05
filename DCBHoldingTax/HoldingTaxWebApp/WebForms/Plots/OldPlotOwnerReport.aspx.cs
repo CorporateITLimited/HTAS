@@ -28,7 +28,7 @@ namespace HoldingTaxWebApp.WebForms.Plots
         private void cryreportshow()
         {
             cryRpt = new ReportDocument();
-            cryRpt.Load(Server.MapPath("~/AppReports/Plots/rptPlotOwnerDetails.rpt"));
+            cryRpt.Load(Server.MapPath("~/AppReports/Plots/OldPlotOwnerListReport.rpt"));
             cryRpt.SetDatabaseLogon("sa", "#PimsOne$1m#", @"119.18.146.107", "DCB_HTAS");
 
             CrystalReportViewer1.ReportSource = cryRpt;
@@ -48,7 +48,7 @@ namespace HoldingTaxWebApp.WebForms.Plots
 
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("exec [rpt].[spPlotOwnerDetails]  @PlotId", con);
+            SqlCommand cmd = new SqlCommand("exec [rpt].[spPlotTransferHistory]  @PlotId", con);
             cmd.CommandType = CommandType.Text; // always text
 
 
@@ -58,7 +58,7 @@ namespace HoldingTaxWebApp.WebForms.Plots
             {
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 dsTax list = new dsTax(); // same as dataset
-                sda.Fill(list, "dtPlotOwnerDetails");
+                sda.Fill(list, "PlotTransferHistory");
                 //for (int i = 0; i < list.dtListOfQuotedItems.Count(); i++)
                 //{
                 //    list.dtListOfQuotedItems.Rows[i][13] = "List of offered Lowest Quoted Items";
