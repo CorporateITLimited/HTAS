@@ -15,6 +15,8 @@ using HoldingTaxWebApp.Models;
 using System.Data;
 using System.Xml;
 using HoldingTaxWebApp.Gateway;
+using HoldingTaxWebApp.Models.Users;
+using HoldingTaxWebApp.Manager.Users;
 
 namespace HoldingTaxWebApp.Controllers
 {
@@ -27,6 +29,7 @@ namespace HoldingTaxWebApp.Controllers
         private readonly PrimaryTransactionManager _primaryTrnxManager;
         private readonly ConstantValueManager _constantValueManager;
         private readonly SPGPaymentGateway _sPGPaymentGateway;
+        private readonly OtpHistoryManager _OtpHistoryManager;
 
         public CartController()
         {
@@ -37,6 +40,7 @@ namespace HoldingTaxWebApp.Controllers
             _primaryTrnxManager = new PrimaryTransactionManager();
             _constantValueManager = new ConstantValueManager();
             _sPGPaymentGateway = new SPGPaymentGateway();
+            _OtpHistoryManager = new OtpHistoryManager();
         }
 
         // GET: Cart
@@ -106,6 +110,8 @@ namespace HoldingTaxWebApp.Controllers
                         Session[CommonConstantHelper.HolderId] = Convert.ToInt32(relatableData.HolderId);
 
 
+
+
                         SPGTransaction sPGTrnx = new SPGTransaction()
                         {
                             Id = relatableData.Id,
@@ -167,6 +173,26 @@ namespace HoldingTaxWebApp.Controllers
                         int updateData = _sPGPaymentGateway.SPGTransactionUpdate(sPGTrnx);
 
                         string updateString = _holdingTaxManager.UpdateTax(tax);
+
+                        var holderMobile = _holdingManager.GetHolderById(Convert.ToInt32(relatableData.HolderId)).Contact2.ToString();
+                        if (!string.IsNullOrEmpty(holderMobile))
+                        {
+                            OtpHistory newHistory = new OtpHistory()
+                            {
+                                LogInCredentialId = Convert.ToInt32(Session[CommonConstantHelper.LogInCredentialId]),
+                                Otp = 0,
+                                UserName = Session[CommonConstantHelper.UserName].ToString(),
+                                Purpose = "Tax Payment",
+                                CreateDate = DateTime.Now
+                            };
+
+                            string msg = "আপনার পেমেন্ট সফলভাবে সম্পন্ন হয়েছে, ধন্যবাদ।";
+                            string result = SmsApi.SendSms(msg, holderMobile);
+
+                            newHistory.responseString = result;
+                            string strmsg = _OtpHistoryManager.OtpHistoryInsert(newHistory);
+                        }
+
 
                         TempData["SM"] = "আপনার পেমেন্ট সফলভাবে সম্পন্ন হয়েছে";
 
