@@ -16,14 +16,14 @@ namespace HoldingTaxWebApp.AppReports.Plots {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class OldPlotOwnerListReport : ReportClass {
+    public class oldFlatOwnerReport : ReportClass {
         
-        public OldPlotOwnerListReport() {
+        public oldFlatOwnerReport() {
         }
         
         public override string ResourceName {
             get {
-                return "OldPlotOwnerListReport.rpt";
+                return "oldFlatOwnerReport.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace HoldingTaxWebApp.AppReports.Plots {
         
         public override string FullResourceName {
             get {
-                return "HoldingTaxWebApp.AppReports.Plots.OldPlotOwnerListReport.rpt";
+                return "HoldingTaxWebApp.AppReports.Plots.oldFlatOwnerReport.rpt";
             }
             set {
                 // Do nothing
@@ -130,9 +130,9 @@ namespace HoldingTaxWebApp.AppReports.Plots {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedOldPlotOwnerListReport : Component, ICachedReport {
+    public class CachedoldFlatOwnerReport : Component, ICachedReport {
         
-        public CachedOldPlotOwnerListReport() {
+        public CachedoldFlatOwnerReport() {
         }
         
         [Browsable(false)]
@@ -169,7 +169,7 @@ namespace HoldingTaxWebApp.AppReports.Plots {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            OldPlotOwnerListReport rpt = new OldPlotOwnerListReport();
+            oldFlatOwnerReport rpt = new oldFlatOwnerReport();
             rpt.Site = this.Site;
             return rpt;
         }
