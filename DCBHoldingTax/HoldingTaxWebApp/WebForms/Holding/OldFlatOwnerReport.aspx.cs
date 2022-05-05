@@ -28,7 +28,7 @@ namespace HoldingTaxWebApp.WebForms.Holding
         private void cryreportshow()
         {
             cryRpt = new ReportDocument();
-            cryRpt.Load(Server.MapPath("~/AppReports/Plots/rptPlotOwnerDetails.rpt"));
+            cryRpt.Load(Server.MapPath("~/AppReports/Plots/oldFlatOwnerReport.rpt"));
             cryRpt.SetDatabaseLogon("sa", "#PimsOne$1m#", @"119.18.146.107", "DCB_HTAS");
 
             CrystalReportViewer1.ReportSource = cryRpt;
@@ -46,15 +46,16 @@ namespace HoldingTaxWebApp.WebForms.Holding
 
             int? rptPlotId = Session["PlotId_"] != null ? Convert.ToInt32(Session["PlotId_"]) : (int?)null;
             string rptFlatNo = Convert.ToString(Session["FlatNo_"]);
+            rptFlatNo = null;
 
 
             SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["ConnStrHTAS"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("exec [rpt].[spHolderFlatHistoryReport]  @PlotId @FlatNo", con);
+            SqlCommand cmd = new SqlCommand("exec [rpt].[spHolderFlatHistoryReport]  @PlotId ", con);
             cmd.CommandType = CommandType.Text; // always text
 
 
             cmd.Parameters.AddWithValue("@PlotId", SqlDbType.Int).Value = rptPlotId ?? (object)DBNull.Value;
-            cmd.Parameters.AddWithValue("@FlatNo", SqlDbType.NVarChar).Value = rptFlatNo;
+            cmd.Parameters.AddWithValue("@FlatNo", SqlDbType.NVarChar).Value = rptFlatNo?? (object)DBNull.Value;
 
             try
             {
