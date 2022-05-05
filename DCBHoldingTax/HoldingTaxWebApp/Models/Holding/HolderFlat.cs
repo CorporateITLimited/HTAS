@@ -70,5 +70,7 @@ namespace HoldingTaxWebApp.Models.Holding
         public string FloorTypeName { get; set; }
 
         public bool? IsCheckedByHolder { get; set; }
+
+        public int? PlotId { get; set; }
     }
 }
