@@ -3,14 +3,15 @@
     ViewBag.Title = "Index";
 }
 @section Sheets{
-    @*<link href="~/Content/FormDesign.css" rel="stylesheet" />*@
-    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <link href="~/Theme/dist/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" />
     <style>
         .highlight {
             font-weight: bold;
             color: #4D7629;
             font-size: large;
         }
+
         .dull {
             font-weight: bold;
             color: #FF0000;
@@ -52,61 +53,29 @@
             </div>
         }
 
-        <div class="card card-custom">
-            <div class="card-header flex-wrap border-0 pt-6 pb-0">
-                <div class="card-title">
-                    <h3 class="card-label">
-                        গৃহকরদাতাদের তালিকা মূল তালিকা
-                    </h3>
-                </div>
-                <div class="card-toolbar">
-                    <!--begin::Dropdown-->
-                    <!--end::Dropdown-->
-                    <!--begin::Button-->
-                    <a href="~/Holding/Create" class="btn btn-primary font-weight-bolder">
-                        <i class="fas fa-plus">
-                        </i>নতুন গৃহকরদাতা যুক্ত করুন
-                    </a>
-
-                    @*@if ((Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleAdmin) ||
-                        (Convert.ToString(Session[CommonConstantHelper.RoleName]) == CommonConstantHelper.RoleManagement))
-                    {
-                        <a href="~/User/Create" class="btn btn-brand btn-elevate btn-icon-sm">
-                            <i class="la la-plus"></i>
-                            Add User
+            <div class="card card-custom">
+                <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                    <div class="card-title">
+                        <h3 class="card-label">
+                            গৃহকরদাতাদের তালিকা মূল তালিকা
+                        </h3>
+                    </div>
+                    <div class="card-toolbar">
+                        <!--begin::Button-->
+                        <a href="~/Holding/Create" class="btn btn-primary font-weight-bolder">
+                            <i class="fas fa-plus">
+                            </i>নতুন গৃহকরদাতা যুক্ত করুন
                         </a>
-                    }*@
 
-                    <!--end::Button-->
-                </div>
-            </div>
-            <div class="card-body">
-                <!--begin: Search Form-->
-                <!--begin::Search Form-->
-                <div class="mb-7">
-                    <div class="row align-items-center">
-                        <div class="col-lg-9 col-xl-8">
-                            <div class="row align-items-center">
-                                <div class="col-md-4 my-2 my-md-0">
-                                    @*<div class="input-icon">
-                                        <input type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
-                                        <span>
-                                            <i class="flaticon2-search-1 text-muted"></i>
-                                        </span>
-                                    </div>*@
-                                </div>
-
-                            </div>
-                        </div>
+                        <!--end::Button-->
                     </div>
                 </div>
-                <!--end::Search Form-->
-                <!--end: Search Form-->
-                <div class="datatable datatable-bordered datatable-head-custom datatable-default datatable-primary datatable-loaded">
+                <div class="card-body">
                     <!--begin: Datatable-->
-                    <table class="table-bordered datatable-table" id="data_table" width="90" >
+                    <table class="table table-bordered table-hover table-checkable" id="kt_datatable" style="margin-top: 13px !important">
                         <thead>
                             <tr>
+                                <th>SL</th>
                                 <th>@Html.DisplayNameFor(model => model.HolderNo)</th>
                                 <th>@Html.DisplayNameFor(model => model.AreaName)</th>
                                 <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
@@ -118,47 +87,34 @@
                                 <th></th>
                             </tr>
                         </thead>
-
-                        <tfoot>
-                            <tr>
-                                <th>@Html.DisplayNameFor(model => model.HolderNo)</th>
-                                <th>@Html.DisplayNameFor(model => model.AreaName)</th>
-                                <th>@Html.DisplayNameFor(model => model.PlotNo)</th>
-                                <th>@Html.DisplayNameFor(model => model.HolderNamecon)</th>
-                                <th>@Html.DisplayNameFor(model => model.OwnerTypeName)</th>
-                                @*<th>@Html.DisplayNameFor(model => model.BuildingTypeName)</th>*@
-                                <th>@Html.DisplayNameFor(model => model.IsHolderAnOwner)</th>
-                                <th>@Html.DisplayNameFor(model => model.FlatCount)</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
-
                     </table>
-                    @*<div id="test"></div>*@
                     <!--end: Datatable-->
                 </div>
-
             </div>
-        </div>
     </div>
 </div>
 
 
+
+
+
+
+
 @section Scripts
 {
-    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
-    @*<script src="~/Scripts/custom/holderListIndex.js"></script>*@
+    @*<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>*@
+    <script src="~/Theme/dist/assets/plugins/custom/datatables/datatables.bundle.js"></script>
 
     <script>
         jQuery(document).ready(function () {
-            
-            
+
+
             function reDrawTable() {
                 registerTable.page('first').draw();
             }
 
-            var registerTable = $("#data_table").DataTable({
-                
+            var registerTable = $("#kt_datatable").DataTable({
+
                 "oLanguage": {
                     "sEmptyTable": "No Information available"
                 },
@@ -173,7 +129,7 @@
                 "columnDefs": [
                     //{ "targets": [0, 1, 2, 3, 4, 5], "bSortable": true },
                     {
-                        "targets": 5,
+                        "targets": 6,
                         "data": "IsHolderAnOwner",
                         "render": function (data, type, full, meta) {
                             if (data == true)
@@ -188,6 +144,7 @@
                 ],
 
                 "columns": [
+                    { 'data': null},
                     { 'data': 'HolderNo', class: 'text-left' },
                     { 'data': 'AreaName', class: 'text-center' },
                     { 'data': 'PlotNo', class: 'text-center' },
@@ -198,7 +155,7 @@
                     { 'data': 'FlatCount', class: 'text-center' },
                     {
                         'data': null, //its null here because history column will contain the mRender
-                                               
+
 
                         render: (data, type, row) => {
                             return `<a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href='/Holding/Edit/${row.HolderId}' title="হালনাগাদ পেজে যান"><b> <i class="fa fa-edit"></i>  </b></a><a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href='/Holding/Details/${row.HolderId}'  title="বিস্তারিত তথ্য পেজে যান"><b><i class="fa fa-th-list" aria-hidden="true"></i></b></a><a class="btn btn-sm btn-clean btn-icon btn-icon-md kt-datatable__cell" href='/Holding/rptHolderDetails/${row.HolderId}' title="হোল্ডার রিপোর্ট"><b><i class="fa fa-file-alt" aria-hidden="true"></i></b></a>`;
@@ -206,12 +163,15 @@
 
                     },
                 ],
-
+                "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                    $("td:first", nRow).html(iDisplayIndex + 1);
+                    return nRow;
+                },
 
 
             });
 
-        });      
+        });
     </script>
 
 
